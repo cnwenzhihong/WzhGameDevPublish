@@ -2,69 +2,69 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>http://localhost:6260/tags/blog/</loc>
+    <loc>http://localhost:6260/WzhGameDevPublish/tags/blog/</loc>
     <lastmod>2025-12-24T12:40:02+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:6260/post/</loc>
+    <loc>http://localhost:6260/WzhGameDevPublish/post/</loc>
     <lastmod>2025-12-24T12:40:02+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:6260/tags/</loc>
-    <lastmod>2025-12-24T12:40:02+00:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="http://localhost:6260/en/tags/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="zh-cn"
-                href="http://localhost:6260/tags/"
-                />
-  </url><url>
-    <loc>http://localhost:6260/post/%E7%94%B5%E8%84%91/%E7%9F%A5%E8%AF%86%E7%AE%A1%E7%90%86/%E6%90%AD%E5%BB%BAhugo%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/</loc>
-    <lastmod>2025-12-24T12:40:02+00:00</lastmod>
-  </url><url>
-    <loc>http://localhost:6260/</loc>
+    <loc>http://localhost:6260/WzhGameDevPublish/tags/</loc>
     <lastmod>2025-12-24T12:40:02+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="http://localhost:6260/en/"
+                href="http://localhost:6260/WzhGameDevPublish/en/tags/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="zh-cn"
-                href="http://localhost:6260/"
+                href="http://localhost:6260/WzhGameDevPublish/tags/"
                 />
   </url><url>
-    <loc>http://localhost:6260/tags/3c/</loc>
+    <loc>http://localhost:6260/WzhGameDevPublish/post/%E7%94%B5%E8%84%91/%E7%9F%A5%E8%AF%86%E7%AE%A1%E7%90%86/%E6%90%AD%E5%BB%BAhugo%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/</loc>
+    <lastmod>2025-12-24T12:40:02+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:6260/WzhGameDevPublish/</loc>
+    <lastmod>2025-12-24T12:40:02+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="http://localhost:6260/WzhGameDevPublish/en/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh-cn"
+                href="http://localhost:6260/WzhGameDevPublish/"
+                />
+  </url><url>
+    <loc>http://localhost:6260/WzhGameDevPublish/tags/3c/</loc>
     <lastmod>2025-12-24T12:38:47+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:6260/tags/fps/</loc>
+    <loc>http://localhost:6260/WzhGameDevPublish/tags/fps/</loc>
     <lastmod>2025-12-24T12:38:47+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:6260/post/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/%E4%BB%A3%E7%A0%81%E6%A1%86%E6%9E%B6/lyra/fps/%E6%8A%80%E6%9C%AF%E7%BB%86%E8%8A%82/fps%E4%B8%AD%E7%9A%84%E6%AD%A6%E5%99%A8%E6%91%87%E6%99%83/</loc>
+    <loc>http://localhost:6260/WzhGameDevPublish/post/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/%E4%BB%A3%E7%A0%81%E6%A1%86%E6%9E%B6/lyra/fps/%E6%8A%80%E6%9C%AF%E7%BB%86%E8%8A%82/fps%E4%B8%AD%E7%9A%84%E6%AD%A6%E5%99%A8%E6%91%87%E6%99%83/</loc>
     <lastmod>2025-12-24T12:38:47+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:6260/archives/</loc>
+    <loc>http://localhost:6260/WzhGameDevPublish/archives/</loc>
     <lastmod>2022-07-26T21:46:25+08:00</lastmod>
   </url><url>
-    <loc>http://localhost:6260/about/</loc>
+    <loc>http://localhost:6260/WzhGameDevPublish/about/</loc>
     <lastmod>2022-06-09T20:12:52+08:00</lastmod>
   </url><url>
-    <loc>http://localhost:6260/friend/</loc>
+    <loc>http://localhost:6260/WzhGameDevPublish/friend/</loc>
     <lastmod>2022-06-09T20:12:52+08:00</lastmod>
   </url><url>
-    <loc>http://localhost:6260/categories/</loc>
+    <loc>http://localhost:6260/WzhGameDevPublish/categories/</loc>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="http://localhost:6260/en/categories/"
+                href="http://localhost:6260/WzhGameDevPublish/en/categories/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="zh-cn"
-                href="http://localhost:6260/categories/"
+                href="http://localhost:6260/WzhGameDevPublish/categories/"
                 />
   </url>
 </urlset>

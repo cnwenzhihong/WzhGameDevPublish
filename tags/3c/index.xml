@@ -2,7 +2,7 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>3C on 妖精游戏开发馆</title>
-    <link>http://localhost:6260/tags/3c/</link>
+    <link>http://localhost:6260/WzhGameDevPublish/tags/3c/</link>
     <description>Recent content from 妖精游戏开发馆</description>
     <generator>Hugo</generator>
     <language>zh-cn</language>
@@ -15,7 +15,7 @@
     <lastBuildDate>Wed, 24 Dec 2025 12:38:47 +0000</lastBuildDate>
     
     
-    <atom:link href="http://localhost:6260/tags/3c/index.xml" rel="self" type="application/rss&#43;xml" />
+    <atom:link href="http://localhost:6260/WzhGameDevPublish/tags/3c/index.xml" rel="self" type="application/rss&#43;xml" />
     
 
     
@@ -23,10 +23,10 @@
 
     <item>
       <title>FPS中的武器摇晃</title>
-      <link>http://localhost:6260/post/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/%E4%BB%A3%E7%A0%81%E6%A1%86%E6%9E%B6/lyra/fps/%E6%8A%80%E6%9C%AF%E7%BB%86%E8%8A%82/fps%E4%B8%AD%E7%9A%84%E6%AD%A6%E5%99%A8%E6%91%87%E6%99%83/</link>
+      <link>http://localhost:6260/WzhGameDevPublish/post/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/%E4%BB%A3%E7%A0%81%E6%A1%86%E6%9E%B6/lyra/fps/%E6%8A%80%E6%9C%AF%E7%BB%86%E8%8A%82/fps%E4%B8%AD%E7%9A%84%E6%AD%A6%E5%99%A8%E6%91%87%E6%99%83/</link>
       <pubDate>Sat, 22 Nov 2025 13:19:29 &#43;0000</pubDate>
       <author>cnwenzhihong@gmail.com (温志洪)</author>
-      <guid>http://localhost:6260/post/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/%E4%BB%A3%E7%A0%81%E6%A1%86%E6%9E%B6/lyra/fps/%E6%8A%80%E6%9C%AF%E7%BB%86%E8%8A%82/fps%E4%B8%AD%E7%9A%84%E6%AD%A6%E5%99%A8%E6%91%87%E6%99%83/</guid>
+      <guid>http://localhost:6260/WzhGameDevPublish/post/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/%E4%BB%A3%E7%A0%81%E6%A1%86%E6%9E%B6/lyra/fps/%E6%8A%80%E6%9C%AF%E7%BB%86%E8%8A%82/fps%E4%B8%AD%E7%9A%84%E6%AD%A6%E5%99%A8%E6%91%87%E6%99%83/</guid>
       <description>
         <![CDATA[<h1>FPS中的武器摇晃</h1><p>作者：温志洪（cnwenzhihong@gmail.com）</p>
         
@@ -46,7 +46,7 @@
 </h3><blockquote>
 <p>计算转动量/输入量的速度，用于后续处理</p>
         
-        <hr><p>本文2025-11-22首发于<a href='http://localhost:6260/'>妖精游戏开发馆</a>，最后修改于2025-12-24</p>]]>
+        <hr><p>本文2025-11-22首发于<a href='http://localhost:6260/WzhGameDevPublish/'>妖精游戏开发馆</a>，最后修改于2025-12-24</p>]]>
       </description>
       
     </item>

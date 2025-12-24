@@ -2,7 +2,7 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Blog on 妖精游戏开发馆</title>
-    <link>http://localhost:6260/tags/blog/</link>
+    <link>http://localhost:6260/WzhGameDevPublish/tags/blog/</link>
     <description>Recent content from 妖精游戏开发馆</description>
     <generator>Hugo</generator>
     <language>zh-cn</language>
@@ -15,7 +15,7 @@
     <lastBuildDate>Wed, 24 Dec 2025 12:40:02 +0000</lastBuildDate>
     
     
-    <atom:link href="http://localhost:6260/tags/blog/index.xml" rel="self" type="application/rss&#43;xml" />
+    <atom:link href="http://localhost:6260/WzhGameDevPublish/tags/blog/index.xml" rel="self" type="application/rss&#43;xml" />
     
 
     
@@ -23,10 +23,10 @@
 
     <item>
       <title>搭建Hugo个人博客</title>
-      <link>http://localhost:6260/post/%E7%94%B5%E8%84%91/%E7%9F%A5%E8%AF%86%E7%AE%A1%E7%90%86/%E6%90%AD%E5%BB%BAhugo%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/</link>
+      <link>http://localhost:6260/WzhGameDevPublish/post/%E7%94%B5%E8%84%91/%E7%9F%A5%E8%AF%86%E7%AE%A1%E7%90%86/%E6%90%AD%E5%BB%BAhugo%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/</link>
       <pubDate>Tue, 23 Dec 2025 19:55:06 &#43;0000</pubDate>
       <author>cnwenzhihong@gmail.com (温志洪)</author>
-      <guid>http://localhost:6260/post/%E7%94%B5%E8%84%91/%E7%9F%A5%E8%AF%86%E7%AE%A1%E7%90%86/%E6%90%AD%E5%BB%BAhugo%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/</guid>
+      <guid>http://localhost:6260/WzhGameDevPublish/post/%E7%94%B5%E8%84%91/%E7%9F%A5%E8%AF%86%E7%AE%A1%E7%90%86/%E6%90%AD%E5%BB%BAhugo%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/</guid>
       <description>
         <![CDATA[<h1>搭建Hugo个人博客</h1><p>作者：温志洪（cnwenzhihong@gmail.com）</p>
         
@@ -48,7 +48,7 @@
 </span></span><span class="line"><span class="cl">5. Start the embedded web server with the <span class="nb">command</span> <span class="s2">&#34;hugo server --buildDrafts&#34;</span>.
 </span></span></code></pre></div><p>到hugo主题仓库找一个主题：<a href="https://themes.gohugo.io/">hugo themes</a></p>
         
-        <hr><p>本文2025-12-23首发于<a href='http://localhost:6260/'>妖精游戏开发馆</a>，最后修改于2025-12-24</p>]]>
+        <hr><p>本文2025-12-23首发于<a href='http://localhost:6260/WzhGameDevPublish/'>妖精游戏开发馆</a>，最后修改于2025-12-24</p>]]>
       </description>
       
     </item>
@@ -57,10 +57,10 @@
 
     <item>
       <title>FPS中的武器摇晃</title>
-      <link>http://localhost:6260/post/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/%E4%BB%A3%E7%A0%81%E6%A1%86%E6%9E%B6/lyra/fps/%E6%8A%80%E6%9C%AF%E7%BB%86%E8%8A%82/fps%E4%B8%AD%E7%9A%84%E6%AD%A6%E5%99%A8%E6%91%87%E6%99%83/</link>
+      <link>http://localhost:6260/WzhGameDevPublish/post/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/%E4%BB%A3%E7%A0%81%E6%A1%86%E6%9E%B6/lyra/fps/%E6%8A%80%E6%9C%AF%E7%BB%86%E8%8A%82/fps%E4%B8%AD%E7%9A%84%E6%AD%A6%E5%99%A8%E6%91%87%E6%99%83/</link>
       <pubDate>Sat, 22 Nov 2025 13:19:29 &#43;0000</pubDate>
       <author>cnwenzhihong@gmail.com (温志洪)</author>
-      <guid>http://localhost:6260/post/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/%E4%BB%A3%E7%A0%81%E6%A1%86%E6%9E%B6/lyra/fps/%E6%8A%80%E6%9C%AF%E7%BB%86%E8%8A%82/fps%E4%B8%AD%E7%9A%84%E6%AD%A6%E5%99%A8%E6%91%87%E6%99%83/</guid>
+      <guid>http://localhost:6260/WzhGameDevPublish/post/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/%E4%BB%A3%E7%A0%81%E6%A1%86%E6%9E%B6/lyra/fps/%E6%8A%80%E6%9C%AF%E7%BB%86%E8%8A%82/fps%E4%B8%AD%E7%9A%84%E6%AD%A6%E5%99%A8%E6%91%87%E6%99%83/</guid>
       <description>
         <![CDATA[<h1>FPS中的武器摇晃</h1><p>作者：温志洪（cnwenzhihong@gmail.com）</p>
         
@@ -80,7 +80,7 @@
 </h3><blockquote>
 <p>计算转动量/输入量的速度，用于后续处理</p>
         
-        <hr><p>本文2025-11-22首发于<a href='http://localhost:6260/'>妖精游戏开发馆</a>，最后修改于2025-12-24</p>]]>
+        <hr><p>本文2025-11-22首发于<a href='http://localhost:6260/WzhGameDevPublish/'>妖精游戏开发馆</a>，最后修改于2025-12-24</p>]]>
       </description>
       
     </item>

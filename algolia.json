@@ -1,13 +1,13 @@
 [
   {
-    "objectID": "ad999bb7d9fa52d28e828951ee6c76e7af5d2f5e",
-    "permalink": "/post/%E7%94%B5%E8%84%91/%E7%9F%A5%E8%AF%86%E7%AE%A1%E7%90%86/%E6%90%AD%E5%BB%BAhugo%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/",
+    "objectID": "aa7fc4b74ab22e626446d894f37e31ab555edbf2",
+    "permalink": "/WzhGameDevPublish/post/%E7%94%B5%E8%84%91/%E7%9F%A5%E8%AF%86%E7%AE%A1%E7%90%86/%E6%90%AD%E5%BB%BAhugo%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/",
     "title": "搭建Hugo个人博客","content": "\r本地windows部署\r下载hugo，解压，一定要下载extend后缀的版本\n命令：\nhugo new site 网站名 反馈：\nJust a few more steps... 1. Change the current directory to D:\\apply\\pro\\Hugo\\hugo_0.153.2_windows-amd64\\WzhUEDev. 2. Create or install a theme: - Create a new theme with the command \u0026#34;hugo new theme \u0026lt;THEMENAME\u0026gt;\u0026#34; - Or, install a theme from https://themes.gohugo.io/ 3. Edit hugo.toml, setting the \u0026#34;theme\u0026#34; property to the theme name. 4. Create new content with the command \u0026#34;hugo new content \u0026lt;SECTIONNAME\u0026gt;\\\u0026lt;FILENAME\u0026gt;.\u0026lt;FORMAT\u0026gt;\u0026#34;. 5. Start the embedded web server with the command \u0026#34;hugo server --buildDrafts\u0026#34;. 到hugo主题仓库找一个主题：hugo themes\nExample\r博丽灵梦\n个人主页\n作品主页\n博客主页\n播客主页-小红书\n可能有很强自定义\n系列文章\n有分类\n直接使用模板\r找到模板链接，如：https://github.com/D-Sketon/hugo-reimu-template\n使用模板创建仓库\npull新仓库\n模板的主题只有文件夹，是空仓库，把主题克隆在该位置\n常规方案\r复制hugo.exe到创建的仓库文件夹\n将主题解压复制到themes文件夹，去掉版本号\n修改配置文件 hugo.toml,使用新主题\n此时最好对照主题的样例项目修改\ntheme = \u0026#39;hugo-theme-reimu\u0026#39; 找到主题的示例(_example)代码，复制到content目录下\n启动项目\nhugo server 打开网站即可\n各种问题\r让其支持原生html\n关闭安全模式：hugo.toml\n[markup.goldmark.renderer] unsafe = true Ob发布插件\rhugo publish\n","date": "2025-12-23 19:55:06",
     "updated": "2025-12-24 12:40:02"
   }, 
   {
-    "objectID": "c1f0c834e04cdcc0bd21adb5a2a072a10b8b5832",
-    "permalink": "/post/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/%E4%BB%A3%E7%A0%81%E6%A1%86%E6%9E%B6/lyra/fps/%E6%8A%80%E6%9C%AF%E7%BB%86%E8%8A%82/fps%E4%B8%AD%E7%9A%84%E6%AD%A6%E5%99%A8%E6%91%87%E6%99%83/",
+    "objectID": "8b4986de6a8c7137c0651e58283c8e9c8d639783",
+    "permalink": "/WzhGameDevPublish/post/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/%E4%BB%A3%E7%A0%81%E6%A1%86%E6%9E%B6/lyra/fps/%E6%8A%80%E6%9C%AF%E7%BB%86%E8%8A%82/fps%E4%B8%AD%E7%9A%84%E6%AD%A6%E5%99%A8%E6%91%87%E6%99%83/",
     "title": "FPS中的武器摇晃","content": "\r旋转摇晃Weapon Sway\r代码实现\r我们可以将其分为：获取转动输入→计算偏移量→表现三个步骤\n先获取用户转动差值，做各种处理后，用于表现效果\n一、处理输入量\r计算转动量/输入量的速度，用于后续处理\n1.1 原始数据采样——转动量\r类似于TPS的瞄准偏移，但TPS关注角度，而FPS更在意变化量\n鼠标输入 ★★★\r理论上是最直接简单的获取方式，完全不需要计算\n不容易获得精确数值(要么0要么1)。\nUE愈加复杂的输入系统让实现不再简单。\nExample\r0.1秒间隔，无太大必要优化，并未处于deltaSeconds\n旋转差值 ★★★★★\r计算ControllerRotation的旋转差值\n可以抹平不同鼠标Dpi的差距，获取差值也简单，需要单独保存上一帧的旋转量\nExample\rFRotator deltaRot = UKismetMathLibrary::NormalizedDeltaRotator(CurrtRot, ControlLastRot); ControlLastRot = CurrtRot; Rotator.Normalized:\n防止接近 ±180° 时出现跳变\n消除超过 ±360° 的累积角度\nYaw Roll：[=180,180]\nYaw：[-90,90]\n1.2 计算二阶数据——速度和加速度\r角速度\r差值➗时间 即可得到角速度\ns=d/t\nFVector2D rotSpeedFrame(deltaRot.Yaw / DeltaSeconds, deltaRot.Pitch / DeltaSeconds); 加速度\ra=s/t\nFVector2D rotAccel((RotSpeedFiltered.X - PrevRotSpeedFiltered.X) / DeltaSeconds, (RotSpeedFiltered.Y - PrevRotSpeedFiltered.Y) / DeltaSeconds); PrevRotSpeedFiltered.X = RotSpeedFiltered.X; PrevRotSpeedFiltered.Y = RotSpeedFiltered.Y; 1.3 输入数据处理\r主要对算出的Rot speed多次处理\n低通滤波\r平滑变化速率较大的情况\n如果想平滑输入，可以对角速度进行低通滤波，会看起来更舒缓，但变化 …","date": "2025-11-22 13:19:29",
     "updated": "2025-12-24 12:38:47"
   }]
