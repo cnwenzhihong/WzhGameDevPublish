@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Blog on 妖精游戏开发馆</title>
+    <link>http://localhost:6260/tags/blog/</link>
+    <description>Recent content from 妖精游戏开发馆</description>
+    <generator>Hugo</generator>
+    <language>zh-cn</language>
+    
+    <managingEditor>cnwenzhihong@gmail.com (温志洪)</managingEditor>
+    <webMaster>cnwenzhihong@gmail.com (温志洪)</webMaster>
+    
+    <copyright>本博客所有文章除特别声明外，均采用 BY-NC-SA 许可协议。转载请注明出处！</copyright>
+    
+    <lastBuildDate>Wed, 24 Dec 2025 12:40:02 +0000</lastBuildDate>
+    
+    
+    <atom:link href="http://localhost:6260/tags/blog/index.xml" rel="self" type="application/rss&#43;xml" />
+    
+
+    
+    
+
+    <item>
+      <title>搭建Hugo个人博客</title>
+      <link>http://localhost:6260/post/%E7%94%B5%E8%84%91/%E7%9F%A5%E8%AF%86%E7%AE%A1%E7%90%86/%E6%90%AD%E5%BB%BAhugo%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/</link>
+      <pubDate>Tue, 23 Dec 2025 19:55:06 &#43;0000</pubDate>
+      <author>cnwenzhihong@gmail.com (温志洪)</author>
+      <guid>http://localhost:6260/post/%E7%94%B5%E8%84%91/%E7%9F%A5%E8%AF%86%E7%AE%A1%E7%90%86/%E6%90%AD%E5%BB%BAhugo%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/</guid>
+      <description>
+        <![CDATA[<h1>搭建Hugo个人博客</h1><p>作者：温志洪（cnwenzhihong@gmail.com）</p>
+        
+          <h1 id="本地windows部署">
+<a class="header-anchor" href="#%e6%9c%ac%e5%9c%b0windows%e9%83%a8%e7%bd%b2"></a>
+本地windows部署
+</h1><p>下载hugo，解压，一定要下载extend后缀的版本<br>
+命令：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">hugo new site 网站名
+</span></span></code></pre></div><p>反馈：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">Just a few more steps...
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">1. Change the current directory to D:<span class="se">\a</span>pply<span class="se">\p</span>ro<span class="se">\H</span>ugo<span class="se">\h</span>ugo_0.153.2_windows-amd64<span class="se">\W</span>zhUEDev.
+</span></span><span class="line"><span class="cl">2. Create or install a theme:
+</span></span><span class="line"><span class="cl">   - Create a new theme with the <span class="nb">command</span> <span class="s2">&#34;hugo new theme &lt;THEMENAME&gt;&#34;</span>
+</span></span><span class="line"><span class="cl">   - Or, install a theme from https://themes.gohugo.io/
+</span></span><span class="line"><span class="cl">3. Edit hugo.toml, setting the <span class="s2">&#34;theme&#34;</span> property to the theme name.
+</span></span><span class="line"><span class="cl">4. Create new content with the <span class="nb">command</span> <span class="s2">&#34;hugo new content &lt;SECTIONNAME&gt;\&lt;FILENAME&gt;.&lt;FORMAT&gt;&#34;</span>.
+</span></span><span class="line"><span class="cl">5. Start the embedded web server with the <span class="nb">command</span> <span class="s2">&#34;hugo server --buildDrafts&#34;</span>.
+</span></span></code></pre></div><p>到hugo主题仓库找一个主题：<a href="https://themes.gohugo.io/">hugo themes</a></p>
+        
+        <hr><p>本文2025-12-23首发于<a href='http://localhost:6260/'>妖精游戏开发馆</a>，最后修改于2025-12-24</p>]]>
+      </description>
+      
+    </item>
+    
+    
+
+    <item>
+      <title>FPS中的武器摇晃</title>
+      <link>http://localhost:6260/post/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/%E4%BB%A3%E7%A0%81%E6%A1%86%E6%9E%B6/lyra/fps/%E6%8A%80%E6%9C%AF%E7%BB%86%E8%8A%82/fps%E4%B8%AD%E7%9A%84%E6%AD%A6%E5%99%A8%E6%91%87%E6%99%83/</link>
+      <pubDate>Sat, 22 Nov 2025 13:19:29 &#43;0000</pubDate>
+      <author>cnwenzhihong@gmail.com (温志洪)</author>
+      <guid>http://localhost:6260/post/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/%E4%BB%A3%E7%A0%81%E6%A1%86%E6%9E%B6/lyra/fps/%E6%8A%80%E6%9C%AF%E7%BB%86%E8%8A%82/fps%E4%B8%AD%E7%9A%84%E6%AD%A6%E5%99%A8%E6%91%87%E6%99%83/</guid>
+      <description>
+        <![CDATA[<h1>FPS中的武器摇晃</h1><p>作者：温志洪（cnwenzhihong@gmail.com）</p>
+        
+          <h1 id="旋转摇晃weapon-sway">
+<a class="header-anchor" href="#%e6%97%8b%e8%bd%ac%e6%91%87%e6%99%83weapon-sway"></a>
+旋转摇晃Weapon Sway
+</h1><h2 id="代码实现">
+<a class="header-anchor" href="#%e4%bb%a3%e7%a0%81%e5%ae%9e%e7%8e%b0"></a>
+代码实现
+</h2><p>我们可以将其分为：获取转动输入→计算偏移量→表现三个步骤</p>
+<blockquote>
+<p>先获取用户转动差值，做各种处理后，用于表现效果</p>
+</blockquote>
+<h3 id="一处理输入量">
+<a class="header-anchor" href="#%e4%b8%80%e5%a4%84%e7%90%86%e8%be%93%e5%85%a5%e9%87%8f"></a>
+一、处理输入量
+</h3><blockquote>
+<p>计算转动量/输入量的速度，用于后续处理</p>
+        
+        <hr><p>本文2025-11-22首发于<a href='http://localhost:6260/'>妖精游戏开发馆</a>，最后修改于2025-12-24</p>]]>
+      </description>
+      
+    </item>
+    
+  </channel>
+</rss>
