@@ -1,0 +1,1750 @@
+<!doctype html>
+<html
+  lang="zh-cn" 
+  data-theme-mode="false"
+  >
+  <head><script src="/WzhGameDevPublish/livereload.js?mindelay=10&amp;v=2&amp;port=1895&amp;path=WzhGameDevPublish/livereload" data-no-instant defer></script><meta charset="utf-8" />
+<meta
+  name="viewport"
+  content="width=device-width, initial-scale=1, shrink-to-fit=no"
+/><title>
+  FPS中的武器摇晃 | 温志洪
+</title>
+<meta name="description" content="FPS游戏"/><script>
+  window.siteConfig = JSON.parse("{\"anchor_icon\":null,\"base\":\"http://localhost:1895/WzhGameDevPublish/\",\"clipboard\":{\"copyright\":{\"count\":50,\"enable\":false,\"license_type\":\"by-nc-sa\"},\"fail\":{\"en\":\"Copy failed (ﾟ⊿ﾟ)ﾂ\",\"ja\":\"コピー失敗 (ﾟ⊿ﾟ)ﾂ\",\"pt-br\":\"Falha ao copiar (ﾟ⊿ﾟ)ﾂ\",\"zh-cn\":\"复制失败 (ﾟ⊿ﾟ)ﾂ\",\"zh-tw\":\"複製失敗 (ﾟ⊿ﾟ)ﾂ\"},\"success\":{\"en\":\"Copy successfully (*^▽^*)\",\"ja\":\"コピー成功 (*^▽^*)\",\"pt-br\":\"Copiado com sucesso (*^▽^*)\",\"zh-cn\":\"复制成功 (*^▽^*)\",\"zh-tw\":\"複製成功 (*^▽^*)\"}},\"code_block\":{\"expand\":4},\"i18n_languages\":[{\"Lang\":\"en\",\"LanguageName\":\"English\",\"LanguageCode\":\"\",\"Title\":\"\",\"LanguageDirection\":\"\",\"Weight\":1,\"Disabled\":false},{\"Lang\":\"zh-cn\",\"LanguageName\":\"简体中文\",\"LanguageCode\":\"\",\"Title\":\"\",\"LanguageDirection\":\"\",\"Weight\":1,\"Disabled\":false}],\"icon_font\":\"4552607_4k4bc36ef96\",\"outdate\":{\"daysago\":180,\"enable\":false,\"message\":{\"en\":\"This article was last updated on {time}. Please note that the content may no longer be applicable.\",\"ja\":\"この記事は最終更新日：{time}。記載内容が現在有効でない可能性がありますのでご注意ください。\",\"pt-br\":\"Este artigo foi atualizado pela última vez em {time}. Observe que o conteúdo pode não ser mais aplicável.\",\"zh-cn\":\"本文最后更新于 {time}，请注意文中内容可能已不适用。\",\"zh-tw\":\"本文最後更新於 {time}，請注意文中內容可能已不適用。\"}}}");
+  
+</script>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link
+  rel="preload"
+  as="style"
+  href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic%7cNoto%20Serif%20SC:400,400italic,700,700italic%7c&amp;display=swap"
+/>
+<link
+  rel="stylesheet"
+  href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic%7cNoto%20Serif%20SC:400,400italic,700,700italic%7c&amp;display=swap"
+  media="print"
+  onload="this.media='all'"
+/>
+<link
+    rel="preload"
+    href="//at.alicdn.com/t/c/font_4552607_4k4bc36ef96.woff2"
+    as="font"
+    type="font/woff2"
+    crossorigin="anonymous"
+  /><link rel="stylesheet" href="/WzhGameDevPublish/css/loader.css" />
+<meta property="og:type" content="website" />
+  <meta property="og:title" content="FPS中的武器摇晃 | 温志洪" />
+  <meta
+    property="og:description"
+    content="FPS游戏"
+  />
+  <meta property="og:url" content="http://localhost:1895/WzhGameDevPublish/post/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/%E4%BB%A3%E7%A0%81%E6%A1%86%E6%9E%B6/lyra/fps/%E6%8A%80%E6%9C%AF%E7%BB%86%E8%8A%82/fpszhong-de-wu-qi-yao-huang/" />
+  <meta
+    property="og:site_name"
+    content="妖精游戏开发馆"
+  />
+  <meta
+    property="og:image"
+    content="/WzhGameDevPublish/"
+  />
+  <meta property="article:author" content="温志洪" />
+  <meta property="article:published_time" content="2025-11-22T13:19:29&#43;00:00" />
+  <meta property="article:modified_time" content="2026-01-05T12:21:12&#43;00:00" /><meta property="article:tag" content="3CFPSblog" /><meta name="twitter:card" content="summary" />
+  <meta name="twitter:image" content="/WzhGameDevPublish/" />
+<link rel="shortcut icon" href="/WzhGameDevPublish/favicon.ico"><link rel="stylesheet" href="/WzhGameDevPublish/css/main.css" />
+<link
+    rel="preload"
+    as="style"
+    href="https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe.css"
+    integrity="sha384-IfxC36XL/toUyJ939C73PcgMuRzAZuIzZxE38drsmO5p6jD7ei&#43;Zx/1oA/0l8ysE" crossorigin="anonymous"onload="this.onload=null;this.rel='stylesheet'"
+  /><link
+    rel="preload"
+    as="style"
+    href="https://npm.webcache.cn/katex@0.16.24/dist/katex.min.css"
+    integrity="sha384-tTgKLjMYmJr94v8qu2PE5MUGSMbyN2xiH266JUB3gpm8vnnJywd1dWSOEfrFz&#43;YI" crossorigin="anonymous"onload="this.onload=null;this.rel='stylesheet'"
+  /><script
+    src="https://npm.webcache.cn/pace-js@1.2.4/pace.min.js"
+    integrity="sha384-k6YtvFUEIuEFBdrLKJ3YAUbBki333tj1CSUisai5Cswsg9wcLNaPzsTHDswp4Az8" crossorigin="anonymous"></script><link
+    rel="stylesheet"
+    href="https://npm.webcache.cn/@reimujs/aos@0.1.2/dist/aos.css"
+    integrity="sha384-GMRP93c6Hkz9JVKGAuRR3nTS7M07RwPgTFenXiosjq2VbVgvdDNcz1g6Mkj8AONa" crossorigin="anonymous"/></head>
+  <body><div id='loader'>
+    <div class="loading-left-bg loading-bg"></div>
+    <div class="loading-right-bg loading-bg"></div>
+    <div class="spinner-box">
+      <div class="loading-taichi rotate"><svg width="150" height="150" viewBox="0 0 1024 1024" class="icon" version="1.1" xmlns="https://www.w3.org/2000/svg" shape-rendering="geometricPrecision">
+            <path d="M303.5 432A80 80 0 0 1 291.5 592A80 80 0 0 1 303.5 432z" fill="var(--red-1, #ff5252)" />
+            <path d="M512 65A447 447 0 0 1 512 959L512 929A417 417 0 0 0 512 95A417 417 0 0 0 512 929L512 959A447 447 0 0 1 512 65z 
+          M512 95A417 417 0 0 1 929 512A208.5 208.5 0 0 1 720.5 720.5L720.5 592A80 80 0 0 0 720.5 432A80 80 0 0 0 720.5 592L720.5 720.5A208.5 208.5 0 0 1 512 512A208.5 208.5 0 0 0 303.5 303.5A208.5 208.5 0 0 0 95 512A417 417 0 0 1 512 95z" fill="var(--red-1, #ff5252)" />
+          </svg></div><div class="loading-word">少女祈祷中...</div>
+    </div>
+  </div>
+  </div>
+  <script>
+    var time = null;
+    var loaderEl = document.getElementById('loader');
+    var startLoading = () => {
+      time = Date.now();
+      loaderEl.classList.remove("loading");
+    }
+    var hideLoader = () => {
+      document.body.style.overflow = 'auto';
+      loader.classList.add('loading');
+    };
+
+    var endLoading = () => {
+      if (!time) {
+        hideLoader();
+      } else {
+        if (Date.now() - time > 500) {
+          time = null;
+          hideLoader();
+        } else {
+          setTimeout(endLoading, 500 - (Date.now() - time));
+          time = null;
+        }
+      }
+    }
+    window.addEventListener('DOMContentLoaded', endLoading);
+    loaderEl.addEventListener('click', endLoading);
+  </script><div id="copy-tooltip"></div>
+<div id="lang-tooltip">
+本文章没有找到对应的语言版本
+</div>
+<div id="heatmap-tooltip"></div><div id="container">
+      <div id="wrap"><div id="header-nav">
+  <nav id="main-nav" aria-label="Primary navigation"><a class="main-nav-link-wrap" href="/WzhGameDevPublish/">
+        <div class='main-nav-icon icon rotate'>&#xe62b;</div>
+        <span class="main-nav-link">首页</span>
+      </a><a class="main-nav-link-wrap" href="/WzhGameDevPublish/archives">
+        <div class='main-nav-icon icon rotate'>&#xe62b;</div>
+        <span class="main-nav-link">归档</span>
+      </a><a class="main-nav-link-wrap" href="/WzhGameDevPublish/about">
+        <div class='main-nav-icon icon rotate'>&#xe62b;</div>
+        <span class="main-nav-link">关于</span>
+      </a><a class="main-nav-link-wrap" href="/WzhGameDevPublish/friend">
+        <div class='main-nav-icon icon rotate'>&#xe62b;</div>
+        <span class="main-nav-link">友链</span>
+      </a><a id="main-nav-toggle" class="nav-icon" aria-label="Toggle navigation" role="button"></a>
+  </nav>
+  <nav id="sub-nav" aria-label="Secondary navigation"><a id="nav-search-btn" class="nav-icon popup-trigger" title="搜索" aria-label="搜索"></a></nav><nav id="i18n-nav" aria-label="Language selection">
+      <div class="custom-dropdown">
+        <div class="select-selected" id="select-selected" role="button" aria-haspopup="listbox" aria-expanded="false" aria-label="Language menu">
+          <span id="nav-language-btn" class="nav-icon" style="padding: 0 20px 0 0"></span>
+          <span id="selected-lang">简体中文</span>
+        </div>
+        <ul class="select-items" id="select-items" role="listbox" aria-label="Languages"><li data-value="en" role="option" arial-selected="false" >English</li><li data-value="zh-cn" role="option" class="selected" arial-selected="true" >简体中文</li></ul>
+      </div>
+      <script>
+        var selectSelected = document.getElementById("select-selected");
+        var selectedLang = document.getElementById("selected-lang");
+        var selectItems = document.getElementById("select-items");
+        var selectOptions = selectItems.querySelectorAll("li");
+
+        selectSelected.addEventListener("click", () => {
+          selectItems.classList.toggle("show");
+          var expanded = selectSelected.getAttribute("aria-expanded") === "true";
+          selectSelected.setAttribute("aria-expanded", (!expanded).toString());
+        });
+
+        selectOptions.forEach((item) => {
+          item.addEventListener("click", () => {
+            const langMap = {};selectedLang.textContent = item.textContent;
+            selectItems.classList.remove("show");
+            selectOptions.forEach((option) => {
+              option.classList.remove("selected");
+            });
+            item.classList.add("selected");
+            if (item.dataset.value === 'zh-cn') {
+              return;
+            }
+            if (!langMap[item.dataset.value]) {
+              _$("#lang-tooltip").style.opacity = "1";
+              setTimeout(() => {
+                _$("#lang-tooltip").style.opacity = "0";
+              }, 1000);
+              return;
+            }
+            window.location = langMap[item.dataset.value];
+          });
+        });
+
+        document.addEventListener("click", (event) => {
+          if (!event.target.closest(".custom-dropdown")) {
+            selectItems.classList.remove("show");
+            selectSelected.setAttribute("aria-expanded", "false");
+          }
+        });
+      </script>
+    </nav></div>
+<header id="header" aria-label="Site header"><picture><source media="(max-width: 479px)" srcset="/WzhGameDevPublish/images/banner-600w.webp"><source media="(max-width: 799px)" srcset="/WzhGameDevPublish/images/banner-800w.webp"><source media="(min-width: 800px)" srcset="/WzhGameDevPublish/images/banner.webp"><img crossorigin="anonymous" fetchpriority="high" src="/WzhGameDevPublish/images/banner.webp" alt="FPS中的武器摇晃"></picture><img alt="FPS中的武器摇晃" style="visibility: hidden;"><div id="header-outer">
+    <div id="header-title"><span id="logo">
+            <h1 data-aos="slide-up">FPS中的武器摇晃</h1>
+          </span><h2 id="subtitle-wrap" data-aos="slide-down"></h2></div>
+  </div>
+</header><div id="content"
+          aria-label="Page content"
+          class="sidebar-left"
+            ><aside id="sidebar" aria-label="Sidebar"><div class="sidebar-wrapper-container sticky"><div class="sidebar-wrapper">
+    <div
+      class="sidebar-wrap"
+      data-aos="fade-up"
+    ><div class="sidebar-toc-sidebar"><h3 class="toc-title">文章目录</h3>
+<div class="sidebar-toc-wrapper toc-div-class">
+  <nav id="TableOfContents">
+  <ul>
+    <li><a href="#11-代码实现">1.1. 代码实现</a>
+      <ul>
+        <li><a href="#111-一处理输入量">1.1.1. 一、处理输入量</a></li>
+        <li><a href="#112-二计算偏移量">1.1.2. 二、计算偏移量</a></li>
+        <li><a href="#113-后期处理">1.1.3. 后期处理</a></li>
+        <li><a href="#114-应用函数">1.1.4. 应用函数</a></li>
+      </ul>
+    </li>
+    <li><a href="#12-参数配置">1.2. 参数配置</a>
+      <ul>
+        <li><a href="#121-优秀的实现案例">1.2.1. 优秀的实现案例</a></li>
+        <li><a href="#122-核心思路">1.2.2. 核心思路</a></li>
+        <li><a href="#123-外部工程思路">1.2.3. 外部工程思路</a></li>
+      </ul>
+    </li>
+    <li><a href="#13-插件化">1.3. 插件化</a>
+      <ul>
+        <li><a href="#obj继承vs-dataasset">Obj继承vs DataAsset</a></li>
+      </ul>
+    </li>
+    <li><a href="#14-未处理的资料">1.4. 未处理的资料</a></li>
+    <li><a href="#15-错误方案">1.5. 错误方案</a>
+      <ul>
+        <li><a href="#151-spring-arm">1.5.1. Spring Arm</a></li>
+      </ul>
+    </li>
+  </ul>
+
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#零散资料">零散资料</a></li>
+        <li><a href="#211-基本概念">2.1.1. 基本概念：</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+</div></div>
+          <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
+  <img
+    data-src="/WzhGameDevPublish/avatar/UELogo.png"
+    data-sizes="auto"
+    alt="温志洪"
+    class="lazyload"
+  />
+  <div class="sidebar-author-name">温志洪</div>
+  <div class="sidebar-description">FPS游戏</div>
+</div>
+<div class="sidebar-state">
+  <div class="sidebar-state-article">
+    <div>文章</div><div class="sidebar-state-number">1</div>
+  </div>
+  <a class="sidebar-state-category" href="/WzhGameDevPublish/categories/" aria-label="sidebar-state-category-link">
+    <div>分类</div>
+    <div class="sidebar-state-number">
+      0
+    </div>
+  </a>
+  <a class="sidebar-state-tag" href="/WzhGameDevPublish/tags/" aria-label="sidebar-state-tag-link">
+    <div>标签</div>
+    <div class="sidebar-state-number">3</div>
+  </a>
+</div>
+<div class="sidebar-social"><div class="icon-bilibili sidebar-social-icon">
+      <a
+        href="https://space.bilibili.com/35312868"
+        itemprop="url"
+        target="_blank"
+        aria-label="bilibili"
+        rel="noopener nofollow noreferrer"
+      ></a>
+    </div><div class="icon-email sidebar-social-icon">
+      <a
+        href="mailto:cnwenzhihong@gmail.com"
+        itemprop="url"
+        target="_blank"
+        aria-label="email"
+        rel="noopener nofollow noreferrer"
+      ></a>
+    </div></div>
+<div class="sidebar-menu"><div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/WzhGameDevPublish/"
+        aria-label="首页"
+      ></a>
+      <div class='sidebar-menu-icon icon rotate'>&#xe62b;</div>
+      <div class="sidebar-menu-link">首页</div>
+    </div><div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/WzhGameDevPublish/archives"
+        aria-label="归档"
+      ></a>
+      <div class='sidebar-menu-icon icon rotate'>&#xe62b;</div>
+      <div class="sidebar-menu-link">归档</div>
+    </div><div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/WzhGameDevPublish/about"
+        aria-label="关于"
+      ></a>
+      <div class='sidebar-menu-icon icon rotate'>&#xe62b;</div>
+      <div class="sidebar-menu-link">关于</div>
+    </div><div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/WzhGameDevPublish/friend"
+        aria-label="友链"
+      ></a>
+      <div class='sidebar-menu-icon icon rotate'>&#xe62b;</div>
+      <div class="sidebar-menu-link">友链</div>
+    </div></div>
+</div><div class="sidebar-btn-wrapper" style="position:static">
+            <div class="sidebar-toc-btn current"></div>
+            <div class="sidebar-common-btn"></div>
+          </div></div>
+  </div><div class="sidebar-widget"></div></div></aside>
+<section id="main" aria-label="Main content"><p style="color:red">ARTICLE PARTIAL OVERRIDE ACTIVE</p>
+<article
+  class="h-entry article"
+  itemscope
+  itemtype="https://schema.org/BlogPosting"
+>
+  <div
+    class="article-inner"
+    data-aos="fade-up"
+  >
+    <div class="article-meta"><div class="article-date">
+  <span
+    class="article-date-link icon-calendar"
+    data-aos="zoom-in"
+  >
+    <time datetime="2025-11-22 13:19:29.88 &#43;0000 UTC" itemprop="datePublished"
+      >2025-11-22</time
+    >
+    <time style="display: none;" id="post-update-time"
+      >2026-01-05</time
+    >
+  </span><span
+      class="article-date-link icon-calendar-plus"
+      data-aos="zoom-in"
+    >
+      <time datetime="2026-01-05 12:21:12.889 &#43;0000 UTC" itemprop="dateModified"
+        >2026-01-05</time
+      >
+    </span></div>
+<div class="article-category"></div>
+</div><div class="hr-line"></div><div class="e-content article-entry" itemprop="articleBody"><h1 id="1-旋转摇晃weapon-sway">
+<a class="header-anchor" href="#1-%e6%97%8b%e8%bd%ac%e6%91%87%e6%99%83weapon-sway"></a>
+1. 旋转摇晃Weapon Sway
+</h1>
+  <blockquote class="alert-blockquote note">
+    <p class="alert-heading">
+      Note
+    </p>
+    <p><h4 id="资料">
+<a class="header-anchor" href="#%e8%b5%84%e6%96%99"></a>
+资料
+</h4><p><a href="https://his.diva-portal.org/smash/get/diva2%3A1971715/FULLTEXT01.pdf">CraftingGunFeel.pdf</a> 对武器程序化动画、枪械感觉做出了大量实践指导，极具参考价值，不过较为零散，需要自行整理<br>
+<a href="https://www.bilibili.com/video/BV1C6BEBHEXG">使用控制绑定制作武器偏移效果</a>:使用control rig实现相同效果的优秀示例</p></p>
+  </blockquote>
+
+<h2 id="11-代码实现">
+<a class="header-anchor" href="#11-%e4%bb%a3%e7%a0%81%e5%ae%9e%e7%8e%b0"></a>
+1.1. 代码实现
+</h2><p>我们可以将其分为：获取转动输入→计算偏移量→表现三个步骤</p>
+<blockquote>
+<p>先获取用户转动差值，做各种处理后，用于表现效果</p>
+</blockquote>
+<p>http://125.208.22.164/#/convert?card=D2F9B25D74AF8ACA</p>
+<h3 id="111-一处理输入量">
+<a class="header-anchor" href="#111-%e4%b8%80%e5%a4%84%e7%90%86%e8%be%93%e5%85%a5%e9%87%8f"></a>
+1.1.1. 一、处理输入量
+</h3><blockquote>
+<p>计算转动量/输入量的速度，用于后续处理</p>
+</blockquote>
+<h4 id="11-原始数据采样转动量">
+<a class="header-anchor" href="#11-%e5%8e%9f%e5%a7%8b%e6%95%b0%e6%8d%ae%e9%87%87%e6%a0%b7%e8%bd%ac%e5%8a%a8%e9%87%8f"></a>
+1.1 原始数据采样——转动量
+</h4><p>类似于TPS的瞄准偏移，但TPS关注角度，而FPS更在意变化量</p>
+<h5 id="鼠标输入-">
+<a class="header-anchor" href="#%e9%bc%a0%e6%a0%87%e8%be%93%e5%85%a5-"></a>
+鼠标输入 ★★★
+</h5><p>理论上是最直接简单的获取方式，完全不需要计算<br>
+不容易获得精确数值(要么0要么1)。<br>
+UE愈加复杂的输入系统让实现不再简单。</p>
+
+  <blockquote class="alert-blockquote example">
+    <p class="alert-heading">
+      Example
+    </p>
+    <p><h4 id="实现">
+<a class="header-anchor" href="#%e5%ae%9e%e7%8e%b0"></a>
+实现
+</h4><p>0.1秒间隔，无太大必要优化，并未处于deltaSeconds<br>
+<img src="https://cdn.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/20251126063200443.png" alt=""></p></p>
+  </blockquote>
+
+<h5 id="旋转差值-">
+<a class="header-anchor" href="#%e6%97%8b%e8%bd%ac%e5%b7%ae%e5%80%bc-"></a>
+旋转差值 ★★★★★
+</h5><p>计算<code>ControllerRotation</code>的旋转差值<br>
+可以抹平不同鼠标Dpi的差距，获取差值也简单，需要单独保存上一帧的旋转量<br>
+<img src="https://cdn.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/20251216011431739.png" alt="|300"></p>
+
+  <blockquote class="alert-blockquote example">
+    <p class="alert-heading">
+      Example
+    </p>
+    <p><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="n">FRotator</span> <span class="n">deltaRot</span> <span class="o">=</span> <span class="n">UKismetMathLibrary</span><span class="o">::</span><span class="n">NormalizedDeltaRotator</span><span class="p">(</span><span class="n">CurrtRot</span><span class="p">,</span> <span class="n">ControlLastRot</span><span class="p">);</span> 
+</span></span><span class="line"><span class="cl"><span class="n">ControlLastRot</span> <span class="o">=</span> <span class="n">CurrtRot</span><span class="p">;</span>  
+</span></span></code></pre></div><blockquote>
+<p>Rotator.Normalized:<br>
+防止接近 ±180° 时出现跳变<br>
+消除超过 ±360° 的累积角度<br>
+Yaw Roll：[=180,180]<br>
+Yaw：[-90,90]</p>
+</blockquote></p>
+  </blockquote>
+
+<h4 id="12-计算二阶数据速度和加速度">
+<a class="header-anchor" href="#12-%e8%ae%a1%e7%ae%97%e4%ba%8c%e9%98%b6%e6%95%b0%e6%8d%ae%e9%80%9f%e5%ba%a6%e5%92%8c%e5%8a%a0%e9%80%9f%e5%ba%a6"></a>
+1.2 计算二阶数据——速度和加速度
+</h4><h5 id="角速度">
+<a class="header-anchor" href="#%e8%a7%92%e9%80%9f%e5%ba%a6"></a>
+角速度
+</h5><p>差值➗时间 即可得到角速度<br>
+<code>s=d/t</code></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="n">FVector2D</span> <span class="nf">rotSpeedFrame</span><span class="p">(</span><span class="n">deltaRot</span><span class="p">.</span><span class="n">Yaw</span> <span class="o">/</span> <span class="n">DeltaSeconds</span><span class="p">,</span> <span class="n">deltaRot</span><span class="p">.</span><span class="n">Pitch</span> <span class="o">/</span> <span class="n">DeltaSeconds</span><span class="p">);</span>
+</span></span></code></pre></div><h5 id="加速度">
+<a class="header-anchor" href="#%e5%8a%a0%e9%80%9f%e5%ba%a6"></a>
+加速度
+</h5><p><code>a=s/t</code></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="n">FVector2D</span> <span class="nf">rotAccel</span><span class="p">((</span><span class="n">RotSpeedFiltered</span><span class="p">.</span><span class="n">X</span> <span class="o">-</span> <span class="n">PrevRotSpeedFiltered</span><span class="p">.</span><span class="n">X</span><span class="p">)</span> <span class="o">/</span> <span class="n">DeltaSeconds</span><span class="p">,</span>  
+</span></span><span class="line"><span class="cl">                   <span class="p">(</span><span class="n">RotSpeedFiltered</span><span class="p">.</span><span class="n">Y</span> <span class="o">-</span> <span class="n">PrevRotSpeedFiltered</span><span class="p">.</span><span class="n">Y</span><span class="p">)</span> <span class="o">/</span> <span class="n">DeltaSeconds</span><span class="p">);</span>  
+</span></span><span class="line"><span class="cl"><span class="n">PrevRotSpeedFiltered</span><span class="p">.</span><span class="n">X</span> <span class="o">=</span> <span class="n">RotSpeedFiltered</span><span class="p">.</span><span class="n">X</span><span class="p">;</span>  
+</span></span><span class="line"><span class="cl"><span class="n">PrevRotSpeedFiltered</span><span class="p">.</span><span class="n">Y</span> <span class="o">=</span> <span class="n">RotSpeedFiltered</span><span class="p">.</span><span class="n">Y</span><span class="p">;</span>
+</span></span></code></pre></div><h4 id="13-输入数据处理">
+<a class="header-anchor" href="#13-%e8%be%93%e5%85%a5%e6%95%b0%e6%8d%ae%e5%a4%84%e7%90%86"></a>
+1.3 输入数据处理
+</h4><blockquote>
+<p>主要对算出的Rot speed多次处理</p>
+</blockquote>
+<h5 id="低通滤波">
+<a class="header-anchor" href="#%e4%bd%8e%e9%80%9a%e6%bb%a4%e6%b3%a2"></a>
+低通滤波
+</h5><blockquote>
+<p>平滑变化速率较大的情况</p>
+</blockquote>
+<p>适用场景：</p>
+<ul>
+<li>大幅度摆动时，防止短时间参数跳变引起Target跳变</li>
+<li>Interp 平滑输入，会看起来更舒缓，但变化减慢。</li>
+</ul>
+
+  <blockquote class="alert-blockquote example">
+    <p class="alert-heading">
+      Example
+    </p>
+    <p><h2 id="代码">
+<a class="header-anchor" href="#%e4%bb%a3%e7%a0%81"></a>
+代码
+</h2><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="k">if</span> <span class="p">(</span><span class="n">bUseInputLowpass</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>  
+</span></span><span class="line"><span class="cl">    <span class="kt">float</span> <span class="n">alpha</span> <span class="o">=</span> <span class="n">FMath</span><span class="o">::</span><span class="n">Clamp</span><span class="p">(</span><span class="n">DeltaSeconds</span> <span class="o">*</span> <span class="mf">10.f</span><span class="p">,</span> <span class="mf">0.f</span><span class="p">,</span> <span class="mf">1.f</span><span class="p">);</span>  
+</span></span><span class="line"><span class="cl">    <span class="n">RotSpeedFiltered</span><span class="p">.</span><span class="n">X</span> <span class="o">=</span> <span class="n">FMath</span><span class="o">::</span><span class="n">Lerp</span><span class="p">(</span><span class="n">RotSpeedFiltered</span><span class="p">.</span><span class="n">X</span><span class="p">,</span> <span class="n">rotSpeedFrame</span><span class="p">.</span><span class="n">X</span><span class="p">,</span> <span class="n">alpha</span><span class="p">);</span>  
+</span></span><span class="line"><span class="cl">    <span class="n">RotSpeedFiltered</span><span class="p">.</span><span class="n">Y</span> <span class="o">=</span> <span class="n">FMath</span><span class="o">::</span><span class="n">Lerp</span><span class="p">(</span><span class="n">RotSpeedFiltered</span><span class="p">.</span><span class="n">Y</span><span class="p">,</span> <span class="n">rotSpeedFrame</span><span class="p">.</span><span class="n">Y</span><span class="p">,</span> <span class="n">alpha</span><span class="p">);</span>  
+</span></span><span class="line"><span class="cl"><span class="p">}</span>  
+</span></span><span class="line"><span class="cl"><span class="k">else</span>  
+</span></span><span class="line"><span class="cl"><span class="p">{</span>  
+</span></span><span class="line"><span class="cl">    <span class="n">RotSpeedFiltered</span><span class="p">.</span><span class="n">X</span><span class="o">=</span><span class="n">rotSpeedFrame</span><span class="p">.</span><span class="n">X</span><span class="p">;</span>  
+</span></span><span class="line"><span class="cl">    <span class="n">RotSpeedFiltered</span><span class="p">.</span><span class="n">Y</span><span class="o">=</span><span class="n">rotSpeedFrame</span><span class="p">.</span><span class="n">Y</span><span class="p">;</span>  
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div></p>
+  </blockquote>
+
+
+  <blockquote class="alert-blockquote example">
+    <p class="alert-heading">
+      Example
+    </p>
+    <p><h4 id="低通滤波效果对比">
+<a class="header-anchor" href="#%e4%bd%8e%e9%80%9a%e6%bb%a4%e6%b3%a2%e6%95%88%e6%9e%9c%e5%af%b9%e6%af%94"></a>
+低通滤波效果对比
+</h4><p>曲线对比：<br>
+<img src="https://cdn.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/20251215013753758.png" alt=""><br>
+视觉效果：<br>
+Normal:\ <video src="https://cdn.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/NoLowpass.mp4" controls muted autoplay loop></video><br>
+Lowpass\ <video src="https://cdn.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/Lowpass.mp4" controls muted autoplay loop></video></p></p>
+  </blockquote>
+
+<h5 id="归一化">
+<a class="header-anchor" href="#%e5%bd%92%e4%b8%80%e5%8c%96"></a>
+归一化
+</h5><blockquote>
+<p>将数值映射到[-1,1]，方便后续操作</p>
+</blockquote>
+<p>角速度理论上可以无限大，需要限制最大值，顺带将其映射到[-1,1]，之后便不需要再考虑输入量的实际大小</p>
+<h6 id="鼠标输入--1">
+<a class="header-anchor" href="#%e9%bc%a0%e6%a0%87%e8%be%93%e5%85%a5--1"></a>
+鼠标输入 ★
+</h6><p>归一化受鼠标DPI影响，很难设定一个合理的数值范围，自定义程度弱(仅有最高和最低)，但不是不能做。</p>
+<h6 id="旋转差值--1">
+<a class="header-anchor" href="#%e6%97%8b%e8%bd%ac%e5%b7%ae%e5%80%bc--1"></a>
+旋转差值 ★★★★★
+</h6><p>可以规定每秒转动角度的最大值：如3600，在[-3600,+3600]内很容易控制表现效果。参考最大值：1440°/s</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="c1">//用一个“参考最大转速”fiducialRotSpeed 来归一化
+</span></span></span><span class="line"><span class="cl"><span class="n">FVector2D</span> <span class="n">tmp_RotSpeed</span> <span class="o">=</span> <span class="n">originRotSpeed</span> <span class="o">/</span> <span class="n">fiducialRotSpeed</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">FVector2D</span> <span class="n">rotSpeedNormalize</span> <span class="o">=</span> <span class="n">FVector2D</span><span class="p">(</span><span class="n">FMath</span><span class="o">::</span><span class="n">Clamp</span><span class="p">(</span><span class="n">tmp_RotSpeed</span><span class="p">.</span><span class="n">X</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">FMath</span><span class="o">::</span><span class="n">Clamp</span><span class="p">(</span><span class="n">tmp_RotSpeed</span><span class="p">.</span><span class="n">Y</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">));</span>
+</span></span></code></pre></div><h5 id="非线性映射">
+<a class="header-anchor" href="#%e9%9d%9e%e7%ba%bf%e6%80%a7%e6%98%a0%e5%b0%84"></a>
+非线性映射
+</h5><p>需求1-更容易瞄准：小幅度转动时提供更小的视觉变化，大幅度转动时再提升。(&gt; 0)<br>
+需求2-更灵敏：小幅度转动时(刚动鼠标即可响应)便能有可见的摆动。(&lt; 0)<br>
+指数函数都能较低成本地实现，也可以改为曲线精准调节<br>
+<img src="https://cdn.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/20251226065943488.png" alt=""></p>
+
+  <blockquote class="alert-blockquote example">
+    <p class="alert-heading">
+      Example
+    </p>
+    <p><h2 id="示例">
+<a class="header-anchor" href="#%e7%a4%ba%e4%be%8b"></a>
+示例
+</h2><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="c1">//可以改为曲线
+</span></span></span><span class="line"><span class="cl"><span class="k">auto</span> <span class="n">NonLinear</span> <span class="o">=</span> <span class="p">[](</span><span class="kt">float</span> <span class="n">v</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="n">FMath</span><span class="o">::</span><span class="n">Sign</span><span class="p">(</span><span class="n">v</span><span class="p">)</span> <span class="o">*</span> <span class="n">FMath</span><span class="o">::</span><span class="n">Pow</span><span class="p">(</span><span class="n">FMath</span><span class="o">::</span><span class="n">Abs</span><span class="p">(</span><span class="n">v</span><span class="p">),</span> <span class="mf">1.15f</span><span class="p">);</span> <span class="p">};</span>  
+</span></span><span class="line"><span class="cl"><span class="kt">float</span> <span class="n">nx</span> <span class="o">=</span> <span class="n">NonLinear</span><span class="p">(</span><span class="n">rotSpeedNorm</span><span class="p">.</span><span class="n">X</span><span class="p">);</span>  
+</span></span><span class="line"><span class="cl"><span class="kt">float</span> <span class="n">ny</span> <span class="o">=</span> <span class="n">NonLinear</span><span class="p">(</span><span class="n">rotSpeedNorm</span><span class="p">.</span><span class="n">Y</span><span class="p">);</span>
+</span></span></code></pre></div></p>
+  </blockquote>
+
+<h3 id="112-二计算偏移量">
+<a class="header-anchor" href="#112-%e4%ba%8c%e8%ae%a1%e7%ae%97%e5%81%8f%e7%a7%bb%e9%87%8f"></a>
+1.1.2. 二、计算偏移量
+</h3><p>我们需要得到WeaponSway的关键结果：<code>SwayOffset</code>和<code>SwayRot</code></p>
+<h4 id="21-方案一计算sway-target">
+<a class="header-anchor" href="#21-%e6%96%b9%e6%a1%88%e4%b8%80%e8%ae%a1%e7%ae%97sway-target"></a>
+2.1 方案一：计算Sway Target
+</h4><p>通过上面获取的输入量(偏移/速度/加速度)，处理得到想要的偏移和旋转目标值。</p>
+
+  <blockquote class="alert-blockquote important">
+    <p class="alert-heading">
+      Important
+    </p>
+    <p><p><a href="https://zhuanlan.zhihu.com/p/641172693">3D 软件坐标系类型与转换</a><br>
+鼠标输入与UE坐标轴映射关系——以UE为准：</p>
+<ul>
+<li>X → Y</li>
+<li>Y → Z<br>
+<img src="https://cdn.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/20251226164442511.png" alt=""><br>
+欧拉角也采用UE标准<br>
+<img src="https://cdn.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/20251226170200899.png" alt=""><br>
+武器常见的坐标系<br>
+<img src="https://cdn.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/20251226182802678.png" alt=""></li>
+</ul></p>
+  </blockquote>
+
+
+  <blockquote class="alert-blockquote example">
+    <p class="alert-heading">
+      Example
+    </p>
+    <p><h2 id="代码-1">
+<a class="header-anchor" href="#%e4%bb%a3%e7%a0%81-1"></a>
+代码
+</h2><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="n">swayOffsetTarget</span> <span class="o">=</span> <span class="n">FVector</span><span class="p">(</span>  
+</span></span><span class="line"><span class="cl">    <span class="n">ControllerRotSpeed_Rate</span><span class="p">.</span><span class="n">X</span> <span class="o">*</span> <span class="n">SwayOffsetMulti</span><span class="p">.</span><span class="n">X</span> <span class="o">*</span> <span class="o">-</span><span class="mf">1.f</span><span class="p">,</span>  
+</span></span><span class="line"><span class="cl">    <span class="n">ControllerRotSpeed_Rate</span><span class="p">.</span><span class="n">X</span> <span class="o">*</span> <span class="n">SwayOffsetMulti</span><span class="p">.</span><span class="n">Y</span><span class="p">,</span>  
+</span></span><span class="line"><span class="cl">    <span class="n">ControllerRotSpeed_Rate</span><span class="p">.</span><span class="n">Y</span> <span class="o">*</span> <span class="n">SwayOffsetMulti</span><span class="p">.</span><span class="n">Z</span>  
+</span></span><span class="line"><span class="cl"><span class="p">);</span>  
+</span></span><span class="line"><span class="cl"><span class="c1">//rotator构造函数顺序和蓝图显示顺序不一样，赋值能防止写参数时顺序混乱  
+</span></span></span><span class="line"><span class="cl"><span class="n">swayRotTarget</span><span class="p">.</span><span class="n">Roll</span><span class="o">=</span><span class="n">ControllerRotSpeed_Rate</span><span class="p">.</span><span class="n">X</span> <span class="o">*</span> <span class="n">SwayRotMulti</span><span class="p">.</span><span class="n">Roll</span><span class="p">;</span>  
+</span></span><span class="line"><span class="cl"><span class="n">swayRotTarget</span><span class="p">.</span><span class="n">Pitch</span><span class="o">=</span><span class="n">ControllerRotSpeed_Rate</span><span class="p">.</span><span class="n">Y</span> <span class="o">*</span> <span class="n">SwayRotMulti</span><span class="p">.</span><span class="n">Pitch</span> <span class="o">*</span> <span class="o">-</span><span class="mf">1.f</span><span class="p">;</span>  
+</span></span><span class="line"><span class="cl"><span class="n">swayRotTarget</span><span class="p">.</span><span class="n">Yaw</span><span class="o">=</span><span class="n">ControllerRotSpeed_Rate</span><span class="p">.</span><span class="n">X</span> <span class="o">*</span> <span class="n">SwayRotMulti</span><span class="p">.</span><span class="n">Yaw</span><span class="p">;</span>
+</span></span></code></pre></div></p>
+  </blockquote>
+
+<h5 id="tips-左右旋转时加上pitch值">
+<a class="header-anchor" href="#tips-%e5%b7%a6%e5%8f%b3%e6%97%8b%e8%bd%ac%e6%97%b6%e5%8a%a0%e4%b8%8apitch%e5%80%bc"></a>
+Tips: 左右旋转时加上Pitch值
+</h5>
+  <blockquote class="alert-blockquote tip">
+    <p class="alert-heading">
+      Tip
+    </p>
+    <p><h4 id="左旋转时pitch向下压是一种优秀的效果">
+<a class="header-anchor" href="#%e5%b7%a6%e6%97%8b%e8%bd%ac%e6%97%b6pitch%e5%90%91%e4%b8%8b%e5%8e%8b%e6%98%af%e4%b8%80%e7%a7%8d%e4%bc%98%e7%a7%80%e7%9a%84%e6%95%88%e6%9e%9c"></a>
+左旋转时，Pitch向下压是一种优秀的效果\ <video src="https://cdn.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/WeaponSway_PitchAdd.mp4" controls muted autoplay loop></video>
+</h4><p>理论上我们应将左右、上下旋转做独立的Vector和Rotator映射，而不是直接指定轴。但偷了懒，且目前的参数够用</p></p>
+  </blockquote>
+
+<p>上文代码中鼠标X移动控制Yaw和Roll旋转，但部分游戏中添加Pitch旋转能进一步增强效果，对其进行补充</p>
+
+  <blockquote class="alert-blockquote example">
+    <p class="alert-heading">
+      Example
+    </p>
+    <p><h2 id="代码-2">
+<a class="header-anchor" href="#%e4%bb%a3%e7%a0%81-2"></a>
+代码
+</h2><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="kt">void</span> <span class="n">UWeaponRotationSwayFragment</span><span class="o">::</span><span class="n">MouseXRotModify</span><span class="p">(</span><span class="n">FRotator</span><span class="o">&amp;</span> <span class="n">swayRotTarget</span><span class="p">)</span> <span class="k">const</span>  
+</span></span><span class="line"><span class="cl"><span class="p">{</span>  
+</span></span><span class="line"><span class="cl">    <span class="c1">//Yaw叠加Roll  
+</span></span></span><span class="line"><span class="cl">    <span class="k">auto</span> <span class="n">pitchAdditionMulti</span><span class="o">=</span> <span class="n">ControllerRotSpeedNormalized</span><span class="p">.</span><span class="n">X</span><span class="o">&lt;</span><span class="mi">0</span> <span class="o">?</span> <span class="n">PitchAdditionMultiWithYaw</span><span class="p">.</span><span class="nl">X</span><span class="p">:</span><span class="n">PitchAdditionMultiWithYaw</span><span class="p">.</span><span class="n">Y</span><span class="p">;</span>  
+</span></span><span class="line"><span class="cl">    <span class="kt">float</span> <span class="n">pitch_Addition</span><span class="o">=</span><span class="n">ControllerRotSpeedNormalized</span><span class="p">.</span><span class="n">X</span>  <span class="o">*</span> <span class="n">pitchAdditionMulti</span> <span class="o">*</span> <span class="n">FMath</span><span class="o">::</span><span class="n">Pow</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">abs</span><span class="p">(</span><span class="n">ControllerRotSpeedNormalized</span><span class="p">.</span><span class="n">Y</span><span class="p">),</span><span class="n">PitchAdditionPower</span><span class="p">)</span> <span class="o">*</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>  
+</span></span><span class="line"><span class="cl">    <span class="n">swayRotTarget</span><span class="p">.</span><span class="n">Pitch</span><span class="o">+=</span><span class="n">pitch_Addition</span><span class="p">;</span>  
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div></p>
+  </blockquote>
+
+<h4 id="22-方案一对sway-target插值">
+<a class="header-anchor" href="#22-%e6%96%b9%e6%a1%88%e4%b8%80%e5%af%b9sway-target%e6%8f%92%e5%80%bc"></a>
+2.2 方案一：对Sway Target插值
+</h4>
+  <blockquote class="alert-blockquote important">
+    <p class="alert-heading">
+      Important
+    </p>
+    <p><h2 id="武器摇晃手感的核心">
+<a class="header-anchor" href="#%e6%ad%a6%e5%99%a8%e6%91%87%e6%99%83%e6%89%8b%e6%84%9f%e7%9a%84%e6%a0%b8%e5%bf%83"></a>
+武器摇晃手感的核心
+</h2></p>
+  </blockquote>
+
+<h5 id="常用函数">
+<a class="header-anchor" href="#%e5%b8%b8%e7%94%a8%e5%87%bd%e6%95%b0"></a>
+常用函数
+</h5><h6 id="interpto简单插值">
+<a class="header-anchor" href="#interpto%e7%ae%80%e5%8d%95%e6%8f%92%e5%80%bc"></a>
+InterpTo：简单插值
+</h6><p>简单，效果也很不错，比较稳重，视觉变化小<br>
+参数配置轻松</p>
+
+  <blockquote class="alert-blockquote example">
+    <p class="alert-heading">
+      Example
+    </p>
+    <p><h2 id="interpto代码">
+<a class="header-anchor" href="#interpto%e4%bb%a3%e7%a0%81"></a>
+InterpTo代码
+</h2><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="k">if</span> <span class="p">(</span><span class="n">SwayOffset</span><span class="o">!=</span><span class="n">swayOffsetTarget</span><span class="p">)</span>  
+</span></span><span class="line"><span class="cl"><span class="p">{</span>  
+</span></span><span class="line"><span class="cl">    <span class="n">SwayOffset</span> <span class="o">=</span> <span class="n">UKismetMathLibrary</span><span class="o">::</span><span class="n">VInterpTo</span><span class="p">(</span> <span class="n">SwayOffset</span><span class="p">,</span><span class="n">swayOffsetTarget</span><span class="p">,</span><span class="n">DeltaSeconds</span><span class="p">,</span><span class="n">bHasInput</span><span class="o">?</span><span class="nl">InterpSpeed_Pos_Input</span><span class="p">:</span><span class="n">InterpSpeed_Pos_NoInput</span><span class="p">);</span>  
+</span></span><span class="line"><span class="cl"><span class="p">}</span>  
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="p">(</span><span class="n">SwayRot</span><span class="o">!=</span><span class="n">swayRotTarget</span><span class="p">)</span>  
+</span></span><span class="line"><span class="cl"><span class="p">{</span>  
+</span></span><span class="line"><span class="cl">     <span class="n">SwayRot</span> <span class="o">=</span> <span class="n">UKismetMathLibrary</span><span class="o">::</span><span class="n">RInterpTo</span><span class="p">(</span> <span class="n">SwayRot</span><span class="p">,</span><span class="n">swayRotTarget</span><span class="p">,</span><span class="n">DeltaSeconds</span><span class="p">,</span><span class="n">bHasInput</span><span class="o">?</span><span class="nl">InterpSpeed_Rot_Input</span><span class="p">:</span><span class="n">InterpSpeed_Rot_NoInput</span><span class="p">);</span>  
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div></p>
+  </blockquote>
+
+<h6 id="springinterpto模拟弹簧">
+<a class="header-anchor" href="#springinterpto%e6%a8%a1%e6%8b%9f%e5%bc%b9%e7%b0%a7"></a>
+SpringInterpTo：模拟弹簧
+</h6><p>更灵动、反馈感更强，视觉变化快<br>
+参数配置麻烦</p>
+
+  <blockquote class="alert-blockquote example">
+    <p class="alert-heading">
+      Example
+    </p>
+    <p><h2 id="springinterpto代码">
+<a class="header-anchor" href="#springinterpto%e4%bb%a3%e7%a0%81"></a>
+SpringInterpTo代码
+</h2><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="c1">//position spring interp  
+</span></span></span><span class="line"><span class="cl"><span class="n">SwayOffset</span> <span class="o">=</span> <span class="n">UKismetMathLibrary</span><span class="o">::</span><span class="n">VectorSpringInterp</span><span class="p">(</span><span class="n">SwayOffset</span><span class="p">,</span> <span class="n">swayOffsetTarget</span><span class="p">,</span> <span class="n">PosSpringState</span><span class="p">,</span>  
+</span></span><span class="line"><span class="cl">                                                    <span class="n">Params</span><span class="p">.</span><span class="n">Pos_Stiffness</span><span class="p">,</span> <span class="n">Params</span><span class="p">.</span><span class="n">Pos_Damping</span><span class="p">,</span> <span class="n">DeltaSeconds</span><span class="p">,</span>  
+</span></span><span class="line"><span class="cl">                                                    <span class="n">Params</span><span class="p">.</span><span class="n">Pos_Mass</span><span class="p">,</span><span class="n">Params</span><span class="p">.</span><span class="n">TargetVelocityAmount</span><span class="p">);</span>  
+</span></span><span class="line"><span class="cl"><span class="c1">// clamp  
+</span></span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="p">(</span><span class="n">SwayOffset</span><span class="p">.</span><span class="n">Size</span><span class="p">()</span> <span class="o">&gt;</span> <span class="n">Params</span><span class="p">.</span><span class="n">MaxOffset</span><span class="p">)</span>  
+</span></span><span class="line"><span class="cl"><span class="p">{</span>  
+</span></span><span class="line"><span class="cl">    <span class="n">SwayOffset</span> <span class="o">=</span> <span class="n">SwayOffset</span><span class="p">.</span><span class="n">GetSafeNormal</span><span class="p">()</span> <span class="o">*</span> <span class="n">Params</span><span class="p">.</span><span class="n">MaxOffset</span><span class="p">;</span>  
+</span></span><span class="line"><span class="cl"><span class="p">}</span>  
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl"><span class="c1">//rotation spring interp  
+</span></span></span><span class="line"><span class="cl"><span class="n">SwayRot</span> <span class="o">=</span> <span class="n">RotatorSpringInterp</span><span class="p">(</span><span class="n">SwayRot</span><span class="p">,</span> <span class="n">swayRotTarget</span><span class="p">,</span> <span class="n">RotSpringState</span><span class="p">,</span> <span class="n">Params</span><span class="p">.</span><span class="n">Rot_Stiffness</span><span class="p">,</span> <span class="n">Params</span><span class="p">.</span><span class="n">Rot_Damping</span><span class="p">,</span>  
+</span></span><span class="line"><span class="cl">                              <span class="n">DeltaSeconds</span><span class="p">,</span> <span class="n">Params</span><span class="p">.</span><span class="n">Rot_Mass</span><span class="p">,</span><span class="n">Params</span><span class="p">.</span><span class="n">MaxRot</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">                            
+</span></span></code></pre></div><p>RotatorSpringInterp实现</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="n">FRotator</span> <span class="n">UPawnComp_FPSRotWeaponSway</span><span class="o">::</span><span class="n">RotatorSpringInterp</span><span class="p">(</span><span class="k">const</span> <span class="n">FRotator</span><span class="o">&amp;</span> <span class="n">Current</span><span class="p">,</span> <span class="k">const</span> <span class="n">FRotator</span><span class="o">&amp;</span> <span class="n">Target</span><span class="p">,</span>  
+</span></span><span class="line"><span class="cl">                                                         <span class="n">FRotatorSpringState</span><span class="o">&amp;</span> <span class="n">State</span><span class="p">,</span> <span class="kt">float</span> <span class="n">Stiffness</span><span class="p">,</span> <span class="kt">float</span> <span class="n">Damping</span><span class="p">,</span>  
+</span></span><span class="line"><span class="cl">                                                         <span class="kt">float</span> <span class="n">DeltaTime</span><span class="p">,</span> <span class="kt">float</span> <span class="n">Mass</span><span class="p">,</span><span class="n">FRotator</span> <span class="n">MaxRot</span><span class="p">)</span>  
+</span></span><span class="line"><span class="cl"><span class="p">{</span>  
+</span></span><span class="line"><span class="cl">    <span class="n">DeltaTime</span><span class="o">=</span><span class="n">DeltaTime</span><span class="o">&gt;</span><span class="n">RotMaxDeltaSeconds</span><span class="o">?</span><span class="nl">RotMaxDeltaSeconds</span><span class="p">:</span><span class="n">DeltaTime</span><span class="p">;</span>  
+</span></span><span class="line"><span class="cl">    <span class="c1">// Convert to vector for simple integration (Pitch, Yaw, Roll)  
+</span></span></span><span class="line"><span class="cl">    <span class="n">FVector</span> <span class="nf">cur</span><span class="p">(</span><span class="n">Current</span><span class="p">.</span><span class="n">Pitch</span><span class="p">,</span> <span class="n">Current</span><span class="p">.</span><span class="n">Yaw</span><span class="p">,</span> <span class="n">Current</span><span class="p">.</span><span class="n">Roll</span><span class="p">);</span>  
+</span></span><span class="line"><span class="cl">    <span class="n">FVector</span> <span class="nf">targ</span><span class="p">(</span><span class="n">Target</span><span class="p">.</span><span class="n">Pitch</span><span class="p">,</span> <span class="n">Target</span><span class="p">.</span><span class="n">Yaw</span><span class="p">,</span> <span class="n">Target</span><span class="p">.</span><span class="n">Roll</span><span class="p">);</span>  
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">    <span class="c1">// Semi-implicit Euler integration  
+</span></span></span><span class="line"><span class="cl">    <span class="n">FVector</span> <span class="n">acc</span> <span class="o">=</span> <span class="p">(</span><span class="n">targ</span> <span class="o">-</span> <span class="n">cur</span><span class="p">)</span> <span class="o">*</span> <span class="n">Stiffness</span> <span class="o">-</span> <span class="n">State</span><span class="p">.</span><span class="n">Velocity</span> <span class="o">*</span> <span class="n">Damping</span><span class="p">;</span>  
+</span></span><span class="line"><span class="cl">    <span class="n">acc</span> <span class="o">=</span> <span class="n">acc</span> <span class="o">/</span> <span class="n">FMath</span><span class="o">::</span><span class="n">Max</span><span class="p">(</span><span class="n">Mass</span><span class="p">,</span> <span class="n">KINDA_SMALL_NUMBER</span><span class="p">);</span>  
+</span></span><span class="line"><span class="cl">    <span class="n">State</span><span class="p">.</span><span class="n">Velocity</span> <span class="o">+=</span> <span class="n">acc</span> <span class="o">*</span> <span class="n">DeltaTime</span><span class="p">;</span>  
+</span></span><span class="line"><span class="cl">    <span class="n">FVector</span> <span class="n">next</span> <span class="o">=</span> <span class="n">cur</span> <span class="o">+</span> <span class="n">State</span><span class="p">.</span><span class="n">Velocity</span> <span class="o">*</span> <span class="n">DeltaTime</span><span class="p">;</span>  
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">    <span class="n">FRotator</span> <span class="n">nextRot</span> <span class="o">=</span> <span class="n">FRotator</span><span class="p">(</span><span class="n">next</span><span class="p">.</span><span class="n">X</span><span class="p">,</span> <span class="n">next</span><span class="p">.</span><span class="n">Y</span><span class="p">,</span> <span class="n">next</span><span class="p">.</span><span class="n">Z</span><span class="p">);</span>  
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">MaxRot</span><span class="p">.</span><span class="n">IsZero</span><span class="p">())</span>  
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>       <span class="n">nextRot</span><span class="p">.</span><span class="n">Pitch</span> <span class="o">=</span> <span class="n">FMath</span><span class="o">::</span><span class="n">Clamp</span><span class="p">(</span><span class="n">nextRot</span><span class="p">.</span><span class="n">Pitch</span><span class="p">,</span> <span class="o">-</span><span class="n">MaxRot</span><span class="p">.</span><span class="n">Pitch</span><span class="p">,</span> <span class="n">MaxRot</span><span class="p">.</span><span class="n">Pitch</span><span class="p">);</span>  
+</span></span><span class="line"><span class="cl">       <span class="n">nextRot</span><span class="p">.</span><span class="n">Yaw</span> <span class="o">=</span> <span class="n">FMath</span><span class="o">::</span><span class="n">Clamp</span><span class="p">(</span><span class="n">nextRot</span><span class="p">.</span><span class="n">Yaw</span><span class="p">,</span> <span class="o">-</span><span class="n">MaxRot</span><span class="p">.</span><span class="n">Yaw</span><span class="p">,</span> <span class="n">MaxRot</span><span class="p">.</span><span class="n">Yaw</span><span class="p">);</span>  
+</span></span><span class="line"><span class="cl">       <span class="n">nextRot</span><span class="p">.</span><span class="n">Roll</span> <span class="o">=</span> <span class="n">FMath</span><span class="o">::</span><span class="n">Clamp</span><span class="p">(</span><span class="n">nextRot</span><span class="p">.</span><span class="n">Roll</span><span class="p">,</span> <span class="o">-</span><span class="n">MaxRot</span><span class="p">.</span><span class="n">Roll</span><span class="p">,</span> <span class="n">MaxRot</span><span class="p">.</span><span class="n">Roll</span><span class="p">);</span>  
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>    <span class="k">return</span> <span class="n">nextRot</span><span class="p">;</span>  
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>FRotatorSpringState</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="n">USTRUCT</span><span class="p">(</span><span class="n">BlueprintType</span><span class="p">)</span>  
+</span></span><span class="line"><span class="cl"><span class="k">struct</span> <span class="nc">FRotatorSpringState</span>  
+</span></span><span class="line"><span class="cl"><span class="p">{</span>  
+</span></span><span class="line"><span class="cl">    <span class="n">GENERATED_BODY</span><span class="p">()</span>  
+</span></span><span class="line"><span class="cl">    <span class="n">UPROPERTY</span><span class="p">()</span>  
+</span></span><span class="line"><span class="cl">    <span class="n">FVector</span> <span class="n">Velocity</span> <span class="o">=</span> <span class="n">FVector</span><span class="o">::</span><span class="n">ZeroVector</span><span class="p">;</span> <span class="c1">// pitch, yaw, roll velocity  
+</span></span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span></code></pre></div></p>
+  </blockquote>
+
+
+  <blockquote class="alert-blockquote note">
+    <p class="alert-heading">
+      Note
+    </p>
+    <p><h4 id="参数">
+<a class="header-anchor" href="#%e5%8f%82%e6%95%b0"></a>
+参数
+</h4><p>可视化网站：<br>
+target velocity amount: 到达目标的速度，0-1:紧贴目标<br>
+stiffness: 越高越会跟上目标<br>
+Critical Damping Factor:0-1 多有弹性，0:像橡皮筋<br>
+k: stiffness 刚度值 控制加速度：越高加速越快，慢慢随距离衰减<br>
+d: damping factor 阻尼 控制速度衰减(0-1)，越低越减速</p></p>
+  </blockquote>
+
+
+  <blockquote class="alert-blockquote note">
+    <p class="alert-heading">
+      Note
+    </p>
+    <p><h4 id="资料-1">
+<a class="header-anchor" href="#%e8%b5%84%e6%96%99-1"></a>
+资料
+</h4><p><a href="https://www.youtube.com/watch?v=8-jxARLG2Ik">参数介绍</a><br>
+<a href="https://toqoz.fyi/springs.html?utm_source=chatgpt.com">Spring-based Animation and Quaternions</a><br>
+<a href="https://www.reddit.com/r/gamedev/comments/31vwyg/game_math_precise_control_over_numeric_springing/?utm_source=chatgpt.com">优化实现：对数值弹簧的精确控制</a><br>
+<a href="https://www.ryanjuckett.com/damped-springs/">Damped Springsa原理与实现</a><br>
+<a href="https://zhuanlan.zhihu.com/p/412291354">UE4中的阻尼弹簧平滑</a></p></p>
+  </blockquote>
+
+<h4 id="方案一springinterp介绍">
+<a class="header-anchor" href="#%e6%96%b9%e6%a1%88%e4%b8%80springinterp%e4%bb%8b%e7%bb%8d"></a>
+方案一：SpringInterp介绍
+</h4><p>SpringInterp使当前位置朝目标平滑过渡，并能表现出惯性、超调（如果阻尼不足）或快速回弹（如果阻尼大）。<br>
+SpringInterp比简单的Interp更接近物理，能自然模拟质量、刚度、阻尼的不同组合，产生丰富的“尾巴/回弹”效果。</p>
+<p>局限性：<br>
+Weapon Sway 每一帧都在更新Target，这会导致：</p>
+<ul>
+<li>Target 不断变化</li>
+<li>SpringState 一直被重写</li>
+<li>内部 velocity 失真</li>
+</ul>
+<p>用于旋转的弹簧插值<br>
+社区推荐用自己的弹簧求解<a href="https://toqoz.fyi/springs.html?utm_source=chatgpt.com">Spring-based Animation and Quaternions</a></p>
+<h4 id="23-方案二自定义简易弹簧插值">
+<a class="header-anchor" href="#23-%e6%96%b9%e6%a1%88%e4%ba%8c%e8%87%aa%e5%ae%9a%e4%b9%89%e7%ae%80%e6%98%93%e5%bc%b9%e7%b0%a7%e6%8f%92%e5%80%bc"></a>
+2.3 方案二：自定义简易弹簧插值
+</h4><p>在SpringInterp中，输入和回正是由函数自行计算的，我们无法精确控制。<br>
+在做并不需要那么有弹性的系统时，完全可以自行用一套力反馈机制，让玩家自己去推Weapon</p>
+<blockquote>
+<p>优点：<br>
+✅ 有惯性 ✅ 速度过渡更自然 ✅ 有回正 ✅ 有重量<br>
+缺点：<br>
+无法准确预估Target</p>
+</blockquote>
+<p><strong>推力</strong><br>
+通过上面获取的输入量(偏移/速度/加速度)，得到一个持续朝运动方向推的力，而不是一个目标点。</p>
+
+  <blockquote class="alert-blockquote note">
+    <p class="alert-heading">
+      Note
+    </p>
+    <p><h2 id="示例-1">
+<a class="header-anchor" href="#%e7%a4%ba%e4%be%8b-1"></a>
+示例
+</h2><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-CPP" data-lang="CPP"><span class="line"><span class="cl"><span class="n">WeaponAngVel</span><span class="p">.</span><span class="n">Pitch</span> <span class="o">+=</span> <span class="o">-</span><span class="n">AngularSpeed</span><span class="p">.</span><span class="n">Y</span> <span class="o">*</span> <span class="n">SwayRotMulti</span><span class="p">.</span><span class="n">Pitch</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">WeaponAngVel</span><span class="p">.</span><span class="n">Yaw</span>   <span class="o">+=</span> <span class="o">-</span><span class="n">AngularSpeed</span><span class="p">.</span><span class="n">X</span> <span class="o">*</span> <span class="n">SwayRotMulti</span><span class="p">.</span><span class="n">Yaw</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">WeaponAngVel</span><span class="p">.</span><span class="n">Roll</span>  <span class="o">+=</span> <span class="o">-</span><span class="n">AngularSpeed</span><span class="p">.</span><span class="n">X</span> <span class="o">*</span> <span class="n">SwayRotMulti</span><span class="p">.</span><span class="n">Roll</span><span class="p">;</span>
+</span></span></code></pre></div></p>
+  </blockquote>
+
+<p>很明显，如果不加以限制，速度(WeaponAngVel)会不断上升<br>
+<img src="https://cdn.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/20260104133021697.png" alt=""></p>
+<p><strong>回正力</strong><br>
+枪自己想回到中间（回正力），越远力越大<br>
+是否有输入：</p>
+<ul>
+<li>还在甩鼠标  → 枪 <strong>没那么急着回正</strong></li>
+<li>停下来 → 枪 <strong>更积极回正</strong></li>
+</ul>
+
+  <blockquote class="alert-blockquote note">
+    <p class="alert-heading">
+      Note
+    </p>
+    <p><h2 id="代码-3">
+<a class="header-anchor" href="#%e4%bb%a3%e7%a0%81-3"></a>
+代码
+</h2><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-CPP" data-lang="CPP"><span class="line"><span class="cl"><span class="n">WeaponAngVel</span><span class="p">.</span><span class="n">Pitch</span> <span class="o">+=</span> <span class="o">-</span><span class="n">WeaponRot</span><span class="p">.</span><span class="n">Pitch</span> <span class="o">*</span> <span class="n">DeltaSeconds</span> <span class="o">*</span> <span class="n">ForceMulti_HasInput</span><span class="p">.</span><span class="n">Pitch</span> <span class="o">*</span> <span class="p">(</span><span class="n">bHasInput</span> <span class="o">?</span> <span class="mf">1.f</span> <span class="o">:</span> <span class="n">ForceNoInputRate</span><span class="p">.</span><span class="n">Pitch</span><span class="p">);</span>
+</span></span></code></pre></div></p>
+  </blockquote>
+
+<p><strong>强制回正</strong><br>
+场景：如果玩家持续匀速转动，画面很容易保持静止<br>
+可以用噪声缓解，也可以根据输入时间进行缓慢回正，这符合现实直觉</p>
+
+  <blockquote class="alert-blockquote exaple">
+    <p class="alert-heading">
+      Exaple
+    </p>
+    <p><h2 id="代码-4">
+<a class="header-anchor" href="#%e4%bb%a3%e7%a0%81-4"></a>
+代码
+</h2><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-CPP" data-lang="CPP"><span class="line"><span class="cl"><span class="k">if</span> <span class="p">(</span><span class="n">bHasInput</span><span class="o">&amp;&amp;</span><span class="n">Straighten_TotalTime</span><span class="o">!=</span><span class="mi">0</span><span class="p">)</span>  
+</span></span><span class="line"><span class="cl"><span class="p">{</span>  
+</span></span><span class="line"><span class="cl">    <span class="n">WeaponRot</span> <span class="o">*=</span> <span class="n">FMath</span><span class="o">::</span><span class="n">Max</span><span class="p">(</span><span class="n">FMath</span><span class="o">::</span><span class="n">Pow</span><span class="p">((</span><span class="n">Straighten_TotalTime</span> <span class="o">-</span> <span class="n">InputTime</span><span class="p">)</span> <span class="o">/</span> <span class="n">Straighten_TotalTime</span><span class="p">,</span> <span class="n">Straighten_NoneLinear</span><span class="p">),</span> <span class="n">Straighten_MinValue</span><span class="p">);</span>  
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>假设：<br>
+Straighten_TotalTime=2 Straighten_NoneLinear=0.3 Straighten_MinValue=0.3<br>
+如图：<br>
+<img src="https://cdn.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/20260105191120670.png" alt=""></p></p>
+  </blockquote>
+
+<p><strong>阻尼</strong><br>
+让枪慢慢停下来， $f(x)=e^x$  x&lt;0时，f(x)&lt;1</p>
+
+  <blockquote class="alert-blockquote note">
+    <p class="alert-heading">
+      Note
+    </p>
+    <p><h2 id="代码-5">
+<a class="header-anchor" href="#%e4%bb%a3%e7%a0%81-5"></a>
+代码
+</h2><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-CPP" data-lang="CPP"><span class="line"><span class="cl"> <span class="n">WeaponAngVel</span> <span class="o">*=</span> <span class="n">FMath</span><span class="o">::</span><span class="n">Exp</span><span class="p">(</span><span class="n">Damp</span> <span class="o">*</span> <span class="n">DeltaSeconds</span><span class="p">);</span>
+</span></span></code></pre></div></p>
+  </blockquote>
+
+<h4 id="24-方案二计算位移">
+<a class="header-anchor" href="#24-%e6%96%b9%e6%a1%88%e4%ba%8c%e8%ae%a1%e7%ae%97%e4%bd%8d%e7%a7%bb"></a>
+2.4 方案二：计算位移
+</h4>
+  <blockquote class="alert-blockquote note">
+    <p class="alert-heading">
+      Note
+    </p>
+    <p><h2 id="代码-6">
+<a class="header-anchor" href="#%e4%bb%a3%e7%a0%81-6"></a>
+代码
+</h2><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-CPP" data-lang="CPP"><span class="line"><span class="cl"><span class="n">WeaponRot</span><span class="p">.</span><span class="n">Pitch</span> <span class="o">+=</span> <span class="n">WeaponAngVel</span><span class="p">.</span><span class="n">Pitch</span> <span class="o">*</span> <span class="n">DeltaSeconds</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">WeaponRot</span><span class="p">.</span><span class="n">Yaw</span>   <span class="o">+=</span> <span class="n">WeaponAngVel</span><span class="p">.</span><span class="n">Yaw</span>   <span class="o">*</span> <span class="n">DeltaSeconds</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">WeaponRot</span><span class="p">.</span><span class="n">Roll</span>  <span class="o">+=</span> <span class="n">WeaponAngVel</span><span class="p">.</span><span class="n">Roll</span>  <span class="o">*</span> <span class="n">DeltaSeconds</span><span class="p">;</span>
+</span></span></code></pre></div></p>
+  </blockquote>
+
+<h3 id="113-后期处理">
+<a class="header-anchor" href="#113-%e5%90%8e%e6%9c%9f%e5%a4%84%e7%90%86"></a>
+1.1.3. 后期处理
+</h3><h4 id="限幅maxoffset--maxrot">
+<a class="header-anchor" href="#%e9%99%90%e5%b9%85maxoffset--maxrot"></a>
+限幅（MaxOffset / MaxRot）
+</h4><p>保护视觉（防止武器飘出画面或产生穿模），并保证在极端输入下效果可控。<br>
+用户灵敏度、鼠标抖动或跳帧可能造成瞬时超大值，限幅能保护不破坏玩家视觉体验。上述情况都很容易出现</p>
+<p>应用：<br>
+SpringInterp这种调参困难方案时的<br>
+尽量在运算参数时能预估最大范围，这是最后一道保险。</p>
+<p>问题：<br>
+当达到最大值时速度会突然归0，极为生硬，可以用Noise缓解。<br>
+也可以在算到最大值时动态降低速度，但属于本末倒置，我们应专注于插值实现更精准的控制，而不是期待粗暴的最大值限制。</p>
+
+  <blockquote class="alert-blockquote example">
+    <p class="alert-heading">
+      Example
+    </p>
+    <p><h2 id="代码-7">
+<a class="header-anchor" href="#%e4%bb%a3%e7%a0%81-7"></a>
+代码
+</h2><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="k">if</span> <span class="p">(</span><span class="n">SwayOffset</span><span class="p">.</span><span class="n">Size</span><span class="p">()</span> <span class="o">&gt;</span> <span class="n">Params</span><span class="p">.</span><span class="n">MaxOffset</span><span class="p">)</span> <span class="n">SwayOffset</span> <span class="o">=</span> <span class="n">SwayOffset</span><span class="p">.</span><span class="n">GetSafeNormal</span><span class="p">()</span> <span class="o">*</span> <span class="n">Params</span><span class="p">.</span><span class="n">MaxOffset</span><span class="p">;</span>  
+</span></span><span class="line"><span class="cl"><span class="n">SwayRot</span><span class="p">.</span><span class="n">Pitch</span> <span class="o">=</span> <span class="n">FMath</span><span class="o">::</span><span class="n">Clamp</span><span class="p">(</span><span class="n">SwayRot</span><span class="p">.</span><span class="n">Pitch</span><span class="p">,</span> <span class="o">-</span><span class="n">Params</span><span class="p">.</span><span class="n">MaxRot</span><span class="p">.</span><span class="n">Pitch</span><span class="p">,</span> <span class="n">Params</span><span class="p">.</span><span class="n">MaxRot</span><span class="p">.</span><span class="n">Pitch</span><span class="p">);</span>  
+</span></span><span class="line"><span class="cl"><span class="n">SwayRot</span><span class="p">.</span><span class="n">Yaw</span> <span class="o">=</span> <span class="n">FMath</span><span class="o">::</span><span class="n">Clamp</span><span class="p">(</span><span class="n">SwayRot</span><span class="p">.</span><span class="n">Yaw</span><span class="p">,</span> <span class="o">-</span><span class="n">Params</span><span class="p">.</span><span class="n">MaxRot</span><span class="p">.</span><span class="n">Yaw</span><span class="p">,</span> <span class="n">Params</span><span class="p">.</span><span class="n">MaxRot</span><span class="p">.</span><span class="n">Yaw</span><span class="p">);</span>  
+</span></span><span class="line"><span class="cl"><span class="n">SwayRot</span><span class="p">.</span><span class="n">Roll</span> <span class="o">=</span> <span class="n">FMath</span><span class="o">::</span><span class="n">Clamp</span><span class="p">(</span><span class="n">SwayRot</span><span class="p">.</span><span class="n">Roll</span><span class="p">,</span> <span class="o">-</span><span class="n">Params</span><span class="p">.</span><span class="n">MaxRot</span><span class="p">.</span><span class="n">Roll</span><span class="p">,</span> <span class="n">Params</span><span class="p">.</span><span class="n">MaxRot</span><span class="p">.</span><span class="n">Roll</span><span class="p">);</span>
+</span></span></code></pre></div></p>
+  </blockquote>
+
+<h4 id="改变旋转中心">
+<a class="header-anchor" href="#%e6%94%b9%e5%8f%98%e6%97%8b%e8%bd%ac%e4%b8%ad%e5%bf%83"></a>
+改变旋转中心
+</h4><p>有的文章中提到，Yaw轴旋转可以设置为绕枪托旋转效果会更好<br>
+下图以枪口为轴枢点更方便理解：<br>
+<img src="https://cdn.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/weaponsway_yawpivot.png" alt=""></p>
+
+  <blockquote class="alert-blockquote example">
+    <p class="alert-heading">
+      Example
+    </p>
+    <p><h2 id="代码-8">
+<a class="header-anchor" href="#%e4%bb%a3%e7%a0%81-8"></a>
+代码
+</h2><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="c1">// 8) Yaw旋转优化  
+</span></span></span><span class="line"><span class="cl"><span class="n">FVector</span> <span class="n">PivotLoc</span><span class="o">=</span><span class="n">FVector</span><span class="o">::</span><span class="n">ZeroVector</span><span class="p">;</span>  
+</span></span><span class="line"><span class="cl"><span class="c1">// 8.1) 先尝试获取Socket，没有再获取Vector  
+</span></span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">Params</span><span class="p">.</span><span class="n">YawPivotSocket</span><span class="p">.</span><span class="n">IsNone</span><span class="p">())</span>  
+</span></span><span class="line"><span class="cl"><span class="p">{</span>  
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="k">auto</span> <span class="n">weaponMesh</span><span class="o">=</span> <span class="n">ULyraFPSFunctionLibrary</span><span class="o">::</span><span class="n">GetWeaponMesh</span><span class="p">(</span><span class="n">GetOwner</span><span class="p">()))</span>  
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>       <span class="n">PivotLoc</span><span class="o">=</span><span class="n">weaponMesh</span><span class="o">-&gt;</span><span class="n">GetSocketTransform</span><span class="p">(</span><span class="n">Params</span><span class="p">.</span><span class="n">YawPivotSocket</span><span class="p">,</span><span class="n">RTS_Component</span><span class="p">).</span><span class="n">GetLocation</span><span class="p">();</span>  
+</span></span><span class="line"><span class="cl">    <span class="p">}}</span>  
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="p">(</span><span class="n">PivotLoc</span><span class="o">==</span><span class="n">FVector</span><span class="o">::</span><span class="n">ZeroVector</span><span class="p">)</span>  
+</span></span><span class="line"><span class="cl"><span class="p">{</span>  
+</span></span><span class="line"><span class="cl">    <span class="n">PivotLoc</span><span class="o">=</span><span class="n">Params</span><span class="p">.</span><span class="n">YawPivotVector</span><span class="p">;</span>  
+</span></span><span class="line"><span class="cl"><span class="p">}</span>  
+</span></span><span class="line"><span class="cl">    <span class="c1">// 8.2) 正式处理  
+</span></span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="p">(</span><span class="n">PivotLoc</span><span class="o">!=</span><span class="n">FVector</span><span class="o">::</span><span class="n">ZeroVector</span><span class="o">&amp;&amp;!</span><span class="n">SwayRot</span><span class="p">.</span><span class="n">IsNearlyZero</span><span class="p">())</span>  
+</span></span><span class="line"><span class="cl"><span class="p">{</span>  
+</span></span><span class="line"><span class="cl">    <span class="n">FVector</span> <span class="n">aroundLoc</span><span class="p">;</span>  
+</span></span><span class="line"><span class="cl">    <span class="n">FRotator</span> <span class="n">aroundRot</span><span class="p">;</span>  
+</span></span><span class="line"><span class="cl">    <span class="n">UWeaponSwayFunctionlibrary</span><span class="o">::</span><span class="n">RotateAroundPivot</span><span class="p">(</span><span class="n">PivotLoc</span><span class="p">,</span><span class="n">FRotator</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">SwayRot</span><span class="p">.</span><span class="n">Yaw</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span> <span class="p">,</span><span class="n">aroundLoc</span><span class="p">,</span><span class="n">aroundRot</span><span class="p">);</span>  
+</span></span><span class="line"><span class="cl">    <span class="n">SwayOffset</span><span class="p">.</span><span class="n">X</span><span class="o">=</span><span class="n">aroundLoc</span><span class="p">.</span><span class="n">X</span><span class="p">;</span>  
+</span></span><span class="line"><span class="cl">    <span class="n">SwayOffset</span><span class="p">.</span><span class="n">Y</span><span class="o">=</span><span class="n">aroundLoc</span><span class="p">.</span><span class="n">Y</span><span class="p">;</span>  
+</span></span><span class="line"><span class="cl">    <span class="n">SwayRot</span><span class="p">.</span><span class="n">Yaw</span><span class="o">=</span><span class="n">aroundRot</span><span class="p">.</span><span class="n">Yaw</span><span class="p">;</span>  
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><ul>
+<li>绕某个 Pivot 点做旋转（任意旋转），返回变换后的位置与旋转</li>
+<li>原理：T = Pivot + R * (Pos - Pivot)</li>
+</ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="kt">void</span> <span class="n">UWeaponSwayFunctionlibrary</span><span class="o">::</span><span class="n">RotateAroundPivot</span><span class="p">(</span><span class="n">FVector</span> <span class="n">Pivot</span><span class="p">,</span> <span class="k">const</span> <span class="n">FRotator</span><span class="o">&amp;</span> <span class="n">DeltaRot</span><span class="p">,</span> <span class="n">FVector</span><span class="o">&amp;</span> <span class="n">OutPosition</span><span class="p">,</span>  
+</span></span><span class="line"><span class="cl">    <span class="n">FRotator</span><span class="o">&amp;</span> <span class="n">OutRotation</span><span class="p">,</span> <span class="k">const</span> <span class="n">FVector</span> <span class="n">InPosition</span><span class="p">,</span> <span class="k">const</span> <span class="n">FRotator</span> <span class="n">InRotation</span><span class="p">)</span>  
+</span></span><span class="line"><span class="cl"><span class="p">{</span>  
+</span></span><span class="line"><span class="cl">    <span class="c1">// Step 1: 相对 Pivot 的偏移  
+</span></span></span><span class="line"><span class="cl">    <span class="n">FVector</span> <span class="n">RelPos</span> <span class="o">=</span> <span class="n">InPosition</span> <span class="o">-</span> <span class="n">Pivot</span><span class="p">;</span>  
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">    <span class="c1">// Step 2: 构建旋转 Quat    FQuat QuatRot = DeltaRot.Quaternion();  
+</span></span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">    <span class="c1">// Step 3: 应用旋转  
+</span></span></span><span class="line"><span class="cl">    <span class="n">FVector</span> <span class="n">RotatedRelPos</span> <span class="o">=</span> <span class="n">QuatRot</span> <span class="o">*</span> <span class="n">RelPos</span><span class="p">;</span>  
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">    <span class="c1">// Step 4: 恢复到世界位置  
+</span></span></span><span class="line"><span class="cl">    <span class="n">OutPosition</span> <span class="o">=</span> <span class="n">Pivot</span> <span class="o">+</span> <span class="n">RotatedRelPos</span><span class="p">;</span>  
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">    <span class="c1">// Step 5: 应用旋转叠加  
+</span></span></span><span class="line"><span class="cl">    <span class="n">OutRotation</span> <span class="o">=</span> <span class="p">(</span><span class="n">FRotationMatrix</span><span class="p">(</span><span class="n">InRotation</span><span class="p">).</span><span class="n">ToQuat</span><span class="p">()</span> <span class="o">*</span> <span class="n">QuatRot</span><span class="p">).</span><span class="n">Rotator</span><span class="p">();</span>  
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div></p>
+  </blockquote>
+
+<p>蓝图使用：<br>
+<img src="https://cdn.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/20251218042239133.png" alt=""></p>
+
+  <blockquote class="alert-blockquote example">
+    <p class="alert-heading">
+      Example
+    </p>
+    <p><h4 id="效果">
+<a class="header-anchor" href="#%e6%95%88%e6%9e%9c"></a>
+效果
+</h4><p>枪托为中心(Pivot=(0,-5,0)) <video src="https://cdn.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/2025-12-18%2005-16-05.mp4" controls muted autoplay loop></video><br>
+枪头为中心(Pivot=(0,10,0))<video src="https://cdn.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/2025-12-18%2005-19-39.mp4" controls muted autoplay loop></video></p></p>
+  </blockquote>
+
+<h4 id="噪声">
+<a class="header-anchor" href="#%e5%99%aa%e5%a3%b0"></a>
+噪声
+</h4><p>如果限制最大值，当武器到达最大偏移值时效果便会生硬(不再运动)，此时加入适当的噪声可以大幅度削减该效果，同时增加适当的随机抖动也可以增加一定效果</p>
+<p>暂时在Rot中加入柏林噪声<br>
+<img src="https://cdn.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/20260104233131253.png" alt=""></p>
+<h3 id="114-应用函数">
+<a class="header-anchor" href="#114-%e5%ba%94%e7%94%a8%e5%87%bd%e6%95%b0"></a>
+1.1.4. 应用函数
+</h3><h4 id="基本使用">
+<a class="header-anchor" href="#%e5%9f%ba%e6%9c%ac%e4%bd%bf%e7%94%a8"></a>
+基本使用
+</h4><p>在Tick中使用<br>
+<img src="https://cdn.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/20251218041755810.png" alt=""></p>
+<p>将计算出的参数用于修改武器IK骨骼即可<br>
+<img src="https://cdn.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/20251218035612026.png" alt=""></p>
+<h2 id="12-参数配置">
+<a class="header-anchor" href="#12-%e5%8f%82%e6%95%b0%e9%85%8d%e7%bd%ae"></a>
+1.2. 参数配置
+</h2><h3 id="121-优秀的实现案例">
+<a class="header-anchor" href="#121-%e4%bc%98%e7%a7%80%e7%9a%84%e5%ae%9e%e7%8e%b0%e6%a1%88%e4%be%8b"></a>
+1.2.1. 优秀的实现案例
+</h3><h4 id="ue示例">
+<a class="header-anchor" href="#ue%e7%a4%ba%e4%be%8b"></a>
+UE示例
+</h4><p><a href="https://www.bilibili.com/video/BV14UfZYaEQn">【自制COD20 ?】开发日志5-绕任意轴旋转枪身</a>：左右旋转采用三轴共转能实现极为大开大合的效果<br>
+<a href="https://www.bilibili.com/video/BV1C6BEBHEXG">使用控制绑定制作武器偏移效果</a>：使用<code>Control Rig</code>+<code>Sprint Interp</code>快速高效实现非常易于控制的武器旋转摇晃</p>
+<h4 id="游戏示例">
+<a class="header-anchor" href="#%e6%b8%b8%e6%88%8f%e7%a4%ba%e4%be%8b"></a>
+游戏示例
+</h4>
+  <blockquote class="alert-blockquote example">
+    <p class="alert-heading">
+      Example
+    </p>
+    <p><h4 id="cod2lead无延迟沉重现实且响应及时">
+<a class="header-anchor" href="#cod2lead%e6%97%a0%e5%bb%b6%e8%bf%9f%e6%b2%89%e9%87%8d%e7%8e%b0%e5%ae%9e%e4%b8%94%e5%93%8d%e5%ba%94%e5%8f%8a%e6%97%b6"></a>
+cod2——Lead，无延迟，沉重、现实且响应及时
+</h4><p><a href="https://www.youtube.com/watch?v=kjVSLsz8dCs%5c&amp;source_ve_path=MTc4NDI0">COD2的武器摇摆</a></p></p>
+  </blockquote>
+
+
+  <blockquote class="alert-blockquote example">
+    <p class="alert-heading">
+      Example
+    </p>
+    <p><h2 id="cs2lag少量延迟停下时立刻追赶上给人感觉并不拖沓">
+<a class="header-anchor" href="#cs2lag%e5%b0%91%e9%87%8f%e5%bb%b6%e8%bf%9f%e5%81%9c%e4%b8%8b%e6%97%b6%e7%ab%8b%e5%88%bb%e8%bf%bd%e8%b5%b6%e4%b8%8a%e7%bb%99%e4%ba%ba%e6%84%9f%e8%a7%89%e5%b9%b6%e4%b8%8d%e6%8b%96%e6%b2%93"></a>
+cs2——Lag，少量延迟，停下时立刻追赶上，给人感觉并不拖沓\ <video src="https://cdn.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/RotSway_CS2.mp4" controls muted autoplay loop></video>
+</h2></p>
+  </blockquote>
+
+<h3 id="122-核心思路">
+<a class="header-anchor" href="#122-%e6%a0%b8%e5%bf%83%e6%80%9d%e8%b7%af"></a>
+1.2.2. 核心思路
+</h3><h4 id="第三方资料">
+<a class="header-anchor" href="#%e7%ac%ac%e4%b8%89%e6%96%b9%e8%b5%84%e6%96%99"></a>
+第三方资料
+</h4>
+  <blockquote class="alert-blockquote quote">
+    <p class="alert-heading">
+      Quote
+    </p>
+    <p><h4 id="craftinggunfeelpdf-对武器摇晃的讨论">
+<a class="header-anchor" href="#craftinggunfeelpdf-%e5%af%b9%e6%ad%a6%e5%99%a8%e6%91%87%e6%99%83%e7%9a%84%e8%ae%a8%e8%ae%ba"></a>
+<a href="https://his.diva-portal.org/smash/get/diva2%3A1971715/FULLTEXT01.pdf">CraftingGunFeel.pdf</a> 对武器摇晃的讨论
+</h4><p><strong>受访者对武器摇晃的理解</strong><br>
+向前移动时武器的Pitch会略微向下旋转，而向后走则相反。<br>
+当角色旋转时，枪械可能跟随相机的旋转滞后，也可能领先。在旋转时，如果领先，武器可能向旋转方向滚动；如果滞后，则可能向相反方向滚动。<br>
+Cody进一步描述了他对晃动的方法：玩家旋转时武器滞后，然后过冲，最后稳定下来。<br>
+在移动稳定时使用弹簧插值</p>
+<p><strong>过冲和滚动Roll的重要性</strong><br>
+当枪的枪托命中肩膀时， 它应该在稳定到预定姿势之前稍微过冲一点。在冲击点之后，应该会有2‑4个快速的小幅度左右滚动，同样遵循过冲原则，然后稳定在中间位置。</p>
+<p><strong>晃动Sway</strong><br>
+从玩家静止时产生的晃动噪音开始。<br>
+每个旋转轴上的两层柏林噪声形式的噪声由玩家的生命值和当前武器的控制等级驱动。武器的控制等级。这些元素影响静止晃动的振幅和频率，其中控制性较差的武器晃动振幅更大但频率更低。</p>
+<p>其他类型的晃动，分别由玩家的移动和旋转引起，均由简化的物理驱动驱动，模拟弹簧阻尼器以实现自然的晃动和稳定感。<br>
+Cody使用弹簧插值来处理武器移动后的回弹和稳定。</p>
+<p>重要的是，Albie的程序化系统允许开发者指定武器在每个轴上操纵的难易程度。Albie指出这是一个强大的特性，因为不同的武器具有不同的重量和质心，并且不同轴上的移动应该以不同方式工作。<br>
+例如，武器在偏航轴(Yaw)上旋转时应具有更多阻力，而在滚转轴上的旋转应具有较少阻力、更高频率和更低惯性。武器应更倾向于在滚转轴(Roll)上旋转而非其他轴旋转的想法反复出现，因为Cody、 Anders和Milton都提到利用滚转来实现武器动画的微妙自然移动感。<br>
+武器通常在偏航轴(Yaw)上不能运动太多，如果你必须让武器产生 Yaw 摆动，它必须绕枪托（buttstock）旋转，而不是绕枪的中心点或手部位置。<br>
+pitch / roll 也可以部分受这里影响（取决于你想要的风格）</p>
+<blockquote>
+<p><strong>为什么要这么做</strong>：<br>
+◆ 枪在现实中怎么转？<br>
+当玩家身体左右摇动或做非常轻微的 Yaw 旋转时：</p>
+<ul>
+<li>枪托贴在肩膀</li>
+<li>枪托基本是“固定点”，或是偏刚性的支点</li>
+<li>枪管端（muzzle）会动得最大</li>
+<li>武器中部次之</li>
+<li>枪托最小<br>
+📌 这就是现实中的<strong>杠杆</strong>效果。</li>
+</ul>
+<p>◆ 如果旋转点错了，会出现什么问题？<br>
+如果你让武器绕 “weapon root” 或 “枪中心” 旋转：</p>
+<ul>
+<li>枪会像“漂浮物”一样左右转</li>
+<li>缺乏重量</li>
+<li>与肩膀没有机械联系</li>
+<li>视觉上非常假（很多 indie FPS 都犯这个错）</li>
+</ul>
+<p>◆ 这样做后<br>
+✔ 枪口摆动会被放大<br>
+✔ 枪托稳定，不会乱飞<br>
+✔ 枪看起来像“真枪”，有重量、有支撑点<br>
+✔ 手感立即提升（非常明显）</p>
+</blockquote>
+<p>在滚转轴上旋转之所以有效，是因为它在不显著影响瞄准方向的情况下增加了不确定感。然而，这在很大程度上取决于特定武器的枢轴点。虽然长武器通常滚动起来感觉良好，但高的武器则不然，因为枪管和瞄准具之间的距离可能会在玩家瞄准时造成不舒服或夸张动作。对此的解决方案很直接——在瞄准时将高武器的枢轴点向上移动。</p>
+<p><strong>视图模型过冲的特性</strong><br>
+是SCP: 5K的一个显著特性。<br>
+当玩家转向时，视图模型会超过屏幕中心，并在玩家停止旋转时保持向转向方向偏移。与游戏中的大多数程序化运动相反，这被应用于角色绑定的脊柱。这是为了让旋转发生在网格空间中，意味着它相对于角色的根变换而不是骨骼链中更下方的骨骼。<br>
+视图模型过冲不会减少摄像机移动，而是在玩家输入的基础上为视图模型添加额外的移动，并将该移动限制在屏幕的特定区域内。然后根据诸如玩家是否正在瞄准或他们的武器是否有枪托等因素来缩放此效果的振幅。在瞄准射击时， 有托武器如步枪不会出现过冲，而手枪和无托步枪仍然会出现。<br>
+手枪尤其因为其长度短、重量轻且缺乏枪托， 容易抖动和旋转，这使得对准其瞄准具变得困难。虽然VR以外的游戏不模拟双焦瞄准，也不要求玩家像在现实世界中那样对准瞄准具，但SCP: 5K的过冲系统仍然能让游戏传达无托武器缺乏稳定性的特点。然而，为了确保玩家仍能命中他们瞄准的位置，摄像机在瞄准射击时会微妙地自动对准手枪后方，同时仍允许视图模型离开屏幕中心。实现这一点的数学计算相当复杂，由于时间关系在访谈中未深入探讨。但他确实指出，一些玩家可能不喜欢这个过冲特性，可能是因为它引发了晕动症，或者因为相关玩家习惯于主要基于十字准星来定位自己，这就是为什么他的团队决定允许玩家减少或关闭此特性。</p>
+<p><strong>美学考量</strong><br>
+如果枪械引导移动，这可能会给玩家一种武器操作者技术娴熟或经验丰富的感觉；而如果武器滞后于摄像机，则可能表明相反的情况。晃动插值的各个方面，例如重新居中所需的时间，可以用来强调武器的尺寸或重量。<br>
+一些可用于传达武器特性（如尺寸和重量）的参数包括视图模型过渡到冲刺动画的速度、切换武器的速度、切换到武器后直到可用的时间以及玩家角色瞄准瞄准具的速度。他还引用了后坐力的强度作为可以传达武器威力的一个因素。</p></p>
+  </blockquote>
+
+<h4 id="input-有无输入对变化速率的影响">
+<a class="header-anchor" href="#input-%e6%9c%89%e6%97%a0%e8%be%93%e5%85%a5%e5%af%b9%e5%8f%98%e5%8c%96%e9%80%9f%e7%8e%87%e7%9a%84%e5%bd%b1%e5%93%8d"></a>
+Input 有无输入对变化速率的影响
+</h4><h5 id="平滑速率">
+<a class="header-anchor" href="#%e5%b9%b3%e6%bb%91%e9%80%9f%e7%8e%87"></a>
+平滑速率
+</h5><p>一般游戏采用方案，旋转和停下时都采用同一套参数</p>
+<h5 id="先慢后快">
+<a class="header-anchor" href="#%e5%85%88%e6%85%a2%e5%90%8e%e5%bf%ab"></a>
+先慢后快
+</h5><p>适用环境：稳重+不拖沓<br>
+特点：鼠标停下后立刻加快插值速度，营造确认感。</p>
+
+  <blockquote class="alert-blockquote note">
+    <p class="alert-heading">
+      Note
+    </p>
+    <p><h2 id="sprintinterp的方案参考ai">
+<a class="header-anchor" href="#sprintinterp%e7%9a%84%e6%96%b9%e6%a1%88%e5%8f%82%e8%80%83ai"></a>
+SprintInterp的方案参考(AI)
+</h2><ul>
+<li>CriticalDamping 通常设为 <code>2 * sqrt(Stiffness * Mass)</code> 才为临界阻尼，设置不同值，可得到欠阻尼（震荡）或过阻尼（缓慢）效果。建议理解该物理背景。</li>
+<li>可以尝试的参数配置：Stiffness 中等偏高（快速响应但不过火）、CriticalDamping 多数接近 1（轻微震荡但不发狂）、Mass 视武器重量或状态而定（重武器 Mass大→摆动慢）。</li>
+<li>大 Mass + 大 Stiffness 可能导致高频震荡或振幅异常。</li>
+<li>每帧确认 deltaSeconds 非常小的情况下数值稳定性，避免弹簧公式爆炸（如果 stiffness or mass 过大且 delta small）。可做最大 delta clamp。</li>
+</ul></p>
+  </blockquote>
+
+
+  <blockquote class="alert-blockquote note">
+    <p class="alert-heading">
+      Note
+    </p>
+    <p><h4 id="增强方案">
+<a class="header-anchor" href="#%e5%a2%9e%e5%bc%ba%e6%96%b9%e6%a1%88"></a>
+增强方案
+</h4><p>最好的效果：玩家向右转，武器向左并稍微上/下摆动、同时绕自身轻微旋转</p>
+<ul>
+<li>swayOffsetMulti用 <strong>速度曲线（非线性）</strong> 替代：比如用速度^n 或平滑函数（例如 SmoothStep）以便高转速更强但低转速微弱。</li>
+<li>为偏移和旋转分别设计 <strong>不同方向响应</strong>：例如 yaw→横向 + roll，pitch→纵向 + pitch 轻微。</li>
+</ul></p>
+  </blockquote>
+
+<h4 id="input-非线性映射">
+<a class="header-anchor" href="#input-%e9%9d%9e%e7%ba%bf%e6%80%a7%e6%98%a0%e5%b0%84"></a>
+Input 非线性映射
+</h4><p>为了在不改变整体效果(最大摆动不缩水)的前提下，改善小范围摆动的视觉效果<br>
+采用简单的函数实现：$y=x^n$ ，可以简单分为n&gt;1和n&lt;1<br>
+n &gt; 1：小角度变化较小，偏向让玩家瞄准<br>
+n &lt; 1：大角度变化也大，偏向表现效果</p>
+<h4 id="target-映射轴的控制">
+<a class="header-anchor" href="#target-%e6%98%a0%e5%b0%84%e8%bd%b4%e7%9a%84%e6%8e%a7%e5%88%b6"></a>
+Target 映射轴的控制
+</h4><p>一般左右旋转控制Yaw轴、上下旋转控制Pitch轴、左右移动控制Roll轴，但左右旋转控制Roll在减少视野变化的前提下效果也不错<br>
+真实武器摆动里 yaw 幅度比 pitch/roll 小，roll（武器绕镜）更能体现质感。</p>
+<h4 id="target-超前lead与滞后lag">
+<a class="header-anchor" href="#target-%e8%b6%85%e5%89%8dlead%e4%b8%8e%e6%bb%9e%e5%90%8elag"></a>
+Target 超前(Lead)与滞后(Lag)
+</h4><p>前者看起来更灵敏(响应强、感觉更爽快)，后者看起来更真实有惯性<br>
+左右超前，<strong>上下追赶</strong>更贴近人的潜意识</p>
+<h5 id="示例-2">
+<a class="header-anchor" href="#%e7%a4%ba%e4%be%8b-2"></a>
+示例
+</h5>
+  <blockquote class="alert-blockquote example">
+    <p class="alert-heading">
+      Example
+    </p>
+    <p><h2 id="超前">
+<a class="header-anchor" href="#%e8%b6%85%e5%89%8d"></a>
+超前
+</h2><ul>
+<li>UE5 教程1<br>
+<a href="https://www.youtube.com/watch?v=rZUfkXaVvX4">https://www.youtube.com/watch?v=rZUfkXaVvX4</a><br>
+教程中提到，给模型添加的SpringArm的方案效果并不好，因为无法限制他、并且很晃<br>
+<img src="https://cdn.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/PixPin_2025-11-26_07-20-24.gif" alt="|350"></li>
+<li>UE5 教程2<br>
+<a href="https://www.youtube.com/watch?v=YahaZR6Umxo">https://www.youtube.com/watch?v=YahaZR6Umxo</a><br>
+<img src="https://cdn.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/PixPin_2025-11-26_07-23-44.gif" alt=""></li>
+<li>UE5 教程3<br>
+<a href="https://www.youtube.com/watch?v=eYsjiw0fXvU">https://www.youtube.com/watch?v=eYsjiw0fXvU</a><br>
+视频中提到，我们可以反转参数来实现追赶效果。<br>
+<img src="https://cdn.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/PixPin_2025-11-27_01-33-44.gif" alt=""></li>
+<li>UE 实例1<br>
+<a href="https://www.youtube.com/watch?v=cpPOA6yKsoo">https://www.youtube.com/watch?v=cpPOA6yKsoo</a><br>
+左右移动时采用roll旋转，鼠标X旋转用较小的Yaw，整体效果非常优秀<video src="https://cdn.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/PixPin_2025-11-27_17-35-54.mp4" controls muted autoplay loop></video></li>
+</ul></p>
+  </blockquote>
+
+
+  <blockquote class="alert-blockquote example">
+    <p class="alert-heading">
+      Example
+    </p>
+    <p><h2 id="追赶">
+<a class="header-anchor" href="#%e8%bf%bd%e8%b5%b6"></a>
+追赶：
+</h2><ul>
+<li>UE Example<br>
+<a href="https://www.youtube.com/watch?v=MMvBRQtjFmQ">Realistic Weapon Sway In UE5</a><br>
+<img src="https://cdn.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/PixPin_2025-11-27_01-30-43.gif" alt=""></li>
+</ul></p>
+  </blockquote>
+
+<h4 id="target-锚点pivot">
+<a class="header-anchor" href="#target-%e9%94%9a%e7%82%b9pivot"></a>
+Target 锚点(Pivot)
+</h4><p>常见的锚点有：围绕角色旋转、围绕左右手旋转、围绕右手偏移、围绕枪托旋转Yaw</p>
+<h5 id="绕角色旋转">
+<a class="header-anchor" href="#%e7%bb%95%e8%a7%92%e8%89%b2%e6%97%8b%e8%bd%ac"></a>
+绕角色旋转：
+</h5><p>很多老游戏中，如虚幻竞技场，一般用Camera Lag就能实现，不需要专门计算。<br>
+优点：容易实现，视野变化大带来较强反馈感，一般搭配追赶效果，体现沉重感。<br>
+问题：无法精确控制效果、效果单一</p>
+
+  <blockquote class="alert-blockquote example">
+    <p class="alert-heading">
+      Example
+    </p>
+    <p><h4 id="ue社区示例">
+<a class="header-anchor" href="#ue%e7%a4%be%e5%8c%ba%e7%a4%ba%e4%be%8b"></a>
+UE社区示例
+</h4><p><a href="https://forums.unrealengine.com/t/weapon-sway-solved">https://forums.unrealengine.com/t/weapon-sway-solved</a><br>
+<a href="https://www.youtube.com/watch?v=6OFmhQ55iJo">TFE Game - Rotation Lag/Leading</a><br>
+除了旋转滞后/领先之外，根据滞后/领先值做一些相对位置偏移，效果会好很多。<video src="https://cdn.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/TFE%20Game%20-%20Rotation%20Lag%E2%A7%B8Leading.mp4" controls muted autoplay loop></video></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl">  <span class="kt">void</span> <span class="n">APWNWeapon</span><span class="o">::</span><span class="n">UpdateLocRot</span><span class="p">(</span><span class="n">FVector</span> <span class="n">newLoc</span><span class="p">,</span> <span class="n">FRotator</span> <span class="n">newRot</span><span class="p">,</span> <span class="kt">float</span> <span class="n">deltaTime</span><span class="p">)</span> <span class="p">{</span> 
+</span></span><span class="line"><span class="cl">  <span class="n">FRotator</span> <span class="n">finalRot</span> <span class="o">=</span> <span class="n">newRot</span><span class="p">;</span> 
+</span></span><span class="line"><span class="cl">  <span class="c1">// Rotation Leading/Lag
+</span></span></span><span class="line"><span class="cl">  <span class="kt">float</span> <span class="n">lagDiff</span><span class="p">;</span> 
+</span></span><span class="line"><span class="cl">  <span class="n">finalRot</span><span class="p">.</span><span class="n">Pitch</span> <span class="o">=</span> <span class="n">LagWeaponRotation</span><span class="p">(</span><span class="n">newRot</span><span class="p">.</span><span class="n">Pitch</span><span class="p">,</span> <span class="n">LastRotation</span><span class="p">.</span><span class="n">Pitch</span><span class="p">,</span> <span class="n">deltaTime</span><span class="p">,</span> <span class="n">MaxPitchLag</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">lagDiff</span><span class="p">);</span> 
+</span></span><span class="line"><span class="cl">  <span class="n">finalRot</span><span class="p">.</span><span class="n">Yaw</span> <span class="o">=</span> <span class="n">LagWeaponRotation</span><span class="p">(</span><span class="n">newRot</span><span class="p">.</span><span class="n">Yaw</span><span class="p">,</span> <span class="n">LastRotation</span><span class="p">.</span><span class="n">Yaw</span><span class="p">,</span> <span class="n">deltaTime</span><span class="p">,</span> <span class="n">MaxYawLag</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">lagDiff</span><span class="p">);</span> <span class="n">finalRot</span><span class="p">.</span><span class="n">Roll</span> <span class="o">=</span> <span class="n">newRot</span><span class="p">.</span><span class="n">Roll</span><span class="p">;</span> 
+</span></span><span class="line"><span class="cl">  <span class="c1">// Location offset 
+</span></span></span><span class="line"><span class="cl">  <span class="kt">float</span> <span class="n">locDiff</span> <span class="o">=</span> <span class="n">lagDiff</span> <span class="o">/</span> <span class="n">MaxYawLag</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="n">locDiff</span> <span class="o">*=</span> <span class="n">MaxLocLagX</span><span class="p">;</span> 
+</span></span><span class="line"><span class="cl">  <span class="n">ArmMesh</span><span class="o">-&gt;</span><span class="n">SetRelativeLocation</span><span class="p">(</span><span class="n">FVector</span><span class="p">(</span><span class="n">ArmMeshOffset</span><span class="p">.</span><span class="n">X</span><span class="p">,</span> <span class="n">ArmMeshOffset</span><span class="p">.</span><span class="n">Y</span> <span class="o">+</span> <span class="n">locDiff</span><span class="p">,</span> <span class="n">ArmMeshOffset</span><span class="p">.</span><span class="n">Z</span><span class="p">),</span> <span class="nb">false</span><span class="p">);</span> 
+</span></span><span class="line"><span class="cl">  <span class="c1">// Set our loc 
+</span></span></span><span class="line"><span class="cl">  <span class="n">LastRotation</span> <span class="o">=</span> <span class="n">newRot</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="k">this</span><span class="o">-&gt;</span><span class="n">SetActorLocation</span><span class="p">(</span><span class="n">newLoc</span><span class="p">);</span> <span class="k">this</span><span class="o">-&gt;</span><span class="n">SetActorRotation</span><span class="p">(</span><span class="n">finalRot</span><span class="p">);</span> 
+</span></span></code></pre></div></p>
+  </blockquote>
+
+<h5 id="围绕手武器重心旋转">
+<a class="header-anchor" href="#%e5%9b%b4%e7%bb%95%e6%89%8b%e6%ad%a6%e5%99%a8%e9%87%8d%e5%bf%83%e6%97%8b%e8%bd%ac"></a>
+围绕手/武器重心旋转
+</h5><p>被大量游戏和教程采用<br>
+优点：容易实现，视角变化适中，大都为超前效果，看起来响应很快，应用于双手步枪有非常好的效果。<br>
+局限：不适合重心不处于中心的/较重的枪械</p>
+<h5 id="围绕手武器偏移">
+<a class="header-anchor" href="#%e5%9b%b4%e7%bb%95%e6%89%8b%e6%ad%a6%e5%99%a8%e5%81%8f%e7%a7%bb"></a>
+围绕手/武器偏移
+</h5><p><a href="https://www.youtube.com/watch?v=u9SuIsd7Dlw">https://www.youtube.com/watch?v=u9SuIsd7Dlw</a></p>
+
+  <blockquote class="alert-blockquote example">
+    <p class="alert-heading">
+      Example
+    </p>
+    <p><ul>
+<li>军团要塞2<br>
+<a href="https://www.youtube.com/watch?v=4wPAzutIVpc">Weapon Sway in Team Fortress 2 Again</a><br>
+<img src="https://cdn.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/PixPin_2025-11-27_16-40-17.gif" alt=""><br>
+<a href="https://www.youtube.com/watch?v=Hu0v0kTWH7w">UFPS - Procedural camera &amp; animation system intro (2012)</a></li>
+</ul></p>
+  </blockquote>
+
+<h5 id="围绕手武器旋转偏移">
+<a class="header-anchor" href="#%e5%9b%b4%e7%bb%95%e6%89%8b%e6%ad%a6%e5%99%a8%e6%97%8b%e8%bd%ac%e5%81%8f%e7%a7%bb"></a>
+围绕手/武器旋转+偏移
+</h5><p>可以得到最符合直觉(不一定表现最强)的质感：玩家向右猛转→武器轻微绕镜顺转+向左偏移</p>
+<h5 id="绕枪托旋转yaw">
+<a class="header-anchor" href="#%e7%bb%95%e6%9e%aa%e6%89%98%e6%97%8b%e8%bd%acyaw"></a>
+绕枪托旋转Yaw
+</h5><p>把绕 Yaw 的旋转枢轴定位在枪托（贴肩处），保证枪托相对稳定，枪口移动最大，符合现实杠杆效果。<br>
+现实中枪托靠肩为固定支点，绕该点左右偏转时枪口的位移最大；若绕武器根或中心旋转，会让枪显得“漂浮”。</p>
+<h4 id="lerp-插值方案">
+<a class="header-anchor" href="#lerp-%e6%8f%92%e5%80%bc%e6%96%b9%e6%a1%88"></a>
+Lerp 插值方案
+</h4><ol>
+<li>Interp：快速响应、效果不错，效果做好需要更多参数，否则会直来直去，很假</li>
+<li>Sprint Interp：更有弹性、提供变速运动，让其看起来更生动，但配置复杂，不直观。但确实更适合Weapon Sway</li>
+<li>Force &amp; Settle &amp; Damp：简化的Sprint Interp，保留了变速运动，参数更直观、不会很弹</li>
+<li>Lerp+sin: 有人用Sin来实现速度变化：<a href="https://devforum.roblox.com/t/whats-the-best-way-to-make-gun-sway/284153/2">Whats the best way to make gun sway?</a></li>
+</ol>
+<h4 id="post-process-基本方案">
+<a class="header-anchor" href="#post-process-%e5%9f%ba%e6%9c%ac%e6%96%b9%e6%a1%88"></a>
+Post Process 基本方案
+</h4><p><strong>柏林噪声</strong><br>
+在限制了最大偏移时能大幅度降低生硬感<br>
+在正常摆动时也能通过轻微的随机数来提升少量观感</p>
+<p><strong>回弹</strong></p>
+<blockquote>
+<p>并没有实现，但效果非常好</p>
+</blockquote>
+<p>无论采用哪种插值方案，都是专注于摇摆的过程。但玩家如果还需要一个晃动完成的确认感表现，当武器归位时增加一个回弹动画会是一个优秀的方案<br>
+SprintInterp也能简单实现回弹效果，但表现上比不上专门的回弹动画，其极高的耦合度也让回弹并不能单独被控制<br>
+如：<br>
+<a href="https://youtu.be/hCvq81uiDHU?si=7ej16nyoKlTL1QIV%5c&amp;t=64">SKG Shooter Framework</a> 实现了极为优质的回弹动画<br>
+<a href="https://www.fab.com/listings/90ba076a-dc9a-4782-9ac8-dc2ed4f06405">LowPolyShooterPack</a>：大部分状态切换完成后都会播放回弹动画</p>
+<p>对SwayTarget进行delay / ramp-up</p>
+<blockquote>
+<p>未实现</p>
+</blockquote>
+<p>引入一个 <strong>启动 delay + 增强曲线</strong>，特别是在进入瞄准 (ADS) 时。这样视觉效果更自然</p>
+<h3 id="123-外部工程思路">
+<a class="header-anchor" href="#123-%e5%a4%96%e9%83%a8%e5%b7%a5%e7%a8%8b%e6%80%9d%e8%b7%af"></a>
+1.2.3. 外部工程思路
+</h3><h4 id="运动状态">
+<a class="header-anchor" href="#%e8%bf%90%e5%8a%a8%e7%8a%b6%e6%80%81"></a>
+运动状态
+</h4><p>考虑不同运动状态下的视觉变化(AI)：</p>
+<ul>
+<li>行走/跑动时：武器摆动幅度更大，速度更快，可能伴随武器上下小幅“抛物”运动 (bobbing) + sway。</li>
+<li>站立/瞄准 (ADS)时：幅度缩小，响应延迟加大，甚至增加“惯性”感觉（武器慢慢跟上视角）。</li>
+<li>蹲伏/匍匐：幅度最小，优雅/稳定感强。</li>
+<li>跳跃/落地：瞬间武器有冲击位移＋摆动＋转动 →然后恢复。</li>
+<li>武器切换、换弹、踢脚、滑行等动作也可以用类似机制增强反馈。</li>
+</ul>
+
+  <blockquote class="alert-blockquote note">
+    <p class="alert-heading">
+      Note
+    </p>
+    <p><h4 id="状态延迟与-rampstateentrydelay--stateramptime">
+<a class="header-anchor" href="#%e7%8a%b6%e6%80%81%e5%bb%b6%e8%bf%9f%e4%b8%8e-rampstateentrydelay--stateramptime"></a>
+状态延迟与 Ramp（StateEntryDelay / StateRampTime）
+</h4><p>当从跑→瞄或跳→落地，武器参数瞬间变化会感觉突兀。可以做跨状态插值（参数 lerp）或使用 timeline 让变化平滑。(实测意义不大)</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="kt">float</span> <span class="n">stateRamp</span> <span class="o">=</span> <span class="n">ComputeStateRamp</span><span class="p">(</span><span class="n">Params</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">swayOffsetTarget</span> <span class="o">*=</span> <span class="n">stateRamp</span><span class="p">;</span>  
+</span></span><span class="line"><span class="cl"><span class="n">rotTarget</span> <span class="o">=</span> <span class="n">rotTarget</span> <span class="o">*</span> <span class="n">stateRamp</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="kt">float</span> <span class="nf">ComputeStateRamp</span><span class="p">(</span><span class="k">const</span> <span class="n">FSwayParams</span><span class="o">&amp;</span> <span class="n">Params</span><span class="p">)</span> <span class="k">const</span>  
+</span></span><span class="line"><span class="cl"><span class="p">{</span>  
+</span></span><span class="line"><span class="cl">    <span class="kt">float</span> <span class="n">Elapsed</span> <span class="o">=</span> <span class="n">FMath</span><span class="o">::</span><span class="n">Max</span><span class="p">(</span><span class="mf">0.f</span><span class="p">,</span> <span class="n">LocalTime</span> <span class="o">-</span> <span class="n">StateStartTime</span><span class="p">);</span> 
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="n">Elapsed</span> <span class="o">&lt;</span> <span class="n">Params</span><span class="p">.</span><span class="n">StateEntryDelay</span><span class="p">)</span> <span class="k">return</span> <span class="mf">0.f</span><span class="p">;</span>  
+</span></span><span class="line"><span class="cl">    <span class="kt">float</span> <span class="n">AfterDelay</span> <span class="o">=</span> <span class="n">Elapsed</span> <span class="o">-</span> <span class="n">Params</span><span class="p">.</span><span class="n">StateEntryDelay</span><span class="p">;</span>  
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="n">Params</span><span class="p">.</span><span class="n">StateRampTime</span> <span class="o">&lt;=</span> <span class="n">KINDA_SMALL_NUMBER</span><span class="p">)</span> <span class="k">return</span> <span class="mf">1.f</span><span class="p">;</span>  
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">FMath</span><span class="o">::</span><span class="n">Clamp</span><span class="p">(</span><span class="n">AfterDelay</span> <span class="o">/</span> <span class="n">Params</span><span class="p">.</span><span class="n">StateRampTime</span><span class="p">,</span> <span class="mf">0.f</span><span class="p">,</span> <span class="mf">1.f</span><span class="p">);</span>  
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div></p>
+  </blockquote>
+
+<h4 id="屏幕震动">
+<a class="header-anchor" href="#%e5%b1%8f%e5%b9%95%e9%9c%87%e5%8a%a8"></a>
+屏幕震动
+</h4><p>玩家视角旋转同时可能伴随镜头轻微晃动（camera bob/sway），建议武器摆动与镜头运动 <strong>不同步但联动</strong>。这会增强“手持武器的真实感”。</p>
+<h2 id="13-插件化">
+<a class="header-anchor" href="#13-%e6%8f%92%e4%bb%b6%e5%8c%96"></a>
+1.3. 插件化
+</h2><h3 id="obj继承vs-dataasset">
+<a class="header-anchor" href="#obj%e7%bb%a7%e6%89%bfvs-dataasset"></a>
+Obj继承vs DataAsset
+</h3><p>DataAsset——不需要每次修改后编译<br>
+可以运行时编辑器实时编辑。修改父类数据后不用重新保存引用的蓝图<br>
+Obj继承——数据+函数 √<br>
+可以单独存储函数中的数据、代码逻辑简单清晰、不需要独立Component/Subsystem用于计算。<br>
+使用和理解没有心智负担</p>
+<h2 id="14-未处理的资料">
+<a class="header-anchor" href="#14-%e6%9c%aa%e5%a4%84%e7%90%86%e7%9a%84%e8%b5%84%e6%96%99"></a>
+1.4. 未处理的资料
+</h2><p><a href="https://forums.unrealengine.com/t/weapon-sway-solved/326436">Weapon sway Solved</a></p>
+<h2 id="15-错误方案">
+<a class="header-anchor" href="#15-%e9%94%99%e8%af%af%e6%96%b9%e6%a1%88"></a>
+1.5. 错误方案
+</h2><h3 id="151-spring-arm">
+<a class="header-anchor" href="#151-spring-arm"></a>
+1.5.1. Spring Arm
+</h3><blockquote>
+<p>几乎不可用，但在大量初学者教程中出现</p>
+</blockquote>
+<p>勾选Enable Camera Rotation Lag，使用全身延迟旋转<br>
+<a href="https://youtu.be/rZUfkXaVvX4">Weapon Sway in UE4- THE CORRECT WAY | Black Ops Zombies in UE4 #6 - YouTube</a><br>
+缺点：不可控，无法限制摆动幅度，并不能真正解决问题</p>
+<h1 id="2-weapon-bobbing">
+<a class="header-anchor" href="#2-weapon-bobbing"></a>
+2. weapon bobbing
+</h1><h3 id="零散资料">
+<a class="header-anchor" href="#%e9%9b%b6%e6%95%a3%e8%b5%84%e6%96%99"></a>
+零散资料
+</h3><p>CoD 等 AAA 游戏在 ADS 时给 idle sway 加了 <strong>延迟 (delay)</strong> + 逐渐增强 (ramp up)</p>
+<h3 id="211-基本概念">
+<a class="header-anchor" href="#211-%e5%9f%ba%e6%9c%ac%e6%a6%82%e5%bf%b5"></a>
+2.1.1. 基本概念：
+</h3><p>武器摆动是枪支的无意移动，由呼吸和手部不稳引起。可通过屏住呼吸来消除，但会消耗体力，或趴在地上。作为平衡机制，通过增加使用高伤害武器（所有机枪和瞄准武器）所需的技能来发挥作用。仅在第一人称瞄准时使用</p>
+<p>当玩家静止、瞄准时，武器依然有轻微惯性漂移，如手抖、呼吸带动镜头细微振动。可以用 Perlin Noise 或 Lissajous 曲线生成。<br>
+ADS idle sway 并不是立即开始，而是在用户瞄准后有一个 <strong>延迟 (delay)</strong>，然后慢慢增强到最大强度 (over ~3 秒)</p>
+
+  <blockquote class="alert-blockquote example">
+    <p class="alert-heading">
+      Example
+    </p>
+    <p><h4 id="现代战争中的闲置摇摆控制与瞄准稳定性">
+<a class="header-anchor" href="#%e7%8e%b0%e4%bb%a3%e6%88%98%e4%ba%89%e4%b8%ad%e7%9a%84%e9%97%b2%e7%bd%ae%e6%91%87%e6%91%86%e6%8e%a7%e5%88%b6%e4%b8%8e%e7%9e%84%e5%87%86%e7%a8%b3%e5%ae%9a%e6%80%a7"></a>
+<a href="https://www.youtube.com/watch?v=ZdnDTJQBNPY">现代战争中的闲置摇摆控制与瞄准稳定性</a>
+</h4><p>使命召唤中Idle Sway采用8字型摇晃<br>
+<img src="https://i.ytimg.com/vi/ZdnDTJQBNPY/hqdefault_39966.jpg?sqp=-oaymwEnCNACELwBSFryq4qpAxkIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB%5c&amp;rs=AOn4CLDRDY1oo08zXx2W1MhzhhikUJNRKA" alt=""></p></p>
+  </blockquote>
+
+<h4 id="参考内容">
+<a class="header-anchor" href="#%e5%8f%82%e8%80%83%e5%86%85%e5%ae%b9"></a>
+参考内容
+</h4><p><a href="https://www.youtube.com/watch?v=1qz7VmQ9s78">Unity制作的IdleSway效果</a></p>
+
+  <blockquote class="alert-blockquote example">
+    <p class="alert-heading">
+      Example
+    </p>
+    <p><h2 id="reddit-关于idle武器晃动的讨论">
+<a class="header-anchor" href="#reddit-%e5%85%b3%e4%ba%8eidle%e6%ad%a6%e5%99%a8%e6%99%83%e5%8a%a8%e7%9a%84%e8%ae%a8%e8%ae%ba"></a>
+<a href="https://www.reddit.com/r/gamedev/comments/3m548h/techniques_for_weapon_sway_in_fps">reddit 关于Idle武器晃动的讨论</a>
+</h2>
+  <blockquote class="alert-blockquote quote">
+    <p class="alert-heading">
+      Quote
+    </p>
+    <p><p>到目前为止，我看到 Lissajous 曲线可能是武器晃动的不错选择，结合基于鼠标移动强度的阻尼效果。但我也看到有些人使用 Perlin 噪声来处理这个问题&hellip;为什么会这样？如何用 Perlin 获得良好的曲线？<br>
+我还注意到一些老式射击游戏，如 Quake，只是通过插值生成一个 8 字形状。</p></p>
+  </blockquote>
+
+
+  <blockquote class="alert-blockquote quote">
+    <p class="alert-heading">
+      Quote
+    </p>
+    <p><p>在我的游戏中实现武器晃动（我没有动画）时，我使用了两个曲线。它们基本上看起来像一条横向的 S 形（我不擅长数学）。其中一个曲线的持续时间比另一个稍短，并且是倒置的，所以晃动会有一些变化。较短的曲线与时间轴关联，基本上控制垂直变换，而较长的曲线则控制水平方向。考虑到我的射击逻辑直接来自枪管的正前方，这增加了很多变化性，而幸运的是也提供了一些可预测性。我还需要提到的是，这是在 Unreal Blueprints 中实现的，所以我不知道在其他引擎中是否存在类似的功能。</p></p>
+  </blockquote></p>
+  </blockquote>
+
+
+  <blockquote class="alert-blockquote example">
+    <p class="alert-heading">
+      Example
+    </p>
+    <p><h2 id="techniques-for-weapon-sway-in-fps">
+<a class="header-anchor" href="#techniques-for-weapon-sway-in-fps"></a>
+<a href="https://www.reddit.com/r/gamedev/comments/3m548h/techniques_for_weapon_sway_in_fps/?utm_source=chatgpt.com">Techniques for weapon sway in FPS</a>
+</h2></p>
+  </blockquote>
+
+<p><a href="https://www.youtube.com/watch?v=gWX-LriRL-c">Dayz的idle sway</a><br>
+<a href="https://youtube.com/shorts/5jKKFe5g0tI?si=FmZtNGytnfeIAKDH">战地6冬季攻势和普通动画区别</a></p>
+<h1 id="3-shoot-sway">
+<a class="header-anchor" href="#3-shoot-sway"></a>
+3. Shoot Sway
+</h1><p><a href="https://www.youtube.com/watch?v=SWf9pNdivpo%5c&amp;t=8s">How I Made My FPS Game Feel Better To Play</a><br>
+视频中一开始采用随机晃动让人眩晕，后来采用purlin noise获得平滑的摄像机抖动<img src="https://cdn.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/PixPin_2025-11-28_11-02-18.gif" alt=""></p>
+<p><a href="https://www.bilibili.com/video/BV1dRffYjEra">自制COD20 优化开火动画</a></p>
+<h1 id="4-移动摇晃">
+<a class="header-anchor" href="#4-%e7%a7%bb%e5%8a%a8%e6%91%87%e6%99%83"></a>
+4. 移动摇晃
+</h1><p><a href="https://www.youtube.com/watch?v=lwM-SbDKnxQ">Realistic Headbob Camera Shakes</a></p>
+</div>
+    <footer class="article-footer"><ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item" data-aos="zoom-in">
+      <a
+        class="article-tag-list-link"
+        href="/WzhGameDevPublish/tags/3c"
+        rel="tag"
+        >3C</a
+      >
+    </li><li class="article-tag-list-item" data-aos="zoom-in">
+      <a
+        class="article-tag-list-link"
+        href="/WzhGameDevPublish/tags/fps"
+        rel="tag"
+        >FPS</a
+      >
+    </li><li class="article-tag-list-item" data-aos="zoom-in">
+      <a
+        class="article-tag-list-link"
+        href="/WzhGameDevPublish/tags/blog"
+        rel="tag"
+        >BLOG</a
+      >
+    </li></ul>
+</footer>
+  </div></article></section>
+        </div><footer id="footer" aria-label="Site footer">
+  <div style="width: 100%; overflow: hidden">
+    <div class="footer-line"></div>
+  </div>
+  <div id="footer-info"><div>
+      <span class="icon-copyright"></span>2025-2026<span class="footer-info-sep rotate"></span>
+      温志洪
+    </div><div>
+        基于&nbsp;<a
+          href="https://gohugo.io/"
+          target="_blank"
+          rel="noopener nofollow noreferrer"
+          >Hugo</a
+        >&nbsp; Theme.<a
+          href="https://github.com/D-Sketon/hugo-theme-reimu"
+          target="_blank"
+          rel="noopener nofollow noreferrer"
+          >Reimu</a
+        >
+      </div><div>
+        <span class="icon-brush"
+          >&nbsp;8.4k</span
+        >
+        &nbsp;|&nbsp;
+        <span class="icon-coffee">&nbsp;00:17</span>
+      </div><div>
+        <span class="icon-eye"></span>
+        <span id="busuanzi_container_site_pv"
+          >总访问量&nbsp;<span
+            id="busuanzi_value_site_pv"
+          ></span
+        ></span>
+        &nbsp;|&nbsp;
+        <span class="icon-user"></span>
+        <span id="busuanzi_container_site_uv"
+          >总访客量&nbsp;<span
+            id="busuanzi_value_site_uv"
+          ></span
+        ></span>
+      </div></div>
+</footer>
+<div class="sidebar-top">
+            <div class="sidebar-top-taichi rotate"></div>
+            <div class="arrow-up"></div>
+          </div><div id="mask" class="hide"></div>
+      </div><nav id="mobile-nav" aria-label="Mobile navigation">
+  <div class="sidebar-wrap"><div class="sidebar-toc-sidebar"><h3 class="toc-title">文章目录</h3>
+<div class="sidebar-toc-wrapper toc-div-class">
+  <nav id="TableOfContents">
+  <ul>
+    <li><a href="#11-代码实现">1.1. 代码实现</a>
+      <ul>
+        <li><a href="#111-一处理输入量">1.1.1. 一、处理输入量</a></li>
+        <li><a href="#112-二计算偏移量">1.1.2. 二、计算偏移量</a></li>
+        <li><a href="#113-后期处理">1.1.3. 后期处理</a></li>
+        <li><a href="#114-应用函数">1.1.4. 应用函数</a></li>
+      </ul>
+    </li>
+    <li><a href="#12-参数配置">1.2. 参数配置</a>
+      <ul>
+        <li><a href="#121-优秀的实现案例">1.2.1. 优秀的实现案例</a></li>
+        <li><a href="#122-核心思路">1.2.2. 核心思路</a></li>
+        <li><a href="#123-外部工程思路">1.2.3. 外部工程思路</a></li>
+      </ul>
+    </li>
+    <li><a href="#13-插件化">1.3. 插件化</a>
+      <ul>
+        <li><a href="#obj继承vs-dataasset">Obj继承vs DataAsset</a></li>
+      </ul>
+    </li>
+    <li><a href="#14-未处理的资料">1.4. 未处理的资料</a></li>
+    <li><a href="#15-错误方案">1.5. 错误方案</a>
+      <ul>
+        <li><a href="#151-spring-arm">1.5.1. Spring Arm</a></li>
+      </ul>
+    </li>
+  </ul>
+
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#零散资料">零散资料</a></li>
+        <li><a href="#211-基本概念">2.1.1. 基本概念：</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+</div></div>
+        <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
+  <img
+    data-src="/WzhGameDevPublish/avatar/UELogo.png"
+    data-sizes="auto"
+    alt="温志洪"
+    class="lazyload"
+  />
+  <div class="sidebar-author-name">温志洪</div>
+  <div class="sidebar-description">FPS游戏</div>
+</div>
+<div class="sidebar-state">
+  <div class="sidebar-state-article">
+    <div>文章</div><div class="sidebar-state-number">1</div>
+  </div>
+  <a class="sidebar-state-category" href="/WzhGameDevPublish/categories/" aria-label="sidebar-state-category-link">
+    <div>分类</div>
+    <div class="sidebar-state-number">
+      0
+    </div>
+  </a>
+  <a class="sidebar-state-tag" href="/WzhGameDevPublish/tags/" aria-label="sidebar-state-tag-link">
+    <div>标签</div>
+    <div class="sidebar-state-number">3</div>
+  </a>
+</div>
+<div class="sidebar-social"><div class="icon-bilibili sidebar-social-icon">
+      <a
+        href="https://space.bilibili.com/35312868"
+        itemprop="url"
+        target="_blank"
+        aria-label="bilibili"
+        rel="noopener nofollow noreferrer"
+      ></a>
+    </div><div class="icon-email sidebar-social-icon">
+      <a
+        href="mailto:cnwenzhihong@gmail.com"
+        itemprop="url"
+        target="_blank"
+        aria-label="email"
+        rel="noopener nofollow noreferrer"
+      ></a>
+    </div></div>
+<div class="sidebar-menu"><div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/WzhGameDevPublish/"
+        aria-label="首页"
+      ></a>
+      <div class='sidebar-menu-icon icon rotate'>&#xe62b;</div>
+      <div class="sidebar-menu-link">首页</div>
+    </div><div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/WzhGameDevPublish/archives"
+        aria-label="归档"
+      ></a>
+      <div class='sidebar-menu-icon icon rotate'>&#xe62b;</div>
+      <div class="sidebar-menu-link">归档</div>
+    </div><div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/WzhGameDevPublish/about"
+        aria-label="关于"
+      ></a>
+      <div class='sidebar-menu-icon icon rotate'>&#xe62b;</div>
+      <div class="sidebar-menu-link">关于</div>
+    </div><div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/WzhGameDevPublish/friend"
+        aria-label="友链"
+      ></a>
+      <div class='sidebar-menu-icon icon rotate'>&#xe62b;</div>
+      <div class="sidebar-menu-link">友链</div>
+    </div></div>
+</div></div><div class="sidebar-btn-wrapper">
+        <div class="sidebar-toc-btn current"></div>
+        <div class="sidebar-common-btn"></div>
+      </div></nav>
+</div><div class="site-search">
+        <div class="reimu-popup popup">
+          <div class="reimu-search">
+            <div class="reimu-search-input-icon"></div>
+            <div id="reimu-search-input"></div>
+            <div class="popup-btn-close"></div>
+          </div>
+          <div class="reimu-results">
+            <div id="reimu-stats"></div>
+            <div id="reimu-hits"></div>
+            <div id="reimu-pagination" class="reimu-pagination"></div>
+          </div>
+          <img class="reimu-bg" src="/WzhGameDevPublish/images/reimu.png" />
+        </div>
+      </div><script
+    src="https://npm.webcache.cn/lazysizes@5.3.2/lazysizes.min.js"
+    integrity="sha384-3gT/vsepWkfz/ff7PpWNUeMzeWoH3cDhm/A8jM7ouoAK0/fP/9bcHHR5kHq2nf&#43;e" crossorigin="anonymous"></script><script
+    src="https://npm.webcache.cn/clipboard@2.0.11/dist/clipboard.min.js"
+    integrity="sha384-J08i8An/QeARD9ExYpvphB8BsyOj3Gh2TSh1aLINKO3L0cMSH2dN3E22zFoXEi0Q" crossorigin="anonymous"></script><script
+    src="https://npm.webcache.cn/material-theme@1.0.0/dist/material-theme.umd.js"
+    integrity="sha384-vLev0II0HKFaxkcm&#43;/7kX5IGwVFBASkGchU311wmU/veIj2bB0UcBkQbW6yw2asK" crossorigin="anonymous"></script><script src="/WzhGameDevPublish/js/main.js" ></script><script src="/WzhGameDevPublish/js/aos.js" ></script><script>
+    var aosInit = () => {
+      AOS.init({
+        duration: 1000,
+        easing: "ease",
+        once: true,
+        offset: 50,
+      });
+    };
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", aosInit);
+    } else {
+      aosInit();
+    }
+  </script><script src="/WzhGameDevPublish/js/pjax_main.js" data-pjax></script><script>
+    var ALGOLIA_CONFIG = {
+      logo: '\/WzhGameDevPublish\/images\/algolia_logo.svg',
+      algolia: {
+        applicationID: "Y8C6JKXKKR",
+        apiKey: "30fdacdc4947fb8d8faed68e16f048a0",
+        indexName: "index",
+        hits: {
+          "per_page": parseInt("10")
+        },
+        labels: {
+          "input_placeholder": '搜索.....',
+          "hits_empty": '未发现与 「${query}」相关内容',
+          "hits_stats": '找到${hits}条结果（用时 ${time} ms）'
+        }
+      }
+    };
+  </script><script
+    src="https://npm.webcache.cn/algoliasearch@4.17.1/dist/algoliasearch-lite.umd.js"
+    deferintegrity="sha384-xvLS0jfKuoREs7pqkRI/OI8GcqohO5S&#43;jQz7ZBtQXnsXmD&#43;9jDOOY4cL6dCPzlrk" crossorigin="anonymous"></script><script
+    src="https://npm.webcache.cn/@reimujs/instantsearch.js@4.57.0-beta.1/dist/instantsearch.production.min.js"
+    deferintegrity="sha384-aagKMe8nkqaP2DYQc8kkYOL5l&#43;M5Q2WH/Uhr4teOh0Ybp0RZj0kUSDm45qPikMjK" crossorigin="anonymous"></script><script src="/WzhGameDevPublish/js/algolia_search.js" ></script><script
+    src="https://npm.webcache.cn/mouse-firework@0.1.1/dist/index.umd.js"
+    integrity="sha384-8LyaidD9GPxQQgLJO/WRw/O2h3BoNq/ApI/ecpvM6RsrCz2qP2ppBXUKihP4V/2d" crossorigin="anonymous"></script><script>
+  if (! false  || !window.matchMedia('(max-width: 768px)').matches) {
+    if (window.firework) {
+      const options = JSON.parse("{\"excludeelements\":[\"a\",\"button\"],\"particles\":[{\"colors\":[\"var(--red-1)\",\"var(--red-2)\",\"var(--red-3)\",\"var(--red-4)\"],\"duration\":[1200,1800],\"easing\":\"easeOutExpo\",\"move\":[\"emit\"],\"number\":20,\"shape\":\"circle\",\"shapeOptions\":{\"alpha\":[0.3,0.5],\"radius\":[16,32]}},{\"colors\":[\"var(--red-0)\"],\"duration\":[1200,1800],\"easing\":\"easeOutExpo\",\"move\":[\"diffuse\"],\"number\":1,\"shape\":\"circle\",\"shapeOptions\":{\"alpha\":[0.2,0.5],\"lineWidth\":6,\"radius\":20}}]}");
+      options.excludeElements = options.excludeelements;
+      delete options.excludeelements;
+      window.firework(options);
+    }
+  }
+</script><script
+    src="https://npm.webcache.cn/quicklink@3.0.1/dist/quicklink.umd.js"
+    integrity="sha384-caMDqvgav/HWdEYQU1QRRHMLleigpL1YHAG0m371DhzfL8rRzUyOb&#43;bEHtwlmYjD" crossorigin="anonymous"></script><script data-pjax>
+    window.quicklink?.listen({
+      timeout:  3000 ,
+      priority:  true ,
+      ignores: JSON.parse("[]")
+    });
+  </script>
+
+
+<div id="lazy-script">
+  <div><script data-pjax>
+        window.REIMU_POST = {
+          author: "温志洪",
+          title: "FPS中的武器摇晃",
+          url: "http:\/\/localhost:1895\/WzhGameDevPublish\/post\/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91\/%E4%BB%A3%E7%A0%81%E6%A1%86%E6%9E%B6\/lyra\/fps\/%E6%8A%80%E6%9C%AF%E7%BB%86%E8%8A%82\/fpszhong-de-wu-qi-yao-huang\/",
+          description: "\r1. 旋转摇晃Weapon Sway\rNote\rCraftingGunFeel.pdf 对武器程序化动画、枪械感觉做出了大量实践指导，极具参考价值，不过较为零散，需要自行整理\n使用控制绑定制作武器偏移效果:使用control rig实现相同效果的优秀示例\n",
+          cover: "http:\/\/localhost:1895\/WzhGameDevPublish\/images\/banner.webp",
+        };
+      </script><script src="/WzhGameDevPublish/js/insert_highlight.js" data-pjax></script><script src="/WzhGameDevPublish/js/tabs.js" data-pjax></script><script type="module" data-pjax>const PhotoSwipeLightbox = (await safeImport("https:\/\/npm.webcache.cn\/photoswipe@5.4.4\/dist\/photoswipe-lightbox.esm.min.js", "sha384-DiL6M\/gG\u002bwmTxmCRZyD1zee6lIhawn5TGvED0FOh7fXcN9B0aZ9dexSF\/N6lrZi\/")).default;const initPswp = (gallery, children) => {
+          if (_$$(`${gallery} ${children}`).length > 0) {
+            new PhotoSwipeLightbox({
+              gallery,
+              children,pswpModule: () => safeImport("https:\/\/npm.webcache.cn\/photoswipe@5.4.4\/dist\/photoswipe.esm.min.js", "sha384-WkkO3GCmgkC3VQWpaV8DqhKJqpzpF9JoByxDmnV8\u002boTJ7m3DfYEWX1fu1scuS4\u002bs")}).init();
+          }
+        }
+        const pswp = () => {
+          initPswp('.article-entry', 'a.article-gallery-item');
+          initPswp('.article-gallery', 'a.article-gallery-item');
+          window.lightboxStatus = 'done';
+          window.removeEventListener('lightbox:ready', pswp);
+        }
+        if(window.lightboxStatus === 'ready') {
+          pswp()
+        } else {
+          window.addEventListener('lightbox:ready', pswp);
+        }
+      </script></div>
+</div><script
+    src="https://npm.webcache.cn/busuanzi@2.3.0/bsz.pure.mini.js"
+    asyncintegrity="sha384-0M75wtSkhjIInv4coYlaJU83&#43;OypaRCIq2SukQVQX04eGTCBXJDuWAbJet56id&#43;S" crossorigin="anonymous"></script><script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.getRegistrations().then((registrations) => {
+        for (let registration of registrations) {
+          registration.unregister();
+        }
+      });
+    }
+  </script><script>
+  const reimuCopyright = String.raw`
+   ______     ______     __     __    __     __  __    
+  /\  == \   /\  ___\   /\ \   /\ "-./  \   /\ \/\ \   
+  \ \  __<   \ \  __\   \ \ \  \ \ \-./\ \  \ \ \_\ \  
+   \ \_\ \_\  \ \_____\  \ \_\  \ \_\ \ \_\  \ \_____\ 
+    \/_/ /_/   \/_____/   \/_/   \/_/  \/_/   \/_____/ 
+                                                    
+  `;
+  console.log(String.raw`%c ${reimuCopyright}`, "color: #ff5252;");
+  console.log(
+    "%c Theme.Reimu" + " %c https://github.com/D-Sketon/hugo-theme-reimu ",
+    "color: white; background: #ff5252; padding:5px 0;",
+    "padding:4px;border:1px solid #ff5252;",
+  );
+</script></body>
+</html>
