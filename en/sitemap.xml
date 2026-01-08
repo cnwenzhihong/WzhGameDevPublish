@@ -2,40 +2,40 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>http://localhost:1895/WzhGameDevPublish/en/categories/</loc>
+    <loc>http://localhost:7890/WzhGameDevPublish/en/categories/</loc>
     <xhtml:link
                 rel="alternate"
                 hreflang="zh-cn"
-                href="http://localhost:1895/WzhGameDevPublish/categories/"
+                href="http://localhost:7890/WzhGameDevPublish/categories/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="http://localhost:1895/WzhGameDevPublish/en/categories/"
+                href="http://localhost:7890/WzhGameDevPublish/en/categories/"
                 />
   </url><url>
-    <loc>http://localhost:1895/WzhGameDevPublish/en/tags/</loc>
+    <loc>http://localhost:7890/WzhGameDevPublish/en/tags/</loc>
     <xhtml:link
                 rel="alternate"
                 hreflang="zh-cn"
-                href="http://localhost:1895/WzhGameDevPublish/tags/"
+                href="http://localhost:7890/WzhGameDevPublish/tags/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="http://localhost:1895/WzhGameDevPublish/en/tags/"
+                href="http://localhost:7890/WzhGameDevPublish/en/tags/"
                 />
   </url><url>
-    <loc>http://localhost:1895/WzhGameDevPublish/en/</loc>
+    <loc>http://localhost:7890/WzhGameDevPublish/en/</loc>
     <xhtml:link
                 rel="alternate"
                 hreflang="zh-cn"
-                href="http://localhost:1895/WzhGameDevPublish/"
+                href="http://localhost:7890/WzhGameDevPublish/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="http://localhost:1895/WzhGameDevPublish/en/"
+                href="http://localhost:7890/WzhGameDevPublish/en/"
                 />
   </url>
 </urlset>

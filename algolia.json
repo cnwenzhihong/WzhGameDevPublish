@@ -1,7 +1,13 @@
 [
   {
+    "objectID": "6073d4b0fd7e52d22fa087e4f9162edcd5d7f5f8",
+    "permalink": "/WzhGameDevPublish/post/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/%E4%BB%A3%E7%A0%81%E6%A1%86%E6%9E%B6/lyra/fps/%E6%8A%80%E6%9C%AF%E7%BB%86%E8%8A%82/weaponsway%E6%8F%92%E4%BB%B6%E7%9A%84%E7%AE%80%E5%8D%95%E4%BD%BF%E7%94%A8/",
+    "title": "WeaponSway插件的简单使用","content": "我们以ABP_WeaponSway为例，也可以直接将逻辑写在自己的动画蓝图\nABP_WeaponSway\r找到插件文件夹中的ABP_WeaponSway双击，提示没有骨骼，选择自己的FPS骨骼并确认\n打开蓝图，删除报错节点,可以仅保留下图节点：\nSwayOffset：坐标偏移量 SwayRot：旋转偏移量\n添加新变量，变量类型Weapon Rotation Sway Fragmen，暂时命名为：WeaponSwayFragment,编译后选择一个默认风格，如WRS_Style_TF2\n根据自己的项目连线： Target：连入自己写的Fragment参数 CurrRot：控制器旋转量 HasInput：当前是否有鼠标输入 WeaponMesh：用于计算旋转锚点，目前的版本不连可能会崩溃，之后改进，如果用不到可以随便填一个站位(不能为空) Invert Roll Pitch：是否交换Roll和Pitch，一般武器坐标系与UE不同，默认开启，如果坐标轴不对可以取消勾选 Debug：调试，目前仅有显示锚点功能 主动画蓝图\r找到我们自己项目的角色蓝图\nClassDefaults-\u0026gt;实现动画接口ALI_WeaponSway\n找到合适的地方链接ABP_WeaponSway\n在TwoBoneIK等手部IK之前链接我们的动画接口\n不同的项目使用的骨骼不同，比如Lyra中是标准IK_Hand_Gun，一些项目是Hand_r/l，根据情况修改ABP_WeaponSway中的Modify节点，\n如果最终效果不明显，可以让SwayRot临时乘以一个数\n","date": "2026-01-08 06:11:25",
+    "updated": "2026-01-08 06:12:45"
+  }, 
+  {
     "objectID": "8b2e188dddda58182173f5ae07e2f04a64726f30",
     "permalink": "/WzhGameDevPublish/post/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/%E4%BB%A3%E7%A0%81%E6%A1%86%E6%9E%B6/lyra/fps/%E6%8A%80%E6%9C%AF%E7%BB%86%E8%8A%82/fpszhong-de-wu-qi-yao-huang/",
     "title": "FPS中的武器摇晃","content": "\r1. 旋转摇晃Weapon Sway\rNote\rCraftingGunFeel.pdf 对武器程序化动画、枪械感觉做出了大量实践指导，极具参考价值，不过较为零散，需要自行整理\n使用控制绑定制作武器偏移效果:使用control rig实现相同效果的优秀示例\n1.1. 代码实现\r我们可以将其分为：获取转动输入→计算偏移量→表现三个步骤\n先获取用户转动差值，做各种处理后，用于表现效果\nhttp://125.208.22.164/#/convert?card=D2F9B25D74AF8ACA\n1.1.1. 一、处理输入量\r计算转动量/输入量的速度，用于后续处理\n1.1 原始数据采样——转动量\r类似于TPS的瞄准偏移，但TPS关注角度，而FPS更在意变化量\n鼠标输入 ★★★\r理论上是最直接简单的获取方式，完全不需要计算\n不容易获得精确数值(要么0要么1)。\nUE愈加复杂的输入系统让实现不再简单。\nExample\r0.1秒间隔，无太大必要优化，并未处于deltaSeconds\n旋转差值 ★★★★★\r计算ControllerRotation的旋转差值\n可以抹平不同鼠标Dpi的差距，获取差值也简单，需要单独保存上一帧的旋转量\nExample\rFRotator deltaRot = UKismetMathLibrary::NormalizedDeltaRotator(CurrtRot, ControlLastRot); ControlLastRot = CurrtRot; Rotator.Normalized:\n防止接近 ±180° 时出现跳变\n消除超过 ±360° 的累积角度\nYaw Roll：[=180,180]\nYaw：[-90,90]\n1.2 计算二阶数据——速度和加速度\r角速度\r差值➗时间 即可得到角速度\ns=d/t\nFVector2D rotSpeedFrame(deltaRot.Yaw / DeltaSeconds, deltaRot.Pitch / DeltaSeconds); 加速度\ra=s/t\nFVector2D rotAccel((RotSpeedFiltered.X - PrevRotSpeedFiltered.X) / DeltaSeconds, (RotSpeedFiltered.Y - PrevRotSpeedFiltered.Y) / …","date": "2025-11-22 13:19:29",
-    "updated": "2026-01-05 12:21:12"
+    "updated": "2026-01-07 16:09:57"
   }]

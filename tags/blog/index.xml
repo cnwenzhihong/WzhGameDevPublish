@@ -2,7 +2,7 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Blog on 妖精游戏开发馆</title>
-    <link>http://localhost:1895/WzhGameDevPublish/tags/blog/</link>
+    <link>http://localhost:7890/WzhGameDevPublish/tags/blog/</link>
     <description>Recent content from 妖精游戏开发馆</description>
     <generator>Hugo</generator>
     <language>zh-cn</language>
@@ -12,21 +12,44 @@
     
     <copyright>本博客所有文章除特别声明外，均采用 BY-NC-SA 许可协议。转载请注明出处！</copyright>
     
-    <lastBuildDate>Mon, 05 Jan 2026 12:21:12 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 08 Jan 2026 06:12:45 +0000</lastBuildDate>
     
     
-    <atom:link href="http://localhost:1895/WzhGameDevPublish/tags/blog/index.xml" rel="self" type="application/rss&#43;xml" />
+    <atom:link href="http://localhost:7890/WzhGameDevPublish/tags/blog/index.xml" rel="self" type="application/rss&#43;xml" />
     
 
     
     
 
     <item>
+      <title>WeaponSway插件的简单使用</title>
+      <link>http://localhost:7890/WzhGameDevPublish/post/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/%E4%BB%A3%E7%A0%81%E6%A1%86%E6%9E%B6/lyra/fps/%E6%8A%80%E6%9C%AF%E7%BB%86%E8%8A%82/weaponsway%E6%8F%92%E4%BB%B6%E7%9A%84%E7%AE%80%E5%8D%95%E4%BD%BF%E7%94%A8/</link>
+      <pubDate>Thu, 08 Jan 2026 06:11:25 &#43;0000</pubDate>
+      <author>cnwenzhihong@gmail.com (温志洪)</author>
+      <guid>http://localhost:7890/WzhGameDevPublish/post/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/%E4%BB%A3%E7%A0%81%E6%A1%86%E6%9E%B6/lyra/fps/%E6%8A%80%E6%9C%AF%E7%BB%86%E8%8A%82/weaponsway%E6%8F%92%E4%BB%B6%E7%9A%84%E7%AE%80%E5%8D%95%E4%BD%BF%E7%94%A8/</guid>
+      <description>
+        <![CDATA[<h1>WeaponSway插件的简单使用</h1><p>作者：温志洪（cnwenzhihong@gmail.com）</p>
+        
+          <p>我们以<code>ABP_WeaponSway</code>为例，也可以直接将逻辑写在自己的动画蓝图</p>
+<h2 id="abp_weaponsway">
+<a class="header-anchor" href="#abp_weaponsway"></a>
+ABP_WeaponSway
+</h2><p>找到插件文件夹中的<code>ABP_WeaponSway</code>双击，提示没有骨骼，选择自己的FPS骨骼并确认<br>
+打开蓝图，删除报错节点,可以仅保留下图节点：</p>
+        
+        <hr><p>本文2026-01-08首发于<a href='http://localhost:7890/WzhGameDevPublish/'>妖精游戏开发馆</a>，最后修改于2026-01-08</p>]]>
+      </description>
+      
+    </item>
+    
+    
+
+    <item>
       <title>FPS中的武器摇晃</title>
-      <link>http://localhost:1895/WzhGameDevPublish/post/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/%E4%BB%A3%E7%A0%81%E6%A1%86%E6%9E%B6/lyra/fps/%E6%8A%80%E6%9C%AF%E7%BB%86%E8%8A%82/fpszhong-de-wu-qi-yao-huang/</link>
+      <link>http://localhost:7890/WzhGameDevPublish/post/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/%E4%BB%A3%E7%A0%81%E6%A1%86%E6%9E%B6/lyra/fps/%E6%8A%80%E6%9C%AF%E7%BB%86%E8%8A%82/fpszhong-de-wu-qi-yao-huang/</link>
       <pubDate>Sat, 22 Nov 2025 13:19:29 &#43;0000</pubDate>
       <author>cnwenzhihong@gmail.com (温志洪)</author>
-      <guid>http://localhost:1895/WzhGameDevPublish/post/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/%E4%BB%A3%E7%A0%81%E6%A1%86%E6%9E%B6/lyra/fps/%E6%8A%80%E6%9C%AF%E7%BB%86%E8%8A%82/fpszhong-de-wu-qi-yao-huang/</guid>
+      <guid>http://localhost:7890/WzhGameDevPublish/post/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/%E4%BB%A3%E7%A0%81%E6%A1%86%E6%9E%B6/lyra/fps/%E6%8A%80%E6%9C%AF%E7%BB%86%E8%8A%82/fpszhong-de-wu-qi-yao-huang/</guid>
       <description>
         <![CDATA[<h1>FPS中的武器摇晃</h1><p>作者：温志洪（cnwenzhihong@gmail.com）</p>
         
@@ -41,7 +64,7 @@
     <p><p><a href="https://his.diva-portal.org/smash/get/diva2%3A1971715/FULLTEXT01.pdf">CraftingGunFeel.pdf</a> 对武器程序化动画、枪械感觉做出了大量实践指导，极具参考价值，不过较为零散，需要自行整理<br>
 <a href="https://www.bilibili.com/video/BV1C6BEBHEXG">使用控制绑定制作武器偏移效果</a>:使用control rig实现相同效果的优秀示例</p>
         
-        <hr><p>本文2025-11-22首发于<a href='http://localhost:1895/WzhGameDevPublish/'>妖精游戏开发馆</a>，最后修改于2026-01-05</p>]]>
+        <hr><p>本文2025-11-22首发于<a href='http://localhost:7890/WzhGameDevPublish/'>妖精游戏开发馆</a>，最后修改于2026-01-07</p>]]>
       </description>
       
     </item>
