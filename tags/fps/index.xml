@@ -2,7 +2,7 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>FPS on 妖精游戏开发馆</title>
-    <link>http://localhost:7890/WzhGameDevPublish/tags/fps/</link>
+    <link>http://localhost:1895/WzhGameDevPublish/tags/fps/</link>
     <description>Recent content from 妖精游戏开发馆</description>
     <generator>Hugo</generator>
     <language>zh-cn</language>
@@ -12,10 +12,10 @@
     
     <copyright>本博客所有文章除特别声明外，均采用 BY-NC-SA 许可协议。转载请注明出处！</copyright>
     
-    <lastBuildDate>Wed, 07 Jan 2026 16:09:57 +0000</lastBuildDate>
+    <lastBuildDate>Sat, 17 Jan 2026 12:43:42 +0000</lastBuildDate>
     
     
-    <atom:link href="http://localhost:7890/WzhGameDevPublish/tags/fps/index.xml" rel="self" type="application/rss&#43;xml" />
+    <atom:link href="http://localhost:1895/WzhGameDevPublish/tags/fps/index.xml" rel="self" type="application/rss&#43;xml" />
     
 
     
@@ -23,25 +23,29 @@
 
     <item>
       <title>FPS中的武器摇晃</title>
-      <link>http://localhost:7890/WzhGameDevPublish/post/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/%E4%BB%A3%E7%A0%81%E6%A1%86%E6%9E%B6/lyra/fps/%E6%8A%80%E6%9C%AF%E7%BB%86%E8%8A%82/fpszhong-de-wu-qi-yao-huang/</link>
+      <link>http://localhost:1895/WzhGameDevPublish/post/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/%E4%BB%A3%E7%A0%81%E6%A1%86%E6%9E%B6/lyra/fps/%E6%8A%80%E6%9C%AF%E7%BB%86%E8%8A%82/weaponsway/fpszhong-de-wu-qi-yao-huang/</link>
       <pubDate>Sat, 22 Nov 2025 13:19:29 &#43;0000</pubDate>
       <author>cnwenzhihong@gmail.com (温志洪)</author>
-      <guid>http://localhost:7890/WzhGameDevPublish/post/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/%E4%BB%A3%E7%A0%81%E6%A1%86%E6%9E%B6/lyra/fps/%E6%8A%80%E6%9C%AF%E7%BB%86%E8%8A%82/fpszhong-de-wu-qi-yao-huang/</guid>
+      <guid>http://localhost:1895/WzhGameDevPublish/post/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/%E4%BB%A3%E7%A0%81%E6%A1%86%E6%9E%B6/lyra/fps/%E6%8A%80%E6%9C%AF%E7%BB%86%E8%8A%82/weaponsway/fpszhong-de-wu-qi-yao-huang/</guid>
       <description>
         <![CDATA[<h1>FPS中的武器摇晃</h1><p>作者：温志洪（cnwenzhihong@gmail.com）</p>
         
-          <h1 id="1-旋转摇晃weapon-sway">
-<a class="header-anchor" href="#1-%e6%97%8b%e8%bd%ac%e6%91%87%e6%99%83weapon-sway"></a>
-1. 旋转摇晃Weapon Sway
-</h1>
-  <blockquote class="alert-blockquote note">
-    <p class="alert-heading">
-      Note
-    </p>
-    <p><p><a href="https://his.diva-portal.org/smash/get/diva2%3A1971715/FULLTEXT01.pdf">CraftingGunFeel.pdf</a> 对武器程序化动画、枪械感觉做出了大量实践指导，极具参考价值，不过较为零散，需要自行整理<br>
-<a href="https://www.bilibili.com/video/BV1C6BEBHEXG">使用控制绑定制作武器偏移效果</a>:使用control rig实现相同效果的优秀示例</p>
+          <ol>
+<li>加速度方向不一致</li>
+<li>一般单次滑动最大加速度</li>
+<li>停下：速度方向不会改变</li>
+<li>左右变向时：速度方向改变</li>
+<li>减速滑动时：缓慢归0</li>
+</ol>
+<p>我设想了一个思路：<br>
+当加速度方向和速度方向不一致时判断停止<br>
+如果速度大于40度每秒，则累加DeceTime。否则直接判定NoInput<br>
+之后0.3秒内采用Lerp(NoInput、HasInput)，因为减速时间越长越有可能是单纯的减速<br>
+如果DeceTime&gt;0.3ms，则直接采用HasInput<br>
+速度方向发生改变时充值DeceTime<br>
+持续移动时、加速度会在0附近震荡</p>
         
-        <hr><p>本文2025-11-22首发于<a href='http://localhost:7890/WzhGameDevPublish/'>妖精游戏开发馆</a>，最后修改于2026-01-07</p>]]>
+        <hr><p>本文2025-11-22首发于<a href='http://localhost:1895/WzhGameDevPublish/'>妖精游戏开发馆</a>，最后修改于2026-01-17</p>]]>
       </description>
       
     </item>

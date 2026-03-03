@@ -1,0 +1,1346 @@
+<!doctype html>
+<html
+  lang="zh-cn" 
+  data-theme-mode="false"
+  >
+  <head><script src="/WzhGameDevPublish/livereload.js?mindelay=10&amp;v=2&amp;port=1895&amp;path=WzhGameDevPublish/livereload" data-no-instant defer></script><meta charset="utf-8" />
+<meta
+  name="viewport"
+  content="width=device-width, initial-scale=1, shrink-to-fit=no"
+/><title>
+  Lyra框架总览 | 温志洪
+</title>
+<meta name="description" content="FPS游戏"/><script>
+  window.siteConfig = JSON.parse("{\"anchor_icon\":null,\"base\":\"http://localhost:1895/WzhGameDevPublish/\",\"clipboard\":{\"copyright\":{\"count\":50,\"enable\":false,\"license_type\":\"by-nc-sa\"},\"fail\":{\"en\":\"Copy failed (ﾟ⊿ﾟ)ﾂ\",\"ja\":\"コピー失敗 (ﾟ⊿ﾟ)ﾂ\",\"pt-br\":\"Falha ao copiar (ﾟ⊿ﾟ)ﾂ\",\"zh-cn\":\"复制失败 (ﾟ⊿ﾟ)ﾂ\",\"zh-tw\":\"複製失敗 (ﾟ⊿ﾟ)ﾂ\"},\"success\":{\"en\":\"Copy successfully (*^▽^*)\",\"ja\":\"コピー成功 (*^▽^*)\",\"pt-br\":\"Copiado com sucesso (*^▽^*)\",\"zh-cn\":\"复制成功 (*^▽^*)\",\"zh-tw\":\"複製成功 (*^▽^*)\"}},\"code_block\":{\"expand\":4},\"i18n_languages\":[{\"Lang\":\"en\",\"LanguageName\":\"English\",\"LanguageCode\":\"\",\"Title\":\"\",\"LanguageDirection\":\"\",\"Weight\":1,\"Disabled\":false},{\"Lang\":\"zh-cn\",\"LanguageName\":\"简体中文\",\"LanguageCode\":\"\",\"Title\":\"\",\"LanguageDirection\":\"\",\"Weight\":1,\"Disabled\":false}],\"icon_font\":\"4552607_4k4bc36ef96\",\"outdate\":{\"daysago\":180,\"enable\":false,\"message\":{\"en\":\"This article was last updated on {time}. Please note that the content may no longer be applicable.\",\"ja\":\"この記事は最終更新日：{time}。記載内容が現在有効でない可能性がありますのでご注意ください。\",\"pt-br\":\"Este artigo foi atualizado pela última vez em {time}. Observe que o conteúdo pode não ser mais aplicável.\",\"zh-cn\":\"本文最后更新于 {time}，请注意文中内容可能已不适用。\",\"zh-tw\":\"本文最後更新於 {time}，請注意文中內容可能已不適用。\"}}}");
+  
+</script>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link
+  rel="preload"
+  as="style"
+  href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic%7cNoto%20Serif%20SC:400,400italic,700,700italic%7c&amp;display=swap"
+/>
+<link
+  rel="stylesheet"
+  href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic%7cNoto%20Serif%20SC:400,400italic,700,700italic%7c&amp;display=swap"
+  media="print"
+  onload="this.media='all'"
+/>
+<link
+    rel="preload"
+    href="//at.alicdn.com/t/c/font_4552607_4k4bc36ef96.woff2"
+    as="font"
+    type="font/woff2"
+    crossorigin="anonymous"
+  /><link rel="stylesheet" href="/WzhGameDevPublish/css/loader.css" />
+<meta property="og:type" content="website" />
+  <meta property="og:title" content="Lyra框架总览 | 温志洪" />
+  <meta
+    property="og:description"
+    content="FPS游戏"
+  />
+  <meta property="og:url" content="http://localhost:1895/WzhGameDevPublish/post/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/%E4%BB%A3%E7%A0%81%E6%A1%86%E6%9E%B6/lyra/lyra%E6%A1%86%E6%9E%B6%E6%80%BB%E8%A7%88/" />
+  <meta
+    property="og:site_name"
+    content="妖精游戏开发馆"
+  />
+  <meta
+    property="og:image"
+    content="https://tse1-mm.cn.bing.net/th/id/OIP-C.m80aM2zv68WUj1cb42ENtgHaEK"
+  />
+  <meta property="article:author" content="温志洪" />
+  <meta property="article:published_time" content="2025-09-11T17:10:52&#43;00:00" />
+  <meta property="article:modified_time" content="2026-03-03T17:33:26&#43;00:00" /><meta property="article:tag" content="blogUE/Lyra" /><meta name="twitter:card" content="summary" />
+  <meta name="twitter:image" content="https://tse1-mm.cn.bing.net/th/id/OIP-C.m80aM2zv68WUj1cb42ENtgHaEK" />
+<link rel="shortcut icon" href="/WzhGameDevPublish/favicon.ico"><link rel="stylesheet" href="/WzhGameDevPublish/css/main.css" />
+<link
+    rel="preload"
+    as="style"
+    href="https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe.css"
+    integrity="sha384-IfxC36XL/toUyJ939C73PcgMuRzAZuIzZxE38drsmO5p6jD7ei&#43;Zx/1oA/0l8ysE" crossorigin="anonymous"onload="this.onload=null;this.rel='stylesheet'"
+  /><link
+    rel="preload"
+    as="style"
+    href="https://npm.webcache.cn/katex@0.16.24/dist/katex.min.css"
+    integrity="sha384-tTgKLjMYmJr94v8qu2PE5MUGSMbyN2xiH266JUB3gpm8vnnJywd1dWSOEfrFz&#43;YI" crossorigin="anonymous"onload="this.onload=null;this.rel='stylesheet'"
+  /><script
+    src="https://npm.webcache.cn/pace-js@1.2.4/pace.min.js"
+    integrity="sha384-k6YtvFUEIuEFBdrLKJ3YAUbBki333tj1CSUisai5Cswsg9wcLNaPzsTHDswp4Az8" crossorigin="anonymous"></script><link
+    rel="stylesheet"
+    href="https://npm.webcache.cn/@reimujs/aos@0.1.2/dist/aos.css"
+    integrity="sha384-GMRP93c6Hkz9JVKGAuRR3nTS7M07RwPgTFenXiosjq2VbVgvdDNcz1g6Mkj8AONa" crossorigin="anonymous"/></head>
+  <body><div id='loader'>
+    <div class="loading-left-bg loading-bg"></div>
+    <div class="loading-right-bg loading-bg"></div>
+    <div class="spinner-box">
+      <div class="loading-taichi rotate"><svg width="150" height="150" viewBox="0 0 1024 1024" class="icon" version="1.1" xmlns="https://www.w3.org/2000/svg" shape-rendering="geometricPrecision">
+            <path d="M303.5 432A80 80 0 0 1 291.5 592A80 80 0 0 1 303.5 432z" fill="var(--red-1, #ff5252)" />
+            <path d="M512 65A447 447 0 0 1 512 959L512 929A417 417 0 0 0 512 95A417 417 0 0 0 512 929L512 959A447 447 0 0 1 512 65z 
+          M512 95A417 417 0 0 1 929 512A208.5 208.5 0 0 1 720.5 720.5L720.5 592A80 80 0 0 0 720.5 432A80 80 0 0 0 720.5 592L720.5 720.5A208.5 208.5 0 0 1 512 512A208.5 208.5 0 0 0 303.5 303.5A208.5 208.5 0 0 0 95 512A417 417 0 0 1 512 95z" fill="var(--red-1, #ff5252)" />
+          </svg></div><div class="loading-word">少女祈祷中...</div>
+    </div>
+  </div>
+  </div>
+  <script>
+    var time = null;
+    var loaderEl = document.getElementById('loader');
+    var startLoading = () => {
+      time = Date.now();
+      loaderEl.classList.remove("loading");
+    }
+    var hideLoader = () => {
+      document.body.style.overflow = 'auto';
+      loader.classList.add('loading');
+    };
+
+    var endLoading = () => {
+      if (!time) {
+        hideLoader();
+      } else {
+        if (Date.now() - time > 500) {
+          time = null;
+          hideLoader();
+        } else {
+          setTimeout(endLoading, 500 - (Date.now() - time));
+          time = null;
+        }
+      }
+    }
+    window.addEventListener('DOMContentLoaded', endLoading);
+    loaderEl.addEventListener('click', endLoading);
+  </script><div id="copy-tooltip"></div>
+<div id="lang-tooltip">
+本文章没有找到对应的语言版本
+</div>
+<div id="heatmap-tooltip"></div><div id="container">
+      <div id="wrap"><div id="header-nav">
+  <nav id="main-nav" aria-label="Primary navigation"><a class="main-nav-link-wrap" href="/WzhGameDevPublish/">
+        <div class='main-nav-icon icon rotate'>&#xe62b;</div>
+        <span class="main-nav-link">首页</span>
+      </a><a class="main-nav-link-wrap" href="/WzhGameDevPublish/archives">
+        <div class='main-nav-icon icon rotate'>&#xe62b;</div>
+        <span class="main-nav-link">归档</span>
+      </a><a class="main-nav-link-wrap" href="/WzhGameDevPublish/about">
+        <div class='main-nav-icon icon rotate'>&#xe62b;</div>
+        <span class="main-nav-link">关于</span>
+      </a><a class="main-nav-link-wrap" href="/WzhGameDevPublish/friend">
+        <div class='main-nav-icon icon rotate'>&#xe62b;</div>
+        <span class="main-nav-link">友链</span>
+      </a><a id="main-nav-toggle" class="nav-icon" aria-label="Toggle navigation" role="button"></a>
+  </nav>
+  <nav id="sub-nav" aria-label="Secondary navigation"><a id="nav-search-btn" class="nav-icon popup-trigger" title="搜索" aria-label="搜索"></a></nav><nav id="i18n-nav" aria-label="Language selection">
+      <div class="custom-dropdown">
+        <div class="select-selected" id="select-selected" role="button" aria-haspopup="listbox" aria-expanded="false" aria-label="Language menu">
+          <span id="nav-language-btn" class="nav-icon" style="padding: 0 20px 0 0"></span>
+          <span id="selected-lang">简体中文</span>
+        </div>
+        <ul class="select-items" id="select-items" role="listbox" aria-label="Languages"><li data-value="en" role="option" arial-selected="false" >English</li><li data-value="zh-cn" role="option" class="selected" arial-selected="true" >简体中文</li></ul>
+      </div>
+      <script>
+        var selectSelected = document.getElementById("select-selected");
+        var selectedLang = document.getElementById("selected-lang");
+        var selectItems = document.getElementById("select-items");
+        var selectOptions = selectItems.querySelectorAll("li");
+
+        selectSelected.addEventListener("click", () => {
+          selectItems.classList.toggle("show");
+          var expanded = selectSelected.getAttribute("aria-expanded") === "true";
+          selectSelected.setAttribute("aria-expanded", (!expanded).toString());
+        });
+
+        selectOptions.forEach((item) => {
+          item.addEventListener("click", () => {
+            const langMap = {};selectedLang.textContent = item.textContent;
+            selectItems.classList.remove("show");
+            selectOptions.forEach((option) => {
+              option.classList.remove("selected");
+            });
+            item.classList.add("selected");
+            if (item.dataset.value === 'zh-cn') {
+              return;
+            }
+            if (!langMap[item.dataset.value]) {
+              _$("#lang-tooltip").style.opacity = "1";
+              setTimeout(() => {
+                _$("#lang-tooltip").style.opacity = "0";
+              }, 1000);
+              return;
+            }
+            window.location = langMap[item.dataset.value];
+          });
+        });
+
+        document.addEventListener("click", (event) => {
+          if (!event.target.closest(".custom-dropdown")) {
+            selectItems.classList.remove("show");
+            selectSelected.setAttribute("aria-expanded", "false");
+          }
+        });
+      </script>
+    </nav></div>
+<header id="header" aria-label="Site header"><picture></picture>
+    <img crossorigin="anonymous" fetchpriority="high" src="https://tse1-mm.cn.bing.net/th/id/OIP-C.m80aM2zv68WUj1cb42ENtgHaEK" alt="Lyra框架总览"><div id="header-outer">
+    <div id="header-title"><span id="logo">
+            <h1 data-aos="slide-up">Lyra框架总览</h1>
+          </span><h2 id="subtitle-wrap" data-aos="slide-down"></h2></div>
+  </div>
+</header><div id="content"
+          aria-label="Page content"
+          class="sidebar-left"
+            ><aside id="sidebar" aria-label="Sidebar"><div class="sidebar-wrapper-container sticky"><div class="sidebar-wrapper">
+    <div
+      class="sidebar-wrap"
+      data-aos="fade-up"
+    ><div class="sidebar-toc-sidebar"><h3 class="toc-title">文章目录</h3>
+<div class="sidebar-toc-wrapper toc-div-class">
+  <nav id="TableOfContents">
+  <ul>
+    <li><a href="#关键信息简述">关键信息简述</a>
+      <ul>
+        <li><a href="#framwork">Framwork</a></li>
+        <li><a href="#3c">3C</a></li>
+        <li><a href="#animation">Animation</a></li>
+        <li><a href="#技能">技能</a></li>
+        <li><a href="#weapon">Weapon</a></li>
+        <li><a href="#commonui">CommonUI</a></li>
+        <li><a href="#网络">网络</a></li>
+      </ul>
+    </li>
+    <li><a href="#学习路径">学习路径</a>
+      <ul>
+        <li></li>
+      </ul>
+    </li>
+  </ul>
+
+  <ul>
+    <li><a href="#地图加载">地图加载</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#角色">角色</a>
+      <ul>
+        <li><a href="#自身逻辑">自身逻辑</a></li>
+        <li><a href="#模型">模型</a></li>
+        <li><a href="#动画蓝图">动画蓝图</a></li>
+      </ul>
+    </li>
+    <li><a href="#相机">相机</a>
+      <ul>
+        <li><a href="#基本概念">基本概念</a></li>
+        <li><a href="#拓展">拓展</a></li>
+      </ul>
+    </li>
+    <li><a href="#控制器">控制器</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#一段话总结">一段话总结</a>
+      <ul>
+        <li><a href="#逻辑图">逻辑图</a></li>
+      </ul>
+    </li>
+    <li><a href="#用到的技术">用到的技术</a>
+      <ul>
+        <li><a href="#lyra库存系统框架">Lyra库存系统框架</a></li>
+        <li><a href="#object-instanced">Object Instanced:</a></li>
+        <li><a href="#fastarray">FastArray</a></li>
+        <li><a href="#iris">Iris</a></li>
+        <li><a href="#动态数据和动态词条">动态数据和动态词条</a></li>
+      </ul>
+    </li>
+  </ul>
+
+  <ul>
+    <li><a href="#框架">框架</a>
+      <ul>
+        <li><a href="#总结">总结</a></li>
+        <li><a href="#导图">导图</a></li>
+        <li><a href="#文章">文章</a></li>
+      </ul>
+    </li>
+    <li><a href="#能力">能力</a></li>
+    <li><a href="#库存交互">库存交互</a>
+      <ul>
+        <li><a href="#ulyraquickbarcomponent与ulyraequipmentmanagercomponent">ULyraQuickBarComponent与ULyraEquipmentManagerComponent</a></li>
+      </ul>
+    </li>
+  </ul>
+
+  <ul>
+    <li><a href="#整体">整体</a>
+      <ul>
+        <li><a href="#ulyrasignificancemanager">ULyraSignificanceManager</a></li>
+      </ul>
+    </li>
+    <li><a href="#网络-1">网络</a>
+      <ul>
+        <li><a href="#角色加速度同步优化">角色加速度同步优化</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+</div></div>
+          <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
+  <img
+    data-src="/WzhGameDevPublish/avatar/UELogo.png"
+    data-sizes="auto"
+    alt="温志洪"
+    class="lazyload"
+  />
+  <div class="sidebar-author-name">温志洪</div>
+  <div class="sidebar-description">FPS游戏</div>
+</div>
+<div class="sidebar-state">
+  <div class="sidebar-state-article">
+    <div>文章</div><div class="sidebar-state-number">8</div>
+  </div>
+  <a class="sidebar-state-category" href="/WzhGameDevPublish/categories/" aria-label="sidebar-state-category-link">
+    <div>分类</div>
+    <div class="sidebar-state-number">
+      0
+    </div>
+  </a>
+  <a class="sidebar-state-tag" href="/WzhGameDevPublish/tags/" aria-label="sidebar-state-tag-link">
+    <div>标签</div>
+    <div class="sidebar-state-number">5</div>
+  </a>
+</div>
+<div class="sidebar-social"><div class="icon-bilibili sidebar-social-icon">
+      <a
+        href="https://space.bilibili.com/35312868"
+        itemprop="url"
+        target="_blank"
+        aria-label="bilibili"
+        rel="noopener nofollow noreferrer"
+      ></a>
+    </div><div class="icon-email sidebar-social-icon">
+      <a
+        href="mailto:cnwenzhihong@gmail.com"
+        itemprop="url"
+        target="_blank"
+        aria-label="email"
+        rel="noopener nofollow noreferrer"
+      ></a>
+    </div></div>
+<div class="sidebar-menu"><div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/WzhGameDevPublish/"
+        aria-label="首页"
+      ></a>
+      <div class='sidebar-menu-icon icon rotate'>&#xe62b;</div>
+      <div class="sidebar-menu-link">首页</div>
+    </div><div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/WzhGameDevPublish/archives"
+        aria-label="归档"
+      ></a>
+      <div class='sidebar-menu-icon icon rotate'>&#xe62b;</div>
+      <div class="sidebar-menu-link">归档</div>
+    </div><div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/WzhGameDevPublish/about"
+        aria-label="关于"
+      ></a>
+      <div class='sidebar-menu-icon icon rotate'>&#xe62b;</div>
+      <div class="sidebar-menu-link">关于</div>
+    </div><div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/WzhGameDevPublish/friend"
+        aria-label="友链"
+      ></a>
+      <div class='sidebar-menu-icon icon rotate'>&#xe62b;</div>
+      <div class="sidebar-menu-link">友链</div>
+    </div></div>
+</div><div class="sidebar-btn-wrapper" style="position:static">
+            <div class="sidebar-toc-btn current"></div>
+            <div class="sidebar-common-btn"></div>
+          </div></div>
+  </div><div class="sidebar-widget"></div></div></aside>
+<section id="main" aria-label="Main content"><p style="color:red">ARTICLE PARTIAL OVERRIDE ACTIVE</p>
+<article
+  class="h-entry article"
+  itemscope
+  itemtype="https://schema.org/BlogPosting"
+>
+  <div
+    class="article-inner"
+    data-aos="fade-up"
+  >
+    <div class="article-meta"><div class="article-date">
+  <span
+    class="article-date-link icon-calendar"
+    data-aos="zoom-in"
+  >
+    <time datetime="2025-09-11 17:10:52.504 &#43;0000 UTC" itemprop="datePublished"
+      >2025-09-11</time
+    >
+    <time style="display: none;" id="post-update-time"
+      >2026-03-03</time
+    >
+  </span><span
+      class="article-date-link icon-calendar-plus"
+      data-aos="zoom-in"
+    >
+      <time datetime="2026-03-03 17:33:26.203 &#43;0000 UTC" itemprop="dateModified"
+        >2026-03-03</time
+      >
+    </span></div>
+<div class="article-category"></div>
+</div><div class="hr-line"></div><div class="e-content article-entry" itemprop="articleBody"><p>/[title2list|list2lt]</p>
+<h1 id="介绍与总览">
+<a class="header-anchor" href="#%e4%bb%8b%e7%bb%8d%e4%b8%8e%e6%80%bb%e8%a7%88"></a>
+介绍与总览
+</h1>
+  <blockquote class="alert-blockquote tip">
+    <p class="alert-heading">
+      Tip
+    </p>
+    <p><h2 id="lyra源码为什么这么难-人宅">
+<a class="header-anchor" href="#lyra%e6%ba%90%e7%a0%81%e4%b8%ba%e4%bb%80%e4%b9%88%e8%bf%99%e4%b9%88%e9%9a%be-%e4%ba%ba%e5%ae%85"></a>
+<a href="https://www.bilibili.com/video/BV1f95LzaEYY">Lyra源码为什么这么难-人宅</a>
+</h2><ol>
+<li>很多新特性</li>
+<li>GameFeature将Lyra做了极大的解耦、导致逻辑不连续，动态加载让引用关系很难查找</li>
+<li>GAS+EnhanceInput</li>
+<li>大量使用DataAsset</li>
+<li>设计模式杂糅</li>
+<li>面向数据ECS的不严格使用<br>
+系统+组件+实体</li>
+<li>MVC用于UI<br>
+数据模型+逻辑控制器+显示视图</li>
+<li>MVVM和VUE：将逻辑和Btn分离的MVC</li>
+<li>堆栈式逻辑</li>
+<li>Gameplay</li>
+<li>武器在有的地方像ECS，有的地方像MVVM
+<ol>
+<li>ECS——将武器的数据实例和表现做了分离，最终配置在Item中显示</li>
+<li>MVVM——实例会被继续细分为Ability、蒙太奇、扩散<br>
+<img src="https://gcore.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/20260220102236298.png" alt=""></li>
+</ol>
+</li>
+<li>开火射线检测的作用
+<ol>
+<li>速度和碰撞会严重影响开火的命中检测</li>
+<li>散弹枪获取8个HitResult并上传到服务器广播</li>
+</ol>
+</li>
+</ol></p>
+  </blockquote>
+
+
+  <blockquote class="alert-blockquote tip">
+    <p class="alert-heading">
+      Tip
+    </p>
+    <p><h2 id="lyra初学者游戏包工程解读--quabqi">
+<a class="header-anchor" href="#lyra%e5%88%9d%e5%ad%a6%e8%80%85%e6%b8%b8%e6%88%8f%e5%8c%85%e5%b7%a5%e7%a8%8b%e8%a7%a3%e8%af%bb--quabqi"></a>
+<a href="https://www.bilibili.com/video/BV1Ce4y1X7k5">Lyra初学者游戏包工程解读 | quabqi</a>
+</h2></p>
+  </blockquote>
+
+<p>非常全面和简洁地介绍了Lyra学习的前置知识和UE C++的核心要点: <a href="https://zhuanlan.zhihu.com/p/1947044624603546090">InsideLyra-致UE“初学者”</a><br>
+Lyra中除了框架外很容易被忽视的功能和优化: <a href="https://zhuanlan.zhihu.com/p/496143484">Lyra的部分程序设计简析</a><br>
+官方文档：<a href="https://dev.epicgames.com/documentation/zh-cn/unreal-engine/lyra-sample-game-in-unreal-engine">Lyra示例游戏</a></p>
+<h2 id="关键信息简述">
+<a class="header-anchor" href="#%e5%85%b3%e9%94%ae%e4%bf%a1%e6%81%af%e7%ae%80%e8%bf%b0"></a>
+关键信息简述
+</h2><h3 id="framwork">
+<a class="header-anchor" href="#framwork"></a>
+Framwork
+</h3><h4 id="核心价值">
+<a class="header-anchor" href="#%e6%a0%b8%e5%bf%83%e4%bb%b7%e5%80%bc"></a>
+核心价值
+</h4><p><strong>GameMode的数据驱动替代</strong><br>
+优点：</p>
+<ul>
+<li><strong>玩法模块化</strong>(Experience)： 方便动态加载不同的玩法模式(第三人称射击，俯视角的竞技场派对游戏，横板平台跳跃等)</li>
+<li><strong>运行时组件化</strong>(ModularGameplay)：解决因为Gameplay框架中类的数据和成员变量越来越多，最终会越写越大的问题</li>
+<li><strong>缓冲带</strong>(GameFeatures)：隔离引擎Gameplay和项目的Gameplay，让一方的改动不会影响另一方。(作用不大)</li>
+</ul>
+<h4 id="模块对比">
+<a class="header-anchor" href="#%e6%a8%a1%e5%9d%97%e5%af%b9%e6%af%94"></a>
+模块对比
+</h4><p><strong>ModularGameplay</strong>：运行时组件化——让Gameplay框架支持挂组件，GameFeature的前提<br>
+<strong>GameFeatures</strong>：Mod化——让插件去依赖游戏主逻辑，不同玩法变成游戏Mod<br>
+<strong>Experience</strong>：数据驱动——把组件和玩法框架封装并塞到数据表里，方便动态加载</p>
+<p><img src="https://gcore.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/20260220102933624.png" alt="|204"></p>
+<h4 id="快速阅读框架">
+<a class="header-anchor" href="#%e5%bf%ab%e9%80%9f%e9%98%85%e8%af%bb%e6%a1%86%e6%9e%b6"></a>
+快速阅读框架
+</h4><h5 id="modular-gameplay">
+<a class="header-anchor" href="#modular-gameplay"></a>
+Modular Gameplay
+</h5><p>让GameMode、GameState、PlayerState、Controller、Character拥有组件化能力<br>
+<img src="https://gcore.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/20260220103706176.png" alt=""></p>
+<p>SubSystem+Modular Gameplay就可以实现数据驱动</p>
+<h5 id="game-features">
+<a class="header-anchor" href="#game-features"></a>
+Game features
+</h5><p>是Unreal Engine5引入的全新的类似于DLC的工作机制。</p>
+<pre class="mermaid">
+     flowchart LR
+   Engine --> PluginA
+   Engine --> PluginB
+   Engine --> Plugin...
+   PluginA --> ProjectBase
+   PluginB --> ProjectBase
+   Plugin... --> ProjectBase
+   ProjectBase --> GameFeature1
+   ProjectBase --> GameFeature2
+   ProjectBase --> GameFeature...
+</pre><p><img src="https://pic1.zhimg.com/v2-f86d8393daee802886de7daf40aef8c8_1440w.jpg" alt="|450"><br>
+<img src="https://gcore.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/20260220143416710.png" alt="|375"></p>
+<h5 id="experience">
+<a class="header-anchor" href="#experience"></a>
+Experience
+</h5><p>是Lyra项目自己引入的全新Gameplay侧的项目实现<br>
+<strong>算是GameMode的补充版本，它定义了更为高级的游戏规则和资源配置</strong>。如：地图，UI，玩家输入，角色技能以及一些游戏规则等自定义的配置<br>
+实现：虽然接管了一部分<code>GameMode</code>的职能，但由于资源和UI等内容需要同步给客户端，所以以GameStateComp的形式存在管理。<br>
+<img src="https://gcore.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/20260220143703192.png" alt=""><br>
+<img src="https://gcore.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/20260220143825475.png" alt=""></p>
+<h3 id="3c">
+<a class="header-anchor" href="#3c"></a>
+3C
+</h3><h4 id="核心">
+<a class="header-anchor" href="#%e6%a0%b8%e5%bf%83"></a>
+核心
+</h4><p>GamePlay相关Actor都是空壳，基本没有逻辑，只做转发路由。方便通过不同的类来挂Component<br>
+<img src="https://gcore.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/20260220144549113.png" alt=""></p>
+<h4 id="模块简述">
+<a class="header-anchor" href="#%e6%a8%a1%e5%9d%97%e7%ae%80%e8%bf%b0"></a>
+模块简述
+</h4><p><strong>Character</strong>：换装——将动画和模型分离。将属性单独放在HeroComp管理<br>
+<strong>Controller</strong>：Enhance Input给输入和逻辑提供了中间层<br>
+<strong>Camera</strong>：使用堆栈式管理相机模式，与原生SpringArm不相容，未封装CameraShake</p>
+<h4 id="快速阅读框架-1">
+<a class="header-anchor" href="#%e5%bf%ab%e9%80%9f%e9%98%85%e8%af%bb%e6%a1%86%e6%9e%b6-1"></a>
+快速阅读框架
+</h4><h5 id="character">
+<a class="header-anchor" href="#character"></a>
+Character
+</h5><h6 id="character结构">
+<a class="header-anchor" href="#character%e7%bb%93%e6%9e%84"></a>
+Character结构
+</h6><p><img src="https://gcore.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/20260220144823812.png" alt=""></p>
+<h6 id="换装cosmetics">
+<a class="header-anchor" href="#%e6%8d%a2%e8%a3%85cosmetics"></a>
+换装Cosmetics
+</h6><p><img src="https://gcore.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/20260220145057047.png" alt=""><br>
+<img src="https://gcore.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/20260220145149353.png" alt=""></p>
+<h5 id="controller">
+<a class="header-anchor" href="#controller"></a>
+Controller
+</h5><h6 id="controler重点">
+<a class="header-anchor" href="#controler%e9%87%8d%e7%82%b9"></a>
+Controler重点
+</h6><p><img src="https://gcore.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/20260220150049695.png" alt="|400"></p>
+<h6 id="input">
+<a class="header-anchor" href="#input"></a>
+Input
+</h6><p>在实际按键和逻辑中间加了Action层<br>
+<img src="https://gcore.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/20260220150613798.png" alt=""></p>
+<p><img src="https://gcore.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/20260220150124413.png" alt=""><br>
+应用1：方便多输入设备<br>
+应用2：与技能系统绑定<br>
+<img src="https://gcore.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/20260220150238454.png" alt=""></p>
+<p><img src="https://gcore.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/20260220150504512.png" alt=""></p>
+<p>应用3：实时更换配置<br>
+开车时切换载具的Mapping<br>
+<img src="https://gcore.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/20260220150325539.png" alt=""></p>
+<h6 id="ai行为树">
+<a class="header-anchor" href="#ai%e8%a1%8c%e4%b8%ba%e6%a0%91"></a>
+AI行为树
+</h6><p>比较传统的AI<br>
+<img src="https://gcore.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/20260220150737535.png" alt=""><br>
+<img src="https://gcore.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/20260220150828847.png" alt=""><br>
+<img src="https://gcore.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/20260220150859342.png" alt=""></p>
+<h5 id="camera">
+<a class="header-anchor" href="#camera"></a>
+Camera
+</h5><h6 id="cameramode">
+<a class="header-anchor" href="#cameramode"></a>
+CameraMode
+</h6><p>相机的堆栈式管理<br>
+<img src="https://gcore.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/20260220151059416.png" alt=""><br>
+<img src="https://gcore.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/20260220151119056.png" alt=""></p>
+<h6 id="tps相机">
+<a class="header-anchor" href="#tps%e7%9b%b8%e6%9c%ba"></a>
+TPS相机
+</h6><p>UE默认相机简化版<br>
+<img src="https://gcore.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/20260220150935426.png" alt=""></p>
+<p><img src="https://gcore.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/20260220151148049.png" alt=""></p>
+<h3 id="animation">
+<a class="header-anchor" href="#animation"></a>
+Animation
+</h3><h5 id="anim重点">
+<a class="header-anchor" href="#anim%e9%87%8d%e7%82%b9"></a>
+Anim重点
+</h5><p><img src="https://gcore.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/20260220151228247.png" alt=""></p>
+<h5 id="多线程线程安全函数">
+<a class="header-anchor" href="#%e5%a4%9a%e7%ba%bf%e7%a8%8b%e7%ba%bf%e7%a8%8b%e5%ae%89%e5%85%a8%e5%87%bd%e6%95%b0"></a>
+多线程(线程安全函数)
+</h5><p><img src="https://gcore.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/20260220151248295.png" alt=""></p>
+<h5 id="layers-分层">
+<a class="header-anchor" href="#layers-%e5%88%86%e5%b1%82"></a>
+Layers 分层
+</h5><p>降低内存压力<br>
+<img src="https://gcore.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/20260220151349003.png" alt=""><br>
+使用：<br>
+<img src="https://gcore.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/20260220151445695.png" alt=""></p>
+<h5 id="layerblendperbone">
+<a class="header-anchor" href="#layerblendperbone"></a>
+LayerBlendPerBone
+</h5><p>可以单独定义每个骨骼权重<br>
+<img src="https://gcore.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/20260220151524570.png" alt=""></p>
+<h5 id="动画回调函数">
+<a class="header-anchor" href="#%e5%8a%a8%e7%94%bb%e5%9b%9e%e8%b0%83%e5%87%bd%e6%95%b0"></a>
+动画回调函数
+</h5><p>距离/运动匹配可以在动画的每一帧都处理逻辑<br>
+<img src="https://gcore.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/20260220151652550.png" alt=""></p>
+<h5 id="copypose">
+<a class="header-anchor" href="#copypose"></a>
+CopyPose
+</h5><p>直接拷贝父组件动画<br>
+<img src="https://gcore.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/20260220151741051.png" alt=""></p>
+<h5 id="ik_rig">
+<a class="header-anchor" href="#ik_rig"></a>
+IK_Rig
+</h5><ol>
+<li>
+<p>替换Anim Retarget，通过骨骼链，UE5骨骼比UE4多出了很多骨骼<img src="https://gcore.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/20260220152002863.png" alt="">实时解算：<img src="https://gcore.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/20260220152104368.png" alt="">离线解算：<img src="https://gcore.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/20260220152148558.png" alt=""></p>
+</li>
+<li>
+<p>实现可视化IK编辑<img src="https://gcore.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/20260220151836091.png" alt=""></p>
+</li>
+</ol>
+<h3 id="技能">
+<a class="header-anchor" href="#%e6%8a%80%e8%83%bd"></a>
+技能
+</h3><p><img src="https://gcore.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/20260220152323616.png" alt=""><br>
+<img src="https://gcore.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/20260220152432413.png" alt=""></p>
+<p>数据化：<br>
+<img src="https://gcore.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/20260220152355621.png" alt=""></p>
+<p>死亡复活：触发技能时采用PayLoad传参<br>
+<img src="https://gcore.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/20260220153233693.png" alt=""></p>
+<h3 id="weapon">
+<a class="header-anchor" href="#weapon"></a>
+Weapon
+</h3><h5 id="weapon架构图">
+<a class="header-anchor" href="#weapon%e6%9e%b6%e6%9e%84%e5%9b%be"></a>
+Weapon架构图
+</h5><p><img src="https://gcore.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/20260220153315628.png" alt=""></p>
+<h5 id="开火逻辑">
+<a class="header-anchor" href="#%e5%bc%80%e7%81%ab%e9%80%bb%e8%be%91"></a>
+开火逻辑
+</h5><p><img src="https://gcore.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/20260220153416352.png" alt=""><br>
+<img src="https://gcore.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/20260220153442094.png" alt=""></p>
+<h5 id="开火特效框架">
+<a class="header-anchor" href="#%e5%bc%80%e7%81%ab%e7%89%b9%e6%95%88%e6%a1%86%e6%9e%b6"></a>
+开火特效框架
+</h5><p><strong>重点</strong>：从外部传递参数给VFX<br>
+<img src="https://gcore.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/20260220153557301.png" alt=""><br>
+<img src="https://gcore.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/20260220153624672.png" alt=""></p>
+<h3 id="commonui">
+<a class="header-anchor" href="#commonui"></a>
+CommonUI
+</h3><h5 id="commonui重点">
+<a class="header-anchor" href="#commonui%e9%87%8d%e7%82%b9"></a>
+CommonUI重点
+</h5><p><img src="https://gcore.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/20260220153652330.png" alt=""></p>
+<h5 id="堆栈式ui框架">
+<a class="header-anchor" href="#%e5%a0%86%e6%a0%88%e5%bc%8fui%e6%a1%86%e6%9e%b6"></a>
+堆栈式UI框架
+</h5><p><img src="https://gcore.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/20260220153737801.png" alt=""></p>
+<h5 id="hud挂点">
+<a class="header-anchor" href="#hud%e6%8c%82%e7%82%b9"></a>
+HUD挂点
+</h5><p><img src="https://gcore.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/20260220153808804.png" alt=""><br>
+<img src="https://gcore.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/20260220153824735.png" alt=""></p>
+<h3 id="网络">
+<a class="header-anchor" href="#%e7%bd%91%e7%bb%9c"></a>
+网络
+</h3><h4 id="网络对战主要逻辑">
+<a class="header-anchor" href="#%e7%bd%91%e7%bb%9c%e5%af%b9%e6%88%98%e4%b8%bb%e8%a6%81%e9%80%bb%e8%be%91"></a>
+网络对战主要逻辑
+</h4><p><img src="https://gcore.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/20260220153856270.png" alt=""></p>
+<h2 id="学习路径">
+<a class="header-anchor" href="#%e5%ad%a6%e4%b9%a0%e8%b7%af%e5%be%84"></a>
+学习路径
+</h2><h4 id="基础">
+<a class="header-anchor" href="#%e5%9f%ba%e7%a1%80"></a>
+基础
+</h4><p>对Gamefeature中的大部分概念有个了解：</p>
+<ul>
+<li>[x] <a href="https://zhuanlan.zhihu.com/p/614718286">UE5 新项目Gameplay框架设计（以Lyra为例）</a> ✅ 2026-02-24</li>
+<li>[ ] <a href="https://zhuanlan.zhihu.com/p/648951586">Lyra核心概念（一）- Experience</a><br>
+<a href="https://zhuanlan.zhihu.com/p/467236675">《InsideUE5》GameFeatures架构（一）发展由来</a><br>
+<a href="https://zhuanlan.zhihu.com/p/470184973">《InsideUE5》GameFeatures架构（二）基础用法</a><br>
+以独特的视角来描述GameFeature的作用，加深基础理解<br>
+<a href="https://zhuanlan.zhihu.com/p/620204013">为什么说GameFeatures 是游戏开发的大后期</a><br>
+详细的参数说明:<br>
+<a href="https://zhuanlan.zhihu.com/p/1941143199772018564">Lyra学习指南_034_GameFeature</a><br>
+<a href="https://zhuanlan.zhihu.com/p/496143484">Lyra的部分程序设计简析</a><br>
+在Lyra中的应用：<br>
+<a href="https://zhuanlan.zhihu.com/p/1947330381046064482">InsideLyra-选关</a><br>
+<a href="https://zhuanlan.zhihu.com/p/648951586">Lyra核心概念（一）- Experience</a><br>
+<a href="https://zhuanlan.zhihu.com/p/1932435767143150372">Lyra-Experience结构</a><br>
+扩展Lyra:<br>
+<a href="/Lyra%E6%96%B0%E5%A2%9EExperiences">Lyra新增Experiences</a></li>
+</ul>
+<h4 id="进阶">
+<a class="header-anchor" href="#%e8%bf%9b%e9%98%b6"></a>
+进阶
+</h4><p>应用：<br>
+<a href="https://zhuanlan.zhihu.com/p/677160762">GameFeature——给你的游戏添加Mod支持</a></p>
+<h1 id="玩法管理">
+<a class="header-anchor" href="#%e7%8e%a9%e6%b3%95%e7%ae%a1%e7%90%86"></a>
+玩法管理
+</h1><h2 id="地图加载">
+<a class="header-anchor" href="#%e5%9c%b0%e5%9b%be%e5%8a%a0%e8%bd%bd"></a>
+地图加载
+</h2><p><a href="https://zhuanlan.zhihu.com/p/563434530">https://zhuanlan.zhihu.com/p/563434530</a></p>
+<h1 id="3c-1">
+<a class="header-anchor" href="#3c-1"></a>
+3C
+</h1><h2 id="角色">
+<a class="header-anchor" href="#%e8%a7%92%e8%89%b2"></a>
+角色
+</h2><h3 id="自身逻辑">
+<a class="header-anchor" href="#%e8%87%aa%e8%ba%ab%e9%80%bb%e8%be%91"></a>
+自身逻辑
+</h3><h4 id="基础-1">
+<a class="header-anchor" href="#%e5%9f%ba%e7%a1%80-1"></a>
+基础
+</h4><p>流水账描述角色创建、死亡流程：<a href="https://zhuanlan.zhihu.com/p/563685231">Lyra项目学习（二） 角色创建和死亡</a><br>
+详细介绍：<a href="/Lyra%E8%A7%92%E8%89%B2">Lyra角色</a></p>
+<h3 id="模型">
+<a class="header-anchor" href="#%e6%a8%a1%e5%9e%8b"></a>
+模型
+</h3><h3 id="动画蓝图">
+<a class="header-anchor" href="#%e5%8a%a8%e7%94%bb%e8%93%9d%e5%9b%be"></a>
+动画蓝图
+</h3><h4 id="基础-2">
+<a class="header-anchor" href="#%e5%9f%ba%e7%a1%80-2"></a>
+基础
+</h4><p>这篇文章对Lyra动画蓝图进行了全面准确的概括，并补充了需要了解的前置知识和概念：<br>
+<a href="https://zhuanlan.zhihu.com/p/654430436">白话Lyra动画系统</a><br>
+更详细的拆解：<br>
+<a href="https://zhuanlan.zhihu.com/p/628510656">Lyra动画系统拆解（基础移动篇）</a></p>
+<h4 id="知识点">
+<a class="header-anchor" href="#%e7%9f%a5%e8%af%86%e7%82%b9"></a>
+知识点
+</h4><p>FGameplayTagBlueprintPropertyMap，Tag到属性的自动映射机制，（自动将tag变化后的数量值更新到对应的属性中，自动转换为布尔，整型，浮点）简化蓝图的逻辑，提高动画蓝图的运行效率<br>
+<img src="https://pic4.zhimg.com/v2-a935fc7509b11171c74e00b9a9b9ca9b_1440w.jpg" alt=""></p>
+<h2 id="相机">
+<a class="header-anchor" href="#%e7%9b%b8%e6%9c%ba"></a>
+相机
+</h2><p>[timeline]</p>
+<h3 id="基本概念">
+<a class="header-anchor" href="#%e5%9f%ba%e6%9c%ac%e6%a6%82%e5%bf%b5"></a>
+基本概念
+</h3><p><a href="https://zhuanlan.zhihu.com/p/714058425"># 简述Lyra中的CameraMode摄像机框架</a><br>
+<a href="https://zhuanlan.zhihu.com/p/602806113"># Lyra项目学习（六） 相机系统</a><br>
+<a href="https://zhuanlan.zhihu.com/p/714442062"># 简述摄像机修改器(CameraModifier)的使用</a></p>
+<h3 id="拓展">
+<a class="header-anchor" href="#%e6%8b%93%e5%b1%95"></a>
+拓展
+</h3><p><a href="https://www.bilibili.com/video/BV1mR4y197n1"># 在 UE5 Lyra 教程中创建相机模式体积</a></p>
+<h2 id="控制器">
+<a class="header-anchor" href="#%e6%8e%a7%e5%88%b6%e5%99%a8"></a>
+控制器
+</h2><p><a href="https://blog.csdn.net/weixin_60486914/article/details/146323726">Lyra的GAS部分的映射-Input</a></p>
+<h1 id="库存">
+<a class="header-anchor" href="#%e5%ba%93%e5%ad%98"></a>
+库存
+</h1><h2 id="一段话总结">
+<a class="header-anchor" href="#%e4%b8%80%e6%ae%b5%e8%af%9d%e6%80%bb%e7%bb%93"></a>
+一段话总结
+</h2><p>我们可以将库存分解为要处理的问题和解决方案。</p>
+<ul>
+<li>框架需求
+<ol>
+<li>组件化、功能细分<br>
+将库存封装成组件(InventoryManagerComp)，其他管理器从总库存中引用，如QuickBar、WeaponBar。</li>
+<li>Item与不定量的其他系统高度耦合<br>
+Object实例化: <code>ULyraInventoryItemFragment</code>(DefaultToInstanced和Instanced)</li>
+</ol>
+</li>
+<li>网络需求
+<ol>
+<li>数组网络同步<br>
+<code>FastArray</code>: <code>FLyraInventoryList</code>,<code>FLyraInventoryEntry</code></li>
+<li>Object网络同步<br>
+IsSupportedForNetworking<br>
+Iris: <code>ULyraInventoryItemInstance</code></li>
+</ol>
+</li>
+<li>业务需求
+<ol>
+<li>Item动态数值(耐久/子弹数)、动态词条<br>
+<code>ItemDefine</code>放静态数据<br>
+<code>TagContain</code>用Tag+TagCount存放动态数值<br>
+动态词条Lyra没有处理<br>
+ItemInstance=ItemDefine+TagContain</li>
+<li>Item堆叠个数<br>
+Entry里加个Count计数<br>
+Entry=ItemInstance+ItemCount</li>
+</ol>
+</li>
+</ul>
+<h3 id="逻辑图">
+<a class="header-anchor" href="#%e9%80%bb%e8%be%91%e5%9b%be"></a>
+逻辑图
+</h3><pre class="mermaid">
+  flowchart TD  
+A[ULyraInventoryItemDefinition（ID_Rifle）]
+subgraph InventoryManager
+B1[ULyraInventoryItemInstance1]
+B2[ULyraInventoryItemInstance2]
+ULyraInventoryItemInstance...
+end
+StatTags --> B1
+F --> A
+A-.实例化.-> B1
+A-.实例化.->B2
+
+subgraph F [Fragment]
+    E[EquippableItem]
+    R[ReticleConfig]
+    Q[QuickBarIcon]
+    S[SetStats]
+end
+
+
+武器 --> E
+
+U[UI]-..->R
+U-..->Q
+动态数值-..->S
+
+B1 --> OtherManagers
+subgraph OtherManagers
+OM[LyraQuickBarComponent]
+OM2[LyraEquipmentManagerComponent]
+OtherManager...
+end
+</pre><blockquote>
+<p>第二组Def/Ins：WeaponDefine和Instance与Item中的Def Ins实例无关，仅是组合关系</p>
+</blockquote>
+<h2 id="用到的技术">
+<a class="header-anchor" href="#%e7%94%a8%e5%88%b0%e7%9a%84%e6%8a%80%e6%9c%af"></a>
+用到的技术
+</h2><h3 id="lyra库存系统框架">
+<a class="header-anchor" href="#lyra%e5%ba%93%e5%ad%98%e7%b3%bb%e7%bb%9f%e6%a1%86%e6%9e%b6"></a>
+Lyra库存系统框架
+</h3><p>从背包的基本需求出发，方便新手视角理解: <a href="https://zhuanlan.zhihu.com/p/1922275287451832375">Lyra 背包设计和可拓展方向</a><br>
+简单快速地了解概念和关键类: <a href="https://zhuanlan.zhihu.com/p/598305282"> Lyra项目学习（三） 背包，装备，武器模块</a></p>
+<h3 id="object-instanced">
+<a class="header-anchor" href="#object-instanced"></a>
+Object Instanced:
+</h3><p>概念:<br>
+<a href="https://github.com/fjz13/UnrealSpecifiers/blob/main/Doc/zh/Specifier/UPROPERTY/Instance/Instanced/Instanced.md">Instanced介绍与简单使用</a><br>
+应用:<br>
+<a href="https://zhuanlan.zhihu.com/p/657035214">在Gameplay Effect中的应用</a><br>
+<a href="https://zhuanlan.zhihu.com/p/7349704909">在数据表中实现Instanced效果</a></p>
+<h3 id="fastarray">
+<a class="header-anchor" href="#fastarray"></a>
+FastArray
+</h3><p>解决数组同步问题<br>
+<a href="https://zhuanlan.zhihu.com/p/1920551237411136323">简单使用</a><br>
+<a href="https://zhuanlan.zhihu.com/p/653363240">FastArray浅析</a><br>
+<a href="https://zhuanlan.zhihu.com/p/638876315">UE5 FastArray同步原理</a></p>
+<h3 id="iris">
+<a class="header-anchor" href="#iris"></a>
+Iris
+</h3><p>新一代网络同步方案<br>
+<a href="https://dev.epicgames.com/documentation/zh-cn/unreal-engine/introduction-to-iris-in-unreal-engine">官方文档</a></p>
+<h3 id="动态数据和动态词条">
+<a class="header-anchor" href="#%e5%8a%a8%e6%80%81%e6%95%b0%e6%8d%ae%e5%92%8c%e5%8a%a8%e6%80%81%e8%af%8d%e6%9d%a1"></a>
+动态数据和动态词条
+</h3><p>对未知名称和数量，用于其他系统的动态数据，用GameplayTagContainer可以很好地实现。<br>
+动态词条Lyra并没有实现，<a href="https://zhuanlan.zhihu.com/p/701181861"> 基于GAS的多人游戏装备系统开发</a>用EquipmentFeature实现</p>
+<h1 id="武器">
+<a class="header-anchor" href="#%e6%ad%a6%e5%99%a8"></a>
+武器
+</h1><h2 id="框架">
+<a class="header-anchor" href="#%e6%a1%86%e6%9e%b6"></a>
+框架
+</h2><h3 id="总结">
+<a class="header-anchor" href="#%e6%80%bb%e7%bb%93"></a>
+总结
+</h3><ul>
+<li>LyraEquipmentDefinition可以视为武器
+<ul>
+<li>B_Weapon——模型和特效表现<br>
+其中开火特效被做成三个子Actor
+<ul>
+<li>B_Weapon_Fire——开火特效Actor</li>
+<li>B_Weapon_Impact——击中特效Actor</li>
+<li>B_WeaponDecals——Niagara贴花Actor</li>
+</ul>
+</li>
+<li>LyraRangedWeaponInstance——所有数据</li>
+<li>AbilitySet——能力集，表现效果从B_Weapon取
+<ul>
+<li>开火——GA_Weapon_Fire</li>
+<li>换弹——GA_Weapon_ReloadMagazine</li>
+<li>自动换弹——GA_Weapon_AutoReload</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>ItemDef中引用其连接库存系统，并添加表现库存相关的表现组件，子弹数量等实时数值由库存系统管理。</p>
+<h3 id="导图">
+<a class="header-anchor" href="#%e5%af%bc%e5%9b%be"></a>
+导图
+</h3><pre class="mermaid">
+  flowchart TD  
+subgraph InventoryManager
+ID[ItemDef（ID_Rifle）]
+...
+end
+WID[LyraEquipmentDefinition（WID_Rifle）]  --> ID
+WA[AbilitySet] --> WID
+WI[LyraRangedWeaponInstance（B_WeaponInstance_Rifle）] --> WID
+W[B_Weapon（B_Rifle）] --> WID
+</pre><h3 id="文章">
+<a class="header-anchor" href="#%e6%96%87%e7%ab%a0"></a>
+文章
+</h3><h4 id="入门">
+<a class="header-anchor" href="#%e5%85%a5%e9%97%a8"></a>
+入门
+</h4><p><a href="https://zhuanlan.zhihu.com/p/661471302">Lyra 创建一个武器</a></p>
+<h2 id="能力">
+<a class="header-anchor" href="#%e8%83%bd%e5%8a%9b"></a>
+能力
+</h2><p>武器核心需求是开火和换弹，部分需要瞄准。<br>
+<a href="/%E6%AD%A6%E5%99%A8%E5%B0%84%E5%87%BB">武器射击流程</a></p>
+<h2 id="库存交互">
+<a class="header-anchor" href="#%e5%ba%93%e5%ad%98%e4%ba%a4%e4%ba%92"></a>
+库存交互
+</h2><h3 id="ulyraquickbarcomponent与ulyraequipmentmanagercomponent">
+<a class="header-anchor" href="#ulyraquickbarcomponent%e4%b8%8eulyraequipmentmanagercomponent"></a>
+ULyraQuickBarComponent与ULyraEquipmentManagerComponent
+</h3><p>每次切换武器时，武器蓝图都会被销毁和重新创建</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-C++" data-lang="C++"><span class="line"><span class="cl"><span class="n">FLyraEquipmentList</span><span class="o">::</span><span class="n">AddEntry</span>
+</span></span><span class="line"><span class="cl"><span class="n">WID</span><span class="o">-&gt;</span><span class="n">ActorsToSpawn</span>
+</span></span></code></pre></div><h1 id="主菜单">
+<a class="header-anchor" href="#%e4%b8%bb%e8%8f%9c%e5%8d%95"></a>
+主菜单
+</h1><p><a href="https://dev.epicgames.com/documentation/zh-cn/unreal-engine/tour-of-lyra-in-unreal-engine">官方文档介绍</a><br>
+<a href="https://dev.epicgames.com/documentation/zh-cn/unreal-engine/lyra-sample-game-settings-in-unreal-engine">Lyra游戏设置</a></p>
+<h1 id="优化技术">
+<a class="header-anchor" href="#%e4%bc%98%e5%8c%96%e6%8a%80%e6%9c%af"></a>
+优化技术
+</h1><h2 id="整体">
+<a class="header-anchor" href="#%e6%95%b4%e4%bd%93"></a>
+整体
+</h2><p>重要管理器</p>
+<h3 id="ulyrasignificancemanager">
+<a class="header-anchor" href="#ulyrasignificancemanager"></a>
+ULyraSignificanceManager
+</h3><p>大致是给已注册对象计算一个代表其重要性的值。<br>
+其它系统可以根据这个值，来调整在此对象上的开销。<br>
+比如角色视野内的对象，重要程度更高，应该以更高频率运行。</p>
+<h2 id="网络-1">
+<a class="header-anchor" href="#%e7%bd%91%e7%bb%9c-1"></a>
+网络
+</h2><h3 id="角色加速度同步优化">
+<a class="header-anchor" href="#%e8%a7%92%e8%89%b2%e5%8a%a0%e9%80%9f%e5%ba%a6%e5%90%8c%e6%ad%a5%e4%bc%98%e5%8c%96"></a>
+角色加速度同步优化
+</h3><p>通过<a href="https://zhida.zhihu.com/search?content_id=198385712%5c&amp;content_type=Article%5c&amp;match_order=1%5c&amp;q=FLyraReplicatedAcceleration%5c&amp;zhida_source=entity">FLyraReplicatedAcceleration</a>结构体，只使用了3个字节，来同步角色的加速度。<br>
+水平和竖直方向的加速度分别同步，<br>
+水平方向使用极坐标同步“加速度方向”和&quot;加速度大小&quot;，<br>
+竖直方向同步原始的加速度大小<br>
+由于角色的最大加速度是已知的，所以&quot;加速度大小&quot;只用同步规格化的0.0 - 1.0的值，就能反推出当前加速度大小。<br>
+然后将0.0 - 1.0用无符号整同步，分成256级，精度不高，但节省流量。<br>
+竖直方向用有符号整数同步方向和大小，因此大小只有128级。<br>
+相比三个轴向分别按原始值同步的方式，水平方向加速度使用极坐标同步的结果是：牺牲加速度方向的精度，换取加速度大小的精度。<br>
+此同步结构体属性放在了角色上，因为按照惯例为了节省组件带来的同步开销问题，移动所需要同步的属性都是放在角色类上同步的。</p>
+</div>
+    <footer class="article-footer"><ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item" data-aos="zoom-in">
+      <a
+        class="article-tag-list-link"
+        href="/WzhGameDevPublish/tags/blog"
+        rel="tag"
+        >BLOG</a
+      >
+    </li><li class="article-tag-list-item" data-aos="zoom-in">
+      <a
+        class="article-tag-list-link"
+        href="/WzhGameDevPublish/tags/ue/lyra"
+        rel="tag"
+        >UE/LYRA</a
+      >
+    </li></ul>
+</footer>
+  </div><nav
+    id="article-nav"
+    aria-label="Article navigation"
+    data-aos="fade-up"
+  ><div class="article-nav-link-wrap right"><img
+              data-src="https://d-sketon.top/img/_backwebp/bg1.webp"
+              data-sizes="auto"
+              alt="FPS中的武器摇晃"
+              class="lazyload"
+            /><a
+          href="/WzhGameDevPublish/post/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/%E4%BB%A3%E7%A0%81%E6%A1%86%E6%9E%B6/lyra/fps/%E6%8A%80%E6%9C%AF%E7%BB%86%E8%8A%82/weaponsway/fpszhong-de-wu-qi-yao-huang/"
+          aria-label="后一篇:FPS中的武器摇晃"
+          title="后一篇:FPS中的武器摇晃"
+        ></a>
+        <div class="article-nav-caption">后一篇</div>
+        <h3 class="article-nav-title">FPS中的武器摇晃</h3>
+      </div></nav></article></section>
+        </div><footer id="footer" aria-label="Site footer">
+  <div style="width: 100%; overflow: hidden">
+    <div class="footer-line"></div>
+  </div>
+  <div id="footer-info"><div>
+      <span class="icon-copyright"></span>2025-2026<span class="footer-info-sep rotate"></span>
+      温志洪
+    </div><div>
+        基于&nbsp;<a
+          href="https://gohugo.io/"
+          target="_blank"
+          rel="noopener nofollow noreferrer"
+          >Hugo</a
+        >&nbsp; Theme.<a
+          href="https://github.com/D-Sketon/hugo-theme-reimu"
+          target="_blank"
+          rel="noopener nofollow noreferrer"
+          >Reimu</a
+        >
+      </div><div>
+        <span class="icon-brush"
+          >&nbsp;19.3k</span
+        >
+        &nbsp;|&nbsp;
+        <span class="icon-coffee">&nbsp;00:43</span>
+      </div><div>
+        <span class="icon-eye"></span>
+        <span id="busuanzi_container_site_pv"
+          >总访问量&nbsp;<span
+            id="busuanzi_value_site_pv"
+          ></span
+        ></span>
+        &nbsp;|&nbsp;
+        <span class="icon-user"></span>
+        <span id="busuanzi_container_site_uv"
+          >总访客量&nbsp;<span
+            id="busuanzi_value_site_uv"
+          ></span
+        ></span>
+      </div></div>
+</footer>
+<div class="sidebar-top">
+            <div class="sidebar-top-taichi rotate"></div>
+            <div class="arrow-up"></div>
+          </div><div id="mask" class="hide"></div>
+      </div><nav id="mobile-nav" aria-label="Mobile navigation">
+  <div class="sidebar-wrap"><div class="sidebar-toc-sidebar"><h3 class="toc-title">文章目录</h3>
+<div class="sidebar-toc-wrapper toc-div-class">
+  <nav id="TableOfContents">
+  <ul>
+    <li><a href="#关键信息简述">关键信息简述</a>
+      <ul>
+        <li><a href="#framwork">Framwork</a></li>
+        <li><a href="#3c">3C</a></li>
+        <li><a href="#animation">Animation</a></li>
+        <li><a href="#技能">技能</a></li>
+        <li><a href="#weapon">Weapon</a></li>
+        <li><a href="#commonui">CommonUI</a></li>
+        <li><a href="#网络">网络</a></li>
+      </ul>
+    </li>
+    <li><a href="#学习路径">学习路径</a>
+      <ul>
+        <li></li>
+      </ul>
+    </li>
+  </ul>
+
+  <ul>
+    <li><a href="#地图加载">地图加载</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#角色">角色</a>
+      <ul>
+        <li><a href="#自身逻辑">自身逻辑</a></li>
+        <li><a href="#模型">模型</a></li>
+        <li><a href="#动画蓝图">动画蓝图</a></li>
+      </ul>
+    </li>
+    <li><a href="#相机">相机</a>
+      <ul>
+        <li><a href="#基本概念">基本概念</a></li>
+        <li><a href="#拓展">拓展</a></li>
+      </ul>
+    </li>
+    <li><a href="#控制器">控制器</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#一段话总结">一段话总结</a>
+      <ul>
+        <li><a href="#逻辑图">逻辑图</a></li>
+      </ul>
+    </li>
+    <li><a href="#用到的技术">用到的技术</a>
+      <ul>
+        <li><a href="#lyra库存系统框架">Lyra库存系统框架</a></li>
+        <li><a href="#object-instanced">Object Instanced:</a></li>
+        <li><a href="#fastarray">FastArray</a></li>
+        <li><a href="#iris">Iris</a></li>
+        <li><a href="#动态数据和动态词条">动态数据和动态词条</a></li>
+      </ul>
+    </li>
+  </ul>
+
+  <ul>
+    <li><a href="#框架">框架</a>
+      <ul>
+        <li><a href="#总结">总结</a></li>
+        <li><a href="#导图">导图</a></li>
+        <li><a href="#文章">文章</a></li>
+      </ul>
+    </li>
+    <li><a href="#能力">能力</a></li>
+    <li><a href="#库存交互">库存交互</a>
+      <ul>
+        <li><a href="#ulyraquickbarcomponent与ulyraequipmentmanagercomponent">ULyraQuickBarComponent与ULyraEquipmentManagerComponent</a></li>
+      </ul>
+    </li>
+  </ul>
+
+  <ul>
+    <li><a href="#整体">整体</a>
+      <ul>
+        <li><a href="#ulyrasignificancemanager">ULyraSignificanceManager</a></li>
+      </ul>
+    </li>
+    <li><a href="#网络-1">网络</a>
+      <ul>
+        <li><a href="#角色加速度同步优化">角色加速度同步优化</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+</div></div>
+        <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
+  <img
+    data-src="/WzhGameDevPublish/avatar/UELogo.png"
+    data-sizes="auto"
+    alt="温志洪"
+    class="lazyload"
+  />
+  <div class="sidebar-author-name">温志洪</div>
+  <div class="sidebar-description">FPS游戏</div>
+</div>
+<div class="sidebar-state">
+  <div class="sidebar-state-article">
+    <div>文章</div><div class="sidebar-state-number">8</div>
+  </div>
+  <a class="sidebar-state-category" href="/WzhGameDevPublish/categories/" aria-label="sidebar-state-category-link">
+    <div>分类</div>
+    <div class="sidebar-state-number">
+      0
+    </div>
+  </a>
+  <a class="sidebar-state-tag" href="/WzhGameDevPublish/tags/" aria-label="sidebar-state-tag-link">
+    <div>标签</div>
+    <div class="sidebar-state-number">5</div>
+  </a>
+</div>
+<div class="sidebar-social"><div class="icon-bilibili sidebar-social-icon">
+      <a
+        href="https://space.bilibili.com/35312868"
+        itemprop="url"
+        target="_blank"
+        aria-label="bilibili"
+        rel="noopener nofollow noreferrer"
+      ></a>
+    </div><div class="icon-email sidebar-social-icon">
+      <a
+        href="mailto:cnwenzhihong@gmail.com"
+        itemprop="url"
+        target="_blank"
+        aria-label="email"
+        rel="noopener nofollow noreferrer"
+      ></a>
+    </div></div>
+<div class="sidebar-menu"><div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/WzhGameDevPublish/"
+        aria-label="首页"
+      ></a>
+      <div class='sidebar-menu-icon icon rotate'>&#xe62b;</div>
+      <div class="sidebar-menu-link">首页</div>
+    </div><div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/WzhGameDevPublish/archives"
+        aria-label="归档"
+      ></a>
+      <div class='sidebar-menu-icon icon rotate'>&#xe62b;</div>
+      <div class="sidebar-menu-link">归档</div>
+    </div><div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/WzhGameDevPublish/about"
+        aria-label="关于"
+      ></a>
+      <div class='sidebar-menu-icon icon rotate'>&#xe62b;</div>
+      <div class="sidebar-menu-link">关于</div>
+    </div><div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/WzhGameDevPublish/friend"
+        aria-label="友链"
+      ></a>
+      <div class='sidebar-menu-icon icon rotate'>&#xe62b;</div>
+      <div class="sidebar-menu-link">友链</div>
+    </div></div>
+</div></div><div class="sidebar-btn-wrapper">
+        <div class="sidebar-toc-btn current"></div>
+        <div class="sidebar-common-btn"></div>
+      </div></nav>
+</div><div class="site-search">
+        <div class="reimu-popup popup">
+          <div class="reimu-search">
+            <div class="reimu-search-input-icon"></div>
+            <div id="reimu-search-input"></div>
+            <div class="popup-btn-close"></div>
+          </div>
+          <div class="reimu-results">
+            <div id="reimu-stats"></div>
+            <div id="reimu-hits"></div>
+            <div id="reimu-pagination" class="reimu-pagination"></div>
+          </div>
+          <img class="reimu-bg" src="/WzhGameDevPublish/images/reimu.png" />
+        </div>
+      </div><script
+    src="https://npm.webcache.cn/lazysizes@5.3.2/lazysizes.min.js"
+    integrity="sha384-3gT/vsepWkfz/ff7PpWNUeMzeWoH3cDhm/A8jM7ouoAK0/fP/9bcHHR5kHq2nf&#43;e" crossorigin="anonymous"></script><script
+    src="https://npm.webcache.cn/clipboard@2.0.11/dist/clipboard.min.js"
+    integrity="sha384-J08i8An/QeARD9ExYpvphB8BsyOj3Gh2TSh1aLINKO3L0cMSH2dN3E22zFoXEi0Q" crossorigin="anonymous"></script><script
+    src="https://npm.webcache.cn/material-theme@1.0.0/dist/material-theme.umd.js"
+    integrity="sha384-vLev0II0HKFaxkcm&#43;/7kX5IGwVFBASkGchU311wmU/veIj2bB0UcBkQbW6yw2asK" crossorigin="anonymous"></script><script src="/WzhGameDevPublish/js/main.js" ></script><script src="/WzhGameDevPublish/js/aos.js" ></script><script>
+    var aosInit = () => {
+      AOS.init({
+        duration: 1000,
+        easing: "ease",
+        once: true,
+        offset: 50,
+      });
+    };
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", aosInit);
+    } else {
+      aosInit();
+    }
+  </script><script src="/WzhGameDevPublish/js/pjax_main.js" data-pjax></script><script>
+    var ALGOLIA_CONFIG = {
+      logo: '\/WzhGameDevPublish\/images\/algolia_logo.svg',
+      algolia: {
+        applicationID: "Y8C6JKXKKR",
+        apiKey: "30fdacdc4947fb8d8faed68e16f048a0",
+        indexName: "index",
+        hits: {
+          "per_page": parseInt("10")
+        },
+        labels: {
+          "input_placeholder": '搜索.....',
+          "hits_empty": '未发现与 「${query}」相关内容',
+          "hits_stats": '找到${hits}条结果（用时 ${time} ms）'
+        }
+      }
+    };
+  </script><script
+    src="https://npm.webcache.cn/algoliasearch@4.17.1/dist/algoliasearch-lite.umd.js"
+    deferintegrity="sha384-xvLS0jfKuoREs7pqkRI/OI8GcqohO5S&#43;jQz7ZBtQXnsXmD&#43;9jDOOY4cL6dCPzlrk" crossorigin="anonymous"></script><script
+    src="https://npm.webcache.cn/@reimujs/instantsearch.js@4.57.0-beta.1/dist/instantsearch.production.min.js"
+    deferintegrity="sha384-aagKMe8nkqaP2DYQc8kkYOL5l&#43;M5Q2WH/Uhr4teOh0Ybp0RZj0kUSDm45qPikMjK" crossorigin="anonymous"></script><script src="/WzhGameDevPublish/js/algolia_search.js" ></script><script
+    src="https://npm.webcache.cn/mouse-firework@0.1.1/dist/index.umd.js"
+    integrity="sha384-8LyaidD9GPxQQgLJO/WRw/O2h3BoNq/ApI/ecpvM6RsrCz2qP2ppBXUKihP4V/2d" crossorigin="anonymous"></script><script>
+  if (! false  || !window.matchMedia('(max-width: 768px)').matches) {
+    if (window.firework) {
+      const options = JSON.parse("{\"excludeelements\":[\"a\",\"button\"],\"particles\":[{\"colors\":[\"var(--red-1)\",\"var(--red-2)\",\"var(--red-3)\",\"var(--red-4)\"],\"duration\":[1200,1800],\"easing\":\"easeOutExpo\",\"move\":[\"emit\"],\"number\":20,\"shape\":\"circle\",\"shapeOptions\":{\"alpha\":[0.3,0.5],\"radius\":[16,32]}},{\"colors\":[\"var(--red-0)\"],\"duration\":[1200,1800],\"easing\":\"easeOutExpo\",\"move\":[\"diffuse\"],\"number\":1,\"shape\":\"circle\",\"shapeOptions\":{\"alpha\":[0.2,0.5],\"lineWidth\":6,\"radius\":20}}]}");
+      options.excludeElements = options.excludeelements;
+      delete options.excludeelements;
+      window.firework(options);
+    }
+  }
+</script><script
+    src="https://npm.webcache.cn/quicklink@3.0.1/dist/quicklink.umd.js"
+    integrity="sha384-caMDqvgav/HWdEYQU1QRRHMLleigpL1YHAG0m371DhzfL8rRzUyOb&#43;bEHtwlmYjD" crossorigin="anonymous"></script><script data-pjax>
+    window.quicklink?.listen({
+      timeout:  3000 ,
+      priority:  true ,
+      ignores: JSON.parse("[]")
+    });
+  </script>
+
+
+<div id="lazy-script">
+  <div><script data-pjax>
+        window.REIMU_POST = {
+          author: "温志洪",
+          title: "Lyra框架总览",
+          url: "http:\/\/localhost:1895\/WzhGameDevPublish\/post\/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91\/%E4%BB%A3%E7%A0%81%E6%A1%86%E6%9E%B6\/lyra\/lyra%E6%A1%86%E6%9E%B6%E6%80%BB%E8%A7%88\/",
+          description: "\/[title2list|list2lt]\n介绍与总览\rTip\r很多新特性 GameFeature将Lyra做了极大的解耦、导致逻辑不连续，动态加载让引用关系很难查找 GAS\u002bEnhanceInput 大量使用DataAsset 设计模式杂糅 面向数据ECS的不严格使用\n系统\u002b组件\u002b实体 MVC用于UI\n数据模型\u002b逻辑控制器\u002b显示视图 MVVM和VUE：将逻辑和Btn分离的MVC 堆栈式逻辑 Gameplay 武器在有的地方像ECS，有的地方像MVVM ECS——将武器的数据实例和表现做了分离，最终配置在Item中显示 MVVM——实例会被继续细分为Ability、蒙太奇、扩散\n开火射线检测的 …",
+          cover: "https:\/\/tse1-mm.cn.bing.net\/th\/id\/OIP-C.m80aM2zv68WUj1cb42ENtgHaEK",
+        };
+      </script><script src="/WzhGameDevPublish/js/insert_highlight.js" data-pjax></script><script src="/WzhGameDevPublish/js/tabs.js" data-pjax></script><script type="module" data-pjax>const PhotoSwipeLightbox = (await safeImport("https:\/\/npm.webcache.cn\/photoswipe@5.4.4\/dist\/photoswipe-lightbox.esm.min.js", "sha384-DiL6M\/gG\u002bwmTxmCRZyD1zee6lIhawn5TGvED0FOh7fXcN9B0aZ9dexSF\/N6lrZi\/")).default;const initPswp = (gallery, children) => {
+          if (_$$(`${gallery} ${children}`).length > 0) {
+            new PhotoSwipeLightbox({
+              gallery,
+              children,pswpModule: () => safeImport("https:\/\/npm.webcache.cn\/photoswipe@5.4.4\/dist\/photoswipe.esm.min.js", "sha384-WkkO3GCmgkC3VQWpaV8DqhKJqpzpF9JoByxDmnV8\u002boTJ7m3DfYEWX1fu1scuS4\u002bs")}).init();
+          }
+        }
+        const pswp = () => {
+          initPswp('.article-entry', 'a.article-gallery-item');
+          initPswp('.article-gallery', 'a.article-gallery-item');
+          window.lightboxStatus = 'done';
+          window.removeEventListener('lightbox:ready', pswp);
+        }
+        if(window.lightboxStatus === 'ready') {
+          pswp()
+        } else {
+          window.addEventListener('lightbox:ready', pswp);
+        }
+      </script></div>
+</div><script
+    src="https://npm.webcache.cn/busuanzi@2.3.0/bsz.pure.mini.js"
+    asyncintegrity="sha384-0M75wtSkhjIInv4coYlaJU83&#43;OypaRCIq2SukQVQX04eGTCBXJDuWAbJet56id&#43;S" crossorigin="anonymous"></script><script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.getRegistrations().then((registrations) => {
+        for (let registration of registrations) {
+          registration.unregister();
+        }
+      });
+    }
+  </script><script>
+  const reimuCopyright = String.raw`
+   ______     ______     __     __    __     __  __    
+  /\  == \   /\  ___\   /\ \   /\ "-./  \   /\ \/\ \   
+  \ \  __<   \ \  __\   \ \ \  \ \ \-./\ \  \ \ \_\ \  
+   \ \_\ \_\  \ \_____\  \ \_\  \ \_\ \ \_\  \ \_____\ 
+    \/_/ /_/   \/_____/   \/_/   \/_/  \/_/   \/_____/ 
+                                                    
+  `;
+  console.log(String.raw`%c ${reimuCopyright}`, "color: #ff5252;");
+  console.log(
+    "%c Theme.Reimu" + " %c https://github.com/D-Sketon/hugo-theme-reimu ",
+    "color: white; background: #ff5252; padding:5px 0;",
+    "padding:4px;border:1px solid #ff5252;",
+  );
+</script></body>
+</html>
