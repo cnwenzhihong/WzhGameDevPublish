@@ -8,7 +8,7 @@
   name="viewport"
   content="width=device-width, initial-scale=1, shrink-to-fit=no"
 /><title>
-  Lyra框架总览 | 温志洪
+  Lyra框架核心 | 温志洪
 </title>
 <meta name="description" content="FPS游戏"/><script>
   window.siteConfig = JSON.parse("{\"anchor_icon\":null,\"base\":\"http://localhost:1895/WzhGameDevPublish/\",\"clipboard\":{\"copyright\":{\"count\":50,\"enable\":false,\"license_type\":\"by-nc-sa\"},\"fail\":{\"en\":\"Copy failed (ﾟ⊿ﾟ)ﾂ\",\"ja\":\"コピー失敗 (ﾟ⊿ﾟ)ﾂ\",\"pt-br\":\"Falha ao copiar (ﾟ⊿ﾟ)ﾂ\",\"zh-cn\":\"复制失败 (ﾟ⊿ﾟ)ﾂ\",\"zh-tw\":\"複製失敗 (ﾟ⊿ﾟ)ﾂ\"},\"success\":{\"en\":\"Copy successfully (*^▽^*)\",\"ja\":\"コピー成功 (*^▽^*)\",\"pt-br\":\"Copiado com sucesso (*^▽^*)\",\"zh-cn\":\"复制成功 (*^▽^*)\",\"zh-tw\":\"複製成功 (*^▽^*)\"}},\"code_block\":{\"expand\":4},\"i18n_languages\":[{\"Lang\":\"en\",\"LanguageName\":\"English\",\"LanguageCode\":\"\",\"Title\":\"\",\"LanguageDirection\":\"\",\"Weight\":1,\"Disabled\":false},{\"Lang\":\"zh-cn\",\"LanguageName\":\"简体中文\",\"LanguageCode\":\"\",\"Title\":\"\",\"LanguageDirection\":\"\",\"Weight\":1,\"Disabled\":false}],\"icon_font\":\"4552607_4k4bc36ef96\",\"outdate\":{\"daysago\":180,\"enable\":false,\"message\":{\"en\":\"This article was last updated on {time}. Please note that the content may no longer be applicable.\",\"ja\":\"この記事は最終更新日：{time}。記載内容が現在有効でない可能性がありますのでご注意ください。\",\"pt-br\":\"Este artigo foi atualizado pela última vez em {time}. Observe que o conteúdo pode não ser mais aplicável.\",\"zh-cn\":\"本文最后更新于 {time}，请注意文中内容可能已不适用。\",\"zh-tw\":\"本文最後更新於 {time}，請注意文中內容可能已不適用。\"}}}");
@@ -34,12 +34,12 @@
     crossorigin="anonymous"
   /><link rel="stylesheet" href="/WzhGameDevPublish/css/loader.css" />
 <meta property="og:type" content="website" />
-  <meta property="og:title" content="Lyra框架总览 | 温志洪" />
+  <meta property="og:title" content="Lyra框架核心 | 温志洪" />
   <meta
     property="og:description"
     content="FPS游戏"
   />
-  <meta property="og:url" content="http://localhost:1895/WzhGameDevPublish/post/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/%E4%BB%A3%E7%A0%81%E6%A1%86%E6%9E%B6/lyra/lyra%E6%A1%86%E6%9E%B6%E6%80%BB%E8%A7%88/" />
+  <meta property="og:url" content="http://localhost:1895/WzhGameDevPublish/post/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/%E4%BB%A3%E7%A0%81%E6%A1%86%E6%9E%B6/lyra/lyra%E6%A1%86%E6%9E%B6%E6%A0%B8%E5%BF%83/" />
   <meta
     property="og:site_name"
     content="妖精游戏开发馆"
@@ -50,7 +50,7 @@
   />
   <meta property="article:author" content="温志洪" />
   <meta property="article:published_time" content="2025-09-11T17:10:52&#43;00:00" />
-  <meta property="article:modified_time" content="2026-03-04T09:22:43&#43;00:00" /><meta property="article:tag" content="blogUE/Lyra" /><meta name="twitter:card" content="summary" />
+  <meta property="article:modified_time" content="2026-03-20T13:08:41&#43;00:00" /><meta property="article:tag" content="blogUE/Lyra" /><meta name="twitter:card" content="summary" />
   <meta name="twitter:image" content="https://tse1-mm.cn.bing.net/th/id/OIP-C.m80aM2zv68WUj1cb42ENtgHaEK" />
 <link rel="shortcut icon" href="/WzhGameDevPublish/favicon.ico"><link rel="stylesheet" href="/WzhGameDevPublish/css/main.css" />
 <link
@@ -179,9 +179,9 @@
       </script>
     </nav></div>
 <header id="header" aria-label="Site header"><picture></picture>
-    <img crossorigin="anonymous" fetchpriority="high" src="https://tse1-mm.cn.bing.net/th/id/OIP-C.m80aM2zv68WUj1cb42ENtgHaEK" alt="Lyra框架总览"><div id="header-outer">
+    <img crossorigin="anonymous" fetchpriority="high" src="https://tse1-mm.cn.bing.net/th/id/OIP-C.m80aM2zv68WUj1cb42ENtgHaEK" alt="Lyra框架核心"><div id="header-outer">
     <div id="header-title"><span id="logo">
-            <h1 data-aos="slide-up">Lyra框架总览</h1>
+            <h1 data-aos="slide-up">Lyra框架核心</h1>
           </span><h2 id="subtitle-wrap" data-aos="slide-down"></h2></div>
   </div>
 </header><div id="content"
@@ -294,7 +294,7 @@
 </div>
 <div class="sidebar-state">
   <div class="sidebar-state-article">
-    <div>文章</div><div class="sidebar-state-number">8</div>
+    <div>文章</div><div class="sidebar-state-number">9</div>
   </div>
   <a class="sidebar-state-category" href="/WzhGameDevPublish/categories/" aria-label="sidebar-state-category-link">
     <div>分类</div>
@@ -381,14 +381,14 @@
       >2025-09-11</time
     >
     <time style="display: none;" id="post-update-time"
-      >2026-03-04</time
+      >2026-03-20</time
     >
   </span><span
       class="article-date-link icon-calendar-plus"
       data-aos="zoom-in"
     >
-      <time datetime="2026-03-04 09:22:43.567 &#43;0000 UTC" itemprop="dateModified"
-        >2026-03-04</time
+      <time datetime="2026-03-20 13:08:41.334 &#43;0000 UTC" itemprop="dateModified"
+        >2026-03-20</time
       >
     </span></div>
 <div class="article-category"></div>
@@ -694,7 +694,7 @@ HUD挂点
 <a href="https://zhuanlan.zhihu.com/p/648951586">Lyra核心概念（一）- Experience</a><br>
 <a href="https://zhuanlan.zhihu.com/p/1932435767143150372">Lyra-Experience结构</a><br>
 扩展Lyra:<br>
-<a href="/Lyra%E6%96%B0%E5%A2%9EExperiences">Lyra新增Experiences</a></li>
+<a href="/Lyra%E5%AE%9E%E6%88%98%EF%BC%9A%E6%96%B0%E5%A2%9EGameFeature">Lyra实战：新增GameFeature</a></li>
 </ul>
 <h4 id="进阶">
 <a class="header-anchor" href="#%e8%bf%9b%e9%98%b6"></a>
@@ -924,7 +924,7 @@ W[B_Weapon（B_Rifle）] --> WID
 <a class="header-anchor" href="#%e8%83%bd%e5%8a%9b"></a>
 能力
 </h2><p>武器核心需求是开火和换弹，部分需要瞄准。<br>
-<a href="/%E6%AD%A6%E5%99%A8%E5%B0%84%E5%87%BB">武器射击流程</a></p>
+<a href="/Lyra%20%E6%AD%A6%E5%99%A8%E5%B0%84%E5%87%BB%E6%B5%81%E7%A8%8B">武器射击流程</a></p>
 <h2 id="库存交互">
 <a class="header-anchor" href="#%e5%ba%93%e5%ad%98%e4%ba%a4%e4%ba%92"></a>
 库存交互
@@ -989,7 +989,7 @@ ULyraSignificanceManager
     aria-label="Article navigation"
     data-aos="fade-up"
   ><div class="article-nav-link-wrap right"><img
-              data-src="https://img.shetu66.com/2023/06/26/1687741752414606.png"
+              data-src="https://img95.699pic.com/photo/60027/4138.jpg_wh860.jpg"
               data-sizes="auto"
               alt="FPS中的武器摇晃"
               class="lazyload"
@@ -1022,10 +1022,10 @@ ULyraSignificanceManager
         >
       </div><div>
         <span class="icon-brush"
-          >&nbsp;21.2k</span
+          >&nbsp;24.1k</span
         >
         &nbsp;|&nbsp;
-        <span class="icon-coffee">&nbsp;00:47</span>
+        <span class="icon-coffee">&nbsp;00:53</span>
       </div><div>
         <span class="icon-eye"></span>
         <span id="busuanzi_container_site_pv"
@@ -1150,7 +1150,7 @@ ULyraSignificanceManager
 </div>
 <div class="sidebar-state">
   <div class="sidebar-state-article">
-    <div>文章</div><div class="sidebar-state-number">8</div>
+    <div>文章</div><div class="sidebar-state-number">9</div>
   </div>
   <a class="sidebar-state-category" href="/WzhGameDevPublish/categories/" aria-label="sidebar-state-category-link">
     <div>分类</div>
@@ -1298,8 +1298,8 @@ ULyraSignificanceManager
   <div><script data-pjax>
         window.REIMU_POST = {
           author: "温志洪",
-          title: "Lyra框架总览",
-          url: "http:\/\/localhost:1895\/WzhGameDevPublish\/post\/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91\/%E4%BB%A3%E7%A0%81%E6%A1%86%E6%9E%B6\/lyra\/lyra%E6%A1%86%E6%9E%B6%E6%80%BB%E8%A7%88\/",
+          title: "Lyra框架核心",
+          url: "http:\/\/localhost:1895\/WzhGameDevPublish\/post\/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91\/%E4%BB%A3%E7%A0%81%E6%A1%86%E6%9E%B6\/lyra\/lyra%E6%A1%86%E6%9E%B6%E6%A0%B8%E5%BF%83\/",
           description: "\/[title2list|list2lt]\n总览\r不错的资料\rTip\r很多新特性 GameFeature将Lyra做了极大的解耦、导致逻辑不连续，动态加载让引用关系很难查找 GAS\u002bEnhanceInput 大量使用DataAsset 设计模式杂糅 面向数据ECS的不严格使用\n系统\u002b组件\u002b实体 MVC用于UI\n数据模型\u002b逻辑控制器\u002b显示视图 MVVM和VUE：将逻辑和Btn分离的MVC 堆栈式逻辑 Gameplay 武器在有的地方像ECS，有的地方像MVVM ECS——将武器的数据实例和表现做了分离，最终配置在Item中显示 MVVM——实例会被继续细分为Ability、蒙太奇、扩散\n开火射线 …",
           cover: "https:\/\/tse1-mm.cn.bing.net\/th\/id\/OIP-C.m80aM2zv68WUj1cb42ENtgHaEK",
         };

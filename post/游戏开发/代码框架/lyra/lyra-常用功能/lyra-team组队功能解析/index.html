@@ -1,0 +1,952 @@
+<!doctype html>
+<html
+  lang="zh-cn" 
+  data-theme-mode="false"
+  >
+  <head><script src="/WzhGameDevPublish/livereload.js?mindelay=10&amp;v=2&amp;port=1895&amp;path=WzhGameDevPublish/livereload" data-no-instant defer></script><meta charset="utf-8" />
+<meta
+  name="viewport"
+  content="width=device-width, initial-scale=1, shrink-to-fit=no"
+/><title>
+  Lyra Team组队功能解析 | 温志洪
+</title>
+<meta name="description" content="FPS游戏"/><script>
+  window.siteConfig = JSON.parse("{\"anchor_icon\":null,\"base\":\"http://localhost:1895/WzhGameDevPublish/\",\"clipboard\":{\"copyright\":{\"count\":50,\"enable\":false,\"license_type\":\"by-nc-sa\"},\"fail\":{\"en\":\"Copy failed (ﾟ⊿ﾟ)ﾂ\",\"ja\":\"コピー失敗 (ﾟ⊿ﾟ)ﾂ\",\"pt-br\":\"Falha ao copiar (ﾟ⊿ﾟ)ﾂ\",\"zh-cn\":\"复制失败 (ﾟ⊿ﾟ)ﾂ\",\"zh-tw\":\"複製失敗 (ﾟ⊿ﾟ)ﾂ\"},\"success\":{\"en\":\"Copy successfully (*^▽^*)\",\"ja\":\"コピー成功 (*^▽^*)\",\"pt-br\":\"Copiado com sucesso (*^▽^*)\",\"zh-cn\":\"复制成功 (*^▽^*)\",\"zh-tw\":\"複製成功 (*^▽^*)\"}},\"code_block\":{\"expand\":4},\"i18n_languages\":[{\"Lang\":\"en\",\"LanguageName\":\"English\",\"LanguageCode\":\"\",\"Title\":\"\",\"LanguageDirection\":\"\",\"Weight\":1,\"Disabled\":false},{\"Lang\":\"zh-cn\",\"LanguageName\":\"简体中文\",\"LanguageCode\":\"\",\"Title\":\"\",\"LanguageDirection\":\"\",\"Weight\":1,\"Disabled\":false}],\"icon_font\":\"4552607_4k4bc36ef96\",\"outdate\":{\"daysago\":180,\"enable\":false,\"message\":{\"en\":\"This article was last updated on {time}. Please note that the content may no longer be applicable.\",\"ja\":\"この記事は最終更新日：{time}。記載内容が現在有効でない可能性がありますのでご注意ください。\",\"pt-br\":\"Este artigo foi atualizado pela última vez em {time}. Observe que o conteúdo pode não ser mais aplicável.\",\"zh-cn\":\"本文最后更新于 {time}，请注意文中内容可能已不适用。\",\"zh-tw\":\"本文最後更新於 {time}，請注意文中內容可能已不適用。\"}}}");
+  
+</script>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link
+  rel="preload"
+  as="style"
+  href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic%7cNoto%20Serif%20SC:400,400italic,700,700italic%7c&amp;display=swap"
+/>
+<link
+  rel="stylesheet"
+  href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic%7cNoto%20Serif%20SC:400,400italic,700,700italic%7c&amp;display=swap"
+  media="print"
+  onload="this.media='all'"
+/>
+<link
+    rel="preload"
+    href="//at.alicdn.com/t/c/font_4552607_4k4bc36ef96.woff2"
+    as="font"
+    type="font/woff2"
+    crossorigin="anonymous"
+  /><link rel="stylesheet" href="/WzhGameDevPublish/css/loader.css" />
+<meta property="og:type" content="website" />
+  <meta property="og:title" content="Lyra Team组队功能解析 | 温志洪" />
+  <meta
+    property="og:description"
+    content="FPS游戏"
+  />
+  <meta property="og:url" content="http://localhost:1895/WzhGameDevPublish/post/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/%E4%BB%A3%E7%A0%81%E6%A1%86%E6%9E%B6/lyra/lyra-%E5%B8%B8%E7%94%A8%E5%8A%9F%E8%83%BD/lyra-team%E7%BB%84%E9%98%9F%E5%8A%9F%E8%83%BD%E8%A7%A3%E6%9E%90/" />
+  <meta
+    property="og:site_name"
+    content="妖精游戏开发馆"
+  />
+  <meta
+    property="og:image"
+    content="https://dev.epicgames.com/community/api/learning/image/c71a4b90-ad49-485c-8d20-56188a0c12e8?resizing_type=fill&amp;width=800&amp;height=400"
+  />
+  <meta property="article:author" content="温志洪" />
+  <meta property="article:published_time" content="2026-03-20T17:31:21&#43;00:00" />
+  <meta property="article:modified_time" content="2026-03-21T21:26:34&#43;00:00" /><meta property="article:tag" content="blog" /><meta name="twitter:card" content="summary" />
+  <meta name="twitter:image" content="https://dev.epicgames.com/community/api/learning/image/c71a4b90-ad49-485c-8d20-56188a0c12e8?resizing_type=fill&amp;width=800&amp;height=400" />
+<link rel="shortcut icon" href="/WzhGameDevPublish/favicon.ico"><link rel="stylesheet" href="/WzhGameDevPublish/css/main.css" />
+<link
+    rel="preload"
+    as="style"
+    href="https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe.css"
+    integrity="sha384-IfxC36XL/toUyJ939C73PcgMuRzAZuIzZxE38drsmO5p6jD7ei&#43;Zx/1oA/0l8ysE" crossorigin="anonymous"onload="this.onload=null;this.rel='stylesheet'"
+  /><link
+    rel="preload"
+    as="style"
+    href="https://npm.webcache.cn/katex@0.16.24/dist/katex.min.css"
+    integrity="sha384-tTgKLjMYmJr94v8qu2PE5MUGSMbyN2xiH266JUB3gpm8vnnJywd1dWSOEfrFz&#43;YI" crossorigin="anonymous"onload="this.onload=null;this.rel='stylesheet'"
+  /><script
+    src="https://npm.webcache.cn/pace-js@1.2.4/pace.min.js"
+    integrity="sha384-k6YtvFUEIuEFBdrLKJ3YAUbBki333tj1CSUisai5Cswsg9wcLNaPzsTHDswp4Az8" crossorigin="anonymous"></script><link
+    rel="stylesheet"
+    href="https://npm.webcache.cn/@reimujs/aos@0.1.2/dist/aos.css"
+    integrity="sha384-GMRP93c6Hkz9JVKGAuRR3nTS7M07RwPgTFenXiosjq2VbVgvdDNcz1g6Mkj8AONa" crossorigin="anonymous"/></head>
+  <body><div id='loader'>
+    <div class="loading-left-bg loading-bg"></div>
+    <div class="loading-right-bg loading-bg"></div>
+    <div class="spinner-box">
+      <div class="loading-taichi rotate"><svg width="150" height="150" viewBox="0 0 1024 1024" class="icon" version="1.1" xmlns="https://www.w3.org/2000/svg" shape-rendering="geometricPrecision">
+            <path d="M303.5 432A80 80 0 0 1 291.5 592A80 80 0 0 1 303.5 432z" fill="var(--red-1, #ff5252)" />
+            <path d="M512 65A447 447 0 0 1 512 959L512 929A417 417 0 0 0 512 95A417 417 0 0 0 512 929L512 959A447 447 0 0 1 512 65z 
+          M512 95A417 417 0 0 1 929 512A208.5 208.5 0 0 1 720.5 720.5L720.5 592A80 80 0 0 0 720.5 432A80 80 0 0 0 720.5 592L720.5 720.5A208.5 208.5 0 0 1 512 512A208.5 208.5 0 0 0 303.5 303.5A208.5 208.5 0 0 0 95 512A417 417 0 0 1 512 95z" fill="var(--red-1, #ff5252)" />
+          </svg></div><div class="loading-word">少女祈祷中...</div>
+    </div>
+  </div>
+  </div>
+  <script>
+    var time = null;
+    var loaderEl = document.getElementById('loader');
+    var startLoading = () => {
+      time = Date.now();
+      loaderEl.classList.remove("loading");
+    }
+    var hideLoader = () => {
+      document.body.style.overflow = 'auto';
+      loader.classList.add('loading');
+    };
+
+    var endLoading = () => {
+      if (!time) {
+        hideLoader();
+      } else {
+        if (Date.now() - time > 500) {
+          time = null;
+          hideLoader();
+        } else {
+          setTimeout(endLoading, 500 - (Date.now() - time));
+          time = null;
+        }
+      }
+    }
+    window.addEventListener('DOMContentLoaded', endLoading);
+    loaderEl.addEventListener('click', endLoading);
+  </script><div id="copy-tooltip"></div>
+<div id="lang-tooltip">
+本文章没有找到对应的语言版本
+</div>
+<div id="heatmap-tooltip"></div><div id="container">
+      <div id="wrap"><div id="header-nav">
+  <nav id="main-nav" aria-label="Primary navigation"><a class="main-nav-link-wrap" href="/WzhGameDevPublish/">
+        <div class='main-nav-icon icon rotate'>&#xe62b;</div>
+        <span class="main-nav-link">首页</span>
+      </a><a class="main-nav-link-wrap" href="/WzhGameDevPublish/archives">
+        <div class='main-nav-icon icon rotate'>&#xe62b;</div>
+        <span class="main-nav-link">归档</span>
+      </a><a class="main-nav-link-wrap" href="/WzhGameDevPublish/about">
+        <div class='main-nav-icon icon rotate'>&#xe62b;</div>
+        <span class="main-nav-link">关于</span>
+      </a><a class="main-nav-link-wrap" href="/WzhGameDevPublish/friend">
+        <div class='main-nav-icon icon rotate'>&#xe62b;</div>
+        <span class="main-nav-link">友链</span>
+      </a><a id="main-nav-toggle" class="nav-icon" aria-label="Toggle navigation" role="button"></a>
+  </nav>
+  <nav id="sub-nav" aria-label="Secondary navigation"><a id="nav-search-btn" class="nav-icon popup-trigger" title="搜索" aria-label="搜索"></a></nav><nav id="i18n-nav" aria-label="Language selection">
+      <div class="custom-dropdown">
+        <div class="select-selected" id="select-selected" role="button" aria-haspopup="listbox" aria-expanded="false" aria-label="Language menu">
+          <span id="nav-language-btn" class="nav-icon" style="padding: 0 20px 0 0"></span>
+          <span id="selected-lang">简体中文</span>
+        </div>
+        <ul class="select-items" id="select-items" role="listbox" aria-label="Languages"><li data-value="en" role="option" arial-selected="false" >English</li><li data-value="zh-cn" role="option" class="selected" arial-selected="true" >简体中文</li></ul>
+      </div>
+      <script>
+        var selectSelected = document.getElementById("select-selected");
+        var selectedLang = document.getElementById("selected-lang");
+        var selectItems = document.getElementById("select-items");
+        var selectOptions = selectItems.querySelectorAll("li");
+
+        selectSelected.addEventListener("click", () => {
+          selectItems.classList.toggle("show");
+          var expanded = selectSelected.getAttribute("aria-expanded") === "true";
+          selectSelected.setAttribute("aria-expanded", (!expanded).toString());
+        });
+
+        selectOptions.forEach((item) => {
+          item.addEventListener("click", () => {
+            const langMap = {};selectedLang.textContent = item.textContent;
+            selectItems.classList.remove("show");
+            selectOptions.forEach((option) => {
+              option.classList.remove("selected");
+            });
+            item.classList.add("selected");
+            if (item.dataset.value === 'zh-cn') {
+              return;
+            }
+            if (!langMap[item.dataset.value]) {
+              _$("#lang-tooltip").style.opacity = "1";
+              setTimeout(() => {
+                _$("#lang-tooltip").style.opacity = "0";
+              }, 1000);
+              return;
+            }
+            window.location = langMap[item.dataset.value];
+          });
+        });
+
+        document.addEventListener("click", (event) => {
+          if (!event.target.closest(".custom-dropdown")) {
+            selectItems.classList.remove("show");
+            selectSelected.setAttribute("aria-expanded", "false");
+          }
+        });
+      </script>
+    </nav></div>
+<header id="header" aria-label="Site header"><picture></picture>
+    <img crossorigin="anonymous" fetchpriority="high" src="https://dev.epicgames.com/community/api/learning/image/c71a4b90-ad49-485c-8d20-56188a0c12e8?resizing_type=fill&amp;width=800&amp;height=400" alt="Lyra Team组队功能解析"><div id="header-outer">
+    <div id="header-title"><span id="logo">
+            <h1 data-aos="slide-up">Lyra Team组队功能解析</h1>
+          </span><h2 id="subtitle-wrap" data-aos="slide-down"></h2></div>
+  </div>
+</header><div id="content"
+          aria-label="Page content"
+          class="sidebar-left"
+            ><aside id="sidebar" aria-label="Sidebar"><div class="sidebar-wrapper-container sticky"><div class="sidebar-wrapper">
+    <div
+      class="sidebar-wrap"
+      data-aos="fade-up"
+    ><div class="sidebar-toc-sidebar"><h3 class="toc-title">文章目录</h3>
+<div class="sidebar-toc-wrapper toc-div-class">
+  <nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#概述">概述</a></li>
+        <li><a href="#实现">实现</a></li>
+      </ul>
+    </li>
+  </ul>
+
+  <ul>
+    <li><a href="#配置">配置</a></li>
+    <li><a href="#应用">应用</a>
+      <ul>
+        <li><a href="#display材质参数的使用">Display材质参数的使用</a></li>
+      </ul>
+    </li>
+    <li><a href="#实现-1">实现</a>
+      <ul>
+        <li><a href="#ilyrateamagentinterface">ILyraTeamAgentInterface</a></li>
+        <li><a href="#ulyrateamcreationcomponent">ULyraTeamCreationComponent</a></li>
+        <li><a href="#ulyrateamsubsystem">ULyraTeamSubsystem</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+</div></div>
+          <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
+  <img
+    data-src="/WzhGameDevPublish/avatar/UELogo.png"
+    data-sizes="auto"
+    alt="温志洪"
+    class="lazyload"
+  />
+  <div class="sidebar-author-name">温志洪</div>
+  <div class="sidebar-description">FPS游戏</div>
+</div>
+<div class="sidebar-state">
+  <div class="sidebar-state-article">
+    <div>文章</div><div class="sidebar-state-number">9</div>
+  </div>
+  <a class="sidebar-state-category" href="/WzhGameDevPublish/categories/" aria-label="sidebar-state-category-link">
+    <div>分类</div>
+    <div class="sidebar-state-number">
+      0
+    </div>
+  </a>
+  <a class="sidebar-state-tag" href="/WzhGameDevPublish/tags/" aria-label="sidebar-state-tag-link">
+    <div>标签</div>
+    <div class="sidebar-state-number">5</div>
+  </a>
+</div>
+<div class="sidebar-social"><div class="icon-bilibili sidebar-social-icon">
+      <a
+        href="https://space.bilibili.com/35312868"
+        itemprop="url"
+        target="_blank"
+        aria-label="bilibili"
+        rel="noopener nofollow noreferrer"
+      ></a>
+    </div><div class="icon-email sidebar-social-icon">
+      <a
+        href="mailto:cnwenzhihong@gmail.com"
+        itemprop="url"
+        target="_blank"
+        aria-label="email"
+        rel="noopener nofollow noreferrer"
+      ></a>
+    </div></div>
+<div class="sidebar-menu"><div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/WzhGameDevPublish/"
+        aria-label="首页"
+      ></a>
+      <div class='sidebar-menu-icon icon rotate'>&#xe62b;</div>
+      <div class="sidebar-menu-link">首页</div>
+    </div><div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/WzhGameDevPublish/archives"
+        aria-label="归档"
+      ></a>
+      <div class='sidebar-menu-icon icon rotate'>&#xe62b;</div>
+      <div class="sidebar-menu-link">归档</div>
+    </div><div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/WzhGameDevPublish/about"
+        aria-label="关于"
+      ></a>
+      <div class='sidebar-menu-icon icon rotate'>&#xe62b;</div>
+      <div class="sidebar-menu-link">关于</div>
+    </div><div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/WzhGameDevPublish/friend"
+        aria-label="友链"
+      ></a>
+      <div class='sidebar-menu-icon icon rotate'>&#xe62b;</div>
+      <div class="sidebar-menu-link">友链</div>
+    </div></div>
+</div><div class="sidebar-btn-wrapper" style="position:static">
+            <div class="sidebar-toc-btn current"></div>
+            <div class="sidebar-common-btn"></div>
+          </div></div>
+  </div><div class="sidebar-widget"></div></div></aside>
+<section id="main" aria-label="Main content"><p style="color:red">ARTICLE PARTIAL OVERRIDE ACTIVE</p>
+<article
+  class="h-entry article"
+  itemscope
+  itemtype="https://schema.org/BlogPosting"
+>
+  <div
+    class="article-inner"
+    data-aos="fade-up"
+  >
+    <div class="article-meta"><div class="article-date">
+  <span
+    class="article-date-link icon-calendar"
+    data-aos="zoom-in"
+  >
+    <time datetime="2026-03-20 17:31:21.781 &#43;0000 UTC" itemprop="datePublished"
+      >2026-03-20</time
+    >
+    <time style="display: none;" id="post-update-time"
+      >2026-03-21</time
+    >
+  </span><span
+      class="article-date-link icon-calendar-plus"
+      data-aos="zoom-in"
+    >
+      <time datetime="2026-03-21 21:26:34.902 &#43;0000 UTC" itemprop="dateModified"
+        >2026-03-21</time
+      >
+    </span></div>
+<div class="article-category"></div>
+</div><div class="hr-line"></div><div class="e-content article-entry" itemprop="articleBody"><h1 id="系统概述">
+<a class="header-anchor" href="#%e7%b3%bb%e7%bb%9f%e6%a6%82%e8%bf%b0"></a>
+系统概述
+</h1><p>团队功能，不算很大的一个模块，但和各种模块都要打交道，同时也需要对数据进行简单存储、同步、获取。</p>
+<p>拓展资料：<br>
+<a href="https://x157.github.io/UE5/LyraStarterGame/Teams/">Lyra Team System | X157 Dev Notes</a><br>
+<a href="https://dev.epicgames.com/community/learning/tutorials/XjBe/unreal-engine-lyra-team-based-spawn-points">Lyra: Team-based Spawn Points | Community tutorial</a></p>
+<h1 id="ue内置的队伍接口">
+<a class="header-anchor" href="#ue%e5%86%85%e7%bd%ae%e7%9a%84%e9%98%9f%e4%bc%8d%e6%8e%a5%e5%8f%a3"></a>
+UE内置的队伍接口
+</h1><h3 id="概述">
+<a class="header-anchor" href="#%e6%a6%82%e8%bf%b0"></a>
+概述
+</h3><p>团队功能在引擎中用于AI感知(<code>AIPerception</code>)，实现在AI模块，而非独立的功能模块。<br>
+仅用于区分敌我简单的int标识，功能简单应用较少。<br>
+<img src="https://gcore.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/20260321190307754.png" alt=""></p>
+<h3 id="实现">
+<a class="header-anchor" href="#%e5%ae%9e%e7%8e%b0"></a>
+实现
+</h3><p><code>FGenericTeamId</code>：用uint8的ID来标识队伍，足够了。<br>
+<code>IGenericTeamAgentInterface</code>：设置、获取接口，比较函数接口+默认实现。<br>
+<img src="https://gcore.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/20260321181124915.png" alt=""><br>
+接口实现：<code>AIController</code><br>
+<img src="https://gcore.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/20260321183120011.png" alt=""><br>
+接口应用：<code>FAISenseAffiliationFilter::ShouldSenseTeam</code><br>
+<img src="https://gcore.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/20260321184212527.png" alt=""><br>
+敌我标识<code>ETeamAttitude</code>:</p>
+<ul>
+<li>Friendly：默认实现 -&gt; ID相同</li>
+<li>Hostile：默认实现 -&gt; ID不同</li>
+<li>Neutral：TeamID不实现<code>FAttitudeSolverFunction</code>函数</li>
+</ul>
+
+  <blockquote class="alert-blockquote note">
+    <p class="alert-heading">
+      Note
+    </p>
+    <p><h2 id="-敌我判断的实现细节">
+<a class="header-anchor" href="#-%e6%95%8c%e6%88%91%e5%88%a4%e6%96%ad%e7%9a%84%e5%ae%9e%e7%8e%b0%e7%bb%86%e8%8a%82"></a>
+#### 敌我判断的实现细节
+</h2><blockquote>
+<p>大多数情况下override中<code>IGenericTeamAgentInterface</code>的比较函数就足以完成需求，此处仅用作C++动态函数的范例记录</p>
+</blockquote>
+<p>如上述代码，比较提供了默认实现，靠<code>FGenericTeamId</code>内部实现。采用动态函数</p>
+<p>比较两个队伍的关系的动态函数定义：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-CPP" data-lang="CPP"><span class="line"><span class="cl"><span class="c1">//1. 定义函数类型
+</span></span></span><span class="line"><span class="cl"><span class="k">typedef</span> <span class="n">TFunction</span><span class="o">&lt;</span><span class="n">ETeamAttitude</span><span class="o">::</span><span class="n">Type</span><span class="p">(</span><span class="n">FGenericTeamId</span><span class="p">,</span> <span class="n">FGenericTeamId</span><span class="p">)</span><span class="o">&gt;</span> <span class="n">FAttitudeSolverFunction</span><span class="p">;</span>
+</span></span></code></pre></div><p>同时提供了默认比较函数：<code>DefaultTeamAttitudeSolver</code></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-CPP" data-lang="CPP"><span class="line"><span class="cl"><span class="c1">//2. 定义函数默认实现
+</span></span></span><span class="line"><span class="cl"><span class="n">ETeamAttitude</span><span class="o">::</span><span class="n">Type</span> <span class="n">DefaultTeamAttitudeSolver</span><span class="p">(</span><span class="n">FGenericTeamId</span> <span class="n">A</span><span class="p">,</span> <span class="n">FGenericTeamId</span> <span class="n">B</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="k">return</span> <span class="n">A</span> <span class="o">!=</span> <span class="n">B</span> <span class="o">?</span> <span class="n">ETeamAttitude</span><span class="o">::</span><span class="nl">Hostile</span> <span class="p">:</span> <span class="n">ETeamAttitude</span><span class="o">::</span><span class="n">Friendly</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="c1">//3. 赋值
+</span></span></span><span class="line"><span class="cl"><span class="n">FGenericTeamId</span><span class="o">::</span><span class="n">FAttitudeSolverFunction</span> <span class="n">FGenericTeamId</span><span class="o">::</span><span class="n">AttitudeSolverImpl</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">DefaultTeamAttitudeSolver</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="c1">//4. 使用
+</span></span></span><span class="line"><span class="cl"><span class="k">static</span> <span class="n">ETeamAttitude</span><span class="o">::</span><span class="n">Type</span> <span class="n">GetAttitude</span><span class="p">(</span><span class="n">FGenericTeamId</span> <span class="n">TeamA</span><span class="p">,</span> <span class="n">FGenericTeamId</span> <span class="n">TeamB</span><span class="p">)</span>  
+</span></span><span class="line"><span class="cl"><span class="p">{</span>  
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">AttitudeSolverImpl</span> <span class="o">?</span> <span class="p">(</span><span class="n">AttitudeSolverImpl</span><span class="p">)(</span><span class="n">TeamA</span><span class="p">,</span> <span class="n">TeamB</span><span class="p">)</span> <span class="o">:</span> <span class="n">ETeamAttitude</span><span class="o">::</span><span class="n">Neutral</span><span class="p">;</span>  
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div></p>
+  </blockquote>
+
+<h1 id="lyra的队伍功能框架">
+<a class="header-anchor" href="#lyra%e7%9a%84%e9%98%9f%e4%bc%8d%e5%8a%9f%e8%83%bd%e6%a1%86%e6%9e%b6"></a>
+Lyra的队伍功能框架
+</h1><p>UE内置TeamID和接口功能较少，仅能作为基础建设。<br>
+其设计也不符合Lyra Framework随插随用的设计逻辑，该模块需要存储更多功能、方便使用。</p>
+<ul>
+<li>组件化：即插即用，ModularGameplay</li>
+<li>更多信息存储：队伍静态信息、动态信息需要有第地方存放和方便读取</li>
+<li>参数化：方便设置团队配置</li>
+</ul>
+<h2 id="配置">
+<a class="header-anchor" href="#%e9%85%8d%e7%bd%ae"></a>
+配置
+</h2><p>参考蓝图：<code>B_TeamSetup_TwoTeams</code></p>
+<ul>
+<li><code>TeamsToCreate</code><br>
+团队ID(int)到Team静态信息的映射<br>
+Lyra中通过红蓝区分两个队伍</li>
+<li><code>PublicTeamInfoClass</code>：Team数据类型，存放Team的所有信息<br>
+动态数据：如CS中当前团队总分数、Lyra中的队伍占点数、总击杀数。Lyra中用更具灵活性的<code>TeamTags</code>替代int<br>
+静态数据：存放自己队伍的<code>TeamsCreate</code>中的静态数据(<code>TeamDisplayAsset</code>)</li>
+<li><code>PrivateTeamInfoClass</code>：同上，仅自己队伍可以知道的数据<br>
+Lyra中没有需要Private的数据<br>
+<img src="https://gcore.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/20260321023746759.png" alt=""></li>
+</ul>
+<h2 id="应用">
+<a class="header-anchor" href="#%e5%ba%94%e7%94%a8"></a>
+应用
+</h2><p>下面四个类都继承了接口</p>
+<ul>
+<li>PlayerState：存放队伍信息数据</li>
+<li>Controller：传递PlayerState的队伍信息</li>
+<li>Character：在Poccess的时将Controller的队伍信息赋给自己</li>
+<li>LocalPlayer：同样仅作传递</li>
+</ul>
+<h3 id="display材质参数的使用">
+<a class="header-anchor" href="#display%e6%9d%90%e8%b4%a8%e5%8f%82%e6%95%b0%e7%9a%84%e4%bd%bf%e7%94%a8"></a>
+Display材质参数的使用
+</h3><h4 id="角色材质">
+<a class="header-anchor" href="#%e8%a7%92%e8%89%b2%e6%9d%90%e8%b4%a8"></a>
+角色材质
+</h4><h4 id="特效">
+<a class="header-anchor" href="#%e7%89%b9%e6%95%88"></a>
+特效
+</h4><h2 id="实现-1">
+<a class="header-anchor" href="#%e5%ae%9e%e7%8e%b0-1"></a>
+实现
+</h2><h3 id="ilyrateamagentinterface">
+<a class="header-anchor" href="#ilyrateamagentinterface"></a>
+ILyraTeamAgentInterface
+</h3><p>继承UE原生接口，多了Team改变时Delegate的接口<br>
+<img src="https://gcore.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/20260322043410466.png" alt=""><br>
+新Delegate在PlayerState中调用<br>
+<img src="https://gcore.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/20260322044643015.png" alt=""><br>
+在Pawn中使用<br>
+<img src="https://gcore.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/20260322044734625.png" alt=""></p>
+<h3 id="ulyrateamcreationcomponent">
+<a class="header-anchor" href="#ulyrateamcreationcomponent"></a>
+ULyraTeamCreationComponent
+</h3><p>配置并在Beginplay时创建<code>TeamInfo</code><br>
+给所有玩家分配Team(人数最少+ID最小)</p>
+<h4 id="初始化">
+<a class="header-anchor" href="#%e5%88%9d%e5%a7%8b%e5%8c%96"></a>
+初始化
+</h4><p>在<code>OnExperienceLoaded</code>(高优先级)时初始化，注意其仅在服务器执行</p>
+<ul>
+<li><code>ServerCreateTeams</code>：根据组件中的team配置去创建team</li>
+<li><code>ServerAssignPlayersToTeams</code>:给Player分配队伍：队伍人数最少+teamid最小<br>
+<img src="https://gcore.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/20260321213830593.png" alt=""></li>
+</ul>
+<h4 id="创建队伍信息">
+<a class="header-anchor" href="#%e5%88%9b%e5%bb%ba%e9%98%9f%e4%bc%8d%e4%bf%a1%e6%81%af"></a>
+创建队伍信息
+</h4><p>函数：<code>ServerCreateTeam</code><br>
+通过该组件蓝图配置的<code>TeamsToCreate</code>参数创建团队基础信息。</p>
+
+  <blockquote class="alert-blockquote tip">
+    <p class="alert-heading">
+      Tip
+    </p>
+    <p><h4 id="team数据的存放">
+<a class="header-anchor" href="#team%e6%95%b0%e6%8d%ae%e7%9a%84%e5%ad%98%e6%94%be"></a>
+Team数据的存放
+</h4><p>在<code>TeamsToCreate</code>中的<code>ULyraTeamDisplayAsset</code>存放队伍的静态信息，如果仅需要这些信息，直接通过<code>TeamsToCreate</code>查询即可。<br>
+但队伍往往还需要存放一些需要同步的动态数据，如CS中的分数、总杀敌数等等。<br>
+Lyra中采用AInfo来存放和同步这些数据，为了便于管理，将静态数据也存入其中。</p></p>
+  </blockquote>
+
+<ol>
+<li>创建<code>ALyraTeamPublicInfo</code>，Actor类型：<code>PublicTeamInfoClass</code>和PrivateTeamInfoClass`</li>
+<li>存入ID和静态数据<code>ULyraTeamDisplayAsset</code><img src="https://gcore.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/20260321220004658.png" alt=""></li>
+<li>将创建好的info存入到<code>ULyraTeamSubsystem::TeamMap</code></li>
+</ol>
+
+  <blockquote class="alert-blockquote info">
+    <p class="alert-heading">
+      Info
+    </p>
+    <p><h4 id="alyrateampublicinfo">
+<a class="header-anchor" href="#alyrateampublicinfo"></a>
+ALyraTeamPublicInfo
+</h4><p>继承自AInfo，不存坐标，属性可以同步<br>
+实际的数据存储在ULyraTeamSubsystem的TeamMap中</p></p>
+  </blockquote>
+
+<h4 id="给player分配队伍">
+<a class="header-anchor" href="#%e7%bb%99player%e5%88%86%e9%85%8d%e9%98%9f%e4%bc%8d"></a>
+给Player分配队伍
+</h4><p><code>ServerAssignPlayersToTeams</code><br>
+获取当前所有PlayerState，给他们分配ID。<br>
+监听后续新玩家登录时，给他们分配ID，<code>GameMode::OnGameModePlayerInitialized</code>调用时机非常早，不会影响后续手动设置TeamID</p>
+<p><code>ServerChooseTeamForPlayer</code><br>
+分配ID<br>
+<img src="https://gcore.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/20260322043656583.png" alt=""></p>
+<p>函数：<code>GetLeastPopulatedTeamID</code><br>
+分配规则：人数最少+ID最小</p>
+<h3 id="ulyrateamsubsystem">
+<a class="header-anchor" href="#ulyrateamsubsystem"></a>
+ULyraTeamSubsystem
+</h3><p>UWorldSubsystem<br>
+管理所有Team信息</p>
+<h4 id="teammap">
+<a class="header-anchor" href="#teammap"></a>
+<code>TeamMap</code>
+</h4><p>每个ID存储PublicInfo、PrivateInfo、DisplayAsset均为<code>ULyraTeamCreationComponent</code>配置并创建的内容，合并在一起统一管理<br>
+<img src="https://gcore.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/20260322010342915.png" alt=""></p>
+
+  <blockquote class="alert-blockquote important">
+    <p class="alert-heading">
+      Important
+    </p>
+    <p><h4 id="tmap的属性同步问题">
+<a class="header-anchor" href="#tmap%e7%9a%84%e5%b1%9e%e6%80%a7%e5%90%8c%e6%ad%a5%e9%97%ae%e9%a2%98"></a>
+TMap的属性同步问题
+</h4><p>TMap不支持属性同步，其依靠<code>TeamInfo</code>同步后重新Register来曲线救国。<br>
+<code>TeamInfo</code>创建时在Beginplay注册自不必说，修改动态数据时在Set 、OnRep函数中也均重新注册</p></p>
+  </blockquote>
+
+<h4 id="team管理">
+<a class="header-anchor" href="#team%e7%ae%a1%e7%90%86"></a>
+Team管理
+</h4><ol>
+<li>
+<p>注册、删除、寻找Team信息</p>
+<ul>
+<li>添加：RegisterTeamInfo</li>
+<li>删除：UnregisterTeamInfo</li>
+<li>获取：FindTeamFromActor、DoesTeamExist、GetTeamDisplayAsset</li>
+</ul>
+</li>
+<li>
+<p>Team信息改变时回调<br>
+<code>GetTeamDisplayAssetChangedDelegate</code>：供外部绑定的静态数据回调<br>
+没有TeamInfo中的动态数据改变回调</p>
+</li>
+<li>
+<p>判断敌我：<code>CompareTeams</code><br>
+如UE的原生Team，同样为三种情况：<br>
+ELyraTeamComparison：OnSameTeam、DifferentTeams、InvalidArgument<br>
+同样是相同则同队，INVALIDE则InvalidArgument</p>
+</li>
+</ol>
+<h4 id="team动态数值的设置">
+<a class="header-anchor" href="#team%e5%8a%a8%e6%80%81%e6%95%b0%e5%80%bc%e7%9a%84%e8%ae%be%e7%bd%ae"></a>
+Team动态数值的设置
+</h4><p>如上所示，TeamInfo还需要存储如总击杀、比分等动态数据。</p>
+
+  <blockquote class="alert-blockquote tip">
+    <p class="alert-heading">
+      Tip
+    </p>
+    <p><h2 id="采用gameplaytagscontainer存储int数据">
+<a class="header-anchor" href="#%e9%87%87%e7%94%a8gameplaytagscontainer%e5%ad%98%e5%82%a8int%e6%95%b0%e6%8d%ae"></a>
+采用GameplayTagsContainer存储int数据
+</h2><ol>
+<li>方便添加新变量不需要写死</li>
+<li>方便属性同步</li>
+</ol></p>
+  </blockquote>
+
+<p>TeamSubsystem为修改Tag提供了入口</p>
+<ul>
+<li>添加：<code>AddTeamTagStack</code>，仅PublicTeamInfo</li>
+<li>删除：<code>RemoveTeamTagStack</code>，仅PublicTeamInfo</li>
+<li>获取：<code>GetTeamTagStackCount</code> <code>TeamHasTag</code>，Putlic+Private<br>
+<img src="https://gcore.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/20260322034726020.png" alt=""></li>
+</ul>
+<p>通知Tag的数值改变：<br>
+通过手动重新Register来实现TMap的属性同步<br>
+<img src="https://gcore.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/20260322040521021.png" alt=""></p>
+<h4 id="其他内容">
+<a class="header-anchor" href="#%e5%85%b6%e4%bb%96%e5%86%85%e5%ae%b9"></a>
+其他内容
+</h4><p><code>CanCauseDamage</code><br>
+是否给与伤害</p>
+<ul>
+<li>true：不同队、空Team+有ASC(AbilitySystemComp)</li>
+<li>false: 同队</li>
+</ul>
+<h4 id="team作弊">
+<a class="header-anchor" href="#team%e4%bd%9c%e5%bc%8a"></a>
+Team作弊
+</h4><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="kt">void</span> <span class="n">ULyraTeamSubsystem</span><span class="o">::</span><span class="n">Initialize</span><span class="p">(</span><span class="n">FSubsystemCollectionBase</span><span class="o">&amp;</span> <span class="n">Collection</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="n">Super</span><span class="o">::</span><span class="n">Initialize</span><span class="p">(</span><span class="n">Collection</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	
+</span></span><span class="line"><span class="cl">	<span class="k">auto</span> <span class="n">AddTeamCheats</span> <span class="o">=</span> <span class="p">[](</span><span class="n">UCheatManager</span><span class="o">*</span> <span class="n">CheatManager</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="n">CheatManager</span><span class="o">-&gt;</span><span class="n">AddCheatManagerExtension</span><span class="p">(</span><span class="n">NewObject</span><span class="o">&lt;</span><span class="n">ULyraTeamCheats</span><span class="o">&gt;</span><span class="p">(</span><span class="n">CheatManager</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">	<span class="p">};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="n">CheatManagerRegistrationHandle</span> <span class="o">=</span> <span class="n">UCheatManager</span><span class="o">::</span><span class="n">RegisterForOnCheatManagerCreated</span><span class="p">(</span><span class="n">FOnCheatManagerCreated</span><span class="o">::</span><span class="n">FDelegate</span><span class="o">::</span><span class="n">CreateLambda</span><span class="p">(</span><span class="n">AddTeamCheats</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="n">ULyraTeamSubsystem</span><span class="o">::</span><span class="n">Deinitialize</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="n">UCheatManager</span><span class="o">::</span><span class="n">UnregisterFromOnCheatManagerCreated</span><span class="p">(</span><span class="n">CheatManagerRegistrationHandle</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="n">Super</span><span class="o">::</span><span class="n">Deinitialize</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>转发到子系统处理</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="cm">/** Cheats related to teams */</span>
+</span></span><span class="line"><span class="cl"><span class="n">UCLASS</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">ULyraTeamCheats</span> <span class="o">:</span> <span class="k">public</span> <span class="n">UCheatManagerExtension</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="n">GENERATED_BODY</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">public</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">	<span class="c1">// Moves this player to the next available team, wrapping around to the
+</span></span></span><span class="line"><span class="cl">	<span class="c1">// first team if at the end of the list of teams
+</span></span></span><span class="line"><span class="cl">	<span class="c1">// 将此玩家移动至下一个可用的队伍，若已处于队伍列表的末尾，则会自动回到第一个队伍。
+</span></span></span><span class="line"><span class="cl">	<span class="n">UFUNCTION</span><span class="p">(</span><span class="n">Exec</span><span class="p">,</span> <span class="n">BlueprintAuthorityOnly</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="k">virtual</span> <span class="kt">void</span> <span class="n">CycleTeam</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="c1">// Moves this player to the specified team
+</span></span></span><span class="line"><span class="cl">	<span class="c1">// 将此玩家移至指定队伍
+</span></span></span><span class="line"><span class="cl">	<span class="n">UFUNCTION</span><span class="p">(</span><span class="n">Exec</span><span class="p">,</span> <span class="n">BlueprintAuthorityOnly</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="k">virtual</span> <span class="kt">void</span> <span class="n">SetTeam</span><span class="p">(</span><span class="n">int32</span> <span class="n">TeamID</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="c1">// Prints a list of all of the teams
+</span></span></span><span class="line"><span class="cl">	<span class="c1">// 打印出所有团队的列表
+</span></span></span><span class="line"><span class="cl">	<span class="n">UFUNCTION</span><span class="p">(</span><span class="n">Exec</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="k">virtual</span> <span class="kt">void</span> <span class="n">ListTeams</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span></code></pre></div></div>
+    <footer class="article-footer"><ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item" data-aos="zoom-in">
+      <a
+        class="article-tag-list-link"
+        href="/WzhGameDevPublish/tags/blog"
+        rel="tag"
+        >BLOG</a
+      >
+    </li></ul>
+</footer>
+  </div><nav
+    id="article-nav"
+    aria-label="Article navigation"
+    data-aos="fade-up"
+  ><div class="article-nav-link-wrap left"><img
+            data-src="https://picx.zhimg.com/70/v2-72604d6e44f8d9e24764505cf50f92a9_1440w.avis"
+            data-sizes="auto"
+            alt="LyraCharacter"
+            class="lazyload"
+          /><a
+          href="/WzhGameDevPublish/post/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/%E4%BB%A3%E7%A0%81%E6%A1%86%E6%9E%B6/lyra/lyra-3c/lyracharacter/"
+          aria-label="前一篇:LyraCharacter"
+          title="前一篇:LyraCharacter"
+        ></a>
+        <div class="article-nav-caption">前一篇</div>
+        <h3 class="article-nav-title">LyraCharacter</h3>
+      </div></nav></article></section>
+        </div><footer id="footer" aria-label="Site footer">
+  <div style="width: 100%; overflow: hidden">
+    <div class="footer-line"></div>
+  </div>
+  <div id="footer-info"><div>
+      <span class="icon-copyright"></span>2025-2026<span class="footer-info-sep rotate"></span>
+      温志洪
+    </div><div>
+        基于&nbsp;<a
+          href="https://gohugo.io/"
+          target="_blank"
+          rel="noopener nofollow noreferrer"
+          >Hugo</a
+        >&nbsp; Theme.<a
+          href="https://github.com/D-Sketon/hugo-theme-reimu"
+          target="_blank"
+          rel="noopener nofollow noreferrer"
+          >Reimu</a
+        >
+      </div><div>
+        <span class="icon-brush"
+          >&nbsp;24.1k</span
+        >
+        &nbsp;|&nbsp;
+        <span class="icon-coffee">&nbsp;00:53</span>
+      </div><div>
+        <span class="icon-eye"></span>
+        <span id="busuanzi_container_site_pv"
+          >总访问量&nbsp;<span
+            id="busuanzi_value_site_pv"
+          ></span
+        ></span>
+        &nbsp;|&nbsp;
+        <span class="icon-user"></span>
+        <span id="busuanzi_container_site_uv"
+          >总访客量&nbsp;<span
+            id="busuanzi_value_site_uv"
+          ></span
+        ></span>
+      </div></div>
+</footer>
+<div class="sidebar-top">
+            <div class="sidebar-top-taichi rotate"></div>
+            <div class="arrow-up"></div>
+          </div><div id="mask" class="hide"></div>
+      </div><nav id="mobile-nav" aria-label="Mobile navigation">
+  <div class="sidebar-wrap"><div class="sidebar-toc-sidebar"><h3 class="toc-title">文章目录</h3>
+<div class="sidebar-toc-wrapper toc-div-class">
+  <nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#概述">概述</a></li>
+        <li><a href="#实现">实现</a></li>
+      </ul>
+    </li>
+  </ul>
+
+  <ul>
+    <li><a href="#配置">配置</a></li>
+    <li><a href="#应用">应用</a>
+      <ul>
+        <li><a href="#display材质参数的使用">Display材质参数的使用</a></li>
+      </ul>
+    </li>
+    <li><a href="#实现-1">实现</a>
+      <ul>
+        <li><a href="#ilyrateamagentinterface">ILyraTeamAgentInterface</a></li>
+        <li><a href="#ulyrateamcreationcomponent">ULyraTeamCreationComponent</a></li>
+        <li><a href="#ulyrateamsubsystem">ULyraTeamSubsystem</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+</div></div>
+        <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
+  <img
+    data-src="/WzhGameDevPublish/avatar/UELogo.png"
+    data-sizes="auto"
+    alt="温志洪"
+    class="lazyload"
+  />
+  <div class="sidebar-author-name">温志洪</div>
+  <div class="sidebar-description">FPS游戏</div>
+</div>
+<div class="sidebar-state">
+  <div class="sidebar-state-article">
+    <div>文章</div><div class="sidebar-state-number">9</div>
+  </div>
+  <a class="sidebar-state-category" href="/WzhGameDevPublish/categories/" aria-label="sidebar-state-category-link">
+    <div>分类</div>
+    <div class="sidebar-state-number">
+      0
+    </div>
+  </a>
+  <a class="sidebar-state-tag" href="/WzhGameDevPublish/tags/" aria-label="sidebar-state-tag-link">
+    <div>标签</div>
+    <div class="sidebar-state-number">5</div>
+  </a>
+</div>
+<div class="sidebar-social"><div class="icon-bilibili sidebar-social-icon">
+      <a
+        href="https://space.bilibili.com/35312868"
+        itemprop="url"
+        target="_blank"
+        aria-label="bilibili"
+        rel="noopener nofollow noreferrer"
+      ></a>
+    </div><div class="icon-email sidebar-social-icon">
+      <a
+        href="mailto:cnwenzhihong@gmail.com"
+        itemprop="url"
+        target="_blank"
+        aria-label="email"
+        rel="noopener nofollow noreferrer"
+      ></a>
+    </div></div>
+<div class="sidebar-menu"><div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/WzhGameDevPublish/"
+        aria-label="首页"
+      ></a>
+      <div class='sidebar-menu-icon icon rotate'>&#xe62b;</div>
+      <div class="sidebar-menu-link">首页</div>
+    </div><div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/WzhGameDevPublish/archives"
+        aria-label="归档"
+      ></a>
+      <div class='sidebar-menu-icon icon rotate'>&#xe62b;</div>
+      <div class="sidebar-menu-link">归档</div>
+    </div><div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/WzhGameDevPublish/about"
+        aria-label="关于"
+      ></a>
+      <div class='sidebar-menu-icon icon rotate'>&#xe62b;</div>
+      <div class="sidebar-menu-link">关于</div>
+    </div><div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/WzhGameDevPublish/friend"
+        aria-label="友链"
+      ></a>
+      <div class='sidebar-menu-icon icon rotate'>&#xe62b;</div>
+      <div class="sidebar-menu-link">友链</div>
+    </div></div>
+</div></div><div class="sidebar-btn-wrapper">
+        <div class="sidebar-toc-btn current"></div>
+        <div class="sidebar-common-btn"></div>
+      </div></nav>
+</div><div class="site-search">
+        <div class="reimu-popup popup">
+          <div class="reimu-search">
+            <div class="reimu-search-input-icon"></div>
+            <div id="reimu-search-input"></div>
+            <div class="popup-btn-close"></div>
+          </div>
+          <div class="reimu-results">
+            <div id="reimu-stats"></div>
+            <div id="reimu-hits"></div>
+            <div id="reimu-pagination" class="reimu-pagination"></div>
+          </div>
+          <img class="reimu-bg" src="/WzhGameDevPublish/images/reimu.png" />
+        </div>
+      </div><script
+    src="https://npm.webcache.cn/lazysizes@5.3.2/lazysizes.min.js"
+    integrity="sha384-3gT/vsepWkfz/ff7PpWNUeMzeWoH3cDhm/A8jM7ouoAK0/fP/9bcHHR5kHq2nf&#43;e" crossorigin="anonymous"></script><script
+    src="https://npm.webcache.cn/clipboard@2.0.11/dist/clipboard.min.js"
+    integrity="sha384-J08i8An/QeARD9ExYpvphB8BsyOj3Gh2TSh1aLINKO3L0cMSH2dN3E22zFoXEi0Q" crossorigin="anonymous"></script><script
+    src="https://npm.webcache.cn/material-theme@1.0.0/dist/material-theme.umd.js"
+    integrity="sha384-vLev0II0HKFaxkcm&#43;/7kX5IGwVFBASkGchU311wmU/veIj2bB0UcBkQbW6yw2asK" crossorigin="anonymous"></script><script src="/WzhGameDevPublish/js/main.js" ></script><script src="/WzhGameDevPublish/js/aos.js" ></script><script>
+    var aosInit = () => {
+      AOS.init({
+        duration: 1000,
+        easing: "ease",
+        once: true,
+        offset: 50,
+      });
+    };
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", aosInit);
+    } else {
+      aosInit();
+    }
+  </script><script src="/WzhGameDevPublish/js/pjax_main.js" data-pjax></script><script>
+    var ALGOLIA_CONFIG = {
+      logo: '\/WzhGameDevPublish\/images\/algolia_logo.svg',
+      algolia: {
+        applicationID: "Y8C6JKXKKR",
+        apiKey: "30fdacdc4947fb8d8faed68e16f048a0",
+        indexName: "index",
+        hits: {
+          "per_page": parseInt("10")
+        },
+        labels: {
+          "input_placeholder": '搜索.....',
+          "hits_empty": '未发现与 「${query}」相关内容',
+          "hits_stats": '找到${hits}条结果（用时 ${time} ms）'
+        }
+      }
+    };
+  </script><script
+    src="https://npm.webcache.cn/algoliasearch@4.17.1/dist/algoliasearch-lite.umd.js"
+    deferintegrity="sha384-xvLS0jfKuoREs7pqkRI/OI8GcqohO5S&#43;jQz7ZBtQXnsXmD&#43;9jDOOY4cL6dCPzlrk" crossorigin="anonymous"></script><script
+    src="https://npm.webcache.cn/@reimujs/instantsearch.js@4.57.0-beta.1/dist/instantsearch.production.min.js"
+    deferintegrity="sha384-aagKMe8nkqaP2DYQc8kkYOL5l&#43;M5Q2WH/Uhr4teOh0Ybp0RZj0kUSDm45qPikMjK" crossorigin="anonymous"></script><script src="/WzhGameDevPublish/js/algolia_search.js" ></script><script
+    src="https://npm.webcache.cn/mouse-firework@0.1.1/dist/index.umd.js"
+    integrity="sha384-8LyaidD9GPxQQgLJO/WRw/O2h3BoNq/ApI/ecpvM6RsrCz2qP2ppBXUKihP4V/2d" crossorigin="anonymous"></script><script>
+  if (! false  || !window.matchMedia('(max-width: 768px)').matches) {
+    if (window.firework) {
+      const options = JSON.parse("{\"excludeelements\":[\"a\",\"button\"],\"particles\":[{\"colors\":[\"var(--red-1)\",\"var(--red-2)\",\"var(--red-3)\",\"var(--red-4)\"],\"duration\":[1200,1800],\"easing\":\"easeOutExpo\",\"move\":[\"emit\"],\"number\":20,\"shape\":\"circle\",\"shapeOptions\":{\"alpha\":[0.3,0.5],\"radius\":[16,32]}},{\"colors\":[\"var(--red-0)\"],\"duration\":[1200,1800],\"easing\":\"easeOutExpo\",\"move\":[\"diffuse\"],\"number\":1,\"shape\":\"circle\",\"shapeOptions\":{\"alpha\":[0.2,0.5],\"lineWidth\":6,\"radius\":20}}]}");
+      options.excludeElements = options.excludeelements;
+      delete options.excludeelements;
+      window.firework(options);
+    }
+  }
+</script><script
+    src="https://npm.webcache.cn/quicklink@3.0.1/dist/quicklink.umd.js"
+    integrity="sha384-caMDqvgav/HWdEYQU1QRRHMLleigpL1YHAG0m371DhzfL8rRzUyOb&#43;bEHtwlmYjD" crossorigin="anonymous"></script><script data-pjax>
+    window.quicklink?.listen({
+      timeout:  3000 ,
+      priority:  true ,
+      ignores: JSON.parse("[]")
+    });
+  </script>
+
+
+<div id="lazy-script">
+  <div><script data-pjax>
+        window.REIMU_POST = {
+          author: "温志洪",
+          title: "Lyra Team组队功能解析",
+          url: "http:\/\/localhost:1895\/WzhGameDevPublish\/post\/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91\/%E4%BB%A3%E7%A0%81%E6%A1%86%E6%9E%B6\/lyra\/lyra-%E5%B8%B8%E7%94%A8%E5%8A%9F%E8%83%BD\/lyra-team%E7%BB%84%E9%98%9F%E5%8A%9F%E8%83%BD%E8%A7%A3%E6%9E%90\/",
+          description: "\r系统概述\r团队功能，不算很大的一个模块，但和各种模块都要打交道，同时也需要对数据进行简单存储、同步、获取。\n拓展资料：\nLyra Team System | X157 Dev Notes\nLyra: Team-based Spawn Points | Community tutorial\n",
+          cover: "https:\/\/dev.epicgames.com\/community\/api\/learning\/image\/c71a4b90-ad49-485c-8d20-56188a0c12e8?resizing_type=fill\u0026width=800\u0026height=400",
+        };
+      </script><script src="/WzhGameDevPublish/js/insert_highlight.js" data-pjax></script><script src="/WzhGameDevPublish/js/tabs.js" data-pjax></script><script type="module" data-pjax>const PhotoSwipeLightbox = (await safeImport("https:\/\/npm.webcache.cn\/photoswipe@5.4.4\/dist\/photoswipe-lightbox.esm.min.js", "sha384-DiL6M\/gG\u002bwmTxmCRZyD1zee6lIhawn5TGvED0FOh7fXcN9B0aZ9dexSF\/N6lrZi\/")).default;const initPswp = (gallery, children) => {
+          if (_$$(`${gallery} ${children}`).length > 0) {
+            new PhotoSwipeLightbox({
+              gallery,
+              children,pswpModule: () => safeImport("https:\/\/npm.webcache.cn\/photoswipe@5.4.4\/dist\/photoswipe.esm.min.js", "sha384-WkkO3GCmgkC3VQWpaV8DqhKJqpzpF9JoByxDmnV8\u002boTJ7m3DfYEWX1fu1scuS4\u002bs")}).init();
+          }
+        }
+        const pswp = () => {
+          initPswp('.article-entry', 'a.article-gallery-item');
+          initPswp('.article-gallery', 'a.article-gallery-item');
+          window.lightboxStatus = 'done';
+          window.removeEventListener('lightbox:ready', pswp);
+        }
+        if(window.lightboxStatus === 'ready') {
+          pswp()
+        } else {
+          window.addEventListener('lightbox:ready', pswp);
+        }
+      </script></div>
+</div><script
+    src="https://npm.webcache.cn/busuanzi@2.3.0/bsz.pure.mini.js"
+    asyncintegrity="sha384-0M75wtSkhjIInv4coYlaJU83&#43;OypaRCIq2SukQVQX04eGTCBXJDuWAbJet56id&#43;S" crossorigin="anonymous"></script><script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.getRegistrations().then((registrations) => {
+        for (let registration of registrations) {
+          registration.unregister();
+        }
+      });
+    }
+  </script><script>
+  const reimuCopyright = String.raw`
+   ______     ______     __     __    __     __  __    
+  /\  == \   /\  ___\   /\ \   /\ "-./  \   /\ \/\ \   
+  \ \  __<   \ \  __\   \ \ \  \ \ \-./\ \  \ \ \_\ \  
+   \ \_\ \_\  \ \_____\  \ \_\  \ \_\ \ \_\  \ \_____\ 
+    \/_/ /_/   \/_____/   \/_/   \/_/  \/_/   \/_____/ 
+                                                    
+  `;
+  console.log(String.raw`%c ${reimuCopyright}`, "color: #ff5252;");
+  console.log(
+    "%c Theme.Reimu" + " %c https://github.com/D-Sketon/hugo-theme-reimu ",
+    "color: white; background: #ff5252; padding:5px 0;",
+    "padding:4px;border:1px solid #ff5252;",
+  );
+</script></body>
+</html>
