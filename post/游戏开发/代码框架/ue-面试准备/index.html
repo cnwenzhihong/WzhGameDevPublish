@@ -1,0 +1,1328 @@
+<!doctype html>
+<html
+  lang="zh-cn" 
+  data-theme-mode="false"
+  >
+  <head><script src="/WzhGameDevPublish/livereload.js?mindelay=10&amp;v=2&amp;port=1895&amp;path=WzhGameDevPublish/livereload" data-no-instant defer></script><meta charset="utf-8" />
+<meta
+  name="viewport"
+  content="width=device-width, initial-scale=1, shrink-to-fit=no"
+/><title>
+  UE 面试准备 | 温志洪
+</title>
+<meta name="description" content="FPS游戏"/><script>
+  window.siteConfig = JSON.parse("{\"anchor_icon\":null,\"base\":\"http://localhost:1895/WzhGameDevPublish/\",\"clipboard\":{\"copyright\":{\"count\":50,\"enable\":false,\"license_type\":\"by-nc-sa\"},\"fail\":{\"en\":\"Copy failed (ﾟ⊿ﾟ)ﾂ\",\"ja\":\"コピー失敗 (ﾟ⊿ﾟ)ﾂ\",\"pt-br\":\"Falha ao copiar (ﾟ⊿ﾟ)ﾂ\",\"zh-cn\":\"复制失败 (ﾟ⊿ﾟ)ﾂ\",\"zh-tw\":\"複製失敗 (ﾟ⊿ﾟ)ﾂ\"},\"success\":{\"en\":\"Copy successfully (*^▽^*)\",\"ja\":\"コピー成功 (*^▽^*)\",\"pt-br\":\"Copiado com sucesso (*^▽^*)\",\"zh-cn\":\"复制成功 (*^▽^*)\",\"zh-tw\":\"複製成功 (*^▽^*)\"}},\"code_block\":{\"expand\":4},\"i18n_languages\":[{\"Lang\":\"en\",\"LanguageName\":\"English\",\"LanguageCode\":\"\",\"Title\":\"\",\"LanguageDirection\":\"\",\"Weight\":1,\"Disabled\":false},{\"Lang\":\"zh-cn\",\"LanguageName\":\"简体中文\",\"LanguageCode\":\"\",\"Title\":\"\",\"LanguageDirection\":\"\",\"Weight\":1,\"Disabled\":false}],\"icon_font\":\"4552607_4k4bc36ef96\",\"outdate\":{\"daysago\":180,\"enable\":false,\"message\":{\"en\":\"This article was last updated on {time}. Please note that the content may no longer be applicable.\",\"ja\":\"この記事は最終更新日：{time}。記載内容が現在有効でない可能性がありますのでご注意ください。\",\"pt-br\":\"Este artigo foi atualizado pela última vez em {time}. Observe que o conteúdo pode não ser mais aplicável.\",\"zh-cn\":\"本文最后更新于 {time}，请注意文中内容可能已不适用。\",\"zh-tw\":\"本文最後更新於 {time}，請注意文中內容可能已不適用。\"}}}");
+  
+</script>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link
+  rel="preload"
+  as="style"
+  href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic%7cNoto%20Serif%20SC:400,400italic,700,700italic%7c&amp;display=swap"
+/>
+<link
+  rel="stylesheet"
+  href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic%7cNoto%20Serif%20SC:400,400italic,700,700italic%7c&amp;display=swap"
+  media="print"
+  onload="this.media='all'"
+/>
+<link
+    rel="preload"
+    href="//at.alicdn.com/t/c/font_4552607_4k4bc36ef96.woff2"
+    as="font"
+    type="font/woff2"
+    crossorigin="anonymous"
+  /><link rel="stylesheet" href="/WzhGameDevPublish/css/loader.css" />
+<meta property="og:type" content="website" />
+  <meta property="og:title" content="UE 面试准备 | 温志洪" />
+  <meta
+    property="og:description"
+    content="FPS游戏"
+  />
+  <meta property="og:url" content="http://localhost:1895/WzhGameDevPublish/post/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/%E4%BB%A3%E7%A0%81%E6%A1%86%E6%9E%B6/ue-%E9%9D%A2%E8%AF%95%E5%87%86%E5%A4%87/" />
+  <meta
+    property="og:site_name"
+    content="妖精游戏开发馆"
+  />
+  <meta
+    property="og:image"
+    content="/WzhGameDevPublish/"
+  />
+  <meta property="article:author" content="温志洪" />
+  <meta property="article:published_time" content="2026-04-26T06:23:44&#43;00:00" />
+  <meta property="article:modified_time" content="2026-04-30T15:48:50&#43;00:00" /><meta property="article:tag" content="blog" /><meta name="twitter:card" content="summary" />
+  <meta name="twitter:image" content="/WzhGameDevPublish/" />
+<link rel="shortcut icon" href="/WzhGameDevPublish/favicon.ico"><link rel="stylesheet" href="/WzhGameDevPublish/css/main.css" />
+<link
+    rel="preload"
+    as="style"
+    href="https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe.css"
+    integrity="sha384-IfxC36XL/toUyJ939C73PcgMuRzAZuIzZxE38drsmO5p6jD7ei&#43;Zx/1oA/0l8ysE" crossorigin="anonymous"onload="this.onload=null;this.rel='stylesheet'"
+  /><link
+    rel="preload"
+    as="style"
+    href="https://npm.webcache.cn/katex@0.16.24/dist/katex.min.css"
+    integrity="sha384-tTgKLjMYmJr94v8qu2PE5MUGSMbyN2xiH266JUB3gpm8vnnJywd1dWSOEfrFz&#43;YI" crossorigin="anonymous"onload="this.onload=null;this.rel='stylesheet'"
+  /><script
+    src="https://npm.webcache.cn/pace-js@1.2.4/pace.min.js"
+    integrity="sha384-k6YtvFUEIuEFBdrLKJ3YAUbBki333tj1CSUisai5Cswsg9wcLNaPzsTHDswp4Az8" crossorigin="anonymous"></script><link
+    rel="stylesheet"
+    href="https://npm.webcache.cn/@reimujs/aos@0.1.2/dist/aos.css"
+    integrity="sha384-GMRP93c6Hkz9JVKGAuRR3nTS7M07RwPgTFenXiosjq2VbVgvdDNcz1g6Mkj8AONa" crossorigin="anonymous"/></head>
+  <body><div id='loader'>
+    <div class="loading-left-bg loading-bg"></div>
+    <div class="loading-right-bg loading-bg"></div>
+    <div class="spinner-box">
+      <div class="loading-taichi rotate"><svg width="150" height="150" viewBox="0 0 1024 1024" class="icon" version="1.1" xmlns="https://www.w3.org/2000/svg" shape-rendering="geometricPrecision">
+            <path d="M303.5 432A80 80 0 0 1 291.5 592A80 80 0 0 1 303.5 432z" fill="var(--red-1, #ff5252)" />
+            <path d="M512 65A447 447 0 0 1 512 959L512 929A417 417 0 0 0 512 95A417 417 0 0 0 512 929L512 959A447 447 0 0 1 512 65z 
+          M512 95A417 417 0 0 1 929 512A208.5 208.5 0 0 1 720.5 720.5L720.5 592A80 80 0 0 0 720.5 432A80 80 0 0 0 720.5 592L720.5 720.5A208.5 208.5 0 0 1 512 512A208.5 208.5 0 0 0 303.5 303.5A208.5 208.5 0 0 0 95 512A417 417 0 0 1 512 95z" fill="var(--red-1, #ff5252)" />
+          </svg></div><div class="loading-word">少女祈祷中...</div>
+    </div>
+  </div>
+  </div>
+  <script>
+    var time = null;
+    var loaderEl = document.getElementById('loader');
+    var startLoading = () => {
+      time = Date.now();
+      loaderEl.classList.remove("loading");
+    }
+    var hideLoader = () => {
+      document.body.style.overflow = 'auto';
+      loader.classList.add('loading');
+    };
+
+    var endLoading = () => {
+      if (!time) {
+        hideLoader();
+      } else {
+        if (Date.now() - time > 500) {
+          time = null;
+          hideLoader();
+        } else {
+          setTimeout(endLoading, 500 - (Date.now() - time));
+          time = null;
+        }
+      }
+    }
+    window.addEventListener('DOMContentLoaded', endLoading);
+    loaderEl.addEventListener('click', endLoading);
+  </script><div id="copy-tooltip"></div>
+<div id="lang-tooltip">
+本文章没有找到对应的语言版本
+</div>
+<div id="heatmap-tooltip"></div><div id="container">
+      <div id="wrap"><div id="header-nav">
+  <nav id="main-nav" aria-label="Primary navigation"><a class="main-nav-link-wrap" href="/WzhGameDevPublish/">
+        <div class='main-nav-icon icon rotate'>&#xe62b;</div>
+        <span class="main-nav-link">首页</span>
+      </a><a class="main-nav-link-wrap" href="/WzhGameDevPublish/archives">
+        <div class='main-nav-icon icon rotate'>&#xe62b;</div>
+        <span class="main-nav-link">归档</span>
+      </a><a class="main-nav-link-wrap" href="/WzhGameDevPublish/about">
+        <div class='main-nav-icon icon rotate'>&#xe62b;</div>
+        <span class="main-nav-link">关于</span>
+      </a><a class="main-nav-link-wrap" href="/WzhGameDevPublish/friend">
+        <div class='main-nav-icon icon rotate'>&#xe62b;</div>
+        <span class="main-nav-link">友链</span>
+      </a><a id="main-nav-toggle" class="nav-icon" aria-label="Toggle navigation" role="button"></a>
+  </nav>
+  <nav id="sub-nav" aria-label="Secondary navigation"><a id="nav-search-btn" class="nav-icon popup-trigger" title="搜索" aria-label="搜索"></a></nav><nav id="i18n-nav" aria-label="Language selection">
+      <div class="custom-dropdown">
+        <div class="select-selected" id="select-selected" role="button" aria-haspopup="listbox" aria-expanded="false" aria-label="Language menu">
+          <span id="nav-language-btn" class="nav-icon" style="padding: 0 20px 0 0"></span>
+          <span id="selected-lang">简体中文</span>
+        </div>
+        <ul class="select-items" id="select-items" role="listbox" aria-label="Languages"><li data-value="en" role="option" arial-selected="false" >English</li><li data-value="zh-cn" role="option" class="selected" arial-selected="true" >简体中文</li></ul>
+      </div>
+      <script>
+        var selectSelected = document.getElementById("select-selected");
+        var selectedLang = document.getElementById("selected-lang");
+        var selectItems = document.getElementById("select-items");
+        var selectOptions = selectItems.querySelectorAll("li");
+
+        selectSelected.addEventListener("click", () => {
+          selectItems.classList.toggle("show");
+          var expanded = selectSelected.getAttribute("aria-expanded") === "true";
+          selectSelected.setAttribute("aria-expanded", (!expanded).toString());
+        });
+
+        selectOptions.forEach((item) => {
+          item.addEventListener("click", () => {
+            const langMap = {};selectedLang.textContent = item.textContent;
+            selectItems.classList.remove("show");
+            selectOptions.forEach((option) => {
+              option.classList.remove("selected");
+            });
+            item.classList.add("selected");
+            if (item.dataset.value === 'zh-cn') {
+              return;
+            }
+            if (!langMap[item.dataset.value]) {
+              _$("#lang-tooltip").style.opacity = "1";
+              setTimeout(() => {
+                _$("#lang-tooltip").style.opacity = "0";
+              }, 1000);
+              return;
+            }
+            window.location = langMap[item.dataset.value];
+          });
+        });
+
+        document.addEventListener("click", (event) => {
+          if (!event.target.closest(".custom-dropdown")) {
+            selectItems.classList.remove("show");
+            selectSelected.setAttribute("aria-expanded", "false");
+          }
+        });
+      </script>
+    </nav></div>
+<header id="header" aria-label="Site header"><picture><source media="(max-width: 479px)" srcset="/WzhGameDevPublish/images/banner-600w.webp"><source media="(max-width: 799px)" srcset="/WzhGameDevPublish/images/banner-800w.webp"><source media="(min-width: 800px)" srcset="/WzhGameDevPublish/images/banner.webp"><img crossorigin="anonymous" fetchpriority="high" src="/WzhGameDevPublish/images/banner.webp" alt="UE 面试准备"></picture><img alt="UE 面试准备" style="visibility: hidden;"><div id="header-outer">
+    <div id="header-title"><span id="logo">
+            <h1 data-aos="slide-up">UE 面试准备</h1>
+          </span><h2 id="subtitle-wrap" data-aos="slide-down"></h2></div>
+  </div>
+</header><div id="content"
+          aria-label="Page content"
+          class="sidebar-left"
+            ><aside id="sidebar" aria-label="Sidebar"><div class="sidebar-wrapper-container sticky"><div class="sidebar-wrapper">
+    <div
+      class="sidebar-wrap"
+      data-aos="fade-up"
+    ><div class="sidebar-toc-sidebar"><h3 class="toc-title">文章目录</h3>
+<div class="sidebar-toc-wrapper toc-div-class">
+  <nav id="TableOfContents">
+  <ul>
+    <li><a href="#关键资料">关键资料</a></li>
+    <li><a href="#一句话总结和介绍">一句话总结和介绍</a>
+      <ul>
+        <li><a href="#自我介绍">自我介绍</a></li>
+        <li><a href="#lyra改fps项目">Lyra改FPS项目</a></li>
+        <li><a href="#lyra的优点">Lyra的优点</a></li>
+      </ul>
+    </li>
+    <li><a href="#问题">问题</a>
+      <ul>
+        <li></li>
+      </ul>
+    </li>
+  </ul>
+
+  <ul>
+    <li><a href="#基本函数">基本函数</a></li>
+    <li><a href="#基本变量">基本变量</a></li>
+    <li><a href="#优化">优化</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#基础">基础</a>
+      <ul>
+        <li></li>
+      </ul>
+    </li>
+    <li><a href="#应用">应用</a>
+      <ul>
+        <li><a href="#服务器客户端不一致问题">服务器客户端不一致问题</a></li>
+      </ul>
+    </li>
+  </ul>
+
+  <ul>
+    <li><a href="#框架">框架</a>
+      <ul>
+        <li><a href="#gas的优点为什么是gas">GAS的优点，为什么是GAS</a></li>
+        <li><a href="#gameplaytag的优点">GameplayTag的优点</a></li>
+        <li><a href="#gas的缺点">GAS的缺点</a></li>
+      </ul>
+    </li>
+    <li><a href="#ability">Ability</a>
+      <ul>
+        <li></li>
+      </ul>
+    </li>
+    <li><a href="#gameplaytag">GamePlayTag</a></li>
+    <li><a href="#tagrelation">TagRelation</a></li>
+    <li><a href="#attribute">Attribute</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#gc原理">GC原理</a></li>
+    <li><a href="#uproperty">UPROPERTY</a>
+      <ul>
+        <li><a href="#简述uproperty的作用">简述UPROPERTY()的作用</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+</div></div>
+          <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
+  <img
+    data-src="/WzhGameDevPublish/avatar/UELogo.png"
+    data-sizes="auto"
+    alt="温志洪"
+    class="lazyload"
+  />
+  <div class="sidebar-author-name">温志洪</div>
+  <div class="sidebar-description">FPS游戏</div>
+</div>
+<div class="sidebar-state">
+  <div class="sidebar-state-article">
+    <div>文章</div><div class="sidebar-state-number">13</div>
+  </div>
+  <a class="sidebar-state-category" href="/WzhGameDevPublish/categories/" aria-label="sidebar-state-category-link">
+    <div>分类</div>
+    <div class="sidebar-state-number">
+      0
+    </div>
+  </a>
+  <a class="sidebar-state-tag" href="/WzhGameDevPublish/tags/" aria-label="sidebar-state-tag-link">
+    <div>标签</div>
+    <div class="sidebar-state-number">10</div>
+  </a>
+</div>
+<div class="sidebar-social"><div class="icon-bilibili sidebar-social-icon">
+      <a
+        href="https://space.bilibili.com/35312868"
+        itemprop="url"
+        target="_blank"
+        aria-label="bilibili"
+        rel="noopener nofollow noreferrer"
+      ></a>
+    </div><div class="icon-email sidebar-social-icon">
+      <a
+        href="mailto:cnwenzhihong@gmail.com"
+        itemprop="url"
+        target="_blank"
+        aria-label="email"
+        rel="noopener nofollow noreferrer"
+      ></a>
+    </div></div>
+<div class="sidebar-menu"><div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/WzhGameDevPublish/"
+        aria-label="首页"
+      ></a>
+      <div class='sidebar-menu-icon icon rotate'>&#xe62b;</div>
+      <div class="sidebar-menu-link">首页</div>
+    </div><div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/WzhGameDevPublish/archives"
+        aria-label="归档"
+      ></a>
+      <div class='sidebar-menu-icon icon rotate'>&#xe62b;</div>
+      <div class="sidebar-menu-link">归档</div>
+    </div><div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/WzhGameDevPublish/about"
+        aria-label="关于"
+      ></a>
+      <div class='sidebar-menu-icon icon rotate'>&#xe62b;</div>
+      <div class="sidebar-menu-link">关于</div>
+    </div><div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/WzhGameDevPublish/friend"
+        aria-label="友链"
+      ></a>
+      <div class='sidebar-menu-icon icon rotate'>&#xe62b;</div>
+      <div class="sidebar-menu-link">友链</div>
+    </div></div>
+</div><div class="sidebar-btn-wrapper" style="position:static">
+            <div class="sidebar-toc-btn current"></div>
+            <div class="sidebar-common-btn"></div>
+          </div></div>
+  </div><div class="sidebar-widget"></div></div></aside>
+<section id="main" aria-label="Main content"><p style="color:red">ARTICLE PARTIAL OVERRIDE ACTIVE</p>
+<article
+  class="h-entry article"
+  itemscope
+  itemtype="https://schema.org/BlogPosting"
+>
+  <div
+    class="article-inner"
+    data-aos="fade-up"
+  >
+    <div class="article-meta"><div class="article-date">
+  <span
+    class="article-date-link icon-calendar"
+    data-aos="zoom-in"
+  >
+    <time datetime="2026-04-26 06:23:44.564 &#43;0000 UTC" itemprop="datePublished"
+      >2026-04-26</time
+    >
+    <time style="display: none;" id="post-update-time"
+      >2026-04-30</time
+    >
+  </span><span
+      class="article-date-link icon-calendar-plus"
+      data-aos="zoom-in"
+    >
+      <time datetime="2026-04-30 15:48:50.891 &#43;0000 UTC" itemprop="dateModified"
+        >2026-04-30</time
+      >
+    </span></div>
+<div class="article-category"></div>
+</div><div class="hr-line"></div><div class="e-content article-entry" itemprop="articleBody"><h1 id="总览">
+<a class="header-anchor" href="#%e6%80%bb%e8%a7%88"></a>
+总览
+</h1><h2 id="关键资料">
+<a class="header-anchor" href="#%e5%85%b3%e9%94%ae%e8%b5%84%e6%96%99"></a>
+关键资料
+</h2><p><a href="https://zhuanlan.zhihu.com/p/2014363740011790665">虚幻面试笔记</a><br>
+<a href="https://zhuanlan.zhihu.com/p/34721113">《Exploring in UE4》关于网络同步的理解与思考</a><br>
+<a href="https://dev.epicgames.com/documentation/unreal-engine/gameplay-attributes-and-attribute-sets-for-the-gameplay-ability-system-in-unreal-engine">GAS官方文档</a><br>
+<a href="https://github.com/BillEliot/GASDocumentation_Chinese">GASDocumentation_Chinese</a></p>
+<h2 id="一句话总结和介绍">
+<a class="header-anchor" href="#%e4%b8%80%e5%8f%a5%e8%af%9d%e6%80%bb%e7%bb%93%e5%92%8c%e4%bb%8b%e7%bb%8d"></a>
+一句话总结和介绍
+</h2><h3 id="自我介绍">
+<a class="header-anchor" href="#%e8%87%aa%e6%88%91%e4%bb%8b%e7%bb%8d"></a>
+自我介绍
+</h3><h3 id="lyra改fps项目">
+<a class="header-anchor" href="#lyra%e6%94%b9fps%e9%a1%b9%e7%9b%ae"></a>
+Lyra改FPS项目
+</h3><p>基于 Lyra 的 FPS 改造.项目特点是<br>
+尽量不更改Lyra源码，可以随时迁移到更新UE、Lyra的版本。(涉及到Lyra的主要框架和逻辑。)<br>
+得益于Lyra优秀的架构和我写的程序化动画，和第三方FPS资产耦合也很小，可以很方便地添加/更换新FPS的资产。<br>
+花时间比较久：</p>
+<ol>
+<li>确保FPS 只负责本地表现，不参与服务器逻辑。</li>
+<li>程序化FPS动画，效果非常不错的程序化武器摇摆方案。</li>
+<li>解决了 Owner 同步导致渲染错误、动画层不适配等问题。</li>
+</ol>
+<h3 id="lyra的优点">
+<a class="header-anchor" href="#lyra%e7%9a%84%e4%bc%98%e7%82%b9"></a>
+Lyra的优点
+</h3><p>数据驱动：所有逻辑都做成GA<br>
+组件化：<br>
+层级化：</p>
+<h2 id="问题">
+<a class="header-anchor" href="#%e9%97%ae%e9%a2%98"></a>
+问题
+</h2><h4 id="网络基础">
+<a class="header-anchor" href="#%e7%bd%91%e7%bb%9c%e5%9f%ba%e7%a1%80"></a>
+网络基础
+</h4><p>初级-简单应用：<br>
+Actor的Role是ROLE_Authority就是服务端么？<br>
+RPC函数应该在哪个端执行？<br>
+客户端创建的Actor能调用RPC么？<br>
+RPC函数应该在哪个端执行？<strong>如果我在Standalone的端上执行该函数的时候会发生什么呢？</strong></p>
+<p>中级-体系化：<br>
+<a href="/WzhGameDevPublish/post/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/%E4%BB%A3%E7%A0%81%E6%A1%86%E6%9E%B6/ue-%E9%9D%A2%E8%AF%95%E5%87%86%E5%A4%87/#%e7%99%bb%e5%bd%95%e6%9c%8d%e5%8a%a1%e5%99%a8%e6%b5%81%e7%a8%8b">客户端是如何登录服务器的？</a><br>
+<a href="/WzhGameDevPublish/post/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/%E4%BB%A3%E7%A0%81%E6%A1%86%E6%9E%B6/ue-%E9%9D%A2%E8%AF%95%E5%87%86%E5%A4%87/#%e5%a4%9a%e6%92%ad%20RPC%e4%bc%9a%e5%8f%91%e9%80%81%e7%bb%99%e6%89%80%e6%9c%89%e5%ae%a2%e6%88%b7%e7%ab%af%e4%b9%88%ef%bc%9f">#多播 RPC会发送给所有客户端么？</a></p>
+<p>高级：<br>
+<a href="/WzhGameDevPublish/post/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/%E4%BB%A3%E7%A0%81%E6%A1%86%E6%9E%B6/ue-%E9%9D%A2%E8%AF%95%E5%87%86%E5%A4%87/#RPC%e4%b8%8eActor%e5%90%8c%e6%ad%a5%e8%b0%81%e5%85%88%e6%89%a7%e8%a1%8c%ef%bc%9f">#RPC与Actor同步谁先执行？</a><br>
+<a href="/WzhGameDevPublish/post/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/%E4%BB%A3%E7%A0%81%E6%A1%86%E6%9E%B6/ue-%E9%9D%A2%E8%AF%95%E5%87%86%E5%A4%87/#%e5%93%aa%e4%ba%9bUObject%e5%af%b9%e8%b1%a1%e7%9a%84%e5%bc%95%e7%94%a8%e5%8f%af%e4%bb%a5%e5%9c%a8%e7%bd%91%e7%bb%9c%e4%b8%8a%e4%bc%a0%e9%80%92%e6%88%90%e5%8a%9f?">#哪些UObject对象的引用可以在网络上传递成功?</a></p>
+<p><strong>客户端与服务器一致么？</strong></p>
+<h1 id="gameplay">
+<a class="header-anchor" href="#gameplay"></a>
+Gameplay
+</h1><h2 id="基本函数">
+<a class="header-anchor" href="#%e5%9f%ba%e6%9c%ac%e5%87%bd%e6%95%b0"></a>
+基本函数
+</h2>
+  <blockquote class="alert-blockquote question">
+    <p class="alert-heading">
+      Question
+    </p>
+    <p><h4 id="ue-里-tick-默认每帧都会执行">
+<a class="header-anchor" href="#ue-%e9%87%8c-tick-%e9%bb%98%e8%ae%a4%e6%af%8f%e5%b8%a7%e9%83%bd%e4%bc%9a%e6%89%a7%e8%a1%8c"></a>
+UE 里 <code>Tick</code> 默认每帧都会执行。
+</h4><p>👉 什么情况下你<strong>绝对不应该用 Tick</strong>？你会用什么替代？</p></p>
+  </blockquote>
+
+<p>当逻辑不需要每帧执行时，不应该用 Tick。<br>
+比如：</p>
+<ul>
+<li>事件驱动逻辑（输入、状态变化）</li>
+<li>定时行为（用 Timer）</li>
+<li>一次性流程（用 Ability / Task / Delegate）</li>
+</ul>
+<p>Tick 会带来性能开销和逻辑复杂度，<br>
+如果可以用事件或回调驱动，就应该避免使用 Tick。</p>
+<h2 id="基本变量">
+<a class="header-anchor" href="#%e5%9f%ba%e6%9c%ac%e5%8f%98%e9%87%8f"></a>
+基本变量
+</h2>
+  <blockquote class="alert-blockquote question">
+    <p class="alert-heading">
+      Question
+    </p>
+    <p><h4 id="tweakobjectptr-和-tobjectptr-区别">
+<a class="header-anchor" href="#tweakobjectptr-%e5%92%8c-tobjectptr-%e5%8c%ba%e5%88%ab"></a>
+<code>TWeakObjectPtr</code> 和 <code>TObjectPtr</code> 区别？
+</h4><p>👉 各自适用场景？</p></p>
+  </blockquote>
+
+<p>区别是：</p>
+<ul>
+<li>TObjectPtr：强引用，会被 GC 追踪（替代裸指针 UPROPERTY）。</li>
+<li>TWeakObjectPtr：弱引用，不会阻止对象被 GC 回收</li>
+</ul>
+<p>使用场景：</p>
+<ul>
+<li>TObjectPtr：正常成员变量</li>
+<li>TWeakObjectPtr：避免循环引用、缓存对象、临时引用</li>
+</ul>
+<h2 id="优化">
+<a class="header-anchor" href="#%e4%bc%98%e5%8c%96"></a>
+优化
+</h2>
+  <blockquote class="alert-blockquote question">
+    <p class="alert-heading">
+      Question
+    </p>
+    <p><h4 id="你会如何判断哪些逻辑必须每帧执行哪些可以优化或异步处理请具体说明你的判断依据和优化方法">
+<a class="header-anchor" href="#%e4%bd%a0%e4%bc%9a%e5%a6%82%e4%bd%95%e5%88%a4%e6%96%ad%e5%93%aa%e4%ba%9b%e9%80%bb%e8%be%91%e5%bf%85%e9%a1%bb%e6%af%8f%e5%b8%a7%e6%89%a7%e8%a1%8c%e5%93%aa%e4%ba%9b%e5%8f%af%e4%bb%a5%e4%bc%98%e5%8c%96%e6%88%96%e5%bc%82%e6%ad%a5%e5%a4%84%e7%90%86%e8%af%b7%e5%85%b7%e4%bd%93%e8%af%b4%e6%98%8e%e4%bd%a0%e7%9a%84%e5%88%a4%e6%96%ad%e4%be%9d%e6%8d%ae%e5%92%8c%e4%bc%98%e5%8c%96%e6%96%b9%e6%b3%95"></a>
+你会如何判断哪些逻辑必须每帧执行，哪些可以优化或异步处理？请具体说明你的判断依据和优化方法。
+</h4><p>我会先通过 <strong>Unreal Insights</strong> 分析当前 Tick 的性能开销，确定最消耗帧时间的逻辑。接着，我会将那些与渲染、物理或动画驱动紧密相关的逻辑保留在 Tick 内，比如角色位置更新和摄像机跟随。而对于复杂计算、大型查询或资源加载，我会使用异步任务或事件驱动来执行，确保它们不阻塞主线程。最后，我会引入自定义的调度系统，根据逻辑重要性和帧率需求，动态调整 Tick 的频率，这样在高端和低端设备上都能保持平衡的表现。”</p></p>
+  </blockquote>
+
+<p>这种回答不仅有步骤，还体现出你的实际操作方法和对系统整体的理解。</p>
+<h1 id="fps">
+<a class="header-anchor" href="#fps"></a>
+FPS
+</h1><h1 id="网络">
+<a class="header-anchor" href="#%e7%bd%91%e7%bb%9c"></a>
+网络
+</h1><p><a href="https://zhuanlan.zhihu.com/p/34721113">《Exploring in UE4》关于网络同步的理解与思考</a></p>
+<h2 id="基础">
+<a class="header-anchor" href="#%e5%9f%ba%e7%a1%80"></a>
+基础
+</h2><h4 id="登录服务器流程">
+<a class="header-anchor" href="#%e7%99%bb%e5%bd%95%e6%9c%8d%e5%8a%a1%e5%99%a8%e6%b5%81%e7%a8%8b"></a>
+登录服务器流程
+</h4><p>-&mdash;&mdash;&ndash;客户端发送连接请求&mdash;&ndash;<br>
+服务器收到，PreLogin判断能不能让你进，如果让你进，则分配一个connect，将地图信息、连接信息发给客户端<br>
+-&mdash;&mdash;&mdash;收到连接后&mdash;&mdash;-<br>
+客户端收到后加载地图成功后发送Join信息<br>
+-&mdash;&mdash;&mdash;收到Join后&mdash;&mdash;&mdash;-<br>
+服务器：，Login创建一个PlayerController，并复制到新客户端<br>
+客户端替换临时PC，换上这个新PC<br>
+-&mdash;&mdash;-换上新PC后&mdash;&mdash;&mdash;-<br>
+触发APlayerController::BeginPlay→<br>
+之后<strong>AGameMode::PostLogin</strong> 将被调用，正式连接上。<br>
+这时，可以在此 PC 上调用RPC 。</p>
+
+  <blockquote class="alert-blockquote info">
+    <p class="alert-heading">
+      Info
+    </p>
+    <p><h2 id="这个同步下来的pc里包含着相关的netdriverconnection以及session信息客户端服务器通信都要靠他">
+<a class="header-anchor" href="#%e8%bf%99%e4%b8%aa%e5%90%8c%e6%ad%a5%e4%b8%8b%e6%9d%a5%e7%9a%84pc%e9%87%8c%e5%8c%85%e5%90%ab%e7%9d%80%e7%9b%b8%e5%85%b3%e7%9a%84netdriverconnection%e4%bb%a5%e5%8f%8asession%e4%bf%a1%e6%81%af%e5%ae%a2%e6%88%b7%e7%ab%af%e6%9c%8d%e5%8a%a1%e5%99%a8%e9%80%9a%e4%bf%a1%e9%83%bd%e8%a6%81%e9%9d%a0%e4%bb%96"></a>
+这个同步下来的PC里包含着相关的NetDriver，Connection以及Session信息。客户端服务器通信都要靠他。
+</h2></p>
+  </blockquote>
+
+<p><a href="https://zhuanlan.zhihu.com/p/34721113">《Exploring in UE4》关于网络同步的理解与思考</a></p>
+<h4 id="role权限类型">
+<a class="header-anchor" href="#role%e6%9d%83%e9%99%90%e7%b1%bb%e5%9e%8b"></a>
+Role权限类型
+</h4><p>在设备本地生成的都是Authority<br>
+通过服务器同步下去的，无连接Connet的是Simulate。<br>
+有连接(Owner属于PC/Char)的是ROLE_AutonomousProxy</p>
+<h5 id="怎么算有连接">
+<a class="header-anchor" href="#%e6%80%8e%e4%b9%88%e7%ae%97%e6%9c%89%e8%bf%9e%e6%8e%a5"></a>
+怎么算有连接
+</h5><p>客户端登录后发给客户端的PlayerController有连接(存了NetDriver，Connection以及Session)</p>
+<ol>
+<li>所有根Owner为Controller的Actor</li>
+<li>特权：被Possese的Character以及所有Owner为Character的Actor</li>
+<li>组件按所属Actor算</li>
+</ol>
+<h5 id="连接有啥用">
+<a class="header-anchor" href="#%e8%bf%9e%e6%8e%a5%e6%9c%89%e5%95%a5%e7%94%a8"></a>
+连接有啥用
+</h5><p>供RPC识别，Owner or Client<br>
+Replicate同步识别，同样有的只需要同步到特定端(如摄像机相关)<br>
+比如：只让其在有控制权的客户端使用：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-CPP" data-lang="CPP"><span class="line"><span class="cl"><span class="kt">void</span> <span class="n">AActor</span><span class="o">::</span><span class="n">GetLifetimeReplicatedProps</span><span class="p">(</span> <span class="n">TArray</span><span class="o">&lt;</span> <span class="n">FLifetimeProperty</span> <span class="o">&gt;</span> <span class="o">&amp;</span> <span class="n">OutLifetimeProps</span> <span class="p">)</span> <span class="k">const</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="n">DOREPLIFETIME_CONDITION</span><span class="p">(</span> <span class="n">AActor</span><span class="p">,</span> <span class="n">ReplicatedMovement</span><span class="p">,</span> <span class="n">COND_AutonomousOnly</span> <span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><h5 id="如何发送远端调用通过连接">
+<a class="header-anchor" href="#%e5%a6%82%e4%bd%95%e5%8f%91%e9%80%81%e8%bf%9c%e7%ab%af%e8%b0%83%e7%94%a8%e9%80%9a%e8%bf%87%e8%bf%9e%e6%8e%a5"></a>
+如何发送远端调用——通过连接
+</h5><p>调用RPC时，会调用<code>AActor::GetFunctionCallspace</code>判断当前是不是远端调用，会通过网络发送RPC。GetFunctionCallspace里面会通过Owner找到connection信息。</p>
+<h4 id="onrep在什么时候触发">
+<a class="header-anchor" href="#onrep%e5%9c%a8%e4%bb%80%e4%b9%88%e6%97%b6%e5%80%99%e8%a7%a6%e5%8f%91"></a>
+OnRep在什么时候触发
+</h4><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">客户端收到服务器同步的数据并修改后调用.
+</span></span></code></pre></div><p>他和RPC的区别是什么:<br>
+RPC是主动调用的函数,OnRep是被动的回调.<br>
+集合我之前的问题,武器是通过SpawnActor同步到客户端的,但Owner是一个独立的属性.<br>
+在客户端生成武器时,owner没有同步过来,导致渲染判断失误.这本质是一个网络时序问题。</p>
+<h4 id="rpc和replicate">
+<a class="header-anchor" href="#rpc%e5%92%8creplicate"></a>
+RPC和Replicate
+</h4><h5 id="rpc和属性复制的区别">
+<a class="header-anchor" href="#rpc%e5%92%8c%e5%b1%9e%e6%80%a7%e5%a4%8d%e5%88%b6%e7%9a%84%e5%8c%ba%e5%88%ab"></a>
+RPC和属性复制的区别
+</h5><p>Replication（网络复制）只能单向，部分从服务器复制到客户端<br>
+RPC远程过程调用：方向是任意的，类似函数调用，不能有返回值<br>
+RPC是不可靠的，带宽饱和时可能被丢弃，但它的发送速度和频率高于 可靠RPC(标记reliable)，用于不重要但更新频繁的数据<br>
+标记reliable之后变可靠，但一次发送的可靠rpc不能太多，否则会导致网络断开</p>
+<h5 id="属性回调onrep_与rpc的差异">
+<a class="header-anchor" href="#%e5%b1%9e%e6%80%a7%e5%9b%9e%e8%b0%83onrep_%e4%b8%8erpc%e7%9a%84%e5%b7%ae%e5%bc%82"></a>
+属性回调OnRep_与RPC的差异？
+</h5><p>属性回调理论上<strong>一定会执行</strong>，而RPC函数有可能由于错过执行时机而不再会执行。</p>
+
+  <blockquote class="alert-blockquote example">
+    <p class="alert-heading">
+      Example
+    </p>
+    <p><p>服务器上面有一个宝箱，第一个玩家过去后，宝箱会自动开启。如果使用RPC函数，当第一个玩家过去后，箱子执行多播RPC函数触发开箱子操作。但是由于其他的玩家离这个箱子很远，所有这个箱子没有同步给其他玩家，其他玩家收不到这个RPC消息。当这些玩家之后再过去之后，会发现箱子还是关闭的。<br>
+如果采用属性回调，但第一个玩家过去后，设置箱子的属性bOpen为true，然后同步到所有客户端，通过属性回调执行开箱子操作。这时候其他玩家靠近箱子时，箱子会同步到靠近的玩家，然后玩家在客户端上会收到属性bOpen，同时执行属性回调，这时候可以实现所有靠近的玩家都会发现箱子已经被别人开过了。</p></p>
+  </blockquote>
+
+<h5 id="rpc与actor同步谁先执行">
+<a class="header-anchor" href="#rpc%e4%b8%8eactor%e5%90%8c%e6%ad%a5%e8%b0%81%e5%85%88%e6%89%a7%e8%a1%8c"></a>
+RPC与Actor同步谁先执行？
+</h5><p><strong>不确定</strong>。<br>
+一般来说，RPC的数据会立刻塞到SendBuffer里面，而Actor的同步要等到NetDriver统一处理。<br>
+不过由于存在丢包延迟等情况，这个结果在网络环境下不能确定。</p>
+<p><strong>那么这个问题会造成什么后果呢？</strong></p>
+<ol>
+<li>当你创建一个新的Actor的同时（比如在一个函数内），你将这个Actor作为RPC的参数传到客户端去执行，这时候你会发现客户端的RPC函数的参数为NULL。</li>
+<li>你设置了一个bool类型属性A并用UProperty标记了一个回调函数OnRep_Use。你先在服务器里面修改了A为true，同时你调用了一个RPC函数让客户端把A置为true。结果就导致你的OnRep_Use函数没有执行。但实际上，这会导致你的OnRep_Use函数里面还有其他的操作没有执行。</li>
+</ol>
+<h4 id="rpc问题">
+<a class="header-anchor" href="#rpc%e9%97%ae%e9%a2%98"></a>
+RPC问题
+</h4><h5 id="多播-rpc会发送给所有客户端么">
+<a class="header-anchor" href="#%e5%a4%9a%e6%92%ad-rpc%e4%bc%9a%e5%8f%91%e9%80%81%e7%bb%99%e6%89%80%e6%9c%89%e5%ae%a2%e6%88%b7%e7%ab%af%e4%b9%88"></a>
+多播 RPC会发送给所有客户端么？
+</h5><p>只要不满足NetRelevant都不会发送，参考<code>UNetDriver::ProcessRemoteFunction</code></p>
+<h4 id="replicate问题">
+<a class="header-anchor" href="#replicate%e9%97%ae%e9%a2%98"></a>
+Replicate问题
+</h4><h5 id="replicated-不生效怎么查">
+<a class="header-anchor" href="#replicated-%e4%b8%8d%e7%94%9f%e6%95%88%e6%80%8e%e4%b9%88%e6%9f%a5"></a>
+Replicated 不生效怎么查
+</h5>
+  <blockquote class="alert-blockquote question">
+    <p class="alert-heading">
+      Question
+    </p>
+    <p><h4 id="一个变量标记了-replicated但客户端就是不同步">
+<a class="header-anchor" href="#%e4%b8%80%e4%b8%aa%e5%8f%98%e9%87%8f%e6%a0%87%e8%ae%b0%e4%ba%86-replicated%e4%bd%86%e5%ae%a2%e6%88%b7%e7%ab%af%e5%b0%b1%e6%98%af%e4%b8%8d%e5%90%8c%e6%ad%a5"></a>
+一个变量标记了 <code>Replicated</code>，但客户端就是不同步。
+</h4><p>👉 你排查的<strong>前三步</strong>是什么？</p></p>
+  </blockquote>
+
+<p>⚠⚠⚠质疑、质疑，还是质疑</p>
+<p>第一，<strong>检查代码</strong><br>
+确认变量标记为 Replicated，并且在 GetLifetimeReplicatedProps 注册。<br>
+第二，检查<strong>Replicate触发前提</strong><br>
+Actor：确认 Actor 本身是 Replicated，并且是由服务器生成并同步下来的。<br>
+变量修改：确认修改发生在服务器，而不是客户端。<br>
+第三，检查<strong>网络相关性</strong><br>
+确认网络相关性（NetCullDistance / Owner / Relevancy）。<br>
+第四，用日志或断点确认服务器<strong>是否真的改了值</strong>。</p>
+<h5 id="actor被同步到客户端后什么时候能使用其同步属性尤其是role_autonomous">
+<a class="header-anchor" href="#actor%e8%a2%ab%e5%90%8c%e6%ad%a5%e5%88%b0%e5%ae%a2%e6%88%b7%e7%ab%af%e5%90%8e%e4%bb%80%e4%b9%88%e6%97%b6%e5%80%99%e8%83%bd%e4%bd%bf%e7%94%a8%e5%85%b6%e5%90%8c%e6%ad%a5%e5%b1%9e%e6%80%a7%e5%b0%a4%e5%85%b6%e6%98%afrole_autonomous"></a>
+Actor被同步到客户端后什么时候能使用其同步属性(尤其是Role_Autonomous)
+</h5><p>普通属性+ Gameplay框架的Obj指针：<br>
+construct和<code>PostInitializeComponents</code>中不可用<br>
+Actor最早可用是PreBeginplay，最稳的是PostBeginpaly/OnRep_<br>
+刚开始RPC到客户端的Actor初始属性(尤其是Owner)没有同步过来，会造成引擎自身逻辑都存在bug，<strong>比如FPS渲染判定过早，导致的不会隐藏全身模型。</strong><br>
+<img src="https://gcore.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/20260428134025371.png" alt=""><br>
+非Gameplay框架的Obj指针：<br>
+不确定：需要通过<code>FNetworkGUID</code>等待那个Obj也从服务器同步过来，但慢于Beginplay依旧是极少情况。此时也才会触发OnRep_<br>
+Gameplay框架的Actor一般早就同步过来了，自然不需要担心。</p>
+<h5 id="哪些uobject对象的引用可以在网络上传递成功">
+<a class="header-anchor" href="#%e5%93%aa%e4%ba%9buobject%e5%af%b9%e8%b1%a1%e7%9a%84%e5%bc%95%e7%94%a8%e5%8f%af%e4%bb%a5%e5%9c%a8%e7%bd%91%e7%bb%9c%e4%b8%8a%e4%bc%a0%e9%80%92%e6%88%90%e5%8a%9f"></a>
+哪些UObject对象的引用可以在网络上传递成功
+</h5><ol>
+<li>标记replicate</li>
+<li>从数据包直接Load</li>
+<li>通过Construction scripts添加或者C++构造函数里面添加</li>
+<li>使用UActorComponent::SetNetAddressable标记（这个只针对组件，其实蓝图里面创建的组件默认就会执行这个操作）</li>
+</ol>
+<h5 id="onrep执行问题">
+<a class="header-anchor" href="#onrep%e6%89%a7%e8%a1%8c%e9%97%ae%e9%a2%98"></a>
+OnRep执行问题
+</h5><p>同步操作触发是由服务器决定的，所以不管客户端是什么值，服务器觉得该同步就会把数据同步到客户端。<br>
+而回调操作是客户端执行，所以客户端会判断与当前的值是否相同来决定是否产生回调。</p>
+<h5 id="-getlifetimereplicatedprops">
+<a class="header-anchor" href="#-getlifetimereplicatedprops"></a>
+##### GetLifetimeReplicatedProps
+</h5><p>常见条件：<br>
+仅同步给所属客户端：DOREPLIFETIME_CONDITION( AActor, ReplicatedMovement, COND_AutonomousOnly );<br>
+仅在初始化时同步一次：COND_InitialOnly<br>
+哪怕值一样也执行OnRep_：DOREPLIFETIME_CONDITION_NOTIFY( AActor, XXX, COND_Custom, REPNOTIFY_Always );</p>
+<h2 id="应用">
+<a class="header-anchor" href="#%e5%ba%94%e7%94%a8"></a>
+应用
+</h2><h3 id="服务器客户端不一致问题">
+<a class="header-anchor" href="#%e6%9c%8d%e5%8a%a1%e5%99%a8%e5%ae%a2%e6%88%b7%e7%ab%af%e4%b8%8d%e4%b8%80%e8%87%b4%e9%97%ae%e9%a2%98"></a>
+服务器客户端不一致问题
+</h3>
+  <blockquote class="alert-blockquote question">
+    <p class="alert-heading">
+      Question
+    </p>
+    <p><h2 id="玩家开火时有时候客户端已经播放了开火动画和特效但服务器没有判定命中-你会怎么排查和定位这个问题">
+<a class="header-anchor" href="#%e7%8e%a9%e5%ae%b6%e5%bc%80%e7%81%ab%e6%97%b6%e6%9c%89%e6%97%b6%e5%80%99%e5%ae%a2%e6%88%b7%e7%ab%af%e5%b7%b2%e7%bb%8f%e6%92%ad%e6%94%be%e4%ba%86%e5%bc%80%e7%81%ab%e5%8a%a8%e7%94%bb%e5%92%8c%e7%89%b9%e6%95%88%e4%bd%86%e6%9c%8d%e5%8a%a1%e5%99%a8%e6%b2%a1%e6%9c%89%e5%88%a4%e5%ae%9a%e5%91%bd%e4%b8%ad-%e4%bd%a0%e4%bc%9a%e6%80%8e%e4%b9%88%e6%8e%92%e6%9f%a5%e5%92%8c%e5%ae%9a%e4%bd%8d%e8%bf%99%e4%b8%aa%e9%97%ae%e9%a2%98"></a>
+玩家开火时，<strong>有时候客户端已经播放了开火动画和特效，但服务器没有判定命中</strong>👉 你会怎么排查和定位这个问题？
+</h2><ul>
+<li>网络层（RPC / 延迟 / 丢包）</li>
+<li>逻辑层（服务器判定）</li>
+<li>表现层（客户端预测）</li>
+<li>Debug 方法（非常关键）<br>
+我会分三层排查这个问题：</li>
+</ul></p>
+  </blockquote>
+
+<p>第一层是客户端表现层。<br>
+客户端已经播放了开火动画和特效，说明 Ability 已经成功触发，<br>
+本地预测逻辑是正常的。</p>
+<p>第二层是网络层。<br>
+我会检查是否存在延迟或丢包，比如客户端开火 RPC 是否成功发送到服务器，<br>
+服务器是否及时返回命中结果。<br>
+可以通过日志或网络模拟（Net PktLag / PktLoss）来验证。</p>
+<p>第三层是服务器逻辑层（最关键）。<br>
+服务器才是命中判定的权威，<br>
+我会重点检查服务器在开火那一帧使用的参数，比如：</p>
+<ul>
+<li>开火时的角色位置</li>
+<li>朝向（Aim）</li>
+<li><strong>Trace 起点和方向</strong></li>
+<li>目标位置</li>
+</ul>
+<p>然后和客户端做对比，确认是否存在状态不一致。</p>
+<p>常见问题是：<br>
+客户端和服务器的位置或朝向有偏差，<br>
+导致客户端看起来命中，但服务器 Trace 没打中。</p>
+<p>最后是 Debug 手段：<br>
+我会在客户端和服务器分别打印开火时的 Transform 和 Trace 数据，<br>
+或者用 DrawDebugLine 在两端画出射线，对比是否一致。</p>
+<p>总结来说，这类问题通常是：<br>
+客户端预测和服务器权威计算不一致导致的表现偏差，<br>
+需要通过日志和可视化手段定位具体差异。</p>
+<h1 id="gas">
+<a class="header-anchor" href="#gas"></a>
+GAS
+</h1><p><a href="https://dev.epicgames.com/documentation/unreal-engine/gameplay-attributes-and-attribute-sets-for-the-gameplay-ability-system-in-unreal-engine">GAS官方文档</a><br>
+<a href="https://github.com/BillEliot/GASDocumentation_Chinese">GASDocumentation_Chinese</a></p>
+<h2 id="框架">
+<a class="header-anchor" href="#%e6%a1%86%e6%9e%b6"></a>
+框架
+</h2><h3 id="gas的优点为什么是gas">
+<a class="header-anchor" href="#gas%e7%9a%84%e4%bc%98%e7%82%b9%e4%b8%ba%e4%bb%80%e4%b9%88%e6%98%afgas"></a>
+GAS的优点，为什么是GAS
+</h3><p>方便快速实现和迭代Gameplay多人游戏机制(官网)。个人理解：工程量越大，越方便<br>
+等级、费用、冷却、属性、网络复制、GE、完整的客户端预测，极大方便了开发和代码复用，GA的即插即用也几乎不会影响其他代码<br>
+GameplayTag几乎取代了关键bool、enum、int值<br>
+Cue统一了视觉和音效反馈</p>
+<p>对rootmotion蒙太奇的网络支持。</p>
+<h3 id="gameplaytag的优点">
+<a class="header-anchor" href="#gameplaytag%e7%9a%84%e4%bc%98%e7%82%b9"></a>
+GameplayTag的优点
+</h3><p>优点：</p>
+<ol>
+<li>架构：带层级关系。提供复杂查询支持，且查询函数参数化。</li>
+<li>使用：系统只关心Tag，而不需要专门Cast然后获取变量，自带回调和Task。</li>
+<li>网络：同步很快，因为CS两边有相同的GameplayTag表，(需要开启Fast Replication)<br>
+结果：几乎取代了Gameplay的bool、enum，TagCount取代了int值</li>
+</ol>
+<h3 id="gas的缺点">
+<a class="header-anchor" href="#gas%e7%9a%84%e7%bc%ba%e7%82%b9"></a>
+GAS的缺点
+</h3><p><code>GameplayEffect</code> 延迟调节(Latency Reconciliation).（无法预测技能CD，高延迟玩家相比低延迟玩家, 对于短CD的能力存在更低的激活速率）。<br>
+不能预测性地移除<code>GameplayEffect</code>. 然而我们可以反向预测性地添加<code>GameplayEffect</code>, 从而高效的移除它. 但是这不总是合适或者可行的, 因此这仍然是个问题.</p>
+<h2 id="ability">
+<a class="header-anchor" href="#ability"></a>
+Ability
+</h2><h4 id="触发">
+<a class="header-anchor" href="#%e8%a7%a6%e5%8f%91"></a>
+触发
+</h4>
+  <blockquote class="alert-blockquote question">
+    <p class="alert-heading">
+      Question
+    </p>
+    <p><h4 id="canactivateability-和-commitability-的区别">
+<a class="header-anchor" href="#canactivateability-%e5%92%8c-commitability-%e7%9a%84%e5%8c%ba%e5%88%ab"></a>
+<code>CanActivateAbility</code> 和 <code>CommitAbility</code> 的区别？
+</h4><p>👉 为什么两个都需要，而不是只用一个？</p></p>
+  </blockquote>
+
+<p>CanActivate 是“是否允许进入 Ability”<br>
+Commit 是“在执行关键逻辑前再次确认并统一Commit资源”</p>
+<p>比如GA起手动作，只需要在地面就可以触发，但在实际打出前并不会消耗法力，用户也可以随时取消。但Commit后，不仅仅是最终检查，则该技能已经生效，Cost触发，冷却触发。</p>
+<h2 id="gameplaytag">
+<a class="header-anchor" href="#gameplaytag"></a>
+GamePlayTag
+</h2>
+  <blockquote class="alert-blockquote question">
+    <p class="alert-heading">
+      Question
+    </p>
+    <p><h4 id="lyra-使用-gameplaytag-而不是-bool">
+<a class="header-anchor" href="#lyra-%e4%bd%bf%e7%94%a8-gameplaytag-%e8%80%8c%e4%b8%8d%e6%98%af-bool"></a>
+Lyra 使用 GameplayTag 而不是 bool
+</h4><p>本质是为了数据驱动和系统解耦。</p>
+<blockquote>
+<ol>
+<li>Tag <strong>具有层次结构</strong>。<br>
+bool 只能表示单一状态，比如 bIsSprinting，<br>
+但 Tag 可以组合，比如 Ability.State.Jump可以直接记录Ability.State.Sprinting.Start、Falling、Land</li>
+</ol>
+</blockquote>
+<blockquote>
+<p>2，TagCount 可以表达<strong>叠加关系</strong><br>
+比如多个系统同时施加同一个状态，只有计数归零才真正移除。还可以完全当作int使用。</p>
+</blockquote>
+<blockquote>
+<ol start="3">
+<li>数据驱动<br>
+策划可以在配置中<strong>直接增删Tag</strong>，不需要改代码和编译<br>
+非常适合 Lyra 这种模块化框架。</li>
+</ol>
+</blockquote>
+<blockquote>
+<ol start="4">
+<li>解耦<br>
+比如移动系统只关心是否有 Sprint Tag，<strong>不需要Cast到特定的类型</strong>。不同Actor类也可以用同一个Tag</li>
+</ol>
+</blockquote>
+<blockquote>
+<ol start="5">
+<li>支持 GameplayTagQuery<br>
+<strong>复杂条件判断</strong>，这在复杂技能关系中非常重要。</li>
+</ol>
+</blockquote>
+<blockquote>
+<ol start="6">
+<li>GAS 本身就是围绕 Tag 构建的，<br>
+Ability 的激活、阻挡、状态同步、效果应用，都是通过 Tag 控制的，<br>
+所以使用 Tag 可以和整个系统天然对齐。</li>
+</ol>
+</blockquote></p>
+  </blockquote>
+
+<h2 id="tagrelation">
+<a class="header-anchor" href="#tagrelation"></a>
+TagRelation
+</h2><p>TagRelation相比较Ability内处理关系的优点：<br>
+只需要关心Tag，不需要考虑是GA还是GE触发的，同时，GA也可能是在中途才会添加某些Tag。</p>
+<p>Lyra中TagRelation的需求变复杂：</p>
+<ul>
+<li>冲刺不能开火</li>
+<li>瞄准可以开火</li>
+<li>换弹时不能冲刺</li>
+<li>某些武器允许“冲刺射击”<br>
+你会怎么设计这个 Tag 系统，避免逻辑越来越乱？</li>
+</ul>
+<p>一、将 if 判断改为 <strong>GameplayTagQuery</strong><br>
+比如开火 Ability：</p>
+<ul>
+<li>Blocked Query：有 State.Reloading 时禁止</li>
+<li>Blocked Query：有 State.Sprinting 且没有 Weapon.AllowSprintFire 时禁止</li>
+<li>Required Query：武器处于可开火状态</li>
+</ul>
+<p>二、单层架构改为Layer层级：普通武器使用默认规则，特殊武器动态添加Tag关系<br>
+这样系统分三层：</p>
+<ol>
+<li>角色基础状态规则</li>
+<li>武器默认规则</li>
+<li>特殊武器覆盖规则</li>
+</ol>
+<h2 id="attribute">
+<a class="header-anchor" href="#attribute"></a>
+Attribute
+</h2>
+  <blockquote class="alert-blockquote question">
+    <p class="alert-heading">
+      Question
+    </p>
+    <p><h4 id="为什么要存在baseattribute和attribute两个数值">
+<a class="header-anchor" href="#%e4%b8%ba%e4%bb%80%e4%b9%88%e8%a6%81%e5%ad%98%e5%9c%a8baseattribute%e5%92%8cattribute%e4%b8%a4%e4%b8%aa%e6%95%b0%e5%80%bc"></a>
+为什么要存在BaseAttribute和Attribute两个数值
+</h4><p><strong>可以区分立即生效的GE以及计时/无限生效的GE引发的数值变化</strong><br>
+比如Damage，装备手枪时可以设置Damage的Base为10，那么给角色上Buff，只需要改成Damage的临时值+4=14，如果此时换成步枪，Damage的Base直接被设置为20，临时值则会动态变化为20+4=24。Buff时间结束后去掉临时值+上的4即可</p></p>
+  </blockquote>
+
+
+  <blockquote class="alert-blockquote question">
+    <p class="alert-heading">
+      Question
+    </p>
+    <p><h4 id="为什么要存在damage这样的metaattribute">
+<a class="header-anchor" href="#%e4%b8%ba%e4%bb%80%e4%b9%88%e8%a6%81%e5%ad%98%e5%9c%a8damage%e8%bf%99%e6%a0%b7%e7%9a%84metaattribute"></a>
+为什么要存在Damage这样的metaAttribute
+</h4><p>不只是伤害。只要某个数值是“本次事件的输入/中间量”，而不是长期状态，都适合做 MetaAttribute。<br>
+如复杂Mana Cost，更复杂的Damage-ShieldDamage-HealthDamage，经验XP，金币收益，状态累计值(PoiseDamage、StaggerDamage)、破防 / 硬直 / 架势条</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-TEXT" data-lang="TEXT"><span class="line"><span class="cl">Attack applies FreezeBuildUp = 30
+</span></span><span class="line"><span class="cl">  ↓
+</span></span><span class="line"><span class="cl">AttributeSet 累加 FreezeMeter
+</span></span><span class="line"><span class="cl">  ↓
+</span></span><span class="line"><span class="cl">FreezeMeter &gt;= Threshold
+</span></span><span class="line"><span class="cl">  ↓
+</span></span><span class="line"><span class="cl">Apply Frozen GameplayTag / GameplayEffect
+</span></span></code></pre></div></p>
+  </blockquote>
+
+
+  <blockquote class="alert-blockquote question">
+    <p class="alert-heading">
+      Question
+    </p>
+    <p><h4 id="为什么要使用basedamage这样的metaattribute来处理伤害">
+<a class="header-anchor" href="#%e4%b8%ba%e4%bb%80%e4%b9%88%e8%a6%81%e4%bd%bf%e7%94%a8basedamage%e8%bf%99%e6%a0%b7%e7%9a%84metaattribute%e6%9d%a5%e5%a4%84%e7%90%86%e4%bc%a4%e5%ae%b3"></a>
+为什么要使用BaseDamage这样的metaAttribute来处理伤害
+</h4><p>把“伤害的计算”和“生命值被修改”解耦。<br>
+技能、武器、GE、ExecCalc 只负责算出“这次造成多少伤害”；真正扣 <code>Health</code>、触发死亡、广播事件、处理护盾/抗性/免伤，则集中放在 <code>AttributeSet::PostGameplayEffectExecute()</code> 或伤害执行逻辑里处理。</p>
+<blockquote>
+<p>除了Damage，Lyra中还有治疗量Heal也是一样的属性(ULyraCombatSet)</p>
+</blockquote></p>
+  </blockquote>
+
+<h1 id="编辑器">
+<a class="header-anchor" href="#%e7%bc%96%e8%be%91%e5%99%a8"></a>
+编辑器
+</h1><h2 id="gc原理">
+<a class="header-anchor" href="#gc%e5%8e%9f%e7%90%86"></a>
+GC原理
+</h2><p>UE采用标记-清除的垃圾回收方式，是一种经典的垃圾回收方式。一次垃圾回收分为两个阶段。第一阶段从根集合开始，遍历所有可达对象，遍历完成后就能标记出可达对象和不可达对象了，这个阶段会在一帧完成。第二阶段会渐进式的清理这些不可达对象，因为不可达对象永远不能被访问，所以可用分帧清理，避免卡顿<br>
+虚幻的根集合就是创建Object的时候，调用AddToRoot方法中加入的集合</p>
+<p>GC算法类型</p>
+<ol>
+<li>标记清除&ndash;先标记可达或不可达，然后把不可达清除</li>
+<li>复制算法&ndash;两块相同的内存，每次使用一块，用完了，整体把还存活的对象复制到另一块，然后清除整块内存</li>
+<li>标记整理&ndash;标记过程和标记清理算法一致，但标记后会把可达对象全部移动到内存另一端，完成后把另一端清除</li>
+<li>分代收集&ndash;按存活时间把对象分成几个区域，然后不同区域按照其他三种算法择优进行回收，更新更快的区域使用复制算法，更新慢的使用标记算法</li>
+</ol>
+<h2 id="uproperty">
+<a class="header-anchor" href="#uproperty"></a>
+UPROPERTY
+</h2><h3 id="简述uproperty的作用">
+<a class="header-anchor" href="#%e7%ae%80%e8%bf%b0uproperty%e7%9a%84%e4%bd%9c%e7%94%a8"></a>
+简述UPROPERTY()的作用
+</h3>
+  <blockquote class="alert-blockquote important">
+    <p class="alert-heading">
+      Important
+    </p>
+    <p><h2 id="没有-upropertyue-就不知道这个变量的存在">
+<a class="header-anchor" href="#%e6%b2%a1%e6%9c%89-upropertyue-%e5%b0%b1%e4%b8%8d%e7%9f%a5%e9%81%93%e8%bf%99%e4%b8%aa%e5%8f%98%e9%87%8f%e7%9a%84%e5%ad%98%e5%9c%a8"></a>
+没有 UPROPERTY，UE 就不知道这个变量的存在
+</h2></p>
+  </blockquote>
+
+<p>UPROPERTY 把一个普通 C++ 变量，接入 UE 整个对象系统（GC、反射、网络、编辑器）的关键入口。</p>
+<p>第一是<strong>垃圾回收</strong>（GC）。<br>
+UE 的 UObject 是通过 GC 管理的，<br>
+只有被 UPROPERTY 标记的指针，才会被 GC 系统追踪引用关系。</p>
+<p>第二是<strong>反射系统</strong>。<br>
+UPROPERTY 会把变量注册到 UClass 的反射信息里，<br>
+可以用于序列化、编辑器、蓝图访问、网络同步等。</p>
+<p>第三是<strong>网络同步</strong>。<br>
+通过 Replicated、OnRep 等标记，可以让变量参与网络复制。</p>
+<p>第四是<strong>序列化和存档</strong>。<br>
+比如 SaveGame、Config，可以控制变量是否参与存档或配置文件。</p>
+<p>第五是<strong>编辑器和蓝图支持</strong>。<br>
+比如 Category、EditAnywhere、ClampMin，可以控制在编辑器中的表现。</p>
+<h4 id="问题-1">
+<a class="header-anchor" href="#%e9%97%ae%e9%a2%98-1"></a>
+问题
+</h4>
+  <blockquote class="alert-blockquote question">
+    <p class="alert-heading">
+      Question
+    </p>
+    <p><h4 id="ue-里为什么不推荐直接用-newdelete-来创建-uobject">
+<a class="header-anchor" href="#ue-%e9%87%8c%e4%b8%ba%e4%bb%80%e4%b9%88%e4%b8%8d%e6%8e%a8%e8%8d%90%e7%9b%b4%e6%8e%a5%e7%94%a8-newdelete-%e6%9d%a5%e5%88%9b%e5%bb%ba-uobject"></a>
+UE 里为什么不推荐直接用 <code>new/delete</code> 来创建 UObject？
+</h4><p>应该用什么？为什么？</p></p>
+  </blockquote>
+
+<p>第一，UObject 的生命周期由 UE 的 GC 管理。<br>
+如果用 new 创建，UE 的 GC 系统不会追踪这个对象，<br>
+即使还有引用，也可能被错误回收，或者永远不会被释放，导致内存问题。</p>
+<p>第二，UObject 必须挂在一个 Outer 上，形成对象层级。<br>
+NewObject 会指定 Outer，让对象进入 UE 的对象体系，<br>
+比如 World、Actor 或 Component，这样 UE 才能正确管理它的生命周期。</p>
+<p>第三，反射和序列化系统依赖 UObject 体系。<br>
+用 NewObject 创建的对象会注册到反射系统，支持蓝图、序列化、网络同步等功能，<br>
+而 new 出来的对象完全脱离这些系统。</p>
+<p>第四，Actor 有更特殊的生命周期。<br>
+必须通过 SpawnActor 创建，才能正确注册到 World，<br>
+参与 Tick、网络同步、碰撞、渲染等系统。</p>
+<p>总结来说：<br>
+new 创建的是“纯 C++ 对象”，而 NewObject / SpawnActor 创建的是“UE 管理对象”，<br>
+两者属于完全不同的生命周期体系。</p>
+<h1 id="动画系统">
+<a class="header-anchor" href="#%e5%8a%a8%e7%94%bb%e7%b3%bb%e7%bb%9f"></a>
+动画系统
+</h1>
+  <blockquote class="alert-blockquote question">
+    <p class="alert-heading">
+      Question
+    </p>
+    <p><h2 id="为什么很多-fps-项目会用-单独的-viewmodel-mesh手臂而不是直接用角色全身-mesh">
+<a class="header-anchor" href="#%e4%b8%ba%e4%bb%80%e4%b9%88%e5%be%88%e5%a4%9a-fps-%e9%a1%b9%e7%9b%ae%e4%bc%9a%e7%94%a8-%e5%8d%95%e7%8b%ac%e7%9a%84-viewmodel-mesh%e6%89%8b%e8%87%82%e8%80%8c%e4%b8%8d%e6%98%af%e7%9b%b4%e6%8e%a5%e7%94%a8%e8%a7%92%e8%89%b2%e5%85%a8%e8%ba%ab-mesh"></a>
+为什么很多 FPS 项目会用 <strong>单独的 ViewModel Mesh（手臂）</strong>，而不是直接用角色全身 Mesh？
+</h2></p>
+  </blockquote>
+
+<p>本质是最佳体验问题，FPS最好的的体验一定会牺牲TPS动画的表现，不可能兼顾。很多在FPS视野内正常的动画，实际上全身Mesh已经扭曲得不成样子。</p>
+<p>ViewModel Mesh一方面可以方便动画师专注于摄像机视野内的效果，而不需要考虑视野外是怎么扭曲变形的。</p>
+<p>从程序上考虑，ViewModel很多逻辑也和全身Mesh不一致，很多动画只需要在ViewModel执行，比如检视动画，TPS完全没必要播放，播放后也会很奇怪。<br>
+不同渲染方式也可以使用不同 FOV 和渲染参数，避免穿模和比例问题。以达到最佳体验。</p>
+<p>总之，这本来就是两套完全不同的体验，不能因为看起来像就强行融合。</p>
+</div>
+    <footer class="article-footer"><ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item" data-aos="zoom-in">
+      <a
+        class="article-tag-list-link"
+        href="/WzhGameDevPublish/tags/blog"
+        rel="tag"
+        >BLOG</a
+      >
+    </li></ul>
+</footer>
+  </div><nav
+    id="article-nav"
+    aria-label="Article navigation"
+    data-aos="fade-up"
+  ><div class="article-nav-link-wrap left"><img
+            data-src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTZVoXKJhETNZbZNzuls9YkWGbAZVbAm3uo2Q&amp;s"
+            data-sizes="auto"
+            alt="使用CodeX开发UE5实战经验"
+            class="lazyload"
+          /><a
+          href="/WzhGameDevPublish/post/ai/%E7%BC%96%E7%A8%8B/%E4%BD%BF%E7%94%A8codex%E5%BC%80%E5%8F%91ue5%E5%AE%9E%E6%88%98%E7%BB%8F%E9%AA%8C/"
+          aria-label="前一篇:使用CodeX开发UE5实战经验"
+          title="前一篇:使用CodeX开发UE5实战经验"
+        ></a>
+        <div class="article-nav-caption">前一篇</div>
+        <h3 class="article-nav-title">使用CodeX开发UE5实战经验</h3>
+      </div></nav></article></section>
+        </div><footer id="footer" aria-label="Site footer">
+  <div style="width: 100%; overflow: hidden">
+    <div class="footer-line"></div>
+  </div>
+  <div id="footer-info"><div>
+      <span class="icon-copyright"></span>2025-2026<span class="footer-info-sep rotate"></span>
+      温志洪
+    </div><div>
+        基于&nbsp;<a
+          href="https://gohugo.io/"
+          target="_blank"
+          rel="noopener nofollow noreferrer"
+          >Hugo</a
+        >&nbsp; Theme.<a
+          href="https://github.com/D-Sketon/hugo-theme-reimu"
+          target="_blank"
+          rel="noopener nofollow noreferrer"
+          >Reimu</a
+        >
+      </div><div>
+        <span class="icon-brush"
+          >&nbsp;51.0k</span
+        >
+        &nbsp;|&nbsp;
+        <span class="icon-coffee">&nbsp;01:49</span>
+      </div><div>
+        <span class="icon-eye"></span>
+        <span id="busuanzi_container_site_pv"
+          >总访问量&nbsp;<span
+            id="busuanzi_value_site_pv"
+          ></span
+        ></span>
+        &nbsp;|&nbsp;
+        <span class="icon-user"></span>
+        <span id="busuanzi_container_site_uv"
+          >总访客量&nbsp;<span
+            id="busuanzi_value_site_uv"
+          ></span
+        ></span>
+      </div></div>
+</footer>
+<div class="sidebar-top">
+            <div class="sidebar-top-taichi rotate"></div>
+            <div class="arrow-up"></div>
+          </div><div id="mask" class="hide"></div>
+      </div><nav id="mobile-nav" aria-label="Mobile navigation">
+  <div class="sidebar-wrap"><div class="sidebar-toc-sidebar"><h3 class="toc-title">文章目录</h3>
+<div class="sidebar-toc-wrapper toc-div-class">
+  <nav id="TableOfContents">
+  <ul>
+    <li><a href="#关键资料">关键资料</a></li>
+    <li><a href="#一句话总结和介绍">一句话总结和介绍</a>
+      <ul>
+        <li><a href="#自我介绍">自我介绍</a></li>
+        <li><a href="#lyra改fps项目">Lyra改FPS项目</a></li>
+        <li><a href="#lyra的优点">Lyra的优点</a></li>
+      </ul>
+    </li>
+    <li><a href="#问题">问题</a>
+      <ul>
+        <li></li>
+      </ul>
+    </li>
+  </ul>
+
+  <ul>
+    <li><a href="#基本函数">基本函数</a></li>
+    <li><a href="#基本变量">基本变量</a></li>
+    <li><a href="#优化">优化</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#基础">基础</a>
+      <ul>
+        <li></li>
+      </ul>
+    </li>
+    <li><a href="#应用">应用</a>
+      <ul>
+        <li><a href="#服务器客户端不一致问题">服务器客户端不一致问题</a></li>
+      </ul>
+    </li>
+  </ul>
+
+  <ul>
+    <li><a href="#框架">框架</a>
+      <ul>
+        <li><a href="#gas的优点为什么是gas">GAS的优点，为什么是GAS</a></li>
+        <li><a href="#gameplaytag的优点">GameplayTag的优点</a></li>
+        <li><a href="#gas的缺点">GAS的缺点</a></li>
+      </ul>
+    </li>
+    <li><a href="#ability">Ability</a>
+      <ul>
+        <li></li>
+      </ul>
+    </li>
+    <li><a href="#gameplaytag">GamePlayTag</a></li>
+    <li><a href="#tagrelation">TagRelation</a></li>
+    <li><a href="#attribute">Attribute</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#gc原理">GC原理</a></li>
+    <li><a href="#uproperty">UPROPERTY</a>
+      <ul>
+        <li><a href="#简述uproperty的作用">简述UPROPERTY()的作用</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+</div></div>
+        <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
+  <img
+    data-src="/WzhGameDevPublish/avatar/UELogo.png"
+    data-sizes="auto"
+    alt="温志洪"
+    class="lazyload"
+  />
+  <div class="sidebar-author-name">温志洪</div>
+  <div class="sidebar-description">FPS游戏</div>
+</div>
+<div class="sidebar-state">
+  <div class="sidebar-state-article">
+    <div>文章</div><div class="sidebar-state-number">13</div>
+  </div>
+  <a class="sidebar-state-category" href="/WzhGameDevPublish/categories/" aria-label="sidebar-state-category-link">
+    <div>分类</div>
+    <div class="sidebar-state-number">
+      0
+    </div>
+  </a>
+  <a class="sidebar-state-tag" href="/WzhGameDevPublish/tags/" aria-label="sidebar-state-tag-link">
+    <div>标签</div>
+    <div class="sidebar-state-number">10</div>
+  </a>
+</div>
+<div class="sidebar-social"><div class="icon-bilibili sidebar-social-icon">
+      <a
+        href="https://space.bilibili.com/35312868"
+        itemprop="url"
+        target="_blank"
+        aria-label="bilibili"
+        rel="noopener nofollow noreferrer"
+      ></a>
+    </div><div class="icon-email sidebar-social-icon">
+      <a
+        href="mailto:cnwenzhihong@gmail.com"
+        itemprop="url"
+        target="_blank"
+        aria-label="email"
+        rel="noopener nofollow noreferrer"
+      ></a>
+    </div></div>
+<div class="sidebar-menu"><div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/WzhGameDevPublish/"
+        aria-label="首页"
+      ></a>
+      <div class='sidebar-menu-icon icon rotate'>&#xe62b;</div>
+      <div class="sidebar-menu-link">首页</div>
+    </div><div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/WzhGameDevPublish/archives"
+        aria-label="归档"
+      ></a>
+      <div class='sidebar-menu-icon icon rotate'>&#xe62b;</div>
+      <div class="sidebar-menu-link">归档</div>
+    </div><div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/WzhGameDevPublish/about"
+        aria-label="关于"
+      ></a>
+      <div class='sidebar-menu-icon icon rotate'>&#xe62b;</div>
+      <div class="sidebar-menu-link">关于</div>
+    </div><div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/WzhGameDevPublish/friend"
+        aria-label="友链"
+      ></a>
+      <div class='sidebar-menu-icon icon rotate'>&#xe62b;</div>
+      <div class="sidebar-menu-link">友链</div>
+    </div></div>
+</div></div><div class="sidebar-btn-wrapper">
+        <div class="sidebar-toc-btn current"></div>
+        <div class="sidebar-common-btn"></div>
+      </div></nav>
+</div><div class="site-search">
+        <div class="reimu-popup popup">
+          <div class="reimu-search">
+            <div class="reimu-search-input-icon"></div>
+            <div id="reimu-search-input"></div>
+            <div class="popup-btn-close"></div>
+          </div>
+          <div class="reimu-results">
+            <div id="reimu-stats"></div>
+            <div id="reimu-hits"></div>
+            <div id="reimu-pagination" class="reimu-pagination"></div>
+          </div>
+          <img class="reimu-bg" src="/WzhGameDevPublish/images/reimu.png" />
+        </div>
+      </div><script
+    src="https://npm.webcache.cn/lazysizes@5.3.2/lazysizes.min.js"
+    integrity="sha384-3gT/vsepWkfz/ff7PpWNUeMzeWoH3cDhm/A8jM7ouoAK0/fP/9bcHHR5kHq2nf&#43;e" crossorigin="anonymous"></script><script
+    src="https://npm.webcache.cn/clipboard@2.0.11/dist/clipboard.min.js"
+    integrity="sha384-J08i8An/QeARD9ExYpvphB8BsyOj3Gh2TSh1aLINKO3L0cMSH2dN3E22zFoXEi0Q" crossorigin="anonymous"></script><script
+    src="https://npm.webcache.cn/material-theme@1.0.0/dist/material-theme.umd.js"
+    integrity="sha384-vLev0II0HKFaxkcm&#43;/7kX5IGwVFBASkGchU311wmU/veIj2bB0UcBkQbW6yw2asK" crossorigin="anonymous"></script><script src="/WzhGameDevPublish/js/main.js" ></script><script src="/WzhGameDevPublish/js/aos.js" ></script><script>
+    var aosInit = () => {
+      AOS.init({
+        duration: 1000,
+        easing: "ease",
+        once: true,
+        offset: 50,
+      });
+    };
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", aosInit);
+    } else {
+      aosInit();
+    }
+  </script><script src="/WzhGameDevPublish/js/pjax_main.js" data-pjax></script><script>
+    var ALGOLIA_CONFIG = {
+      logo: '\/WzhGameDevPublish\/images\/algolia_logo.svg',
+      algolia: {
+        applicationID: "Y8C6JKXKKR",
+        apiKey: "30fdacdc4947fb8d8faed68e16f048a0",
+        indexName: "index",
+        hits: {
+          "per_page": parseInt("10")
+        },
+        labels: {
+          "input_placeholder": '搜索.....',
+          "hits_empty": '未发现与 「${query}」相关内容',
+          "hits_stats": '找到${hits}条结果（用时 ${time} ms）'
+        }
+      }
+    };
+  </script><script
+    src="https://npm.webcache.cn/algoliasearch@4.17.1/dist/algoliasearch-lite.umd.js"
+    deferintegrity="sha384-xvLS0jfKuoREs7pqkRI/OI8GcqohO5S&#43;jQz7ZBtQXnsXmD&#43;9jDOOY4cL6dCPzlrk" crossorigin="anonymous"></script><script
+    src="https://npm.webcache.cn/@reimujs/instantsearch.js@4.57.0-beta.1/dist/instantsearch.production.min.js"
+    deferintegrity="sha384-aagKMe8nkqaP2DYQc8kkYOL5l&#43;M5Q2WH/Uhr4teOh0Ybp0RZj0kUSDm45qPikMjK" crossorigin="anonymous"></script><script src="/WzhGameDevPublish/js/algolia_search.js" ></script><script
+    src="https://npm.webcache.cn/mouse-firework@0.1.1/dist/index.umd.js"
+    integrity="sha384-8LyaidD9GPxQQgLJO/WRw/O2h3BoNq/ApI/ecpvM6RsrCz2qP2ppBXUKihP4V/2d" crossorigin="anonymous"></script><script>
+  if (! false  || !window.matchMedia('(max-width: 768px)').matches) {
+    if (window.firework) {
+      const options = JSON.parse("{\"excludeelements\":[\"a\",\"button\"],\"particles\":[{\"colors\":[\"var(--red-1)\",\"var(--red-2)\",\"var(--red-3)\",\"var(--red-4)\"],\"duration\":[1200,1800],\"easing\":\"easeOutExpo\",\"move\":[\"emit\"],\"number\":20,\"shape\":\"circle\",\"shapeOptions\":{\"alpha\":[0.3,0.5],\"radius\":[16,32]}},{\"colors\":[\"var(--red-0)\"],\"duration\":[1200,1800],\"easing\":\"easeOutExpo\",\"move\":[\"diffuse\"],\"number\":1,\"shape\":\"circle\",\"shapeOptions\":{\"alpha\":[0.2,0.5],\"lineWidth\":6,\"radius\":20}}]}");
+      options.excludeElements = options.excludeelements;
+      delete options.excludeelements;
+      window.firework(options);
+    }
+  }
+</script><script
+    src="https://npm.webcache.cn/quicklink@3.0.1/dist/quicklink.umd.js"
+    integrity="sha384-caMDqvgav/HWdEYQU1QRRHMLleigpL1YHAG0m371DhzfL8rRzUyOb&#43;bEHtwlmYjD" crossorigin="anonymous"></script><script data-pjax>
+    window.quicklink?.listen({
+      timeout:  3000 ,
+      priority:  true ,
+      ignores: JSON.parse("[]")
+    });
+  </script>
+
+
+<div id="lazy-script">
+  <div><script data-pjax>
+        window.REIMU_POST = {
+          author: "温志洪",
+          title: "UE 面试准备",
+          url: "http:\/\/localhost:1895\/WzhGameDevPublish\/post\/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91\/%E4%BB%A3%E7%A0%81%E6%A1%86%E6%9E%B6\/ue-%E9%9D%A2%E8%AF%95%E5%87%86%E5%A4%87\/",
+          description: "\r总览\r关键资料\r虚幻面试笔记\n《Exploring in UE4》关于网络同步的理解与思考\nGAS官方文档\nGASDocumentation_Chinese\n一句话总结和介绍\r自我介绍\rLyra改FPS项目\r基于 Lyra 的 FPS 改造.项目特点是\n尽量不更改Lyra源码，可以随时迁移到更新UE、Lyra的版本。(涉及到Lyra的主要框架和逻辑。)\n得益于Lyra优秀的架构和我写的程序化动画，和第三方FPS资产耦合也很小，可以很方便地添加\/更换新FPS的资产。\n花时间比较久：\n",
+          cover: "http:\/\/localhost:1895\/WzhGameDevPublish\/images\/banner.webp",
+        };
+      </script><script src="/WzhGameDevPublish/js/insert_highlight.js" data-pjax></script><script src="/WzhGameDevPublish/js/tabs.js" data-pjax></script><script type="module" data-pjax>const PhotoSwipeLightbox = (await safeImport("https:\/\/npm.webcache.cn\/photoswipe@5.4.4\/dist\/photoswipe-lightbox.esm.min.js", "sha384-DiL6M\/gG\u002bwmTxmCRZyD1zee6lIhawn5TGvED0FOh7fXcN9B0aZ9dexSF\/N6lrZi\/")).default;const initPswp = (gallery, children) => {
+          if (_$$(`${gallery} ${children}`).length > 0) {
+            new PhotoSwipeLightbox({
+              gallery,
+              children,pswpModule: () => safeImport("https:\/\/npm.webcache.cn\/photoswipe@5.4.4\/dist\/photoswipe.esm.min.js", "sha384-WkkO3GCmgkC3VQWpaV8DqhKJqpzpF9JoByxDmnV8\u002boTJ7m3DfYEWX1fu1scuS4\u002bs")}).init();
+          }
+        }
+        const pswp = () => {
+          initPswp('.article-entry', 'a.article-gallery-item');
+          initPswp('.article-gallery', 'a.article-gallery-item');
+          window.lightboxStatus = 'done';
+          window.removeEventListener('lightbox:ready', pswp);
+        }
+        if(window.lightboxStatus === 'ready') {
+          pswp()
+        } else {
+          window.addEventListener('lightbox:ready', pswp);
+        }
+      </script></div>
+</div><script
+    src="https://npm.webcache.cn/busuanzi@2.3.0/bsz.pure.mini.js"
+    asyncintegrity="sha384-0M75wtSkhjIInv4coYlaJU83&#43;OypaRCIq2SukQVQX04eGTCBXJDuWAbJet56id&#43;S" crossorigin="anonymous"></script><script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.getRegistrations().then((registrations) => {
+        for (let registration of registrations) {
+          registration.unregister();
+        }
+      });
+    }
+  </script><script>
+  const reimuCopyright = String.raw`
+   ______     ______     __     __    __     __  __    
+  /\  == \   /\  ___\   /\ \   /\ "-./  \   /\ \/\ \   
+  \ \  __<   \ \  __\   \ \ \  \ \ \-./\ \  \ \ \_\ \  
+   \ \_\ \_\  \ \_____\  \ \_\  \ \_\ \ \_\  \ \_____\ 
+    \/_/ /_/   \/_____/   \/_/   \/_/  \/_/   \/_____/ 
+                                                    
+  `;
+  console.log(String.raw`%c ${reimuCopyright}`, "color: #ff5252;");
+  console.log(
+    "%c Theme.Reimu" + " %c https://github.com/D-Sketon/hugo-theme-reimu ",
+    "color: white; background: #ff5252; padding:5px 0;",
+    "padding:4px;border:1px solid #ff5252;",
+  );
+</script></body>
+</html>

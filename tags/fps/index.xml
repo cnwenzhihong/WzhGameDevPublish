@@ -12,12 +12,44 @@
     
     <copyright>本博客所有文章除特别声明外，均采用 BY-NC-SA 许可协议。转载请注明出处！</copyright>
     
-    <lastBuildDate>Sat, 17 Jan 2026 12:43:42 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 30 Apr 2026 15:47:16 +0000</lastBuildDate>
     
     
     <atom:link href="http://localhost:1895/WzhGameDevPublish/tags/fps/index.xml" rel="self" type="application/rss&#43;xml" />
     
 
+    
+    
+
+    <item>
+      <title>Lyra改为FPS</title>
+      <link>http://localhost:1895/WzhGameDevPublish/post/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/%E4%BB%A3%E7%A0%81%E6%A1%86%E6%9E%B6/lyra/fps/lyra%E6%94%B9%E4%B8%BAfps/</link>
+      <pubDate>Mon, 08 Sep 2025 19:57:34 &#43;0000</pubDate>
+      <author>cnwenzhihong@gmail.com (温志洪)</author>
+      <guid>http://localhost:1895/WzhGameDevPublish/post/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/%E4%BB%A3%E7%A0%81%E6%A1%86%E6%9E%B6/lyra/fps/lyra%E6%94%B9%E4%B8%BAfps/</guid>
+      <description>
+        <![CDATA[<h1>Lyra改为FPS</h1><p>作者：温志洪（cnwenzhihong@gmail.com）</p>
+        
+          <h1 id="总览">
+<a class="header-anchor" href="#%e6%80%bb%e8%a7%88"></a>
+总览
+</h1><h2 id="这套方案的优点">
+<a class="header-anchor" href="#%e8%bf%99%e5%a5%97%e6%96%b9%e6%a1%88%e7%9a%84%e4%bc%98%e7%82%b9"></a>
+这套方案的优点
+</h2><ul>
+<li>完全采用Lyra方案，所有安防均扩展于Lyra原生逻辑拓展，如库存、Cosmet、GA、GameFeature、AnimLayer方案</li>
+<li>与FPS资产分离。FPS程序化动画可以适配大量只有模型的资产。<br>
+<img src="https://gcore.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/20260429151350927.png" alt=""></li>
+</ul>
+<h2 id="资料">
+<a class="header-anchor" href="#%e8%b5%84%e6%96%99"></a>
+资料
+</h2><p><a href="https://x157.github.io/UE5/LyraStarterGame/">LyraStarterGame Overview | X157 Dev Notes</a></p>
+        
+        <hr><p>本文2025-09-08首发于<a href='http://localhost:1895/WzhGameDevPublish/'>妖精游戏开发馆</a>，最后修改于2026-04-30</p>]]>
+      </description>
+      
+    </item>
     
     
 

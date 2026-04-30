@@ -1,0 +1,1868 @@
+<!doctype html>
+<html
+  lang="zh-cn" 
+  data-theme-mode="false"
+  >
+  <head><script src="/WzhGameDevPublish/livereload.js?mindelay=10&amp;v=2&amp;port=1895&amp;path=WzhGameDevPublish/livereload" data-no-instant defer></script><meta charset="utf-8" />
+<meta
+  name="viewport"
+  content="width=device-width, initial-scale=1, shrink-to-fit=no"
+/><title>
+  Lyra改为FPS | 温志洪
+</title>
+<meta name="description" content="FPS游戏"/><script>
+  window.siteConfig = JSON.parse("{\"anchor_icon\":null,\"base\":\"http://localhost:1895/WzhGameDevPublish/\",\"clipboard\":{\"copyright\":{\"count\":50,\"enable\":false,\"license_type\":\"by-nc-sa\"},\"fail\":{\"en\":\"Copy failed (ﾟ⊿ﾟ)ﾂ\",\"ja\":\"コピー失敗 (ﾟ⊿ﾟ)ﾂ\",\"pt-br\":\"Falha ao copiar (ﾟ⊿ﾟ)ﾂ\",\"zh-cn\":\"复制失败 (ﾟ⊿ﾟ)ﾂ\",\"zh-tw\":\"複製失敗 (ﾟ⊿ﾟ)ﾂ\"},\"success\":{\"en\":\"Copy successfully (*^▽^*)\",\"ja\":\"コピー成功 (*^▽^*)\",\"pt-br\":\"Copiado com sucesso (*^▽^*)\",\"zh-cn\":\"复制成功 (*^▽^*)\",\"zh-tw\":\"複製成功 (*^▽^*)\"}},\"code_block\":{\"expand\":4},\"i18n_languages\":[{\"Lang\":\"en\",\"LanguageName\":\"English\",\"LanguageCode\":\"\",\"Title\":\"\",\"LanguageDirection\":\"\",\"Weight\":1,\"Disabled\":false},{\"Lang\":\"zh-cn\",\"LanguageName\":\"简体中文\",\"LanguageCode\":\"\",\"Title\":\"\",\"LanguageDirection\":\"\",\"Weight\":1,\"Disabled\":false}],\"icon_font\":\"4552607_4k4bc36ef96\",\"outdate\":{\"daysago\":180,\"enable\":false,\"message\":{\"en\":\"This article was last updated on {time}. Please note that the content may no longer be applicable.\",\"ja\":\"この記事は最終更新日：{time}。記載内容が現在有効でない可能性がありますのでご注意ください。\",\"pt-br\":\"Este artigo foi atualizado pela última vez em {time}. Observe que o conteúdo pode não ser mais aplicável.\",\"zh-cn\":\"本文最后更新于 {time}，请注意文中内容可能已不适用。\",\"zh-tw\":\"本文最後更新於 {time}，請注意文中內容可能已不適用。\"}}}");
+  
+</script>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link
+  rel="preload"
+  as="style"
+  href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic%7cNoto%20Serif%20SC:400,400italic,700,700italic%7c&amp;display=swap"
+/>
+<link
+  rel="stylesheet"
+  href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic%7cNoto%20Serif%20SC:400,400italic,700,700italic%7c&amp;display=swap"
+  media="print"
+  onload="this.media='all'"
+/>
+<link
+    rel="preload"
+    href="//at.alicdn.com/t/c/font_4552607_4k4bc36ef96.woff2"
+    as="font"
+    type="font/woff2"
+    crossorigin="anonymous"
+  /><link rel="stylesheet" href="/WzhGameDevPublish/css/loader.css" />
+<meta property="og:type" content="website" />
+  <meta property="og:title" content="Lyra改为FPS | 温志洪" />
+  <meta
+    property="og:description"
+    content="FPS游戏"
+  />
+  <meta property="og:url" content="http://localhost:1895/WzhGameDevPublish/post/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/%E4%BB%A3%E7%A0%81%E6%A1%86%E6%9E%B6/lyra/fps/lyra%E6%94%B9%E4%B8%BAfps/" />
+  <meta
+    property="og:site_name"
+    content="妖精游戏开发馆"
+  />
+  <meta
+    property="og:image"
+    content="/WzhGameDevPublish/"
+  />
+  <meta property="article:author" content="温志洪" />
+  <meta property="article:published_time" content="2025-09-08T19:57:34&#43;00:00" />
+  <meta property="article:modified_time" content="2026-04-30T15:47:16&#43;00:00" /><meta property="article:tag" content="UE/Lyra3CFPSblog" /><meta name="twitter:card" content="summary" />
+  <meta name="twitter:image" content="/WzhGameDevPublish/" />
+<link rel="shortcut icon" href="/WzhGameDevPublish/favicon.ico"><link rel="stylesheet" href="/WzhGameDevPublish/css/main.css" />
+<link
+    rel="preload"
+    as="style"
+    href="https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe.css"
+    integrity="sha384-IfxC36XL/toUyJ939C73PcgMuRzAZuIzZxE38drsmO5p6jD7ei&#43;Zx/1oA/0l8ysE" crossorigin="anonymous"onload="this.onload=null;this.rel='stylesheet'"
+  /><link
+    rel="preload"
+    as="style"
+    href="https://npm.webcache.cn/katex@0.16.24/dist/katex.min.css"
+    integrity="sha384-tTgKLjMYmJr94v8qu2PE5MUGSMbyN2xiH266JUB3gpm8vnnJywd1dWSOEfrFz&#43;YI" crossorigin="anonymous"onload="this.onload=null;this.rel='stylesheet'"
+  /><script
+    src="https://npm.webcache.cn/pace-js@1.2.4/pace.min.js"
+    integrity="sha384-k6YtvFUEIuEFBdrLKJ3YAUbBki333tj1CSUisai5Cswsg9wcLNaPzsTHDswp4Az8" crossorigin="anonymous"></script><link
+    rel="stylesheet"
+    href="https://npm.webcache.cn/@reimujs/aos@0.1.2/dist/aos.css"
+    integrity="sha384-GMRP93c6Hkz9JVKGAuRR3nTS7M07RwPgTFenXiosjq2VbVgvdDNcz1g6Mkj8AONa" crossorigin="anonymous"/></head>
+  <body><div id='loader'>
+    <div class="loading-left-bg loading-bg"></div>
+    <div class="loading-right-bg loading-bg"></div>
+    <div class="spinner-box">
+      <div class="loading-taichi rotate"><svg width="150" height="150" viewBox="0 0 1024 1024" class="icon" version="1.1" xmlns="https://www.w3.org/2000/svg" shape-rendering="geometricPrecision">
+            <path d="M303.5 432A80 80 0 0 1 291.5 592A80 80 0 0 1 303.5 432z" fill="var(--red-1, #ff5252)" />
+            <path d="M512 65A447 447 0 0 1 512 959L512 929A417 417 0 0 0 512 95A417 417 0 0 0 512 929L512 959A447 447 0 0 1 512 65z 
+          M512 95A417 417 0 0 1 929 512A208.5 208.5 0 0 1 720.5 720.5L720.5 592A80 80 0 0 0 720.5 432A80 80 0 0 0 720.5 592L720.5 720.5A208.5 208.5 0 0 1 512 512A208.5 208.5 0 0 0 303.5 303.5A208.5 208.5 0 0 0 95 512A417 417 0 0 1 512 95z" fill="var(--red-1, #ff5252)" />
+          </svg></div><div class="loading-word">少女祈祷中...</div>
+    </div>
+  </div>
+  </div>
+  <script>
+    var time = null;
+    var loaderEl = document.getElementById('loader');
+    var startLoading = () => {
+      time = Date.now();
+      loaderEl.classList.remove("loading");
+    }
+    var hideLoader = () => {
+      document.body.style.overflow = 'auto';
+      loader.classList.add('loading');
+    };
+
+    var endLoading = () => {
+      if (!time) {
+        hideLoader();
+      } else {
+        if (Date.now() - time > 500) {
+          time = null;
+          hideLoader();
+        } else {
+          setTimeout(endLoading, 500 - (Date.now() - time));
+          time = null;
+        }
+      }
+    }
+    window.addEventListener('DOMContentLoaded', endLoading);
+    loaderEl.addEventListener('click', endLoading);
+  </script><div id="copy-tooltip"></div>
+<div id="lang-tooltip">
+本文章没有找到对应的语言版本
+</div>
+<div id="heatmap-tooltip"></div><div id="container">
+      <div id="wrap"><div id="header-nav">
+  <nav id="main-nav" aria-label="Primary navigation"><a class="main-nav-link-wrap" href="/WzhGameDevPublish/">
+        <div class='main-nav-icon icon rotate'>&#xe62b;</div>
+        <span class="main-nav-link">首页</span>
+      </a><a class="main-nav-link-wrap" href="/WzhGameDevPublish/archives">
+        <div class='main-nav-icon icon rotate'>&#xe62b;</div>
+        <span class="main-nav-link">归档</span>
+      </a><a class="main-nav-link-wrap" href="/WzhGameDevPublish/about">
+        <div class='main-nav-icon icon rotate'>&#xe62b;</div>
+        <span class="main-nav-link">关于</span>
+      </a><a class="main-nav-link-wrap" href="/WzhGameDevPublish/friend">
+        <div class='main-nav-icon icon rotate'>&#xe62b;</div>
+        <span class="main-nav-link">友链</span>
+      </a><a id="main-nav-toggle" class="nav-icon" aria-label="Toggle navigation" role="button"></a>
+  </nav>
+  <nav id="sub-nav" aria-label="Secondary navigation"><a id="nav-search-btn" class="nav-icon popup-trigger" title="搜索" aria-label="搜索"></a></nav><nav id="i18n-nav" aria-label="Language selection">
+      <div class="custom-dropdown">
+        <div class="select-selected" id="select-selected" role="button" aria-haspopup="listbox" aria-expanded="false" aria-label="Language menu">
+          <span id="nav-language-btn" class="nav-icon" style="padding: 0 20px 0 0"></span>
+          <span id="selected-lang">简体中文</span>
+        </div>
+        <ul class="select-items" id="select-items" role="listbox" aria-label="Languages"><li data-value="en" role="option" arial-selected="false" >English</li><li data-value="zh-cn" role="option" class="selected" arial-selected="true" >简体中文</li></ul>
+      </div>
+      <script>
+        var selectSelected = document.getElementById("select-selected");
+        var selectedLang = document.getElementById("selected-lang");
+        var selectItems = document.getElementById("select-items");
+        var selectOptions = selectItems.querySelectorAll("li");
+
+        selectSelected.addEventListener("click", () => {
+          selectItems.classList.toggle("show");
+          var expanded = selectSelected.getAttribute("aria-expanded") === "true";
+          selectSelected.setAttribute("aria-expanded", (!expanded).toString());
+        });
+
+        selectOptions.forEach((item) => {
+          item.addEventListener("click", () => {
+            const langMap = {};selectedLang.textContent = item.textContent;
+            selectItems.classList.remove("show");
+            selectOptions.forEach((option) => {
+              option.classList.remove("selected");
+            });
+            item.classList.add("selected");
+            if (item.dataset.value === 'zh-cn') {
+              return;
+            }
+            if (!langMap[item.dataset.value]) {
+              _$("#lang-tooltip").style.opacity = "1";
+              setTimeout(() => {
+                _$("#lang-tooltip").style.opacity = "0";
+              }, 1000);
+              return;
+            }
+            window.location = langMap[item.dataset.value];
+          });
+        });
+
+        document.addEventListener("click", (event) => {
+          if (!event.target.closest(".custom-dropdown")) {
+            selectItems.classList.remove("show");
+            selectSelected.setAttribute("aria-expanded", "false");
+          }
+        });
+      </script>
+    </nav></div>
+<header id="header" aria-label="Site header"><picture><source media="(max-width: 479px)" srcset="/WzhGameDevPublish/images/banner-600w.webp"><source media="(max-width: 799px)" srcset="/WzhGameDevPublish/images/banner-800w.webp"><source media="(min-width: 800px)" srcset="/WzhGameDevPublish/images/banner.webp"><img crossorigin="anonymous" fetchpriority="high" src="/WzhGameDevPublish/images/banner.webp" alt="Lyra改为FPS"></picture><img alt="Lyra改为FPS" style="visibility: hidden;"><div id="header-outer">
+    <div id="header-title"><span id="logo">
+            <h1 data-aos="slide-up">Lyra改为FPS</h1>
+          </span><h2 id="subtitle-wrap" data-aos="slide-down"></h2></div>
+  </div>
+</header><div id="content"
+          aria-label="Page content"
+          class="sidebar-left"
+            ><aside id="sidebar" aria-label="Sidebar"><div class="sidebar-wrapper-container sticky"><div class="sidebar-wrapper">
+    <div
+      class="sidebar-wrap"
+      data-aos="fade-up"
+    ><div class="sidebar-toc-sidebar"><h3 class="toc-title">文章目录</h3>
+<div class="sidebar-toc-wrapper toc-div-class">
+  <nav id="TableOfContents">
+  <ul>
+    <li><a href="#这套方案的优点">这套方案的优点</a></li>
+    <li><a href="#资料">资料</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#11-新建一个lyrafps的gamefeature">1.1. 新建一个LyraFPS的GameFeature</a></li>
+    <li><a href="#12-摄像机配置">1.2. 摄像机配置</a>
+      <ul>
+        <li><a href="#更改基本配置">更改基本配置</a></li>
+      </ul>
+    </li>
+    <li><a href="#13-模型配置">1.3. 模型配置</a>
+      <ul>
+        <li><a href="#goal">Goal</a></li>
+        <li><a href="#knowledge">knowledge</a></li>
+        <li><a href="#step">Step</a></li>
+      </ul>
+    </li>
+    <li><a href="#14-设置ik绑定和重定向器">1.4. 设置IK绑定和重定向器</a></li>
+    <li><a href="#14-添加fps动画蓝图">1.4. 添加FPS动画蓝图</a>
+      <ul>
+        <li><a href="#重定向一份fps版本的动画蓝图">重定向一份FPS版本的动画蓝图</a></li>
+        <li><a href="#处理abp_itemanimlayersbase的编译报错和警告">处理<code>ABP_ItemAnimLayersBase</code>的编译报错和警告</a></li>
+        <li><a href="#处理abp_mannequin_base_fps的编译报错">处理<code>ABP_Mannequin_Base_FPS</code>的编译报错</a></li>
+      </ul>
+    </li>
+  </ul>
+
+  <ul>
+    <li><a href="#goat">Goat</a></li>
+    <li><a href="#knowledge-1">Knowledge</a>
+      <ul>
+        <li><a href="#关键步骤">关键步骤</a></li>
+      </ul>
+    </li>
+    <li><a href="#step-1">Step</a>
+      <ul>
+        <li><a href="#传统方案绑死逻辑">传统方案——绑死逻辑</a></li>
+        <li><a href="#cosmet数据驱动添加fps模型">Cosmet数据驱动添加FPS模型</a></li>
+      </ul>
+    </li>
+  </ul>
+
+  <ul>
+    <li><a href="#1-非关键逻辑修改">1. 非关键逻辑修改</a>
+      <ul>
+        <li><a href="#修改abp_itemanimlayersbase_fpsgetmainanimbpthreadsafe">修改ABP_ItemAnimLayersBase_FPS::GetMainAnimBPThreadSafe</a></li>
+        <li><a href="#将必要参数用propertyaccess收集">将必要参数用PropertyAccess收集</a></li>
+      </ul>
+    </li>
+    <li><a href="#2-主动画蓝图基本配置">2. 主动画蓝图基本配置</a>
+      <ul>
+        <li><a href="#架构修改">架构修改</a></li>
+        <li><a href="#animlayerinterface">AnimLayerInterface</a></li>
+        <li><a href="#animlayerbase">AnimLayerBase</a></li>
+        <li><a href="#copyanim">CopyAnim</a></li>
+      </ul>
+    </li>
+  </ul>
+
+  <ul>
+    <li><a href="#修改ga_fire">修改GA_Fire</a>
+      <ul>
+        <li><a href="#播放fps的蒙太奇">播放FPS的蒙太奇</a></li>
+        <li><a href="#增加fps的开火特效">增加FPS的开火特效</a></li>
+        <li><a href="#替换开火声">替换开火声</a></li>
+      </ul>
+    </li>
+    <li><a href="#修改ga_reload">修改GA_Reload</a>
+      <ul>
+        <li><a href="#ga_weapon_reload修改">GA_Weapon_Reload修改</a></li>
+      </ul>
+    </li>
+    <li><a href="#添加ga_sprint">添加GA_Sprint</a>
+      <ul>
+        <li><a href="#添加奔跑能力">添加奔跑能力</a></li>
+      </ul>
+    </li>
+  </ul>
+
+  <ul>
+    <li><a href="#将脚步声替换为fps动画提供的">将<strong>脚步声</strong>替换为FPS动画提供的</a>
+      <ul>
+        <li><a href="#goat-1">Goat</a></li>
+        <li><a href="#knowledge-2">Knowledge</a></li>
+        <li><a href="#step-2">Step</a></li>
+      </ul>
+    </li>
+    <li><a href="#获取fps动画中的摄像机晃动">获取FPS动画中的摄像机晃动</a>
+      <ul>
+        <li><a href="#goat-2">Goat</a></li>
+        <li><a href="#knowledge-3">Knowledge</a></li>
+        <li><a href="#step-3">Step</a></li>
+      </ul>
+    </li>
+    <li><a href="#处理不适合放在fps中的ui">处理不适合放在FPS中的UI</a>
+      <ul>
+        <li><a href="#准星">准星</a></li>
+      </ul>
+    </li>
+  </ul>
+
+  <ul>
+    <li><a href="#新运动系统">新运动系统</a></li>
+    <li><a href="#程序化动画">程序化动画</a></li>
+    <li><a href="#随鼠标和ad键让手臂左右摆动">随鼠标和AD键让手臂左右摆动</a>
+      <ul>
+        <li><a href="#方案一">方案一</a></li>
+      </ul>
+    </li>
+    <li><a href="#射击时枪身左右摆动">射击时枪身左右摆动</a></li>
+  </ul>
+</nav>
+</div></div>
+          <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
+  <img
+    data-src="/WzhGameDevPublish/avatar/UELogo.png"
+    data-sizes="auto"
+    alt="温志洪"
+    class="lazyload"
+  />
+  <div class="sidebar-author-name">温志洪</div>
+  <div class="sidebar-description">FPS游戏</div>
+</div>
+<div class="sidebar-state">
+  <div class="sidebar-state-article">
+    <div>文章</div><div class="sidebar-state-number">13</div>
+  </div>
+  <a class="sidebar-state-category" href="/WzhGameDevPublish/categories/" aria-label="sidebar-state-category-link">
+    <div>分类</div>
+    <div class="sidebar-state-number">
+      0
+    </div>
+  </a>
+  <a class="sidebar-state-tag" href="/WzhGameDevPublish/tags/" aria-label="sidebar-state-tag-link">
+    <div>标签</div>
+    <div class="sidebar-state-number">10</div>
+  </a>
+</div>
+<div class="sidebar-social"><div class="icon-bilibili sidebar-social-icon">
+      <a
+        href="https://space.bilibili.com/35312868"
+        itemprop="url"
+        target="_blank"
+        aria-label="bilibili"
+        rel="noopener nofollow noreferrer"
+      ></a>
+    </div><div class="icon-email sidebar-social-icon">
+      <a
+        href="mailto:cnwenzhihong@gmail.com"
+        itemprop="url"
+        target="_blank"
+        aria-label="email"
+        rel="noopener nofollow noreferrer"
+      ></a>
+    </div></div>
+<div class="sidebar-menu"><div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/WzhGameDevPublish/"
+        aria-label="首页"
+      ></a>
+      <div class='sidebar-menu-icon icon rotate'>&#xe62b;</div>
+      <div class="sidebar-menu-link">首页</div>
+    </div><div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/WzhGameDevPublish/archives"
+        aria-label="归档"
+      ></a>
+      <div class='sidebar-menu-icon icon rotate'>&#xe62b;</div>
+      <div class="sidebar-menu-link">归档</div>
+    </div><div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/WzhGameDevPublish/about"
+        aria-label="关于"
+      ></a>
+      <div class='sidebar-menu-icon icon rotate'>&#xe62b;</div>
+      <div class="sidebar-menu-link">关于</div>
+    </div><div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/WzhGameDevPublish/friend"
+        aria-label="友链"
+      ></a>
+      <div class='sidebar-menu-icon icon rotate'>&#xe62b;</div>
+      <div class="sidebar-menu-link">友链</div>
+    </div></div>
+</div><div class="sidebar-btn-wrapper" style="position:static">
+            <div class="sidebar-toc-btn current"></div>
+            <div class="sidebar-common-btn"></div>
+          </div></div>
+  </div><div class="sidebar-widget"></div></div></aside>
+<section id="main" aria-label="Main content"><p style="color:red">ARTICLE PARTIAL OVERRIDE ACTIVE</p>
+<article
+  class="h-entry article"
+  itemscope
+  itemtype="https://schema.org/BlogPosting"
+>
+  <div
+    class="article-inner"
+    data-aos="fade-up"
+  >
+    <div class="article-meta"><div class="article-date">
+  <span
+    class="article-date-link icon-calendar"
+    data-aos="zoom-in"
+  >
+    <time datetime="2025-09-08 19:57:34.678 &#43;0000 UTC" itemprop="datePublished"
+      >2025-09-08</time
+    >
+    <time style="display: none;" id="post-update-time"
+      >2026-04-30</time
+    >
+  </span><span
+      class="article-date-link icon-calendar-plus"
+      data-aos="zoom-in"
+    >
+      <time datetime="2026-04-30 15:47:16.099 &#43;0000 UTC" itemprop="dateModified"
+        >2026-04-30</time
+      >
+    </span></div>
+<div class="article-category"></div>
+</div><div class="hr-line"></div><div class="e-content article-entry" itemprop="articleBody"><h1 id="总览">
+<a class="header-anchor" href="#%e6%80%bb%e8%a7%88"></a>
+总览
+</h1><h2 id="这套方案的优点">
+<a class="header-anchor" href="#%e8%bf%99%e5%a5%97%e6%96%b9%e6%a1%88%e7%9a%84%e4%bc%98%e7%82%b9"></a>
+这套方案的优点
+</h2><ul>
+<li>完全采用Lyra方案，所有安防均扩展于Lyra原生逻辑拓展，如库存、Cosmet、GA、GameFeature、AnimLayer方案</li>
+<li>与FPS资产分离。FPS程序化动画可以适配大量只有模型的资产。<br>
+<img src="https://gcore.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/20260429151350927.png" alt=""></li>
+</ul>
+<h2 id="资料">
+<a class="header-anchor" href="#%e8%b5%84%e6%96%99"></a>
+资料
+</h2><p><a href="https://x157.github.io/UE5/LyraStarterGame/">LyraStarterGame Overview | X157 Dev Notes</a></p>
+<h1 id="修改和添加必要的配置">
+<a class="header-anchor" href="#%e4%bf%ae%e6%94%b9%e5%92%8c%e6%b7%bb%e5%8a%a0%e5%bf%85%e8%a6%81%e7%9a%84%e9%85%8d%e7%bd%ae"></a>
+修改和添加必要的配置
+</h1><h2 id="11-新建一个lyrafps的gamefeature">
+<a class="header-anchor" href="#11-%e6%96%b0%e5%bb%ba%e4%b8%80%e4%b8%aalyrafps%e7%9a%84gamefeature"></a>
+1.1. 新建一个LyraFPS的GameFeature
+</h2><p>方便我们将FPS逻辑和Lyra逻辑彻底分离<br>
+参考：<a href="/Lyra%E5%AE%9E%E6%88%98%EF%BC%9A%E6%96%B0%E5%A2%9EGameFeature">Lyra实战：新增GameFeature</a></p>
+<h2 id="12-摄像机配置">
+<a class="header-anchor" href="#12-%e6%91%84%e5%83%8f%e6%9c%ba%e9%85%8d%e7%bd%ae"></a>
+1.2. 摄像机配置
+</h2><h3 id="更改基本配置">
+<a class="header-anchor" href="#%e6%9b%b4%e6%94%b9%e5%9f%ba%e6%9c%ac%e9%85%8d%e7%bd%ae"></a>
+更改基本配置
+</h3><p>摄像机配置文件为：📝<code>CM_ThirdPerson</code>,由📈<code>ThirdPersonOffsetCurve</code>决定摄像机离head的位置</p>
+<ol>
+<li>复制这两个文件，改为<code>CM_FirstPerson</code>和<code>ThirdPersonOffsetCurve</code></li>
+<li>将<code>ThirdPersonOffsetCurve</code>曲线调为0,0,0，并将其配置到CM(摄像机管理)上<img src="https://cdn.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/20250909040515704.png" alt="inlL"></li>
+<li>查找<code>CM_ThirdPerson</code>的引用，将射击角色的CM改为新的CM<img src="https://cdn.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/20250909035759911.png" alt="image.png|inl"></li>
+</ol>
+<p>效果：<img src="https://cdn.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/20250909040725165.png" alt="|C|325"></p>
+<h4 id="处理lyracameracomp">
+<a class="header-anchor" href="#%e5%a4%84%e7%90%86lyracameracomp"></a>
+处理LyraCameraComp
+</h4><h5 id="step1-参数配置">
+<a class="header-anchor" href="#step1-%e5%8f%82%e6%95%b0%e9%85%8d%e7%bd%ae"></a>
+Step1 参数配置
+</h5><p>在CameraComp的蓝图或C++中配置以下参数：<br>
+<img src="https://gcore.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/20260412104606383.png" alt=""></p>
+<ul>
+<li>FirstPersonFieldOfView：视图模型的FOV(所有FPS模型的FOV)，与场景中的FOV彼此独立<img src="https://gcore.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/20260412111253824.png" alt=""></li>
+<li>FirstPeronScale：视图模型缩放</li>
+</ul>
+
+  <blockquote class="alert-blockquote question">
+    <p class="alert-heading">
+      Question
+    </p>
+    <p><h4 id="lyra中firstperson配置无效">
+<a class="header-anchor" href="#lyra%e4%b8%adfirstperson%e9%85%8d%e7%bd%ae%e6%97%a0%e6%95%88"></a>
+Lyra中FirstPerson配置无效
+</h4><p>一般来说，Camera和Mesh都完成FirstPerson配置就可以保证手臂不再穿模，但Lyra的bug让该配置无法正常生效<br>
+原因：ULyraCameraComponent::GetCameraView少了FirstPerson相关配置<br>
+在合适配置添加即可<br>
+<img src="https://gcore.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/20260412110301294.png" alt=""></p></p>
+  </blockquote>
+
+<h5 id="step2-数据驱动">
+<a class="header-anchor" href="#step2-%e6%95%b0%e6%8d%ae%e9%a9%b1%e5%8a%a8"></a>
+Step2 数据驱动
+</h5><p>创建FPS的GameraMode，方便直接在CameraMode调整参数<br>
+FPSCameraMode：<br>
+<img src="https://gcore.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/20260412111610219.png" alt=""><br>
+在CameraComponent中使用：<br>
+<img src="https://gcore.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/20260412111648759.png" alt=""></p>
+<p>LyraCameraComp的</p>
+<h2 id="13-模型配置">
+<a class="header-anchor" href="#13-%e6%a8%a1%e5%9e%8b%e9%85%8d%e7%bd%ae"></a>
+1.3. 模型配置
+</h2><p><a href="https://www.youtube.com/watch?v=hysDG6rrz68%5c&amp;list=PLP0m9EE3InC7Byqvsm6WK9NVLkgb_RscR%5c&amp;index=4">Adding First Person Visuals</a></p>
+<h3 id="goal">
+<a class="header-anchor" href="#goal"></a>
+Goal
+</h3><p>主视角隐藏全身身体、枪械模型，创建并显示第一人称模型。<br>
+他人视角下则相反</p>
+<h3 id="knowledge">
+<a class="header-anchor" href="#knowledge"></a>
+knowledge
+</h3><p><a href="Lyra%E8%A7%92%E8%89%B2#%E6%A8%A1%E5%9E%8B%E7%AE%A1%E7%90%86">Lyra角色#模型管理</a></p>
+<h3 id="step">
+<a class="header-anchor" href="#step"></a>
+Step
+</h3><h4 id="step-1-隐藏第三人称模型">
+<a class="header-anchor" href="#step-1-%e9%9a%90%e8%97%8f%e7%ac%ac%e4%b8%89%e4%ba%ba%e7%a7%b0%e6%a8%a1%e5%9e%8b"></a>
+Step 1. 隐藏第三人称模型
+</h4><h5 id="方案一设置onwernosee">
+<a class="header-anchor" href="#%e6%96%b9%e6%a1%88%e4%b8%80%e8%ae%be%e7%bd%aeonwernosee"></a>
+方案一：设置OnwerNoSee
+</h5><ol>
+<li>找到生成模型的代码: FLyraCharacterPartList::SpawnActorForEntry</li>
+<li>将生成的TPS模型设置为自tag: 己不可见
+<ol>
+<li>将该TPS模型的Owner设置为角色</li>
+<li>将该TPS模型设置为OwenrNoSee所有者不可见</li>
+</ol>
+</li>
+</ol>
+<p><img src="https://cdn.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/20250909044739208.png" alt="image.png"></p>
+<h5 id="方案二firstperson渲染-ue56">
+<a class="header-anchor" href="#%e6%96%b9%e6%a1%88%e4%ba%8cfirstperson%e6%b8%b2%e6%9f%93-ue56"></a>
+方案二：FirstPerson渲染（ UE5.6）
+</h5><ol>
+<li>同上修改Owner<br>
+<code>SpawnedActor-&gt;SetOwner(OwnerComponent-&gt;GetOwner());</code></li>
+<li>进入骨骼蓝图修改模型FirstPersonPrimitiveType为屏幕空间<img src="https://cdn.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/20250911131121250.png" alt="image.png"></li>
+<li>效果——主角只能看见阴影，其他玩家可见<br>
+<img src="https://cdn.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/20250911130558423.png" alt="image.png|450"></li>
+</ol>
+<h4 id="step-2-添加第一人称手臂模型并配置fps效果">
+<a class="header-anchor" href="#step-2-%e6%b7%bb%e5%8a%a0%e7%ac%ac%e4%b8%80%e4%ba%ba%e7%a7%b0%e6%89%8b%e8%87%82%e6%a8%a1%e5%9e%8b%e5%b9%b6%e9%85%8d%e7%bd%aefps%e6%95%88%e6%9e%9c"></a>
+Step 2. 添加第一人称手臂模型并配置FPS效果
+</h4><h5 id="方案一直接添加到lyracharacter下">
+<a class="header-anchor" href="#%e6%96%b9%e6%a1%88%e4%b8%80%e7%9b%b4%e6%8e%a5%e6%b7%bb%e5%8a%a0%e5%88%b0lyracharacter%e4%b8%8b"></a>
+方案一：直接添加到LyraCharacter下
+</h5><p>将骨骼网格体直接添加到LyraCharacter下<br>
+设置仅自己可见<br>
+<img src="https://cdn.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/20250911131311528.png" alt="image.png"></p>
+<h5 id="方案二-创建新的角色按客户端服务器的规则生成对应模型">
+<a class="header-anchor" href="#%e6%96%b9%e6%a1%88%e4%ba%8c-%e5%88%9b%e5%bb%ba%e6%96%b0%e7%9a%84%e8%a7%92%e8%89%b2%e6%8c%89%e5%ae%a2%e6%88%b7%e7%ab%af%e6%9c%8d%e5%8a%a1%e5%99%a8%e7%9a%84%e8%a7%84%e5%88%99%e7%94%9f%e6%88%90%e5%af%b9%e5%ba%94%e6%a8%a1%e5%9e%8b"></a>
+方案二: 创建新的角色，按客户端、服务器的规则生成对应模型
+</h5><blockquote>
+<p>我们希望沿用Lyra的设计逻辑，并尽可能避免源码修改，以便于升级</p>
+</blockquote>
+<p>关键问题：</p>
+<h6 id="缺少子mesh与主mesh的映射逻辑">
+<a class="header-anchor" href="#%e7%bc%ba%e5%b0%91%e5%ad%90mesh%e4%b8%8e%e4%b8%bbmesh%e7%9a%84%e6%98%a0%e5%b0%84%e9%80%bb%e8%be%91"></a>
+缺少<code>子Mesh</code>与<code>主Mesh</code>的映射逻辑
+</h6><p>靠Actor和Component都有的原生Tags映射</p>
+
+  <blockquote class="alert-blockquote question">
+    <p class="alert-heading">
+      Question
+    </p>
+    <p><h4 id="ulyrapawncomponent_characterparts继承添加映射">
+<a class="header-anchor" href="#ulyrapawncomponent_characterparts%e7%bb%a7%e6%89%bf%e6%b7%bb%e5%8a%a0%e6%98%a0%e5%b0%84"></a>
+ULyraPawnComponent_CharacterParts继承添加映射
+</h4><p>override关键函数<code>GetSceneComponentToAttachTo</code>，引入Tags判断</p>
+<blockquote>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">FindComponentByTag(USkeletalMeshComponent::StaticClass(),PartTags[0])
+</span></span></code></pre></div></blockquote></p>
+  </blockquote>
+
+
+  <blockquote class="alert-blockquote question">
+    <p class="alert-heading">
+      Question
+    </p>
+    <p><h4 id="ulyrapawncomponent_characterparts与角色硬绑定直接替换会更改源蓝图继承也无法删除该组件">
+<a class="header-anchor" href="#ulyrapawncomponent_characterparts%e4%b8%8e%e8%a7%92%e8%89%b2%e7%a1%ac%e7%bb%91%e5%ae%9a%e7%9b%b4%e6%8e%a5%e6%9b%bf%e6%8d%a2%e4%bc%9a%e6%9b%b4%e6%94%b9%e6%ba%90%e8%93%9d%e5%9b%be%e7%bb%a7%e6%89%bf%e4%b9%9f%e6%97%a0%e6%b3%95%e5%88%a0%e9%99%a4%e8%af%a5%e7%bb%84%e4%bb%b6"></a>
+ULyraPawnComponent_CharacterParts与角色硬绑定，直接替换会更改源蓝图，继承也无法删除该组件
+</h4><p>复制新的射击角色，在摄像机下添加FPSMesh。<img src="https://cdn.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/20250915034109101.png" alt="image.png"></p></p>
+  </blockquote>
+
+
+  <blockquote class="alert-blockquote question">
+    <p class="alert-heading">
+      Question
+    </p>
+    <p><h4 id="alyrataggedactor禁用了tags的编辑权限">
+<a class="header-anchor" href="#alyrataggedactor%e7%a6%81%e7%94%a8%e4%ba%86tags%e7%9a%84%e7%bc%96%e8%be%91%e6%9d%83%e9%99%90"></a>
+ALyraTaggedActor禁用了Tags的编辑权限
+</h4><p>继承ALyraTaggedActor，在子类开启编辑权限<br>
+原全身Mesh不用更改，子类只添加FPSMesh<img src="https://cdn.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/20250915034814543.png" alt="image.png"><br>
+最后在所有引用的PawnData、ExperienceDefine中将引用改为新的蓝图即可</p></p>
+  </blockquote>
+
+
+  <blockquote class="alert-blockquote question">
+    <p class="alert-heading">
+      Question
+    </p>
+    <p><h4 id="pick逻辑仅支持服务器所有actor在所有端都生成">
+<a class="header-anchor" href="#pick%e9%80%bb%e8%be%91%e4%bb%85%e6%94%af%e6%8c%81%e6%9c%8d%e5%8a%a1%e5%99%a8%e6%89%80%e6%9c%89actor%e5%9c%a8%e6%89%80%e6%9c%89%e7%ab%af%e9%83%bd%e7%94%9f%e6%88%90"></a>
+Pick逻辑仅支持服务器，所有Actor在所有端都生成
+</h4><p><strong>主要Class：</strong></p>
+<ul>
+<li>ULyraControllerComponent_CharacterParts：简单添加角色模型(<code>AddCharacterPart</code>)，仅在服务器执行。</li>
+<li>LyraPawnComponent_CharacterParts：CharacterPartList存放所有模型参数，以方便数据同步到客户端后生成相同模型</li>
+</ul>
+<p><strong>改造思路：</strong></p>
+<ul>
+<li>ControllerComp作为终端没有太多依赖项，大量函数、变量都被做成private，直接复制一份更改逻辑</li>
+<li>PawnComp需要存放原来的TPS模型，仅需要添加本地生成的模型管理。继承后增加功能。<br>
+<img src="https://gcore.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/20260409140131093.png" alt=""><br>
+重点是添加本地Part的存储，以及ControllerComp函数的搭建。几乎每一个关键函数都需要多写一份<br>
+<strong>问题</strong></li>
+</ul>
+
+  <blockquote class="alert-blockquote question">
+    <p class="alert-heading">
+      Question
+    </p>
+    <p><p>Beginplay时Pawn还没有被赋予到Controller，PawnComp_CharacterPart无法被获取，需要等一帧，Lyra如何处理？<br>
+AddCharacterPart时，哪怕生成失败也将Entry放入数组<br>
+<img src="https://gcore.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/20260409135532494.png" alt=""><br>
+使用Controller的OnPossessedPawnChanged回调，当Pawn被赋予时再添加一次<br>
+<img src="https://gcore.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/20260409135403374.png" alt=""></p></p>
+  </blockquote>
+
+
+  <blockquote class="alert-blockquote question">
+    <p class="alert-heading">
+      Question
+    </p>
+    <p><p>直接创建一个基于SkeletalMesh的新类<br>
+<img src="https://gcore.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/20260410004455660.png" alt=""></p></p>
+  </blockquote>
+
+
+  <blockquote class="alert-blockquote question">
+    <p class="alert-heading">
+      Question
+    </p>
+    <p><p>最少需要留一个面，提前想好即可，最后一面可以直接修改Scale到几乎不可见<br>
+<img src="https://gcore.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/20260410010032480.png" alt=""></p></p>
+  </blockquote></p>
+  </blockquote>
+
+<p><strong>受影响的Lyra文件：</strong><br>
+[list2lt]</p>
+<ul>
+<li>📂LyraGame
+<ul>
+<li>📂AbilitySystem
+<ul>
+<li>📝LyraTaggedActor.h</li>
+</ul>
+</li>
+<li>📂Cosmetics
+<ul>
+<li>📝LyraPawnComponent_CharacterParts.h</li>
+<li>📝LyraPawnComponent_CharacterParts.cpp</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="14-设置ik绑定和重定向器">
+<a class="header-anchor" href="#14-%e8%ae%be%e7%bd%aeik%e7%bb%91%e5%ae%9a%e5%92%8c%e9%87%8d%e5%ae%9a%e5%90%91%e5%99%a8"></a>
+1.4. 设置IK绑定和重定向器
+</h2><p>UE5标准骨骼动画兼容方案:<a href="https://www.bilibili.com/video/BV1z5411U76z">骨骼兼容Skeleton Compatibility</a><br>
+<a href="https://www.youtube.com/watch?v=1_iJMAwLyuA%5c&amp;list=PLP0m9EE3InC7Byqvsm6WK9NVLkgb_RscR%5c&amp;index=4">设置IK绑定和重定向器</a></p>
+<p>自动创建IK_Rig和Retarget重定向器(UE5.6+)<br>
+[list2pumlActivityDiagram]</p>
+<ul>
+<li>找到一个Lyra动画</li>
+<li>右键→RetargetAnimations</li>
+<li>在Target中选中FPS模型，勾选Auto Generite Retarget</li>
+<li>点击Export Retarget Assets，选择文件夹导出即可<br>
+<img src="https://cdn.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/20250916070058664.png" alt="image.png"></li>
+</ul>
+<h2 id="14-添加fps动画蓝图">
+<a class="header-anchor" href="#14-%e6%b7%bb%e5%8a%a0fps%e5%8a%a8%e7%94%bb%e8%93%9d%e5%9b%be"></a>
+1.4. 添加FPS动画蓝图
+</h2><p><a href="https://www.youtube.com/watch?v=7WepdzibJNI%5c&amp;list=PLP0m9EE3InC7Byqvsm6WK9NVLkgb_RscR%5c&amp;index=12">程序化 IK 概述和设置</a><br>
+我们需要重定向一份<code>ABP_Mannequin_Base</code>的FPS模型版本，并在其中做一样的AnimLayer分层方案。</p>
+<h3 id="重定向一份fps版本的动画蓝图">
+<a class="header-anchor" href="#%e9%87%8d%e5%ae%9a%e5%90%91%e4%b8%80%e4%bb%bdfps%e7%89%88%e6%9c%ac%e7%9a%84%e5%8a%a8%e7%94%bb%e8%93%9d%e5%9b%be"></a>
+重定向一份FPS版本的动画蓝图
+</h3><p>右键，选择生成的RetargetAsset，选择动画蓝图资产<br>
+<img src="https://cdn.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/20250916065544594.png" alt="image.png"><br>
+将<code>ABP_Mannequin_Base_FPS</code>和<code>ABP_ItemAnimLayersBase</code>重定向到手臂</p>
+<h3 id="处理abp_itemanimlayersbase的编译报错和警告">
+<a class="header-anchor" href="#%e5%a4%84%e7%90%86abp_itemanimlayersbase%e7%9a%84%e7%bc%96%e8%af%91%e6%8a%a5%e9%94%99%e5%92%8c%e8%ad%a6%e5%91%8a"></a>
+处理<code>ABP_ItemAnimLayersBase</code>的编译报错和警告
+</h3><h4 id="处理编译报错">
+<a class="header-anchor" href="#%e5%a4%84%e7%90%86%e7%bc%96%e8%af%91%e6%8a%a5%e9%94%99"></a>
+处理编译报错:
+</h4><h5 id="删除fullbody_aiming的逻辑">
+<a class="header-anchor" href="#%e5%88%a0%e9%99%a4fullbody_aiming%e7%9a%84%e9%80%bb%e8%be%91"></a>
+删除Fullbody_Aiming的逻辑
+</h5><p><img src="https://cdn.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/20250916160225565.png" alt="image.png"></p>
+<h5 id="lefthandpose_overridestate">
+<a class="header-anchor" href="#lefthandpose_overridestate"></a>
+LeftHandPose_OverrideState
+</h5><p>将默认值置为null<br>
+<img src="https://cdn.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/20250916180646168.png" alt="image.png"></p>
+<h4 id="处理编译警告">
+<a class="header-anchor" href="#%e5%a4%84%e7%90%86%e7%bc%96%e8%af%91%e8%ad%a6%e5%91%8a"></a>
+处理编译警告:
+</h4><h5 id="orientation-warping节点">
+<a class="header-anchor" href="#orientation-warping%e8%8a%82%e7%82%b9"></a>
+Orientation Warping节点
+</h5><p>去掉旋转扭曲，直接连到步幅扭曲，方便控制动画速度<br>
+<img src="https://cdn.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/20250916183406369.png" alt="image.png"></p>
+<h5 id="copy-bonefullbody_skeletalcontrols">
+<a class="header-anchor" href="#copy-bonefullbody_skeletalcontrols"></a>
+Copy Bone(FullBody_SkeletalControls)
+</h5><p>这个警告是很多人的Lyra改造项目左手没有对准的原因<br>
+<img src="https://cdn.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/20250916192300112.png" alt="image.png|C"></p>
+<p>从hand_r绑定虚拟骨骼到hand_l<br>
+<img src="https://cdn.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/20250916191935113.png" alt="image.png|C"><br>
+将骨骼改名为动画蓝图中的骨骼，最好从Lyra原骨骼Copy，去掉VB前缀<br>
+<img src="https://cdn.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/20250916192100869.png" alt="image.png"></p>
+<h5 id="transformmodifybone">
+<a class="header-anchor" href="#transformmodifybone"></a>
+Transform(Modify)Bone
+</h5><p>可能是骨骼名不同，修改骨骼名就行<br>
+<img src="https://cdn.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/20250916184221386.png" alt="image.png"></p>
+<h3 id="处理abp_mannequin_base_fps的编译报错">
+<a class="header-anchor" href="#%e5%a4%84%e7%90%86abp_mannequin_base_fps%e7%9a%84%e7%bc%96%e8%af%91%e6%8a%a5%e9%94%99"></a>
+处理<code>ABP_Mannequin_Base_FPS</code>的编译报错
+</h3><p>我们会删除该动画蓝图的大部分逻辑<br>
+<img src="https://cdn.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/20250916192711296.png" alt="image.png"></p>
+
+  <blockquote class="alert-blockquote error">
+    <p class="alert-heading">
+      Error
+    </p>
+    <p><h4 id="the-property-none-for-gameplay-tag-eventmovementads-could-not-be-found">
+<a class="header-anchor" href="#the-property-none-for-gameplay-tag-eventmovementads-could-not-be-found"></a>
+The property [None] for gameplay tag [Event.Movement.ADS] could not be found.
+</h4><p>将缺失的属性对号入座<br>
+<img src="https://cdn.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/20250916193134203.png" alt="image.png"><br>
+将其配置到Character的FPSMesh上</p></p>
+  </blockquote>
+
+<h4 id="逻辑修改">
+<a class="header-anchor" href="#%e9%80%bb%e8%be%91%e4%bf%ae%e6%94%b9"></a>
+逻辑修改
+</h4><p>去除多余逻辑,直接从Locomotion传入最终效果,否则无法正常播放动画<br>
+<img src="https://cdn.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/20251024105934011.png" alt="image.png"></p>
+<h1 id="fps武器显示">
+<a class="header-anchor" href="#fps%e6%ad%a6%e5%99%a8%e6%98%be%e7%a4%ba"></a>
+⭐FPS武器显示
+</h1><h2 id="goat">
+<a class="header-anchor" href="#goat"></a>
+Goat
+</h2><ol>
+<li>FPS视角和TPS视角都能正常显示武器，并Attach到相应的主Mesh中</li>
+<li>动画层能正确显示第一人称和第三人称动画</li>
+</ol>
+<h2 id="knowledge-1">
+<a class="header-anchor" href="#knowledge-1"></a>
+Knowledge
+</h2><p><a href="Lyra%E6%A1%86%E6%9E%B6%E7%A0%94%E7%A9%B6%E6%80%BB%E8%A7%88#%E5%BA%93%E5%AD%98">Lyra框架研究总览#库存</a><br>
+<a href="Lyra%E6%A1%86%E6%9E%B6%E7%A0%94%E7%A9%B6%E6%80%BB%E8%A7%88#%E6%A1%86%E6%9E%B6">Lyra框架研究总览#框架</a></p>
+<p><a href="https://www.youtube.com/watch?v=WzbKfoe4sYc%5c&amp;list=PLP0m9EE3InC7Byqvsm6WK9NVLkgb_RscR%5c&amp;index=12">C++武器基础职业创建</a><br>
+<a href="https://www.youtube.com/watch?v=KdCSWbg7GVE%5c&amp;list=PLP0m9EE3InC7Byqvsm6WK9NVLkgb_RscR%5c&amp;index=15">调整武器实例类别</a><br>
+<a href="https://youtu.be/WzbKfoe4sYc?si=7qv4U4L6WM4BKkMQ"># 原教程链接</a></p>
+<h3 id="关键步骤">
+<a class="header-anchor" href="#%e5%85%b3%e9%94%ae%e6%ad%a5%e9%aa%a4"></a>
+关键步骤
+</h3><p><code>LyraEquipmentInstance::SpawnEquipmentActors</code>——处理武器Attach<br>
+<img src="https://cdn.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/20250917054738255.png" alt="image.png"><br>
+<code>B_Weapon</code>存放武器模型<br>
+<code>LyraRangedWeaponInstance</code>→<code>B_WeaponInstance_Base</code>存放武器数据和必要逻辑</p>
+<h2 id="step-1">
+<a class="header-anchor" href="#step-1"></a>
+Step
+</h2><h3 id="传统方案绑死逻辑">
+<a class="header-anchor" href="#%e4%bc%a0%e7%bb%9f%e6%96%b9%e6%a1%88%e7%bb%91%e6%ad%bb%e9%80%bb%e8%be%91"></a>
+传统方案——绑死逻辑
+</h3><p>[nodes]</p>
+<h4 id="step1-创建用于fps显示的模型">
+<a class="header-anchor" href="#step1-%e5%88%9b%e5%bb%ba%e7%94%a8%e4%ba%8efps%e6%98%be%e7%a4%ba%e7%9a%84%e6%a8%a1%e5%9e%8b"></a>
+step1. 创建用于FPS显示的模型
+</h4><h5 id="c中创建武器mesh基类">
+<a class="header-anchor" href="#c%e4%b8%ad%e5%88%9b%e5%bb%ba%e6%ad%a6%e5%99%a8mesh%e5%9f%ba%e7%b1%bb"></a>
+C++中创建武器Mesh基类
+</h5><blockquote>
+<p>直接创建一个武器基类，并手动创建两个模型并绑定到所需Mesh<br>
+两个Mesh进行必要的显示性设置<br>
+<img src="https://cdn.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/20250917054658609.png" alt="image.png"><br>
+绑定逻辑：因为每次切换武器都执行创建销毁逻辑，所以写在BeginPlay<br>
+<img src="https://cdn.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/20250917054718040.png" alt="image.png"></p>
+</blockquote>
+<h5 id="蓝图-使用新基类">
+<a class="header-anchor" href="#%e8%93%9d%e5%9b%be-%e4%bd%bf%e7%94%a8%e6%96%b0%e5%9f%ba%e7%b1%bb"></a>
+蓝图: 使用新基类
+</h5><p>更改B_Weapon的基类为WeaponBase<br>
+<img src="https://cdn.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/20250917070235700.png" alt="image.png"></p>
+<h4 id="step2-添加fps动画逻辑">
+<a class="header-anchor" href="#step2-%e6%b7%bb%e5%8a%a0fps%e5%8a%a8%e7%94%bb%e9%80%bb%e8%be%91"></a>
+step2. 添加FPS动画逻辑
+</h4><p><code>B_Weaponlnstance_Base</code>的<code>ActivateAnimLayeredPlayPairedAnim</code>只考虑了TPS情况</p>
+<h5 id="c">
+<a class="header-anchor" href="#c"></a>
+C++
+</h5><h6 id="为lyrarangedweaponinstance增加fps参数">
+<a class="header-anchor" href="#%e4%b8%balyrarangedweaponinstance%e5%a2%9e%e5%8a%a0fps%e5%8f%82%e6%95%b0"></a>
+为<code>LyraRangedWeaponInstance</code>增加FPS参数
+</h6><h6 id="修改ulyraweaponinstancepickbestanimlayer让其同时返回fps动画集">
+<a class="header-anchor" href="#%e4%bf%ae%e6%94%b9ulyraweaponinstancepickbestanimlayer%e8%ae%a9%e5%85%b6%e5%90%8c%e6%97%b6%e8%bf%94%e5%9b%9efps%e5%8a%a8%e7%94%bb%e9%9b%86"></a>
+修改<code>ULyraWeaponInstance::PickBestAnimLayer</code>，让其同时返回FPS动画集
+</h6><p><img src="https://cdn.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/20250917072353256.png" alt="image.png"></p>
+<h6 id="武器切换蒙太奇">
+<a class="header-anchor" href="#%e6%ad%a6%e5%99%a8%e5%88%87%e6%8d%a2%e8%92%99%e5%a4%aa%e5%a5%87"></a>
+武器切换蒙太奇
+</h6><p>将蓝图中定义的武器切换蒙太奇参数放到C++，并添加第一人称参数<br>
+<img src="https://cdn.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/20250917072453905.png" alt="image.png"></p>
+<h5 id="蓝图逻辑b_weaponinstance_base">
+<a class="header-anchor" href="#%e8%93%9d%e5%9b%be%e9%80%bb%e8%be%91b_weaponinstance_base"></a>
+蓝图逻辑<code>B_WeaponInstance_Base</code>
+</h5><p>将<code>ActivateAnimLayeredPlayPairedAnim</code>函数改造成支持第一人称的版本<br>
+<img src="https://cdn.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/20250917073358624.png" alt="image.png"></p>
+<h4 id="step4-添加武器的fps动画layer">
+<a class="header-anchor" href="#step4-%e6%b7%bb%e5%8a%a0%e6%ad%a6%e5%99%a8%e7%9a%84fps%e5%8a%a8%e7%94%bblayer"></a>
+step4. 添加武器的FPS动画Layer
+</h4><p>直接继承自<code>ABP_ItemAnimLayersBase_FPS</code>并添加相应FPS动画, 命名可以参考FullBody版本。<br>
+最少创建一个unarmed的FPS版本，<br>
+以<code>B_WeaponInstance_Rifle</code>为例：<br>
+<img src="https://cdn.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/20250917074108660.png" alt="image.png"></p>
+<h4 id="step5-配置b_weapon子类">
+<a class="header-anchor" href="#step5-%e9%85%8d%e7%bd%aeb_weapon%e5%ad%90%e7%b1%bb"></a>
+step5. 配置<code>B_Weapon</code>子类
+</h4><p>以Rifle为例，直接设置相同的Mesh即可，他们只是设置不同</p>
+<h4 id="step6-配置-hero-角色的默认武器">
+<a class="header-anchor" href="#step6-%e9%85%8d%e7%bd%ae-hero-%e8%a7%92%e8%89%b2%e7%9a%84%e9%bb%98%e8%ae%a4%e6%ad%a6%e5%99%a8"></a>
+Step6. 配置 Hero 角色的默认武器
+</h4><p><img src="https://cdn.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/20251102040118449.png" alt="image.png"></p>
+<h3 id="cosmet数据驱动添加fps模型">
+<a class="header-anchor" href="#cosmet%e6%95%b0%e6%8d%ae%e9%a9%b1%e5%8a%a8%e6%b7%bb%e5%8a%a0fps%e6%a8%a1%e5%9e%8b"></a>
+Cosmet数据驱动添加FPS模型
+</h3><h4 id="核心思路">
+<a class="header-anchor" href="#%e6%a0%b8%e5%bf%83%e6%80%9d%e8%b7%af"></a>
+核心思路
+</h4><p>FPS武器模型用和FPS角色模型相同的方案<br>
+FPS动画层：<br>
+创建新类供FPSAnimLayer继承，添加新的参数，函数用新的</p>
+<h4 id="fps模型生成和配置">
+<a class="header-anchor" href="#fps%e6%a8%a1%e5%9e%8b%e7%94%9f%e6%88%90%e5%92%8c%e9%85%8d%e7%bd%ae"></a>
+FPS模型生成和配置
+</h4>
+  <blockquote class="alert-blockquote question">
+    <p class="alert-heading">
+      Question
+    </p>
+    <p><h4 id="fps和tps武器如何吸附到所需的comp以及正确显示">
+<a class="header-anchor" href="#fps%e5%92%8ctps%e6%ad%a6%e5%99%a8%e5%a6%82%e4%bd%95%e5%90%b8%e9%99%84%e5%88%b0%e6%89%80%e9%9c%80%e7%9a%84comp%e4%bb%a5%e5%8f%8a%e6%ad%a3%e7%a1%ae%e6%98%be%e7%a4%ba"></a>
+FPS和TPS武器如何吸附到所需的Comp以及正确显示
+</h4><p><img src="https://gcore.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/20260413031505468.png" alt=""><br>
+思路：和角色模型一样，FPS模型仅本地生成，TPS模型进行FPS设置</p></p>
+  </blockquote>
+
+<h5 id="fps模型生成">
+<a class="header-anchor" href="#fps%e6%a8%a1%e5%9e%8b%e7%94%9f%e6%88%90"></a>
+FPS模型生成
+</h5><p>直接在EquipmentDefinitin加一个Local模型，自己创建和管理<br>
+<img src="https://gcore.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/20260413032758451.png" alt=""><br>
+创建细节：生成直接搬原来的即可，吸附用自己的Mesh<br>
+<img src="https://gcore.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/20260413040345341.png" alt=""></p>
+<p>修改<code>ULyraEquipmentInstance::SpawnEquipmentActors</code>的Attach部分</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-C++" data-lang="C++"><span class="line"><span class="cl"><span class="n">NewActor</span><span class="o">-&gt;</span><span class="n">AttachToComponent</span><span class="p">(</span><span class="n">GetAttachTarget</span><span class="p">(</span><span class="n">NewActor</span><span class="p">),</span> <span class="n">FAttachmentTransformRules</span><span class="o">::</span><span class="n">KeepRelativeTransform</span><span class="p">,</span> <span class="n">SpawnInfo</span><span class="p">.</span><span class="n">AttachSocket</span><span class="p">);</span>
+</span></span></code></pre></div><h5 id="fps模型配置">
+<a class="header-anchor" href="#fps%e6%a8%a1%e5%9e%8b%e9%85%8d%e7%bd%ae"></a>
+FPS模型配置:
+</h5><ol>
+<li>创建一个B_Weapon_FPS，继承自<code>B_Weapon</code>，修改一下模型的FirstPerson设置</li>
+<li>基于此基类类创建FPS武器<img src="https://gcore.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/20260413040854178.png" alt=""></li>
+<li>配置到EquipmentDefinition<img src="https://gcore.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/20260413041046516.png" alt=""></li>
+</ol>
+<h5 id="处理tps武器模型不隐藏问题">
+<a class="header-anchor" href="#%e5%a4%84%e7%90%86tps%e6%ad%a6%e5%99%a8%e6%a8%a1%e5%9e%8b%e4%b8%8d%e9%9a%90%e8%97%8f%e9%97%ae%e9%a2%98"></a>
+处理TPS武器模型不隐藏问题
+</h5><p>TPS模型需要在本地隐藏，按常理只需要将FirstPersonType设置为World即可。但在Lyra中Client存在问题：仅能隐藏Character，但武器配置后无效<br>
+<strong>原因</strong>：<br>
+武器同步到Client后，立刻触发了FirstPerson渲染检测，但Owner还没有同步过来。<br>
+<img src="https://gcore.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/20260417141034856.png" alt=""></p>
+
+  <blockquote class="alert-blockquote info">
+    <p class="alert-heading">
+      Info
+    </p>
+    <p><h4 id="actor的创建后的同步流程">
+<a class="header-anchor" href="#actor%e7%9a%84%e5%88%9b%e5%bb%ba%e5%90%8e%e7%9a%84%e5%90%8c%e6%ad%a5%e6%b5%81%e7%a8%8b"></a>
+Actor的创建后的同步流程
+</h4><p><a href="https://zhuanlan.zhihu.com/p/1886248568463008881">知乎优秀讲解</a><br>
+<a href="https://dev.epicgames.com/documentation/unreal-engine/detailed-actor-replication-flow-in-unreal-engine">官方文档</a><br>
+<img src="https://gcore.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/ChatGPT%20Image%202026%E5%B9%B44%E6%9C%8826%E6%97%A5%2019_54_26.png" alt=""></p></p>
+  </blockquote>
+
+<p><strong>方案</strong>：<br>
+新建武器C++基类，在OnRep_Owner手动通知渲染<img src="https://gcore.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/20260417100224937.png" alt=""><br>
+为此，B_Weapon的很多引用都需要修改，比如GCN_Weapon_Fire的逻辑：<br>
+<img src="https://gcore.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/20260417134056801.png" alt=""></p>
+<h5 id="效果">
+<a class="header-anchor" href="#%e6%95%88%e6%9e%9c"></a>
+效果
+</h5><p><video src="https://gcore.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/LyraFPS_Model.mp4" controls muted autoplay loop></video></p>
+<h1 id="制作fps动画蓝图">
+<a class="header-anchor" href="#%e5%88%b6%e4%bd%9cfps%e5%8a%a8%e7%94%bb%e8%93%9d%e5%9b%be"></a>
+⭐制作FPS动画蓝图
+</h1><p>思路：Lyra的AnimLayer分层方案</p>
+<h2 id="1-非关键逻辑修改">
+<a class="header-anchor" href="#1-%e9%9d%9e%e5%85%b3%e9%94%ae%e9%80%bb%e8%be%91%e4%bf%ae%e6%94%b9"></a>
+1. 非关键逻辑修改
+</h2><h3 id="修改abp_itemanimlayersbase_fpsgetmainanimbpthreadsafe">
+<a class="header-anchor" href="#%e4%bf%ae%e6%94%b9abp_itemanimlayersbase_fpsgetmainanimbpthreadsafe"></a>
+修改ABP_ItemAnimLayersBase_FPS::GetMainAnimBPThreadSafe
+</h3><p>将返回的动画蓝图类改为FPS版本<br>
+<img src="https://cdn.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/20251102043534064.png" alt="image.png"></p>
+<h4 id="报错处理">
+<a class="header-anchor" href="#%e6%8a%a5%e9%94%99%e5%a4%84%e7%90%86"></a>
+报错处理
+</h4><p>重新添加property access<br>
+<img src="https://cdn.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/20251102043408270.png" alt="image.png"><br>
+报错2: <code>Set Last Pivot Time</code>重新拉出节点<br>
+<img src="https://cdn.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/20251102043906661.png" alt="image.png"></p>
+<h3 id="将必要参数用propertyaccess收集">
+<a class="header-anchor" href="#%e5%b0%86%e5%bf%85%e8%a6%81%e5%8f%82%e6%95%b0%e7%94%a8propertyaccess%e6%94%b6%e9%9b%86"></a>
+将必要参数用PropertyAccess收集
+</h3><p><a href="https://youtu.be/NM7ACkHG--g?si=10eZZFgP-0tCC4GZ">https://youtu.be/NM7ACkHG--g?si=10eZZFgP-0tCC4GZ</a>&amp;t=1121</p>
+<h2 id="2-主动画蓝图基本配置">
+<a class="header-anchor" href="#2-%e4%b8%bb%e5%8a%a8%e7%94%bb%e8%93%9d%e5%9b%be%e5%9f%ba%e6%9c%ac%e9%85%8d%e7%bd%ae"></a>
+2. 主动画蓝图基本配置
+</h2><h3 id="架构修改">
+<a class="header-anchor" href="#%e6%9e%b6%e6%9e%84%e4%bf%ae%e6%94%b9"></a>
+架构修改
+</h3><h4 id="1-增加gameplaytagpropertymap支持">
+<a class="header-anchor" href="#1-%e5%a2%9e%e5%8a%a0gameplaytagpropertymap%e6%94%af%e6%8c%81"></a>
+1. 增加<code>GameplayTagPropertyMap</code>支持
+</h4>
+  <blockquote class="alert-blockquote info">
+    <p class="alert-heading">
+      Info
+    </p>
+    <p><h2 id="lyraaniminstance的gameplaytagpropertymap可以靠tag绑定bool值变化如果需要该功能则需要调用">
+<a class="header-anchor" href="#lyraaniminstance%e7%9a%84gameplaytagpropertymap%e5%8f%af%e4%bb%a5%e9%9d%a0tag%e7%bb%91%e5%ae%9abool%e5%80%bc%e5%8f%98%e5%8c%96%e5%a6%82%e6%9e%9c%e9%9c%80%e8%a6%81%e8%af%a5%e5%8a%9f%e8%83%bd%e5%88%99%e9%9c%80%e8%a6%81%e8%b0%83%e7%94%a8"></a>
+LyraAnimInstance的<code>GameplayTagPropertyMap</code>可以靠Tag绑定bool值变化，如果需要该功能，则需要调用
+</h2></p>
+  </blockquote>
+
+<p>在ASC的<code>InitAbilityActorInfo</code>中新增FPS动画蓝图的绑定。<br>
+<img src="https://gcore.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/20260424221322863.png" alt=""></p>
+<h4 id="2-将蓝图中的动画参数改为更灵活的分层结构linklayer">
+<a class="header-anchor" href="#2-%e5%b0%86%e8%93%9d%e5%9b%be%e4%b8%ad%e7%9a%84%e5%8a%a8%e7%94%bb%e5%8f%82%e6%95%b0%e6%94%b9%e4%b8%ba%e6%9b%b4%e7%81%b5%e6%b4%bb%e7%9a%84%e5%88%86%e5%b1%82%e7%bb%93%e6%9e%84linklayer"></a>
+2. 将蓝图中的动画参数改为更灵活的分层结构：LinkLayer
+</h4><ol>
+<li>基类改为LyraAnimInstance</li>
+<li>将所有需要用变量控制的动画参数改为AnimLayer，如walk、run等</li>
+<li>创建对应的AnimLayerInterface，并配置到主动画蓝图<br>
+<img src="https://cdn.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/20251107051512152.png" alt="image.png"></li>
+</ol>
+<h4 id="3-更改数据参数获取方案">
+<a class="header-anchor" href="#3-%e6%9b%b4%e6%94%b9%e6%95%b0%e6%8d%ae%e5%8f%82%e6%95%b0%e8%8e%b7%e5%8f%96%e6%96%b9%e6%a1%88"></a>
+3. 更改数据参数获取方案
+</h4><h5 id="获取常见参数">
+<a class="header-anchor" href="#%e8%8e%b7%e5%8f%96%e5%b8%b8%e8%a7%81%e5%8f%82%e6%95%b0"></a>
+获取常见参数
+</h5><p>采用Safe Thread和<a href="https://dev.epicgames.com/documentation/zh-cn/unreal-engine/property-access-in-unreal-engine?application_version=5.5">Property Access</a>获取需要的变量，而不是Get<br>
+有Tag对应特殊状态的变量可以直接用PropertyMappings绑定变量<br>
+<img src="https://cdn.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/20251107053906213.png" alt="image.png"></p>
+<h5 id="获取input变量">
+<a class="header-anchor" href="#%e8%8e%b7%e5%8f%96input%e5%8f%98%e9%87%8f"></a>
+获取Input变量
+</h5><p>对于常见Input变量，Lyra只有模糊的前后左右，而不是更直观的2D(-1,1)变量，需要我们自己传递获取<br>
+LyraHero组件用于监听输入，我们对其继承并改造</p>
+<blockquote>
+<p>Input在松开时需要手动置为0</p>
+</blockquote>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-C++" data-lang="C++"><span class="line"><span class="cl"><span class="kt">void</span> <span class="n">ULyraHeroFPSComponent</span><span class="o">::</span><span class="n">Input_Move</span><span class="p">(</span><span class="k">const</span> <span class="n">FInputActionValue</span><span class="o">&amp;</span> <span class="n">InputActionValue</span><span class="p">)</span>  
+</span></span><span class="line"><span class="cl"><span class="p">{</span>  
+</span></span><span class="line"><span class="cl">    <span class="n">Super</span><span class="o">::</span><span class="n">Input_Move</span><span class="p">(</span><span class="n">InputActionValue</span><span class="p">);</span>  
+</span></span><span class="line"><span class="cl">    <span class="n">MoveInput</span> <span class="o">=</span> <span class="n">InputActionValue</span><span class="p">.</span><span class="n">Get</span><span class="o">&lt;</span><span class="n">FVector2D</span><span class="o">&gt;</span><span class="p">();</span>  
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>B_Hero_Default中存储LyraHero组件，改为ULyraHeroFPS</p>
+<h3 id="animlayerinterface">
+<a class="header-anchor" href="#animlayerinterface"></a>
+AnimLayerInterface
+</h3><p>根据实际类型选择要创建的动画层接口，如：<br>
+武器(Idle)、配件(IdleModify)<br>
+<img src="https://cdn.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/20251107051711167.png" alt="image.png"></p>
+<h3 id="animlayerbase">
+<a class="header-anchor" href="#animlayerbase"></a>
+AnimLayerBase
+</h3><p>也就是实现了对应AnimLayerBase的空AnimInstance<br>
+一般根据ALI对应创建一个AnimLayerBase，因为逻辑大致相同，方便统一继承该Base后赋值<br>
+<img src="https://cdn.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/20251107052110732.png" alt="image.png"></p>
+<h3 id="copyanim">
+<a class="header-anchor" href="#copyanim"></a>
+CopyAnim
+</h3><p>用于给独立网格体复制主Mesh动画的动画蓝图<br>
+<img src="https://cdn.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/20251107052252854.png" alt="image.png"></p>
+<h1 id="修改和添加gameability">
+<a class="header-anchor" href="#%e4%bf%ae%e6%94%b9%e5%92%8c%e6%b7%bb%e5%8a%a0gameability"></a>
+修改和添加GameAbility
+</h1><p>关键是将本地模型和全身模型分离处理。<br>
+GA_Fire是最复杂的部分，需要修改射线检测位置、FPS和TPS模型特效位置不一样<br>
+GA_Reload只需要增加FPS蒙太奇即可<br>
+GA_Sprint则是从0创建一个带有按键绑定的GA</p>
+<h2 id="修改ga_fire">
+<a class="header-anchor" href="#%e4%bf%ae%e6%94%b9ga_fire"></a>
+修改GA_Fire
+</h2><p><code>GA_WeaponFire</code><br>
+目前要处理两个问题：</p>
+<ol>
+<li>播放开火的FPS动画</li>
+<li>配置FPS的特效生成坐标<br>
+<img src="https://cdn.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/20251111213936747.png" alt="image.png"></li>
+</ol>
+<h3 id="播放fps的蒙太奇">
+<a class="header-anchor" href="#%e6%92%ad%e6%94%befps%e7%9a%84%e8%92%99%e5%a4%aa%e5%a5%87"></a>
+播放FPS的蒙太奇
+</h3><p>一个蒙太奇要播放的动画：</p>
+<ol>
+<li>TP角色动画</li>
+<li>TP武器动画</li>
+<li>FP角色动画</li>
+<li>FP武器动画<br>
+其中，1、2已经实现，需要添加3、4</li>
+</ol>
+<h4 id="改造-ga_weapon_fire">
+<a class="header-anchor" href="#%e6%94%b9%e9%80%a0-ga_weapon_fire"></a>
+改造 GA_Weapon_Fire
+</h4><p>同样是拷贝一份出来修改。</p>
+<h5 id="fps模型montage">
+<a class="header-anchor" href="#fps%e6%a8%a1%e5%9e%8bmontage"></a>
+FPS模型Montage
+</h5><p>只需要在本地播放，普通的PlyMontage也可以胜任。<br>
+<img src="https://gcore.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/20260418025926264.png" alt=""></p>
+<h4 id="附加情况">
+<a class="header-anchor" href="#%e9%99%84%e5%8a%a0%e6%83%85%e5%86%b5"></a>
+附加情况
+</h4><h5 id="自定义mesh的playmontagetask">
+<a class="header-anchor" href="#%e8%87%aa%e5%ae%9a%e4%b9%89mesh%e7%9a%84playmontagetask"></a>
+自定义Mesh的PlayMontageTask
+</h5><p>GAS默认的Task：<code>PlayMontageAndWait</code>只能播放默认MeshComp的蒙太奇。如果有获取Montage回调需求，需要自己写一个可以带Mesh选择的Task<br>
+可以借助gpt快速实现</p>
+<h5 id="武器配件更换蒙太奇">
+<a class="header-anchor" href="#%e6%ad%a6%e5%99%a8%e9%85%8d%e4%bb%b6%e6%9b%b4%e6%8d%a2%e8%92%99%e5%a4%aa%e5%a5%87"></a>
+武器配件更换蒙太奇
+</h5><blockquote>
+<p>在有改装系统的项目中，武器配件会改变开火的Montage</p>
+</blockquote>
+<p><strong>方案1</strong>： 添加更换Montage的消息并监听<br>
+问题：武器、配件、动画是多对多关系<br>
+优点：简单方便，绝大部分情况下足够用</p>
+<p><strong>方案2</strong>：配件直接写一个新的GA，用标签block其他开火GA<br>
+问题：无法处理多对多关系，更灵活<br>
+优点：配件拓展性更强，复杂度适中</p>
+<p><strong>方案3</strong>：通过tag判断状态，武器GA内部重写函数自动选择动画<br>
+武器+配件=动画<br>
+实际上决定武器有哪些动画的是武器，而不是配件，所以配件仅需表明自己存在，动画交由武器选择<br>
+面对多对多查询：节点也可以作为数据，但查询(GameplayTagQuery)也可以作为参数存储，可以剩下很大的存储空间。<br>
+<img src="https://cdn.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/20251112070148886.png" alt="image.png"></p>
+<h3 id="增加fps的开火特效">
+<a class="header-anchor" href="#%e5%a2%9e%e5%8a%a0fps%e7%9a%84%e5%bc%80%e7%81%ab%e7%89%b9%e6%95%88"></a>
+增加FPS的开火特效
+</h3>
+  <blockquote class="alert-blockquote info">
+    <p class="alert-heading">
+      Info
+    </p>
+    <p><p>我们需要改造GCN，以传入正确的枪口/抛弹坐标</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"></code></pre></div></p>
+  </blockquote>
+
+<p>GCN_Weapon_Pistol_Fire</p>
+<blockquote>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"></code></pre></div></blockquote>
+<h4 id="step1-准备gameplaycue的文件夹和tag">
+<a class="header-anchor" href="#step1-%e5%87%86%e5%a4%87gameplaycue%e7%9a%84%e6%96%87%e4%bb%b6%e5%a4%b9%e5%92%8ctag"></a>
+Step1: 准备GameplayCue的文件夹和Tag
+</h4><ol>
+<li>添加Cue所在的文件夹<br>
+GameplayCue需要指定文件夹，在GameFeature中添加<code>AddGameplayCuePath</code>的Action,并加入自己想放置GameplayCue的文件夹<br>
+<img src="https://cdn.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/20251111231416624.png" alt="image.png"></li>
+<li>添加新GameplayCue对应的Tag<br>
+<img src="https://cdn.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/20251111231627156.png" alt="|C"></li>
+</ol>
+<h4 id="step2-拷贝gcn_weapon_pistol_fire并处理">
+<a class="header-anchor" href="#step2-%e6%8b%b7%e8%b4%9dgcn_weapon_pistol_fire%e5%b9%b6%e5%a4%84%e7%90%86"></a>
+Step2: 拷贝GCN_Weapon_Pistol_Fire并处理
+</h4><ol>
+<li>拷贝到指定文件夹后修改<code>Gameplay Cue Tag</code>为新Tag<img src="https://gcore.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/20260417135213571.png" alt=""></li>
+<li>修改武器Actor寻找方案<img src="https://gcore.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/20260417135112052.png" alt=""><br>
+之前将Weapon更改为了C++基类，可以区分ViewModel和FullBodyModel<img src="https://gcore.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/20260417135539584.png" alt=""></li>
+</ol>
+<h4 id="step3-处理武器骨骼">
+<a class="header-anchor" href="#step3-%e5%a4%84%e7%90%86%e6%ad%a6%e5%99%a8%e9%aa%a8%e9%aa%bc"></a>
+Step3: 处理武器骨骼
+</h4><p>找到武器骨骼文件，添加特效所需插槽：Muzzle和ShellEject(见<code>B_WeaponFire</code>)<br>
+<img src="https://cdn.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/20251111233610091.png" alt="image.png"></p>
+<h4 id="step4-开火特效修改">
+<a class="header-anchor" href="#step4-%e5%bc%80%e7%81%ab%e7%89%b9%e6%95%88%e4%bf%ae%e6%94%b9"></a>
+Step4: 开火特效修改
+</h4><p>特效在B_Weapon中配置，在其子类配置</p>
+<p>FPS视角下Flash特效太占视野，建议去除或换成其他<br>
+还不错的枪口特效: <a href="https://pan.baidu.com/s/1Qc93zAeUWEiCXYRmId2ixQ?pwd=3tx3">VFX Pack Stylized FPS Muzzle and Impacts Effects </a><br>
+如图中留空播放结束会报错，需要一个默认枪口效果<br>
+<img src="https://cdn.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/20251111230748250.png" alt="image.png"></p>
+<h3 id="替换开火声">
+<a class="header-anchor" href="#%e6%9b%bf%e6%8d%a2%e5%bc%80%e7%81%ab%e5%a3%b0"></a>
+替换开火声
+</h3><p>直接替换可以在GCN的默认值中替换<code>MSS_Weapons_Pistol_Fire</code>或其他武器声音</p>
+
+  <blockquote class="alert-blockquote tip">
+    <p class="alert-heading">
+      Tip
+    </p>
+    <p><h4 id="我们可以去掉mss_weapons_pistol_fire中的科技音来获得较为正常开火声其由sweetener数组决定">
+<a class="header-anchor" href="#%e6%88%91%e4%bb%ac%e5%8f%af%e4%bb%a5%e5%8e%bb%e6%8e%89mss_weapons_pistol_fire%e4%b8%ad%e7%9a%84%e7%a7%91%e6%8a%80%e9%9f%b3%e6%9d%a5%e8%8e%b7%e5%be%97%e8%be%83%e4%b8%ba%e6%ad%a3%e5%b8%b8%e5%bc%80%e7%81%ab%e5%a3%b0%e5%85%b6%e7%94%b1sweetener%e6%95%b0%e7%bb%84%e5%86%b3%e5%ae%9a"></a>
+我们可以去掉<code>MSS_Weapons_Pistol_Fire</code>中的科技音来获得较为正常开火声，其由<code>Sweetener</code>数组决定
+</h4><p><img src="https://cdn.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/20251112001411110.png" alt="image.png"></p></p>
+  </blockquote>
+
+<h2 id="修改ga_reload">
+<a class="header-anchor" href="#%e4%bf%ae%e6%94%b9ga_reload"></a>
+修改GA_Reload
+</h2><h3 id="ga_weapon_reload修改">
+<a class="header-anchor" href="#ga_weapon_reload%e4%bf%ae%e6%94%b9"></a>
+GA_Weapon_Reload修改
+</h3><p>与Fire差不多，添加第一人称和武器蒙太奇<br>
+可以多一个空仓状态的换弹<br>
+<img src="https://cdn.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/20251115235720954.png" alt="image.png"><br>
+<img src="https://cdn.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/20251115235859190.png" alt="image.png"></p>
+<h2 id="添加ga_sprint">
+<a class="header-anchor" href="#%e6%b7%bb%e5%8a%a0ga_sprint"></a>
+添加GA_Sprint
+</h2><p>最麻烦的是绑定GA到按键：<br>
+<img src="https://gcore.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/20260420063652791.png" alt=""></p>
+<h3 id="添加奔跑能力">
+<a class="header-anchor" href="#%e6%b7%bb%e5%8a%a0%e5%a5%94%e8%b7%91%e8%83%bd%e5%8a%9b"></a>
+添加奔跑能力
+</h3><h4 id="step1-创建ga并添加abilityset">
+<a class="header-anchor" href="#step1-%e5%88%9b%e5%bb%baga%e5%b9%b6%e6%b7%bb%e5%8a%a0abilityset"></a>
+Step1. 创建GA并添加AbilitySet
+</h4><p>GA_Hero_Sprint<br>
+<strong>创建</strong>：<br>
+继承自<code>LyraGameplayAbility</code><br>
+添加该GA的Tag：<code>Ability.Type.Action.Sprint</code><br>
+<img src="https://gcore.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/20260420055127535.png" alt=""></p>
+<p><strong>添加</strong>：<br>
+将该技能添加到合适的AbilitySet并设置InputTag：<code>InputTag.Ability.Sprint</code><br>
+<img src="https://gcore.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/20260420060542422.png" alt=""></p>
+<h4 id="step2-添加并绑定冲刺按键">
+<a class="header-anchor" href="#step2-%e6%b7%bb%e5%8a%a0%e5%b9%b6%e7%bb%91%e5%ae%9a%e5%86%b2%e5%88%ba%e6%8c%89%e9%94%ae"></a>
+Step2. 添加并绑定冲刺按键
+</h4><ol>
+<li>创建<code>InputAction</code>：除了显示文字什么都不用改<br>
+<img src="https://gcore.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/20260420055418715.png" alt=""></li>
+</ol>
+<p>将Shift绑定到IA：<br>
+shift键和Dash有冲突，需要在IMC_Default删除Dash的映射。<br>
+可以选择新建一个IMC，或添加到IMC_Default。<br>
+<img src="https://gcore.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/20260420055707351.png" alt=""></p>
+<p>将新IMC添加到合适的位置，这里采用和Lyra一样的方案，绑定到<code>GameFeatureData</code><br>
+<img src="https://gcore.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/20260420060016802.png" alt=""></p>
+<p>通过Tag将IA和GA绑定</p>
+<ol>
+<li>打开PawnData，找到InputConfig</li>
+<li>将GA绑定到新的InputTag<br>
+<img src="https://gcore.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/20260420060403540.png" alt=""></li>
+</ol>
+<h4 id="step3-冲刺的逻辑实现">
+<a class="header-anchor" href="#step3-%e5%86%b2%e5%88%ba%e7%9a%84%e9%80%bb%e8%be%91%e5%ae%9e%e7%8e%b0"></a>
+Step3. 冲刺的逻辑实现
+</h4><p>是的，直到此时，我们才开始实现冲刺技能。/(ㄒoㄒ)/~~</p>
+<h5 id="冲刺停止">
+<a class="header-anchor" href="#%e5%86%b2%e5%88%ba%e5%81%9c%e6%ad%a2"></a>
+冲刺/停止
+</h5><p>开始冲刺时采用冲刺的Movement数据，存下奔跑前数据供停止时使用<br>
+需要保证只在默认walk时能冲刺，并不严格设定不同状态(走、跑、冲刺、蹲、瞄准)的速度参数 。换mover组件会容易很多。<br>
+应用冲刺数据：<br>
+<img src="https://gcore.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/20260424231020333.png" alt=""></p>
+<h5 id="落地状态检测">
+<a class="header-anchor" href="#%e8%90%bd%e5%9c%b0%e7%8a%b6%e6%80%81%e6%a3%80%e6%b5%8b"></a>
+落地状态检测
+</h5><p>处于空中松开冲刺键时，如果直接Stop技能，最大速度变低，会出现立刻减速，不符合直觉。<br>
+检测移动模式为Fall时，不停下技能，以此保持空中速度不变<br>
+<img src="https://gcore.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/20260424231319143.png" alt=""><br>
+绑定MovementModeTag变化：<br>
+<img src="https://gcore.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/20260424231441579.png" alt=""></p>
+<h5 id="奔跑按键监听">
+<a class="header-anchor" href="#%e5%a5%94%e8%b7%91%e6%8c%89%e9%94%ae%e7%9b%91%e5%90%ac"></a>
+奔跑按键监听
+</h5><p>默认情况下冲刺时不允许开枪，但处于空中时如果松开冲刺键，应可以开枪。<br>
+我们通过按键状态的Tag，将开枪的技能阻挡关系，转成纯Tag阻挡关系。</p>
+<p>添加/移除按键Tag：<br>
+<img src="https://gcore.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/20260424232158909.png" alt=""></p>
+<p>使用TagRelationShip制定阻挡关系：<br>
+<img src="https://gcore.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/20260424232015472.png" alt=""></p>
+<h5 id="waitdelay">
+<a class="header-anchor" href="#waitdelay"></a>
+WaitDelay
+</h5><p>跳跃方案2：也可以改为处于空中0.5s后可开枪，逻辑和松开冲刺键一样，不过采用WaitDelayTask。<br>
+<img src="https://gcore.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/20260424235248608.png" alt=""><br>
+统一阻挡Tag：<br>
+<img src="https://gcore.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/20260424235325697.png" alt=""></p>
+<h1 id="脚步声摄像机晃动ui的处理">
+<a class="header-anchor" href="#%e8%84%9a%e6%ad%a5%e5%a3%b0%e6%91%84%e5%83%8f%e6%9c%ba%e6%99%83%e5%8a%a8ui%e7%9a%84%e5%a4%84%e7%90%86"></a>
+脚步声、摄像机晃动、UI的处理
+</h1><h2 id="将脚步声替换为fps动画提供的">
+<a class="header-anchor" href="#%e5%b0%86%e8%84%9a%e6%ad%a5%e5%a3%b0%e6%9b%bf%e6%8d%a2%e4%b8%bafps%e5%8a%a8%e7%94%bb%e6%8f%90%e4%be%9b%e7%9a%84"></a>
+将<strong>脚步声</strong>替换为FPS动画提供的
+</h2><h3 id="goat-1">
+<a class="header-anchor" href="#goat-1"></a>
+Goat
+</h3><p>由于FPS动画和Lyra原生动画不匹配，去掉Lyra的动画声，换成FPS动画的通知</p>
+<h3 id="knowledge-2">
+<a class="header-anchor" href="#knowledge-2"></a>
+Knowledge
+</h3><p><a href="https://deepwiki.com/soatori/Lyraa/3.4-context-effects-system"> Context Effects System</a> : 系统讲解上下文系统用于播放声音和特效<br>
+关键内容：通过标签选择要触发的特效/声音<br>
+<img src="https://cdn.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/20251116003607562.png" alt="image.png"><br>
+通过放置在角色上的LyraContextEffectComp组件并配置后生效<br>
+<img src="https://cdn.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/20251116003722127.png" alt="image.png"></p>
+<h3 id="step-2">
+<a class="header-anchor" href="#step-2"></a>
+Step
+</h3><h4 id="复制并修改dt_animeffect">
+<a class="header-anchor" href="#%e5%a4%8d%e5%88%b6%e5%b9%b6%e4%bf%ae%e6%94%b9dt_animeffect"></a>
+复制并修改DT_AnimEffect
+</h4><p>该数据表记录脚步的Tags，需要添加新的，文中在Walk前添加FPS标记<br>
+再将新DT加入到GameplayTags中<br>
+<img src="https://cdn.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/20251116004012326.png" alt="image.png"></p>
+<h4 id="复制context配置文件cfx_defaultskin">
+<a class="header-anchor" href="#%e5%a4%8d%e5%88%b6context%e9%85%8d%e7%bd%ae%e6%96%87%e4%bb%b6cfx_defaultskin"></a>
+复制Context配置文件（CFX_DefaultSkin）
+</h4><p>该文件存放映射关系，若保留原声，只需要修改触发Tag即可<br>
+<img src="https://cdn.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/20251116004205891.png" alt="image.png"><br>
+将其赋值到FPS角色的LyraContextEffectComp中</p>
+<h4 id="在fps移动动画中添加通知">
+<a class="header-anchor" href="#%e5%9c%a8fps%e7%a7%bb%e5%8a%a8%e5%8a%a8%e7%94%bb%e4%b8%ad%e6%b7%bb%e5%8a%a0%e9%80%9a%e7%9f%a5"></a>
+在FPS移动动画中添加通知
+</h4><h5 id="与lyra相似结构">
+<a class="header-anchor" href="#%e4%b8%8elyra%e7%9b%b8%e4%bc%bc%e7%bb%93%e6%9e%84"></a>
+与Lyra相似结构
+</h5><p>能准确辨别出左右脚落地位置，需要标准情况较少时的一般情况可以通过AnimModify快速应用动画通知到FPS动画<br>
+通过先后应用FootFXAnimModifier和FootstepEffectTagModifier可以识别出左右脚以及对应脚步通知<br>
+<img src="https://cdn.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/20251116010213134.png" alt="image.png"></p>
+<h5 id="lowpolyanimatedmodernguns">
+<a class="header-anchor" href="#lowpolyanimatedmodernguns"></a>
+LowPolyAnimatedModernGuns
+</h5><p>我们找到的动画包总会有一些非常不专业的问题<br>
+<code>LowPolyAnimatedModernGuns</code>中动画的问题：</p>
+<ol>
+<li>运动动画采用叠加动画，导致无法顺利发出动画通知。</li>
+<li>动画长度过长，且并不重复，导致配套的声音也过长，无法直接使用</li>
+<li>手臂摆动频率过高，不好1对1插入通知</li>
+</ol>
+<p>临时方案：<br>
+复制Lowpoly方案，在Tick中写死<br>
+复制<code>BP_LPAMG_PCH</code>-&gt;<code>PlayRunningSound</code>，在任意地方实现，声音地址：<code>DA_LPAMG_WEP_RC425_Sounds</code></p>
+<p>长期方案：</p>
+<ol>
+<li>不采用动画通知，而是其他程序化方式让动画+相机抖动+声音同步播放</li>
+<li>添加统一通知，增强Lyra通知</li>
+</ol>
+<h2 id="获取fps动画中的摄像机晃动">
+<a class="header-anchor" href="#%e8%8e%b7%e5%8f%96fps%e5%8a%a8%e7%94%bb%e4%b8%ad%e7%9a%84%e6%91%84%e5%83%8f%e6%9c%ba%e6%99%83%e5%8a%a8"></a>
+获取FPS动画中的摄像机晃动
+</h2><h3 id="goat-2">
+<a class="header-anchor" href="#goat-2"></a>
+Goat
+</h3><h3 id="knowledge-3">
+<a class="header-anchor" href="#knowledge-3"></a>
+Knowledge
+</h3><p><a href="https://zhuanlan.zhihu.com/p/714058425"># 简述Lyra中的CameraMode摄像机框架(一)</a></p>
+<p>下文采用直接计算和赋值<br>
+但也可以直接用曲线修改器获取每帧的旋转偏移来实现，更具有灵活性。</p>
+<h3 id="step-3">
+<a class="header-anchor" href="#step-3"></a>
+Step
+</h3><h4 id="step1-实现head相对偏移逻辑">
+<a class="header-anchor" href="#step1-%e5%ae%9e%e7%8e%b0head%e7%9b%b8%e5%af%b9%e5%81%8f%e7%a7%bb%e9%80%bb%e8%be%91"></a>
+Step1. 实现Head相对偏移逻辑
+</h4><p>继承ULyraCameraComponent，override <code>GetCameraView</code></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-C++" data-lang="C++"><span class="line"><span class="cl"><span class="k">if</span> <span class="p">(</span><span class="k">auto</span> <span class="n">FPSCameraMode</span><span class="o">=</span><span class="n">Cast</span><span class="o">&lt;</span><span class="n">ULyraFPSCameraMode</span><span class="o">&gt;</span><span class="p">(</span> <span class="n">CameraModeStack</span><span class="o">-&gt;</span><span class="n">GetCurCameraMode</span><span class="p">()))</span>  
+</span></span><span class="line"><span class="cl"><span class="p">{</span>  
+</span></span><span class="line"><span class="cl">    <span class="kt">float</span> <span class="n">shakeRatio</span><span class="o">=</span><span class="n">FPSCameraMode</span><span class="o">-&gt;</span><span class="n">GetHeadCameraShakeAdditiveRatio</span><span class="p">();</span>  
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="n">shakeRatio</span><span class="o">&gt;</span><span class="mf">0.f</span><span class="p">)</span>  
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>       <span class="k">if</span> <span class="p">(</span><span class="n">USkeletalMeshComponent</span><span class="o">*</span> <span class="n">MeshComp</span><span class="o">=</span> <span class="n">ULyraFPSFunctionLibrary</span><span class="o">::</span><span class="n">GetFPSMesh</span><span class="p">(</span><span class="n">GetTargetActor</span><span class="p">()))</span>  
+</span></span><span class="line"><span class="cl">       <span class="p">{</span>          <span class="c1">// FTransform HeadTrans= MeshComp-&gt;GetBoneTransform(&#34;Head&#34;,ERelativeTransformSpace::RTS_Component);  
+</span></span></span><span class="line"><span class="cl">          <span class="n">FTransform</span> <span class="n">HeadTrans</span><span class="o">=</span> <span class="n">MeshComp</span><span class="o">-&gt;</span><span class="n">GetBoneTransform</span><span class="p">(</span><span class="n">FPSCameraMode</span><span class="o">-&gt;</span><span class="n">CameraShakeBoneName</span><span class="p">,</span><span class="n">FPSCameraMode</span><span class="o">-&gt;</span><span class="n">TransformSpace</span><span class="p">);</span>  
+</span></span><span class="line"><span class="cl">          <span class="k">if</span> <span class="p">(</span><span class="n">InitCameraTransform</span><span class="p">.</span><span class="n">Equals</span><span class="p">(</span><span class="n">FTransform</span><span class="o">::</span><span class="n">Identity</span><span class="p">))</span>  
+</span></span><span class="line"><span class="cl">          <span class="p">{</span>             <span class="n">InitCameraTransform</span><span class="o">=</span><span class="n">GetCameraTransform</span><span class="p">(</span> <span class="n">FPSCameraMode</span><span class="o">-&gt;</span><span class="n">InitSequence</span><span class="p">);</span>  
+</span></span><span class="line"><span class="cl">          <span class="p">}</span>          <span class="k">else</span>  
+</span></span><span class="line"><span class="cl">          <span class="p">{</span>  
+</span></span><span class="line"><span class="cl">             <span class="n">HeadTrans</span><span class="p">.</span><span class="n">SetLocation</span><span class="p">(</span><span class="n">HeadTrans</span><span class="p">.</span><span class="n">GetLocation</span><span class="p">()</span><span class="o">-</span><span class="n">InitCameraTransform</span><span class="p">.</span><span class="n">GetLocation</span><span class="p">());</span>  
+</span></span><span class="line"><span class="cl">             <span class="n">FRotator</span> <span class="n">Rot</span><span class="o">=</span><span class="n">HeadTrans</span><span class="p">.</span><span class="n">GetRotation</span><span class="p">().</span><span class="n">Rotator</span><span class="p">();</span>  
+</span></span><span class="line"><span class="cl">             <span class="n">Rot</span><span class="p">.</span><span class="n">Yaw</span><span class="o">-=</span><span class="n">InitCameraTransform</span><span class="p">.</span><span class="n">Rotator</span><span class="p">().</span><span class="n">Yaw</span><span class="p">;</span>  
+</span></span><span class="line"><span class="cl">             <span class="c1">// DesiredView.Location += HeadTrans.GetLocation()* shakeRatio;  
+</span></span></span><span class="line"><span class="cl">             <span class="n">DesiredView</span><span class="p">.</span><span class="n">Rotation</span> <span class="o">+=</span> <span class="n">Rot</span> <span class="o">*</span> <span class="n">shakeRatio</span><span class="p">;</span>  
+</span></span><span class="line"><span class="cl">          <span class="p">}</span>       <span class="p">}</span>    <span class="p">}}</span>
+</span></span></code></pre></div><p>获取骨骼信息：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-C++" data-lang="C++"><span class="line"><span class="cl"><span class="n">FTransform</span> <span class="n">ULyraFPSCameraComponent</span><span class="o">::</span><span class="n">GetCameraTransform</span><span class="p">(</span><span class="n">UAnimSequence</span><span class="o">*</span>  <span class="n">InitSequence</span><span class="p">)</span> <span class="k">const</span>  
+</span></span><span class="line"><span class="cl"><span class="p">{</span>  
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="n">USkeletalMeshComponent</span><span class="o">*</span> <span class="n">MeshComp</span><span class="o">=</span> <span class="n">ULyraFPSFunctionLibrary</span><span class="o">::</span><span class="n">GetFPSMesh</span><span class="p">(</span><span class="n">GetTargetActor</span><span class="p">()))</span>  
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>       <span class="k">if</span> <span class="p">(</span><span class="n">UAnimSequence</span><span class="o">*</span> <span class="n">anim</span><span class="o">=</span><span class="n">InitSequence</span><span class="p">)</span>  
+</span></span><span class="line"><span class="cl">       <span class="p">{</span>          <span class="k">auto</span> <span class="n">boneIndex</span><span class="o">=</span> <span class="n">FSkeletonPoseBoneIndex</span><span class="p">(</span><span class="n">MeshComp</span><span class="o">-&gt;</span><span class="n">GetBoneIndex</span><span class="p">(</span><span class="s">&#34;Head&#34;</span><span class="p">));</span>  
+</span></span><span class="line"><span class="cl">          <span class="k">const</span> <span class="n">FAnimExtractContext</span> <span class="n">AnimExtractContext</span><span class="o">=</span><span class="n">FAnimExtractContext</span><span class="p">();</span>  
+</span></span><span class="line"><span class="cl">          <span class="n">FTransform</span> <span class="n">OutAtom</span><span class="p">;</span>  
+</span></span><span class="line"><span class="cl">          <span class="n">anim</span><span class="o">-&gt;</span><span class="n">GetBoneTransform</span><span class="p">(</span><span class="n">OutAtom</span><span class="p">,</span><span class="n">boneIndex</span><span class="p">,</span><span class="n">AnimExtractContext</span><span class="p">,</span><span class="nb">false</span><span class="p">);</span>  
+</span></span><span class="line"><span class="cl">          <span class="k">return</span> <span class="n">OutAtom</span><span class="p">;</span>  
+</span></span><span class="line"><span class="cl">       <span class="p">}</span>    <span class="p">}</span>    <span class="k">return</span> <span class="n">FTransform</span><span class="o">::</span><span class="n">Identity</span><span class="p">;</span>  
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><h4 id="step2-必要的参数">
+<a class="header-anchor" href="#step2-%e5%bf%85%e8%a6%81%e7%9a%84%e5%8f%82%e6%95%b0"></a>
+Step2. 必要的参数
+</h4><p>我们需要关键从CameraMode中获取需要的参数</p>
+<p>修改LyraCameraMode：<br>
+将protected的函数改为public</p>
+<p>拷贝<code>ULyraCameraMode_ThirdPerson</code>的代码，添加参数：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-C++" data-lang="C++"><span class="line"><span class="cl"><span class="nl">ULyraFPSCameraMode</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl"><span class="cm">/** 相机晃动比例 */</span><span class="n">UPROPERTY</span><span class="p">(</span><span class="n">EditAnywhere</span><span class="p">,</span> <span class="n">BlueprintReadWrite</span><span class="p">,</span> <span class="n">Category</span> <span class="o">=</span> <span class="s">&#34;FPS&#34;</span><span class="p">)</span>  
+</span></span><span class="line"><span class="cl"><span class="kt">float</span> <span class="n">headCameraShadeRatio</span><span class="o">=</span><span class="mf">1.f</span><span class="p">;</span>  
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl"><span class="cm">/** 相机晃动动画骨骼 */</span><span class="n">UPROPERTY</span><span class="p">(</span><span class="n">EditAnywhere</span><span class="p">,</span> <span class="n">BlueprintReadWrite</span><span class="p">,</span> <span class="n">Category</span> <span class="o">=</span> <span class="s">&#34;FPS&#34;</span><span class="p">)</span>  
+</span></span><span class="line"><span class="cl"><span class="n">FName</span>  <span class="n">CameraShakeBoneName</span><span class="o">=</span><span class="s">&#34;Head&#34;</span><span class="p">;</span>  
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="cm">/** 用于计算相对位置的初始Pose */</span><span class="n">UPROPERTY</span><span class="p">(</span><span class="n">EditAnywhere</span><span class="p">,</span> <span class="n">BlueprintReadWrite</span><span class="p">,</span> <span class="n">Category</span> <span class="o">=</span> <span class="s">&#34;FPS&#34;</span><span class="p">)</span>  
+</span></span><span class="line"><span class="cl"><span class="n">TObjectPtr</span><span class="o">&lt;</span><span class="n">UAnimSequence</span><span class="o">&gt;</span>  <span class="n">InitSequence</span><span class="p">;</span>  
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl"><span class="cm">/** 用于计算的坐标系 */</span><span class="n">UPROPERTY</span><span class="p">(</span><span class="n">EditAnywhere</span><span class="p">,</span> <span class="n">BlueprintReadWrite</span><span class="p">,</span> <span class="n">Category</span> <span class="o">=</span> <span class="s">&#34;FPS&#34;</span><span class="p">)</span>  
+</span></span><span class="line"><span class="cl"><span class="n">TEnumAsByte</span><span class="o">&lt;</span><span class="n">ERelativeTransformSpace</span><span class="o">&gt;</span>  <span class="n">TransformSpace</span><span class="o">=</span><span class="n">RTS_Actor</span><span class="p">;</span>
+</span></span></code></pre></div><p>直接去除UpdateView函数</p>
+<p>蓝图中重新继承并填上相关参数<br>
+<img src="https://cdn.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/20251116152706803.png" alt="image.png"></p>
+<h4 id="step3-替换cameracomponent">
+<a class="header-anchor" href="#step3-%e6%9b%bf%e6%8d%a2cameracomponent"></a>
+Step3. 替换CameraComponent
+</h4><p>继承ALyraCharacter，构造函数添加代码替换相机组件为我们创建的：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-C++" data-lang="C++"><span class="line"><span class="cl"><span class="n">Super</span><span class="p">(</span><span class="n">ObjectInitializer</span><span class="p">.</span><span class="n">SetDefaultSubobjectClass</span><span class="o">&lt;</span><span class="n">ULyraFPSCameraComponent</span><span class="o">&gt;</span><span class="p">(</span><span class="s">&#34;CameraComponent&#34;</span><span class="p">))</span>
+</span></span></code></pre></div><p>让蓝图继承自新Character</p>
+<h2 id="处理不适合放在fps中的ui">
+<a class="header-anchor" href="#%e5%a4%84%e7%90%86%e4%b8%8d%e9%80%82%e5%90%88%e6%94%be%e5%9c%a8fps%e4%b8%ad%e7%9a%84ui"></a>
+处理不适合放在FPS中的UI
+</h2><h3 id="准星">
+<a class="header-anchor" href="#%e5%87%86%e6%98%9f"></a>
+准星
+</h3><h4 id="knowledge-4">
+<a class="header-anchor" href="#knowledge-4"></a>
+knowledge
+</h4><p>Lyra中除了准星，还有子弹数量会在UI显示<br>
+准星：<code>W_Reticle_Rifle</code> 子弹数量:<code>W_AmmoCounter_Rifle</code><br>
+整合：<code>W_WeaponReticleHost</code>:将两个UI放到自己的Overlay中</p>
+<h4 id="问题">
+<a class="header-anchor" href="#%e9%97%ae%e9%a2%98"></a>
+问题
+</h4><p>FPS视角下，子弹数量UI会和武器模型重合，可以去除<br>
+当去除该UI后，武器准星位置会不再居中，</p>
+
+  <blockquote class="alert-blockquote question">
+    <p class="alert-heading">
+      Question
+    </p>
+    <p><h4 id="-问题定位">
+<a class="header-anchor" href="#-%e9%97%ae%e9%a2%98%e5%ae%9a%e4%bd%8d"></a>
+###### 问题定位
+</h4><p>查看所有UI设置，设置均正常，不得不怀疑代码耦合<br>
+查找该Slot Tag引用后发现<code>GA_AutoRespawn</code>和<code>GA_Hero_Dash</code>引用，也就是有三方共用同一个Slot，这不是问题。<br>
+在<code>GA_AbilityWithWidget</code>找到下方蓝图，<code>W_DashCoolDown</code>大小为256* 256且一直在占位(不显示)。<img src="https://cdn.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/20251212210807145.png" alt=""><br>
+<img src="https://cdn.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/20251212210535948.png" alt=""><br>
+问题很明显，Dash和准星并不互斥却同时使用一个slot，并且Slot的设置并没有生效，之前加上Ammo大小一致问题才没有暴露<img src="https://cdn.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/20251212212514842.png" alt=""><br>
+而Slot对于Entry的设置并没有任何作用，不管是Auto还是Fill都无法解决问题<img src="https://cdn.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/20251212212610581.png" alt=""></p></p>
+  </blockquote>
+
+<h4 id="处理问题">
+<a class="header-anchor" href="#%e5%a4%84%e7%90%86%e9%97%ae%e9%a2%98"></a>
+处理问题
+</h4><ol>
+<li>修改Entry逻辑：让Fill能完全填充，从根本上解决冲突</li>
+<li>修改准星大小：改为统一的256，再在中间加一个128的SizeBox<img src="https://cdn.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/20251212213253741.png" alt=""></li>
+<li>处理Dash：
+<ol>
+<li>去掉Dash的GA，只有他会共存，项目中用不到</li>
+<li>给DashGA单独一个Slot<br>
+选择2避免以后出现冲突，3.1解决现有冲突</li>
+</ol>
+</li>
+</ol>
+<h1 id="ext_重要功能拓展">
+<a class="header-anchor" href="#ext_%e9%87%8d%e8%a6%81%e5%8a%9f%e8%83%bd%e6%8b%93%e5%b1%95"></a>
+Ext_重要功能拓展
+</h1><p>Mover：升级到5.7后全面处理，不再能使用Character基类<br>
+程序化动画：已经实装了Move、Jump、Crouch，Sprint暂时用着原生动画，Aim还没有做。</p>
+<h2 id="新运动系统">
+<a class="header-anchor" href="#%e6%96%b0%e8%bf%90%e5%8a%a8%e7%b3%bb%e7%bb%9f"></a>
+新运动系统
+</h2><p>FPS的走、跑、冲刺、下蹲、瞄准切换：不再纠结于CharacterMovementComp实现，复杂且麻烦。<br>
+后续改为很容易实现的Mover组件。</p>
+<h2 id="程序化动画">
+<a class="header-anchor" href="#%e7%a8%8b%e5%ba%8f%e5%8c%96%e5%8a%a8%e7%94%bb"></a>
+程序化动画
+</h2><h2 id="随鼠标和ad键让手臂左右摆动">
+<a class="header-anchor" href="#%e9%9a%8f%e9%bc%a0%e6%a0%87%e5%92%8cad%e9%94%ae%e8%ae%a9%e6%89%8b%e8%87%82%e5%b7%a6%e5%8f%b3%e6%91%86%e5%8a%a8"></a>
+随鼠标和AD键让手臂左右摆动
+</h2><h3 id="方案一">
+<a class="header-anchor" href="#%e6%96%b9%e6%a1%88%e4%b8%80"></a>
+方案一
+</h3><p>知识：<a href="FPS%E5%8A%A8%E7%94%BB%E5%88%B6%E4%BD%9C%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99#%E6%89%8B%E8%87%82%E6%91%86%E5%8A%A8">FPS动画制作参考资料#手臂摆动</a></p>
+<h4 id="step1-获取输入值">
+<a class="header-anchor" href="#step1-%e8%8e%b7%e5%8f%96%e8%be%93%e5%85%a5%e5%80%bc"></a>
+Step1: 获取输入值
+</h4><p><code>ULyraHeroFPSComponent</code>添加<code>LookInput</code>变量</p>
+<h4 id="step2-通过输入计算旋转">
+<a class="header-anchor" href="#step2-%e9%80%9a%e8%bf%87%e8%be%93%e5%85%a5%e8%ae%a1%e7%ae%97%e6%97%8b%e8%bd%ac"></a>
+Step2: 通过输入计算旋转
+</h4><p>将输入值进行一定归一化改动<br>
+<img src="https://cdn.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/20251119000855829.png" alt=""></p>
+<h4 id="step3-修改骨骼">
+<a class="header-anchor" href="#step3-%e4%bf%ae%e6%94%b9%e9%aa%a8%e9%aa%bc"></a>
+Step3: 修改骨骼
+</h4><p>Translation Space最好改成 组件空间<br>
+<img src="https://cdn.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/20251117214250444.png" alt="image.png|500"></p>
+<h2 id="射击时枪身左右摆动">
+<a class="header-anchor" href="#%e5%b0%84%e5%87%bb%e6%97%b6%e6%9e%aa%e8%ba%ab%e5%b7%a6%e5%8f%b3%e6%91%86%e5%8a%a8"></a>
+射击时枪身左右摆动
+</h2><p><a href="https://www.bilibili.com/video/BV1HU4y1x7kc">https://www.bilibili.com/video/BV1HU4y1x7kc</a><br>
+如果摆动能和弹道配合就完美</p>
+<h1 id="ext_将其他资产整合到lyra">
+<a class="header-anchor" href="#ext_%e5%b0%86%e5%85%b6%e4%bb%96%e8%b5%84%e4%ba%a7%e6%95%b4%e5%90%88%e5%88%b0lyra"></a>
+Ext_将其他资产整合到Lyra
+</h1><p>目前采用LowPolyShooter的FPS包，但我们采用程序化动画，可以随意更改自己想要的FPS资产包和模型</p>
+<p><a href="https://www.fab.com/listings/eb4258b3-cec4-4995-85fe-ace8c9b5d45f">写实武器包</a><br>
+<img src="https://media.fab.com/image_previews/gallery_images/dad63c80-7f79-4cf9-a98c-ef9046340c96/38ecd3cb-6181-4a9e-86c6-24d62687f415.jpg" alt=""></p>
+</div>
+    <footer class="article-footer"><ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item" data-aos="zoom-in">
+      <a
+        class="article-tag-list-link"
+        href="/WzhGameDevPublish/tags/ue/lyra"
+        rel="tag"
+        >UE/LYRA</a
+      >
+    </li><li class="article-tag-list-item" data-aos="zoom-in">
+      <a
+        class="article-tag-list-link"
+        href="/WzhGameDevPublish/tags/3c"
+        rel="tag"
+        >3C</a
+      >
+    </li><li class="article-tag-list-item" data-aos="zoom-in">
+      <a
+        class="article-tag-list-link"
+        href="/WzhGameDevPublish/tags/fps"
+        rel="tag"
+        >FPS</a
+      >
+    </li><li class="article-tag-list-item" data-aos="zoom-in">
+      <a
+        class="article-tag-list-link"
+        href="/WzhGameDevPublish/tags/blog"
+        rel="tag"
+        >BLOG</a
+      >
+    </li></ul>
+</footer>
+  </div><nav
+    id="article-nav"
+    aria-label="Article navigation"
+    data-aos="fade-up"
+  ><div class="article-nav-link-wrap left"><img
+              data-src="https://d-sketon.top/img/_backwebp/bg1.webp"
+              data-sizes="auto"
+              alt="Lyra 射击全流程梳理"
+              class="lazyload"
+            /><a
+          href="/WzhGameDevPublish/post/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/%E4%BB%A3%E7%A0%81%E6%A1%86%E6%9E%B6/lyra/lyra-gas/lyra-%E5%B0%84%E5%87%BB%E5%85%A8%E6%B5%81%E7%A8%8B%E6%A2%B3%E7%90%86/"
+          aria-label="前一篇:Lyra 射击全流程梳理"
+          title="前一篇:Lyra 射击全流程梳理"
+        ></a>
+        <div class="article-nav-caption">前一篇</div>
+        <h3 class="article-nav-title">Lyra 射击全流程梳理</h3>
+      </div><div class="article-nav-link-wrap right"><img
+            data-src="https://tse1-mm.cn.bing.net/th/id/OIP-C.m80aM2zv68WUj1cb42ENtgHaEK"
+            data-sizes="auto"
+            alt="Lyra框架研究总览"
+            class="lazyload"
+          /><a
+          href="/WzhGameDevPublish/post/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/%E4%BB%A3%E7%A0%81%E6%A1%86%E6%9E%B6/lyra/lyra%E6%A1%86%E6%9E%B6%E7%A0%94%E7%A9%B6%E6%80%BB%E8%A7%88/"
+          aria-label="后一篇:Lyra框架研究总览"
+          title="后一篇:Lyra框架研究总览"
+        ></a>
+        <div class="article-nav-caption">后一篇</div>
+        <h3 class="article-nav-title">Lyra框架研究总览</h3>
+      </div></nav></article></section>
+        </div><footer id="footer" aria-label="Site footer">
+  <div style="width: 100%; overflow: hidden">
+    <div class="footer-line"></div>
+  </div>
+  <div id="footer-info"><div>
+      <span class="icon-copyright"></span>2025-2026<span class="footer-info-sep rotate"></span>
+      温志洪
+    </div><div>
+        基于&nbsp;<a
+          href="https://gohugo.io/"
+          target="_blank"
+          rel="noopener nofollow noreferrer"
+          >Hugo</a
+        >&nbsp; Theme.<a
+          href="https://github.com/D-Sketon/hugo-theme-reimu"
+          target="_blank"
+          rel="noopener nofollow noreferrer"
+          >Reimu</a
+        >
+      </div><div>
+        <span class="icon-brush"
+          >&nbsp;51.0k</span
+        >
+        &nbsp;|&nbsp;
+        <span class="icon-coffee">&nbsp;01:49</span>
+      </div><div>
+        <span class="icon-eye"></span>
+        <span id="busuanzi_container_site_pv"
+          >总访问量&nbsp;<span
+            id="busuanzi_value_site_pv"
+          ></span
+        ></span>
+        &nbsp;|&nbsp;
+        <span class="icon-user"></span>
+        <span id="busuanzi_container_site_uv"
+          >总访客量&nbsp;<span
+            id="busuanzi_value_site_uv"
+          ></span
+        ></span>
+      </div></div>
+</footer>
+<div class="sidebar-top">
+            <div class="sidebar-top-taichi rotate"></div>
+            <div class="arrow-up"></div>
+          </div><div id="mask" class="hide"></div>
+      </div><nav id="mobile-nav" aria-label="Mobile navigation">
+  <div class="sidebar-wrap"><div class="sidebar-toc-sidebar"><h3 class="toc-title">文章目录</h3>
+<div class="sidebar-toc-wrapper toc-div-class">
+  <nav id="TableOfContents">
+  <ul>
+    <li><a href="#这套方案的优点">这套方案的优点</a></li>
+    <li><a href="#资料">资料</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#11-新建一个lyrafps的gamefeature">1.1. 新建一个LyraFPS的GameFeature</a></li>
+    <li><a href="#12-摄像机配置">1.2. 摄像机配置</a>
+      <ul>
+        <li><a href="#更改基本配置">更改基本配置</a></li>
+      </ul>
+    </li>
+    <li><a href="#13-模型配置">1.3. 模型配置</a>
+      <ul>
+        <li><a href="#goal">Goal</a></li>
+        <li><a href="#knowledge">knowledge</a></li>
+        <li><a href="#step">Step</a></li>
+      </ul>
+    </li>
+    <li><a href="#14-设置ik绑定和重定向器">1.4. 设置IK绑定和重定向器</a></li>
+    <li><a href="#14-添加fps动画蓝图">1.4. 添加FPS动画蓝图</a>
+      <ul>
+        <li><a href="#重定向一份fps版本的动画蓝图">重定向一份FPS版本的动画蓝图</a></li>
+        <li><a href="#处理abp_itemanimlayersbase的编译报错和警告">处理<code>ABP_ItemAnimLayersBase</code>的编译报错和警告</a></li>
+        <li><a href="#处理abp_mannequin_base_fps的编译报错">处理<code>ABP_Mannequin_Base_FPS</code>的编译报错</a></li>
+      </ul>
+    </li>
+  </ul>
+
+  <ul>
+    <li><a href="#goat">Goat</a></li>
+    <li><a href="#knowledge-1">Knowledge</a>
+      <ul>
+        <li><a href="#关键步骤">关键步骤</a></li>
+      </ul>
+    </li>
+    <li><a href="#step-1">Step</a>
+      <ul>
+        <li><a href="#传统方案绑死逻辑">传统方案——绑死逻辑</a></li>
+        <li><a href="#cosmet数据驱动添加fps模型">Cosmet数据驱动添加FPS模型</a></li>
+      </ul>
+    </li>
+  </ul>
+
+  <ul>
+    <li><a href="#1-非关键逻辑修改">1. 非关键逻辑修改</a>
+      <ul>
+        <li><a href="#修改abp_itemanimlayersbase_fpsgetmainanimbpthreadsafe">修改ABP_ItemAnimLayersBase_FPS::GetMainAnimBPThreadSafe</a></li>
+        <li><a href="#将必要参数用propertyaccess收集">将必要参数用PropertyAccess收集</a></li>
+      </ul>
+    </li>
+    <li><a href="#2-主动画蓝图基本配置">2. 主动画蓝图基本配置</a>
+      <ul>
+        <li><a href="#架构修改">架构修改</a></li>
+        <li><a href="#animlayerinterface">AnimLayerInterface</a></li>
+        <li><a href="#animlayerbase">AnimLayerBase</a></li>
+        <li><a href="#copyanim">CopyAnim</a></li>
+      </ul>
+    </li>
+  </ul>
+
+  <ul>
+    <li><a href="#修改ga_fire">修改GA_Fire</a>
+      <ul>
+        <li><a href="#播放fps的蒙太奇">播放FPS的蒙太奇</a></li>
+        <li><a href="#增加fps的开火特效">增加FPS的开火特效</a></li>
+        <li><a href="#替换开火声">替换开火声</a></li>
+      </ul>
+    </li>
+    <li><a href="#修改ga_reload">修改GA_Reload</a>
+      <ul>
+        <li><a href="#ga_weapon_reload修改">GA_Weapon_Reload修改</a></li>
+      </ul>
+    </li>
+    <li><a href="#添加ga_sprint">添加GA_Sprint</a>
+      <ul>
+        <li><a href="#添加奔跑能力">添加奔跑能力</a></li>
+      </ul>
+    </li>
+  </ul>
+
+  <ul>
+    <li><a href="#将脚步声替换为fps动画提供的">将<strong>脚步声</strong>替换为FPS动画提供的</a>
+      <ul>
+        <li><a href="#goat-1">Goat</a></li>
+        <li><a href="#knowledge-2">Knowledge</a></li>
+        <li><a href="#step-2">Step</a></li>
+      </ul>
+    </li>
+    <li><a href="#获取fps动画中的摄像机晃动">获取FPS动画中的摄像机晃动</a>
+      <ul>
+        <li><a href="#goat-2">Goat</a></li>
+        <li><a href="#knowledge-3">Knowledge</a></li>
+        <li><a href="#step-3">Step</a></li>
+      </ul>
+    </li>
+    <li><a href="#处理不适合放在fps中的ui">处理不适合放在FPS中的UI</a>
+      <ul>
+        <li><a href="#准星">准星</a></li>
+      </ul>
+    </li>
+  </ul>
+
+  <ul>
+    <li><a href="#新运动系统">新运动系统</a></li>
+    <li><a href="#程序化动画">程序化动画</a></li>
+    <li><a href="#随鼠标和ad键让手臂左右摆动">随鼠标和AD键让手臂左右摆动</a>
+      <ul>
+        <li><a href="#方案一">方案一</a></li>
+      </ul>
+    </li>
+    <li><a href="#射击时枪身左右摆动">射击时枪身左右摆动</a></li>
+  </ul>
+</nav>
+</div></div>
+        <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
+  <img
+    data-src="/WzhGameDevPublish/avatar/UELogo.png"
+    data-sizes="auto"
+    alt="温志洪"
+    class="lazyload"
+  />
+  <div class="sidebar-author-name">温志洪</div>
+  <div class="sidebar-description">FPS游戏</div>
+</div>
+<div class="sidebar-state">
+  <div class="sidebar-state-article">
+    <div>文章</div><div class="sidebar-state-number">13</div>
+  </div>
+  <a class="sidebar-state-category" href="/WzhGameDevPublish/categories/" aria-label="sidebar-state-category-link">
+    <div>分类</div>
+    <div class="sidebar-state-number">
+      0
+    </div>
+  </a>
+  <a class="sidebar-state-tag" href="/WzhGameDevPublish/tags/" aria-label="sidebar-state-tag-link">
+    <div>标签</div>
+    <div class="sidebar-state-number">10</div>
+  </a>
+</div>
+<div class="sidebar-social"><div class="icon-bilibili sidebar-social-icon">
+      <a
+        href="https://space.bilibili.com/35312868"
+        itemprop="url"
+        target="_blank"
+        aria-label="bilibili"
+        rel="noopener nofollow noreferrer"
+      ></a>
+    </div><div class="icon-email sidebar-social-icon">
+      <a
+        href="mailto:cnwenzhihong@gmail.com"
+        itemprop="url"
+        target="_blank"
+        aria-label="email"
+        rel="noopener nofollow noreferrer"
+      ></a>
+    </div></div>
+<div class="sidebar-menu"><div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/WzhGameDevPublish/"
+        aria-label="首页"
+      ></a>
+      <div class='sidebar-menu-icon icon rotate'>&#xe62b;</div>
+      <div class="sidebar-menu-link">首页</div>
+    </div><div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/WzhGameDevPublish/archives"
+        aria-label="归档"
+      ></a>
+      <div class='sidebar-menu-icon icon rotate'>&#xe62b;</div>
+      <div class="sidebar-menu-link">归档</div>
+    </div><div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/WzhGameDevPublish/about"
+        aria-label="关于"
+      ></a>
+      <div class='sidebar-menu-icon icon rotate'>&#xe62b;</div>
+      <div class="sidebar-menu-link">关于</div>
+    </div><div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/WzhGameDevPublish/friend"
+        aria-label="友链"
+      ></a>
+      <div class='sidebar-menu-icon icon rotate'>&#xe62b;</div>
+      <div class="sidebar-menu-link">友链</div>
+    </div></div>
+</div></div><div class="sidebar-btn-wrapper">
+        <div class="sidebar-toc-btn current"></div>
+        <div class="sidebar-common-btn"></div>
+      </div></nav>
+</div><div class="site-search">
+        <div class="reimu-popup popup">
+          <div class="reimu-search">
+            <div class="reimu-search-input-icon"></div>
+            <div id="reimu-search-input"></div>
+            <div class="popup-btn-close"></div>
+          </div>
+          <div class="reimu-results">
+            <div id="reimu-stats"></div>
+            <div id="reimu-hits"></div>
+            <div id="reimu-pagination" class="reimu-pagination"></div>
+          </div>
+          <img class="reimu-bg" src="/WzhGameDevPublish/images/reimu.png" />
+        </div>
+      </div><script
+    src="https://npm.webcache.cn/lazysizes@5.3.2/lazysizes.min.js"
+    integrity="sha384-3gT/vsepWkfz/ff7PpWNUeMzeWoH3cDhm/A8jM7ouoAK0/fP/9bcHHR5kHq2nf&#43;e" crossorigin="anonymous"></script><script
+    src="https://npm.webcache.cn/clipboard@2.0.11/dist/clipboard.min.js"
+    integrity="sha384-J08i8An/QeARD9ExYpvphB8BsyOj3Gh2TSh1aLINKO3L0cMSH2dN3E22zFoXEi0Q" crossorigin="anonymous"></script><script
+    src="https://npm.webcache.cn/material-theme@1.0.0/dist/material-theme.umd.js"
+    integrity="sha384-vLev0II0HKFaxkcm&#43;/7kX5IGwVFBASkGchU311wmU/veIj2bB0UcBkQbW6yw2asK" crossorigin="anonymous"></script><script src="/WzhGameDevPublish/js/main.js" ></script><script src="/WzhGameDevPublish/js/aos.js" ></script><script>
+    var aosInit = () => {
+      AOS.init({
+        duration: 1000,
+        easing: "ease",
+        once: true,
+        offset: 50,
+      });
+    };
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", aosInit);
+    } else {
+      aosInit();
+    }
+  </script><script src="/WzhGameDevPublish/js/pjax_main.js" data-pjax></script><script>
+    var ALGOLIA_CONFIG = {
+      logo: '\/WzhGameDevPublish\/images\/algolia_logo.svg',
+      algolia: {
+        applicationID: "Y8C6JKXKKR",
+        apiKey: "30fdacdc4947fb8d8faed68e16f048a0",
+        indexName: "index",
+        hits: {
+          "per_page": parseInt("10")
+        },
+        labels: {
+          "input_placeholder": '搜索.....',
+          "hits_empty": '未发现与 「${query}」相关内容',
+          "hits_stats": '找到${hits}条结果（用时 ${time} ms）'
+        }
+      }
+    };
+  </script><script
+    src="https://npm.webcache.cn/algoliasearch@4.17.1/dist/algoliasearch-lite.umd.js"
+    deferintegrity="sha384-xvLS0jfKuoREs7pqkRI/OI8GcqohO5S&#43;jQz7ZBtQXnsXmD&#43;9jDOOY4cL6dCPzlrk" crossorigin="anonymous"></script><script
+    src="https://npm.webcache.cn/@reimujs/instantsearch.js@4.57.0-beta.1/dist/instantsearch.production.min.js"
+    deferintegrity="sha384-aagKMe8nkqaP2DYQc8kkYOL5l&#43;M5Q2WH/Uhr4teOh0Ybp0RZj0kUSDm45qPikMjK" crossorigin="anonymous"></script><script src="/WzhGameDevPublish/js/algolia_search.js" ></script><script
+    src="https://npm.webcache.cn/mouse-firework@0.1.1/dist/index.umd.js"
+    integrity="sha384-8LyaidD9GPxQQgLJO/WRw/O2h3BoNq/ApI/ecpvM6RsrCz2qP2ppBXUKihP4V/2d" crossorigin="anonymous"></script><script>
+  if (! false  || !window.matchMedia('(max-width: 768px)').matches) {
+    if (window.firework) {
+      const options = JSON.parse("{\"excludeelements\":[\"a\",\"button\"],\"particles\":[{\"colors\":[\"var(--red-1)\",\"var(--red-2)\",\"var(--red-3)\",\"var(--red-4)\"],\"duration\":[1200,1800],\"easing\":\"easeOutExpo\",\"move\":[\"emit\"],\"number\":20,\"shape\":\"circle\",\"shapeOptions\":{\"alpha\":[0.3,0.5],\"radius\":[16,32]}},{\"colors\":[\"var(--red-0)\"],\"duration\":[1200,1800],\"easing\":\"easeOutExpo\",\"move\":[\"diffuse\"],\"number\":1,\"shape\":\"circle\",\"shapeOptions\":{\"alpha\":[0.2,0.5],\"lineWidth\":6,\"radius\":20}}]}");
+      options.excludeElements = options.excludeelements;
+      delete options.excludeelements;
+      window.firework(options);
+    }
+  }
+</script><script
+    src="https://npm.webcache.cn/quicklink@3.0.1/dist/quicklink.umd.js"
+    integrity="sha384-caMDqvgav/HWdEYQU1QRRHMLleigpL1YHAG0m371DhzfL8rRzUyOb&#43;bEHtwlmYjD" crossorigin="anonymous"></script><script data-pjax>
+    window.quicklink?.listen({
+      timeout:  3000 ,
+      priority:  true ,
+      ignores: JSON.parse("[]")
+    });
+  </script>
+
+
+<div id="lazy-script">
+  <div><script data-pjax>
+        window.REIMU_POST = {
+          author: "温志洪",
+          title: "Lyra改为FPS",
+          url: "http:\/\/localhost:1895\/WzhGameDevPublish\/post\/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91\/%E4%BB%A3%E7%A0%81%E6%A1%86%E6%9E%B6\/lyra\/fps\/lyra%E6%94%B9%E4%B8%BAfps\/",
+          description: "\r总览\r这套方案的优点\r完全采用Lyra方案，所有安防均扩展于Lyra原生逻辑拓展，如库存、Cosmet、GA、GameFeature、AnimLayer方案 与FPS资产分离。FPS程序化动画可以适配大量只有模型的资产。\n资料\rLyraStarterGame Overview | X157 Dev Notes\n",
+          cover: "http:\/\/localhost:1895\/WzhGameDevPublish\/images\/banner.webp",
+        };
+      </script><script src="/WzhGameDevPublish/js/insert_highlight.js" data-pjax></script><script src="/WzhGameDevPublish/js/tabs.js" data-pjax></script><script type="module" data-pjax>const PhotoSwipeLightbox = (await safeImport("https:\/\/npm.webcache.cn\/photoswipe@5.4.4\/dist\/photoswipe-lightbox.esm.min.js", "sha384-DiL6M\/gG\u002bwmTxmCRZyD1zee6lIhawn5TGvED0FOh7fXcN9B0aZ9dexSF\/N6lrZi\/")).default;const initPswp = (gallery, children) => {
+          if (_$$(`${gallery} ${children}`).length > 0) {
+            new PhotoSwipeLightbox({
+              gallery,
+              children,pswpModule: () => safeImport("https:\/\/npm.webcache.cn\/photoswipe@5.4.4\/dist\/photoswipe.esm.min.js", "sha384-WkkO3GCmgkC3VQWpaV8DqhKJqpzpF9JoByxDmnV8\u002boTJ7m3DfYEWX1fu1scuS4\u002bs")}).init();
+          }
+        }
+        const pswp = () => {
+          initPswp('.article-entry', 'a.article-gallery-item');
+          initPswp('.article-gallery', 'a.article-gallery-item');
+          window.lightboxStatus = 'done';
+          window.removeEventListener('lightbox:ready', pswp);
+        }
+        if(window.lightboxStatus === 'ready') {
+          pswp()
+        } else {
+          window.addEventListener('lightbox:ready', pswp);
+        }
+      </script></div>
+</div><script
+    src="https://npm.webcache.cn/busuanzi@2.3.0/bsz.pure.mini.js"
+    asyncintegrity="sha384-0M75wtSkhjIInv4coYlaJU83&#43;OypaRCIq2SukQVQX04eGTCBXJDuWAbJet56id&#43;S" crossorigin="anonymous"></script><script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.getRegistrations().then((registrations) => {
+        for (let registration of registrations) {
+          registration.unregister();
+        }
+      });
+    }
+  </script><script>
+  const reimuCopyright = String.raw`
+   ______     ______     __     __    __     __  __    
+  /\  == \   /\  ___\   /\ \   /\ "-./  \   /\ \/\ \   
+  \ \  __<   \ \  __\   \ \ \  \ \ \-./\ \  \ \ \_\ \  
+   \ \_\ \_\  \ \_____\  \ \_\  \ \_\ \ \_\  \ \_____\ 
+    \/_/ /_/   \/_____/   \/_/   \/_/  \/_/   \/_____/ 
+                                                    
+  `;
+  console.log(String.raw`%c ${reimuCopyright}`, "color: #ff5252;");
+  console.log(
+    "%c Theme.Reimu" + " %c https://github.com/D-Sketon/hugo-theme-reimu ",
+    "color: white; background: #ff5252; padding:5px 0;",
+    "padding:4px;border:1px solid #ff5252;",
+  );
+</script></body>
+</html>

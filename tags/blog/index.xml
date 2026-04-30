@@ -12,12 +12,155 @@
     
     <copyright>本博客所有文章除特别声明外，均采用 BY-NC-SA 许可协议。转载请注明出处！</copyright>
     
-    <lastBuildDate>Thu, 30 Apr 2026 15:39:34 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 30 Apr 2026 15:50:31 +0000</lastBuildDate>
     
     
     <atom:link href="http://localhost:1895/WzhGameDevPublish/tags/blog/index.xml" rel="self" type="application/rss&#43;xml" />
     
 
+    
+    
+
+    <item>
+      <title>杀戮尖塔2存在的设计问题探讨</title>
+      <link>http://localhost:1895/WzhGameDevPublish/post/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/1-input/%E6%B8%B8%E6%88%8F%E5%AE%9E%E4%BE%8B/%E6%9D%80%E6%88%AE%E5%B0%96%E5%A1%94/%E6%9D%80%E6%88%AE%E5%B0%96%E5%A1%942%E5%AD%98%E5%9C%A8%E7%9A%84%E8%AE%BE%E8%AE%A1%E9%97%AE%E9%A2%98%E6%8E%A2%E8%AE%A8/</link>
+      <pubDate>Tue, 14 Apr 2026 23:56:07 &#43;0000</pubDate>
+      <author>cnwenzhihong@gmail.com (温志洪)</author>
+      <guid>http://localhost:1895/WzhGameDevPublish/post/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/1-input/%E6%B8%B8%E6%88%8F%E5%AE%9E%E4%BE%8B/%E6%9D%80%E6%88%AE%E5%B0%96%E5%A1%94/%E6%9D%80%E6%88%AE%E5%B0%96%E5%A1%942%E5%AD%98%E5%9C%A8%E7%9A%84%E8%AE%BE%E8%AE%A1%E9%97%AE%E9%A2%98%E6%8E%A2%E8%AE%A8/</guid>
+      <description>
+        <![CDATA[<h1>杀戮尖塔2存在的设计问题探讨</h1><p>作者：温志洪（cnwenzhihong@gmail.com）</p>
+        
+          <p><a href="https://slay-the-spire.fandom.com/wiki/Slay_the_Spire_Wiki">杀戮尖塔1英文Wiki</a><br>
+<a href="https://sts2.huijiwiki.com/wiki/%E9%A6%96%E9%A1%B5">杀戮尖塔2中文维基</a></p>
+<h1 id="核心体验">
+<a class="header-anchor" href="#%e6%a0%b8%e5%bf%83%e4%bd%93%e9%aa%8c"></a>
+核心体验
+</h1><p>一代：<br>
+这样也行？、红色格挡条、转来转去像个、吉米！<br>
+数值叠加、强力运转、极限数值。局内启动、蠕动/运转、击杀一气呵成。</p>
+<p>二代：<br>
+XX流派、？避战。塞10张？？？<br>
+更注重简单数值的叠加，而不是运转端的叠加。</p>
+        
+        <hr><p>本文2026-04-14首发于<a href='http://localhost:1895/WzhGameDevPublish/'>妖精游戏开发馆</a>，最后修改于2026-04-30</p>]]>
+      </description>
+      
+    </item>
+    
+    
+
+    <item>
+      <title>使用CodeX开发UE5实战经验</title>
+      <link>http://localhost:1895/WzhGameDevPublish/post/ai/%E7%BC%96%E7%A8%8B/%E4%BD%BF%E7%94%A8codex%E5%BC%80%E5%8F%91ue5%E5%AE%9E%E6%88%98%E7%BB%8F%E9%AA%8C/</link>
+      <pubDate>Thu, 16 Apr 2026 11:28:56 &#43;0000</pubDate>
+      <author>cnwenzhihong@gmail.com (温志洪)</author>
+      <guid>http://localhost:1895/WzhGameDevPublish/post/ai/%E7%BC%96%E7%A8%8B/%E4%BD%BF%E7%94%A8codex%E5%BC%80%E5%8F%91ue5%E5%AE%9E%E6%88%98%E7%BB%8F%E9%AA%8C/</guid>
+      <description>
+        <![CDATA[<h1>使用CodeX开发UE5实战经验</h1><p>作者：温志洪（cnwenzhihong@gmail.com）</p>
+        
+          <h1 id="开始之前">
+<a class="header-anchor" href="#%e5%bc%80%e5%a7%8b%e4%b9%8b%e5%89%8d"></a>
+开始之前
+</h1><h2 id="关键链接">
+<a class="header-anchor" href="#%e5%85%b3%e9%94%ae%e9%93%be%e6%8e%a5"></a>
+关键链接
+</h2><blockquote>
+<ol>
+<li><a href="https://openai.com/codex">Codex官网</a></li>
+<li><a href="https://developers.openai.com/codex">Codex开发者文档</a></li>
+<li>[Codex GitHub](<a href="https://github.com/openai/codex">GitHub - openai/codex: Lightweight coding agent that runs in your terminal · GitHub</a></li>
+</ol>
+</blockquote>
+<p>零基础AI开发最少需要的知识：<a href="https://developers.openai.com/codex/learn/best-practices">Codex最佳实践-5min</a><br>
+Aggent.md：<a href="https://developers.openai.com/codex/guides/agents-md">Custom instructions with AGENTS.md </a><br>
+考试：</p>
+<h2 id="最佳实践问题">
+<a class="header-anchor" href="#%e6%9c%80%e4%bd%b3%e5%ae%9e%e8%b7%b5%e9%97%ae%e9%a2%98"></a>
+最佳实践问题
+</h2><p>提示词的应包含的4点：<br>
+<strong>Goal:</strong> 先专心实现核心目标，再慢慢加上其他目标。<br>
+使用人群：自己、朋友、其他有需求的人。<br>
+平台：是网页、桌面应用、安卓、苹果，还是跨手机平台<br>
+实现方案：游戏、信息展示、论坛、工具、插件<br>
+<strong>Context:</strong> 项目开始时可以将可能用到的资料提供给它，项目开启后他自己大都能找到自己生成的相关文件，有外部文件补充时才需要@。有网络文档、资料直接给链接就行。<br>
+比如命令：</p>
+        
+        <hr><p>本文2026-04-16首发于<a href='http://localhost:1895/WzhGameDevPublish/'>妖精游戏开发馆</a>，最后修改于2026-04-30</p>]]>
+      </description>
+      
+    </item>
+    
+    
+
+    <item>
+      <title>UE 面试准备</title>
+      <link>http://localhost:1895/WzhGameDevPublish/post/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/%E4%BB%A3%E7%A0%81%E6%A1%86%E6%9E%B6/ue-%E9%9D%A2%E8%AF%95%E5%87%86%E5%A4%87/</link>
+      <pubDate>Sun, 26 Apr 2026 06:23:44 &#43;0000</pubDate>
+      <author>cnwenzhihong@gmail.com (温志洪)</author>
+      <guid>http://localhost:1895/WzhGameDevPublish/post/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/%E4%BB%A3%E7%A0%81%E6%A1%86%E6%9E%B6/ue-%E9%9D%A2%E8%AF%95%E5%87%86%E5%A4%87/</guid>
+      <description>
+        <![CDATA[<h1>UE 面试准备</h1><p>作者：温志洪（cnwenzhihong@gmail.com）</p>
+        
+          <h1 id="总览">
+<a class="header-anchor" href="#%e6%80%bb%e8%a7%88"></a>
+总览
+</h1><h2 id="关键资料">
+<a class="header-anchor" href="#%e5%85%b3%e9%94%ae%e8%b5%84%e6%96%99"></a>
+关键资料
+</h2><p><a href="https://zhuanlan.zhihu.com/p/2014363740011790665">虚幻面试笔记</a><br>
+<a href="https://zhuanlan.zhihu.com/p/34721113">《Exploring in UE4》关于网络同步的理解与思考</a><br>
+<a href="https://dev.epicgames.com/documentation/unreal-engine/gameplay-attributes-and-attribute-sets-for-the-gameplay-ability-system-in-unreal-engine">GAS官方文档</a><br>
+<a href="https://github.com/BillEliot/GASDocumentation_Chinese">GASDocumentation_Chinese</a></p>
+<h2 id="一句话总结和介绍">
+<a class="header-anchor" href="#%e4%b8%80%e5%8f%a5%e8%af%9d%e6%80%bb%e7%bb%93%e5%92%8c%e4%bb%8b%e7%bb%8d"></a>
+一句话总结和介绍
+</h2><h3 id="自我介绍">
+<a class="header-anchor" href="#%e8%87%aa%e6%88%91%e4%bb%8b%e7%bb%8d"></a>
+自我介绍
+</h3><h3 id="lyra改fps项目">
+<a class="header-anchor" href="#lyra%e6%94%b9fps%e9%a1%b9%e7%9b%ae"></a>
+Lyra改FPS项目
+</h3><p>基于 Lyra 的 FPS 改造.项目特点是<br>
+尽量不更改Lyra源码，可以随时迁移到更新UE、Lyra的版本。(涉及到Lyra的主要框架和逻辑。)<br>
+得益于Lyra优秀的架构和我写的程序化动画，和第三方FPS资产耦合也很小，可以很方便地添加/更换新FPS的资产。<br>
+花时间比较久：</p>
+        
+        <hr><p>本文2026-04-26首发于<a href='http://localhost:1895/WzhGameDevPublish/'>妖精游戏开发馆</a>，最后修改于2026-04-30</p>]]>
+      </description>
+      
+    </item>
+    
+    
+
+    <item>
+      <title>Lyra改为FPS</title>
+      <link>http://localhost:1895/WzhGameDevPublish/post/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/%E4%BB%A3%E7%A0%81%E6%A1%86%E6%9E%B6/lyra/fps/lyra%E6%94%B9%E4%B8%BAfps/</link>
+      <pubDate>Mon, 08 Sep 2025 19:57:34 &#43;0000</pubDate>
+      <author>cnwenzhihong@gmail.com (温志洪)</author>
+      <guid>http://localhost:1895/WzhGameDevPublish/post/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/%E4%BB%A3%E7%A0%81%E6%A1%86%E6%9E%B6/lyra/fps/lyra%E6%94%B9%E4%B8%BAfps/</guid>
+      <description>
+        <![CDATA[<h1>Lyra改为FPS</h1><p>作者：温志洪（cnwenzhihong@gmail.com）</p>
+        
+          <h1 id="总览">
+<a class="header-anchor" href="#%e6%80%bb%e8%a7%88"></a>
+总览
+</h1><h2 id="这套方案的优点">
+<a class="header-anchor" href="#%e8%bf%99%e5%a5%97%e6%96%b9%e6%a1%88%e7%9a%84%e4%bc%98%e7%82%b9"></a>
+这套方案的优点
+</h2><ul>
+<li>完全采用Lyra方案，所有安防均扩展于Lyra原生逻辑拓展，如库存、Cosmet、GA、GameFeature、AnimLayer方案</li>
+<li>与FPS资产分离。FPS程序化动画可以适配大量只有模型的资产。<br>
+<img src="https://gcore.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/20260429151350927.png" alt=""></li>
+</ul>
+<h2 id="资料">
+<a class="header-anchor" href="#%e8%b5%84%e6%96%99"></a>
+资料
+</h2><p><a href="https://x157.github.io/UE5/LyraStarterGame/">LyraStarterGame Overview | X157 Dev Notes</a></p>
+        
+        <hr><p>本文2025-09-08首发于<a href='http://localhost:1895/WzhGameDevPublish/'>妖精游戏开发馆</a>，最后修改于2026-04-30</p>]]>
+      </description>
+      
+    </item>
     
     
 
@@ -77,49 +220,6 @@
     
 
     <item>
-      <title>使用CodeX开发UE5实战经验</title>
-      <link>http://localhost:1895/WzhGameDevPublish/post/ai/%E7%BC%96%E7%A8%8B/%E4%BD%BF%E7%94%A8codex%E5%BC%80%E5%8F%91ue5%E5%AE%9E%E6%88%98%E7%BB%8F%E9%AA%8C/</link>
-      <pubDate>Thu, 16 Apr 2026 11:28:56 &#43;0000</pubDate>
-      <author>cnwenzhihong@gmail.com (温志洪)</author>
-      <guid>http://localhost:1895/WzhGameDevPublish/post/ai/%E7%BC%96%E7%A8%8B/%E4%BD%BF%E7%94%A8codex%E5%BC%80%E5%8F%91ue5%E5%AE%9E%E6%88%98%E7%BB%8F%E9%AA%8C/</guid>
-      <description>
-        <![CDATA[<h1>使用CodeX开发UE5实战经验</h1><p>作者：温志洪（cnwenzhihong@gmail.com）</p>
-        
-          <h1 id="开始之前">
-<a class="header-anchor" href="#%e5%bc%80%e5%a7%8b%e4%b9%8b%e5%89%8d"></a>
-开始之前
-</h1><h2 id="关键链接">
-<a class="header-anchor" href="#%e5%85%b3%e9%94%ae%e9%93%be%e6%8e%a5"></a>
-关键链接
-</h2><blockquote>
-<ol>
-<li><a href="https://openai.com/codex">Codex官网</a></li>
-<li><a href="https://developers.openai.com/codex">Codex开发者文档</a></li>
-<li>[Codex GitHub](<a href="https://github.com/openai/codex">GitHub - openai/codex: Lightweight coding agent that runs in your terminal · GitHub</a></li>
-</ol>
-</blockquote>
-<p>零基础AI开发最少需要的知识：<a href="https://developers.openai.com/codex/learn/best-practices">Codex最佳实践-5min</a><br>
-Aggent.md：<a href="https://developers.openai.com/codex/guides/agents-md">Custom instructions with AGENTS.md </a><br>
-考试：</p>
-<h2 id="最佳实践问题">
-<a class="header-anchor" href="#%e6%9c%80%e4%bd%b3%e5%ae%9e%e8%b7%b5%e9%97%ae%e9%a2%98"></a>
-最佳实践问题
-</h2><p>提示词的应包含的4点：<br>
-<strong>Goal:</strong> 先专心实现核心目标，再慢慢加上其他目标。<br>
-使用人群：自己、朋友、其他有需求的人。<br>
-平台：是网页、桌面应用、安卓、苹果，还是跨手机平台<br>
-实现方案：游戏、信息展示、论坛、工具、插件<br>
-<strong>Context:</strong> 项目开始时可以将可能用到的资料提供给它，项目开启后他自己大都能找到自己生成的相关文件，有外部文件补充时才需要@。有网络文档、资料直接给链接就行。<br>
-比如命令：</p>
-        
-        <hr><p>本文2026-04-16首发于<a href='http://localhost:1895/WzhGameDevPublish/'>妖精游戏开发馆</a>，最后修改于2026-04-30</p>]]>
-      </description>
-      
-    </item>
-    
-    
-
-    <item>
       <title>Lyra 射击全流程梳理</title>
       <link>http://localhost:1895/WzhGameDevPublish/post/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/%E4%BB%A3%E7%A0%81%E6%A1%86%E6%9E%B6/lyra/lyra-gas/lyra-%E5%B0%84%E5%87%BB%E5%85%A8%E6%B5%81%E7%A8%8B%E6%A2%B3%E7%90%86/</link>
       <pubDate>Sat, 07 Jun 2025 16:12:15 &#43;0000</pubDate>
@@ -145,34 +245,6 @@ Aggent.md：<a href="https://developers.openai.com/codex/guides/agents-md">Custo
 <p>DrawDebugLine：黄色，Setting-&gt;LyraWeaponDebugger</p>
         
         <hr><p>本文2025-06-07首发于<a href='http://localhost:1895/WzhGameDevPublish/'>妖精游戏开发馆</a>，最后修改于2026-04-30</p>]]>
-      </description>
-      
-    </item>
-    
-    
-
-    <item>
-      <title>杀戮尖塔2设计问题</title>
-      <link>http://localhost:1895/WzhGameDevPublish/post/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/1-input/%E6%B8%B8%E6%88%8F%E5%AE%9E%E4%BE%8B/%E6%9D%80%E6%88%AE%E5%B0%96%E5%A1%94/%E6%9D%80%E6%88%AE%E5%B0%96%E5%A1%942%E8%AE%BE%E8%AE%A1%E9%97%AE%E9%A2%98/</link>
-      <pubDate>Tue, 14 Apr 2026 23:56:07 &#43;0000</pubDate>
-      <author>cnwenzhihong@gmail.com (温志洪)</author>
-      <guid>http://localhost:1895/WzhGameDevPublish/post/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/1-input/%E6%B8%B8%E6%88%8F%E5%AE%9E%E4%BE%8B/%E6%9D%80%E6%88%AE%E5%B0%96%E5%A1%94/%E6%9D%80%E6%88%AE%E5%B0%96%E5%A1%942%E8%AE%BE%E8%AE%A1%E9%97%AE%E9%A2%98/</guid>
-      <description>
-        <![CDATA[<h1>杀戮尖塔2设计问题</h1><p>作者：温志洪（cnwenzhihong@gmail.com）</p>
-        
-          <p><a href="https://slay-the-spire.fandom.com/wiki/Slay_the_Spire_Wiki">杀戮尖塔1英文Wiki</a><br>
-<a href="https://sts2.huijiwiki.com/wiki/%E9%A6%96%E9%A1%B5">杀戮尖塔2中文维基</a></p>
-<h1 id="核心体验">
-<a class="header-anchor" href="#%e6%a0%b8%e5%bf%83%e4%bd%93%e9%aa%8c"></a>
-核心体验
-</h1><p>一代：<br>
-这样也行？、红色格挡条、转来转去像个、吉米！<br>
-数值叠加、强力运转、极限数值。局内启动、蠕动/运转、击杀一气呵成。</p>
-<p>二代：<br>
-XX流派、？避战。塞10张？？？<br>
-更注重简单数值的叠加，而不是运转端的叠加。</p>
-        
-        <hr><p>本文2026-04-14首发于<a href='http://localhost:1895/WzhGameDevPublish/'>妖精游戏开发馆</a>，最后修改于2026-04-20</p>]]>
       </description>
       
     </item>
@@ -354,61 +426,6 @@ Gamemode初始化流程
 这些类别可以自由组合来变成一个集合，这个集合可以称为Experience。</p>
         
         <hr><p>本文2026-02-23首发于<a href='http://localhost:1895/WzhGameDevPublish/'>妖精游戏开发馆</a>，最后修改于2026-03-03</p>]]>
-      </description>
-      
-    </item>
-    
-    
-
-    <item>
-      <title>Lyra是如何使用ModularGameplay的</title>
-      <link>http://localhost:1895/WzhGameDevPublish/post/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/%E4%BB%A3%E7%A0%81%E6%A1%86%E6%9E%B6/lyra/lyra-framework/lyra%E6%98%AF%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8modulargameplay%E7%9A%84/</link>
-      <pubDate>Mon, 23 Feb 2026 14:40:01 &#43;0000</pubDate>
-      <author>cnwenzhihong@gmail.com (温志洪)</author>
-      <guid>http://localhost:1895/WzhGameDevPublish/post/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/%E4%BB%A3%E7%A0%81%E6%A1%86%E6%9E%B6/lyra/lyra-framework/lyra%E6%98%AF%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8modulargameplay%E7%9A%84/</guid>
-      <description>
-        <![CDATA[<h1>Lyra是如何使用ModularGameplay的</h1><p>作者：温志洪（cnwenzhihong@gmail.com）</p>
-        
-          <h1 id="ugameframeworkcomponent">
-<a class="header-anchor" href="#ugameframeworkcomponent"></a>
-UGameFrameworkComponent
-</h1><p>比较简单的Manager+子组件结构<br>
-<a href="https://zhuanlan.zhihu.com/p/492893002">《InsideUE5》GameFeatures架构（五）AddComponents</a><br>
-<img src="https://pic2.zhimg.com/v2-8006b78840008e492ce39f5312b572e3_1440w.jpg" alt=""><br>
-ULyraExperienceManagerComponent的基类就是UGameFrameworkComponent</p>
-        
-        <hr><p>本文2026-02-23首发于<a href='http://localhost:1895/WzhGameDevPublish/'>妖精游戏开发馆</a>，最后修改于2026-03-03</p>]]>
-      </description>
-      
-    </item>
-    
-    
-
-    <item>
-      <title>FPS中的武器摇晃</title>
-      <link>http://localhost:1895/WzhGameDevPublish/post/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/%E4%BB%A3%E7%A0%81%E6%A1%86%E6%9E%B6/lyra/fps/%E6%8A%80%E6%9C%AF%E7%BB%86%E8%8A%82/weaponsway/fpszhong-de-wu-qi-yao-huang/</link>
-      <pubDate>Sat, 22 Nov 2025 13:19:29 &#43;0000</pubDate>
-      <author>cnwenzhihong@gmail.com (温志洪)</author>
-      <guid>http://localhost:1895/WzhGameDevPublish/post/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/%E4%BB%A3%E7%A0%81%E6%A1%86%E6%9E%B6/lyra/fps/%E6%8A%80%E6%9C%AF%E7%BB%86%E8%8A%82/weaponsway/fpszhong-de-wu-qi-yao-huang/</guid>
-      <description>
-        <![CDATA[<h1>FPS中的武器摇晃</h1><p>作者：温志洪（cnwenzhihong@gmail.com）</p>
-        
-          <ol>
-<li>加速度方向不一致</li>
-<li>一般单次滑动最大加速度</li>
-<li>停下：速度方向不会改变</li>
-<li>左右变向时：速度方向改变</li>
-<li>减速滑动时：缓慢归0</li>
-</ol>
-<p>我设想了一个思路：<br>
-当加速度方向和速度方向不一致时判断停止<br>
-如果速度大于40度每秒，则累加DeceTime。否则直接判定NoInput<br>
-之后0.3秒内采用Lerp(NoInput、HasInput)，因为减速时间越长越有可能是单纯的减速<br>
-如果DeceTime&gt;0.3ms，则直接采用HasInput<br>
-速度方向发生改变时充值DeceTime<br>
-持续移动时、加速度会在0附近震荡</p>
-        
-        <hr><p>本文2025-11-22首发于<a href='http://localhost:1895/WzhGameDevPublish/'>妖精游戏开发馆</a>，最后修改于2026-01-17</p>]]>
       </description>
       
     </item>
