@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>UE/Base on 妖精游戏开发馆</title>
+    <link>http://localhost:1895/WzhGameDevPublish/tags/ue/base/</link>
+    <description>Recent content from 妖精游戏开发馆</description>
+    <generator>Hugo</generator>
+    <language>zh-cn</language>
+    
+    <managingEditor>cnwenzhihong@gmail.com (温志洪)</managingEditor>
+    <webMaster>cnwenzhihong@gmail.com (温志洪)</webMaster>
+    
+    <copyright>本博客所有文章除特别声明外，均采用 BY-NC-SA 许可协议。转载请注明出处！</copyright>
+    
+    <lastBuildDate>Thu, 30 Apr 2026 15:36:33 +0000</lastBuildDate>
+    
+    
+    <atom:link href="http://localhost:1895/WzhGameDevPublish/tags/ue/base/index.xml" rel="self" type="application/rss&#43;xml" />
+    
+
+    
+    
+
+    <item>
+      <title>使用CodeX开发UE5实战经验</title>
+      <link>http://localhost:1895/WzhGameDevPublish/post/ai/%E7%BC%96%E7%A8%8B/%E4%BD%BF%E7%94%A8codex%E5%BC%80%E5%8F%91ue5%E5%AE%9E%E6%88%98%E7%BB%8F%E9%AA%8C/</link>
+      <pubDate>Thu, 16 Apr 2026 11:28:56 &#43;0000</pubDate>
+      <author>cnwenzhihong@gmail.com (温志洪)</author>
+      <guid>http://localhost:1895/WzhGameDevPublish/post/ai/%E7%BC%96%E7%A8%8B/%E4%BD%BF%E7%94%A8codex%E5%BC%80%E5%8F%91ue5%E5%AE%9E%E6%88%98%E7%BB%8F%E9%AA%8C/</guid>
+      <description>
+        <![CDATA[<h1>使用CodeX开发UE5实战经验</h1><p>作者：温志洪（cnwenzhihong@gmail.com）</p>
+        
+          <h1 id="开始之前">
+<a class="header-anchor" href="#%e5%bc%80%e5%a7%8b%e4%b9%8b%e5%89%8d"></a>
+开始之前
+</h1><h2 id="关键链接">
+<a class="header-anchor" href="#%e5%85%b3%e9%94%ae%e9%93%be%e6%8e%a5"></a>
+关键链接
+</h2><blockquote>
+<ol>
+<li><a href="https://openai.com/codex">Codex官网</a></li>
+<li><a href="https://developers.openai.com/codex">Codex开发者文档</a></li>
+<li>[Codex GitHub](<a href="https://github.com/openai/codex">GitHub - openai/codex: Lightweight coding agent that runs in your terminal · GitHub</a></li>
+</ol>
+</blockquote>
+<p>零基础AI开发最少需要的知识：<a href="https://developers.openai.com/codex/learn/best-practices">Codex最佳实践-5min</a><br>
+Aggent.md：<a href="https://developers.openai.com/codex/guides/agents-md">Custom instructions with AGENTS.md </a><br>
+考试：</p>
+<h2 id="最佳实践问题">
+<a class="header-anchor" href="#%e6%9c%80%e4%bd%b3%e5%ae%9e%e8%b7%b5%e9%97%ae%e9%a2%98"></a>
+最佳实践问题
+</h2><p>提示词的应包含的4点：<br>
+<strong>Goal:</strong> 先专心实现核心目标，再慢慢加上其他目标。<br>
+使用人群：自己、朋友、其他有需求的人。<br>
+平台：是网页、桌面应用、安卓、苹果，还是跨手机平台<br>
+实现方案：游戏、信息展示、论坛、工具、插件<br>
+<strong>Context:</strong> 项目开始时可以将可能用到的资料提供给它，项目开启后他自己大都能找到自己生成的相关文件，有外部文件补充时才需要@。有网络文档、资料直接给链接就行。<br>
+比如命令：</p>
+        
+        <hr><p>本文2026-04-16首发于<a href='http://localhost:1895/WzhGameDevPublish/'>妖精游戏开发馆</a>，最后修改于2026-04-30</p>]]>
+      </description>
+      
+    </item>
+    
+  </channel>
+</rss>

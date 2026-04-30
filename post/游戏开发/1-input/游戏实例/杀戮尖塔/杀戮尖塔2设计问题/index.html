@@ -1,0 +1,792 @@
+<!doctype html>
+<html
+  lang="zh-cn" 
+  data-theme-mode="false"
+  >
+  <head><script src="/WzhGameDevPublish/livereload.js?mindelay=10&amp;v=2&amp;port=1895&amp;path=WzhGameDevPublish/livereload" data-no-instant defer></script><meta charset="utf-8" />
+<meta
+  name="viewport"
+  content="width=device-width, initial-scale=1, shrink-to-fit=no"
+/><title>
+  杀戮尖塔2设计问题 | 温志洪
+</title>
+<meta name="description" content="FPS游戏"/><script>
+  window.siteConfig = JSON.parse("{\"anchor_icon\":null,\"base\":\"http://localhost:1895/WzhGameDevPublish/\",\"clipboard\":{\"copyright\":{\"count\":50,\"enable\":false,\"license_type\":\"by-nc-sa\"},\"fail\":{\"en\":\"Copy failed (ﾟ⊿ﾟ)ﾂ\",\"ja\":\"コピー失敗 (ﾟ⊿ﾟ)ﾂ\",\"pt-br\":\"Falha ao copiar (ﾟ⊿ﾟ)ﾂ\",\"zh-cn\":\"复制失败 (ﾟ⊿ﾟ)ﾂ\",\"zh-tw\":\"複製失敗 (ﾟ⊿ﾟ)ﾂ\"},\"success\":{\"en\":\"Copy successfully (*^▽^*)\",\"ja\":\"コピー成功 (*^▽^*)\",\"pt-br\":\"Copiado com sucesso (*^▽^*)\",\"zh-cn\":\"复制成功 (*^▽^*)\",\"zh-tw\":\"複製成功 (*^▽^*)\"}},\"code_block\":{\"expand\":4},\"i18n_languages\":[{\"Lang\":\"en\",\"LanguageName\":\"English\",\"LanguageCode\":\"\",\"Title\":\"\",\"LanguageDirection\":\"\",\"Weight\":1,\"Disabled\":false},{\"Lang\":\"zh-cn\",\"LanguageName\":\"简体中文\",\"LanguageCode\":\"\",\"Title\":\"\",\"LanguageDirection\":\"\",\"Weight\":1,\"Disabled\":false}],\"icon_font\":\"4552607_4k4bc36ef96\",\"outdate\":{\"daysago\":180,\"enable\":false,\"message\":{\"en\":\"This article was last updated on {time}. Please note that the content may no longer be applicable.\",\"ja\":\"この記事は最終更新日：{time}。記載内容が現在有効でない可能性がありますのでご注意ください。\",\"pt-br\":\"Este artigo foi atualizado pela última vez em {time}. Observe que o conteúdo pode não ser mais aplicável.\",\"zh-cn\":\"本文最后更新于 {time}，请注意文中内容可能已不适用。\",\"zh-tw\":\"本文最後更新於 {time}，請注意文中內容可能已不適用。\"}}}");
+  
+</script>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link
+  rel="preload"
+  as="style"
+  href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic%7cNoto%20Serif%20SC:400,400italic,700,700italic%7c&amp;display=swap"
+/>
+<link
+  rel="stylesheet"
+  href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic%7cNoto%20Serif%20SC:400,400italic,700,700italic%7c&amp;display=swap"
+  media="print"
+  onload="this.media='all'"
+/>
+<link
+    rel="preload"
+    href="//at.alicdn.com/t/c/font_4552607_4k4bc36ef96.woff2"
+    as="font"
+    type="font/woff2"
+    crossorigin="anonymous"
+  /><link rel="stylesheet" href="/WzhGameDevPublish/css/loader.css" />
+<meta property="og:type" content="website" />
+  <meta property="og:title" content="杀戮尖塔2设计问题 | 温志洪" />
+  <meta
+    property="og:description"
+    content="FPS游戏"
+  />
+  <meta property="og:url" content="http://localhost:1895/WzhGameDevPublish/post/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/1-input/%E6%B8%B8%E6%88%8F%E5%AE%9E%E4%BE%8B/%E6%9D%80%E6%88%AE%E5%B0%96%E5%A1%94/%E6%9D%80%E6%88%AE%E5%B0%96%E5%A1%942%E8%AE%BE%E8%AE%A1%E9%97%AE%E9%A2%98/" />
+  <meta
+    property="og:site_name"
+    content="妖精游戏开发馆"
+  />
+  <meta
+    property="og:image"
+    content="/WzhGameDevPublish/"
+  />
+  <meta property="article:author" content="温志洪" />
+  <meta property="article:published_time" content="2026-04-14T23:56:07&#43;00:00" />
+  <meta property="article:modified_time" content="2026-04-20T05:45:39&#43;00:00" /><meta property="article:tag" content="blog" /><meta name="twitter:card" content="summary" />
+  <meta name="twitter:image" content="/WzhGameDevPublish/" />
+<link rel="shortcut icon" href="/WzhGameDevPublish/favicon.ico"><link rel="stylesheet" href="/WzhGameDevPublish/css/main.css" />
+<link
+    rel="preload"
+    as="style"
+    href="https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe.css"
+    integrity="sha384-IfxC36XL/toUyJ939C73PcgMuRzAZuIzZxE38drsmO5p6jD7ei&#43;Zx/1oA/0l8ysE" crossorigin="anonymous"onload="this.onload=null;this.rel='stylesheet'"
+  /><link
+    rel="preload"
+    as="style"
+    href="https://npm.webcache.cn/katex@0.16.24/dist/katex.min.css"
+    integrity="sha384-tTgKLjMYmJr94v8qu2PE5MUGSMbyN2xiH266JUB3gpm8vnnJywd1dWSOEfrFz&#43;YI" crossorigin="anonymous"onload="this.onload=null;this.rel='stylesheet'"
+  /><script
+    src="https://npm.webcache.cn/pace-js@1.2.4/pace.min.js"
+    integrity="sha384-k6YtvFUEIuEFBdrLKJ3YAUbBki333tj1CSUisai5Cswsg9wcLNaPzsTHDswp4Az8" crossorigin="anonymous"></script><link
+    rel="stylesheet"
+    href="https://npm.webcache.cn/@reimujs/aos@0.1.2/dist/aos.css"
+    integrity="sha384-GMRP93c6Hkz9JVKGAuRR3nTS7M07RwPgTFenXiosjq2VbVgvdDNcz1g6Mkj8AONa" crossorigin="anonymous"/></head>
+  <body><div id='loader'>
+    <div class="loading-left-bg loading-bg"></div>
+    <div class="loading-right-bg loading-bg"></div>
+    <div class="spinner-box">
+      <div class="loading-taichi rotate"><svg width="150" height="150" viewBox="0 0 1024 1024" class="icon" version="1.1" xmlns="https://www.w3.org/2000/svg" shape-rendering="geometricPrecision">
+            <path d="M303.5 432A80 80 0 0 1 291.5 592A80 80 0 0 1 303.5 432z" fill="var(--red-1, #ff5252)" />
+            <path d="M512 65A447 447 0 0 1 512 959L512 929A417 417 0 0 0 512 95A417 417 0 0 0 512 929L512 959A447 447 0 0 1 512 65z 
+          M512 95A417 417 0 0 1 929 512A208.5 208.5 0 0 1 720.5 720.5L720.5 592A80 80 0 0 0 720.5 432A80 80 0 0 0 720.5 592L720.5 720.5A208.5 208.5 0 0 1 512 512A208.5 208.5 0 0 0 303.5 303.5A208.5 208.5 0 0 0 95 512A417 417 0 0 1 512 95z" fill="var(--red-1, #ff5252)" />
+          </svg></div><div class="loading-word">少女祈祷中...</div>
+    </div>
+  </div>
+  </div>
+  <script>
+    var time = null;
+    var loaderEl = document.getElementById('loader');
+    var startLoading = () => {
+      time = Date.now();
+      loaderEl.classList.remove("loading");
+    }
+    var hideLoader = () => {
+      document.body.style.overflow = 'auto';
+      loader.classList.add('loading');
+    };
+
+    var endLoading = () => {
+      if (!time) {
+        hideLoader();
+      } else {
+        if (Date.now() - time > 500) {
+          time = null;
+          hideLoader();
+        } else {
+          setTimeout(endLoading, 500 - (Date.now() - time));
+          time = null;
+        }
+      }
+    }
+    window.addEventListener('DOMContentLoaded', endLoading);
+    loaderEl.addEventListener('click', endLoading);
+  </script><div id="copy-tooltip"></div>
+<div id="lang-tooltip">
+本文章没有找到对应的语言版本
+</div>
+<div id="heatmap-tooltip"></div><div id="container">
+      <div id="wrap"><div id="header-nav">
+  <nav id="main-nav" aria-label="Primary navigation"><a class="main-nav-link-wrap" href="/WzhGameDevPublish/">
+        <div class='main-nav-icon icon rotate'>&#xe62b;</div>
+        <span class="main-nav-link">首页</span>
+      </a><a class="main-nav-link-wrap" href="/WzhGameDevPublish/archives">
+        <div class='main-nav-icon icon rotate'>&#xe62b;</div>
+        <span class="main-nav-link">归档</span>
+      </a><a class="main-nav-link-wrap" href="/WzhGameDevPublish/about">
+        <div class='main-nav-icon icon rotate'>&#xe62b;</div>
+        <span class="main-nav-link">关于</span>
+      </a><a class="main-nav-link-wrap" href="/WzhGameDevPublish/friend">
+        <div class='main-nav-icon icon rotate'>&#xe62b;</div>
+        <span class="main-nav-link">友链</span>
+      </a><a id="main-nav-toggle" class="nav-icon" aria-label="Toggle navigation" role="button"></a>
+  </nav>
+  <nav id="sub-nav" aria-label="Secondary navigation"><a id="nav-search-btn" class="nav-icon popup-trigger" title="搜索" aria-label="搜索"></a></nav><nav id="i18n-nav" aria-label="Language selection">
+      <div class="custom-dropdown">
+        <div class="select-selected" id="select-selected" role="button" aria-haspopup="listbox" aria-expanded="false" aria-label="Language menu">
+          <span id="nav-language-btn" class="nav-icon" style="padding: 0 20px 0 0"></span>
+          <span id="selected-lang">简体中文</span>
+        </div>
+        <ul class="select-items" id="select-items" role="listbox" aria-label="Languages"><li data-value="en" role="option" arial-selected="false" >English</li><li data-value="zh-cn" role="option" class="selected" arial-selected="true" >简体中文</li></ul>
+      </div>
+      <script>
+        var selectSelected = document.getElementById("select-selected");
+        var selectedLang = document.getElementById("selected-lang");
+        var selectItems = document.getElementById("select-items");
+        var selectOptions = selectItems.querySelectorAll("li");
+
+        selectSelected.addEventListener("click", () => {
+          selectItems.classList.toggle("show");
+          var expanded = selectSelected.getAttribute("aria-expanded") === "true";
+          selectSelected.setAttribute("aria-expanded", (!expanded).toString());
+        });
+
+        selectOptions.forEach((item) => {
+          item.addEventListener("click", () => {
+            const langMap = {};selectedLang.textContent = item.textContent;
+            selectItems.classList.remove("show");
+            selectOptions.forEach((option) => {
+              option.classList.remove("selected");
+            });
+            item.classList.add("selected");
+            if (item.dataset.value === 'zh-cn') {
+              return;
+            }
+            if (!langMap[item.dataset.value]) {
+              _$("#lang-tooltip").style.opacity = "1";
+              setTimeout(() => {
+                _$("#lang-tooltip").style.opacity = "0";
+              }, 1000);
+              return;
+            }
+            window.location = langMap[item.dataset.value];
+          });
+        });
+
+        document.addEventListener("click", (event) => {
+          if (!event.target.closest(".custom-dropdown")) {
+            selectItems.classList.remove("show");
+            selectSelected.setAttribute("aria-expanded", "false");
+          }
+        });
+      </script>
+    </nav></div>
+<header id="header" aria-label="Site header"><picture><source media="(max-width: 479px)" srcset="/WzhGameDevPublish/images/banner-600w.webp"><source media="(max-width: 799px)" srcset="/WzhGameDevPublish/images/banner-800w.webp"><source media="(min-width: 800px)" srcset="/WzhGameDevPublish/images/banner.webp"><img crossorigin="anonymous" fetchpriority="high" src="/WzhGameDevPublish/images/banner.webp" alt="杀戮尖塔2设计问题"></picture><img alt="杀戮尖塔2设计问题" style="visibility: hidden;"><div id="header-outer">
+    <div id="header-title"><span id="logo">
+            <h1 data-aos="slide-up">杀戮尖塔2设计问题</h1>
+          </span><h2 id="subtitle-wrap" data-aos="slide-down"></h2></div>
+  </div>
+</header><div id="content"
+          aria-label="Page content"
+          class="sidebar-left"
+            ><aside id="sidebar" aria-label="Sidebar"><div class="sidebar-wrapper-container sticky"><div class="sidebar-wrapper">
+    <div
+      class="sidebar-wrap"
+      data-aos="fade-up"
+    ><div class="sidebar-toc-sidebar"><h3 class="toc-title">文章目录</h3>
+<div class="sidebar-toc-wrapper toc-div-class">
+  <nav id="TableOfContents">
+  <ul>
+    <li><a href="#敌我同源">敌我同源</a></li>
+    <li><a href="#塞牌">塞牌</a></li>
+    <li><a href="#减属性">减属性</a></li>
+    <li><a href="#减牌">减牌：</a></li>
+    <li><a href="#伤害限制">伤害限制</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#老头与门扉">老头与门扉</a>
+      <ul>
+        <li><a href="#核心机制区别">核心机制区别：</a></li>
+        <li><a href="#对策与体验">对策与体验</a></li>
+      </ul>
+    </li>
+  </ul>
+
+  <ul>
+    <li><a href="#战士">战士</a></li>
+    <li><a href="#状态牌诅咒牌">状态牌&amp;诅咒牌</a></li>
+    <li><a href="#运转与数值">运转与数值</a></li>
+  </ul>
+</nav>
+</div></div>
+          <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
+  <img
+    data-src="/WzhGameDevPublish/avatar/UELogo.png"
+    data-sizes="auto"
+    alt="温志洪"
+    class="lazyload"
+  />
+  <div class="sidebar-author-name">温志洪</div>
+  <div class="sidebar-description">FPS游戏</div>
+</div>
+<div class="sidebar-state">
+  <div class="sidebar-state-article">
+    <div>文章</div><div class="sidebar-state-number">11</div>
+  </div>
+  <a class="sidebar-state-category" href="/WzhGameDevPublish/categories/" aria-label="sidebar-state-category-link">
+    <div>分类</div>
+    <div class="sidebar-state-number">
+      0
+    </div>
+  </a>
+  <a class="sidebar-state-tag" href="/WzhGameDevPublish/tags/" aria-label="sidebar-state-tag-link">
+    <div>标签</div>
+    <div class="sidebar-state-number">10</div>
+  </a>
+</div>
+<div class="sidebar-social"><div class="icon-bilibili sidebar-social-icon">
+      <a
+        href="https://space.bilibili.com/35312868"
+        itemprop="url"
+        target="_blank"
+        aria-label="bilibili"
+        rel="noopener nofollow noreferrer"
+      ></a>
+    </div><div class="icon-email sidebar-social-icon">
+      <a
+        href="mailto:cnwenzhihong@gmail.com"
+        itemprop="url"
+        target="_blank"
+        aria-label="email"
+        rel="noopener nofollow noreferrer"
+      ></a>
+    </div></div>
+<div class="sidebar-menu"><div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/WzhGameDevPublish/"
+        aria-label="首页"
+      ></a>
+      <div class='sidebar-menu-icon icon rotate'>&#xe62b;</div>
+      <div class="sidebar-menu-link">首页</div>
+    </div><div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/WzhGameDevPublish/archives"
+        aria-label="归档"
+      ></a>
+      <div class='sidebar-menu-icon icon rotate'>&#xe62b;</div>
+      <div class="sidebar-menu-link">归档</div>
+    </div><div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/WzhGameDevPublish/about"
+        aria-label="关于"
+      ></a>
+      <div class='sidebar-menu-icon icon rotate'>&#xe62b;</div>
+      <div class="sidebar-menu-link">关于</div>
+    </div><div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/WzhGameDevPublish/friend"
+        aria-label="友链"
+      ></a>
+      <div class='sidebar-menu-icon icon rotate'>&#xe62b;</div>
+      <div class="sidebar-menu-link">友链</div>
+    </div></div>
+</div><div class="sidebar-btn-wrapper" style="position:static">
+            <div class="sidebar-toc-btn current"></div>
+            <div class="sidebar-common-btn"></div>
+          </div></div>
+  </div><div class="sidebar-widget"></div></div></aside>
+<section id="main" aria-label="Main content"><p style="color:red">ARTICLE PARTIAL OVERRIDE ACTIVE</p>
+<article
+  class="h-entry article"
+  itemscope
+  itemtype="https://schema.org/BlogPosting"
+>
+  <div
+    class="article-inner"
+    data-aos="fade-up"
+  >
+    <div class="article-meta"><div class="article-date">
+  <span
+    class="article-date-link icon-calendar"
+    data-aos="zoom-in"
+  >
+    <time datetime="2026-04-14 23:56:07.399 &#43;0000 UTC" itemprop="datePublished"
+      >2026-04-14</time
+    >
+    <time style="display: none;" id="post-update-time"
+      >2026-04-20</time
+    >
+  </span><span
+      class="article-date-link icon-calendar-plus"
+      data-aos="zoom-in"
+    >
+      <time datetime="2026-04-20 05:45:39.451 &#43;0000 UTC" itemprop="dateModified"
+        >2026-04-20</time
+      >
+    </span></div>
+<div class="article-category"></div>
+</div><div class="hr-line"></div><div class="e-content article-entry" itemprop="articleBody"><p><a href="https://slay-the-spire.fandom.com/wiki/Slay_the_Spire_Wiki">杀戮尖塔1英文Wiki</a><br>
+<a href="https://sts2.huijiwiki.com/wiki/%E9%A6%96%E9%A1%B5">杀戮尖塔2中文维基</a></p>
+<h1 id="核心体验">
+<a class="header-anchor" href="#%e6%a0%b8%e5%bf%83%e4%bd%93%e9%aa%8c"></a>
+核心体验
+</h1><p>一代：<br>
+这样也行？、红色格挡条、转来转去像个、吉米！<br>
+数值叠加、强力运转、极限数值。局内启动、蠕动/运转、击杀一气呵成。</p>
+<p>二代：<br>
+XX流派、？避战。塞10张？？？<br>
+更注重简单数值的叠加，而不是运转端的叠加。</p>
+<h1 id="整体体验">
+<a class="header-anchor" href="#%e6%95%b4%e4%bd%93%e4%bd%93%e9%aa%8c"></a>
+整体体验
+</h1><p>一代<br>
+一层以简单攻杀为主，玩家只需要考虑如何快速出伤、评估一层boss对策<br>
+a：小红快速出伤 乐嘉：有一定成长/交药、三柱快速出伤，起码抓一张防，对策卡<br>
+加入没有相关卡组：掉战损、交药水<br>
+越打越强<br>
+b：6火：快速击杀、控血 史莱姆：爆发伤害，群怪对策卡 蹲起：适当多拿防御，但还是攻击为主<br>
+简单直接，让玩家立刻进入状态。吸引注意力。<br>
+同样的情况：彪马野郎第一赛段既不考验生存也不考研长期体力，只比较马术高低。一下子张开肾上腺素，点燃场内外热情。<br>
+对后续有影响，但并非不可挽回</p>
+<p>二层以补齐数值为主，增加群怪。无论如何都需要防，</p>
+<p>三层以运转 补强为主，总差几张牌就能胡、活下来，整个三层都是找牌<br>
+精英：出现运转怪灵体，硬性要求玩家具备长线作战能力。<br>
+boss：检验卡组基础数值+成长、运转是否过关</p>
+<p>四层：爽或者蠕动，总有8成把握过关<br>
+123层要求的简单综合考验<br>
+哪怕是心脏，也只塞5张牌</p>
+<p>二代<br>
+【beta测试版玩得有点悔恨了-哔哩哔哩】 <a href="https://b23.tv/5AEyGW2">https://b23.tv/5AEyGW2</a><br>
+1层<br>
+考验运转，无论是大量塞牌还是限制伤害，都要求玩家既有攻击又有防御，前期牌少还需要多抓过渡、运转牌</p>
+<p>2层<br>
+不准运转，鼓励抓群伤+爆发卡</p>
+<p>3层<br>
+彻底堵死运转、小循环</p>
+<h1 id="随机性">
+<a class="header-anchor" href="#%e9%9a%8f%e6%9c%ba%e6%80%a7"></a>
+随机性
+</h1><p>可以分为局内和局外<br>
+一代：<br>
+注重局外随机，每个随机总给玩家选择的机会。无论是随机路线、卡牌奖励，<br>
+路线选择：小怪、精英、？、火堆都秉承着风险与机遇并存，并让玩家自主选择。<br>
+卡牌奖励<br>
+？事件：除了少部分不可跳过事件，其他依旧是让你付出代价做出选择。不过是代价和奖励都极端化，玩家依旧可以自己评估风险选择做或者不做。少量的不可跳过事件作为抑中调剂，让玩家反而可以将失败归结于运气。极少量的塞牌也是诅咒、状态牌，而不是强制蓝卡白卡，明确告诉你这是坏的，让体验不统一。<br>
+精英：极为明确的意图、</p>
+<p>二代：<br>
+局内随机变得非常多</p>
+<h1 id="debuff">
+<a class="header-anchor" href="#debuff"></a>
+Debuff
+</h1><h2 id="敌我同源">
+<a class="header-anchor" href="#%e6%95%8c%e6%88%91%e5%90%8c%e6%ba%90"></a>
+敌我同源
+</h2><p>1代的怪物上的buff，自己大多都是能从卡牌中获取的。例如力量，人工，无实体等等<br>
+2代的怪物多了一堆奇奇怪怪的特效，比如活雾，四书，蟑螂等等</p>
+<h2 id="塞牌">
+<a class="header-anchor" href="#%e5%a1%9e%e7%89%8c"></a>
+塞牌
+</h2><p>一代：<br>
+不可直接消耗：一张<br>
+三柱：4张可自动消耗——只需要考虑抽牌<br>
+史莱姆：三张可消耗，频率低——强迫你攻杀后再处理。<br>
+心脏：五福临门，专门留一回合等你启动。<br>
+邪咒：二层前期是对运转的暗示，无限塞牌，但攻击欲望不高，攻杀流依旧可用，后期配合其他怪也有了一定应对能力。<br>
+二代：<br>
+疯狂塞牌、6张、10张。甚至是没法直接删的状态牌——沙虫。完全丢失运转的可能。玩家不仅要跟打防较劲，还有无数的状态牌卡手。<br>
+蛆虫：自己塞3张不可消耗+打伤害，要求单体快速击杀能力，死后4只小怪稳定20伤+2牌，要求掉血(之前被塞的牌)前提下快速击杀。没有对策牌必掉战损，卡组不优秀全面必掉大战损。<br>
+一层boss鱼：依旧是不可销毁、甚至一张打6，比一代诅咒还狠、还假惺惺1费使用。250的高血量+灵体更是不给活路。哪怕是中上的卡组翻车也是分分钟。<br>
+二层精英密封人：攻击就塞牌，假如说考验防御端，也就是长线能力也行。但攻击欲望极高伤害很高很高，逼你不得不攻杀，攻杀但凡是小卡组可以直接下一把。</p>
+<h2 id="减属性">
+<a class="header-anchor" href="#%e5%87%8f%e5%b1%9e%e6%80%a7"></a>
+减属性
+</h2><p>一代：<br>
+乐嘉三回合减1力量敏捷，可以用于爆发输出。<br>
+二代<br>
+二层猎人杀手：打一张牌减1力敏，看似针对小卡组、低伤害卡，实际上针对所有卡组。运转牌越多死的越快。反直觉——玩家之前的抓牌很可能导致负提升，不抓运转反而死不掉。</p>
+<h2 id="减牌">
+<a class="header-anchor" href="#%e5%87%8f%e7%89%8c"></a>
+减牌：
+</h2><p>一代：<br>
+基本没有、以增加废牌为核心，不动玩家的基本盘。三层事件跌落，三选一删也有很大容错。<br>
+二代：<br>
+二层一来就偷一张，甚至还有起飞伤害减半，强迫你一层多拿过渡，还得吃大战损。一代的小偷并不影响局内战斗力，哪怕被偷了也只会认为是自己牌组不强，而不是这怪恶心。哪怕他的奖励足够优秀，也弥补不了体验的缺失。<br>
+一层鹿眩晕、三层女王boss强制让玩家的牌组彻底废掉。运气不好，什么牌组都没用，想要稳定就要一直抓牌，整体强度就会下降，根本不敢爽。</p>
+<h2 id="伤害限制">
+<a class="header-anchor" href="#%e4%bc%a4%e5%ae%b3%e9%99%90%e5%88%b6"></a>
+伤害限制
+</h2><p>一代：<br>
+灵体：三层少量出现，用来在三层考验玩家长线能力很不错。一般血量不高、考验运转，让想要的牌去到合适的回合。<br>
+最大伤害限制：仅心脏一家，长线作战的终极考验。玩家在很久以前就可以考虑应对。<br>
+越打护盾越高：蛇花，强度很高的怪，限制小卡组，但小卡组足够强也能无伤。<br>
+无限护盾：圆球、壳爹，继承一层攻杀，由于一层boss遗物+卡牌带来的卡组强度提升，但只要有优质防也能打，承上启下，让玩家重新回到高压环境，开始考虑防御+少量运转压力。<br>
+二代：<br>
+灵体：无处不在。安康鱼，灵体+血厚+塞6伤害状态牌，在一层就考验卡组的全线作战能力。</p>
+<h1 id="怪物">
+<a class="header-anchor" href="#%e6%80%aa%e7%89%a9"></a>
+怪物
+</h1><h2 id="老头与门扉">
+<a class="header-anchor" href="#%e8%80%81%e5%a4%b4%e4%b8%8e%e9%97%a8%e6%89%89"></a>
+老头与门扉
+</h2><h3 id="核心机制区别">
+<a class="header-anchor" href="#%e6%a0%b8%e5%bf%83%e6%9c%ba%e5%88%b6%e5%8c%ba%e5%88%ab"></a>
+核心机制区别：
+</h3><p>老头：打12张牌强制结束回合，半血以下下一回合回到半血<br>
+门扉：销毁抽到的第10张</p>
+<h3 id="对策与体验">
+<a class="header-anchor" href="#%e5%af%b9%e7%ad%96%e4%b8%8e%e4%bd%93%e9%aa%8c"></a>
+对策与体验
+</h3><p>老头：玩家可以选择分配12次出牌机会，少出一张防来让下回合多出一张牌。选择出一些没用的牌凑满12张。<br>
+半血时考虑强杀or为二阶段留资源</p>
+<p>门扉：烧牌回合要不要烧牌。只有第一回合有策略点，剩下的回合很固定。</p>
+<h1 id="卡牌">
+<a class="header-anchor" href="#%e5%8d%a1%e7%89%8c"></a>
+卡牌
+</h1><h2 id="战士">
+<a class="header-anchor" href="#%e6%88%98%e5%a3%ab"></a>
+战士
+</h2><p>易伤战就是没有力量战手感好。<br>
+力量战哪怕对打击都有加成，极端条件下纯靠+力量都能撑起进攻端</p>
+<h2 id="状态牌诅咒牌">
+<a class="header-anchor" href="#%e7%8a%b6%e6%80%81%e7%89%8c%e8%af%85%e5%92%92%e7%89%8c"></a>
+状态牌&amp;诅咒牌
+</h2><p>根本区别：局内印的不影响全局的就应该叫状态牌而不是诅咒，局外强制给的不得不要的就该叫诅咒，而不是强塞一张看起来有用的蓝卡。</p>
+<h2 id="运转与数值">
+<a class="header-anchor" href="#%e8%bf%90%e8%bd%ac%e4%b8%8e%e6%95%b0%e5%80%bc"></a>
+运转与数值
+</h2><p>奇巧牌——运转不该是数值本身。<br>
+当运转成为数值本身的时候，玩家的构筑就少了一个维度。</p>
+<p>哪怕有数值，也应该配凌迟这样的刮痧数值+高额启动成本，或者华丽这样花里胡哨的数值。<br>
+状态机、灵魂也是同样的问题，运转就是数值、数值就是运转，为了运转而运转<br>
+<img src="https://gcore.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/20260420131548479.png" alt=""></p>
+<h1 id="遗物">
+<a class="header-anchor" href="#%e9%81%97%e7%89%a9"></a>
+遗物
+</h1><p><strong>普通遗物比稀有遗物更稀有</strong><br>
+二代遗物数量上“普通”&lt;“罕见”&lt;“稀有”。<br>
+这导致：有一种普通遗物把把都能见到的错觉，稀有遗物反而完全看不见</p>
+</div>
+    <footer class="article-footer"><ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item" data-aos="zoom-in">
+      <a
+        class="article-tag-list-link"
+        href="/WzhGameDevPublish/tags/blog"
+        rel="tag"
+        >BLOG</a
+      >
+    </li></ul>
+</footer>
+  </div><nav
+    id="article-nav"
+    aria-label="Article navigation"
+    data-aos="fade-up"
+  ><div class="article-nav-link-wrap left"><img
+            data-src="https://dev.epicgames.com/community/api/learning/image/c71a4b90-ad49-485c-8d20-56188a0c12e8?resizing_type=fill&amp;width=800&amp;height=400"
+            data-sizes="auto"
+            alt="Lyra Team组队功能解析"
+            class="lazyload"
+          /><a
+          href="/WzhGameDevPublish/post/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/%E4%BB%A3%E7%A0%81%E6%A1%86%E6%9E%B6/lyra/lyra-%E5%B8%B8%E7%94%A8%E5%8A%9F%E8%83%BD/lyra-team%E7%BB%84%E9%98%9F%E5%8A%9F%E8%83%BD%E8%A7%A3%E6%9E%90/"
+          aria-label="前一篇:Lyra Team组队功能解析"
+          title="前一篇:Lyra Team组队功能解析"
+        ></a>
+        <div class="article-nav-caption">前一篇</div>
+        <h3 class="article-nav-title">Lyra Team组队功能解析</h3>
+      </div><div class="article-nav-link-wrap right"><img
+              data-src="https://img.shetu66.com/2023/06/26/1687741752414606.png"
+              data-sizes="auto"
+              alt="使用CodeX开发UE5实战经验"
+              class="lazyload"
+            /><a
+          href="/WzhGameDevPublish/post/ai/%E7%BC%96%E7%A8%8B/%E4%BD%BF%E7%94%A8codex%E5%BC%80%E5%8F%91ue5%E5%AE%9E%E6%88%98%E7%BB%8F%E9%AA%8C/"
+          aria-label="后一篇:使用CodeX开发UE5实战经验"
+          title="后一篇:使用CodeX开发UE5实战经验"
+        ></a>
+        <div class="article-nav-caption">后一篇</div>
+        <h3 class="article-nav-title">使用CodeX开发UE5实战经验</h3>
+      </div></nav></article></section>
+        </div><footer id="footer" aria-label="Site footer">
+  <div style="width: 100%; overflow: hidden">
+    <div class="footer-line"></div>
+  </div>
+  <div id="footer-info"><div>
+      <span class="icon-copyright"></span>2025-2026<span class="footer-info-sep rotate"></span>
+      温志洪
+    </div><div>
+        基于&nbsp;<a
+          href="https://gohugo.io/"
+          target="_blank"
+          rel="noopener nofollow noreferrer"
+          >Hugo</a
+        >&nbsp; Theme.<a
+          href="https://github.com/D-Sketon/hugo-theme-reimu"
+          target="_blank"
+          rel="noopener nofollow noreferrer"
+          >Reimu</a
+        >
+      </div><div>
+        <span class="icon-brush"
+          >&nbsp;34.3k</span
+        >
+        &nbsp;|&nbsp;
+        <span class="icon-coffee">&nbsp;01:14</span>
+      </div><div>
+        <span class="icon-eye"></span>
+        <span id="busuanzi_container_site_pv"
+          >总访问量&nbsp;<span
+            id="busuanzi_value_site_pv"
+          ></span
+        ></span>
+        &nbsp;|&nbsp;
+        <span class="icon-user"></span>
+        <span id="busuanzi_container_site_uv"
+          >总访客量&nbsp;<span
+            id="busuanzi_value_site_uv"
+          ></span
+        ></span>
+      </div></div>
+</footer>
+<div class="sidebar-top">
+            <div class="sidebar-top-taichi rotate"></div>
+            <div class="arrow-up"></div>
+          </div><div id="mask" class="hide"></div>
+      </div><nav id="mobile-nav" aria-label="Mobile navigation">
+  <div class="sidebar-wrap"><div class="sidebar-toc-sidebar"><h3 class="toc-title">文章目录</h3>
+<div class="sidebar-toc-wrapper toc-div-class">
+  <nav id="TableOfContents">
+  <ul>
+    <li><a href="#敌我同源">敌我同源</a></li>
+    <li><a href="#塞牌">塞牌</a></li>
+    <li><a href="#减属性">减属性</a></li>
+    <li><a href="#减牌">减牌：</a></li>
+    <li><a href="#伤害限制">伤害限制</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#老头与门扉">老头与门扉</a>
+      <ul>
+        <li><a href="#核心机制区别">核心机制区别：</a></li>
+        <li><a href="#对策与体验">对策与体验</a></li>
+      </ul>
+    </li>
+  </ul>
+
+  <ul>
+    <li><a href="#战士">战士</a></li>
+    <li><a href="#状态牌诅咒牌">状态牌&amp;诅咒牌</a></li>
+    <li><a href="#运转与数值">运转与数值</a></li>
+  </ul>
+</nav>
+</div></div>
+        <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
+  <img
+    data-src="/WzhGameDevPublish/avatar/UELogo.png"
+    data-sizes="auto"
+    alt="温志洪"
+    class="lazyload"
+  />
+  <div class="sidebar-author-name">温志洪</div>
+  <div class="sidebar-description">FPS游戏</div>
+</div>
+<div class="sidebar-state">
+  <div class="sidebar-state-article">
+    <div>文章</div><div class="sidebar-state-number">11</div>
+  </div>
+  <a class="sidebar-state-category" href="/WzhGameDevPublish/categories/" aria-label="sidebar-state-category-link">
+    <div>分类</div>
+    <div class="sidebar-state-number">
+      0
+    </div>
+  </a>
+  <a class="sidebar-state-tag" href="/WzhGameDevPublish/tags/" aria-label="sidebar-state-tag-link">
+    <div>标签</div>
+    <div class="sidebar-state-number">10</div>
+  </a>
+</div>
+<div class="sidebar-social"><div class="icon-bilibili sidebar-social-icon">
+      <a
+        href="https://space.bilibili.com/35312868"
+        itemprop="url"
+        target="_blank"
+        aria-label="bilibili"
+        rel="noopener nofollow noreferrer"
+      ></a>
+    </div><div class="icon-email sidebar-social-icon">
+      <a
+        href="mailto:cnwenzhihong@gmail.com"
+        itemprop="url"
+        target="_blank"
+        aria-label="email"
+        rel="noopener nofollow noreferrer"
+      ></a>
+    </div></div>
+<div class="sidebar-menu"><div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/WzhGameDevPublish/"
+        aria-label="首页"
+      ></a>
+      <div class='sidebar-menu-icon icon rotate'>&#xe62b;</div>
+      <div class="sidebar-menu-link">首页</div>
+    </div><div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/WzhGameDevPublish/archives"
+        aria-label="归档"
+      ></a>
+      <div class='sidebar-menu-icon icon rotate'>&#xe62b;</div>
+      <div class="sidebar-menu-link">归档</div>
+    </div><div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/WzhGameDevPublish/about"
+        aria-label="关于"
+      ></a>
+      <div class='sidebar-menu-icon icon rotate'>&#xe62b;</div>
+      <div class="sidebar-menu-link">关于</div>
+    </div><div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/WzhGameDevPublish/friend"
+        aria-label="友链"
+      ></a>
+      <div class='sidebar-menu-icon icon rotate'>&#xe62b;</div>
+      <div class="sidebar-menu-link">友链</div>
+    </div></div>
+</div></div><div class="sidebar-btn-wrapper">
+        <div class="sidebar-toc-btn current"></div>
+        <div class="sidebar-common-btn"></div>
+      </div></nav>
+</div><div class="site-search">
+        <div class="reimu-popup popup">
+          <div class="reimu-search">
+            <div class="reimu-search-input-icon"></div>
+            <div id="reimu-search-input"></div>
+            <div class="popup-btn-close"></div>
+          </div>
+          <div class="reimu-results">
+            <div id="reimu-stats"></div>
+            <div id="reimu-hits"></div>
+            <div id="reimu-pagination" class="reimu-pagination"></div>
+          </div>
+          <img class="reimu-bg" src="/WzhGameDevPublish/images/reimu.png" />
+        </div>
+      </div><script
+    src="https://npm.webcache.cn/lazysizes@5.3.2/lazysizes.min.js"
+    integrity="sha384-3gT/vsepWkfz/ff7PpWNUeMzeWoH3cDhm/A8jM7ouoAK0/fP/9bcHHR5kHq2nf&#43;e" crossorigin="anonymous"></script><script
+    src="https://npm.webcache.cn/clipboard@2.0.11/dist/clipboard.min.js"
+    integrity="sha384-J08i8An/QeARD9ExYpvphB8BsyOj3Gh2TSh1aLINKO3L0cMSH2dN3E22zFoXEi0Q" crossorigin="anonymous"></script><script
+    src="https://npm.webcache.cn/material-theme@1.0.0/dist/material-theme.umd.js"
+    integrity="sha384-vLev0II0HKFaxkcm&#43;/7kX5IGwVFBASkGchU311wmU/veIj2bB0UcBkQbW6yw2asK" crossorigin="anonymous"></script><script src="/WzhGameDevPublish/js/main.js" ></script><script src="/WzhGameDevPublish/js/aos.js" ></script><script>
+    var aosInit = () => {
+      AOS.init({
+        duration: 1000,
+        easing: "ease",
+        once: true,
+        offset: 50,
+      });
+    };
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", aosInit);
+    } else {
+      aosInit();
+    }
+  </script><script src="/WzhGameDevPublish/js/pjax_main.js" data-pjax></script><script>
+    var ALGOLIA_CONFIG = {
+      logo: '\/WzhGameDevPublish\/images\/algolia_logo.svg',
+      algolia: {
+        applicationID: "Y8C6JKXKKR",
+        apiKey: "30fdacdc4947fb8d8faed68e16f048a0",
+        indexName: "index",
+        hits: {
+          "per_page": parseInt("10")
+        },
+        labels: {
+          "input_placeholder": '搜索.....',
+          "hits_empty": '未发现与 「${query}」相关内容',
+          "hits_stats": '找到${hits}条结果（用时 ${time} ms）'
+        }
+      }
+    };
+  </script><script
+    src="https://npm.webcache.cn/algoliasearch@4.17.1/dist/algoliasearch-lite.umd.js"
+    deferintegrity="sha384-xvLS0jfKuoREs7pqkRI/OI8GcqohO5S&#43;jQz7ZBtQXnsXmD&#43;9jDOOY4cL6dCPzlrk" crossorigin="anonymous"></script><script
+    src="https://npm.webcache.cn/@reimujs/instantsearch.js@4.57.0-beta.1/dist/instantsearch.production.min.js"
+    deferintegrity="sha384-aagKMe8nkqaP2DYQc8kkYOL5l&#43;M5Q2WH/Uhr4teOh0Ybp0RZj0kUSDm45qPikMjK" crossorigin="anonymous"></script><script src="/WzhGameDevPublish/js/algolia_search.js" ></script><script
+    src="https://npm.webcache.cn/mouse-firework@0.1.1/dist/index.umd.js"
+    integrity="sha384-8LyaidD9GPxQQgLJO/WRw/O2h3BoNq/ApI/ecpvM6RsrCz2qP2ppBXUKihP4V/2d" crossorigin="anonymous"></script><script>
+  if (! false  || !window.matchMedia('(max-width: 768px)').matches) {
+    if (window.firework) {
+      const options = JSON.parse("{\"excludeelements\":[\"a\",\"button\"],\"particles\":[{\"colors\":[\"var(--red-1)\",\"var(--red-2)\",\"var(--red-3)\",\"var(--red-4)\"],\"duration\":[1200,1800],\"easing\":\"easeOutExpo\",\"move\":[\"emit\"],\"number\":20,\"shape\":\"circle\",\"shapeOptions\":{\"alpha\":[0.3,0.5],\"radius\":[16,32]}},{\"colors\":[\"var(--red-0)\"],\"duration\":[1200,1800],\"easing\":\"easeOutExpo\",\"move\":[\"diffuse\"],\"number\":1,\"shape\":\"circle\",\"shapeOptions\":{\"alpha\":[0.2,0.5],\"lineWidth\":6,\"radius\":20}}]}");
+      options.excludeElements = options.excludeelements;
+      delete options.excludeelements;
+      window.firework(options);
+    }
+  }
+</script><script
+    src="https://npm.webcache.cn/quicklink@3.0.1/dist/quicklink.umd.js"
+    integrity="sha384-caMDqvgav/HWdEYQU1QRRHMLleigpL1YHAG0m371DhzfL8rRzUyOb&#43;bEHtwlmYjD" crossorigin="anonymous"></script><script data-pjax>
+    window.quicklink?.listen({
+      timeout:  3000 ,
+      priority:  true ,
+      ignores: JSON.parse("[]")
+    });
+  </script>
+
+
+<div id="lazy-script">
+  <div><script data-pjax>
+        window.REIMU_POST = {
+          author: "温志洪",
+          title: "杀戮尖塔2设计问题",
+          url: "http:\/\/localhost:1895\/WzhGameDevPublish\/post\/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91\/1-input\/%E6%B8%B8%E6%88%8F%E5%AE%9E%E4%BE%8B\/%E6%9D%80%E6%88%AE%E5%B0%96%E5%A1%94\/%E6%9D%80%E6%88%AE%E5%B0%96%E5%A1%942%E8%AE%BE%E8%AE%A1%E9%97%AE%E9%A2%98\/",
+          description: "杀戮尖塔1英文Wiki\n杀戮尖塔2中文维基\n核心体验\r一代：\n这样也行？、红色格挡条、转来转去像个、吉米！\n数值叠加、强力运转、极限数值。局内启动、蠕动\/运转、击杀一气呵成。\n二代：\nXX流派、？避战。塞10张？？？\n更注重简单数值的叠加，而不是运转端的叠加。\n",
+          cover: "http:\/\/localhost:1895\/WzhGameDevPublish\/images\/banner.webp",
+        };
+      </script><script src="/WzhGameDevPublish/js/insert_highlight.js" data-pjax></script><script src="/WzhGameDevPublish/js/tabs.js" data-pjax></script><script type="module" data-pjax>const PhotoSwipeLightbox = (await safeImport("https:\/\/npm.webcache.cn\/photoswipe@5.4.4\/dist\/photoswipe-lightbox.esm.min.js", "sha384-DiL6M\/gG\u002bwmTxmCRZyD1zee6lIhawn5TGvED0FOh7fXcN9B0aZ9dexSF\/N6lrZi\/")).default;const initPswp = (gallery, children) => {
+          if (_$$(`${gallery} ${children}`).length > 0) {
+            new PhotoSwipeLightbox({
+              gallery,
+              children,pswpModule: () => safeImport("https:\/\/npm.webcache.cn\/photoswipe@5.4.4\/dist\/photoswipe.esm.min.js", "sha384-WkkO3GCmgkC3VQWpaV8DqhKJqpzpF9JoByxDmnV8\u002boTJ7m3DfYEWX1fu1scuS4\u002bs")}).init();
+          }
+        }
+        const pswp = () => {
+          initPswp('.article-entry', 'a.article-gallery-item');
+          initPswp('.article-gallery', 'a.article-gallery-item');
+          window.lightboxStatus = 'done';
+          window.removeEventListener('lightbox:ready', pswp);
+        }
+        if(window.lightboxStatus === 'ready') {
+          pswp()
+        } else {
+          window.addEventListener('lightbox:ready', pswp);
+        }
+      </script></div>
+</div><script
+    src="https://npm.webcache.cn/busuanzi@2.3.0/bsz.pure.mini.js"
+    asyncintegrity="sha384-0M75wtSkhjIInv4coYlaJU83&#43;OypaRCIq2SukQVQX04eGTCBXJDuWAbJet56id&#43;S" crossorigin="anonymous"></script><script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.getRegistrations().then((registrations) => {
+        for (let registration of registrations) {
+          registration.unregister();
+        }
+      });
+    }
+  </script><script>
+  const reimuCopyright = String.raw`
+   ______     ______     __     __    __     __  __    
+  /\  == \   /\  ___\   /\ \   /\ "-./  \   /\ \/\ \   
+  \ \  __<   \ \  __\   \ \ \  \ \ \-./\ \  \ \ \_\ \  
+   \ \_\ \_\  \ \_____\  \ \_\  \ \_\ \ \_\  \ \_____\ 
+    \/_/ /_/   \/_____/   \/_/   \/_/  \/_/   \/_____/ 
+                                                    
+  `;
+  console.log(String.raw`%c ${reimuCopyright}`, "color: #ff5252;");
+  console.log(
+    "%c Theme.Reimu" + " %c https://github.com/D-Sketon/hugo-theme-reimu ",
+    "color: white; background: #ff5252; padding:5px 0;",
+    "padding:4px;border:1px solid #ff5252;",
+  );
+</script></body>
+</html>

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>GAS on 妖精游戏开发馆</title>
+    <link>http://localhost:1895/WzhGameDevPublish/tags/gas/</link>
+    <description>Recent content from 妖精游戏开发馆</description>
+    <generator>Hugo</generator>
+    <language>zh-cn</language>
+    
+    <managingEditor>cnwenzhihong@gmail.com (温志洪)</managingEditor>
+    <webMaster>cnwenzhihong@gmail.com (温志洪)</webMaster>
+    
+    <copyright>本博客所有文章除特别声明外，均采用 BY-NC-SA 许可协议。转载请注明出处！</copyright>
+    
+    <lastBuildDate>Thu, 30 Apr 2026 15:34:36 +0000</lastBuildDate>
+    
+    
+    <atom:link href="http://localhost:1895/WzhGameDevPublish/tags/gas/index.xml" rel="self" type="application/rss&#43;xml" />
+    
+
+    
+    
+
+    <item>
+      <title>Lyra 射击全流程梳理</title>
+      <link>http://localhost:1895/WzhGameDevPublish/post/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/%E4%BB%A3%E7%A0%81%E6%A1%86%E6%9E%B6/lyra/lyra-gas/lyra-%E5%B0%84%E5%87%BB%E5%85%A8%E6%B5%81%E7%A8%8B%E6%A2%B3%E7%90%86/</link>
+      <pubDate>Sat, 07 Jun 2025 16:12:15 &#43;0000</pubDate>
+      <author>cnwenzhihong@gmail.com (温志洪)</author>
+      <guid>http://localhost:1895/WzhGameDevPublish/post/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/%E4%BB%A3%E7%A0%81%E6%A1%86%E6%9E%B6/lyra/lyra-gas/lyra-%E5%B0%84%E5%87%BB%E5%85%A8%E6%B5%81%E7%A8%8B%E6%A2%B3%E7%90%86/</guid>
+      <description>
+        <![CDATA[<h1>Lyra 射击全流程梳理</h1><p>作者：温志洪（cnwenzhihong@gmail.com）</p>
+        
+          <h1 id="1-目标找寻startrangedweapontargeting">
+<a class="header-anchor" href="#1-%e7%9b%ae%e6%a0%87%e6%89%be%e5%af%bbstartrangedweapontargeting"></a>
+1. 目标找寻StartRangedWeaponTargeting
+</h1><p><img src="https://cdn.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/20241113181942.png" alt="image.png"><br>
+播放特效时判断独立服务器</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="n">InputData</span><span class="p">.</span><span class="n">bCanPlayBulletFX</span> <span class="o">=</span> <span class="n">AvatarPawn</span><span class="o">-&gt;</span><span class="n">GetNetMode</span><span class="p">()</span> <span class="o">!=</span> <span class="n">NM_DedicatedServer</span><span class="p">();</span>
+</span></span></code></pre></div><h2 id="11-找寻目标-foundhits">
+<a class="header-anchor" href="#11-%e6%89%be%e5%af%bb%e7%9b%ae%e6%a0%87-foundhits"></a>
+1.1. 找寻目标 FoundHits
+</h2><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-C++" data-lang="C++"><span class="line"><span class="cl"><span class="n">ULyraGameplayAbility_RangedWeapon</span><span class="o">::</span><span class="n">PerformLocalTargeting</span><span class="p">(</span><span class="n">OUT</span> <span class="n">TArray</span><span class="o">&lt;</span><span class="n">FHitResult</span><span class="o">&gt;&amp;</span> <span class="n">OutHits</span><span class="p">)</span>
+</span></span></code></pre></div><h3 id="11-获取开火位置和朝向-inputdata">
+<a class="header-anchor" href="#11-%e8%8e%b7%e5%8f%96%e5%bc%80%e7%81%ab%e4%bd%8d%e7%bd%ae%e5%92%8c%e6%9c%9d%e5%90%91-inputdata"></a>
+1.1. 获取开火位置和朝向 InputData
+</h3><blockquote>
+<p>DrawDebugLine：黄色，Setting-&gt;LyraWeaponDebugger</p>
+        
+        <hr><p>本文2025-06-07首发于<a href='http://localhost:1895/WzhGameDevPublish/'>妖精游戏开发馆</a>，最后修改于2026-04-30</p>]]>
+      </description>
+      
+    </item>
+    
+  </channel>
+</rss>

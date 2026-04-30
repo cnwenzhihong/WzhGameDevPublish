@@ -12,7 +12,7 @@
     
     <copyright>本博客所有文章除特别声明外，均采用 BY-NC-SA 许可协议。转载请注明出处！</copyright>
     
-    <lastBuildDate>Sat, 21 Mar 2026 21:26:34 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 30 Apr 2026 15:39:34 +0000</lastBuildDate>
     
     
     <atom:link href="http://localhost:1895/WzhGameDevPublish/post/index.xml" rel="self" type="application/rss&#43;xml" />
@@ -22,79 +22,15 @@
     
 
     <item>
-      <title>Lyra Team组队功能解析</title>
-      <link>http://localhost:1895/WzhGameDevPublish/post/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/%E4%BB%A3%E7%A0%81%E6%A1%86%E6%9E%B6/lyra/lyra-%E5%B8%B8%E7%94%A8%E5%8A%9F%E8%83%BD/lyra-team%E7%BB%84%E9%98%9F%E5%8A%9F%E8%83%BD%E8%A7%A3%E6%9E%90/</link>
-      <pubDate>Fri, 20 Mar 2026 17:31:21 &#43;0000</pubDate>
-      <author>cnwenzhihong@gmail.com (温志洪)</author>
-      <guid>http://localhost:1895/WzhGameDevPublish/post/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/%E4%BB%A3%E7%A0%81%E6%A1%86%E6%9E%B6/lyra/lyra-%E5%B8%B8%E7%94%A8%E5%8A%9F%E8%83%BD/lyra-team%E7%BB%84%E9%98%9F%E5%8A%9F%E8%83%BD%E8%A7%A3%E6%9E%90/</guid>
-      <description>
-        <![CDATA[<h1>Lyra Team组队功能解析</h1><p>作者：温志洪（cnwenzhihong@gmail.com）</p>
-        
-          <h1 id="系统概述">
-<a class="header-anchor" href="#%e7%b3%bb%e7%bb%9f%e6%a6%82%e8%bf%b0"></a>
-系统概述
-</h1><p>团队功能，不算很大的一个模块，但和各种模块都要打交道，同时也需要对数据进行简单存储、同步、获取。</p>
-<p>拓展资料：<br>
-<a href="https://x157.github.io/UE5/LyraStarterGame/Teams/">Lyra Team System | X157 Dev Notes</a><br>
-<a href="https://dev.epicgames.com/community/learning/tutorials/XjBe/unreal-engine-lyra-team-based-spawn-points">Lyra: Team-based Spawn Points | Community tutorial</a></p>
-        
-        <hr><p>本文2026-03-20首发于<a href='http://localhost:1895/WzhGameDevPublish/'>妖精游戏开发馆</a>，最后修改于2026-03-21</p>]]>
-      </description>
-      
-    </item>
-    
-    
-
-    <item>
-      <title>LyraPlayerController</title>
-      <link>http://localhost:1895/WzhGameDevPublish/post/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/%E4%BB%A3%E7%A0%81%E6%A1%86%E6%9E%B6/lyra/lyra-3c/lyraplayercontroller/</link>
-      <pubDate>Mon, 23 Feb 2026 15:05:34 &#43;0000</pubDate>
-      <author>cnwenzhihong@gmail.com (温志洪)</author>
-      <guid>http://localhost:1895/WzhGameDevPublish/post/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/%E4%BB%A3%E7%A0%81%E6%A1%86%E6%9E%B6/lyra/lyra-3c/lyraplayercontroller/</guid>
-      <description>
-        <![CDATA[<h1>LyraPlayerController</h1><p>作者：温志洪（cnwenzhihong@gmail.com）</p>
-        
-          <h1 id="playercontroller">
-<a class="header-anchor" href="#playercontroller"></a>
-PlayerController
-</h1><h2 id="playercontroller概览">
-<a class="header-anchor" href="#playercontroller%e6%a6%82%e8%a7%88"></a>
-PlayerController概览
-</h2><p>除命令行作弊功能，都是外部系统支持，理应放在独立Component中</p>
-<ul>
-<li>ModularPlayerController——ModularGameplay支持</li>
-<li>CommonPlayerController——CommonUI支持</li>
-<li>ILyraCameraAssistInterface——处理TPS相机穿模</li>
-<li>ILyraTeamAgentInterface——Team系统支持<br>
-<img src="https://pica.zhimg.com/v2-f8a52fe28625888b52c7a6ff774e93b0_1440w.jpg" alt=""></li>
-</ul>
-<h2 id="实现">
-<a class="header-anchor" href="#%e5%ae%9e%e7%8e%b0"></a>
-实现
-</h2><h3 id="命令行作弊">
-<a class="header-anchor" href="#%e5%91%bd%e4%bb%a4%e8%a1%8c%e4%bd%9c%e5%bc%8a"></a>
-命令行作弊
-</h3><p>在服务器用命令行作弊<br>
-<img src="https://pic1.zhimg.com/v2-9999b8c9cd51ef374182694533bfa8a2_1440w.jpg" alt=""></p>
-        
-        <hr><p>本文2026-02-23首发于<a href='http://localhost:1895/WzhGameDevPublish/'>妖精游戏开发馆</a>，最后修改于2026-03-21</p>]]>
-      </description>
-      
-    </item>
-    
-    
-
-    <item>
-      <title>Lyra框架核心</title>
-      <link>http://localhost:1895/WzhGameDevPublish/post/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/%E4%BB%A3%E7%A0%81%E6%A1%86%E6%9E%B6/lyra/lyra%E6%A1%86%E6%9E%B6%E6%A0%B8%E5%BF%83/</link>
+      <title>Lyra框架研究总览</title>
+      <link>http://localhost:1895/WzhGameDevPublish/post/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/%E4%BB%A3%E7%A0%81%E6%A1%86%E6%9E%B6/lyra/lyra%E6%A1%86%E6%9E%B6%E7%A0%94%E7%A9%B6%E6%80%BB%E8%A7%88/</link>
       <pubDate>Thu, 11 Sep 2025 17:10:52 &#43;0000</pubDate>
       <author>cnwenzhihong@gmail.com (温志洪)</author>
-      <guid>http://localhost:1895/WzhGameDevPublish/post/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/%E4%BB%A3%E7%A0%81%E6%A1%86%E6%9E%B6/lyra/lyra%E6%A1%86%E6%9E%B6%E6%A0%B8%E5%BF%83/</guid>
+      <guid>http://localhost:1895/WzhGameDevPublish/post/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/%E4%BB%A3%E7%A0%81%E6%A1%86%E6%9E%B6/lyra/lyra%E6%A1%86%E6%9E%B6%E7%A0%94%E7%A9%B6%E6%80%BB%E8%A7%88/</guid>
       <description>
-        <![CDATA[<h1>Lyra框架核心</h1><p>作者：温志洪（cnwenzhihong@gmail.com）</p>
+        <![CDATA[<h1>Lyra框架研究总览</h1><p>作者：温志洪（cnwenzhihong@gmail.com）</p>
         
-          <p>/[title2list|list2lt]</p>
-<h1 id="总览">
+          <h1 id="总览">
 <a class="header-anchor" href="#%e6%80%bb%e8%a7%88"></a>
 总览
 </h1><h2 id="不错的资料">
@@ -133,7 +69,7 @@ PlayerController概览
 </li>
 </ol></p>
         
-        <hr><p>本文2025-09-11首发于<a href='http://localhost:1895/WzhGameDevPublish/'>妖精游戏开发馆</a>，最后修改于2026-03-20</p>]]>
+        <hr><p>本文2025-09-11首发于<a href='http://localhost:1895/WzhGameDevPublish/'>妖精游戏开发馆</a>，最后修改于2026-04-30</p>]]>
       </description>
       
     </item>
@@ -141,13 +77,179 @@ PlayerController概览
     
 
     <item>
-      <title>Lyra实现：LyraGameMode</title>
-      <link>http://localhost:1895/WzhGameDevPublish/post/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/%E4%BB%A3%E7%A0%81%E6%A1%86%E6%9E%B6/lyra/lyra-framework/lyra%E5%AE%9E%E7%8E%B0lyragamemode/</link>
+      <title>使用CodeX开发UE5实战经验</title>
+      <link>http://localhost:1895/WzhGameDevPublish/post/ai/%E7%BC%96%E7%A8%8B/%E4%BD%BF%E7%94%A8codex%E5%BC%80%E5%8F%91ue5%E5%AE%9E%E6%88%98%E7%BB%8F%E9%AA%8C/</link>
+      <pubDate>Thu, 16 Apr 2026 11:28:56 &#43;0000</pubDate>
+      <author>cnwenzhihong@gmail.com (温志洪)</author>
+      <guid>http://localhost:1895/WzhGameDevPublish/post/ai/%E7%BC%96%E7%A8%8B/%E4%BD%BF%E7%94%A8codex%E5%BC%80%E5%8F%91ue5%E5%AE%9E%E6%88%98%E7%BB%8F%E9%AA%8C/</guid>
+      <description>
+        <![CDATA[<h1>使用CodeX开发UE5实战经验</h1><p>作者：温志洪（cnwenzhihong@gmail.com）</p>
+        
+          <h1 id="开始之前">
+<a class="header-anchor" href="#%e5%bc%80%e5%a7%8b%e4%b9%8b%e5%89%8d"></a>
+开始之前
+</h1><h2 id="关键链接">
+<a class="header-anchor" href="#%e5%85%b3%e9%94%ae%e9%93%be%e6%8e%a5"></a>
+关键链接
+</h2><blockquote>
+<ol>
+<li><a href="https://openai.com/codex">Codex官网</a></li>
+<li><a href="https://developers.openai.com/codex">Codex开发者文档</a></li>
+<li>[Codex GitHub](<a href="https://github.com/openai/codex">GitHub - openai/codex: Lightweight coding agent that runs in your terminal · GitHub</a></li>
+</ol>
+</blockquote>
+<p>零基础AI开发最少需要的知识：<a href="https://developers.openai.com/codex/learn/best-practices">Codex最佳实践-5min</a><br>
+Aggent.md：<a href="https://developers.openai.com/codex/guides/agents-md">Custom instructions with AGENTS.md </a><br>
+考试：</p>
+<h2 id="最佳实践问题">
+<a class="header-anchor" href="#%e6%9c%80%e4%bd%b3%e5%ae%9e%e8%b7%b5%e9%97%ae%e9%a2%98"></a>
+最佳实践问题
+</h2><p>提示词的应包含的4点：<br>
+<strong>Goal:</strong> 先专心实现核心目标，再慢慢加上其他目标。<br>
+使用人群：自己、朋友、其他有需求的人。<br>
+平台：是网页、桌面应用、安卓、苹果，还是跨手机平台<br>
+实现方案：游戏、信息展示、论坛、工具、插件<br>
+<strong>Context:</strong> 项目开始时可以将可能用到的资料提供给它，项目开启后他自己大都能找到自己生成的相关文件，有外部文件补充时才需要@。有网络文档、资料直接给链接就行。<br>
+比如命令：</p>
+        
+        <hr><p>本文2026-04-16首发于<a href='http://localhost:1895/WzhGameDevPublish/'>妖精游戏开发馆</a>，最后修改于2026-04-30</p>]]>
+      </description>
+      
+    </item>
+    
+    
+
+    <item>
+      <title>Lyra 射击全流程梳理</title>
+      <link>http://localhost:1895/WzhGameDevPublish/post/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/%E4%BB%A3%E7%A0%81%E6%A1%86%E6%9E%B6/lyra/lyra-gas/lyra-%E5%B0%84%E5%87%BB%E5%85%A8%E6%B5%81%E7%A8%8B%E6%A2%B3%E7%90%86/</link>
+      <pubDate>Sat, 07 Jun 2025 16:12:15 &#43;0000</pubDate>
+      <author>cnwenzhihong@gmail.com (温志洪)</author>
+      <guid>http://localhost:1895/WzhGameDevPublish/post/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/%E4%BB%A3%E7%A0%81%E6%A1%86%E6%9E%B6/lyra/lyra-gas/lyra-%E5%B0%84%E5%87%BB%E5%85%A8%E6%B5%81%E7%A8%8B%E6%A2%B3%E7%90%86/</guid>
+      <description>
+        <![CDATA[<h1>Lyra 射击全流程梳理</h1><p>作者：温志洪（cnwenzhihong@gmail.com）</p>
+        
+          <h1 id="1-目标找寻startrangedweapontargeting">
+<a class="header-anchor" href="#1-%e7%9b%ae%e6%a0%87%e6%89%be%e5%af%bbstartrangedweapontargeting"></a>
+1. 目标找寻StartRangedWeaponTargeting
+</h1><p><img src="https://cdn.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/20241113181942.png" alt="image.png"><br>
+播放特效时判断独立服务器</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="n">InputData</span><span class="p">.</span><span class="n">bCanPlayBulletFX</span> <span class="o">=</span> <span class="n">AvatarPawn</span><span class="o">-&gt;</span><span class="n">GetNetMode</span><span class="p">()</span> <span class="o">!=</span> <span class="n">NM_DedicatedServer</span><span class="p">();</span>
+</span></span></code></pre></div><h2 id="11-找寻目标-foundhits">
+<a class="header-anchor" href="#11-%e6%89%be%e5%af%bb%e7%9b%ae%e6%a0%87-foundhits"></a>
+1.1. 找寻目标 FoundHits
+</h2><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-C++" data-lang="C++"><span class="line"><span class="cl"><span class="n">ULyraGameplayAbility_RangedWeapon</span><span class="o">::</span><span class="n">PerformLocalTargeting</span><span class="p">(</span><span class="n">OUT</span> <span class="n">TArray</span><span class="o">&lt;</span><span class="n">FHitResult</span><span class="o">&gt;&amp;</span> <span class="n">OutHits</span><span class="p">)</span>
+</span></span></code></pre></div><h3 id="11-获取开火位置和朝向-inputdata">
+<a class="header-anchor" href="#11-%e8%8e%b7%e5%8f%96%e5%bc%80%e7%81%ab%e4%bd%8d%e7%bd%ae%e5%92%8c%e6%9c%9d%e5%90%91-inputdata"></a>
+1.1. 获取开火位置和朝向 InputData
+</h3><blockquote>
+<p>DrawDebugLine：黄色，Setting-&gt;LyraWeaponDebugger</p>
+        
+        <hr><p>本文2025-06-07首发于<a href='http://localhost:1895/WzhGameDevPublish/'>妖精游戏开发馆</a>，最后修改于2026-04-30</p>]]>
+      </description>
+      
+    </item>
+    
+    
+
+    <item>
+      <title>杀戮尖塔2设计问题</title>
+      <link>http://localhost:1895/WzhGameDevPublish/post/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/1-input/%E6%B8%B8%E6%88%8F%E5%AE%9E%E4%BE%8B/%E6%9D%80%E6%88%AE%E5%B0%96%E5%A1%94/%E6%9D%80%E6%88%AE%E5%B0%96%E5%A1%942%E8%AE%BE%E8%AE%A1%E9%97%AE%E9%A2%98/</link>
+      <pubDate>Tue, 14 Apr 2026 23:56:07 &#43;0000</pubDate>
+      <author>cnwenzhihong@gmail.com (温志洪)</author>
+      <guid>http://localhost:1895/WzhGameDevPublish/post/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/1-input/%E6%B8%B8%E6%88%8F%E5%AE%9E%E4%BE%8B/%E6%9D%80%E6%88%AE%E5%B0%96%E5%A1%94/%E6%9D%80%E6%88%AE%E5%B0%96%E5%A1%942%E8%AE%BE%E8%AE%A1%E9%97%AE%E9%A2%98/</guid>
+      <description>
+        <![CDATA[<h1>杀戮尖塔2设计问题</h1><p>作者：温志洪（cnwenzhihong@gmail.com）</p>
+        
+          <p><a href="https://slay-the-spire.fandom.com/wiki/Slay_the_Spire_Wiki">杀戮尖塔1英文Wiki</a><br>
+<a href="https://sts2.huijiwiki.com/wiki/%E9%A6%96%E9%A1%B5">杀戮尖塔2中文维基</a></p>
+<h1 id="核心体验">
+<a class="header-anchor" href="#%e6%a0%b8%e5%bf%83%e4%bd%93%e9%aa%8c"></a>
+核心体验
+</h1><p>一代：<br>
+这样也行？、红色格挡条、转来转去像个、吉米！<br>
+数值叠加、强力运转、极限数值。局内启动、蠕动/运转、击杀一气呵成。</p>
+<p>二代：<br>
+XX流派、？避战。塞10张？？？<br>
+更注重简单数值的叠加，而不是运转端的叠加。</p>
+        
+        <hr><p>本文2026-04-14首发于<a href='http://localhost:1895/WzhGameDevPublish/'>妖精游戏开发馆</a>，最后修改于2026-04-20</p>]]>
+      </description>
+      
+    </item>
+    
+    
+
+    <item>
+      <title>Lyra Team组队功能解析</title>
+      <link>http://localhost:1895/WzhGameDevPublish/post/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/%E4%BB%A3%E7%A0%81%E6%A1%86%E6%9E%B6/lyra/lyra-%E5%B8%B8%E7%94%A8%E5%8A%9F%E8%83%BD/lyra-team%E7%BB%84%E9%98%9F%E5%8A%9F%E8%83%BD%E8%A7%A3%E6%9E%90/</link>
+      <pubDate>Fri, 20 Mar 2026 17:31:21 &#43;0000</pubDate>
+      <author>cnwenzhihong@gmail.com (温志洪)</author>
+      <guid>http://localhost:1895/WzhGameDevPublish/post/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/%E4%BB%A3%E7%A0%81%E6%A1%86%E6%9E%B6/lyra/lyra-%E5%B8%B8%E7%94%A8%E5%8A%9F%E8%83%BD/lyra-team%E7%BB%84%E9%98%9F%E5%8A%9F%E8%83%BD%E8%A7%A3%E6%9E%90/</guid>
+      <description>
+        <![CDATA[<h1>Lyra Team组队功能解析</h1><p>作者：温志洪（cnwenzhihong@gmail.com）</p>
+        
+          <h1 id="系统概述">
+<a class="header-anchor" href="#%e7%b3%bb%e7%bb%9f%e6%a6%82%e8%bf%b0"></a>
+系统概述
+</h1><p>团队功能，不算很大的一个模块，但和各种模块都要打交道，同时也需要对数据进行简单存储、同步、获取。</p>
+<p>拓展资料：<br>
+<a href="https://x157.github.io/UE5/LyraStarterGame/Teams/">Lyra Team System | X157 Dev Notes</a><br>
+<a href="https://dev.epicgames.com/community/learning/tutorials/XjBe/unreal-engine-lyra-team-based-spawn-points">Lyra: Team-based Spawn Points | Community tutorial</a></p>
+        
+        <hr><p>本文2026-03-20首发于<a href='http://localhost:1895/WzhGameDevPublish/'>妖精游戏开发馆</a>，最后修改于2026-03-21</p>]]>
+      </description>
+      
+    </item>
+    
+    
+
+    <item>
+      <title>LyraPlayerController快速拆分</title>
+      <link>http://localhost:1895/WzhGameDevPublish/post/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/%E4%BB%A3%E7%A0%81%E6%A1%86%E6%9E%B6/lyra/lyra-3c/lyraplayercontroller%E5%BF%AB%E9%80%9F%E6%8B%86%E5%88%86/</link>
+      <pubDate>Mon, 23 Feb 2026 15:05:34 &#43;0000</pubDate>
+      <author>cnwenzhihong@gmail.com (温志洪)</author>
+      <guid>http://localhost:1895/WzhGameDevPublish/post/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/%E4%BB%A3%E7%A0%81%E6%A1%86%E6%9E%B6/lyra/lyra-3c/lyraplayercontroller%E5%BF%AB%E9%80%9F%E6%8B%86%E5%88%86/</guid>
+      <description>
+        <![CDATA[<h1>LyraPlayerController快速拆分</h1><p>作者：温志洪（cnwenzhihong@gmail.com）</p>
+        
+          <h1 id="playercontroller">
+<a class="header-anchor" href="#playercontroller"></a>
+PlayerController
+</h1><h2 id="playercontroller概览">
+<a class="header-anchor" href="#playercontroller%e6%a6%82%e8%a7%88"></a>
+PlayerController概览
+</h2><p>除命令行作弊功能，都是外部系统支持，理应放在独立Component中</p>
+<ul>
+<li>ModularPlayerController——ModularGameplay支持</li>
+<li>CommonPlayerController——CommonUI支持</li>
+<li>ILyraCameraAssistInterface——处理TPS相机穿模</li>
+<li>ILyraTeamAgentInterface——Team系统支持<br>
+<img src="https://pica.zhimg.com/v2-f8a52fe28625888b52c7a6ff774e93b0_1440w.jpg" alt=""></li>
+</ul>
+<h2 id="实现">
+<a class="header-anchor" href="#%e5%ae%9e%e7%8e%b0"></a>
+实现
+</h2><h3 id="命令行作弊">
+<a class="header-anchor" href="#%e5%91%bd%e4%bb%a4%e8%a1%8c%e4%bd%9c%e5%bc%8a"></a>
+命令行作弊
+</h3><p>在服务器用命令行作弊<br>
+<img src="https://pic1.zhimg.com/v2-9999b8c9cd51ef374182694533bfa8a2_1440w.jpg" alt=""></p>
+        
+        <hr><p>本文2026-02-23首发于<a href='http://localhost:1895/WzhGameDevPublish/'>妖精游戏开发馆</a>，最后修改于2026-03-21</p>]]>
+      </description>
+      
+    </item>
+    
+    
+
+    <item>
+      <title>LyraGameMode的快速拆分</title>
+      <link>http://localhost:1895/WzhGameDevPublish/post/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/%E4%BB%A3%E7%A0%81%E6%A1%86%E6%9E%B6/lyra/lyra-framework/lyragamemode%E7%9A%84%E5%BF%AB%E9%80%9F%E6%8B%86%E5%88%86/</link>
       <pubDate>Mon, 23 Feb 2026 08:19:37 &#43;0000</pubDate>
       <author>cnwenzhihong@gmail.com (温志洪)</author>
-      <guid>http://localhost:1895/WzhGameDevPublish/post/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/%E4%BB%A3%E7%A0%81%E6%A1%86%E6%9E%B6/lyra/lyra-framework/lyra%E5%AE%9E%E7%8E%B0lyragamemode/</guid>
+      <guid>http://localhost:1895/WzhGameDevPublish/post/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/%E4%BB%A3%E7%A0%81%E6%A1%86%E6%9E%B6/lyra/lyra-framework/lyragamemode%E7%9A%84%E5%BF%AB%E9%80%9F%E6%8B%86%E5%88%86/</guid>
       <description>
-        <![CDATA[<h1>Lyra实现：LyraGameMode</h1><p>作者：温志洪（cnwenzhihong@gmail.com）</p>
+        <![CDATA[<h1>LyraGameMode的快速拆分</h1><p>作者：温志洪（cnwenzhihong@gmail.com）</p>
         
           <h1 id="lyragamemode">
 <a class="header-anchor" href="#lyragamemode"></a>
@@ -233,35 +335,6 @@ Gamemode初始化流程
     
 
     <item>
-      <title>LyraCharacter</title>
-      <link>http://localhost:1895/WzhGameDevPublish/post/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/%E4%BB%A3%E7%A0%81%E6%A1%86%E6%9E%B6/lyra/lyra-3c/lyracharacter/</link>
-      <pubDate>Mon, 23 Feb 2026 16:16:27 &#43;0000</pubDate>
-      <author>cnwenzhihong@gmail.com (温志洪)</author>
-      <guid>http://localhost:1895/WzhGameDevPublish/post/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/%E4%BB%A3%E7%A0%81%E6%A1%86%E6%9E%B6/lyra/lyra-3c/lyracharacter/</guid>
-      <description>
-        <![CDATA[<h1>LyraCharacter</h1><p>作者：温志洪（cnwenzhihong@gmail.com）</p>
-        
-          <h1 id="lyracharacter">
-<a class="header-anchor" href="#lyracharacter"></a>
-LyraCharacter
-</h1><h2 id="lyracharacter概述">
-<a class="header-anchor" href="#lyracharacter%e6%a6%82%e8%bf%b0"></a>
-LyraCharacter概述
-</h2><p>Team<br>
-AbilitySystem<br>
-一些没有采用ModularGameplay的组件：PawnExt、Health、Camera<br>
-<img src="https://pic3.zhimg.com/v2-85228e88558c1303e8d64f535e96a0d6_1440w.jpg" alt=""></p>
-<p>写死的移动逻辑<br>
-<img src="https://pic4.zhimg.com/v2-c72ec5d4cc535816162f2786b5d625ef_1440w.jpg" alt=""></p>
-        
-        <hr><p>本文2026-02-23首发于<a href='http://localhost:1895/WzhGameDevPublish/'>妖精游戏开发馆</a>，最后修改于2026-03-03</p>]]>
-      </description>
-      
-    </item>
-    
-    
-
-    <item>
       <title>Lyra实现：Experience</title>
       <link>http://localhost:1895/WzhGameDevPublish/post/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/%E4%BB%A3%E7%A0%81%E6%A1%86%E6%9E%B6/lyra/lyra-framework/lyra%E5%AE%9E%E7%8E%B0experience/</link>
       <pubDate>Mon, 23 Feb 2026 08:31:25 &#43;0000</pubDate>
@@ -288,13 +361,13 @@ AbilitySystem<br>
     
 
     <item>
-      <title>Lyra实现：ModularGameplay</title>
-      <link>http://localhost:1895/WzhGameDevPublish/post/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/%E4%BB%A3%E7%A0%81%E6%A1%86%E6%9E%B6/lyra/lyra-framework/lyra%E5%AE%9E%E7%8E%B0modulargameplay/</link>
+      <title>Lyra是如何使用ModularGameplay的</title>
+      <link>http://localhost:1895/WzhGameDevPublish/post/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/%E4%BB%A3%E7%A0%81%E6%A1%86%E6%9E%B6/lyra/lyra-framework/lyra%E6%98%AF%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8modulargameplay%E7%9A%84/</link>
       <pubDate>Mon, 23 Feb 2026 14:40:01 &#43;0000</pubDate>
       <author>cnwenzhihong@gmail.com (温志洪)</author>
-      <guid>http://localhost:1895/WzhGameDevPublish/post/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/%E4%BB%A3%E7%A0%81%E6%A1%86%E6%9E%B6/lyra/lyra-framework/lyra%E5%AE%9E%E7%8E%B0modulargameplay/</guid>
+      <guid>http://localhost:1895/WzhGameDevPublish/post/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/%E4%BB%A3%E7%A0%81%E6%A1%86%E6%9E%B6/lyra/lyra-framework/lyra%E6%98%AF%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8modulargameplay%E7%9A%84/</guid>
       <description>
-        <![CDATA[<h1>Lyra实现：ModularGameplay</h1><p>作者：温志洪（cnwenzhihong@gmail.com）</p>
+        <![CDATA[<h1>Lyra是如何使用ModularGameplay的</h1><p>作者：温志洪（cnwenzhihong@gmail.com）</p>
         
           <h1 id="ugameframeworkcomponent">
 <a class="header-anchor" href="#ugameframeworkcomponent"></a>
@@ -336,32 +409,6 @@ ULyraExperienceManagerComponent的基类就是UGameFrameworkComponent</p>
 持续移动时、加速度会在0附近震荡</p>
         
         <hr><p>本文2025-11-22首发于<a href='http://localhost:1895/WzhGameDevPublish/'>妖精游戏开发馆</a>，最后修改于2026-01-17</p>]]>
-      </description>
-      
-    </item>
-    
-    
-
-    <item>
-      <title>WeaponSway插件的简单使用</title>
-      <link>http://localhost:1895/WzhGameDevPublish/post/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/%E4%BB%A3%E7%A0%81%E6%A1%86%E6%9E%B6/lyra/fps/%E6%8A%80%E6%9C%AF%E7%BB%86%E8%8A%82/weaponsway/weaponsway%E6%8F%92%E4%BB%B6%E7%9A%84%E7%AE%80%E5%8D%95%E4%BD%BF%E7%94%A8/</link>
-      <pubDate>Thu, 08 Jan 2026 06:11:25 &#43;0000</pubDate>
-      <author>cnwenzhihong@gmail.com (温志洪)</author>
-      <guid>http://localhost:1895/WzhGameDevPublish/post/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/%E4%BB%A3%E7%A0%81%E6%A1%86%E6%9E%B6/lyra/fps/%E6%8A%80%E6%9C%AF%E7%BB%86%E8%8A%82/weaponsway/weaponsway%E6%8F%92%E4%BB%B6%E7%9A%84%E7%AE%80%E5%8D%95%E4%BD%BF%E7%94%A8/</guid>
-      <description>
-        <![CDATA[<h1>WeaponSway插件的简单使用</h1><p>作者：温志洪（cnwenzhihong@gmail.com）</p>
-        
-          <h1 id="基本配置">
-<a class="header-anchor" href="#%e5%9f%ba%e6%9c%ac%e9%85%8d%e7%bd%ae"></a>
-基本配置
-</h1><p>我们以<code>ABP_WeaponSway</code>为例，也可以直接将逻辑写在自己的动画蓝图</p>
-<h2 id="abp_weaponsway">
-<a class="header-anchor" href="#abp_weaponsway"></a>
-ABP_WeaponSway
-</h2><p>找到插件文件夹中的<code>ABP_WeaponSway</code>双击，提示没有骨骼，选择自己的FPS骨骼并确认<br>
-打开蓝图，删除报错节点,可以仅保留下图节点：</p>
-        
-        <hr><p>本文2026-01-08首发于<a href='http://localhost:1895/WzhGameDevPublish/'>妖精游戏开发馆</a>，最后修改于2026-01-08</p>]]>
       </description>
       
     </item>

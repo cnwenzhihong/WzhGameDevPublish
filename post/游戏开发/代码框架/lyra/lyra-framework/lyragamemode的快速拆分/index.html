@@ -1,0 +1,1156 @@
+<!doctype html>
+<html
+  lang="zh-cn" 
+  data-theme-mode="false"
+  >
+  <head><script src="/WzhGameDevPublish/livereload.js?mindelay=10&amp;v=2&amp;port=1895&amp;path=WzhGameDevPublish/livereload" data-no-instant defer></script><meta charset="utf-8" />
+<meta
+  name="viewport"
+  content="width=device-width, initial-scale=1, shrink-to-fit=no"
+/><title>
+  LyraGameMode的快速拆分 | 温志洪
+</title>
+<meta name="description" content="FPS游戏"/><script>
+  window.siteConfig = JSON.parse("{\"anchor_icon\":null,\"base\":\"http://localhost:1895/WzhGameDevPublish/\",\"clipboard\":{\"copyright\":{\"count\":50,\"enable\":false,\"license_type\":\"by-nc-sa\"},\"fail\":{\"en\":\"Copy failed (ﾟ⊿ﾟ)ﾂ\",\"ja\":\"コピー失敗 (ﾟ⊿ﾟ)ﾂ\",\"pt-br\":\"Falha ao copiar (ﾟ⊿ﾟ)ﾂ\",\"zh-cn\":\"复制失败 (ﾟ⊿ﾟ)ﾂ\",\"zh-tw\":\"複製失敗 (ﾟ⊿ﾟ)ﾂ\"},\"success\":{\"en\":\"Copy successfully (*^▽^*)\",\"ja\":\"コピー成功 (*^▽^*)\",\"pt-br\":\"Copiado com sucesso (*^▽^*)\",\"zh-cn\":\"复制成功 (*^▽^*)\",\"zh-tw\":\"複製成功 (*^▽^*)\"}},\"code_block\":{\"expand\":4},\"i18n_languages\":[{\"Lang\":\"en\",\"LanguageName\":\"English\",\"LanguageCode\":\"\",\"Title\":\"\",\"LanguageDirection\":\"\",\"Weight\":1,\"Disabled\":false},{\"Lang\":\"zh-cn\",\"LanguageName\":\"简体中文\",\"LanguageCode\":\"\",\"Title\":\"\",\"LanguageDirection\":\"\",\"Weight\":1,\"Disabled\":false}],\"icon_font\":\"4552607_4k4bc36ef96\",\"outdate\":{\"daysago\":180,\"enable\":false,\"message\":{\"en\":\"This article was last updated on {time}. Please note that the content may no longer be applicable.\",\"ja\":\"この記事は最終更新日：{time}。記載内容が現在有効でない可能性がありますのでご注意ください。\",\"pt-br\":\"Este artigo foi atualizado pela última vez em {time}. Observe que o conteúdo pode não ser mais aplicável.\",\"zh-cn\":\"本文最后更新于 {time}，请注意文中内容可能已不适用。\",\"zh-tw\":\"本文最後更新於 {time}，請注意文中內容可能已不適用。\"}}}");
+  
+</script>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link
+  rel="preload"
+  as="style"
+  href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic%7cNoto%20Serif%20SC:400,400italic,700,700italic%7c&amp;display=swap"
+/>
+<link
+  rel="stylesheet"
+  href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic%7cNoto%20Serif%20SC:400,400italic,700,700italic%7c&amp;display=swap"
+  media="print"
+  onload="this.media='all'"
+/>
+<link
+    rel="preload"
+    href="//at.alicdn.com/t/c/font_4552607_4k4bc36ef96.woff2"
+    as="font"
+    type="font/woff2"
+    crossorigin="anonymous"
+  /><link rel="stylesheet" href="/WzhGameDevPublish/css/loader.css" />
+<meta property="og:type" content="website" />
+  <meta property="og:title" content="LyraGameMode的快速拆分 | 温志洪" />
+  <meta
+    property="og:description"
+    content="FPS游戏"
+  />
+  <meta property="og:url" content="http://localhost:1895/WzhGameDevPublish/post/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/%E4%BB%A3%E7%A0%81%E6%A1%86%E6%9E%B6/lyra/lyra-framework/lyragamemode%E7%9A%84%E5%BF%AB%E9%80%9F%E6%8B%86%E5%88%86/" />
+  <meta
+    property="og:site_name"
+    content="妖精游戏开发馆"
+  />
+  <meta
+    property="og:image"
+    content="https://pic1.zhimg.com/v2-a75a8fdca2cb1c3ed11f104353ce0940_1440w.jpg"
+  />
+  <meta property="article:author" content="温志洪" />
+  <meta property="article:published_time" content="2026-02-23T08:19:37&#43;00:00" />
+  <meta property="article:modified_time" content="2026-03-20T09:18:47&#43;00:00" /><meta property="article:tag" content="blog" /><meta name="twitter:card" content="summary" />
+  <meta name="twitter:image" content="https://pic1.zhimg.com/v2-a75a8fdca2cb1c3ed11f104353ce0940_1440w.jpg" />
+<link rel="shortcut icon" href="/WzhGameDevPublish/favicon.ico"><link rel="stylesheet" href="/WzhGameDevPublish/css/main.css" />
+<link
+    rel="preload"
+    as="style"
+    href="https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe.css"
+    integrity="sha384-IfxC36XL/toUyJ939C73PcgMuRzAZuIzZxE38drsmO5p6jD7ei&#43;Zx/1oA/0l8ysE" crossorigin="anonymous"onload="this.onload=null;this.rel='stylesheet'"
+  /><link
+    rel="preload"
+    as="style"
+    href="https://npm.webcache.cn/katex@0.16.24/dist/katex.min.css"
+    integrity="sha384-tTgKLjMYmJr94v8qu2PE5MUGSMbyN2xiH266JUB3gpm8vnnJywd1dWSOEfrFz&#43;YI" crossorigin="anonymous"onload="this.onload=null;this.rel='stylesheet'"
+  /><script
+    src="https://npm.webcache.cn/pace-js@1.2.4/pace.min.js"
+    integrity="sha384-k6YtvFUEIuEFBdrLKJ3YAUbBki333tj1CSUisai5Cswsg9wcLNaPzsTHDswp4Az8" crossorigin="anonymous"></script><link
+    rel="stylesheet"
+    href="https://npm.webcache.cn/@reimujs/aos@0.1.2/dist/aos.css"
+    integrity="sha384-GMRP93c6Hkz9JVKGAuRR3nTS7M07RwPgTFenXiosjq2VbVgvdDNcz1g6Mkj8AONa" crossorigin="anonymous"/></head>
+  <body><div id='loader'>
+    <div class="loading-left-bg loading-bg"></div>
+    <div class="loading-right-bg loading-bg"></div>
+    <div class="spinner-box">
+      <div class="loading-taichi rotate"><svg width="150" height="150" viewBox="0 0 1024 1024" class="icon" version="1.1" xmlns="https://www.w3.org/2000/svg" shape-rendering="geometricPrecision">
+            <path d="M303.5 432A80 80 0 0 1 291.5 592A80 80 0 0 1 303.5 432z" fill="var(--red-1, #ff5252)" />
+            <path d="M512 65A447 447 0 0 1 512 959L512 929A417 417 0 0 0 512 95A417 417 0 0 0 512 929L512 959A447 447 0 0 1 512 65z 
+          M512 95A417 417 0 0 1 929 512A208.5 208.5 0 0 1 720.5 720.5L720.5 592A80 80 0 0 0 720.5 432A80 80 0 0 0 720.5 592L720.5 720.5A208.5 208.5 0 0 1 512 512A208.5 208.5 0 0 0 303.5 303.5A208.5 208.5 0 0 0 95 512A417 417 0 0 1 512 95z" fill="var(--red-1, #ff5252)" />
+          </svg></div><div class="loading-word">少女祈祷中...</div>
+    </div>
+  </div>
+  </div>
+  <script>
+    var time = null;
+    var loaderEl = document.getElementById('loader');
+    var startLoading = () => {
+      time = Date.now();
+      loaderEl.classList.remove("loading");
+    }
+    var hideLoader = () => {
+      document.body.style.overflow = 'auto';
+      loader.classList.add('loading');
+    };
+
+    var endLoading = () => {
+      if (!time) {
+        hideLoader();
+      } else {
+        if (Date.now() - time > 500) {
+          time = null;
+          hideLoader();
+        } else {
+          setTimeout(endLoading, 500 - (Date.now() - time));
+          time = null;
+        }
+      }
+    }
+    window.addEventListener('DOMContentLoaded', endLoading);
+    loaderEl.addEventListener('click', endLoading);
+  </script><div id="copy-tooltip"></div>
+<div id="lang-tooltip">
+本文章没有找到对应的语言版本
+</div>
+<div id="heatmap-tooltip"></div><div id="container">
+      <div id="wrap"><div id="header-nav">
+  <nav id="main-nav" aria-label="Primary navigation"><a class="main-nav-link-wrap" href="/WzhGameDevPublish/">
+        <div class='main-nav-icon icon rotate'>&#xe62b;</div>
+        <span class="main-nav-link">首页</span>
+      </a><a class="main-nav-link-wrap" href="/WzhGameDevPublish/archives">
+        <div class='main-nav-icon icon rotate'>&#xe62b;</div>
+        <span class="main-nav-link">归档</span>
+      </a><a class="main-nav-link-wrap" href="/WzhGameDevPublish/about">
+        <div class='main-nav-icon icon rotate'>&#xe62b;</div>
+        <span class="main-nav-link">关于</span>
+      </a><a class="main-nav-link-wrap" href="/WzhGameDevPublish/friend">
+        <div class='main-nav-icon icon rotate'>&#xe62b;</div>
+        <span class="main-nav-link">友链</span>
+      </a><a id="main-nav-toggle" class="nav-icon" aria-label="Toggle navigation" role="button"></a>
+  </nav>
+  <nav id="sub-nav" aria-label="Secondary navigation"><a id="nav-search-btn" class="nav-icon popup-trigger" title="搜索" aria-label="搜索"></a></nav><nav id="i18n-nav" aria-label="Language selection">
+      <div class="custom-dropdown">
+        <div class="select-selected" id="select-selected" role="button" aria-haspopup="listbox" aria-expanded="false" aria-label="Language menu">
+          <span id="nav-language-btn" class="nav-icon" style="padding: 0 20px 0 0"></span>
+          <span id="selected-lang">简体中文</span>
+        </div>
+        <ul class="select-items" id="select-items" role="listbox" aria-label="Languages"><li data-value="en" role="option" arial-selected="false" >English</li><li data-value="zh-cn" role="option" class="selected" arial-selected="true" >简体中文</li></ul>
+      </div>
+      <script>
+        var selectSelected = document.getElementById("select-selected");
+        var selectedLang = document.getElementById("selected-lang");
+        var selectItems = document.getElementById("select-items");
+        var selectOptions = selectItems.querySelectorAll("li");
+
+        selectSelected.addEventListener("click", () => {
+          selectItems.classList.toggle("show");
+          var expanded = selectSelected.getAttribute("aria-expanded") === "true";
+          selectSelected.setAttribute("aria-expanded", (!expanded).toString());
+        });
+
+        selectOptions.forEach((item) => {
+          item.addEventListener("click", () => {
+            const langMap = {};selectedLang.textContent = item.textContent;
+            selectItems.classList.remove("show");
+            selectOptions.forEach((option) => {
+              option.classList.remove("selected");
+            });
+            item.classList.add("selected");
+            if (item.dataset.value === 'zh-cn') {
+              return;
+            }
+            if (!langMap[item.dataset.value]) {
+              _$("#lang-tooltip").style.opacity = "1";
+              setTimeout(() => {
+                _$("#lang-tooltip").style.opacity = "0";
+              }, 1000);
+              return;
+            }
+            window.location = langMap[item.dataset.value];
+          });
+        });
+
+        document.addEventListener("click", (event) => {
+          if (!event.target.closest(".custom-dropdown")) {
+            selectItems.classList.remove("show");
+            selectSelected.setAttribute("aria-expanded", "false");
+          }
+        });
+      </script>
+    </nav></div>
+<header id="header" aria-label="Site header"><picture></picture>
+    <img crossorigin="anonymous" fetchpriority="high" src="https://pic1.zhimg.com/v2-a75a8fdca2cb1c3ed11f104353ce0940_1440w.jpg" alt="LyraGameMode的快速拆分"><div id="header-outer">
+    <div id="header-title"><span id="logo">
+            <h1 data-aos="slide-up">LyraGameMode的快速拆分</h1>
+          </span><h2 id="subtitle-wrap" data-aos="slide-down"></h2></div>
+  </div>
+</header><div id="content"
+          aria-label="Page content"
+          class="sidebar-left"
+            ><aside id="sidebar" aria-label="Sidebar"><div class="sidebar-wrapper-container sticky"><div class="sidebar-wrapper">
+    <div
+      class="sidebar-wrap"
+      data-aos="fade-up"
+    ><div class="sidebar-toc-sidebar"><h3 class="toc-title">文章目录</h3>
+<div class="sidebar-toc-wrapper toc-div-class">
+  <nav id="TableOfContents">
+  <ul>
+    <li><a href="#lyragamemode概述">LyraGameMode概述</a>
+      <ul>
+        <li><a href="#核心逻辑">核心逻辑</a></li>
+        <li><a href="#关键思路">关键思路</a></li>
+        <li><a href="#参考资料">参考资料</a></li>
+      </ul>
+    </li>
+    <li><a href="#modulargameplay">ModularGameplay</a></li>
+    <li><a href="#experiencemanager">ExperienceManager</a>
+      <ul>
+        <li><a href="#初始化experience">初始化Experience</a></li>
+        <li><a href="#onexperienceloaded处理pawndata">OnExperienceLoaded处理PawnData</a></li>
+      </ul>
+    </li>
+  </ul>
+
+  <ul>
+    <li><a href="#gamestate核心">GameState核心</a></li>
+    <li><a href="#客户端同步服务器帧率">客户端同步服务器帧率</a></li>
+    <li><a href="#提供组件">提供组件</a>
+      <ul>
+        <li><a href="#ulyraabilitysystemcomponent">ULyraAbilitySystemComponent</a></li>
+      </ul>
+    </li>
+    <li><a href="#协助ugameplaymessage发送消息">协助<code>UGameplayMessage</code>发送消息</a></li>
+  </ul>
+</nav>
+</div></div>
+          <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
+  <img
+    data-src="/WzhGameDevPublish/avatar/UELogo.png"
+    data-sizes="auto"
+    alt="温志洪"
+    class="lazyload"
+  />
+  <div class="sidebar-author-name">温志洪</div>
+  <div class="sidebar-description">FPS游戏</div>
+</div>
+<div class="sidebar-state">
+  <div class="sidebar-state-article">
+    <div>文章</div><div class="sidebar-state-number">11</div>
+  </div>
+  <a class="sidebar-state-category" href="/WzhGameDevPublish/categories/" aria-label="sidebar-state-category-link">
+    <div>分类</div>
+    <div class="sidebar-state-number">
+      0
+    </div>
+  </a>
+  <a class="sidebar-state-tag" href="/WzhGameDevPublish/tags/" aria-label="sidebar-state-tag-link">
+    <div>标签</div>
+    <div class="sidebar-state-number">10</div>
+  </a>
+</div>
+<div class="sidebar-social"><div class="icon-bilibili sidebar-social-icon">
+      <a
+        href="https://space.bilibili.com/35312868"
+        itemprop="url"
+        target="_blank"
+        aria-label="bilibili"
+        rel="noopener nofollow noreferrer"
+      ></a>
+    </div><div class="icon-email sidebar-social-icon">
+      <a
+        href="mailto:cnwenzhihong@gmail.com"
+        itemprop="url"
+        target="_blank"
+        aria-label="email"
+        rel="noopener nofollow noreferrer"
+      ></a>
+    </div></div>
+<div class="sidebar-menu"><div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/WzhGameDevPublish/"
+        aria-label="首页"
+      ></a>
+      <div class='sidebar-menu-icon icon rotate'>&#xe62b;</div>
+      <div class="sidebar-menu-link">首页</div>
+    </div><div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/WzhGameDevPublish/archives"
+        aria-label="归档"
+      ></a>
+      <div class='sidebar-menu-icon icon rotate'>&#xe62b;</div>
+      <div class="sidebar-menu-link">归档</div>
+    </div><div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/WzhGameDevPublish/about"
+        aria-label="关于"
+      ></a>
+      <div class='sidebar-menu-icon icon rotate'>&#xe62b;</div>
+      <div class="sidebar-menu-link">关于</div>
+    </div><div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/WzhGameDevPublish/friend"
+        aria-label="友链"
+      ></a>
+      <div class='sidebar-menu-icon icon rotate'>&#xe62b;</div>
+      <div class="sidebar-menu-link">友链</div>
+    </div></div>
+</div><div class="sidebar-btn-wrapper" style="position:static">
+            <div class="sidebar-toc-btn current"></div>
+            <div class="sidebar-common-btn"></div>
+          </div></div>
+  </div><div class="sidebar-widget"></div></div></aside>
+<section id="main" aria-label="Main content"><p style="color:red">ARTICLE PARTIAL OVERRIDE ACTIVE</p>
+<article
+  class="h-entry article"
+  itemscope
+  itemtype="https://schema.org/BlogPosting"
+>
+  <div
+    class="article-inner"
+    data-aos="fade-up"
+  >
+    <div class="article-meta"><div class="article-date">
+  <span
+    class="article-date-link icon-calendar"
+    data-aos="zoom-in"
+  >
+    <time datetime="2026-02-23 08:19:37.905 &#43;0000 UTC" itemprop="datePublished"
+      >2026-02-23</time
+    >
+    <time style="display: none;" id="post-update-time"
+      >2026-03-20</time
+    >
+  </span><span
+      class="article-date-link icon-calendar-plus"
+      data-aos="zoom-in"
+    >
+      <time datetime="2026-03-20 09:18:47.379 &#43;0000 UTC" itemprop="dateModified"
+        >2026-03-20</time
+      >
+    </span></div>
+<div class="article-category"></div>
+</div><div class="hr-line"></div><div class="e-content article-entry" itemprop="articleBody"><h1 id="lyragamemode">
+<a class="header-anchor" href="#lyragamemode"></a>
+LyraGameMode
+</h1><h2 id="lyragamemode概述">
+<a class="header-anchor" href="#lyragamemode%e6%a6%82%e8%bf%b0"></a>
+LyraGameMode概述
+</h2><h3 id="核心逻辑">
+<a class="header-anchor" href="#%e6%a0%b8%e5%bf%83%e9%80%bb%e8%be%91"></a>
+核心逻辑
+</h3><ol>
+<li>更改ModularGamePlay基类</li>
+<li>绝大部分逻辑为加载和配置<code>ExperienceDefinition</code>中的所有参数服务<br>
+<img src="https://gcore.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/20260306223927683.png" alt=""></li>
+</ol>
+<h3 id="关键思路">
+<a class="header-anchor" href="#%e5%85%b3%e9%94%ae%e6%80%9d%e8%b7%af"></a>
+关键思路
+</h3><h4 id="experience加载阶段">
+<a class="header-anchor" href="#experience%e5%8a%a0%e8%bd%bd%e9%98%b6%e6%ae%b5"></a>
+Experience加载阶段
+</h4><table>
+  <thead>
+      <tr>
+          <th>阶段</th>
+          <th>作用</th>
+          <th>函数</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>start</td>
+          <td>等待一帧,准备加载</td>
+          <td>GameMode::initgame</td>
+      </tr>
+      <tr>
+          <td>match</td>
+          <td>按优先级找<code>ExperienceDefinition</code></td>
+          <td>GameMode::HandleMatchAssignmentIfNotExpectingOne</td>
+      </tr>
+      <tr>
+          <td>set</td>
+          <td>获得Experience</td>
+          <td>ExperienceManager::SetCurrentExperience</td>
+      </tr>
+      <tr>
+          <td><strong>Loading</strong></td>
+          <td>按服务器/客户端加载Experience中的Actions ActionSet绑定的资产</td>
+          <td>StartExperienceLoad</td>
+      </tr>
+      <tr>
+          <td><strong>LoadingGameFeatures</strong></td>
+          <td>加载GameFeature</td>
+          <td>OnExperienceLoadComplete</td>
+      </tr>
+      <tr>
+          <td><strong>LoadingChaosTestingDelay</strong></td>
+          <td>Timer延迟测试</td>
+          <td>OnExperienceFullLoadCompleted</td>
+      </tr>
+      <tr>
+          <td><strong>ExecutingActions</strong></td>
+          <td>执行所有Action的回调函数</td>
+          <td>OnExperienceFullLoadCompleted</td>
+      </tr>
+      <tr>
+          <td><strong>Loaded</strong></td>
+          <td>按高中低优先级广播完成Delegate</td>
+          <td>OnExperienceFullLoadCompleted</td>
+      </tr>
+  </tbody>
+</table>
+<h4 id="gamemode初始化流程">
+<a class="header-anchor" href="#gamemode%e5%88%9d%e5%a7%8b%e5%8c%96%e6%b5%81%e7%a8%8b"></a>
+Gamemode初始化流程
+</h4><p>InitGame → 选副本（Experience）→ 加资源（ActionSet + GameFeature）→ 执行动作（Action）→ 玩家出生（RestartPlayer）→ 同步世界状态（GameState）</p>
+<ul>
+<li><strong>InitGameState</strong><br>
+新增<code>ULyraExperienceManagerComponent</code>资源加载完成的回调，方便加载完成后开展Gameplay逻辑(RestartPlayer)</li>
+<li><strong>InitGame</strong><br>
+按优先级查找并初始化Experience，加载资源。</li>
+<li><strong>OnExperienceLoaded</strong><br>
+Experience资源加载完成之后回调，并执行RestartPlayer相关的逻辑。</li>
+<li><strong>RestartPlayer</strong><br>
+引入<code>ULyraPlayerSpawningManagerComponent</code>管理PlayerRestart，并接入PawnData</li>
+</ul>
+<h3 id="参考资料">
+<a class="header-anchor" href="#%e5%8f%82%e8%80%83%e8%b5%84%e6%96%99"></a>
+参考资料
+</h3><p><a href="https://zhuanlan.zhihu.com/p/505766201"># Lyra的数据驱动之数据加载与引用</a><br>
+<a href="https://zhuanlan.zhihu.com/p/1931763088924862388">Lyra-Experience</a></p>
+<h2 id="modulargameplay">
+<a class="header-anchor" href="#modulargameplay"></a>
+ModularGameplay
+</h2><p>更换Gameplay基类为<code>ModularGamePlay</code>子类<br>
+<img src="https://pic4.zhimg.com/v2-8a265fc91262b9620501eeeeb59b1a9b_1440w.jpg" alt=""></p>
+<h2 id="experiencemanager">
+<a class="header-anchor" href="#experiencemanager"></a>
+ExperienceManager
+</h2><h3 id="初始化experience">
+<a class="header-anchor" href="#%e5%88%9d%e5%a7%8b%e5%8c%96experience"></a>
+初始化Experience
+</h3><h4 id="step0-客户进店-开始迎接绑定experienceloaded回调调用查找函数">
+<a class="header-anchor" href="#step0-%e5%ae%a2%e6%88%b7%e8%bf%9b%e5%ba%97-%e5%bc%80%e5%a7%8b%e8%bf%8e%e6%8e%a5%e7%bb%91%e5%ae%9aexperienceloaded%e5%9b%9e%e8%b0%83%e8%b0%83%e7%94%a8%e6%9f%a5%e6%89%be%e5%87%bd%e6%95%b0"></a>
+Step0 客户进店 开始迎接：绑定ExperienceLoaded回调+调用查找函数
+</h4>
+  <blockquote class="alert-blockquote example">
+    <p class="alert-heading">
+      Example
+    </p>
+    <p><h4 id="experience-就像一份完整套餐菜单">
+<a class="header-anchor" href="#experience-%e5%b0%b1%e5%83%8f%e4%b8%80%e4%bb%bd%e5%ae%8c%e6%95%b4%e5%a5%97%e9%a4%90%e8%8f%9c%e5%8d%95"></a>
+Experience 就像<strong>一份完整套餐菜单</strong>：
+</h4><p>里面包含：</p>
+<ul>
+<li>做哪些菜</li>
+<li>需要哪些设备</li>
+<li>厨房要执行哪些步骤</li>
+</ul></p>
+  </blockquote>
+
+<h5 id="1-准备好呼叫系统">
+<a class="header-anchor" href="#1-%e5%87%86%e5%a4%87%e5%a5%bd%e5%91%bc%e5%8f%ab%e7%b3%bb%e7%bb%9f"></a>
+1️⃣ <strong>准备好呼叫系统</strong>
+</h5><blockquote>
+<p>如果菜做好了，可以通知服务员。<br>
+<code>InitGameState</code><br>
+绑定 <code>ExperienceLoaded</code> 回调 -to&gt; <code>OnExperienceLoaded</code></p>
+</blockquote>
+<h5 id="2-服务员问顾客吃什么">
+<a class="header-anchor" href="#2-%e6%9c%8d%e5%8a%a1%e5%91%98%e9%97%ae%e9%a1%be%e5%ae%a2%e5%90%83%e4%bb%80%e4%b9%88"></a>
+2️⃣ <strong>服务员问顾客吃什么</strong>
+</h5><blockquote>
+<p>餐厅确定：客人点哪套套餐<br>
+<code>InitGame</code><br>
+下一帧找 <code>Experience</code> -by&gt; <code>HandleMatchAssignmentIfNotExpectingOne</code></p>
+</blockquote>
+
+  <blockquote class="alert-blockquote note">
+    <p class="alert-heading">
+      Note
+    </p>
+    <p><h4 id="initgame与-initgamestate">
+<a class="header-anchor" href="#initgame%e4%b8%8e-initgamestate"></a>
+InitGame与 InitGameState
+</h4><p><code>InitGameState</code>：在<code>PreComponentInit</code>中调用<br>
+<code>InitGame</code>：先于<code>PreComponentInit</code>执行。新地图游戏逻辑的开始：场景已经加载完，对象也创建好了。<br>
+所以需要等一帧，让<code>InitGameState</code>的回调得以绑定<br>
+<img src="https://pica.zhimg.com/v2-41557ed02113a4a4b70d2fba1443c1e4_1440w.jpg" alt=""><br>
+<img src="https://pica.zhimg.com/v2-b6459bfaf30b78e6426353a67586fb74_1440w.jpg" alt=""></p></p>
+  </blockquote>
+
+<h4 id="step1-选套餐按优先级寻找experience">
+<a class="header-anchor" href="#step1-%e9%80%89%e5%a5%97%e9%a4%90%e6%8c%89%e4%bc%98%e5%85%88%e7%ba%a7%e5%af%bb%e6%89%beexperience"></a>
+Step1 选套餐：按优先级寻找Experience
+</h4><h5 id="1客户选择套餐">
+<a class="header-anchor" href="#1%e5%ae%a2%e6%88%b7%e9%80%89%e6%8b%a9%e5%a5%97%e9%a4%90"></a>
+1️⃣<strong>客户选择套餐</strong>
+</h5><blockquote>
+<p>用户喜欢点更高优先级的餐，没有则选择更低优先级<br>
+用户指定 &gt; 菜单里的推荐 &gt; 服务员推荐 &gt; 随便吃点<br>
+<code>HandleMatchAssignmentIfNotExpectingOne</code><br>
+找到后调用<code>OnMatchAssignmentGiven</code></p>
+</blockquote>
+
+  <blockquote class="alert-blockquote note">
+    <p class="alert-heading">
+      Note
+    </p>
+    <p><h2 id="experience顺序匹配--url--pie--命令行--world--editor默认">
+<a class="header-anchor" href="#experience%e9%a1%ba%e5%ba%8f%e5%8c%b9%e9%85%8d--url--pie--%e5%91%bd%e4%bb%a4%e8%a1%8c--world--editor%e9%bb%98%e8%ae%a4"></a>
+Experience顺序：匹配 &gt; URL &gt; PIE &gt; 命令行 &gt; World &gt; Editor默认
+</h2><ul>
+<li>Matchmaking assignment (if present)</li>
+<li>URL Options override</li>
+<li>Developer Settings (PIE only)</li>
+<li>Command Line override</li>
+<li>World Settings</li>
+<li>Default experience</li>
+</ul></p>
+  </blockquote>
+
+<h5 id="2告知后厨套餐名">
+<a class="header-anchor" href="#2%e5%91%8a%e7%9f%a5%e5%90%8e%e5%8e%a8%e5%a5%97%e9%a4%90%e5%90%8d"></a>
+2️⃣<strong>告知后厨套餐名</strong>
+</h5><p>现在开始由后厨<code>ULyraExperienceManagerComponent</code>管理</p>
+<blockquote>
+<p>不管是点餐机也好还是服务员手动打印小票，后厨都能拿到套餐名称<br>
+<code>ULyraExperienceManagerComponent::SetCurrentExperience</code><br>
+设置套餐为用户所选，后厨开始做菜<code>StartExperienceLoad</code><br>
+<code>StartExperienceLoad</code>在客户端则由<code>OnRep_CurrentExperience</code>调用<br>
+<img src="https://pic1.zhimg.com/v2-8e2937f5f173bcd2cf26114620370dc4_1440w.jpg" alt=""></p>
+</blockquote>
+<h4 id="step2--后厨准备食材加载和初始化experience">
+<a class="header-anchor" href="#step2--%e5%90%8e%e5%8e%a8%e5%87%86%e5%a4%87%e9%a3%9f%e6%9d%90%e5%8a%a0%e8%bd%bd%e5%92%8c%e5%88%9d%e5%a7%8b%e5%8c%96experience"></a>
+Step2  后厨准备食材：加载和初始化Experience
+</h4><h5 id="1配置食材actions加载">
+<a class="header-anchor" href="#1%e9%85%8d%e7%bd%ae%e9%a3%9f%e6%9d%90actions%e5%8a%a0%e8%bd%bd"></a>
+1️⃣<strong>配置食材</strong>：Actions加载
+</h5>
+  <blockquote class="alert-blockquote example">
+    <p class="alert-heading">
+      Example
+    </p>
+    <p><h4 id="actionset-就像固定备菜清单">
+<a class="header-anchor" href="#actionset-%e5%b0%b1%e5%83%8f%e5%9b%ba%e5%ae%9a%e5%a4%87%e8%8f%9c%e6%b8%85%e5%8d%95"></a>
+<code>ActionSet</code> 就像固定<strong>备菜清单</strong>
+</h4><p>没有<code>ActionSet</code>当然也可以，但把重复流程提出来单独放置，减少了查找和新模式一点点加的麻烦</p>
+<ul>
+<li>切萝卜丝、莴笋丝、土豆丝作为XX炒三丝的 <strong>切丝备菜方案</strong></li>
+<li>切葱、拍蒜、切香菜是很多湘菜的 <strong>固定配料方案</strong></li>
+<li>用料酒、盐、花椒粉腌制里脊肉同样是锅包肉/小炒肉等方案的 <strong>腌制方案</strong></li>
+</ul></p>
+  </blockquote>
+
+<blockquote>
+<p>按规则加载<code>Experience</code>自己和<code>ActionSet</code>中所有<code>GameFeatureAction</code>配置(SoftPtr)的资产<br>
+<code>StartExperienceLoad</code><br>
+加载完成后调用<code>OnExperienceLoadComplete</code></p>
+</blockquote>
+<blockquote>
+<p>状态标识：<code>LoadState</code>=ELyraExperienceLoadState::Loading</p>
+</blockquote>
+<h5 id="按serverclient规则加载actions引用的资产">
+<a class="header-anchor" href="#%e6%8c%89serverclient%e8%a7%84%e5%88%99%e5%8a%a0%e8%bd%bdactions%e5%bc%95%e7%94%a8%e7%9a%84%e8%b5%84%e4%ba%a7"></a>
+按Server/Client规则加载Actions引用的资产
+</h5><p>加载<code>BundleAssetList</code>中所有具有<code>BundlesToLoad</code>标识的资产<br>
+<code>BundleAssetList</code>：在(自己+所有ActionSet)中找要加载的<code>Bundle</code>,Action配置的每个资产必定指定了<code>Bundle</code><br>
+<code>BundlesToLoad</code>：根据Action对资产的标识决定：Server、Client、Equipped(全部)，只需要根据自己所处端让<code>BundlesToLoad</code>添加对应<code>BoundsName</code>即可</p>
+
+  <blockquote class="alert-blockquote example">
+    <p class="alert-heading">
+      Example
+    </p>
+    <p><h4 id="关键截图">
+<a class="header-anchor" href="#%e5%85%b3%e9%94%ae%e6%88%aa%e5%9b%be"></a>
+关键截图
+</h4><p><img src="https://gcore.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/20260306014942957.png" alt=""><br>
+<img src="https://gcore.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/20260306015806382.png" alt=""></p></p>
+  </blockquote>
+
+
+  <blockquote class="alert-blockquote info">
+    <p class="alert-heading">
+      Info
+    </p>
+    <p><h4 id="lyra与assetbounds">
+<a class="header-anchor" href="#lyra%e4%b8%8eassetbounds"></a>
+Lyra与AssetBounds
+</h4><p>资料：<a href="https://zhuanlan.zhihu.com/p/81155196">AssetManager系列之Asset Bundles</a><br>
+Bounds在Lyra中用作区分服务器和客户端资产，可以在加载时便将软引用资产加载。Equipped并未被使用。</p>
+<blockquote>
+<p>决定资产所属Bounds(Server/Client)的方式</p>
+<ol>
+<li>引用的资产自己决定：AddComp<img src="https://gcore.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/20260305233050211.png" alt=""><img src="https://gcore.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/20260306011715921.png" alt=""></li>
+<li><code>GameFeatureAction</code>统一决定：AddWidgets添加到Client、Abilities双端、Input双端</li>
+</ol>
+</blockquote>
+<p>加载代码：<br>
+<img src="https://gcore.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/20260305220128805.png" alt=""></p></p>
+  </blockquote>
+
+
+  <blockquote class="alert-blockquote important">
+    <p class="alert-heading">
+      Important
+    </p>
+    <p><h4 id="changebundlestateforprimaryassets">
+<a class="header-anchor" href="#changebundlestateforprimaryassets"></a>
+<strong>ChangeBundleStateForPrimaryAssets</strong>
+</h4><p>用于<strong>动态加载或卸载</strong>指定 Primary Asset 的某些资源 Bundle。<img src="https://pic1.zhimg.com/v2-ca16cfed06cc53bf441b64442d28ef74_r.jpg" alt=""><br>
+将指定 PrimaryAsset 的部分资源（通过 Bundle 分组）异步加载进内存<br>
+从内存中卸载部分 Bundle（如果 <code>RemoveBundles</code> 指定）<br>
+支持加载完成回调 <code>DelegateToCall</code><br>
+可指定加载优先级，如 <code>AsyncLoadHighPriority</code></p></p>
+  </blockquote>
+
+
+  <blockquote class="alert-blockquote note">
+    <p class="alert-heading">
+      Note
+    </p>
+    <p><h4 id="源代码有但没有用到的内容">
+<a class="header-anchor" href="#%e6%ba%90%e4%bb%a3%e7%a0%81%e6%9c%89%e4%bd%86%e6%b2%a1%e6%9c%89%e7%94%a8%e5%88%b0%e7%9a%84%e5%86%85%e5%ae%b9"></a>
+源代码有但没有用到的内容
+</h4><p>AssetManager.LoadAssetList与RawAssetList<br>
+直接按规则加载Experience自己引用的资产<br>
+<code>TSet&lt;FPrimaryAssetId&gt; PreloadAssetList</code>： 可以存放除了ActionSet以外的主资产</p></p>
+  </blockquote>
+
+<h5 id="2准备厨具餐具gamefeature加载">
+<a class="header-anchor" href="#2%e5%87%86%e5%a4%87%e5%8e%a8%e5%85%b7%e9%a4%90%e5%85%b7gamefeature%e5%8a%a0%e8%bd%bd"></a>
+2️⃣准备厨具餐具：<code>GameFeature</code>加载
+</h5><p><code>OnExperienceLoadComplete</code><br>
+加载<code>GameFeature</code> -&gt; 加载完成后调用<code>OnExperienceFullLoadCompleted</code></p>
+<blockquote>
+<p>状态标识：<code>LoadState</code>=ELyraExperienceLoadState::LoadingGameFeatures<br>
+<img src="https://gcore.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/20260225164146023.png" alt=""></p>
+</blockquote>
+
+  <blockquote class="alert-blockquote note">
+    <p class="alert-heading">
+      Note
+    </p>
+    <p><h4 id="检查gamefeature全部加载完成方案回调计数器">
+<a class="header-anchor" href="#%e6%a3%80%e6%9f%a5gamefeature%e5%85%a8%e9%83%a8%e5%8a%a0%e8%bd%bd%e5%ae%8c%e6%88%90%e6%96%b9%e6%a1%88%e5%9b%9e%e8%b0%83%e8%ae%a1%e6%95%b0%e5%99%a8"></a>
+检查GameFeature全部加载完成方案：回调+计数器
+</h4><p><img src="https://gcore.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/20260225170348507.png" alt=""></p></p>
+  </blockquote>
+
+<p>到这里,Experience加载已经完成,后续便是脏代码以及广播完成消息.</p>
+<hr>
+<h5 id="3加载延迟测试">
+<a class="header-anchor" href="#3%e5%8a%a0%e8%bd%bd%e5%bb%b6%e8%bf%9f%e6%b5%8b%e8%af%95"></a>
+3️⃣加载延迟测试
+</h5><p><code>OnExperienceFullLoadCompleted</code><br>
+通过控制台命令参数增加一个Timer延迟</p>
+<blockquote>
+<p>状态标识：<code>LoadState</code>=ELyraExperienceLoadState::LoadingChaosTestingDelay</p>
+</blockquote>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cmd" data-lang="cmd"><span class="line"><span class="cl">  lyra.chaos.ExperienceDelayLoad.MinSecs
+</span></span><span class="line"><span class="cl">  lyra.chaos.ExperienceDelayLoad.RandomSecs
+</span></span></code></pre></div><p><img src="https://gcore.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/20260306192622662.png" alt=""></p>
+<h5 id="4检查与善后执行gamefeatureaction">
+<a class="header-anchor" href="#4%e6%a3%80%e6%9f%a5%e4%b8%8e%e5%96%84%e5%90%8e%e6%89%a7%e8%a1%8cgamefeatureaction"></a>
+4️⃣检查与善后：执行<code>GameFeatureAction</code>
+</h5><p><code>OnExperienceFullLoadCompleted</code></p>
+<blockquote>
+<p>状态标识：<code>LoadState</code>= ELyraExperienceLoadState::ExecutingActions</p>
+</blockquote>
+<p>一些零零散散的收尾工作<br>
+对Experience和ActionSets中的所有Action手动执行<code>GameFeatureAction</code>相关回调<br>
+<img src="https://gcore.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/20260225165953409.png" alt=""></p>
+<h5 id="5告知完成">
+<a class="header-anchor" href="#5%e5%91%8a%e7%9f%a5%e5%ae%8c%e6%88%90"></a>
+5️⃣告知完成
+</h5><p>OnExperienceFullLoadCompleted<br>
+备菜环节全部完成,按优先级,广播厨师取食材/工具<br>
+所有资源相关的操作都完成,按优先级广播完成的消息</p>
+<blockquote>
+<p>状态标识：<code>LoadState</code>= ELyraExperienceLoadState::::Loaded;</p>
+</blockquote>
+<p>触发委托Delegate，分高中低。<br>
+<img src="https://pic4.zhimg.com/v2-31b1140b348afaea6f07429da64951c3_1440w.jpg" alt=""></p>
+
+  <blockquote class="alert-blockquote example">
+    <p class="alert-heading">
+      Example
+    </p>
+    <p><h4 id="不同优先级的回调">
+<a class="header-anchor" href="#%e4%b8%8d%e5%90%8c%e4%bc%98%e5%85%88%e7%ba%a7%e7%9a%84%e5%9b%9e%e8%b0%83"></a>
+不同优先级的回调
+</h4><p><img src="https://gcore.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/20260320171804959.png" alt=""><br>
+High Priority</p>
+<ul>
+<li><code>ULyraTeamCreationComponent</code><strong>队伍</strong><br>
+组队信息创建，PlayerState会注册到队伍中。</li>
+<li><code>ULyraFrontendStateComponent</code><strong>UI</strong><br>
+处理带有主菜单界面的Experience Loaded之后的一些处理，主要是打开主菜单界面。</li>
+</ul>
+<p><strong>Normal Priority</strong></p>
+<ul>
+<li>★<code>ALyraGameMode</code> <strong>Gameplay</strong><br>
+调用了GameModeBase::RestartPlayer，开始创建玩家角色。</li>
+<li>★<code>ALyraPlayerState</code> <strong>PawnData</strong><br>
+给PlayerState设置PawnData，为角色初始化GAS。</li>
+<li><code>UAsyncAction_ExperienceReady</code>::Step3_HandleExperienceLoaded<br>
+自定义的异步蓝图方法，用于等待ExperienceLoad后进行一些逻辑。</li>
+</ul>
+<p><strong>Low Priority</strong></p>
+<ul>
+<li><code>ULyraBotCreationComponent</code><strong>AI</strong>。</li>
+</ul>
+<p><strong>最低,硬编码</strong><br>
+ULyraSettingsLocal 配置和设置<br>
+直接写死在Delegate后面,仅客户端</p></p>
+  </blockquote>
+
+<h3 id="onexperienceloaded处理pawndata">
+<a class="header-anchor" href="#onexperienceloaded%e5%a4%84%e7%90%86pawndata"></a>
+OnExperienceLoaded处理PawnData
+</h3><h4 id="pawndata参数">
+<a class="header-anchor" href="#pawndata%e5%8f%82%e6%95%b0"></a>
+PawnData参数
+</h4><p>Pawn<br>
+- PawnClass<br>
+- Ability &amp; Tag Relationship<br>
+Controller<br>
+- InputConfig<br>
+Camera<br>
+- CameraMode<br>
+<img src="https://gcore.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/20260307132925881.png" alt=""></p>
+<h4 id="gamemode的experienceloaded">
+<a class="header-anchor" href="#gamemode%e7%9a%84experienceloaded"></a>
+GameMode的<code>ExperienceLoaded</code>
+</h4><h5 id="更改restartplayer时机到experienceloaded">
+<a class="header-anchor" href="#%e6%9b%b4%e6%94%b9restartplayer%e6%97%b6%e6%9c%ba%e5%88%b0experienceloaded"></a>
+更改<code>RestartPlayer</code>时机到<code>ExperienceLoaded</code>
+</h5><p>GameMode在Experience完全加载(Loaded)之前无法生成角色<br>
+<img src="https://gcore.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/20260306202620598.png" alt=""></p>
+<p>在<strong>Experience</strong>资源加载完后，手动<code>RestartPlayer</code><br>
+<img src="https://pica.zhimg.com/v2-288a776f53e6d3b40f7a3c1ecac41dbe_1440w.jpg" alt=""></p>
+
+  <blockquote class="alert-blockquote note">
+    <p class="alert-heading">
+      Note
+    </p>
+    <p><h4 id="角色重生逻辑移到了ulyraplayerspawningmanagercomponent管理">
+<a class="header-anchor" href="#%e8%a7%92%e8%89%b2%e9%87%8d%e7%94%9f%e9%80%bb%e8%be%91%e7%a7%bb%e5%88%b0%e4%ba%86ulyraplayerspawningmanagercomponent%e7%ae%a1%e7%90%86"></a>
+角色重生逻辑移到了<code>ULyraPlayerSpawningManagerComponent</code>管理:
+</h4><p><img src="https://pica.zhimg.com/v2-e162ce95674f9f38d4ba758f583098ec_1440w.jpg" alt=""></p></p>
+  </blockquote>
+
+
+  <blockquote class="alert-blockquote tip">
+    <p class="alert-heading">
+      Tip
+    </p>
+    <p><h4 id="gamemode-override了必要函数以传递lyra的pawn和pawndata">
+<a class="header-anchor" href="#gamemode-override%e4%ba%86%e5%bf%85%e8%a6%81%e5%87%bd%e6%95%b0%e4%bb%a5%e4%bc%a0%e9%80%92lyra%e7%9a%84pawn%e5%92%8cpawndata"></a>
+Gamemode override了必要函数，以传递Lyra的<strong>Pawn</strong>和<strong>PawnData</strong>
+</h4><p><img src="https://pica.zhimg.com/v2-89beabbb8abccebc82c84b287bdcf526_1440w.jpg" alt=""></p></p>
+  </blockquote>
+
+<h4 id="playerstate的experienceloaded">
+<a class="header-anchor" href="#playerstate%e7%9a%84experienceloaded"></a>
+<code>PlayerState</code>的<code>ExperienceLoaded</code>
+</h4><blockquote>
+<p><code>GetPawnDataForController</code><br>
+获取并配置<code>PawnData</code>的参数</p>
+</blockquote>
+
+  <blockquote class="alert-blockquote tip">
+    <p class="alert-heading">
+      Tip
+    </p>
+    <p><h4 id="pawndata获取顺序">
+<a class="header-anchor" href="#pawndata%e8%8e%b7%e5%8f%96%e9%a1%ba%e5%ba%8f"></a>
+PawnData获取顺序：
+</h4><p>PlayerState-&gt;Experience<br>
+一般取的是<code>Experience</code>的<code>PawnData</code></p></p>
+  </blockquote>
+
+<p>添加<code>PawnData</code>中的<code>AbilitySet</code>：(ALyraPlayerState::SetPawnData)<br>
+<img src="https://pic2.zhimg.com/v2-602452841a95d5e6990572b6e38b7cd9_1440w.jpg" alt=""></p>
+<h1 id="lyragamestate">
+<a class="header-anchor" href="#lyragamestate"></a>
+LyraGameState
+</h1><h2 id="gamestate核心">
+<a class="header-anchor" href="#gamestate%e6%a0%b8%e5%bf%83"></a>
+GameState核心
+</h2><p>帮GameMode和其他组件、系统同步属性/消息</p>
+<ul>
+<li>将服务器帧率<code>GAverageFPS</code>同步到客户端</li>
+<li>放置<code>ExperienceManagerComponent</code> 和<code>AbilitySystemComponent</code></li>
+<li>使用<code>UGameplayMessage</code>实现了全新的<code>MessageBroadcast</code>系统</li>
+</ul>
+<h2 id="客户端同步服务器帧率">
+<a class="header-anchor" href="#%e5%ae%a2%e6%88%b7%e7%ab%af%e5%90%8c%e6%ad%a5%e6%9c%8d%e5%8a%a1%e5%99%a8%e5%b8%a7%e7%8e%87"></a>
+客户端同步服务器帧率
+</h2><p>每帧在服务器获取服务器帧率<code>GAverageFPS</code>后属性同步到客户端。<br>
+<img src="https://pic4.zhimg.com/v2-20d9b1f1700098f6d6bd9f5ae8951615_1440w.jpg" alt=""></p>
+
+  <blockquote class="alert-blockquote note">
+    <p class="alert-heading">
+      Note
+    </p>
+    <p><h4 id="gaveragefps">
+<a class="header-anchor" href="#gaveragefps"></a>
+GAverageFPS
+</h4><p>GAverageFPS是引擎本体的全局变量，它在每一帧的FEngineLoop::Tick()中执行相关的计算逻辑。关于引擎的启动流程可以参考<a href="https://zhuanlan.zhihu.com/p/610523485">Unreal Engine 的启动流程</a> 。<br>
+在tick中调用 CalculateFPSTimings 完成FPS的计算。<br>
+<img src="https://pica.zhimg.com/v2-e08c17b6a2699a030282963a493854d4_1440w.jpg" alt=""><br>
+这里的平均帧率有个小的算法，用之前平均值的0.75 + 当前帧时间的0.25。<br>
+那么当前帧的执行时间算法又有所不同，常规的是按照本帧的时间-上帧的时间，但如果开启了垂直同步，并且同步的类型是2（Game线程与GPU的垂直同步时间同步：<a href="https://zhuanlan.zhihu.com/p/225465983">UE4 关于主循环的资料</a>）的时候去获取RHI的每帧时间。<br>
+<img src="https://pic2.zhimg.com/v2-7994d15b80eb9ce2c16c88d08174aeab_1440w.jpg" alt=""></p></p>
+  </blockquote>
+
+<h2 id="提供组件">
+<a class="header-anchor" href="#%e6%8f%90%e4%be%9b%e7%bb%84%e4%bb%b6"></a>
+提供组件
+</h2><p><code>ULyraExperienceManagerComponent</code>在GameMode中讲述</p>
+<h3 id="ulyraabilitysystemcomponent">
+<a class="header-anchor" href="#ulyraabilitysystemcomponent"></a>
+ULyraAbilitySystemComponent
+</h3><p>在GameState上放了一个AbilityComp<br>
+调用位置：<code>ULyraGamePhaseSubsystem::StartPhase</code>，用来向客户端同步当前的游戏阶段（<strong>GamePhase</strong>）<br>
+<img src="https://pic4.zhimg.com/v2-8cb48d5aae3592803ad7d7c8304366f3_1440w.jpg" alt=""></p>
+<h2 id="协助ugameplaymessage发送消息">
+<a class="header-anchor" href="#%e5%8d%8f%e5%8a%a9ugameplaymessage%e5%8f%91%e9%80%81%e6%b6%88%e6%81%af"></a>
+协助<code>UGameplayMessage</code>发送消息
+</h2><p><a href="https://zhuanlan.zhihu.com/p/494820956"># GameplayMessageRouter 插件源码分析| Site Unreachable</a><br>
+可以让蓝图与c++针对不指定具体类型的结构体进行交互<br>
+<img src="https://picx.zhimg.com/v2-42612580808525a939804ce33007c655_1440w.jpg" alt=""></p>
+</div>
+    <footer class="article-footer"><ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item" data-aos="zoom-in">
+      <a
+        class="article-tag-list-link"
+        href="/WzhGameDevPublish/tags/blog"
+        rel="tag"
+        >BLOG</a
+      >
+    </li></ul>
+</footer>
+  </div><nav
+    id="article-nav"
+    aria-label="Article navigation"
+    data-aos="fade-up"
+  ><div class="article-nav-link-wrap left"><img
+              data-src="https://img95.699pic.com/photo/60027/4138.jpg_wh860.jpg"
+              data-sizes="auto"
+              alt="WeaponSway插件的简单使用"
+              class="lazyload"
+            /><a
+          href="/WzhGameDevPublish/post/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/%E4%BB%A3%E7%A0%81%E6%A1%86%E6%9E%B6/lyra/fps/%E6%8A%80%E6%9C%AF%E7%BB%86%E8%8A%82/weaponsway/weaponsway%E6%8F%92%E4%BB%B6%E7%9A%84%E7%AE%80%E5%8D%95%E4%BD%BF%E7%94%A8/"
+          aria-label="前一篇:WeaponSway插件的简单使用"
+          title="前一篇:WeaponSway插件的简单使用"
+        ></a>
+        <div class="article-nav-caption">前一篇</div>
+        <h3 class="article-nav-title">WeaponSway插件的简单使用</h3>
+      </div><div class="article-nav-link-wrap right"><img
+            data-src="https://pica.zhimg.com/v2-14465b19d25ee29bfe69d834fd9e0110_1440w.jpg"
+            data-sizes="auto"
+            alt="Lyra实现：Experience"
+            class="lazyload"
+          /><a
+          href="/WzhGameDevPublish/post/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/%E4%BB%A3%E7%A0%81%E6%A1%86%E6%9E%B6/lyra/lyra-framework/lyra%E5%AE%9E%E7%8E%B0experience/"
+          aria-label="后一篇:Lyra实现：Experience"
+          title="后一篇:Lyra实现：Experience"
+        ></a>
+        <div class="article-nav-caption">后一篇</div>
+        <h3 class="article-nav-title">Lyra实现：Experience</h3>
+      </div></nav></article></section>
+        </div><footer id="footer" aria-label="Site footer">
+  <div style="width: 100%; overflow: hidden">
+    <div class="footer-line"></div>
+  </div>
+  <div id="footer-info"><div>
+      <span class="icon-copyright"></span>2025-2026<span class="footer-info-sep rotate"></span>
+      温志洪
+    </div><div>
+        基于&nbsp;<a
+          href="https://gohugo.io/"
+          target="_blank"
+          rel="noopener nofollow noreferrer"
+          >Hugo</a
+        >&nbsp; Theme.<a
+          href="https://github.com/D-Sketon/hugo-theme-reimu"
+          target="_blank"
+          rel="noopener nofollow noreferrer"
+          >Reimu</a
+        >
+      </div><div>
+        <span class="icon-brush"
+          >&nbsp;34.3k</span
+        >
+        &nbsp;|&nbsp;
+        <span class="icon-coffee">&nbsp;01:14</span>
+      </div><div>
+        <span class="icon-eye"></span>
+        <span id="busuanzi_container_site_pv"
+          >总访问量&nbsp;<span
+            id="busuanzi_value_site_pv"
+          ></span
+        ></span>
+        &nbsp;|&nbsp;
+        <span class="icon-user"></span>
+        <span id="busuanzi_container_site_uv"
+          >总访客量&nbsp;<span
+            id="busuanzi_value_site_uv"
+          ></span
+        ></span>
+      </div></div>
+</footer>
+<div class="sidebar-top">
+            <div class="sidebar-top-taichi rotate"></div>
+            <div class="arrow-up"></div>
+          </div><div id="mask" class="hide"></div>
+      </div><nav id="mobile-nav" aria-label="Mobile navigation">
+  <div class="sidebar-wrap"><div class="sidebar-toc-sidebar"><h3 class="toc-title">文章目录</h3>
+<div class="sidebar-toc-wrapper toc-div-class">
+  <nav id="TableOfContents">
+  <ul>
+    <li><a href="#lyragamemode概述">LyraGameMode概述</a>
+      <ul>
+        <li><a href="#核心逻辑">核心逻辑</a></li>
+        <li><a href="#关键思路">关键思路</a></li>
+        <li><a href="#参考资料">参考资料</a></li>
+      </ul>
+    </li>
+    <li><a href="#modulargameplay">ModularGameplay</a></li>
+    <li><a href="#experiencemanager">ExperienceManager</a>
+      <ul>
+        <li><a href="#初始化experience">初始化Experience</a></li>
+        <li><a href="#onexperienceloaded处理pawndata">OnExperienceLoaded处理PawnData</a></li>
+      </ul>
+    </li>
+  </ul>
+
+  <ul>
+    <li><a href="#gamestate核心">GameState核心</a></li>
+    <li><a href="#客户端同步服务器帧率">客户端同步服务器帧率</a></li>
+    <li><a href="#提供组件">提供组件</a>
+      <ul>
+        <li><a href="#ulyraabilitysystemcomponent">ULyraAbilitySystemComponent</a></li>
+      </ul>
+    </li>
+    <li><a href="#协助ugameplaymessage发送消息">协助<code>UGameplayMessage</code>发送消息</a></li>
+  </ul>
+</nav>
+</div></div>
+        <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
+  <img
+    data-src="/WzhGameDevPublish/avatar/UELogo.png"
+    data-sizes="auto"
+    alt="温志洪"
+    class="lazyload"
+  />
+  <div class="sidebar-author-name">温志洪</div>
+  <div class="sidebar-description">FPS游戏</div>
+</div>
+<div class="sidebar-state">
+  <div class="sidebar-state-article">
+    <div>文章</div><div class="sidebar-state-number">11</div>
+  </div>
+  <a class="sidebar-state-category" href="/WzhGameDevPublish/categories/" aria-label="sidebar-state-category-link">
+    <div>分类</div>
+    <div class="sidebar-state-number">
+      0
+    </div>
+  </a>
+  <a class="sidebar-state-tag" href="/WzhGameDevPublish/tags/" aria-label="sidebar-state-tag-link">
+    <div>标签</div>
+    <div class="sidebar-state-number">10</div>
+  </a>
+</div>
+<div class="sidebar-social"><div class="icon-bilibili sidebar-social-icon">
+      <a
+        href="https://space.bilibili.com/35312868"
+        itemprop="url"
+        target="_blank"
+        aria-label="bilibili"
+        rel="noopener nofollow noreferrer"
+      ></a>
+    </div><div class="icon-email sidebar-social-icon">
+      <a
+        href="mailto:cnwenzhihong@gmail.com"
+        itemprop="url"
+        target="_blank"
+        aria-label="email"
+        rel="noopener nofollow noreferrer"
+      ></a>
+    </div></div>
+<div class="sidebar-menu"><div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/WzhGameDevPublish/"
+        aria-label="首页"
+      ></a>
+      <div class='sidebar-menu-icon icon rotate'>&#xe62b;</div>
+      <div class="sidebar-menu-link">首页</div>
+    </div><div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/WzhGameDevPublish/archives"
+        aria-label="归档"
+      ></a>
+      <div class='sidebar-menu-icon icon rotate'>&#xe62b;</div>
+      <div class="sidebar-menu-link">归档</div>
+    </div><div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/WzhGameDevPublish/about"
+        aria-label="关于"
+      ></a>
+      <div class='sidebar-menu-icon icon rotate'>&#xe62b;</div>
+      <div class="sidebar-menu-link">关于</div>
+    </div><div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/WzhGameDevPublish/friend"
+        aria-label="友链"
+      ></a>
+      <div class='sidebar-menu-icon icon rotate'>&#xe62b;</div>
+      <div class="sidebar-menu-link">友链</div>
+    </div></div>
+</div></div><div class="sidebar-btn-wrapper">
+        <div class="sidebar-toc-btn current"></div>
+        <div class="sidebar-common-btn"></div>
+      </div></nav>
+</div><div class="site-search">
+        <div class="reimu-popup popup">
+          <div class="reimu-search">
+            <div class="reimu-search-input-icon"></div>
+            <div id="reimu-search-input"></div>
+            <div class="popup-btn-close"></div>
+          </div>
+          <div class="reimu-results">
+            <div id="reimu-stats"></div>
+            <div id="reimu-hits"></div>
+            <div id="reimu-pagination" class="reimu-pagination"></div>
+          </div>
+          <img class="reimu-bg" src="/WzhGameDevPublish/images/reimu.png" />
+        </div>
+      </div><script
+    src="https://npm.webcache.cn/lazysizes@5.3.2/lazysizes.min.js"
+    integrity="sha384-3gT/vsepWkfz/ff7PpWNUeMzeWoH3cDhm/A8jM7ouoAK0/fP/9bcHHR5kHq2nf&#43;e" crossorigin="anonymous"></script><script
+    src="https://npm.webcache.cn/clipboard@2.0.11/dist/clipboard.min.js"
+    integrity="sha384-J08i8An/QeARD9ExYpvphB8BsyOj3Gh2TSh1aLINKO3L0cMSH2dN3E22zFoXEi0Q" crossorigin="anonymous"></script><script
+    src="https://npm.webcache.cn/material-theme@1.0.0/dist/material-theme.umd.js"
+    integrity="sha384-vLev0II0HKFaxkcm&#43;/7kX5IGwVFBASkGchU311wmU/veIj2bB0UcBkQbW6yw2asK" crossorigin="anonymous"></script><script src="/WzhGameDevPublish/js/main.js" ></script><script src="/WzhGameDevPublish/js/aos.js" ></script><script>
+    var aosInit = () => {
+      AOS.init({
+        duration: 1000,
+        easing: "ease",
+        once: true,
+        offset: 50,
+      });
+    };
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", aosInit);
+    } else {
+      aosInit();
+    }
+  </script><script src="/WzhGameDevPublish/js/pjax_main.js" data-pjax></script><script>
+    var ALGOLIA_CONFIG = {
+      logo: '\/WzhGameDevPublish\/images\/algolia_logo.svg',
+      algolia: {
+        applicationID: "Y8C6JKXKKR",
+        apiKey: "30fdacdc4947fb8d8faed68e16f048a0",
+        indexName: "index",
+        hits: {
+          "per_page": parseInt("10")
+        },
+        labels: {
+          "input_placeholder": '搜索.....',
+          "hits_empty": '未发现与 「${query}」相关内容',
+          "hits_stats": '找到${hits}条结果（用时 ${time} ms）'
+        }
+      }
+    };
+  </script><script
+    src="https://npm.webcache.cn/algoliasearch@4.17.1/dist/algoliasearch-lite.umd.js"
+    deferintegrity="sha384-xvLS0jfKuoREs7pqkRI/OI8GcqohO5S&#43;jQz7ZBtQXnsXmD&#43;9jDOOY4cL6dCPzlrk" crossorigin="anonymous"></script><script
+    src="https://npm.webcache.cn/@reimujs/instantsearch.js@4.57.0-beta.1/dist/instantsearch.production.min.js"
+    deferintegrity="sha384-aagKMe8nkqaP2DYQc8kkYOL5l&#43;M5Q2WH/Uhr4teOh0Ybp0RZj0kUSDm45qPikMjK" crossorigin="anonymous"></script><script src="/WzhGameDevPublish/js/algolia_search.js" ></script><script
+    src="https://npm.webcache.cn/mouse-firework@0.1.1/dist/index.umd.js"
+    integrity="sha384-8LyaidD9GPxQQgLJO/WRw/O2h3BoNq/ApI/ecpvM6RsrCz2qP2ppBXUKihP4V/2d" crossorigin="anonymous"></script><script>
+  if (! false  || !window.matchMedia('(max-width: 768px)').matches) {
+    if (window.firework) {
+      const options = JSON.parse("{\"excludeelements\":[\"a\",\"button\"],\"particles\":[{\"colors\":[\"var(--red-1)\",\"var(--red-2)\",\"var(--red-3)\",\"var(--red-4)\"],\"duration\":[1200,1800],\"easing\":\"easeOutExpo\",\"move\":[\"emit\"],\"number\":20,\"shape\":\"circle\",\"shapeOptions\":{\"alpha\":[0.3,0.5],\"radius\":[16,32]}},{\"colors\":[\"var(--red-0)\"],\"duration\":[1200,1800],\"easing\":\"easeOutExpo\",\"move\":[\"diffuse\"],\"number\":1,\"shape\":\"circle\",\"shapeOptions\":{\"alpha\":[0.2,0.5],\"lineWidth\":6,\"radius\":20}}]}");
+      options.excludeElements = options.excludeelements;
+      delete options.excludeelements;
+      window.firework(options);
+    }
+  }
+</script><script
+    src="https://npm.webcache.cn/quicklink@3.0.1/dist/quicklink.umd.js"
+    integrity="sha384-caMDqvgav/HWdEYQU1QRRHMLleigpL1YHAG0m371DhzfL8rRzUyOb&#43;bEHtwlmYjD" crossorigin="anonymous"></script><script data-pjax>
+    window.quicklink?.listen({
+      timeout:  3000 ,
+      priority:  true ,
+      ignores: JSON.parse("[]")
+    });
+  </script>
+
+
+<div id="lazy-script">
+  <div><script data-pjax>
+        window.REIMU_POST = {
+          author: "温志洪",
+          title: "LyraGameMode的快速拆分",
+          url: "http:\/\/localhost:1895\/WzhGameDevPublish\/post\/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91\/%E4%BB%A3%E7%A0%81%E6%A1%86%E6%9E%B6\/lyra\/lyra-framework\/lyragamemode%E7%9A%84%E5%BF%AB%E9%80%9F%E6%8B%86%E5%88%86\/",
+          description: "\rLyraGameMode\rLyraGameMode概述\r核心逻辑\r更改ModularGamePlay基类 绝大部分逻辑为加载和配置ExperienceDefinition中的所有参数服务\n关键思路\rExperience加载阶段\r阶段 作用 函数 start 等待一帧,准备加载 GameMode::initgame match 按优先级找ExperienceDefinition GameMode::HandleMatchAssignmentIfNotExpectingOne set 获得Experience ExperienceManager::SetCurrentExperience …",
+          cover: "https:\/\/pic1.zhimg.com\/v2-a75a8fdca2cb1c3ed11f104353ce0940_1440w.jpg",
+        };
+      </script><script src="/WzhGameDevPublish/js/insert_highlight.js" data-pjax></script><script src="/WzhGameDevPublish/js/tabs.js" data-pjax></script><script type="module" data-pjax>const PhotoSwipeLightbox = (await safeImport("https:\/\/npm.webcache.cn\/photoswipe@5.4.4\/dist\/photoswipe-lightbox.esm.min.js", "sha384-DiL6M\/gG\u002bwmTxmCRZyD1zee6lIhawn5TGvED0FOh7fXcN9B0aZ9dexSF\/N6lrZi\/")).default;const initPswp = (gallery, children) => {
+          if (_$$(`${gallery} ${children}`).length > 0) {
+            new PhotoSwipeLightbox({
+              gallery,
+              children,pswpModule: () => safeImport("https:\/\/npm.webcache.cn\/photoswipe@5.4.4\/dist\/photoswipe.esm.min.js", "sha384-WkkO3GCmgkC3VQWpaV8DqhKJqpzpF9JoByxDmnV8\u002boTJ7m3DfYEWX1fu1scuS4\u002bs")}).init();
+          }
+        }
+        const pswp = () => {
+          initPswp('.article-entry', 'a.article-gallery-item');
+          initPswp('.article-gallery', 'a.article-gallery-item');
+          window.lightboxStatus = 'done';
+          window.removeEventListener('lightbox:ready', pswp);
+        }
+        if(window.lightboxStatus === 'ready') {
+          pswp()
+        } else {
+          window.addEventListener('lightbox:ready', pswp);
+        }
+      </script></div>
+</div><script
+    src="https://npm.webcache.cn/busuanzi@2.3.0/bsz.pure.mini.js"
+    asyncintegrity="sha384-0M75wtSkhjIInv4coYlaJU83&#43;OypaRCIq2SukQVQX04eGTCBXJDuWAbJet56id&#43;S" crossorigin="anonymous"></script><script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.getRegistrations().then((registrations) => {
+        for (let registration of registrations) {
+          registration.unregister();
+        }
+      });
+    }
+  </script><script>
+  const reimuCopyright = String.raw`
+   ______     ______     __     __    __     __  __    
+  /\  == \   /\  ___\   /\ \   /\ "-./  \   /\ \/\ \   
+  \ \  __<   \ \  __\   \ \ \  \ \ \-./\ \  \ \ \_\ \  
+   \ \_\ \_\  \ \_____\  \ \_\  \ \_\ \ \_\  \ \_____\ 
+    \/_/ /_/   \/_____/   \/_/   \/_/  \/_/   \/_____/ 
+                                                    
+  `;
+  console.log(String.raw`%c ${reimuCopyright}`, "color: #ff5252;");
+  console.log(
+    "%c Theme.Reimu" + " %c https://github.com/D-Sketon/hugo-theme-reimu ",
+    "color: white; background: #ff5252; padding:5px 0;",
+    "padding:4px;border:1px solid #ff5252;",
+  );
+</script></body>
+</html>
