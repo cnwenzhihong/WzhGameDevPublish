@@ -12,7 +12,7 @@
     
     <copyright>本博客所有文章除特别声明外，均采用 BY-NC-SA 许可协议。转载请注明出处！</copyright>
     
-    <lastBuildDate>Thu, 30 Apr 2026 15:47:16 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 01 May 2026 12:52:25 +0000</lastBuildDate>
     
     
     <atom:link href="http://localhost:1895/WzhGameDevPublish/tags/fps/index.xml" rel="self" type="application/rss&#43;xml" />
@@ -44,9 +44,10 @@
 <h2 id="资料">
 <a class="header-anchor" href="#%e8%b5%84%e6%96%99"></a>
 资料
-</h2><p><a href="https://x157.github.io/UE5/LyraStarterGame/">LyraStarterGame Overview | X157 Dev Notes</a></p>
+</h2><p><a href="https://x157.github.io/UE5/LyraStarterGame/">LyraStarterGame Overview | X157 Dev Notes</a>：对Lyra的详细拆解资料<br>
+<a href="https://forums.unrealengine.com/t/how-to-send-more-compressed-flags-through-custom-character-movement-component/421142/11">官方论坛上扩展 MoveData 的讨论</a></p>
         
-        <hr><p>本文2025-09-08首发于<a href='http://localhost:1895/WzhGameDevPublish/'>妖精游戏开发馆</a>，最后修改于2026-04-30</p>]]>
+        <hr><p>本文2025-09-08首发于<a href='http://localhost:1895/WzhGameDevPublish/'>妖精游戏开发馆</a>，最后修改于2026-05-01</p>]]>
       </description>
       
     </item>

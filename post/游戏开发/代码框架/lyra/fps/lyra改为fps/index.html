@@ -50,7 +50,7 @@
   />
   <meta property="article:author" content="温志洪" />
   <meta property="article:published_time" content="2025-09-08T19:57:34&#43;00:00" />
-  <meta property="article:modified_time" content="2026-04-30T15:47:16&#43;00:00" /><meta property="article:tag" content="UE/Lyra3CFPSblog" /><meta name="twitter:card" content="summary" />
+  <meta property="article:modified_time" content="2026-05-01T12:52:25&#43;00:00" /><meta property="article:tag" content="UE/Lyra3CFPSblog" /><meta name="twitter:card" content="summary" />
   <meta name="twitter:image" content="/WzhGameDevPublish/" />
 <link rel="shortcut icon" href="/WzhGameDevPublish/favicon.ico"><link rel="stylesheet" href="/WzhGameDevPublish/css/main.css" />
 <link
@@ -196,6 +196,13 @@
   <ul>
     <li><a href="#这套方案的优点">这套方案的优点</a></li>
     <li><a href="#资料">资料</a></li>
+    <li><a href="#关键技术点">关键技术点</a>
+      <ul>
+        <li><a href="#firstpersonprimitive">FirstPersonPrimitive</a></li>
+        <li><a href="#程序化动画中的weaponsway">程序化动画中的WeaponSway</a></li>
+        <li><a href="#奔跑下蹲冲刺的移速变化">奔跑/下蹲/冲刺的移速变化</a></li>
+      </ul>
+    </li>
   </ul>
 
   <ul>
@@ -255,7 +262,7 @@
   </ul>
 
   <ul>
-    <li><a href="#修改ga_fire">修改GA_Fire</a>
+    <li><a href="#修改ga_fire">⭐修改GA_Fire</a>
       <ul>
         <li><a href="#播放fps的蒙太奇">播放FPS的蒙太奇</a></li>
         <li><a href="#增加fps的开火特效">增加FPS的开火特效</a></li>
@@ -267,9 +274,10 @@
         <li><a href="#ga_weapon_reload修改">GA_Weapon_Reload修改</a></li>
       </ul>
     </li>
-    <li><a href="#添加ga_sprint">添加GA_Sprint</a>
+    <li><a href="#添加ga_sprint">⭐添加GA_Sprint</a>
       <ul>
-        <li><a href="#添加奔跑能力">添加奔跑能力</a></li>
+        <li><a href="#关键问题">关键问题</a></li>
+        <li><a href="#实现ga_sprint">实现GA_Sprint</a></li>
       </ul>
     </li>
   </ul>
@@ -407,14 +415,14 @@
       >2025-09-08</time
     >
     <time style="display: none;" id="post-update-time"
-      >2026-04-30</time
+      >2026-05-01</time
     >
   </span><span
       class="article-date-link icon-calendar-plus"
       data-aos="zoom-in"
     >
-      <time datetime="2026-04-30 15:47:16.099 &#43;0000 UTC" itemprop="dateModified"
-        >2026-04-30</time
+      <time datetime="2026-05-01 12:52:25.063 &#43;0000 UTC" itemprop="dateModified"
+        >2026-05-01</time
       >
     </span></div>
 <div class="article-category"></div>
@@ -432,8 +440,47 @@
 <h2 id="资料">
 <a class="header-anchor" href="#%e8%b5%84%e6%96%99"></a>
 资料
-</h2><p><a href="https://x157.github.io/UE5/LyraStarterGame/">LyraStarterGame Overview | X157 Dev Notes</a></p>
-<h1 id="修改和添加必要的配置">
+</h2><p><a href="https://x157.github.io/UE5/LyraStarterGame/">LyraStarterGame Overview | X157 Dev Notes</a>：对Lyra的详细拆解资料<br>
+<a href="https://forums.unrealengine.com/t/how-to-send-more-compressed-flags-through-custom-character-movement-component/421142/11">官方论坛上扩展 MoveData 的讨论</a></p>
+<h2 id="关键技术点">
+<a class="header-anchor" href="#%e5%85%b3%e9%94%ae%e6%8a%80%e6%9c%af%e7%82%b9"></a>
+关键技术点
+</h2><h3 id="firstpersonprimitive">
+<a class="header-anchor" href="#firstpersonprimitive"></a>
+FirstPersonPrimitive
+</h3><p>第一人称渲染的问题：判定太靠前，只对默认值有效，更改配置后需要手动刷新渲染。</p>
+<h3 id="程序化动画中的weaponsway">
+<a class="header-anchor" href="#%e7%a8%8b%e5%ba%8f%e5%8c%96%e5%8a%a8%e7%94%bb%e4%b8%ad%e7%9a%84weaponsway"></a>
+程序化动画中的WeaponSway
+</h3><h3 id="奔跑下蹲冲刺的移速变化">
+<a class="header-anchor" href="#%e5%a5%94%e8%b7%91%e4%b8%8b%e8%b9%b2%e5%86%b2%e5%88%ba%e7%9a%84%e7%a7%bb%e9%80%9f%e5%8f%98%e5%8c%96"></a>
+奔跑/下蹲/冲刺的移速变化
+</h3><p>如果只是 ADS 降速，Lyra 蓝图里直接 Set MaxWalkSpeed 可以工作。<br>
+但要实现客户端预测：</p>
+<h4 id="cmc方案自定义fcharacternetworkmovedata">
+<a class="header-anchor" href="#cmc%e6%96%b9%e6%a1%88%e8%87%aa%e5%ae%9a%e4%b9%89fcharacternetworkmovedata"></a>
+CMC方案：自定义FCharacterNetworkMoveData
+</h4><p>要求在高延迟下预测一致，应该把“影响移动模拟的输入bool”放进 CharacterMovement 的 NetworkMoveData，使用CMC的原生预测回滚机制。<br>
+RPC、 Replication 或 GAS Tag必定带来延迟和抖动。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl">速度变化实现思路：
+</span></span><span class="line"><span class="cl"><span class="k">1.</span> Sprint、Jog、Walk这类由玩家主动传入的数据：SavedMove
+</span></span><span class="line"><span class="cl"><span class="k">2.</span> KnockedDown ／ DisableMove 这类被动引发的Gameplay状态，走Tag判断
+</span></span><span class="line"><span class="cl"><span class="k">3.</span> 复杂速度运算：直接设置PredictedSpeedScale，改变量也作为数据参与Move同步
+</span></span></code></pre></div><h4 id="mover方案">
+<a class="header-anchor" href="#mover%e6%96%b9%e6%a1%88"></a>
+Mover方案：
+</h4><p>带有更灵活的Layer化的移动方案，天然支持多状态。<br>
+用Input Cmd代替了NetworkMoveData，实现也更简单。<br>
+如果现在换成 Mover，需要确认大量系统：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">AnimBP 如何读取移动状态？
+</span></span><span class="line"><span class="cl">Ability 里如何拿移动组件？
+</span></span><span class="line"><span class="cl">角色是否还继承 ACharacter？
+</span></span><span class="line"><span class="cl">RootMotion 如何处理？
+</span></span><span class="line"><span class="cl">Crouch / Jump / Falling 是否重做？
+</span></span><span class="line"><span class="cl">NavMovement / AI 是否兼容？Lyra 的默认 Movement Tag 是否还能工作？
+</span></span><span class="line"><span class="cl">Replication smoothing 如何替换？
+</span></span><span class="line"><span class="cl">死亡 / 重生 / PawnData 初始化是否受影响？
+</span></span></code></pre></div><h1 id="修改和添加必要的配置">
 <a class="header-anchor" href="#%e4%bf%ae%e6%94%b9%e5%92%8c%e6%b7%bb%e5%8a%a0%e5%bf%85%e8%a6%81%e7%9a%84%e9%85%8d%e7%bd%ae"></a>
 修改和添加必要的配置
 </h1><h2 id="11-新建一个lyrafps的gamefeature">
@@ -925,7 +972,8 @@ Actor的创建后的同步流程
 <h3 id="将必要参数用propertyaccess收集">
 <a class="header-anchor" href="#%e5%b0%86%e5%bf%85%e8%a6%81%e5%8f%82%e6%95%b0%e7%94%a8propertyaccess%e6%94%b6%e9%9b%86"></a>
 将必要参数用PropertyAccess收集
-</h3><p><a href="https://youtu.be/NM7ACkHG--g?si=10eZZFgP-0tCC4GZ">https://youtu.be/NM7ACkHG--g?si=10eZZFgP-0tCC4GZ</a>&amp;t=1121</p>
+</h3><p><a href="https://dev.epicgames.com/documentation/unreal-engine/property-access-in-unreal-engine">PropertyAccess官方文档</a></p>
+<p><a href="https://youtu.be/NM7ACkHG--g?si=10eZZFgP-0tCC4GZ%5c&amp;t=1121">参考教程中使用普通的数据获取方案</a></p>
 <h2 id="2-主动画蓝图基本配置">
 <a class="header-anchor" href="#2-%e4%b8%bb%e5%8a%a8%e7%94%bb%e8%93%9d%e5%9b%be%e5%9f%ba%e6%9c%ac%e9%85%8d%e7%bd%ae"></a>
 2. 主动画蓝图基本配置
@@ -1006,7 +1054,7 @@ GA_Reload只需要增加FPS蒙太奇即可<br>
 GA_Sprint则是从0创建一个带有按键绑定的GA</p>
 <h2 id="修改ga_fire">
 <a class="header-anchor" href="#%e4%bf%ae%e6%94%b9ga_fire"></a>
-修改GA_Fire
+⭐修改GA_Fire
 </h2><p><code>GA_WeaponFire</code><br>
 目前要处理两个问题：</p>
 <ol>
@@ -1132,15 +1180,35 @@ GA_Weapon_Reload修改
 <img src="https://cdn.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/20251115235859190.png" alt="image.png"></p>
 <h2 id="添加ga_sprint">
 <a class="header-anchor" href="#%e6%b7%bb%e5%8a%a0ga_sprint"></a>
-添加GA_Sprint
-</h2><p>最麻烦的是绑定GA到按键：<br>
-<img src="https://gcore.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/20260420063652791.png" alt=""></p>
-<h3 id="添加奔跑能力">
-<a class="header-anchor" href="#%e6%b7%bb%e5%8a%a0%e5%a5%94%e8%b7%91%e8%83%bd%e5%8a%9b"></a>
-添加奔跑能力
-</h3><h4 id="step1-创建ga并添加abilityset">
-<a class="header-anchor" href="#step1-%e5%88%9b%e5%bb%baga%e5%b9%b6%e6%b7%bb%e5%8a%a0abilityset"></a>
-Step1. 创建GA并添加AbilitySet
+⭐添加GA_Sprint
+</h2><h3 id="关键问题">
+<a class="header-anchor" href="#%e5%85%b3%e9%94%ae%e9%97%ae%e9%a2%98"></a>
+关键问题
+</h3><ol>
+<li>最麻烦的是绑定GA到按键：<br>
+<img src="https://gcore.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/20260420063652791.png" alt=""></li>
+<li>其次是对速度变化的预测回滚机制：</li>
+</ol>
+<ul>
+<li>Lyra的GA_ADS直接改速度在高延迟/loss情况下一定会造成抖动</li>
+<li>Mover能很好地处理预测回滚，但替换成本太高。</li>
+<li>CMC的<code>NetworkMoveData</code>方案，缺点：需要写死、不灵活，优点：工程量不大</li>
+</ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl">Mover替换时需要跟着替换的地方：
+</span></span><span class="line"><span class="cl"><span class="k">-</span> AnimBP 如何读取移动状态？
+</span></span><span class="line"><span class="cl"><span class="k">-</span> Ability 里如何拿移动组件？
+</span></span><span class="line"><span class="cl"><span class="k">-</span> 角色是否还继承 ACharacter？
+</span></span><span class="line"><span class="cl"><span class="k">-</span> RootMotion 如何处理？
+</span></span><span class="line"><span class="cl"><span class="k">-</span> Crouch / Jump / Falling 是否重做？
+</span></span><span class="line"><span class="cl"><span class="k">-</span> NavMovement / AI 是否兼容？Lyra 的默认 Movement Tag 是否还能工作？
+</span></span><span class="line"><span class="cl"><span class="k">-</span> Replication smoothing 如何替换？
+</span></span><span class="line"><span class="cl"><span class="k">-</span> 死亡 / 重生 / PawnData 初始化是否受影响？
+</span></span></code></pre></div><h3 id="实现ga_sprint">
+<a class="header-anchor" href="#%e5%ae%9e%e7%8e%b0ga_sprint"></a>
+实现GA_Sprint
+</h3><h4 id="step1-创建ga并添加到abilityset">
+<a class="header-anchor" href="#step1-%e5%88%9b%e5%bb%baga%e5%b9%b6%e6%b7%bb%e5%8a%a0%e5%88%b0abilityset"></a>
+Step1. 创建GA并添加到AbilitySet
 </h4><p>GA_Hero_Sprint<br>
 <strong>创建</strong>：<br>
 继承自<code>LyraGameplayAbility</code><br>
@@ -1172,13 +1240,30 @@ shift键和Dash有冲突，需要在IMC_Default删除Dash的映射。<br>
 <a class="header-anchor" href="#step3-%e5%86%b2%e5%88%ba%e7%9a%84%e9%80%bb%e8%be%91%e5%ae%9e%e7%8e%b0"></a>
 Step3. 冲刺的逻辑实现
 </h4><p>是的，直到此时，我们才开始实现冲刺技能。/(ㄒoㄒ)/~~</p>
-<h5 id="冲刺停止">
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl">速度变化实现思路：
+</span></span><span class="line"><span class="cl"><span class="k">1.</span> Sprint、Jog、Walk这类由玩家主动传入的数据：FCharacterNetworkMoveData
+</span></span><span class="line"><span class="cl"><span class="k">2.</span> KnockedDown ／ DisableMove 这类被动引发的Gameplay状态，走Tag判断
+</span></span><span class="line"><span class="cl"><span class="k">3.</span> 复杂的运算情况：走PredictedSpeedScale直接设置可预测值
+</span></span></code></pre></div><h5 id="冲刺停止">
 <a class="header-anchor" href="#%e5%86%b2%e5%88%ba%e5%81%9c%e6%ad%a2"></a>
 冲刺/停止
-</h5><p>开始冲刺时采用冲刺的Movement数据，存下奔跑前数据供停止时使用<br>
-需要保证只在默认walk时能冲刺，并不严格设定不同状态(走、跑、冲刺、蹲、瞄准)的速度参数 。换mover组件会容易很多。<br>
-应用冲刺数据：<br>
-<img src="https://gcore.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/20260424231020333.png" alt=""></p>
+</h5>
+  <blockquote class="alert-blockquote info">
+    <p class="alert-heading">
+      Info
+    </p>
+    <p><h4 id="资料-1">
+<a class="header-anchor" href="#%e8%b5%84%e6%96%99-1"></a>
+资料
+</h4><p><a href="https://dev.epicgames.com/documentation/unreal-engine/understanding-networked-movement-in-the-character-movement-component-for-unreal-engine#customizing-networked-character-movement">官方文档</a><br>
+<a href="https://forums.unrealengine.com/t/how-to-send-more-compressed-flags-through-custom-character-movement-component/421142/11">官方论坛上扩展 MoveData 的讨论</a></p></p>
+  </blockquote>
+
+<p>为了更好的网络预测，我们将冲刺逻辑放到CMC中。<br>
+如图，通过Flag标记不同的移动状态。<br>
+<img src="https://gcore.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/20260501195350256.png" alt=""><br>
+本地存储方便回滚(<code>FSavedMove_Character</code>)和网络传输(<code>FCharacterNetworkMoveData</code>)数据：<br>
+<img src="https://gcore.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/20260501203255674.png" alt=""></p>
 <h5 id="落地状态检测">
 <a class="header-anchor" href="#%e8%90%bd%e5%9c%b0%e7%8a%b6%e6%80%81%e6%a3%80%e6%b5%8b"></a>
 落地状态检测
@@ -1512,10 +1597,10 @@ Ext_将其他资产整合到Lyra
         >
       </div><div>
         <span class="icon-brush"
-          >&nbsp;51.0k</span
+          >&nbsp;52.4k</span
         >
         &nbsp;|&nbsp;
-        <span class="icon-coffee">&nbsp;01:49</span>
+        <span class="icon-coffee">&nbsp;01:51</span>
       </div><div>
         <span class="icon-eye"></span>
         <span id="busuanzi_container_site_pv"
@@ -1543,6 +1628,13 @@ Ext_将其他资产整合到Lyra
   <ul>
     <li><a href="#这套方案的优点">这套方案的优点</a></li>
     <li><a href="#资料">资料</a></li>
+    <li><a href="#关键技术点">关键技术点</a>
+      <ul>
+        <li><a href="#firstpersonprimitive">FirstPersonPrimitive</a></li>
+        <li><a href="#程序化动画中的weaponsway">程序化动画中的WeaponSway</a></li>
+        <li><a href="#奔跑下蹲冲刺的移速变化">奔跑/下蹲/冲刺的移速变化</a></li>
+      </ul>
+    </li>
   </ul>
 
   <ul>
@@ -1602,7 +1694,7 @@ Ext_将其他资产整合到Lyra
   </ul>
 
   <ul>
-    <li><a href="#修改ga_fire">修改GA_Fire</a>
+    <li><a href="#修改ga_fire">⭐修改GA_Fire</a>
       <ul>
         <li><a href="#播放fps的蒙太奇">播放FPS的蒙太奇</a></li>
         <li><a href="#增加fps的开火特效">增加FPS的开火特效</a></li>
@@ -1614,9 +1706,10 @@ Ext_将其他资产整合到Lyra
         <li><a href="#ga_weapon_reload修改">GA_Weapon_Reload修改</a></li>
       </ul>
     </li>
-    <li><a href="#添加ga_sprint">添加GA_Sprint</a>
+    <li><a href="#添加ga_sprint">⭐添加GA_Sprint</a>
       <ul>
-        <li><a href="#添加奔跑能力">添加奔跑能力</a></li>
+        <li><a href="#关键问题">关键问题</a></li>
+        <li><a href="#实现ga_sprint">实现GA_Sprint</a></li>
       </ul>
     </li>
   </ul>
@@ -1817,7 +1910,7 @@ Ext_将其他资产整合到Lyra
           author: "温志洪",
           title: "Lyra改为FPS",
           url: "http:\/\/localhost:1895\/WzhGameDevPublish\/post\/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91\/%E4%BB%A3%E7%A0%81%E6%A1%86%E6%9E%B6\/lyra\/fps\/lyra%E6%94%B9%E4%B8%BAfps\/",
-          description: "\r总览\r这套方案的优点\r完全采用Lyra方案，所有安防均扩展于Lyra原生逻辑拓展，如库存、Cosmet、GA、GameFeature、AnimLayer方案 与FPS资产分离。FPS程序化动画可以适配大量只有模型的资产。\n资料\rLyraStarterGame Overview | X157 Dev Notes\n",
+          description: "\r总览\r这套方案的优点\r完全采用Lyra方案，所有安防均扩展于Lyra原生逻辑拓展，如库存、Cosmet、GA、GameFeature、AnimLayer方案 与FPS资产分离。FPS程序化动画可以适配大量只有模型的资产。\n资料\rLyraStarterGame Overview | X157 Dev Notes：对Lyra的详细拆解资料\n官方论坛上扩展 MoveData 的讨论\n",
           cover: "http:\/\/localhost:1895\/WzhGameDevPublish\/images\/banner.webp",
         };
       </script><script src="/WzhGameDevPublish/js/insert_highlight.js" data-pjax></script><script src="/WzhGameDevPublish/js/tabs.js" data-pjax></script><script type="module" data-pjax>const PhotoSwipeLightbox = (await safeImport("https:\/\/npm.webcache.cn\/photoswipe@5.4.4\/dist\/photoswipe-lightbox.esm.min.js", "sha384-DiL6M\/gG\u002bwmTxmCRZyD1zee6lIhawn5TGvED0FOh7fXcN9B0aZ9dexSF\/N6lrZi\/")).default;const initPswp = (gallery, children) => {
