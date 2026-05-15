@@ -12,12 +12,60 @@
     
     <copyright>本博客所有文章除特别声明外，均采用 BY-NC-SA 许可协议。转载请注明出处！</copyright>
     
-    <lastBuildDate>Fri, 15 May 2026 13:04:39 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 15 May 2026 13:12:19 +0000</lastBuildDate>
     
     
     <atom:link href="http://localhost:1895/WzhGameDevPublish/tags/blog/index.xml" rel="self" type="application/rss&#43;xml" />
     
 
+    
+    
+
+    <item>
+      <title>FPS程序化动画</title>
+      <link>http://localhost:1895/WzhGameDevPublish/post/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/%E4%BB%A3%E7%A0%81%E6%A1%86%E6%9E%B6/lyra/fps/%E6%8A%80%E6%9C%AF%E7%BB%86%E8%8A%82/fps%E7%A8%8B%E5%BA%8F%E5%8C%96%E5%8A%A8%E7%94%BB/</link>
+      <pubDate>Wed, 07 Jan 2026 23:12:58 &#43;0000</pubDate>
+      <author>cnwenzhihong@gmail.com (温志洪)</author>
+      <guid>http://localhost:1895/WzhGameDevPublish/post/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/%E4%BB%A3%E7%A0%81%E6%A1%86%E6%9E%B6/lyra/fps/%E6%8A%80%E6%9C%AF%E7%BB%86%E8%8A%82/fps%E7%A8%8B%E5%BA%8F%E5%8C%96%E5%8A%A8%E7%94%BB/</guid>
+      <description>
+        <![CDATA[<h1>FPS程序化动画</h1><p>作者：温志洪（cnwenzhihong@gmail.com）</p>
+        
+          <p>教程链接：<a href="https://youtu.be/TrS5oaimIII?si=1VUH4V7bmuzk9-zv">UE4/UE5 Tutorial: First Person Game Feel - Part 1: Getting Started</a><br>
+bilibili个人转载：<a href="https://www.bilibili.com/video/BV1oHFfzGEGB/?vd_source=f8cf0db678155d5ad88483f54cff60c6">UE5优质教程 First Person Game Feel</a></p>
+<h1 id="基本配置">
+<a class="header-anchor" href="#%e5%9f%ba%e6%9c%ac%e9%85%8d%e7%bd%ae"></a>
+基本配置
+</h1><p>关闭Motion Blue<br>
+<img src="https://gcore.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/20260304013656557.png" alt=""></p>
+<h2 id="角色">
+<a class="header-anchor" href="#%e8%a7%92%e8%89%b2"></a>
+角色
+</h2><p>胶囊体半径：35与UE4默认骨骼比较搭配</p>
+        
+        <hr><p>本文2026-01-07首发于<a href='http://localhost:1895/WzhGameDevPublish/'>妖精游戏开发馆</a>，最后修改于2026-05-15</p>]]>
+      </description>
+      
+    </item>
+    
+    
+
+    <item>
+      <title>Lyra改为FPS</title>
+      <link>http://localhost:1895/WzhGameDevPublish/post/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/%E4%BB%A3%E7%A0%81%E6%A1%86%E6%9E%B6/lyra/fps/lyra%E6%94%B9%E4%B8%BAfps/</link>
+      <pubDate>Mon, 08 Sep 2025 19:57:34 &#43;0000</pubDate>
+      <author>cnwenzhihong@gmail.com (温志洪)</author>
+      <guid>http://localhost:1895/WzhGameDevPublish/post/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/%E4%BB%A3%E7%A0%81%E6%A1%86%E6%9E%B6/lyra/fps/lyra%E6%94%B9%E4%B8%BAfps/</guid>
+      <description>
+        <![CDATA[<h1>Lyra改为FPS</h1><p>作者：温志洪（cnwenzhihong@gmail.com）</p>
+        
+          <blockquote>
+<p>QQ：<code>2423113760</code>  Gmail：<code>cnwenzhihong@gmail.com</code><br>
+文档多，跨度时间长，没法慢慢审查。有任何需要补充、修改、解释的地方随时联系。</p>
+        
+        <hr><p>本文2025-09-08首发于<a href='http://localhost:1895/WzhGameDevPublish/'>妖精游戏开发馆</a>，最后修改于2026-05-15</p>]]>
+      </description>
+      
+    </item>
     
     
 
@@ -40,26 +88,6 @@
 </h1><p>专业开发者为达到令人满意的枪械射击效果所使用的具体技术很难获取，因为这类知识可能是专有的，或者只是隐藏在实力雄厚或孤立的游戏工作室的资深开发者中。尽管这项研究中受访的开发者经常声称他们乐于分享知识，但其他受访者通过无法分享某些开发技术或因公司政策选择匿名来质疑这些说法。目前需要大量的试错和从互联网上搜寻零散的线索。</p>
         
         <hr><p>本文2025-11-27首发于<a href='http://localhost:1895/WzhGameDevPublish/'>妖精游戏开发馆</a>，最后修改于2026-05-15</p>]]>
-      </description>
-      
-    </item>
-    
-    
-
-    <item>
-      <title>Lyra改为FPS</title>
-      <link>http://localhost:1895/WzhGameDevPublish/post/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/%E4%BB%A3%E7%A0%81%E6%A1%86%E6%9E%B6/lyra/fps/lyra%E6%94%B9%E4%B8%BAfps/</link>
-      <pubDate>Mon, 08 Sep 2025 19:57:34 &#43;0000</pubDate>
-      <author>cnwenzhihong@gmail.com (温志洪)</author>
-      <guid>http://localhost:1895/WzhGameDevPublish/post/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/%E4%BB%A3%E7%A0%81%E6%A1%86%E6%9E%B6/lyra/fps/lyra%E6%94%B9%E4%B8%BAfps/</guid>
-      <description>
-        <![CDATA[<h1>Lyra改为FPS</h1><p>作者：温志洪（cnwenzhihong@gmail.com）</p>
-        
-          <blockquote>
-<p>QQ：<code>2423113760</code>  Gmail：<code>cnwenzhihong@gmail.com</code><br>
-文档多，跨度时间长，没法慢慢审查。有任何需要补充、修改、解释的地方随时联系。</p>
-        
-        <hr><p>本文2025-09-08首发于<a href='http://localhost:1895/WzhGameDevPublish/'>妖精游戏开发馆</a>，最后修改于2026-05-15</p>]]>
       </description>
       
     </item>
@@ -153,54 +181,6 @@ Weapon Sway 的本质分类框架
 <img src="https://cdn.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/PixPin_2025-12-20_19-52-32.gif" alt=""></p>
         
         <hr><p>本文2025-12-19首发于<a href='http://localhost:1895/WzhGameDevPublish/'>妖精游戏开发馆</a>，最后修改于2026-05-15</p>]]>
-      </description>
-      
-    </item>
-    
-    
-
-    <item>
-      <title>FPS程序化动画</title>
-      <link>http://localhost:1895/WzhGameDevPublish/post/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/%E4%BB%A3%E7%A0%81%E6%A1%86%E6%9E%B6/lyra/fps/%E6%8A%80%E6%9C%AF%E7%BB%86%E8%8A%82/fps%E7%A8%8B%E5%BA%8F%E5%8C%96%E5%8A%A8%E7%94%BB/</link>
-      <pubDate>Wed, 07 Jan 2026 23:12:58 &#43;0000</pubDate>
-      <author>cnwenzhihong@gmail.com (温志洪)</author>
-      <guid>http://localhost:1895/WzhGameDevPublish/post/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/%E4%BB%A3%E7%A0%81%E6%A1%86%E6%9E%B6/lyra/fps/%E6%8A%80%E6%9C%AF%E7%BB%86%E8%8A%82/fps%E7%A8%8B%E5%BA%8F%E5%8C%96%E5%8A%A8%E7%94%BB/</guid>
-      <description>
-        <![CDATA[<h1>FPS程序化动画</h1><p>作者：温志洪（cnwenzhihong@gmail.com）</p>
-        
-          <h1 id="基本配置">
-<a class="header-anchor" href="#%e5%9f%ba%e6%9c%ac%e9%85%8d%e7%bd%ae"></a>
-基本配置
-</h1><p>关闭Motion Blue<br>
-<img src="https://gcore.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/20260304013656557.png" alt=""></p>
-<h2 id="角色">
-<a class="header-anchor" href="#%e8%a7%92%e8%89%b2"></a>
-角色
-</h2><p>胶囊体半径：35与UE4默认骨骼比较搭配</p>
-<h1 id="程序化动画框架">
-<a class="header-anchor" href="#%e7%a8%8b%e5%ba%8f%e5%8c%96%e5%8a%a8%e7%94%bb%e6%a1%86%e6%9e%b6"></a>
-程序化动画框架
-</h1><h2 id="核心目的">
-<a class="header-anchor" href="#%e6%a0%b8%e5%bf%83%e7%9b%ae%e7%9a%84"></a>
-核心目的
-</h2><p>参数化、可配置</p>
-<h1 id="程序化跳跃">
-<a class="header-anchor" href="#%e7%a8%8b%e5%ba%8f%e5%8c%96%e8%b7%b3%e8%b7%83"></a>
-程序化跳跃
-</h1><p><a href="https://youtu.be/3OW6woGiXh8?si=kuzHfgsog-kRKC8F%5c&amp;t=309">教程</a></p>
-<h2 id="思路">
-<a class="header-anchor" href="#%e6%80%9d%e8%b7%af"></a>
-思路
-</h2><h3 id="实例分析">
-<a class="header-anchor" href="#%e5%ae%9e%e4%be%8b%e5%88%86%e6%9e%90"></a>
-实例分析
-</h3><h4 id="ow">
-<a class="header-anchor" href="#ow"></a>
-OW
-</h4><p>猎空：\ <video src="https://gcore.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/Jump_OW_%E7%8C%8E%E7%A9%BA.mp4" controls muted autoplay loop></video><br>
-斩仇：\ <video src="https://gcore.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/Jump_OW_%E6%96%A9%E4%BB%87.mp4" controls muted autoplay loop></video></p>
-        
-        <hr><p>本文2026-01-07首发于<a href='http://localhost:1895/WzhGameDevPublish/'>妖精游戏开发馆</a>，最后修改于2026-05-15</p>]]>
       </description>
       
     </item>
