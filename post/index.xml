@@ -12,12 +12,35 @@
     
     <copyright>本博客所有文章除特别声明外，均采用 BY-NC-SA 许可协议。转载请注明出处！</copyright>
     
-    <lastBuildDate>Fri, 15 May 2026 13:12:19 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 15 May 2026 13:28:34 +0000</lastBuildDate>
     
     
     <atom:link href="http://localhost:1895/WzhGameDevPublish/post/index.xml" rel="self" type="application/rss&#43;xml" />
     
 
+    
+    
+
+    <item>
+      <title>Lyra改为FPS</title>
+      <link>http://localhost:1895/WzhGameDevPublish/post/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/%E4%BB%A3%E7%A0%81%E6%A1%86%E6%9E%B6/lyra/fps/lyra%E6%94%B9%E4%B8%BAfps/</link>
+      <pubDate>Mon, 08 Sep 2025 19:57:34 &#43;0000</pubDate>
+      <author>cnwenzhihong@gmail.com (温志洪)</author>
+      <guid>http://localhost:1895/WzhGameDevPublish/post/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/%E4%BB%A3%E7%A0%81%E6%A1%86%E6%9E%B6/lyra/fps/lyra%E6%94%B9%E4%B8%BAfps/</guid>
+      <description>
+        <![CDATA[<h1>Lyra改为FPS</h1><p>作者：温志洪（cnwenzhihong@gmail.com）</p>
+        
+          <blockquote>
+<p>QQ：<code>2423113760</code>  Gmail：<code>cnwenzhihong@gmail.com</code><br>
+文档多，跨度时间长，没法慢慢审查。有任何需要补充、修改、解释的地方随时联系。<br>
+Demo链接：<br>
+百度网盘：https://pan.baidu.com/s/1QW97POQCaHYvEu9NFYFODA  提取码：Pui7<br>
+谷歌网盘：<a href="https://drive.google.com/file/d/1hMpeEy1zAasESHFqc_0hRhXnKRr7r0FS/view?usp=sharing">LyraFPSGame_Demo.zip - Google 云端硬盘</a></p>
+        
+        <hr><p>本文2025-09-08首发于<a href='http://localhost:1895/WzhGameDevPublish/'>妖精游戏开发馆</a>，最后修改于2026-05-15</p>]]>
+      </description>
+      
+    </item>
     
     
 
@@ -43,26 +66,6 @@ bilibili个人转载：<a href="https://www.bilibili.com/video/BV1oHFfzGEGB/?vd_
 </h2><p>胶囊体半径：35与UE4默认骨骼比较搭配</p>
         
         <hr><p>本文2026-01-07首发于<a href='http://localhost:1895/WzhGameDevPublish/'>妖精游戏开发馆</a>，最后修改于2026-05-15</p>]]>
-      </description>
-      
-    </item>
-    
-    
-
-    <item>
-      <title>Lyra改为FPS</title>
-      <link>http://localhost:1895/WzhGameDevPublish/post/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/%E4%BB%A3%E7%A0%81%E6%A1%86%E6%9E%B6/lyra/fps/lyra%E6%94%B9%E4%B8%BAfps/</link>
-      <pubDate>Mon, 08 Sep 2025 19:57:34 &#43;0000</pubDate>
-      <author>cnwenzhihong@gmail.com (温志洪)</author>
-      <guid>http://localhost:1895/WzhGameDevPublish/post/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/%E4%BB%A3%E7%A0%81%E6%A1%86%E6%9E%B6/lyra/fps/lyra%E6%94%B9%E4%B8%BAfps/</guid>
-      <description>
-        <![CDATA[<h1>Lyra改为FPS</h1><p>作者：温志洪（cnwenzhihong@gmail.com）</p>
-        
-          <blockquote>
-<p>QQ：<code>2423113760</code>  Gmail：<code>cnwenzhihong@gmail.com</code><br>
-文档多，跨度时间长，没法慢慢审查。有任何需要补充、修改、解释的地方随时联系。</p>
-        
-        <hr><p>本文2025-09-08首发于<a href='http://localhost:1895/WzhGameDevPublish/'>妖精游戏开发馆</a>，最后修改于2026-05-15</p>]]>
       </description>
       
     </item>
