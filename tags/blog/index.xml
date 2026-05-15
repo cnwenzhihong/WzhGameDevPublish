@@ -12,7 +12,7 @@
     
     <copyright>本博客所有文章除特别声明外，均采用 BY-NC-SA 许可协议。转载请注明出处！</copyright>
     
-    <lastBuildDate>Fri, 01 May 2026 12:52:25 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 15 May 2026 12:38:07 +0000</lastBuildDate>
     
     
     <atom:link href="http://localhost:1895/WzhGameDevPublish/tags/blog/index.xml" rel="self" type="application/rss&#43;xml" />
@@ -30,24 +30,11 @@
       <description>
         <![CDATA[<h1>Lyra改为FPS</h1><p>作者：温志洪（cnwenzhihong@gmail.com）</p>
         
-          <h1 id="总览">
-<a class="header-anchor" href="#%e6%80%bb%e8%a7%88"></a>
-总览
-</h1><h2 id="这套方案的优点">
-<a class="header-anchor" href="#%e8%bf%99%e5%a5%97%e6%96%b9%e6%a1%88%e7%9a%84%e4%bc%98%e7%82%b9"></a>
-这套方案的优点
-</h2><ul>
-<li>完全采用Lyra方案，所有安防均扩展于Lyra原生逻辑拓展，如库存、Cosmet、GA、GameFeature、AnimLayer方案</li>
-<li>与FPS资产分离。FPS程序化动画可以适配大量只有模型的资产。<br>
-<img src="https://gcore.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/20260429151350927.png" alt=""></li>
-</ul>
-<h2 id="资料">
-<a class="header-anchor" href="#%e8%b5%84%e6%96%99"></a>
-资料
-</h2><p><a href="https://x157.github.io/UE5/LyraStarterGame/">LyraStarterGame Overview | X157 Dev Notes</a>：对Lyra的详细拆解资料<br>
-<a href="https://forums.unrealengine.com/t/how-to-send-more-compressed-flags-through-custom-character-movement-component/421142/11">官方论坛上扩展 MoveData 的讨论</a></p>
+          <blockquote>
+<p>QQ：<code>2423113760</code>  Gmail：<code>cnwenzhihong@gmail.com</code><br>
+文档多，跨度时间长，没法慢慢审查。有任何需要补充、修改、解释的地方随时联系。</p>
         
-        <hr><p>本文2025-09-08首发于<a href='http://localhost:1895/WzhGameDevPublish/'>妖精游戏开发馆</a>，最后修改于2026-05-01</p>]]>
+        <hr><p>本文2025-09-08首发于<a href='http://localhost:1895/WzhGameDevPublish/'>妖精游戏开发馆</a>，最后修改于2026-05-15</p>]]>
       </description>
       
     </item>
@@ -55,104 +42,28 @@
     
 
     <item>
-      <title>UE 面试准备</title>
-      <link>http://localhost:1895/WzhGameDevPublish/post/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/%E4%BB%A3%E7%A0%81%E6%A1%86%E6%9E%B6/ue-%E9%9D%A2%E8%AF%95%E5%87%86%E5%A4%87/</link>
-      <pubDate>Sun, 26 Apr 2026 06:23:44 &#43;0000</pubDate>
+      <title>如何使用EasyProceduralAnim插件</title>
+      <link>http://localhost:1895/WzhGameDevPublish/post/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/%E4%BB%A3%E7%A0%81%E6%A1%86%E6%9E%B6/lyra/fps/%E6%8A%80%E6%9C%AF%E7%BB%86%E8%8A%82/weaponsway/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8easyproceduralanim%E6%8F%92%E4%BB%B6/</link>
+      <pubDate>Thu, 08 Jan 2026 06:11:25 &#43;0000</pubDate>
       <author>cnwenzhihong@gmail.com (温志洪)</author>
-      <guid>http://localhost:1895/WzhGameDevPublish/post/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/%E4%BB%A3%E7%A0%81%E6%A1%86%E6%9E%B6/ue-%E9%9D%A2%E8%AF%95%E5%87%86%E5%A4%87/</guid>
+      <guid>http://localhost:1895/WzhGameDevPublish/post/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/%E4%BB%A3%E7%A0%81%E6%A1%86%E6%9E%B6/lyra/fps/%E6%8A%80%E6%9C%AF%E7%BB%86%E8%8A%82/weaponsway/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8easyproceduralanim%E6%8F%92%E4%BB%B6/</guid>
       <description>
-        <![CDATA[<h1>UE 面试准备</h1><p>作者：温志洪（cnwenzhihong@gmail.com）</p>
+        <![CDATA[<h1>如何使用EasyProceduralAnim插件</h1><p>作者：温志洪（cnwenzhihong@gmail.com）</p>
         
-          <h1 id="总览">
-<a class="header-anchor" href="#%e6%80%bb%e8%a7%88"></a>
-总览
-</h1><h2 id="关键资料与核心思路">
-<a class="header-anchor" href="#%e5%85%b3%e9%94%ae%e8%b5%84%e6%96%99%e4%b8%8e%e6%a0%b8%e5%bf%83%e6%80%9d%e8%b7%af"></a>
-关键资料与核心思路
-</h2><p><a href="https://zhuanlan.zhihu.com/p/2014363740011790665">虚幻面试笔记</a><br>
-<a href="https://zhuanlan.zhihu.com/p/34721113">《Exploring in UE4》关于网络同步的理解与思考</a><br>
-<a href="https://dev.epicgames.com/documentation/unreal-engine/gameplay-attributes-and-attribute-sets-for-the-gameplay-ability-system-in-unreal-engine">GAS官方文档</a><br>
-<a href="https://github.com/BillEliot/GASDocumentation_Chinese">GASDocumentation_Chinese</a></p>
-<h3 id="回答思路">
-<a class="header-anchor" href="#%e5%9b%9e%e7%ad%94%e6%80%9d%e8%b7%af"></a>
-回答思路
-</h3>
-  <blockquote class="alert-blockquote tip">
-    <p class="alert-heading">
-      Tip
-    </p>
-    <p><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl">输入层：
-</span></span><span class="line"><span class="cl">    玩家按下 Shift
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">GA/GAS 规则层：
-</span></span><span class="line"><span class="cl">    判断能不能 Sprint
-</span></span><span class="line"><span class="cl">    判断是否消耗体力
-</span></span><span class="line"><span class="cl">    判断是否禁止开火
-</span></span><span class="line"><span class="cl">    判断是否和 ADS 互斥
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">Movement 预测层：
-</span></span><span class="line"><span class="cl">    把 Sprint 状态放进 SavedMove / NetworkMoveData
-</span></span><span class="line"><span class="cl">    保证服务端按同一帧状态重放
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">表现层：
-</span></span><span class="line"><span class="cl">    AnimBP 读取本地预测 Sprint 状态
-</span></span><span class="line"><span class="cl">    不等待服务器 Tag
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">服务端权威层：
-</span></span><span class="line"><span class="cl">    服务端确认 Ability
-</span></span><span class="line"><span class="cl">    服务端重放移动
-</span></span><span class="line"><span class="cl">    不一致则 correction
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">调试层：
-</span></span><span class="line"><span class="cl">    能看到当前 Flags
-</span></span><span class="line"><span class="cl">    能看到 SavedMove 是否合并
-</span></span><span class="line"><span class="cl">    能看到服务端是否收到 Sprint 状态
-</span></span></code></pre></div></p>
-        
-        <hr><p>本文2026-04-26首发于<a href='http://localhost:1895/WzhGameDevPublish/'>妖精游戏开发馆</a>，最后修改于2026-05-01</p>]]>
-      </description>
-      
-    </item>
-    
-    
-
-    <item>
-      <title>CodeX开发实战经验</title>
-      <link>http://localhost:1895/WzhGameDevPublish/post/ai/%E7%BC%96%E7%A8%8B/codex%E5%BC%80%E5%8F%91%E5%AE%9E%E6%88%98%E7%BB%8F%E9%AA%8C/</link>
-      <pubDate>Thu, 16 Apr 2026 11:28:56 &#43;0000</pubDate>
-      <author>cnwenzhihong@gmail.com (温志洪)</author>
-      <guid>http://localhost:1895/WzhGameDevPublish/post/ai/%E7%BC%96%E7%A8%8B/codex%E5%BC%80%E5%8F%91%E5%AE%9E%E6%88%98%E7%BB%8F%E9%AA%8C/</guid>
-      <description>
-        <![CDATA[<h1>CodeX开发实战经验</h1><p>作者：温志洪（cnwenzhihong@gmail.com）</p>
-        
-          <h1 id="开始之前">
-<a class="header-anchor" href="#%e5%bc%80%e5%a7%8b%e4%b9%8b%e5%89%8d"></a>
-开始之前
-</h1><h2 id="关键链接">
-<a class="header-anchor" href="#%e5%85%b3%e9%94%ae%e9%93%be%e6%8e%a5"></a>
-关键链接
-</h2><blockquote>
-<ol>
-<li><a href="https://openai.com/codex">Codex官网</a></li>
-<li><a href="https://developers.openai.com/codex">Codex开发者文档</a></li>
-<li>[Codex GitHub](<a href="https://github.com/openai/codex">GitHub - openai/codex: Lightweight coding agent that runs in your terminal · GitHub</a></li>
-</ol>
+          <blockquote>
+<p>目前仅写了WeaponSway。</p>
 </blockquote>
-<p>零基础AI开发最少需要的知识：<a href="https://developers.openai.com/codex/learn/best-practices">Codex最佳实践-5min</a><br>
-Aggent.md：<a href="https://developers.openai.com/codex/guides/agents-md">Custom instructions with AGENTS.md </a><br>
-考试：</p>
-<h2 id="最佳实践问题">
-<a class="header-anchor" href="#%e6%9c%80%e4%bd%b3%e5%ae%9e%e8%b7%b5%e9%97%ae%e9%a2%98"></a>
-最佳实践问题
-</h2><p>提示词的应包含的4点：<br>
-<strong>Goal:</strong> 先专心实现核心目标，再慢慢加上其他目标。<br>
-使用人群：自己、朋友、其他有需求的人。<br>
-平台：是网页、桌面应用、安卓、苹果，还是跨手机平台<br>
-实现方案：游戏、信息展示、论坛、工具、插件<br>
-<strong>Context:</strong> 项目开始时可以将可能用到的资料提供给它，项目开启后他自己大都能找到自己生成的相关文件，有外部文件补充时才需要@。有网络文档、资料直接给链接就行。<br>
-比如命令：</p>
+<h1 id="基本配置">
+<a class="header-anchor" href="#%e5%9f%ba%e6%9c%ac%e9%85%8d%e7%bd%ae"></a>
+基本配置
+</h1><p>我们以<code>ABP_WeaponSway</code>为例，也可以直接将逻辑写在自己的动画蓝图</p>
+<h2 id="abp_weaponsway">
+<a class="header-anchor" href="#abp_weaponsway"></a>
+ABP_WeaponSway
+</h2><p>找到插件文件夹中的<code>ABP_WeaponSway</code>双击，提示没有骨骼，选择自己的FPS骨骼并确认<br>
+打开蓝图，删除报错节点,可以仅保留下图节点：</p>
         
-        <hr><p>本文2026-04-16首发于<a href='http://localhost:1895/WzhGameDevPublish/'>妖精游戏开发馆</a>，最后修改于2026-05-01</p>]]>
+        <hr><p>本文2026-01-08首发于<a href='http://localhost:1895/WzhGameDevPublish/'>妖精游戏开发馆</a>，最后修改于2026-05-15</p>]]>
       </description>
       
     </item>
@@ -160,27 +71,36 @@ Aggent.md：<a href="https://developers.openai.com/codex/guides/agents-md">Custo
     
 
     <item>
-      <title>杀戮尖塔2存在的设计问题探讨</title>
-      <link>http://localhost:1895/WzhGameDevPublish/post/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/1-input/%E6%B8%B8%E6%88%8F%E5%AE%9E%E4%BE%8B/%E6%9D%80%E6%88%AE%E5%B0%96%E5%A1%94/%E6%9D%80%E6%88%AE%E5%B0%96%E5%A1%942%E5%AD%98%E5%9C%A8%E7%9A%84%E8%AE%BE%E8%AE%A1%E9%97%AE%E9%A2%98%E6%8E%A2%E8%AE%A8/</link>
-      <pubDate>Tue, 14 Apr 2026 23:56:07 &#43;0000</pubDate>
+      <title>武器摇晃重要概念</title>
+      <link>http://localhost:1895/WzhGameDevPublish/post/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/%E4%BB%A3%E7%A0%81%E6%A1%86%E6%9E%B6/lyra/fps/%E6%8A%80%E6%9C%AF%E7%BB%86%E8%8A%82/weaponsway/%E6%AD%A6%E5%99%A8%E6%91%87%E6%99%83%E9%87%8D%E8%A6%81%E6%A6%82%E5%BF%B5/</link>
+      <pubDate>Fri, 19 Dec 2025 11:26:47 &#43;0000</pubDate>
       <author>cnwenzhihong@gmail.com (温志洪)</author>
-      <guid>http://localhost:1895/WzhGameDevPublish/post/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/1-input/%E6%B8%B8%E6%88%8F%E5%AE%9E%E4%BE%8B/%E6%9D%80%E6%88%AE%E5%B0%96%E5%A1%94/%E6%9D%80%E6%88%AE%E5%B0%96%E5%A1%942%E5%AD%98%E5%9C%A8%E7%9A%84%E8%AE%BE%E8%AE%A1%E9%97%AE%E9%A2%98%E6%8E%A2%E8%AE%A8/</guid>
+      <guid>http://localhost:1895/WzhGameDevPublish/post/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/%E4%BB%A3%E7%A0%81%E6%A1%86%E6%9E%B6/lyra/fps/%E6%8A%80%E6%9C%AF%E7%BB%86%E8%8A%82/weaponsway/%E6%AD%A6%E5%99%A8%E6%91%87%E6%99%83%E9%87%8D%E8%A6%81%E6%A6%82%E5%BF%B5/</guid>
       <description>
-        <![CDATA[<h1>杀戮尖塔2存在的设计问题探讨</h1><p>作者：温志洪（cnwenzhihong@gmail.com）</p>
+        <![CDATA[<h1>武器摇晃重要概念</h1><p>作者：温志洪（cnwenzhihong@gmail.com）</p>
         
-          <p><a href="https://slay-the-spire.fandom.com/wiki/Slay_the_Spire_Wiki">杀戮尖塔1英文Wiki</a><br>
-<a href="https://sts2.huijiwiki.com/wiki/%E9%A6%96%E9%A1%B5">杀戮尖塔2中文维基</a></p>
-<h1 id="核心体验">
-<a class="header-anchor" href="#%e6%a0%b8%e5%bf%83%e4%bd%93%e9%aa%8c"></a>
-核心体验
-</h1><p>一代：<br>
-这样也行？、红色格挡条、转来转去像个、吉米！<br>
-数值叠加、强力运转、极限数值。局内启动、蠕动/运转、击杀一气呵成。</p>
-<p>二代：<br>
-XX流派、？避战。塞10张？？？<br>
-更注重简单数值的叠加，而不是运转端的叠加。</p>
+          <h1 id="参考类型">
+<a class="header-anchor" href="#%e5%8f%82%e8%80%83%e7%b1%bb%e5%9e%8b"></a>
+参考类型
+</h1><h2 id="类型1视角旋转的惯性可视化">
+<a class="header-anchor" href="#%e7%b1%bb%e5%9e%8b1%e8%a7%86%e8%a7%92%e6%97%8b%e8%bd%ac%e7%9a%84%e6%83%af%e6%80%a7%e5%8f%af%e8%a7%86%e5%8c%96"></a>
+类型1——视角旋转的惯性可视化
+</h2><h3 id="参考游戏">
+<a class="header-anchor" href="#%e5%8f%82%e8%80%83%e6%b8%b8%e6%88%8f"></a>
+参考游戏
+</h3><p>Battlefield 1\ <video src="https://cdn.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/%E6%88%98%E5%9C%B01-%E6%AD%A5%E6%9E%AA_x264.mp4" autoplay loop controls></video><br>
+OW 半藏</p>
+<h1 id="weapon-sway-的本质分类框架">
+<a class="header-anchor" href="#weapon-sway-%e7%9a%84%e6%9c%ac%e8%b4%a8%e5%88%86%e7%b1%bb%e6%a1%86%e6%9e%b6"></a>
+Weapon Sway 的本质分类框架
+</h1><p>Weapon Feel is control engineering, not animation polish</p>
+<p>从<strong>控制系统与信号处理</strong>角度，Weapon Sway 可以被严格分为以下 <strong>6 大类（并非按游戏，而是按系统性质）</strong>：<br>
+<a href="https://www.bilibili.com/video/BV1HP4y1j7HQ">杀戮地带2</a>:枪托旋转+Yaw延迟，体现重量感，同时手臂转动较慢<br>
+值得一提的是：游戏很容易沉浸，低昂的背景音家时不时队友的声音+脚步声哪怕没有敌人也足够沉浸 <a href="https://www.bilibili.com/video/BV1HP4y1j7HQ/?share_source=copy_web%5c&amp;vd_source=bf40aa6f67b3f45734bc2b22bca840cf%5c&amp;t=765">13:15</a><br>
+哪怕没有明显背景音乐也会有底噪<a href="https://www.bilibili.com/video/BV1vD4y1V7Ua">工业废土艺术/10年前《杀戮地带2》多人联机战区模式实况</a><br>
+<img src="https://cdn.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/PixPin_2025-12-20_19-52-32.gif" alt=""></p>
         
-        <hr><p>本文2026-04-14首发于<a href='http://localhost:1895/WzhGameDevPublish/'>妖精游戏开发馆</a>，最后修改于2026-04-30</p>]]>
+        <hr><p>本文2025-12-19首发于<a href='http://localhost:1895/WzhGameDevPublish/'>妖精游戏开发馆</a>，最后修改于2026-05-15</p>]]>
       </description>
       
     </item>
@@ -188,149 +108,191 @@ XX流派、？避战。塞10张？？？<br>
     
 
     <item>
-      <title>Lyra框架研究总览</title>
-      <link>http://localhost:1895/WzhGameDevPublish/post/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/%E4%BB%A3%E7%A0%81%E6%A1%86%E6%9E%B6/lyra/lyra%E6%A1%86%E6%9E%B6%E7%A0%94%E7%A9%B6%E6%80%BB%E8%A7%88/</link>
-      <pubDate>Thu, 11 Sep 2025 17:10:52 &#43;0000</pubDate>
+      <title>FPS程序化动画</title>
+      <link>http://localhost:1895/WzhGameDevPublish/post/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/%E4%BB%A3%E7%A0%81%E6%A1%86%E6%9E%B6/lyra/fps/%E6%8A%80%E6%9C%AF%E7%BB%86%E8%8A%82/fps%E7%A8%8B%E5%BA%8F%E5%8C%96%E5%8A%A8%E7%94%BB/</link>
+      <pubDate>Wed, 07 Jan 2026 23:12:58 &#43;0000</pubDate>
       <author>cnwenzhihong@gmail.com (温志洪)</author>
-      <guid>http://localhost:1895/WzhGameDevPublish/post/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/%E4%BB%A3%E7%A0%81%E6%A1%86%E6%9E%B6/lyra/lyra%E6%A1%86%E6%9E%B6%E7%A0%94%E7%A9%B6%E6%80%BB%E8%A7%88/</guid>
+      <guid>http://localhost:1895/WzhGameDevPublish/post/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/%E4%BB%A3%E7%A0%81%E6%A1%86%E6%9E%B6/lyra/fps/%E6%8A%80%E6%9C%AF%E7%BB%86%E8%8A%82/fps%E7%A8%8B%E5%BA%8F%E5%8C%96%E5%8A%A8%E7%94%BB/</guid>
       <description>
-        <![CDATA[<h1>Lyra框架研究总览</h1><p>作者：温志洪（cnwenzhihong@gmail.com）</p>
+        <![CDATA[<h1>FPS程序化动画</h1><p>作者：温志洪（cnwenzhihong@gmail.com）</p>
         
-          <h1 id="总览">
-<a class="header-anchor" href="#%e6%80%bb%e8%a7%88"></a>
-总览
-</h1><h2 id="不错的资料">
-<a class="header-anchor" href="#%e4%b8%8d%e9%94%99%e7%9a%84%e8%b5%84%e6%96%99"></a>
-不错的资料
+          <h1 id="基本配置">
+<a class="header-anchor" href="#%e5%9f%ba%e6%9c%ac%e9%85%8d%e7%bd%ae"></a>
+基本配置
+</h1><p>关闭Motion Blue<br>
+<img src="https://gcore.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/20260304013656557.png" alt=""></p>
+<h2 id="角色">
+<a class="header-anchor" href="#%e8%a7%92%e8%89%b2"></a>
+角色
+</h2><p>胶囊体半径：35与UE4默认骨骼比较搭配</p>
+<h1 id="程序化动画框架">
+<a class="header-anchor" href="#%e7%a8%8b%e5%ba%8f%e5%8c%96%e5%8a%a8%e7%94%bb%e6%a1%86%e6%9e%b6"></a>
+程序化动画框架
+</h1><h2 id="核心目的">
+<a class="header-anchor" href="#%e6%a0%b8%e5%bf%83%e7%9b%ae%e7%9a%84"></a>
+核心目的
+</h2><p>参数化、可配置</p>
+<h1 id="程序化跳跃">
+<a class="header-anchor" href="#%e7%a8%8b%e5%ba%8f%e5%8c%96%e8%b7%b3%e8%b7%83"></a>
+程序化跳跃
+</h1><p><a href="https://youtu.be/3OW6woGiXh8?si=kuzHfgsog-kRKC8F%5c&amp;t=309">教程</a></p>
+<h2 id="思路">
+<a class="header-anchor" href="#%e6%80%9d%e8%b7%af"></a>
+思路
+</h2><h3 id="实例分析">
+<a class="header-anchor" href="#%e5%ae%9e%e4%be%8b%e5%88%86%e6%9e%90"></a>
+实例分析
+</h3><h4 id="ow">
+<a class="header-anchor" href="#ow"></a>
+OW
+</h4><p>猎空：\ <video src="https://gcore.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/Jump_OW_%E7%8C%8E%E7%A9%BA.mp4" controls muted autoplay loop></video><br>
+斩仇：\ <video src="https://gcore.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/Jump_OW_%E6%96%A9%E4%BB%87.mp4" controls muted autoplay loop></video></p>
+        
+        <hr><p>本文2026-01-07首发于<a href='http://localhost:1895/WzhGameDevPublish/'>妖精游戏开发馆</a>，最后修改于2026-05-15</p>]]>
+      </description>
+      
+    </item>
+    
+    
+
+    <item>
+      <title>CraftingGunFeel——专业游戏开发者如何为射击游戏创造枪械手感？</title>
+      <link>http://localhost:1895/WzhGameDevPublish/post/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/%E4%BB%A3%E7%A0%81%E6%A1%86%E6%9E%B6/lyra/fps/%E7%AC%AC%E4%B8%89%E6%96%B9%E8%B5%84%E6%96%99/craftinggunfeel/craftinggunfeel%E4%B8%93%E4%B8%9A%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91%E8%80%85%E5%A6%82%E4%BD%95%E4%B8%BA%E5%B0%84%E5%87%BB%E6%B8%B8%E6%88%8F%E5%88%9B%E9%80%A0%E6%9E%AA%E6%A2%B0%E6%89%8B%E6%84%9F/</link>
+      <pubDate>Thu, 27 Nov 2025 23:01:30 &#43;0000</pubDate>
+      <author>cnwenzhihong@gmail.com (温志洪)</author>
+      <guid>http://localhost:1895/WzhGameDevPublish/post/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/%E4%BB%A3%E7%A0%81%E6%A1%86%E6%9E%B6/lyra/fps/%E7%AC%AC%E4%B8%89%E6%96%B9%E8%B5%84%E6%96%99/craftinggunfeel/craftinggunfeel%E4%B8%93%E4%B8%9A%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91%E8%80%85%E5%A6%82%E4%BD%95%E4%B8%BA%E5%B0%84%E5%87%BB%E6%B8%B8%E6%88%8F%E5%88%9B%E9%80%A0%E6%9E%AA%E6%A2%B0%E6%89%8B%E6%84%9F/</guid>
+      <description>
+        <![CDATA[<h1>CraftingGunFeel——专业游戏开发者如何为射击游戏创造枪械手感？</h1><p>作者：温志洪（cnwenzhihong@gmail.com）</p>
+        
+          <blockquote>
+<p>视图模型：<a href="https://developer.valvesoftware.com/wiki/Viewmodel">value wiki：Viewmodel</a></p>
+</blockquote>
+<h1 id="引言">
+<a class="header-anchor" href="#%e5%bc%95%e8%a8%80"></a>
+引言
+</h1><p>专业开发者为达到令人满意的枪械射击效果所使用的具体技术很难获取，因为这类知识可能是专有的，或者只是隐藏在实力雄厚或孤立的游戏工作室的资深开发者中。尽管这项研究中受访的开发者经常声称他们乐于分享知识，但其他受访者通过无法分享某些开发技术或因公司政策选择匿名来质疑这些说法。目前需要大量的试错和从互联网上搜寻零散的线索。</p>
+        
+        <hr><p>本文2025-11-27首发于<a href='http://localhost:1895/WzhGameDevPublish/'>妖精游戏开发馆</a>，最后修改于2026-05-15</p>]]>
+      </description>
+      
+    </item>
+    
+    
+
+    <item>
+      <title>UE5.6 第一人称渲染技术大会</title>
+      <link>http://localhost:1895/WzhGameDevPublish/post/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/%E4%BB%A3%E7%A0%81%E6%A1%86%E6%9E%B6/lyra/fps/ue5.6-%E7%AC%AC%E4%B8%80%E4%BA%BA%E7%A7%B0%E6%B8%B2%E6%9F%93%E6%8A%80%E6%9C%AF%E5%A4%A7%E4%BC%9A/</link>
+      <pubDate>Tue, 09 Sep 2025 13:53:06 &#43;0000</pubDate>
+      <author>cnwenzhihong@gmail.com (温志洪)</author>
+      <guid>http://localhost:1895/WzhGameDevPublish/post/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/%E4%BB%A3%E7%A0%81%E6%A1%86%E6%9E%B6/lyra/fps/ue5.6-%E7%AC%AC%E4%B8%80%E4%BA%BA%E7%A7%B0%E6%B8%B2%E6%9F%93%E6%8A%80%E6%9C%AF%E5%A4%A7%E4%BC%9A/</guid>
+      <description>
+        <![CDATA[<h1>UE5.6 第一人称渲染技术大会</h1><p>作者：温志洪（cnwenzhihong@gmail.com）</p>
+        
+          <blockquote>
+<p>原链接: <a href="https://www.youtube.com/watch?v=11sLIyw0pWQ">https://www.youtube.com/watch?v=11sLIyw0pWQ</a><br>
+bilibili翻译: <a href="https://www.bilibili.com/video/BV1i98QzAEYD">https://www.bilibili.com/video/BV1i98QzAEYD</a><br>
+Epic文章，该文章非常详细地从0搭建UE5.6的FPS角色，是快速实现的不二选择: <a href="https://dev.epicgames.com/documentation/zh-cn/unreal-engine/first-person-rendering">https://dev.epicgames.com/documentation/zh-cn/unreal-engine/first-person-rendering</a></p>
+</blockquote>
+<h1 id="一什么是第一人称渲染">
+<a class="header-anchor" href="#%e4%b8%80%e4%bb%80%e4%b9%88%e6%98%af%e7%ac%ac%e4%b8%80%e4%ba%ba%e7%a7%b0%e6%b8%b2%e6%9f%93"></a>
+一、什么是第一人称渲染？
+</h1><p>其理念是我们有一个第一人称视角——可以玩家通过它们所扮演角色的眼睛看世界。也就是说它们可以看到自己的手臂、持有的武器。当它们向下看时，能看到腿和部分下半身躯干。所有这些都伴随着特定的期望和挑战。<br>
+<img src="https://cdn.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/20250909221759766.png" alt="image.png|275"></p>
+        
+        <hr><p>本文2025-09-09首发于<a href='http://localhost:1895/WzhGameDevPublish/'>妖精游戏开发馆</a>，最后修改于2026-05-15</p>]]>
+      </description>
+      
+    </item>
+    
+    
+
+    <item>
+      <title>游戏循环的理解</title>
+      <link>http://localhost:1895/WzhGameDevPublish/post/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/2-output/%E6%B8%B8%E6%88%8F%E5%BE%AA%E7%8E%AF/%E6%B8%B8%E6%88%8F%E5%BE%AA%E7%8E%AF%E7%9A%84%E7%90%86%E8%A7%A3/</link>
+      <pubDate>Sun, 10 May 2026 17:35:53 &#43;0000</pubDate>
+      <author>cnwenzhihong@gmail.com (温志洪)</author>
+      <guid>http://localhost:1895/WzhGameDevPublish/post/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/2-output/%E6%B8%B8%E6%88%8F%E5%BE%AA%E7%8E%AF/%E6%B8%B8%E6%88%8F%E5%BE%AA%E7%8E%AF%E7%9A%84%E7%90%86%E8%A7%A3/</guid>
+      <description>
+        <![CDATA[<h1>游戏循环的理解</h1><p>作者：温志洪（cnwenzhihong@gmail.com）</p>
+        
+          <p>游戏关键设计可以分为：<br>
+美术表达：文化、意义<br>
+游戏体验：基石<br>
+短期循环、中期循环、长期循环：可以只关注两部分，甚至完全去除一个部分</p>
+<p>短期循环：直接刺激为主，直接有效果<br>
+中期循环：一定程度的心流变换为主，大量的费用限制让你没法随心打出短期循环<br>
+长期循环：长时间的环境变化为主，想办法让这些限制成为你的助力，1+1&gt;2。</p>
+        
+        <hr><p>本文2026-05-10首发于<a href='http://localhost:1895/WzhGameDevPublish/'>妖精游戏开发馆</a>，最后修改于2026-05-15</p>]]>
+      </description>
+      
+    </item>
+    
+    
+
+    <item>
+      <title>FPS动画制作参考资料</title>
+      <link>http://localhost:1895/WzhGameDevPublish/post/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/%E4%BB%A3%E7%A0%81%E6%A1%86%E6%9E%B6/lyra/fps/fps%E5%8A%A8%E7%94%BB%E5%88%B6%E4%BD%9C%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99/</link>
+      <pubDate>Fri, 14 Nov 2025 14:14:37 &#43;0000</pubDate>
+      <author>cnwenzhihong@gmail.com (温志洪)</author>
+      <guid>http://localhost:1895/WzhGameDevPublish/post/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/%E4%BB%A3%E7%A0%81%E6%A1%86%E6%9E%B6/lyra/fps/fps%E5%8A%A8%E7%94%BB%E5%88%B6%E4%BD%9C%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99/</guid>
+      <description>
+        <![CDATA[<h1>FPS动画制作参考资料</h1><p>作者：温志洪（cnwenzhihong@gmail.com）</p>
+        
+          <h1 id="总领">
+<a class="header-anchor" href="#%e6%80%bb%e9%a2%86"></a>
+总领
+</h1><h2 id="lyra文档">
+<a class="header-anchor" href="#lyra%e6%96%87%e6%a1%a3"></a>
+Lyra文档
+</h2><p><a href="https://x157.github.io/UE5/LyraStarterGame/">LyraStarterGame Overview | X157 Dev Notes</a>：Lyra详细拆解</p>
+<h2 id="理论">
+<a class="header-anchor" href="#%e7%90%86%e8%ae%ba"></a>
+理论
+</h2><p><a href="https://his.diva-portal.org/smash/get/diva2%3A1971715/FULLTEXT01.pdf">Crafting Gun Feel</a>：讲解FPS效果的零散论文，提供大量的参考资料，需要一定FPS游戏开发基础<br>
+<a href="https://zhuanlan.zhihu.com/p/1949912530509080270">如何实现 COD 品质的第一人称动画</a></p>
+        
+        <hr><p>本文2025-11-14首发于<a href='http://localhost:1895/WzhGameDevPublish/'>妖精游戏开发馆</a>，最后修改于2026-05-15</p>]]>
+      </description>
+      
+    </item>
+    
+    
+
+    <item>
+      <title>Lyra改FPS操作指引</title>
+      <link>http://localhost:1895/WzhGameDevPublish/post/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/%E4%BB%A3%E7%A0%81%E6%A1%86%E6%9E%B6/lyra/fps/lyra%E6%94%B9fps%E6%93%8D%E4%BD%9C%E6%8C%87%E5%BC%95/</link>
+      <pubDate>Sun, 14 Dec 2025 11:28:34 &#43;0000</pubDate>
+      <author>cnwenzhihong@gmail.com (温志洪)</author>
+      <guid>http://localhost:1895/WzhGameDevPublish/post/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/%E4%BB%A3%E7%A0%81%E6%A1%86%E6%9E%B6/lyra/fps/lyra%E6%94%B9fps%E6%93%8D%E4%BD%9C%E6%8C%87%E5%BC%95/</guid>
+      <description>
+        <![CDATA[<h1>Lyra改FPS操作指引</h1><p>作者：温志洪（cnwenzhihong@gmail.com）</p>
+        
+          <h1 id="武器">
+<a class="header-anchor" href="#%e6%ad%a6%e5%99%a8"></a>
+武器
+</h1><h2 id="添加一把武器">
+<a class="header-anchor" href="#%e6%b7%bb%e5%8a%a0%e4%b8%80%e6%8a%8a%e6%ad%a6%e5%99%a8"></a>
+添加一把武器
 </h2>
-  <blockquote class="alert-blockquote tip">
+  <blockquote class="alert-blockquote important">
     <p class="alert-heading">
-      Tip
+      Important
     </p>
-    <p><ol>
-<li>很多新特性</li>
-<li>GameFeature将Lyra做了极大的解耦、导致逻辑不连续，动态加载让引用关系很难查找</li>
-<li>GAS+EnhanceInput</li>
-<li>大量使用DataAsset</li>
-<li>设计模式杂糅</li>
-<li>面向数据ECS的不严格使用<br>
-系统+组件+实体</li>
-<li>MVC用于UI<br>
-数据模型+逻辑控制器+显示视图</li>
-<li>MVVM和VUE：将逻辑和Btn分离的MVC</li>
-<li>堆栈式逻辑</li>
-<li>Gameplay</li>
-<li>武器在有的地方像ECS，有的地方像MVVM
-<ol>
-<li>ECS——将武器的数据实例和表现做了分离，最终配置在Item中显示</li>
-<li>MVVM——实例会被继续细分为Ability、蒙太奇、扩散<br>
-<img src="https://gcore.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/20260220102236298.png" alt=""></li>
-</ol>
-</li>
-<li>开火射线检测的作用
-<ol>
-<li>速度和碰撞会严重影响开火的命中检测</li>
-<li>散弹枪获取8个HitResult并上传到服务器广播</li>
-</ol>
-</li>
-</ol></p>
-        
-        <hr><p>本文2025-09-11首发于<a href='http://localhost:1895/WzhGameDevPublish/'>妖精游戏开发馆</a>，最后修改于2026-04-30</p>]]>
-      </description>
-      
-    </item>
-    
-    
+    <p></p>
+  </blockquote>
 
-    <item>
-      <title>Lyra 射击全流程梳理</title>
-      <link>http://localhost:1895/WzhGameDevPublish/post/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/%E4%BB%A3%E7%A0%81%E6%A1%86%E6%9E%B6/lyra/lyra-gas/lyra-%E5%B0%84%E5%87%BB%E5%85%A8%E6%B5%81%E7%A8%8B%E6%A2%B3%E7%90%86/</link>
-      <pubDate>Sat, 07 Jun 2025 16:12:15 &#43;0000</pubDate>
-      <author>cnwenzhihong@gmail.com (温志洪)</author>
-      <guid>http://localhost:1895/WzhGameDevPublish/post/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/%E4%BB%A3%E7%A0%81%E6%A1%86%E6%9E%B6/lyra/lyra-gas/lyra-%E5%B0%84%E5%87%BB%E5%85%A8%E6%B5%81%E7%A8%8B%E6%A2%B3%E7%90%86/</guid>
-      <description>
-        <![CDATA[<h1>Lyra 射击全流程梳理</h1><p>作者：温志洪（cnwenzhihong@gmail.com）</p>
-        
-          <h1 id="1-目标找寻startrangedweapontargeting">
-<a class="header-anchor" href="#1-%e7%9b%ae%e6%a0%87%e6%89%be%e5%af%bbstartrangedweapontargeting"></a>
-1. 目标找寻StartRangedWeaponTargeting
-</h1><p><img src="https://cdn.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/20241113181942.png" alt="image.png"><br>
-播放特效时判断独立服务器</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="n">InputData</span><span class="p">.</span><span class="n">bCanPlayBulletFX</span> <span class="o">=</span> <span class="n">AvatarPawn</span><span class="o">-&gt;</span><span class="n">GetNetMode</span><span class="p">()</span> <span class="o">!=</span> <span class="n">NM_DedicatedServer</span><span class="p">();</span>
-</span></span></code></pre></div><h2 id="11-找寻目标-foundhits">
-<a class="header-anchor" href="#11-%e6%89%be%e5%af%bb%e7%9b%ae%e6%a0%87-foundhits"></a>
-1.1. 找寻目标 FoundHits
-</h2><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-C++" data-lang="C++"><span class="line"><span class="cl"><span class="n">ULyraGameplayAbility_RangedWeapon</span><span class="o">::</span><span class="n">PerformLocalTargeting</span><span class="p">(</span><span class="n">OUT</span> <span class="n">TArray</span><span class="o">&lt;</span><span class="n">FHitResult</span><span class="o">&gt;&amp;</span> <span class="n">OutHits</span><span class="p">)</span>
-</span></span></code></pre></div><h3 id="11-获取开火位置和朝向-inputdata">
-<a class="header-anchor" href="#11-%e8%8e%b7%e5%8f%96%e5%bc%80%e7%81%ab%e4%bd%8d%e7%bd%ae%e5%92%8c%e6%9c%9d%e5%90%91-inputdata"></a>
-1.1. 获取开火位置和朝向 InputData
-</h3><blockquote>
-<p>DrawDebugLine：黄色，Setting-&gt;LyraWeaponDebugger</p>
-        
-        <hr><p>本文2025-06-07首发于<a href='http://localhost:1895/WzhGameDevPublish/'>妖精游戏开发馆</a>，最后修改于2026-04-30</p>]]>
-      </description>
-      
-    </item>
-    
-    
-
-    <item>
-      <title>Lyra Team组队功能解析</title>
-      <link>http://localhost:1895/WzhGameDevPublish/post/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/%E4%BB%A3%E7%A0%81%E6%A1%86%E6%9E%B6/lyra/lyra-%E5%B8%B8%E7%94%A8%E5%8A%9F%E8%83%BD/lyra-team%E7%BB%84%E9%98%9F%E5%8A%9F%E8%83%BD%E8%A7%A3%E6%9E%90/</link>
-      <pubDate>Fri, 20 Mar 2026 17:31:21 &#43;0000</pubDate>
-      <author>cnwenzhihong@gmail.com (温志洪)</author>
-      <guid>http://localhost:1895/WzhGameDevPublish/post/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/%E4%BB%A3%E7%A0%81%E6%A1%86%E6%9E%B6/lyra/lyra-%E5%B8%B8%E7%94%A8%E5%8A%9F%E8%83%BD/lyra-team%E7%BB%84%E9%98%9F%E5%8A%9F%E8%83%BD%E8%A7%A3%E6%9E%90/</guid>
-      <description>
-        <![CDATA[<h1>Lyra Team组队功能解析</h1><p>作者：温志洪（cnwenzhihong@gmail.com）</p>
-        
-          <h1 id="系统概述">
-<a class="header-anchor" href="#%e7%b3%bb%e7%bb%9f%e6%a6%82%e8%bf%b0"></a>
-系统概述
-</h1><p>团队功能，不算很大的一个模块，但和各种模块都要打交道，同时也需要对数据进行简单存储、同步、获取。</p>
-<p>拓展资料：<br>
-<a href="https://x157.github.io/UE5/LyraStarterGame/Teams/">Lyra Team System | X157 Dev Notes</a><br>
-<a href="https://dev.epicgames.com/community/learning/tutorials/XjBe/unreal-engine-lyra-team-based-spawn-points">Lyra: Team-based Spawn Points | Community tutorial</a></p>
-        
-        <hr><p>本文2026-03-20首发于<a href='http://localhost:1895/WzhGameDevPublish/'>妖精游戏开发馆</a>，最后修改于2026-03-21</p>]]>
-      </description>
-      
-    </item>
-    
-    
-
-    <item>
-      <title>LyraPlayerController快速拆分</title>
-      <link>http://localhost:1895/WzhGameDevPublish/post/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/%E4%BB%A3%E7%A0%81%E6%A1%86%E6%9E%B6/lyra/lyra-3c/lyraplayercontroller%E5%BF%AB%E9%80%9F%E6%8B%86%E5%88%86/</link>
-      <pubDate>Mon, 23 Feb 2026 15:05:34 &#43;0000</pubDate>
-      <author>cnwenzhihong@gmail.com (温志洪)</author>
-      <guid>http://localhost:1895/WzhGameDevPublish/post/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/%E4%BB%A3%E7%A0%81%E6%A1%86%E6%9E%B6/lyra/lyra-3c/lyraplayercontroller%E5%BF%AB%E9%80%9F%E6%8B%86%E5%88%86/</guid>
-      <description>
-        <![CDATA[<h1>LyraPlayerController快速拆分</h1><p>作者：温志洪（cnwenzhihong@gmail.com）</p>
-        
-          <h1 id="playercontroller">
-<a class="header-anchor" href="#playercontroller"></a>
-PlayerController
-</h1><h2 id="playercontroller概览">
-<a class="header-anchor" href="#playercontroller%e6%a6%82%e8%a7%88"></a>
-PlayerController概览
-</h2><p>除命令行作弊功能，都是外部系统支持，理应放在独立Component中</p>
+<h3 id="step1添加武器模型">
+<a class="header-anchor" href="#step1%e6%b7%bb%e5%8a%a0%e6%ad%a6%e5%99%a8%e6%a8%a1%e5%9e%8b"></a>
+Step1：添加武器模型
+</h3><p><strong>创建FPS模型Actor</strong>：继承<code>B_Weapon_FPS</code><br>
+配置：</p>
 <ul>
-<li>ModularPlayerController——ModularGameplay支持</li>
-<li>CommonPlayerController——CommonUI支持</li>
-<li>ILyraCameraAssistInterface——处理TPS相机穿模</li>
-<li>ILyraTeamAgentInterface——Team系统支持<br>
-<img src="https://pica.zhimg.com/v2-f8a52fe28625888b52c7a6ff774e93b0_1440w.jpg" alt=""></li>
-</ul>
-<h2 id="实现">
-<a class="header-anchor" href="#%e5%ae%9e%e7%8e%b0"></a>
-实现
-</h2><h3 id="命令行作弊">
-<a class="header-anchor" href="#%e5%91%bd%e4%bb%a4%e8%a1%8c%e4%bd%9c%e5%bc%8a"></a>
-命令行作弊
-</h3><p>在服务器用命令行作弊<br>
-<img src="https://pic1.zhimg.com/v2-9999b8c9cd51ef374182694533bfa8a2_1440w.jpg" alt=""></p>
+<li>ActorDefault：添加Tag(FPS)用于正确绑定
+<blockquote>
+<p>改到<code>EquipmentDefinition</code>中配置更直观，但出于尽量不修改源代码原则，我们采用原生Tag<img src="https://cdn.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/20251212171754274.png" alt=""></p>
         
-        <hr><p>本文2026-02-23首发于<a href='http://localhost:1895/WzhGameDevPublish/'>妖精游戏开发馆</a>，最后修改于2026-03-21</p>]]>
+        <hr><p>本文2025-12-14首发于<a href='http://localhost:1895/WzhGameDevPublish/'>妖精游戏开发馆</a>，最后修改于2026-05-15</p>]]>
       </description>
       
     </item>
@@ -338,117 +300,30 @@ PlayerController概览
     
 
     <item>
-      <title>LyraGameMode的快速拆分</title>
-      <link>http://localhost:1895/WzhGameDevPublish/post/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/%E4%BB%A3%E7%A0%81%E6%A1%86%E6%9E%B6/lyra/lyra-framework/lyragamemode%E7%9A%84%E5%BF%AB%E9%80%9F%E6%8B%86%E5%88%86/</link>
-      <pubDate>Mon, 23 Feb 2026 08:19:37 &#43;0000</pubDate>
+      <title>CSGO中的游戏设计汇总</title>
+      <link>http://localhost:1895/WzhGameDevPublish/post/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/2-output/%E6%B8%B8%E6%88%8F/csgo%E4%B8%AD%E7%9A%84%E6%B8%B8%E6%88%8F%E8%AE%BE%E8%AE%A1%E6%B1%87%E6%80%BB/</link>
+      <pubDate>Sun, 24 Aug 2025 23:38:30 &#43;0000</pubDate>
       <author>cnwenzhihong@gmail.com (温志洪)</author>
-      <guid>http://localhost:1895/WzhGameDevPublish/post/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/%E4%BB%A3%E7%A0%81%E6%A1%86%E6%9E%B6/lyra/lyra-framework/lyragamemode%E7%9A%84%E5%BF%AB%E9%80%9F%E6%8B%86%E5%88%86/</guid>
+      <guid>http://localhost:1895/WzhGameDevPublish/post/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/2-output/%E6%B8%B8%E6%88%8F/csgo%E4%B8%AD%E7%9A%84%E6%B8%B8%E6%88%8F%E8%AE%BE%E8%AE%A1%E6%B1%87%E6%80%BB/</guid>
       <description>
-        <![CDATA[<h1>LyraGameMode的快速拆分</h1><p>作者：温志洪（cnwenzhihong@gmail.com）</p>
+        <![CDATA[<h1>CSGO中的游戏设计汇总</h1><p>作者：温志洪（cnwenzhihong@gmail.com）</p>
         
-          <h1 id="lyragamemode">
-<a class="header-anchor" href="#lyragamemode"></a>
-LyraGameMode
-</h1><h2 id="lyragamemode概述">
-<a class="header-anchor" href="#lyragamemode%e6%a6%82%e8%bf%b0"></a>
-LyraGameMode概述
-</h2><h3 id="核心逻辑">
-<a class="header-anchor" href="#%e6%a0%b8%e5%bf%83%e9%80%bb%e8%be%91"></a>
-核心逻辑
-</h3><ol>
-<li>更改ModularGamePlay基类</li>
-<li>绝大部分逻辑为加载和配置<code>ExperienceDefinition</code>中的所有参数服务<br>
-<img src="https://gcore.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/20260306223927683.png" alt=""></li>
-</ol>
-<h3 id="关键思路">
-<a class="header-anchor" href="#%e5%85%b3%e9%94%ae%e6%80%9d%e8%b7%af"></a>
-关键思路
-</h3><h4 id="experience加载阶段">
-<a class="header-anchor" href="#experience%e5%8a%a0%e8%bd%bd%e9%98%b6%e6%ae%b5"></a>
-Experience加载阶段
-</h4><table>
-  <thead>
-      <tr>
-          <th>阶段</th>
-          <th>作用</th>
-          <th>函数</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td>start</td>
-          <td>等待一帧,准备加载</td>
-          <td>GameMode::initgame</td>
-      </tr>
-      <tr>
-          <td>match</td>
-          <td>按优先级找<code>ExperienceDefinition</code></td>
-          <td>GameMode::HandleMatchAssignmentIfNotExpectingOne</td>
-      </tr>
-      <tr>
-          <td>set</td>
-          <td>获得Experience</td>
-          <td>ExperienceManager::SetCurrentExperience</td>
-      </tr>
-      <tr>
-          <td><strong>Loading</strong></td>
-          <td>按服务器/客户端加载Experience中的Actions ActionSet绑定的资产</td>
-          <td>StartExperienceLoad</td>
-      </tr>
-      <tr>
-          <td><strong>LoadingGameFeatures</strong></td>
-          <td>加载GameFeature</td>
-          <td>OnExperienceLoadComplete</td>
-      </tr>
-      <tr>
-          <td><strong>LoadingChaosTestingDelay</strong></td>
-          <td>Timer延迟测试</td>
-          <td>OnExperienceFullLoadCompleted</td>
-      </tr>
-      <tr>
-          <td><strong>ExecutingActions</strong></td>
-          <td>执行所有Action的回调函数</td>
-          <td>OnExperienceFullLoadCompleted</td>
-      </tr>
-      <tr>
-          <td><strong>Loaded</strong></td>
-          <td>按高中低优先级广播完成Delegate</td>
-          <td>OnExperienceFullLoadCompleted</td>
-      </tr>
-  </tbody>
-</table>
-<h4 id="gamemode初始化流程">
-<a class="header-anchor" href="#gamemode%e5%88%9d%e5%a7%8b%e5%8c%96%e6%b5%81%e7%a8%8b"></a>
-Gamemode初始化流程
-</h4><p>InitGame → 选副本（Experience）→ 加资源（ActionSet + GameFeature）→ 执行动作（Action）→ 玩家出生（RestartPlayer）→ 同步世界状态（GameState）</p>
+          <blockquote>
+<p>我们仅考虑点击开始游戏后的局内表现，而省去皮肤等外部交易的经济系统</p>
+</blockquote>
+<h1 id="1-属性的对应关系">
+<a class="header-anchor" href="#1-%e5%b1%9e%e6%80%a7%e7%9a%84%e5%af%b9%e5%ba%94%e5%85%b3%e7%b3%bb"></a>
+1. 属性的对应关系
+</h1><h2 id="11-武器">
+<a class="header-anchor" href="#11-%e6%ad%a6%e5%99%a8"></a>
+1.1. 武器
+</h2><h3 id="射击">
+<a class="header-anchor" href="#%e5%b0%84%e5%87%bb"></a>
+射击
+</h3><p><a href="https://www.youtube.com/watch?v=ELuKZR1Eh8w">为什么在 CS2 中射击不准确？</a><br>
+<a href="https://www.youtube.com/watch?v=eandoX7Jsh4">为什么你在 CS2 中可能丢失了shot——SubTick的问题</a></p>
         
-        <hr><p>本文2026-02-23首发于<a href='http://localhost:1895/WzhGameDevPublish/'>妖精游戏开发馆</a>，最后修改于2026-03-20</p>]]>
-      </description>
-      
-    </item>
-    
-    
-
-    <item>
-      <title>Lyra实现：Experience</title>
-      <link>http://localhost:1895/WzhGameDevPublish/post/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/%E4%BB%A3%E7%A0%81%E6%A1%86%E6%9E%B6/lyra/lyra-framework/lyra%E5%AE%9E%E7%8E%B0experience/</link>
-      <pubDate>Mon, 23 Feb 2026 08:31:25 &#43;0000</pubDate>
-      <author>cnwenzhihong@gmail.com (温志洪)</author>
-      <guid>http://localhost:1895/WzhGameDevPublish/post/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/%E4%BB%A3%E7%A0%81%E6%A1%86%E6%9E%B6/lyra/lyra-framework/lyra%E5%AE%9E%E7%8E%B0experience/</guid>
-      <description>
-        <![CDATA[<h1>Lyra实现：Experience</h1><p>作者：温志洪（cnwenzhihong@gmail.com）</p>
-        
-          <h1 id="简单描述">
-<a class="header-anchor" href="#%e7%ae%80%e5%8d%95%e6%8f%8f%e8%bf%b0"></a>
-简单描述
-</h1><h2 id="核心需求">
-<a class="header-anchor" href="#%e6%a0%b8%e5%bf%83%e9%9c%80%e6%b1%82"></a>
-核心需求
-</h2><blockquote>
-<p>将项目中所有用到的类进行分类，并抽象出几种数据格式来描述各种类别。<br>
-这些类别可以自由组合来变成一个集合，这个集合可以称为Experience。</p>
-        
-        <hr><p>本文2026-02-23首发于<a href='http://localhost:1895/WzhGameDevPublish/'>妖精游戏开发馆</a>，最后修改于2026-03-03</p>]]>
+        <hr><p>本文2025-08-24首发于<a href='http://localhost:1895/WzhGameDevPublish/'>妖精游戏开发馆</a>，最后修改于2026-05-09</p>]]>
       </description>
       
     </item>

@@ -12,7 +12,7 @@
     
     <copyright>本博客所有文章除特别声明外，均采用 BY-NC-SA 许可协议。转载请注明出处！</copyright>
     
-    <lastBuildDate>Fri, 01 May 2026 12:52:25 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 15 May 2026 12:38:07 +0000</lastBuildDate>
     
     
     <atom:link href="http://localhost:1895/WzhGameDevPublish/tags/3c/index.xml" rel="self" type="application/rss&#43;xml" />
@@ -30,24 +30,149 @@
       <description>
         <![CDATA[<h1>Lyra改为FPS</h1><p>作者：温志洪（cnwenzhihong@gmail.com）</p>
         
-          <h1 id="总览">
-<a class="header-anchor" href="#%e6%80%bb%e8%a7%88"></a>
-总览
-</h1><h2 id="这套方案的优点">
-<a class="header-anchor" href="#%e8%bf%99%e5%a5%97%e6%96%b9%e6%a1%88%e7%9a%84%e4%bc%98%e7%82%b9"></a>
-这套方案的优点
-</h2><ul>
-<li>完全采用Lyra方案，所有安防均扩展于Lyra原生逻辑拓展，如库存、Cosmet、GA、GameFeature、AnimLayer方案</li>
-<li>与FPS资产分离。FPS程序化动画可以适配大量只有模型的资产。<br>
-<img src="https://gcore.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/20260429151350927.png" alt=""></li>
-</ul>
-<h2 id="资料">
-<a class="header-anchor" href="#%e8%b5%84%e6%96%99"></a>
-资料
-</h2><p><a href="https://x157.github.io/UE5/LyraStarterGame/">LyraStarterGame Overview | X157 Dev Notes</a>：对Lyra的详细拆解资料<br>
-<a href="https://forums.unrealengine.com/t/how-to-send-more-compressed-flags-through-custom-character-movement-component/421142/11">官方论坛上扩展 MoveData 的讨论</a></p>
+          <blockquote>
+<p>QQ：<code>2423113760</code>  Gmail：<code>cnwenzhihong@gmail.com</code><br>
+文档多，跨度时间长，没法慢慢审查。有任何需要补充、修改、解释的地方随时联系。</p>
         
-        <hr><p>本文2025-09-08首发于<a href='http://localhost:1895/WzhGameDevPublish/'>妖精游戏开发馆</a>，最后修改于2026-05-01</p>]]>
+        <hr><p>本文2025-09-08首发于<a href='http://localhost:1895/WzhGameDevPublish/'>妖精游戏开发馆</a>，最后修改于2026-05-15</p>]]>
+      </description>
+      
+    </item>
+    
+    
+
+    <item>
+      <title>如何使用EasyProceduralAnim插件</title>
+      <link>http://localhost:1895/WzhGameDevPublish/post/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/%E4%BB%A3%E7%A0%81%E6%A1%86%E6%9E%B6/lyra/fps/%E6%8A%80%E6%9C%AF%E7%BB%86%E8%8A%82/weaponsway/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8easyproceduralanim%E6%8F%92%E4%BB%B6/</link>
+      <pubDate>Thu, 08 Jan 2026 06:11:25 &#43;0000</pubDate>
+      <author>cnwenzhihong@gmail.com (温志洪)</author>
+      <guid>http://localhost:1895/WzhGameDevPublish/post/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/%E4%BB%A3%E7%A0%81%E6%A1%86%E6%9E%B6/lyra/fps/%E6%8A%80%E6%9C%AF%E7%BB%86%E8%8A%82/weaponsway/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8easyproceduralanim%E6%8F%92%E4%BB%B6/</guid>
+      <description>
+        <![CDATA[<h1>如何使用EasyProceduralAnim插件</h1><p>作者：温志洪（cnwenzhihong@gmail.com）</p>
+        
+          <blockquote>
+<p>目前仅写了WeaponSway。</p>
+</blockquote>
+<h1 id="基本配置">
+<a class="header-anchor" href="#%e5%9f%ba%e6%9c%ac%e9%85%8d%e7%bd%ae"></a>
+基本配置
+</h1><p>我们以<code>ABP_WeaponSway</code>为例，也可以直接将逻辑写在自己的动画蓝图</p>
+<h2 id="abp_weaponsway">
+<a class="header-anchor" href="#abp_weaponsway"></a>
+ABP_WeaponSway
+</h2><p>找到插件文件夹中的<code>ABP_WeaponSway</code>双击，提示没有骨骼，选择自己的FPS骨骼并确认<br>
+打开蓝图，删除报错节点,可以仅保留下图节点：</p>
+        
+        <hr><p>本文2026-01-08首发于<a href='http://localhost:1895/WzhGameDevPublish/'>妖精游戏开发馆</a>，最后修改于2026-05-15</p>]]>
+      </description>
+      
+    </item>
+    
+    
+
+    <item>
+      <title>武器摇晃重要概念</title>
+      <link>http://localhost:1895/WzhGameDevPublish/post/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/%E4%BB%A3%E7%A0%81%E6%A1%86%E6%9E%B6/lyra/fps/%E6%8A%80%E6%9C%AF%E7%BB%86%E8%8A%82/weaponsway/%E6%AD%A6%E5%99%A8%E6%91%87%E6%99%83%E9%87%8D%E8%A6%81%E6%A6%82%E5%BF%B5/</link>
+      <pubDate>Fri, 19 Dec 2025 11:26:47 &#43;0000</pubDate>
+      <author>cnwenzhihong@gmail.com (温志洪)</author>
+      <guid>http://localhost:1895/WzhGameDevPublish/post/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/%E4%BB%A3%E7%A0%81%E6%A1%86%E6%9E%B6/lyra/fps/%E6%8A%80%E6%9C%AF%E7%BB%86%E8%8A%82/weaponsway/%E6%AD%A6%E5%99%A8%E6%91%87%E6%99%83%E9%87%8D%E8%A6%81%E6%A6%82%E5%BF%B5/</guid>
+      <description>
+        <![CDATA[<h1>武器摇晃重要概念</h1><p>作者：温志洪（cnwenzhihong@gmail.com）</p>
+        
+          <h1 id="参考类型">
+<a class="header-anchor" href="#%e5%8f%82%e8%80%83%e7%b1%bb%e5%9e%8b"></a>
+参考类型
+</h1><h2 id="类型1视角旋转的惯性可视化">
+<a class="header-anchor" href="#%e7%b1%bb%e5%9e%8b1%e8%a7%86%e8%a7%92%e6%97%8b%e8%bd%ac%e7%9a%84%e6%83%af%e6%80%a7%e5%8f%af%e8%a7%86%e5%8c%96"></a>
+类型1——视角旋转的惯性可视化
+</h2><h3 id="参考游戏">
+<a class="header-anchor" href="#%e5%8f%82%e8%80%83%e6%b8%b8%e6%88%8f"></a>
+参考游戏
+</h3><p>Battlefield 1\ <video src="https://cdn.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/%E6%88%98%E5%9C%B01-%E6%AD%A5%E6%9E%AA_x264.mp4" autoplay loop controls></video><br>
+OW 半藏</p>
+<h1 id="weapon-sway-的本质分类框架">
+<a class="header-anchor" href="#weapon-sway-%e7%9a%84%e6%9c%ac%e8%b4%a8%e5%88%86%e7%b1%bb%e6%a1%86%e6%9e%b6"></a>
+Weapon Sway 的本质分类框架
+</h1><p>Weapon Feel is control engineering, not animation polish</p>
+<p>从<strong>控制系统与信号处理</strong>角度，Weapon Sway 可以被严格分为以下 <strong>6 大类（并非按游戏，而是按系统性质）</strong>：<br>
+<a href="https://www.bilibili.com/video/BV1HP4y1j7HQ">杀戮地带2</a>:枪托旋转+Yaw延迟，体现重量感，同时手臂转动较慢<br>
+值得一提的是：游戏很容易沉浸，低昂的背景音家时不时队友的声音+脚步声哪怕没有敌人也足够沉浸 <a href="https://www.bilibili.com/video/BV1HP4y1j7HQ/?share_source=copy_web%5c&amp;vd_source=bf40aa6f67b3f45734bc2b22bca840cf%5c&amp;t=765">13:15</a><br>
+哪怕没有明显背景音乐也会有底噪<a href="https://www.bilibili.com/video/BV1vD4y1V7Ua">工业废土艺术/10年前《杀戮地带2》多人联机战区模式实况</a><br>
+<img src="https://cdn.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/PixPin_2025-12-20_19-52-32.gif" alt=""></p>
+        
+        <hr><p>本文2025-12-19首发于<a href='http://localhost:1895/WzhGameDevPublish/'>妖精游戏开发馆</a>，最后修改于2026-05-15</p>]]>
+      </description>
+      
+    </item>
+    
+    
+
+    <item>
+      <title>FPS程序化动画</title>
+      <link>http://localhost:1895/WzhGameDevPublish/post/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/%E4%BB%A3%E7%A0%81%E6%A1%86%E6%9E%B6/lyra/fps/%E6%8A%80%E6%9C%AF%E7%BB%86%E8%8A%82/fps%E7%A8%8B%E5%BA%8F%E5%8C%96%E5%8A%A8%E7%94%BB/</link>
+      <pubDate>Wed, 07 Jan 2026 23:12:58 &#43;0000</pubDate>
+      <author>cnwenzhihong@gmail.com (温志洪)</author>
+      <guid>http://localhost:1895/WzhGameDevPublish/post/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/%E4%BB%A3%E7%A0%81%E6%A1%86%E6%9E%B6/lyra/fps/%E6%8A%80%E6%9C%AF%E7%BB%86%E8%8A%82/fps%E7%A8%8B%E5%BA%8F%E5%8C%96%E5%8A%A8%E7%94%BB/</guid>
+      <description>
+        <![CDATA[<h1>FPS程序化动画</h1><p>作者：温志洪（cnwenzhihong@gmail.com）</p>
+        
+          <h1 id="基本配置">
+<a class="header-anchor" href="#%e5%9f%ba%e6%9c%ac%e9%85%8d%e7%bd%ae"></a>
+基本配置
+</h1><p>关闭Motion Blue<br>
+<img src="https://gcore.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/20260304013656557.png" alt=""></p>
+<h2 id="角色">
+<a class="header-anchor" href="#%e8%a7%92%e8%89%b2"></a>
+角色
+</h2><p>胶囊体半径：35与UE4默认骨骼比较搭配</p>
+<h1 id="程序化动画框架">
+<a class="header-anchor" href="#%e7%a8%8b%e5%ba%8f%e5%8c%96%e5%8a%a8%e7%94%bb%e6%a1%86%e6%9e%b6"></a>
+程序化动画框架
+</h1><h2 id="核心目的">
+<a class="header-anchor" href="#%e6%a0%b8%e5%bf%83%e7%9b%ae%e7%9a%84"></a>
+核心目的
+</h2><p>参数化、可配置</p>
+<h1 id="程序化跳跃">
+<a class="header-anchor" href="#%e7%a8%8b%e5%ba%8f%e5%8c%96%e8%b7%b3%e8%b7%83"></a>
+程序化跳跃
+</h1><p><a href="https://youtu.be/3OW6woGiXh8?si=kuzHfgsog-kRKC8F%5c&amp;t=309">教程</a></p>
+<h2 id="思路">
+<a class="header-anchor" href="#%e6%80%9d%e8%b7%af"></a>
+思路
+</h2><h3 id="实例分析">
+<a class="header-anchor" href="#%e5%ae%9e%e4%be%8b%e5%88%86%e6%9e%90"></a>
+实例分析
+</h3><h4 id="ow">
+<a class="header-anchor" href="#ow"></a>
+OW
+</h4><p>猎空：\ <video src="https://gcore.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/Jump_OW_%E7%8C%8E%E7%A9%BA.mp4" controls muted autoplay loop></video><br>
+斩仇：\ <video src="https://gcore.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/Jump_OW_%E6%96%A9%E4%BB%87.mp4" controls muted autoplay loop></video></p>
+        
+        <hr><p>本文2026-01-07首发于<a href='http://localhost:1895/WzhGameDevPublish/'>妖精游戏开发馆</a>，最后修改于2026-05-15</p>]]>
+      </description>
+      
+    </item>
+    
+    
+
+    <item>
+      <title>CraftingGunFeel——专业游戏开发者如何为射击游戏创造枪械手感？</title>
+      <link>http://localhost:1895/WzhGameDevPublish/post/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/%E4%BB%A3%E7%A0%81%E6%A1%86%E6%9E%B6/lyra/fps/%E7%AC%AC%E4%B8%89%E6%96%B9%E8%B5%84%E6%96%99/craftinggunfeel/craftinggunfeel%E4%B8%93%E4%B8%9A%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91%E8%80%85%E5%A6%82%E4%BD%95%E4%B8%BA%E5%B0%84%E5%87%BB%E6%B8%B8%E6%88%8F%E5%88%9B%E9%80%A0%E6%9E%AA%E6%A2%B0%E6%89%8B%E6%84%9F/</link>
+      <pubDate>Thu, 27 Nov 2025 23:01:30 &#43;0000</pubDate>
+      <author>cnwenzhihong@gmail.com (温志洪)</author>
+      <guid>http://localhost:1895/WzhGameDevPublish/post/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/%E4%BB%A3%E7%A0%81%E6%A1%86%E6%9E%B6/lyra/fps/%E7%AC%AC%E4%B8%89%E6%96%B9%E8%B5%84%E6%96%99/craftinggunfeel/craftinggunfeel%E4%B8%93%E4%B8%9A%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91%E8%80%85%E5%A6%82%E4%BD%95%E4%B8%BA%E5%B0%84%E5%87%BB%E6%B8%B8%E6%88%8F%E5%88%9B%E9%80%A0%E6%9E%AA%E6%A2%B0%E6%89%8B%E6%84%9F/</guid>
+      <description>
+        <![CDATA[<h1>CraftingGunFeel——专业游戏开发者如何为射击游戏创造枪械手感？</h1><p>作者：温志洪（cnwenzhihong@gmail.com）</p>
+        
+          <blockquote>
+<p>视图模型：<a href="https://developer.valvesoftware.com/wiki/Viewmodel">value wiki：Viewmodel</a></p>
+</blockquote>
+<h1 id="引言">
+<a class="header-anchor" href="#%e5%bc%95%e8%a8%80"></a>
+引言
+</h1><p>专业开发者为达到令人满意的枪械射击效果所使用的具体技术很难获取，因为这类知识可能是专有的，或者只是隐藏在实力雄厚或孤立的游戏工作室的资深开发者中。尽管这项研究中受访的开发者经常声称他们乐于分享知识，但其他受访者通过无法分享某些开发技术或因公司政策选择匿名来质疑这些说法。目前需要大量的试错和从互联网上搜寻零散的线索。</p>
+        
+        <hr><p>本文2025-11-27首发于<a href='http://localhost:1895/WzhGameDevPublish/'>妖精游戏开发馆</a>，最后修改于2026-05-15</p>]]>
       </description>
       
     </item>

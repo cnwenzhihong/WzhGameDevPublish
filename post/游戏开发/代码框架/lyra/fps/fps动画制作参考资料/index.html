@@ -1,0 +1,1010 @@
+<!doctype html>
+<html
+  lang="zh-cn" 
+  data-theme-mode="false"
+  >
+  <head><script src="/WzhGameDevPublish/livereload.js?mindelay=10&amp;v=2&amp;port=1895&amp;path=WzhGameDevPublish/livereload" data-no-instant defer></script><meta charset="utf-8" />
+<meta
+  name="viewport"
+  content="width=device-width, initial-scale=1, shrink-to-fit=no"
+/><title>
+  FPS动画制作参考资料 | 温志洪
+</title>
+<meta name="description" content="FPS游戏"/><script>
+  window.siteConfig = JSON.parse("{\"anchor_icon\":null,\"base\":\"http://localhost:1895/WzhGameDevPublish/\",\"clipboard\":{\"copyright\":{\"count\":50,\"enable\":false,\"license_type\":\"by-nc-sa\"},\"fail\":{\"en\":\"Copy failed (ﾟ⊿ﾟ)ﾂ\",\"ja\":\"コピー失敗 (ﾟ⊿ﾟ)ﾂ\",\"pt-br\":\"Falha ao copiar (ﾟ⊿ﾟ)ﾂ\",\"zh-cn\":\"复制失败 (ﾟ⊿ﾟ)ﾂ\",\"zh-tw\":\"複製失敗 (ﾟ⊿ﾟ)ﾂ\"},\"success\":{\"en\":\"Copy successfully (*^▽^*)\",\"ja\":\"コピー成功 (*^▽^*)\",\"pt-br\":\"Copiado com sucesso (*^▽^*)\",\"zh-cn\":\"复制成功 (*^▽^*)\",\"zh-tw\":\"複製成功 (*^▽^*)\"}},\"code_block\":{\"expand\":4},\"i18n_languages\":[{\"Lang\":\"en\",\"LanguageName\":\"English\",\"LanguageCode\":\"\",\"Title\":\"\",\"LanguageDirection\":\"\",\"Weight\":1,\"Disabled\":false},{\"Lang\":\"zh-cn\",\"LanguageName\":\"简体中文\",\"LanguageCode\":\"\",\"Title\":\"\",\"LanguageDirection\":\"\",\"Weight\":1,\"Disabled\":false}],\"icon_font\":\"4552607_4k4bc36ef96\",\"outdate\":{\"daysago\":180,\"enable\":false,\"message\":{\"en\":\"This article was last updated on {time}. Please note that the content may no longer be applicable.\",\"ja\":\"この記事は最終更新日：{time}。記載内容が現在有効でない可能性がありますのでご注意ください。\",\"pt-br\":\"Este artigo foi atualizado pela última vez em {time}. Observe que o conteúdo pode não ser mais aplicável.\",\"zh-cn\":\"本文最后更新于 {time}，请注意文中内容可能已不适用。\",\"zh-tw\":\"本文最後更新於 {time}，請注意文中內容可能已不適用。\"}}}");
+  
+</script>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link
+  rel="preload"
+  as="style"
+  href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic%7cNoto%20Serif%20SC:400,400italic,700,700italic%7c&amp;display=swap"
+/>
+<link
+  rel="stylesheet"
+  href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic%7cNoto%20Serif%20SC:400,400italic,700,700italic%7c&amp;display=swap"
+  media="print"
+  onload="this.media='all'"
+/>
+<link
+    rel="preload"
+    href="//at.alicdn.com/t/c/font_4552607_4k4bc36ef96.woff2"
+    as="font"
+    type="font/woff2"
+    crossorigin="anonymous"
+  /><link rel="stylesheet" href="/WzhGameDevPublish/css/loader.css" />
+<meta property="og:type" content="website" />
+  <meta property="og:title" content="FPS动画制作参考资料 | 温志洪" />
+  <meta
+    property="og:description"
+    content="FPS游戏"
+  />
+  <meta property="og:url" content="http://localhost:1895/WzhGameDevPublish/post/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/%E4%BB%A3%E7%A0%81%E6%A1%86%E6%9E%B6/lyra/fps/fps%E5%8A%A8%E7%94%BB%E5%88%B6%E4%BD%9C%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99/" />
+  <meta
+    property="og:site_name"
+    content="妖精游戏开发馆"
+  />
+  <meta
+    property="og:image"
+    content="/WzhGameDevPublish/"
+  />
+  <meta property="article:author" content="温志洪" />
+  <meta property="article:published_time" content="2025-11-14T14:14:37&#43;00:00" />
+  <meta property="article:modified_time" content="2026-05-15T12:18:14&#43;00:00" /><meta property="article:tag" content="blog" /><meta name="twitter:card" content="summary" />
+  <meta name="twitter:image" content="/WzhGameDevPublish/" />
+<link rel="shortcut icon" href="/WzhGameDevPublish/favicon.ico"><link rel="stylesheet" href="/WzhGameDevPublish/css/main.css" />
+<link
+    rel="preload"
+    as="style"
+    href="https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe.css"
+    integrity="sha384-IfxC36XL/toUyJ939C73PcgMuRzAZuIzZxE38drsmO5p6jD7ei&#43;Zx/1oA/0l8ysE" crossorigin="anonymous"onload="this.onload=null;this.rel='stylesheet'"
+  /><link
+    rel="preload"
+    as="style"
+    href="https://npm.webcache.cn/katex@0.16.24/dist/katex.min.css"
+    integrity="sha384-tTgKLjMYmJr94v8qu2PE5MUGSMbyN2xiH266JUB3gpm8vnnJywd1dWSOEfrFz&#43;YI" crossorigin="anonymous"onload="this.onload=null;this.rel='stylesheet'"
+  /><script
+    src="https://npm.webcache.cn/pace-js@1.2.4/pace.min.js"
+    integrity="sha384-k6YtvFUEIuEFBdrLKJ3YAUbBki333tj1CSUisai5Cswsg9wcLNaPzsTHDswp4Az8" crossorigin="anonymous"></script><link
+    rel="stylesheet"
+    href="https://npm.webcache.cn/@reimujs/aos@0.1.2/dist/aos.css"
+    integrity="sha384-GMRP93c6Hkz9JVKGAuRR3nTS7M07RwPgTFenXiosjq2VbVgvdDNcz1g6Mkj8AONa" crossorigin="anonymous"/></head>
+  <body><div id='loader'>
+    <div class="loading-left-bg loading-bg"></div>
+    <div class="loading-right-bg loading-bg"></div>
+    <div class="spinner-box">
+      <div class="loading-taichi rotate"><svg width="150" height="150" viewBox="0 0 1024 1024" class="icon" version="1.1" xmlns="https://www.w3.org/2000/svg" shape-rendering="geometricPrecision">
+            <path d="M303.5 432A80 80 0 0 1 291.5 592A80 80 0 0 1 303.5 432z" fill="var(--red-1, #ff5252)" />
+            <path d="M512 65A447 447 0 0 1 512 959L512 929A417 417 0 0 0 512 95A417 417 0 0 0 512 929L512 959A447 447 0 0 1 512 65z 
+          M512 95A417 417 0 0 1 929 512A208.5 208.5 0 0 1 720.5 720.5L720.5 592A80 80 0 0 0 720.5 432A80 80 0 0 0 720.5 592L720.5 720.5A208.5 208.5 0 0 1 512 512A208.5 208.5 0 0 0 303.5 303.5A208.5 208.5 0 0 0 95 512A417 417 0 0 1 512 95z" fill="var(--red-1, #ff5252)" />
+          </svg></div><div class="loading-word">少女祈祷中...</div>
+    </div>
+  </div>
+  </div>
+  <script>
+    var time = null;
+    var loaderEl = document.getElementById('loader');
+    var startLoading = () => {
+      time = Date.now();
+      loaderEl.classList.remove("loading");
+    }
+    var hideLoader = () => {
+      document.body.style.overflow = 'auto';
+      loader.classList.add('loading');
+    };
+
+    var endLoading = () => {
+      if (!time) {
+        hideLoader();
+      } else {
+        if (Date.now() - time > 500) {
+          time = null;
+          hideLoader();
+        } else {
+          setTimeout(endLoading, 500 - (Date.now() - time));
+          time = null;
+        }
+      }
+    }
+    window.addEventListener('DOMContentLoaded', endLoading);
+    loaderEl.addEventListener('click', endLoading);
+  </script><div id="copy-tooltip"></div>
+<div id="lang-tooltip">
+本文章没有找到对应的语言版本
+</div>
+<div id="heatmap-tooltip"></div><div id="container">
+      <div id="wrap"><div id="header-nav">
+  <nav id="main-nav" aria-label="Primary navigation"><a class="main-nav-link-wrap" href="/WzhGameDevPublish/">
+        <div class='main-nav-icon icon rotate'>&#xe62b;</div>
+        <span class="main-nav-link">首页</span>
+      </a><a class="main-nav-link-wrap" href="/WzhGameDevPublish/archives">
+        <div class='main-nav-icon icon rotate'>&#xe62b;</div>
+        <span class="main-nav-link">归档</span>
+      </a><a class="main-nav-link-wrap" href="/WzhGameDevPublish/about">
+        <div class='main-nav-icon icon rotate'>&#xe62b;</div>
+        <span class="main-nav-link">关于</span>
+      </a><a class="main-nav-link-wrap" href="/WzhGameDevPublish/friend">
+        <div class='main-nav-icon icon rotate'>&#xe62b;</div>
+        <span class="main-nav-link">友链</span>
+      </a><a id="main-nav-toggle" class="nav-icon" aria-label="Toggle navigation" role="button"></a>
+  </nav>
+  <nav id="sub-nav" aria-label="Secondary navigation"><a id="nav-search-btn" class="nav-icon popup-trigger" title="搜索" aria-label="搜索"></a></nav><nav id="i18n-nav" aria-label="Language selection">
+      <div class="custom-dropdown">
+        <div class="select-selected" id="select-selected" role="button" aria-haspopup="listbox" aria-expanded="false" aria-label="Language menu">
+          <span id="nav-language-btn" class="nav-icon" style="padding: 0 20px 0 0"></span>
+          <span id="selected-lang">简体中文</span>
+        </div>
+        <ul class="select-items" id="select-items" role="listbox" aria-label="Languages"><li data-value="en" role="option" arial-selected="false" >English</li><li data-value="zh-cn" role="option" class="selected" arial-selected="true" >简体中文</li></ul>
+      </div>
+      <script>
+        var selectSelected = document.getElementById("select-selected");
+        var selectedLang = document.getElementById("selected-lang");
+        var selectItems = document.getElementById("select-items");
+        var selectOptions = selectItems.querySelectorAll("li");
+
+        selectSelected.addEventListener("click", () => {
+          selectItems.classList.toggle("show");
+          var expanded = selectSelected.getAttribute("aria-expanded") === "true";
+          selectSelected.setAttribute("aria-expanded", (!expanded).toString());
+        });
+
+        selectOptions.forEach((item) => {
+          item.addEventListener("click", () => {
+            const langMap = {};selectedLang.textContent = item.textContent;
+            selectItems.classList.remove("show");
+            selectOptions.forEach((option) => {
+              option.classList.remove("selected");
+            });
+            item.classList.add("selected");
+            if (item.dataset.value === 'zh-cn') {
+              return;
+            }
+            if (!langMap[item.dataset.value]) {
+              _$("#lang-tooltip").style.opacity = "1";
+              setTimeout(() => {
+                _$("#lang-tooltip").style.opacity = "0";
+              }, 1000);
+              return;
+            }
+            window.location = langMap[item.dataset.value];
+          });
+        });
+
+        document.addEventListener("click", (event) => {
+          if (!event.target.closest(".custom-dropdown")) {
+            selectItems.classList.remove("show");
+            selectSelected.setAttribute("aria-expanded", "false");
+          }
+        });
+      </script>
+    </nav></div>
+<header id="header" aria-label="Site header"><picture><source media="(max-width: 479px)" srcset="/WzhGameDevPublish/images/banner-600w.webp"><source media="(max-width: 799px)" srcset="/WzhGameDevPublish/images/banner-800w.webp"><source media="(min-width: 800px)" srcset="/WzhGameDevPublish/images/banner.webp"><img crossorigin="anonymous" fetchpriority="high" src="/WzhGameDevPublish/images/banner.webp" alt="FPS动画制作参考资料"></picture><img alt="FPS动画制作参考资料" style="visibility: hidden;"><div id="header-outer">
+    <div id="header-title"><span id="logo">
+            <h1 data-aos="slide-up">FPS动画制作参考资料</h1>
+          </span><h2 id="subtitle-wrap" data-aos="slide-down"></h2></div>
+  </div>
+</header><div id="content"
+          aria-label="Page content"
+          class="sidebar-left"
+            ><aside id="sidebar" aria-label="Sidebar"><div class="sidebar-wrapper-container sticky"><div class="sidebar-wrapper">
+    <div
+      class="sidebar-wrap"
+      data-aos="fade-up"
+    ><div class="sidebar-toc-sidebar"><h3 class="toc-title">文章目录</h3>
+<div class="sidebar-toc-wrapper toc-div-class">
+  <nav id="TableOfContents">
+  <ul>
+    <li><a href="#lyra文档">Lyra文档</a></li>
+    <li><a href="#理论">理论</a></li>
+    <li><a href="#实践">实践</a>
+      <ul>
+        <li><a href="#lyra改fps">Lyra改FPS</a></li>
+        <li><a href="#程序化fps动画">程序化FPS动画</a></li>
+        <li><a href="#反面案例">反面案例</a></li>
+      </ul>
+    </li>
+    <li><a href="#优秀实践">优秀实践</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#思路与技术">思路与技术</a>
+      <ul>
+        <li><a href="#ik">IK</a></li>
+        <li><a href="#程序化动画">程序化动画</a></li>
+      </ul>
+    </li>
+    <li><a href="#实现">实现</a>
+      <ul>
+        <li><a href="#鼠标移动时的手臂摇晃mouse-sway">鼠标移动时的手臂摇晃Mouse Sway</a></li>
+        <li><a href="#跳跃">跳跃</a></li>
+      </ul>
+    </li>
+  </ul>
+
+  <ul>
+    <li><a href="#资料-1">资料</a></li>
+    <li><a href="#方案">方案</a>
+      <ul>
+        <li><a href="#蒙太奇程序化晃动">蒙太奇程序化晃动</a></li>
+      </ul>
+    </li>
+    <li><a href="#实现-2">实现</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#资料-2">资料</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#轨迹">轨迹</a>
+      <ul>
+        <li><a href="#真实子弹">真实子弹</a></li>
+      </ul>
+    </li>
+    <li><a href="#伤害">伤害</a></li>
+    <li><a href="#射速">射速</a></li>
+    <li><a href="#散布">散布</a>
+      <ul>
+        <li><a href="#散布回复">散布回复</a></li>
+      </ul>
+    </li>
+    <li><a href="#后坐">后坐</a>
+      <ul>
+        <li><a href="#首发后坐">首发后坐</a></li>
+      </ul>
+    </li>
+    <li><a href="#击中效果">击中效果</a></li>
+  </ul>
+</nav>
+</div></div>
+          <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
+  <img
+    data-src="/WzhGameDevPublish/avatar/UELogo.png"
+    data-sizes="auto"
+    alt="温志洪"
+    class="lazyload"
+  />
+  <div class="sidebar-author-name">温志洪</div>
+  <div class="sidebar-description">FPS游戏</div>
+</div>
+<div class="sidebar-state">
+  <div class="sidebar-state-article">
+    <div>文章</div><div class="sidebar-state-number">20</div>
+  </div>
+  <a class="sidebar-state-category" href="/WzhGameDevPublish/categories/" aria-label="sidebar-state-category-link">
+    <div>分类</div>
+    <div class="sidebar-state-number">
+      0
+    </div>
+  </a>
+  <a class="sidebar-state-tag" href="/WzhGameDevPublish/tags/" aria-label="sidebar-state-tag-link">
+    <div>标签</div>
+    <div class="sidebar-state-number">12</div>
+  </a>
+</div>
+<div class="sidebar-social"><div class="icon-bilibili sidebar-social-icon">
+      <a
+        href="https://space.bilibili.com/35312868"
+        itemprop="url"
+        target="_blank"
+        aria-label="bilibili"
+        rel="noopener nofollow noreferrer"
+      ></a>
+    </div><div class="icon-email sidebar-social-icon">
+      <a
+        href="mailto:cnwenzhihong@gmail.com"
+        itemprop="url"
+        target="_blank"
+        aria-label="email"
+        rel="noopener nofollow noreferrer"
+      ></a>
+    </div></div>
+<div class="sidebar-menu"><div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/WzhGameDevPublish/"
+        aria-label="首页"
+      ></a>
+      <div class='sidebar-menu-icon icon rotate'>&#xe62b;</div>
+      <div class="sidebar-menu-link">首页</div>
+    </div><div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/WzhGameDevPublish/archives"
+        aria-label="归档"
+      ></a>
+      <div class='sidebar-menu-icon icon rotate'>&#xe62b;</div>
+      <div class="sidebar-menu-link">归档</div>
+    </div><div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/WzhGameDevPublish/about"
+        aria-label="关于"
+      ></a>
+      <div class='sidebar-menu-icon icon rotate'>&#xe62b;</div>
+      <div class="sidebar-menu-link">关于</div>
+    </div><div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/WzhGameDevPublish/friend"
+        aria-label="友链"
+      ></a>
+      <div class='sidebar-menu-icon icon rotate'>&#xe62b;</div>
+      <div class="sidebar-menu-link">友链</div>
+    </div></div>
+</div><div class="sidebar-btn-wrapper" style="position:static">
+            <div class="sidebar-toc-btn current"></div>
+            <div class="sidebar-common-btn"></div>
+          </div></div>
+  </div><div class="sidebar-widget"></div></div></aside>
+<section id="main" aria-label="Main content"><p style="color:red">ARTICLE PARTIAL OVERRIDE ACTIVE</p>
+<article
+  class="h-entry article"
+  itemscope
+  itemtype="https://schema.org/BlogPosting"
+>
+  <div
+    class="article-inner"
+    data-aos="fade-up"
+  >
+    <div class="article-meta"><div class="article-date">
+  <span
+    class="article-date-link icon-calendar"
+    data-aos="zoom-in"
+  >
+    <time datetime="2025-11-14 14:14:37.013 &#43;0000 UTC" itemprop="datePublished"
+      >2025-11-14</time
+    >
+    <time style="display: none;" id="post-update-time"
+      >2026-05-15</time
+    >
+  </span><span
+      class="article-date-link icon-calendar-plus"
+      data-aos="zoom-in"
+    >
+      <time datetime="2026-05-15 12:18:14.793 &#43;0000 UTC" itemprop="dateModified"
+        >2026-05-15</time
+      >
+    </span></div>
+<div class="article-category"></div>
+</div><div class="hr-line"></div><div class="e-content article-entry" itemprop="articleBody"><h1 id="总领">
+<a class="header-anchor" href="#%e6%80%bb%e9%a2%86"></a>
+总领
+</h1><h2 id="lyra文档">
+<a class="header-anchor" href="#lyra%e6%96%87%e6%a1%a3"></a>
+Lyra文档
+</h2><p><a href="https://x157.github.io/UE5/LyraStarterGame/">LyraStarterGame Overview | X157 Dev Notes</a>：Lyra详细拆解</p>
+<h2 id="理论">
+<a class="header-anchor" href="#%e7%90%86%e8%ae%ba"></a>
+理论
+</h2><p><a href="https://his.diva-portal.org/smash/get/diva2%3A1971715/FULLTEXT01.pdf">Crafting Gun Feel</a>：讲解FPS效果的零散论文，提供大量的参考资料，需要一定FPS游戏开发基础<br>
+<a href="https://zhuanlan.zhihu.com/p/1949912530509080270">如何实现 COD 品质的第一人称动画</a></p>
+
+  <blockquote class="alert-blockquote note">
+    <p class="alert-heading">
+      Note
+    </p>
+    <p><h4 id="gdc-the-art-of-destiny">
+<a class="header-anchor" href="#gdc-the-art-of-destiny"></a>
+<a href="https://www.youtube.com/watch?v=CXFLu8cityA">GDC-The Art of Destiny&rsquo;s First-Person Animation</a>：
+</h4><p><a href="The%20Art%20of%20Destiny%27s%20First-Person%20Animation%20"> 笔记</a><br>
+讨论了如何在游戏设计的限制下创建视觉上吸引人的第一人称动画。<br>
+首先，FPS动画的五个设计支柱，包括：玩家控制器输入的即时反馈、动作之间的动作保持、玩家应该从你的动画中获得本能满足感、动作应该有助于将玩家锚定在世界中；最后，不要剥夺玩家的控制权或减慢他们的速度。<br>
+这些动画应该支持快速、有趣和响应迅速的游戏 玩法，并让它感觉你的身体在摄像机后面。接着谈到具体技术，他首先解释说动画必须保持玩 家对游戏世界的清晰视野，并且动画不应该遮挡屏幕中心。<br>
+如何从屏幕边界绘 制两条对角线以创建一个X形，其交叉点正好在屏幕正中央，并使武器的姿势与从右下角出发 的对角线对齐，从而指向并将玩家的视线聚焦到屏幕中心。他还演示了一种称为战斗通道的东 西，这是一条沿着屏幕中间延伸的柱状区域，用于界定屏幕的哪些区域不应被遮挡，并展示了如何通过例如拇指和食指之间的空间将动作框定在屏幕中心来聚焦玩家的视线，如果角色正在伸出手。</p></p>
+  </blockquote>
+
+<p><a href="https://www.youtube.com/watch?v=dclA9iwZB_s">How Great First-Person Animations are Made - 10 Tips for Animating FPS Characters</a></p>
+<p><a href="https://robertpenner.com/easing/">Robert Penner&rsquo;s Easing Functions</a><br>
+各种曲线函数大汇总,包含理论和实现</p>
+<h2 id="实践">
+<a class="header-anchor" href="#%e5%ae%9e%e8%b7%b5"></a>
+实践
+</h2><h3 id="lyra改fps">
+<a class="header-anchor" href="#lyra%e6%94%b9fps"></a>
+Lyra改FPS
+</h3><p><a href="https://link.zhihu.com/?target=https%3A//www.youtube.com/watch%3Fv%3D11sLIyw0pWQ">UE5.6 第一人称技术大会</a>：官方UE5.6原生第一人称渲染解决方案。<br>
+<a href="https://zhuanlan.zhihu.com/p/1935744998256654113">Lyra 扩展 Ture First Person 第一人称实践</a>：该文章对Lyra改FPS的UE5.6方案做了大致思路讲解。<br>
+<a href="https://www.youtube.com/watch?v=VReBOqsaQP0%5c&amp;list=PLP0m9EE3InC7Byqvsm6WK9NVLkgb_RscR%5c&amp;index=16">手把手将Lyra改为FPS</a>：思路比较老，倾向于直接去掉Lyra逻辑，但有指导意义</p>
+<h3 id="程序化fps动画">
+<a class="header-anchor" href="#%e7%a8%8b%e5%ba%8f%e5%8c%96fps%e5%8a%a8%e7%94%bb"></a>
+程序化FPS动画
+</h3>
+  <blockquote class="alert-blockquote example">
+    <p class="alert-heading">
+      Example
+    </p>
+    <p><h4 id="how-i-made-my-fps-game-feel-better-to-play">
+<a class="header-anchor" href="#how-i-made-my-fps-game-feel-better-to-play"></a>
+<a href="https://www.youtube.com/watch?v=SWf9pNdivpo">How I Made My FPS Game Feel Better To Play</a>
+</h4><p>解释了他如何改进自己第一人称射击游戏中的游戏手感。<br>
+通过让武器旋转而非仅向后移动来改变武器的后坐力动画，并增加了动作的随机性。<br>
+为了改善摄像机抖动效果，通过采样 Perlin 噪声来生成摄像机的随机旋转，而不是简单地生成随机数，因为 Perlin 噪声能在随机值之间提供平滑过渡。<br>
+还改进了视图模型动画，通过使动作足够快以避免引起对自身所描述的动画技能不足的注意，并增加了摄像机抖动以及在引擎中为某些动画添加了自定义摄像机运动。</p></p>
+  </blockquote>
+
+<p><a href="https://www.youtube.com/watch?v=rq1zHfgWnKM%5c&amp;list=PLxYB4IVFm8q6tf3boC1Nm4A8AB2RMCpXn">UE5 Tutorial: First Person Game Feel</a> : 程序化FPS动画教科书、部分逻辑很简单但被写的很复杂<br>
+<a href="https://www.youtube.com/watch?v=-nKpllyaN5s%5c&amp;list=PLmOUwDHGc6YP90S_WpZ9PGx4w7N-mpDTJ">True First Person Tutorial Series</a>：程序化全身FPS动画，ALS，借鉴自上一教程，青出于蓝胜于蓝（未看）<br>
+<a href="https://www.youtube.com/watch?v=DNd9JuzseHM">https://www.youtube.com/watch?v=DNd9JuzseHM</a> 优秀的程序化动画，包含动画制作</p>
+<h3 id="反面案例">
+<a class="header-anchor" href="#%e5%8f%8d%e9%9d%a2%e6%a1%88%e4%be%8b"></a>
+反面案例
+</h3><p><a href="https://store.steampowered.com/app/2149290/Havoc/">Havoc</a>:完美的反面案例<br>
+<a href="https://www.youtube.com/watch?v=qckFA2YHrzA">https://www.youtube.com/watch?v=qckFA2YHrzA</a></p>
+<h2 id="优秀实践">
+<a class="header-anchor" href="#%e4%bc%98%e7%a7%80%e5%ae%9e%e8%b7%b5"></a>
+优秀实践
+</h2><p><a href="https://www.youtube.com/watch?v=vyPsvfLsXus">Why I Scrapped My Whole Game and Started Over - YouTube</a></p>
+<h1 id="必备技术">
+<a class="header-anchor" href="#%e5%bf%85%e5%a4%87%e6%8a%80%e6%9c%af"></a>
+必备技术
+</h1><p><a href="https://zhuanlan.zhihu.com/p/412291354">SpringInterp</a>: 更舒适的平滑插值</p>
+<h1 id="角色动画">
+<a class="header-anchor" href="#%e8%a7%92%e8%89%b2%e5%8a%a8%e7%94%bb"></a>
+角色动画
+</h1><h2 id="思路与技术">
+<a class="header-anchor" href="#%e6%80%9d%e8%b7%af%e4%b8%8e%e6%8a%80%e6%9c%af"></a>
+思路与技术
+</h2><h3 id="ik">
+<a class="header-anchor" href="#ik"></a>
+IK
+</h3><p><a href="https://zhuanlan.zhihu.com/p/576423340"># UE 持枪手部IK方案</a><br>
+讲解常见IK节点和IK原理，重点讲解在手臂持枪的应用</p>
+<h3 id="程序化动画">
+<a class="header-anchor" href="#%e7%a8%8b%e5%ba%8f%e5%8c%96%e5%8a%a8%e7%94%bb"></a>
+程序化动画
+</h3><h4 id="参考资料">
+<a class="header-anchor" href="#%e5%8f%82%e8%80%83%e8%b5%84%e6%96%99"></a>
+参考资料
+</h4><p><a href="https://www.youtube.com/watch?v=3OW6woGiXh8%5c&amp;list=PLxYB4IVFm8q6tf3boC1Nm4A8AB2RMCpXn%5c&amp;index=2"># First Person Game Feel - Part 2: Procedural Animation</a><br>
+<a href="https://www.youtube.com/playlist?list=PLnHeglBaPYu--A7jTjNrgWdmYkR_kpZYu">Procedural Aiming</a><br>
+<a href="https://www.reddit.com/r/unrealengine/comments/1kyoqg8/would_your_fps_project_benefit_from_a_procedural/">很棒的程序化后坐力效果</a></p>
+<h2 id="实现">
+<a class="header-anchor" href="#%e5%ae%9e%e7%8e%b0"></a>
+实现
+</h2><h3 id="鼠标移动时的手臂摇晃mouse-sway">
+<a class="header-anchor" href="#%e9%bc%a0%e6%a0%87%e7%a7%bb%e5%8a%a8%e6%97%b6%e7%9a%84%e6%89%8b%e8%87%82%e6%91%87%e6%99%83mouse-sway"></a>
+鼠标移动时的手臂摇晃Mouse Sway
+</h3><h4 id="资料">
+<a class="header-anchor" href="#%e8%b5%84%e6%96%99"></a>
+资料
+</h4><h5 id="实现-1">
+<a class="header-anchor" href="#%e5%ae%9e%e7%8e%b0-1"></a>
+实现
+</h5><p><a href="https://www.youtube.com/watch?v=3TrtNNEa_Xw">Unreal Engine 5 Weapon Sway Tutorial</a> : 提供思路和实现</p>
+<h5 id="参考">
+<a class="header-anchor" href="#%e5%8f%82%e8%80%83"></a>
+参考
+</h5><p><a href="https://www.youtube.com/shorts/XBIi1kH119M">逃离塔克夫</a></p>
+<h4 id="基本思路">
+<a class="header-anchor" href="#%e5%9f%ba%e6%9c%ac%e6%80%9d%e8%b7%af"></a>
+基本思路
+</h4><p>采用单位时间输入量来决定旋转幅度，左右移动可以控制Roll轴<br>
+(MouseX→Yaw,MouseY→Pitch,MoveRight→Roll)<br>
+<img src="https://cdn.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/20251119000855829.png" alt="image.png"><br>
+<img src="https://cdn.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/20251119003920710.png" alt="image.png"></p>
+<h4 id="拓展">
+<a class="header-anchor" href="#%e6%8b%93%e5%b1%95"></a>
+拓展
+</h4><ol>
+<li>输入量：
+<ol>
+<li>对于不实时转向的Character，输入量可以改为Actor和Controller的角度偏移</li>
+</ol>
+</li>
+<li>动画：
+<ol>
+<li>使用Spine_03(身体)旋转——视角内运动幅度过大，效果一般</li>
+<li>控制左手位置</li>
+</ol>
+</li>
+<li>效果增强<br>
+旋转过快时可以添加来回摆动的过渡效果<br>
+<a href="https://www.youtube.com/watch?v=OQLOignuwBY">True First Person Tutorial Series | Episode 5 | Weapon Sway &amp; 3rd Person</a>: 效果极为舒适，角度偏移+控制位置而不是旋转<br>
+<a href="Unreal%20Engine%205%20FPS%20Game%20Tutorial#%E7%A8%8B%E5%BA%8F%E5%8C%96%E6%AD%A6%E5%99%A8%E6%91%86%E5%8A%A8">Unreal Engine 5 FPS Game Tutorial#程序化武器摆动</a>: Input+Loc+SpringLerp<br>
+<a href="https://www.youtube.com/watch?v=k4byoillW5Y%5c&amp;list=PLxYB4IVFm8q6tf3boC1Nm4A8AB2RMCpXn%5c&amp;index=3">Procedural Weapon Sway/Look Pointing</a> ：使用单位时间内角度变化——结果无变化，使用Spine_03(身体)旋转——比较符合现实，但效果一般，适合Bodycam类型，或表现身体追上头的效果</li>
+</ol>
+<h4 id="生产环境">
+<a class="header-anchor" href="#%e7%94%9f%e4%ba%a7%e7%8e%af%e5%a2%83"></a>
+生产环境：
+</h4><p>通过命令 <code>t.maxFPS 4</code> 控制最大帧率</p>
+<p>由于不同模型坐标系不同，Pitch和Roll可能对调，比如LowpolyShooterGun资产包</p>
+
+  <blockquote class="alert-blockquote todo">
+    <p class="alert-heading">
+      Todo
+    </p>
+    <p><h4 id="旋转中心问题">
+<a class="header-anchor" href="#%e6%97%8b%e8%bd%ac%e4%b8%ad%e5%bf%83%e9%97%ae%e9%a2%98"></a>
+旋转中心问题
+</h4><p>默认实现旋转中心位于右手，导致旋转要么幅度不大，要么用力过猛。</p>
+<ol>
+<li>控制枪械围绕重心旋转，而不死右手</li>
+<li>旋转中心尽可能接近枪口，离准星越远幅度越大</li>
+</ol></p>
+  </blockquote>
+
+<h3 id="跳跃">
+<a class="header-anchor" href="#%e8%b7%b3%e8%b7%83"></a>
+跳跃
+</h3><h4 id="参考资料-1">
+<a class="header-anchor" href="#%e5%8f%82%e8%80%83%e8%b5%84%e6%96%99-1"></a>
+参考资料
+</h4><p><a href="https://www.youtube.com/shorts/iQRVAc88tj4">战地6跳跃动画</a></p>
+<h1 id="摄像机晃动">
+<a class="header-anchor" href="#%e6%91%84%e5%83%8f%e6%9c%ba%e6%99%83%e5%8a%a8"></a>
+摄像机晃动
+</h1><h2 id="资料-1">
+<a class="header-anchor" href="#%e8%b5%84%e6%96%99-1"></a>
+资料
+</h2><p><a href="https://www.youtube.com/watch?v=AJdEqssNZ-U">The art of screenshake</a><br>
+<a href="https://youtu.be/dclA9iwZB_s?si=tMI_7SEtN_lqgFyx%5c&amp;t=178">How Great First-Person Animations are Made</a>：摄像机晃动尽量不要用旋转，尤其在走跑或者玩家直接控制行动时</p>
+<h2 id="方案">
+<a class="header-anchor" href="#%e6%96%b9%e6%a1%88"></a>
+方案
+</h2><h3 id="蒙太奇程序化晃动">
+<a class="header-anchor" href="#%e8%92%99%e5%a4%aa%e5%a5%87%e7%a8%8b%e5%ba%8f%e5%8c%96%e6%99%83%e5%8a%a8"></a>
+蒙太奇程序化晃动
+</h3><h4 id="参考资料-2">
+<a class="header-anchor" href="#%e5%8f%82%e8%80%83%e8%b5%84%e6%96%99-2"></a>
+参考资料
+</h4><p><a href="https://www.youtube.com/watch?v=rq1zHfgWnKM%5c&amp;list=PLxYB4IVFm8q6tf3boC1Nm4A8AB2RMCpXn%5c&amp;index=4">First Person Game Feel - Part 4: Procedural Camera Animation</a></p>
+<h4 id="步骤">
+<a class="header-anchor" href="#%e6%ad%a5%e9%aa%a4"></a>
+步骤
+</h4><p><img src="https://cdn.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/%E7%A8%8B%E5%BA%8F%E5%8C%96%E6%91%84%E5%83%8F%E6%9C%BA%E6%99%83%E5%8A%A8.png" alt=""></p>
+<p><img src="https://cdn.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/%E6%97%A0%E6%A0%87%E9%A2%98-2025-07-24-2337.excalidraw.png" alt=""></p>
+<h2 id="实现-2">
+<a class="header-anchor" href="#%e5%ae%9e%e7%8e%b0-2"></a>
+实现
+</h2><h1 id="声音">
+<a class="header-anchor" href="#%e5%a3%b0%e9%9f%b3"></a>
+声音
+</h1><p><a href="https://www.bilibili.com/video/BV15eCBYjEiQ">绝地潜兵只依靠音效就能实现清晰的换弹效果</a><br>
+<a href="https://www.youtube.com/watch?v=_J56n496u6k">HowDesignCoolGunSounds</a><br>
+<a href="https://www.youtube.com/watch?v=RDxiuHdR_T4">敌对领土中枪声必须削弱</a><br>
+<a href="https://www.youtube.com/watch?v=OmMlaasm8wk">Why The Weapons In Modern Warfare Sound So Incredible</a><br>
+<a href="https://www.youtube.com/watch?v=bL08y8cmHUs">My Favorite Sound From Just Cause 4 - Ronny Mraz</a></p>
+<h1 id="武器">
+<a class="header-anchor" href="#%e6%ad%a6%e5%99%a8"></a>
+武器
+</h1><h2 id="资料-2">
+<a class="header-anchor" href="#%e8%b5%84%e6%96%99-2"></a>
+资料
+</h2>
+  <blockquote class="alert-blockquote note">
+    <p class="alert-heading">
+      Note
+    </p>
+    <p><h4 id="vigor武器改造和平衡的故事">
+<a class="header-anchor" href="#vigor%e6%ad%a6%e5%99%a8%e6%94%b9%e9%80%a0%e5%92%8c%e5%b9%b3%e8%a1%a1%e7%9a%84%e6%95%85%e4%ba%8b"></a>
+<a href="https://medium.com/@matejdubec2">Vigor武器改造和平衡的故事</a>
+</h4><p><img src="https://miro.medium.com/v2/resize:fit:720/format:webp/1*Ow2qkczbNaIFnPCAcKp5hw.png" alt=""></p></p>
+  </blockquote>
+
+<p><a href="https://sym.gg/legacy/index.html">SymGameScience</a>:提供战地各代的各种武器数据</p>
+<h1 id="射击">
+<a class="header-anchor" href="#%e5%b0%84%e5%87%bb"></a>
+射击
+</h1><p><a href="https://www.gamedev.net/forums/topic/658928-fps-games-recoil-and-spread/5168360">GameDev: FPS Games, Recoil and Spread</a><br>
+<a href="https://sym.gg/legacy/index.html?game=bf2042%5c&amp;page=weapon-mechanics">Battlefield 2042 Weapon Mechanics</a>：一些战地2042的武器射击参数<br>
+<a href="https://patentimages.storage.googleapis.com/ab/8d/56/12018d2179529e/CN114191817A.pdf">虚拟角色的射击控制方法、装置、电子设备及存储介质</a>：一份手游FPS的设计专利、比较详细，有参考价值，但阅读麻烦（<a href="%E8%99%9A%E6%8B%9F%E8%A7%92%E8%89%B2%E7%9A%84%E5%B0%84%E5%87%BB%E6%8E%A7%E5%88%B6%E6%96%B9%E6%B3%95%E3%80%81%E8%A3%85%E7%BD%AE%E3%80%81%E7%94%B5%E5%AD%90%E8%AE%BE%E5%A4%87%20%E5%8F%8A%E5%AD%98%E5%82%A8%E4%BB%8B%E8%B4%A8%E2%80%94%E2%80%94%E6%99%8F%E5%98%89%E5%BA%86.pdf">本地文件</a>）<br>
+<a href="https://arxiv.org/pdf/2202.06429">FPS 玩家瞄准任务的心理物理学</a><br>
+<a href="https://youtube.com/shorts/PgqSunC-coI?si=5p7zws14XvTstQ-0">MG 42 Comparison | COD WAW vs Battlefield 5 vs COD WW2 vs Far Cry 4的射击动画</a></p>
+<h2 id="轨迹">
+<a class="header-anchor" href="#%e8%bd%a8%e8%bf%b9"></a>
+轨迹
+</h2><h3 id="真实子弹">
+<a class="header-anchor" href="#%e7%9c%9f%e5%ae%9e%e5%ad%90%e5%bc%b9"></a>
+真实子弹
+</h3><p><a href="https://www.bilibili.com/video/BV1jY4y1u7Fc">某战地提前量迫真教程</a></p>
+<h2 id="伤害">
+<a class="header-anchor" href="#%e4%bc%a4%e5%ae%b3"></a>
+伤害
+</h2><p><a href="https://www.bilibili.com/video/BV1scWzzbECe">战地6自动武器伤害衰减详解</a></p>
+<h2 id="射速">
+<a class="header-anchor" href="#%e5%b0%84%e9%80%9f"></a>
+射速
+</h2><p><a href="https://www.bilibili.com/video/BV1u1vKzzEZt">战地的射速机制如何影响点射打法</a></p>
+<h2 id="散布">
+<a class="header-anchor" href="#%e6%95%a3%e5%b8%83"></a>
+散布
+</h2><p><a href="https://www.bilibili.com/video/BV1jG411x7tV">战地散布机制</a><br>
+<a href="https://www.bilibili.com/video/BV1kB4y1t729?">战地散布机制 V/2042篇 序章“随机后坐”</a><br>
+<a href="https://www.bilibili.com/video/BV1NGxvzpEKi?spm_id_from=333.1387.favlist.content.click">战地霰弹散布后篇：开镜散布与续作情况</a><br>
+<a href="https://www.bilibili.com/video/BV1yY1tBYE4q?spm_id_from=333.1387.favlist.content.click">历代战地在开镜过程中散布是如何变化的</a></p>
+<p><a href="https://www.bilibili.com/video/BV1dJyxB6Epi?spm_id_from=333.1387.favlist.content.click">【战地6】1分钟告诉你为什么现在的战地6应该删除散布</a><br>
+<a href="https://www.bilibili.com/video/BV1RSsNzDECG">战地6散布初步分析报告</a><br>
+<a href="https://www.bilibili.com/video/BV1b2HyzLE1e">系统性阐述战地的散布机制如何从巧思演变成勾石</a> : 散布回复-点射-首发后坐之间的相互克制<br>
+<a href="https://www.bilibili.com/video/BV13UWKz7EQy">战地“写实”霰弹机制如何鼓励开镜射击</a></p>
+<p><a href="https://www.bilibili.com/video/BV1EC4y1q7Fo/">COD20武器的“子弹散布”</a></p>
+<h3 id="散布回复">
+<a class="header-anchor" href="#%e6%95%a3%e5%b8%83%e5%9b%9e%e5%a4%8d"></a>
+散布回复
+</h3><p>与射速息息相关</p>
+<h2 id="后坐">
+<a class="header-anchor" href="#%e5%90%8e%e5%9d%90"></a>
+后坐
+</h2><p><a href="https://www.reddit.com/r/unrealengine/comments/1lyt0dx/predictive_recoil_and_recoil_pattern_editor_for">Predictive Recoil and Recoil Pattern Editor for UE5 Lyra Shooter</a><br>
+<a href="https://www.bilibili.com/video/BV15eCBYjEiQ">《绝地潜兵2》联动「杀戮地带」新武器展示</a> 其采用yaw轴旋转摄像机晃动</p>
+<h3 id="首发后坐">
+<a class="header-anchor" href="#%e9%a6%96%e5%8f%91%e5%90%8e%e5%9d%90"></a>
+首发后坐
+</h3><p>较高的首发垂直后座，能较好地制衡连续点射</p>
+<h2 id="击中效果">
+<a class="header-anchor" href="#%e5%87%bb%e4%b8%ad%e6%95%88%e6%9e%9c"></a>
+击中效果
+</h2><p>想法：被攻击者帧冻结+攻击者帧冻结</p>
+<h1 id="换弹">
+<a class="header-anchor" href="#%e6%8d%a2%e5%bc%b9"></a>
+换弹
+</h1><p><a href="https://www.youtube.com/watch?v=ym_mNU6DWK8">Satisfying Reloads | The Art in Reload Animations</a><br>
+<a href="https://www.youtube.com/watch?v=KCSY-37lONY">Reloading is Art.</a><br>
+<a href="https://www.youtube.com/watch?v=vLNq-TcsCB4">How I Made SATISFYING Reload Animations!</a></p>
+<h1 id="移动">
+<a class="header-anchor" href="#%e7%a7%bb%e5%8a%a8"></a>
+移动
+</h1><p><a href="https://forums.unrealengine.com/t/how-to-send-more-compressed-flags-through-custom-character-movement-component/421142/11">官方论坛上扩展 MoveData 的讨论</a>：CMC的客户端预测回滚方案</p>
+</div>
+    <footer class="article-footer"><ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item" data-aos="zoom-in">
+      <a
+        class="article-tag-list-link"
+        href="/WzhGameDevPublish/tags/blog"
+        rel="tag"
+        >BLOG</a
+      >
+    </li></ul>
+</footer>
+  </div><nav
+    id="article-nav"
+    aria-label="Article navigation"
+    data-aos="fade-up"
+  ><div class="article-nav-link-wrap left"><img
+            data-src="https://tse1-mm.cn.bing.net/th/id/OIP-C.m80aM2zv68WUj1cb42ENtgHaEK"
+            data-sizes="auto"
+            alt="Lyra框架研究总览"
+            class="lazyload"
+          /><a
+          href="/WzhGameDevPublish/post/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/%E4%BB%A3%E7%A0%81%E6%A1%86%E6%9E%B6/lyra/lyra%E6%A1%86%E6%9E%B6%E7%A0%94%E7%A9%B6%E6%80%BB%E8%A7%88/"
+          aria-label="前一篇:Lyra框架研究总览"
+          title="前一篇:Lyra框架研究总览"
+        ></a>
+        <div class="article-nav-caption">前一篇</div>
+        <h3 class="article-nav-title">Lyra框架研究总览</h3>
+      </div><div class="article-nav-link-wrap right"><img
+              data-src="https://d-sketon.top/img/_backwebp/bg1.webp"
+              data-sizes="auto"
+              alt="FPS中的武器摇晃"
+              class="lazyload"
+            /><a
+          href="/WzhGameDevPublish/post/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/%E4%BB%A3%E7%A0%81%E6%A1%86%E6%9E%B6/lyra/fps/%E6%8A%80%E6%9C%AF%E7%BB%86%E8%8A%82/weaponsway/fpszhong-de-wu-qi-yao-huang/"
+          aria-label="后一篇:FPS中的武器摇晃"
+          title="后一篇:FPS中的武器摇晃"
+        ></a>
+        <div class="article-nav-caption">后一篇</div>
+        <h3 class="article-nav-title">FPS中的武器摇晃</h3>
+      </div></nav></article></section>
+        </div><footer id="footer" aria-label="Site footer">
+  <div style="width: 100%; overflow: hidden">
+    <div class="footer-line"></div>
+  </div>
+  <div id="footer-info"><div>
+      <span class="icon-copyright"></span>2025-2026<span class="footer-info-sep rotate"></span>
+      温志洪
+    </div><div>
+        基于&nbsp;<a
+          href="https://gohugo.io/"
+          target="_blank"
+          rel="noopener nofollow noreferrer"
+          >Hugo</a
+        >&nbsp; Theme.<a
+          href="https://github.com/D-Sketon/hugo-theme-reimu"
+          target="_blank"
+          rel="noopener nofollow noreferrer"
+          >Reimu</a
+        >
+      </div><div>
+        <span class="icon-brush"
+          >&nbsp;80.2k</span
+        >
+        &nbsp;|&nbsp;
+        <span class="icon-coffee">&nbsp;02:50</span>
+      </div><div>
+        <span class="icon-eye"></span>
+        <span id="busuanzi_container_site_pv"
+          >总访问量&nbsp;<span
+            id="busuanzi_value_site_pv"
+          ></span
+        ></span>
+        &nbsp;|&nbsp;
+        <span class="icon-user"></span>
+        <span id="busuanzi_container_site_uv"
+          >总访客量&nbsp;<span
+            id="busuanzi_value_site_uv"
+          ></span
+        ></span>
+      </div></div>
+</footer>
+<div class="sidebar-top">
+            <div class="sidebar-top-taichi rotate"></div>
+            <div class="arrow-up"></div>
+          </div><div id="mask" class="hide"></div>
+      </div><nav id="mobile-nav" aria-label="Mobile navigation">
+  <div class="sidebar-wrap"><div class="sidebar-toc-sidebar"><h3 class="toc-title">文章目录</h3>
+<div class="sidebar-toc-wrapper toc-div-class">
+  <nav id="TableOfContents">
+  <ul>
+    <li><a href="#lyra文档">Lyra文档</a></li>
+    <li><a href="#理论">理论</a></li>
+    <li><a href="#实践">实践</a>
+      <ul>
+        <li><a href="#lyra改fps">Lyra改FPS</a></li>
+        <li><a href="#程序化fps动画">程序化FPS动画</a></li>
+        <li><a href="#反面案例">反面案例</a></li>
+      </ul>
+    </li>
+    <li><a href="#优秀实践">优秀实践</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#思路与技术">思路与技术</a>
+      <ul>
+        <li><a href="#ik">IK</a></li>
+        <li><a href="#程序化动画">程序化动画</a></li>
+      </ul>
+    </li>
+    <li><a href="#实现">实现</a>
+      <ul>
+        <li><a href="#鼠标移动时的手臂摇晃mouse-sway">鼠标移动时的手臂摇晃Mouse Sway</a></li>
+        <li><a href="#跳跃">跳跃</a></li>
+      </ul>
+    </li>
+  </ul>
+
+  <ul>
+    <li><a href="#资料-1">资料</a></li>
+    <li><a href="#方案">方案</a>
+      <ul>
+        <li><a href="#蒙太奇程序化晃动">蒙太奇程序化晃动</a></li>
+      </ul>
+    </li>
+    <li><a href="#实现-2">实现</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#资料-2">资料</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#轨迹">轨迹</a>
+      <ul>
+        <li><a href="#真实子弹">真实子弹</a></li>
+      </ul>
+    </li>
+    <li><a href="#伤害">伤害</a></li>
+    <li><a href="#射速">射速</a></li>
+    <li><a href="#散布">散布</a>
+      <ul>
+        <li><a href="#散布回复">散布回复</a></li>
+      </ul>
+    </li>
+    <li><a href="#后坐">后坐</a>
+      <ul>
+        <li><a href="#首发后坐">首发后坐</a></li>
+      </ul>
+    </li>
+    <li><a href="#击中效果">击中效果</a></li>
+  </ul>
+</nav>
+</div></div>
+        <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
+  <img
+    data-src="/WzhGameDevPublish/avatar/UELogo.png"
+    data-sizes="auto"
+    alt="温志洪"
+    class="lazyload"
+  />
+  <div class="sidebar-author-name">温志洪</div>
+  <div class="sidebar-description">FPS游戏</div>
+</div>
+<div class="sidebar-state">
+  <div class="sidebar-state-article">
+    <div>文章</div><div class="sidebar-state-number">20</div>
+  </div>
+  <a class="sidebar-state-category" href="/WzhGameDevPublish/categories/" aria-label="sidebar-state-category-link">
+    <div>分类</div>
+    <div class="sidebar-state-number">
+      0
+    </div>
+  </a>
+  <a class="sidebar-state-tag" href="/WzhGameDevPublish/tags/" aria-label="sidebar-state-tag-link">
+    <div>标签</div>
+    <div class="sidebar-state-number">12</div>
+  </a>
+</div>
+<div class="sidebar-social"><div class="icon-bilibili sidebar-social-icon">
+      <a
+        href="https://space.bilibili.com/35312868"
+        itemprop="url"
+        target="_blank"
+        aria-label="bilibili"
+        rel="noopener nofollow noreferrer"
+      ></a>
+    </div><div class="icon-email sidebar-social-icon">
+      <a
+        href="mailto:cnwenzhihong@gmail.com"
+        itemprop="url"
+        target="_blank"
+        aria-label="email"
+        rel="noopener nofollow noreferrer"
+      ></a>
+    </div></div>
+<div class="sidebar-menu"><div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/WzhGameDevPublish/"
+        aria-label="首页"
+      ></a>
+      <div class='sidebar-menu-icon icon rotate'>&#xe62b;</div>
+      <div class="sidebar-menu-link">首页</div>
+    </div><div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/WzhGameDevPublish/archives"
+        aria-label="归档"
+      ></a>
+      <div class='sidebar-menu-icon icon rotate'>&#xe62b;</div>
+      <div class="sidebar-menu-link">归档</div>
+    </div><div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/WzhGameDevPublish/about"
+        aria-label="关于"
+      ></a>
+      <div class='sidebar-menu-icon icon rotate'>&#xe62b;</div>
+      <div class="sidebar-menu-link">关于</div>
+    </div><div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/WzhGameDevPublish/friend"
+        aria-label="友链"
+      ></a>
+      <div class='sidebar-menu-icon icon rotate'>&#xe62b;</div>
+      <div class="sidebar-menu-link">友链</div>
+    </div></div>
+</div></div><div class="sidebar-btn-wrapper">
+        <div class="sidebar-toc-btn current"></div>
+        <div class="sidebar-common-btn"></div>
+      </div></nav>
+</div><div class="site-search">
+        <div class="reimu-popup popup">
+          <div class="reimu-search">
+            <div class="reimu-search-input-icon"></div>
+            <div id="reimu-search-input"></div>
+            <div class="popup-btn-close"></div>
+          </div>
+          <div class="reimu-results">
+            <div id="reimu-stats"></div>
+            <div id="reimu-hits"></div>
+            <div id="reimu-pagination" class="reimu-pagination"></div>
+          </div>
+          <img class="reimu-bg" src="/WzhGameDevPublish/images/reimu.png" />
+        </div>
+      </div><script
+    src="https://npm.webcache.cn/lazysizes@5.3.2/lazysizes.min.js"
+    integrity="sha384-3gT/vsepWkfz/ff7PpWNUeMzeWoH3cDhm/A8jM7ouoAK0/fP/9bcHHR5kHq2nf&#43;e" crossorigin="anonymous"></script><script
+    src="https://npm.webcache.cn/clipboard@2.0.11/dist/clipboard.min.js"
+    integrity="sha384-J08i8An/QeARD9ExYpvphB8BsyOj3Gh2TSh1aLINKO3L0cMSH2dN3E22zFoXEi0Q" crossorigin="anonymous"></script><script
+    src="https://npm.webcache.cn/material-theme@1.0.0/dist/material-theme.umd.js"
+    integrity="sha384-vLev0II0HKFaxkcm&#43;/7kX5IGwVFBASkGchU311wmU/veIj2bB0UcBkQbW6yw2asK" crossorigin="anonymous"></script><script src="/WzhGameDevPublish/js/main.js" ></script><script src="/WzhGameDevPublish/js/aos.js" ></script><script>
+    var aosInit = () => {
+      AOS.init({
+        duration: 1000,
+        easing: "ease",
+        once: true,
+        offset: 50,
+      });
+    };
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", aosInit);
+    } else {
+      aosInit();
+    }
+  </script><script src="/WzhGameDevPublish/js/pjax_main.js" data-pjax></script><script>
+    var ALGOLIA_CONFIG = {
+      logo: '\/WzhGameDevPublish\/images\/algolia_logo.svg',
+      algolia: {
+        applicationID: "Y8C6JKXKKR",
+        apiKey: "30fdacdc4947fb8d8faed68e16f048a0",
+        indexName: "index",
+        hits: {
+          "per_page": parseInt("10")
+        },
+        labels: {
+          "input_placeholder": '搜索.....',
+          "hits_empty": '未发现与 「${query}」相关内容',
+          "hits_stats": '找到${hits}条结果（用时 ${time} ms）'
+        }
+      }
+    };
+  </script><script
+    src="https://npm.webcache.cn/algoliasearch@4.17.1/dist/algoliasearch-lite.umd.js"
+    deferintegrity="sha384-xvLS0jfKuoREs7pqkRI/OI8GcqohO5S&#43;jQz7ZBtQXnsXmD&#43;9jDOOY4cL6dCPzlrk" crossorigin="anonymous"></script><script
+    src="https://npm.webcache.cn/@reimujs/instantsearch.js@4.57.0-beta.1/dist/instantsearch.production.min.js"
+    deferintegrity="sha384-aagKMe8nkqaP2DYQc8kkYOL5l&#43;M5Q2WH/Uhr4teOh0Ybp0RZj0kUSDm45qPikMjK" crossorigin="anonymous"></script><script src="/WzhGameDevPublish/js/algolia_search.js" ></script><script
+    src="https://npm.webcache.cn/mouse-firework@0.1.1/dist/index.umd.js"
+    integrity="sha384-8LyaidD9GPxQQgLJO/WRw/O2h3BoNq/ApI/ecpvM6RsrCz2qP2ppBXUKihP4V/2d" crossorigin="anonymous"></script><script>
+  if (! false  || !window.matchMedia('(max-width: 768px)').matches) {
+    if (window.firework) {
+      const options = JSON.parse("{\"excludeelements\":[\"a\",\"button\"],\"particles\":[{\"colors\":[\"var(--red-1)\",\"var(--red-2)\",\"var(--red-3)\",\"var(--red-4)\"],\"duration\":[1200,1800],\"easing\":\"easeOutExpo\",\"move\":[\"emit\"],\"number\":20,\"shape\":\"circle\",\"shapeOptions\":{\"alpha\":[0.3,0.5],\"radius\":[16,32]}},{\"colors\":[\"var(--red-0)\"],\"duration\":[1200,1800],\"easing\":\"easeOutExpo\",\"move\":[\"diffuse\"],\"number\":1,\"shape\":\"circle\",\"shapeOptions\":{\"alpha\":[0.2,0.5],\"lineWidth\":6,\"radius\":20}}]}");
+      options.excludeElements = options.excludeelements;
+      delete options.excludeelements;
+      window.firework(options);
+    }
+  }
+</script><script
+    src="https://npm.webcache.cn/quicklink@3.0.1/dist/quicklink.umd.js"
+    integrity="sha384-caMDqvgav/HWdEYQU1QRRHMLleigpL1YHAG0m371DhzfL8rRzUyOb&#43;bEHtwlmYjD" crossorigin="anonymous"></script><script data-pjax>
+    window.quicklink?.listen({
+      timeout:  3000 ,
+      priority:  true ,
+      ignores: JSON.parse("[]")
+    });
+  </script>
+
+
+<div id="lazy-script">
+  <div><script data-pjax>
+        window.REIMU_POST = {
+          author: "温志洪",
+          title: "FPS动画制作参考资料",
+          url: "http:\/\/localhost:1895\/WzhGameDevPublish\/post\/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91\/%E4%BB%A3%E7%A0%81%E6%A1%86%E6%9E%B6\/lyra\/fps\/fps%E5%8A%A8%E7%94%BB%E5%88%B6%E4%BD%9C%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99\/",
+          description: "\r总领\rLyra文档\rLyraStarterGame Overview | X157 Dev Notes：Lyra详细拆解\n理论\rCrafting Gun Feel：讲解FPS效果的零散论文，提供大量的参考资料，需要一定FPS游戏开发基础\n如何实现 COD 品质的第一人称动画\n",
+          cover: "http:\/\/localhost:1895\/WzhGameDevPublish\/images\/banner.webp",
+        };
+      </script><script src="/WzhGameDevPublish/js/insert_highlight.js" data-pjax></script><script src="/WzhGameDevPublish/js/tabs.js" data-pjax></script><script type="module" data-pjax>const PhotoSwipeLightbox = (await safeImport("https:\/\/npm.webcache.cn\/photoswipe@5.4.4\/dist\/photoswipe-lightbox.esm.min.js", "sha384-DiL6M\/gG\u002bwmTxmCRZyD1zee6lIhawn5TGvED0FOh7fXcN9B0aZ9dexSF\/N6lrZi\/")).default;const initPswp = (gallery, children) => {
+          if (_$$(`${gallery} ${children}`).length > 0) {
+            new PhotoSwipeLightbox({
+              gallery,
+              children,pswpModule: () => safeImport("https:\/\/npm.webcache.cn\/photoswipe@5.4.4\/dist\/photoswipe.esm.min.js", "sha384-WkkO3GCmgkC3VQWpaV8DqhKJqpzpF9JoByxDmnV8\u002boTJ7m3DfYEWX1fu1scuS4\u002bs")}).init();
+          }
+        }
+        const pswp = () => {
+          initPswp('.article-entry', 'a.article-gallery-item');
+          initPswp('.article-gallery', 'a.article-gallery-item');
+          window.lightboxStatus = 'done';
+          window.removeEventListener('lightbox:ready', pswp);
+        }
+        if(window.lightboxStatus === 'ready') {
+          pswp()
+        } else {
+          window.addEventListener('lightbox:ready', pswp);
+        }
+      </script></div>
+</div><script
+    src="https://npm.webcache.cn/busuanzi@2.3.0/bsz.pure.mini.js"
+    asyncintegrity="sha384-0M75wtSkhjIInv4coYlaJU83&#43;OypaRCIq2SukQVQX04eGTCBXJDuWAbJet56id&#43;S" crossorigin="anonymous"></script><script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.getRegistrations().then((registrations) => {
+        for (let registration of registrations) {
+          registration.unregister();
+        }
+      });
+    }
+  </script><script>
+  const reimuCopyright = String.raw`
+   ______     ______     __     __    __     __  __    
+  /\  == \   /\  ___\   /\ \   /\ "-./  \   /\ \/\ \   
+  \ \  __<   \ \  __\   \ \ \  \ \ \-./\ \  \ \ \_\ \  
+   \ \_\ \_\  \ \_____\  \ \_\  \ \_\ \ \_\  \ \_____\ 
+    \/_/ /_/   \/_____/   \/_/   \/_/  \/_/   \/_____/ 
+                                                    
+  `;
+  console.log(String.raw`%c ${reimuCopyright}`, "color: #ff5252;");
+  console.log(
+    "%c Theme.Reimu" + " %c https://github.com/D-Sketon/hugo-theme-reimu ",
+    "color: white; background: #ff5252; padding:5px 0;",
+    "padding:4px;border:1px solid #ff5252;",
+  );
+</script></body>
+</html>

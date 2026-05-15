@@ -1,0 +1,1251 @@
+<!doctype html>
+<html
+  lang="zh-cn" 
+  data-theme-mode="false"
+  >
+  <head><script src="/WzhGameDevPublish/livereload.js?mindelay=10&amp;v=2&amp;port=1895&amp;path=WzhGameDevPublish/livereload" data-no-instant defer></script><meta charset="utf-8" />
+<meta
+  name="viewport"
+  content="width=device-width, initial-scale=1, shrink-to-fit=no"
+/><title>
+  UE5.6 第一人称渲染技术大会 | 温志洪
+</title>
+<meta name="description" content="FPS游戏"/><script>
+  window.siteConfig = JSON.parse("{\"anchor_icon\":null,\"base\":\"http://localhost:1895/WzhGameDevPublish/\",\"clipboard\":{\"copyright\":{\"count\":50,\"enable\":false,\"license_type\":\"by-nc-sa\"},\"fail\":{\"en\":\"Copy failed (ﾟ⊿ﾟ)ﾂ\",\"ja\":\"コピー失敗 (ﾟ⊿ﾟ)ﾂ\",\"pt-br\":\"Falha ao copiar (ﾟ⊿ﾟ)ﾂ\",\"zh-cn\":\"复制失败 (ﾟ⊿ﾟ)ﾂ\",\"zh-tw\":\"複製失敗 (ﾟ⊿ﾟ)ﾂ\"},\"success\":{\"en\":\"Copy successfully (*^▽^*)\",\"ja\":\"コピー成功 (*^▽^*)\",\"pt-br\":\"Copiado com sucesso (*^▽^*)\",\"zh-cn\":\"复制成功 (*^▽^*)\",\"zh-tw\":\"複製成功 (*^▽^*)\"}},\"code_block\":{\"expand\":4},\"i18n_languages\":[{\"Lang\":\"en\",\"LanguageName\":\"English\",\"LanguageCode\":\"\",\"Title\":\"\",\"LanguageDirection\":\"\",\"Weight\":1,\"Disabled\":false},{\"Lang\":\"zh-cn\",\"LanguageName\":\"简体中文\",\"LanguageCode\":\"\",\"Title\":\"\",\"LanguageDirection\":\"\",\"Weight\":1,\"Disabled\":false}],\"icon_font\":\"4552607_4k4bc36ef96\",\"outdate\":{\"daysago\":180,\"enable\":false,\"message\":{\"en\":\"This article was last updated on {time}. Please note that the content may no longer be applicable.\",\"ja\":\"この記事は最終更新日：{time}。記載内容が現在有効でない可能性がありますのでご注意ください。\",\"pt-br\":\"Este artigo foi atualizado pela última vez em {time}. Observe que o conteúdo pode não ser mais aplicável.\",\"zh-cn\":\"本文最后更新于 {time}，请注意文中内容可能已不适用。\",\"zh-tw\":\"本文最後更新於 {time}，請注意文中內容可能已不適用。\"}}}");
+  
+</script>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link
+  rel="preload"
+  as="style"
+  href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic%7cNoto%20Serif%20SC:400,400italic,700,700italic%7c&amp;display=swap"
+/>
+<link
+  rel="stylesheet"
+  href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic%7cNoto%20Serif%20SC:400,400italic,700,700italic%7c&amp;display=swap"
+  media="print"
+  onload="this.media='all'"
+/>
+<link
+    rel="preload"
+    href="//at.alicdn.com/t/c/font_4552607_4k4bc36ef96.woff2"
+    as="font"
+    type="font/woff2"
+    crossorigin="anonymous"
+  /><link rel="stylesheet" href="/WzhGameDevPublish/css/loader.css" />
+<meta property="og:type" content="website" />
+  <meta property="og:title" content="UE5.6 第一人称渲染技术大会 | 温志洪" />
+  <meta
+    property="og:description"
+    content="FPS游戏"
+  />
+  <meta property="og:url" content="http://localhost:1895/WzhGameDevPublish/post/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/%E4%BB%A3%E7%A0%81%E6%A1%86%E6%9E%B6/lyra/fps/ue5.6-%E7%AC%AC%E4%B8%80%E4%BA%BA%E7%A7%B0%E6%B8%B2%E6%9F%93%E6%8A%80%E6%9C%AF%E5%A4%A7%E4%BC%9A/" />
+  <meta
+    property="og:site_name"
+    content="妖精游戏开发馆"
+  />
+  <meta
+    property="og:image"
+    content="/WzhGameDevPublish/"
+  />
+  <meta property="article:author" content="温志洪" />
+  <meta property="article:published_time" content="2025-09-09T13:53:06&#43;00:00" />
+  <meta property="article:modified_time" content="2026-05-15T12:22:37&#43;00:00" /><meta property="article:tag" content="blog" /><meta name="twitter:card" content="summary" />
+  <meta name="twitter:image" content="/WzhGameDevPublish/" />
+<link rel="shortcut icon" href="/WzhGameDevPublish/favicon.ico"><link rel="stylesheet" href="/WzhGameDevPublish/css/main.css" />
+<link
+    rel="preload"
+    as="style"
+    href="https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe.css"
+    integrity="sha384-IfxC36XL/toUyJ939C73PcgMuRzAZuIzZxE38drsmO5p6jD7ei&#43;Zx/1oA/0l8ysE" crossorigin="anonymous"onload="this.onload=null;this.rel='stylesheet'"
+  /><link
+    rel="preload"
+    as="style"
+    href="https://npm.webcache.cn/katex@0.16.24/dist/katex.min.css"
+    integrity="sha384-tTgKLjMYmJr94v8qu2PE5MUGSMbyN2xiH266JUB3gpm8vnnJywd1dWSOEfrFz&#43;YI" crossorigin="anonymous"onload="this.onload=null;this.rel='stylesheet'"
+  /><script
+    src="https://npm.webcache.cn/pace-js@1.2.4/pace.min.js"
+    integrity="sha384-k6YtvFUEIuEFBdrLKJ3YAUbBki333tj1CSUisai5Cswsg9wcLNaPzsTHDswp4Az8" crossorigin="anonymous"></script><link
+    rel="stylesheet"
+    href="https://npm.webcache.cn/@reimujs/aos@0.1.2/dist/aos.css"
+    integrity="sha384-GMRP93c6Hkz9JVKGAuRR3nTS7M07RwPgTFenXiosjq2VbVgvdDNcz1g6Mkj8AONa" crossorigin="anonymous"/></head>
+  <body><div id='loader'>
+    <div class="loading-left-bg loading-bg"></div>
+    <div class="loading-right-bg loading-bg"></div>
+    <div class="spinner-box">
+      <div class="loading-taichi rotate"><svg width="150" height="150" viewBox="0 0 1024 1024" class="icon" version="1.1" xmlns="https://www.w3.org/2000/svg" shape-rendering="geometricPrecision">
+            <path d="M303.5 432A80 80 0 0 1 291.5 592A80 80 0 0 1 303.5 432z" fill="var(--red-1, #ff5252)" />
+            <path d="M512 65A447 447 0 0 1 512 959L512 929A417 417 0 0 0 512 95A417 417 0 0 0 512 929L512 959A447 447 0 0 1 512 65z 
+          M512 95A417 417 0 0 1 929 512A208.5 208.5 0 0 1 720.5 720.5L720.5 592A80 80 0 0 0 720.5 432A80 80 0 0 0 720.5 592L720.5 720.5A208.5 208.5 0 0 1 512 512A208.5 208.5 0 0 0 303.5 303.5A208.5 208.5 0 0 0 95 512A417 417 0 0 1 512 95z" fill="var(--red-1, #ff5252)" />
+          </svg></div><div class="loading-word">少女祈祷中...</div>
+    </div>
+  </div>
+  </div>
+  <script>
+    var time = null;
+    var loaderEl = document.getElementById('loader');
+    var startLoading = () => {
+      time = Date.now();
+      loaderEl.classList.remove("loading");
+    }
+    var hideLoader = () => {
+      document.body.style.overflow = 'auto';
+      loader.classList.add('loading');
+    };
+
+    var endLoading = () => {
+      if (!time) {
+        hideLoader();
+      } else {
+        if (Date.now() - time > 500) {
+          time = null;
+          hideLoader();
+        } else {
+          setTimeout(endLoading, 500 - (Date.now() - time));
+          time = null;
+        }
+      }
+    }
+    window.addEventListener('DOMContentLoaded', endLoading);
+    loaderEl.addEventListener('click', endLoading);
+  </script><div id="copy-tooltip"></div>
+<div id="lang-tooltip">
+本文章没有找到对应的语言版本
+</div>
+<div id="heatmap-tooltip"></div><div id="container">
+      <div id="wrap"><div id="header-nav">
+  <nav id="main-nav" aria-label="Primary navigation"><a class="main-nav-link-wrap" href="/WzhGameDevPublish/">
+        <div class='main-nav-icon icon rotate'>&#xe62b;</div>
+        <span class="main-nav-link">首页</span>
+      </a><a class="main-nav-link-wrap" href="/WzhGameDevPublish/archives">
+        <div class='main-nav-icon icon rotate'>&#xe62b;</div>
+        <span class="main-nav-link">归档</span>
+      </a><a class="main-nav-link-wrap" href="/WzhGameDevPublish/about">
+        <div class='main-nav-icon icon rotate'>&#xe62b;</div>
+        <span class="main-nav-link">关于</span>
+      </a><a class="main-nav-link-wrap" href="/WzhGameDevPublish/friend">
+        <div class='main-nav-icon icon rotate'>&#xe62b;</div>
+        <span class="main-nav-link">友链</span>
+      </a><a id="main-nav-toggle" class="nav-icon" aria-label="Toggle navigation" role="button"></a>
+  </nav>
+  <nav id="sub-nav" aria-label="Secondary navigation"><a id="nav-search-btn" class="nav-icon popup-trigger" title="搜索" aria-label="搜索"></a></nav><nav id="i18n-nav" aria-label="Language selection">
+      <div class="custom-dropdown">
+        <div class="select-selected" id="select-selected" role="button" aria-haspopup="listbox" aria-expanded="false" aria-label="Language menu">
+          <span id="nav-language-btn" class="nav-icon" style="padding: 0 20px 0 0"></span>
+          <span id="selected-lang">简体中文</span>
+        </div>
+        <ul class="select-items" id="select-items" role="listbox" aria-label="Languages"><li data-value="en" role="option" arial-selected="false" >English</li><li data-value="zh-cn" role="option" class="selected" arial-selected="true" >简体中文</li></ul>
+      </div>
+      <script>
+        var selectSelected = document.getElementById("select-selected");
+        var selectedLang = document.getElementById("selected-lang");
+        var selectItems = document.getElementById("select-items");
+        var selectOptions = selectItems.querySelectorAll("li");
+
+        selectSelected.addEventListener("click", () => {
+          selectItems.classList.toggle("show");
+          var expanded = selectSelected.getAttribute("aria-expanded") === "true";
+          selectSelected.setAttribute("aria-expanded", (!expanded).toString());
+        });
+
+        selectOptions.forEach((item) => {
+          item.addEventListener("click", () => {
+            const langMap = {};selectedLang.textContent = item.textContent;
+            selectItems.classList.remove("show");
+            selectOptions.forEach((option) => {
+              option.classList.remove("selected");
+            });
+            item.classList.add("selected");
+            if (item.dataset.value === 'zh-cn') {
+              return;
+            }
+            if (!langMap[item.dataset.value]) {
+              _$("#lang-tooltip").style.opacity = "1";
+              setTimeout(() => {
+                _$("#lang-tooltip").style.opacity = "0";
+              }, 1000);
+              return;
+            }
+            window.location = langMap[item.dataset.value];
+          });
+        });
+
+        document.addEventListener("click", (event) => {
+          if (!event.target.closest(".custom-dropdown")) {
+            selectItems.classList.remove("show");
+            selectSelected.setAttribute("aria-expanded", "false");
+          }
+        });
+      </script>
+    </nav></div>
+<header id="header" aria-label="Site header"><picture><source media="(max-width: 479px)" srcset="/WzhGameDevPublish/images/banner-600w.webp"><source media="(max-width: 799px)" srcset="/WzhGameDevPublish/images/banner-800w.webp"><source media="(min-width: 800px)" srcset="/WzhGameDevPublish/images/banner.webp"><img crossorigin="anonymous" fetchpriority="high" src="/WzhGameDevPublish/images/banner.webp" alt="UE5.6 第一人称渲染技术大会"></picture><img alt="UE5.6 第一人称渲染技术大会" style="visibility: hidden;"><div id="header-outer">
+    <div id="header-title"><span id="logo">
+            <h1 data-aos="slide-up">UE5.6 第一人称渲染技术大会</h1>
+          </span><h2 id="subtitle-wrap" data-aos="slide-down"></h2></div>
+  </div>
+</header><div id="content"
+          aria-label="Page content"
+          class="sidebar-left"
+            ><aside id="sidebar" aria-label="Sidebar"><div class="sidebar-wrapper-container sticky"><div class="sidebar-wrapper">
+    <div
+      class="sidebar-wrap"
+      data-aos="fade-up"
+    ><div class="sidebar-toc-sidebar"><h3 class="toc-title">文章目录</h3>
+<div class="sidebar-toc-wrapper toc-div-class">
+  <nav id="TableOfContents">
+  <ul>
+    <li><a href="#21-场景穿模">2.1 场景穿模</a></li>
+    <li><a href="#22-视野field-of-view">2.2 视野（Field of View）</a>
+      <ul>
+        <li><a href="#23-可见性">2.3 可见性</a></li>
+      </ul>
+    </li>
+    <li><a href="#23-我的腿在哪里">2.3 我的腿在哪里？</a></li>
+    <li><a href="#24-光照和阴影">2.4 光照和阴影</a></li>
+    <li><a href="#25-反射">2.5 反射</a></li>
+    <li><a href="#第一人称愿望清单">第一人称愿望清单</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#51-如何表现第一人称几何体">5.1 如何表现第一人称几何体</a>
+      <ul>
+        <li><a href="#无头模式the-headless-approach">无头模式（The Headless Approach）</a></li>
+        <li><a href="#悬浮手臂the-floating-arms">悬浮手臂（The Floating Arms）</a></li>
+      </ul>
+    </li>
+    <li><a href="#光照解决方案">光照解决方案</a>
+      <ul>
+        <li><a href="#完整尺寸的几何体full-scale-geometry">完整尺寸的几何体(Full Scale Geometry)</a></li>
+        <li><a href="#缩小后的几何体">缩小后的几何体</a></li>
+        <li><a href="#光照方案选择">光照方案选择</a></li>
+        <li><a href="#技术核心变换矩阵morph">技术核心：变换矩阵(Morph)</a></li>
+        <li><a href="#一些数学问题">一些数学问题</a></li>
+      </ul>
+    </li>
+    <li><a href="#处理腿部与世界空间插值">处理腿部与世界空间插值</a>
+      <ul>
+        <li><a href="#有多种方法">有多种方法：</a></li>
+      </ul>
+    </li>
+  </ul>
+
+  <ul>
+    <li><a href="#世界空间插值world-space-interpolation">世界空间插值(World Space Interpolation)</a></li>
+    <li><a href="#投射场景阴影casting-scene-shadows">投射场景阴影(Casting Scene Shadows)</a></li>
+    <li><a href="#硬件光线追踪反射hwrt-reflections">硬件光线追踪反射(HWRT Reflections)</a></li>
+    <li><a href="#第一人称自身阴影first-person-self-shadow">第一人称自身阴影(First-Person Self-Shadow)</a></li>
+    <li><a href="#gbuffer限制与妥协">GBuffer限制与妥协</a></li>
+    <li><a href="#效果展示">效果展示</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#111-基础设置">11.1 基础设置</a>
+      <ul>
+        <li><a href="#将第一人称的图元primitive标记">将第一人称的图元(primitive)标记。</a></li>
+        <li><a href="#在摄像机上配置视野和缩放">在摄像机上配置视野和缩放</a></li>
+        <li><a href="#简单注意">简单注意</a></li>
+      </ul>
+    </li>
+    <li><a href="#112-处理腿部">11.2 处理腿部</a></li>
+    <li><a href="#113-添加自身阴影">11.3 添加自身阴影</a></li>
+    <li><a href="#114-设置世界空间表示setting-up-a-world-space-representation">11.4 设置世界空间表示(Setting up a World Space Representation)</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#121-摄像机参数">12.1 摄像机参数</a></li>
+    <li><a href="#122-材质图表集成material-graph-transform-position">12.2 材质图表集成(Material Graph: Transform Position)</a></li>
+    <li><a href="#123-材质节点查询功能">12.3 材质节点：查询功能</a></li>
+    <li><a href="#124-材质节点差值">12.4 材质节点：差值</a>
+      <ul>
+        <li><a href="#如何驱动差值">如何驱动差值？</a></li>
+      </ul>
+    </li>
+    <li><a href="#126-蓝图函数">12.6 蓝图函数</a></li>
+    <li><a href="#127-支持其它图元类型">12.7 支持其它图元类型</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#总结">总结</a></li>
+    <li><a href="#未来工作">未来工作</a>
+      <ul>
+        <li><a href="#nanite支持">Nanite支持</a></li>
+        <li><a href="#后期特效处理">后期特效处理</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+</div></div>
+          <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
+  <img
+    data-src="/WzhGameDevPublish/avatar/UELogo.png"
+    data-sizes="auto"
+    alt="温志洪"
+    class="lazyload"
+  />
+  <div class="sidebar-author-name">温志洪</div>
+  <div class="sidebar-description">FPS游戏</div>
+</div>
+<div class="sidebar-state">
+  <div class="sidebar-state-article">
+    <div>文章</div><div class="sidebar-state-number">20</div>
+  </div>
+  <a class="sidebar-state-category" href="/WzhGameDevPublish/categories/" aria-label="sidebar-state-category-link">
+    <div>分类</div>
+    <div class="sidebar-state-number">
+      0
+    </div>
+  </a>
+  <a class="sidebar-state-tag" href="/WzhGameDevPublish/tags/" aria-label="sidebar-state-tag-link">
+    <div>标签</div>
+    <div class="sidebar-state-number">12</div>
+  </a>
+</div>
+<div class="sidebar-social"><div class="icon-bilibili sidebar-social-icon">
+      <a
+        href="https://space.bilibili.com/35312868"
+        itemprop="url"
+        target="_blank"
+        aria-label="bilibili"
+        rel="noopener nofollow noreferrer"
+      ></a>
+    </div><div class="icon-email sidebar-social-icon">
+      <a
+        href="mailto:cnwenzhihong@gmail.com"
+        itemprop="url"
+        target="_blank"
+        aria-label="email"
+        rel="noopener nofollow noreferrer"
+      ></a>
+    </div></div>
+<div class="sidebar-menu"><div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/WzhGameDevPublish/"
+        aria-label="首页"
+      ></a>
+      <div class='sidebar-menu-icon icon rotate'>&#xe62b;</div>
+      <div class="sidebar-menu-link">首页</div>
+    </div><div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/WzhGameDevPublish/archives"
+        aria-label="归档"
+      ></a>
+      <div class='sidebar-menu-icon icon rotate'>&#xe62b;</div>
+      <div class="sidebar-menu-link">归档</div>
+    </div><div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/WzhGameDevPublish/about"
+        aria-label="关于"
+      ></a>
+      <div class='sidebar-menu-icon icon rotate'>&#xe62b;</div>
+      <div class="sidebar-menu-link">关于</div>
+    </div><div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/WzhGameDevPublish/friend"
+        aria-label="友链"
+      ></a>
+      <div class='sidebar-menu-icon icon rotate'>&#xe62b;</div>
+      <div class="sidebar-menu-link">友链</div>
+    </div></div>
+</div><div class="sidebar-btn-wrapper" style="position:static">
+            <div class="sidebar-toc-btn current"></div>
+            <div class="sidebar-common-btn"></div>
+          </div></div>
+  </div><div class="sidebar-widget"></div></div></aside>
+<section id="main" aria-label="Main content"><p style="color:red">ARTICLE PARTIAL OVERRIDE ACTIVE</p>
+<article
+  class="h-entry article"
+  itemscope
+  itemtype="https://schema.org/BlogPosting"
+>
+  <div
+    class="article-inner"
+    data-aos="fade-up"
+  >
+    <div class="article-meta"><div class="article-date">
+  <span
+    class="article-date-link icon-calendar"
+    data-aos="zoom-in"
+  >
+    <time datetime="2025-09-09 13:53:06.586 &#43;0000 UTC" itemprop="datePublished"
+      >2025-09-09</time
+    >
+    <time style="display: none;" id="post-update-time"
+      >2026-05-15</time
+    >
+  </span><span
+      class="article-date-link icon-calendar-plus"
+      data-aos="zoom-in"
+    >
+      <time datetime="2026-05-15 12:22:37.278 &#43;0000 UTC" itemprop="dateModified"
+        >2026-05-15</time
+      >
+    </span></div>
+<div class="article-category"></div>
+</div><div class="hr-line"></div><div class="e-content article-entry" itemprop="articleBody"><blockquote>
+<p>原链接: <a href="https://www.youtube.com/watch?v=11sLIyw0pWQ">https://www.youtube.com/watch?v=11sLIyw0pWQ</a><br>
+bilibili翻译: <a href="https://www.bilibili.com/video/BV1i98QzAEYD">https://www.bilibili.com/video/BV1i98QzAEYD</a><br>
+Epic文章，该文章非常详细地从0搭建UE5.6的FPS角色，是快速实现的不二选择: <a href="https://dev.epicgames.com/documentation/zh-cn/unreal-engine/first-person-rendering">https://dev.epicgames.com/documentation/zh-cn/unreal-engine/first-person-rendering</a></p>
+</blockquote>
+<h1 id="一什么是第一人称渲染">
+<a class="header-anchor" href="#%e4%b8%80%e4%bb%80%e4%b9%88%e6%98%af%e7%ac%ac%e4%b8%80%e4%ba%ba%e7%a7%b0%e6%b8%b2%e6%9f%93"></a>
+一、什么是第一人称渲染？
+</h1><p>其理念是我们有一个第一人称视角——可以玩家通过它们所扮演角色的眼睛看世界。也就是说它们可以看到自己的手臂、持有的武器。当它们向下看时，能看到腿和部分下半身躯干。所有这些都伴随着特定的期望和挑战。<br>
+<img src="https://cdn.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/20250909221759766.png" alt="image.png|275"></p>
+<h1 id="二第一人称渲染的挑战">
+<a class="header-anchor" href="#%e4%ba%8c%e7%ac%ac%e4%b8%80%e4%ba%ba%e7%a7%b0%e6%b8%b2%e6%9f%93%e7%9a%84%e6%8c%91%e6%88%98"></a>
+二、第一人称渲染的挑战
+</h1><h2 id="21-场景穿模">
+<a class="header-anchor" href="#21-%e5%9c%ba%e6%99%af%e7%a9%bf%e6%a8%a1"></a>
+2.1 场景穿模
+</h2><p>第一人称的几何体永远不应该与场景穿模，这是过去几十年来玩家已经形成的期望。<br>
+下面的图片中，左边的是你不希望发生的情况，而右侧的是玩家所期望的。<br>
+<img src="https://cdn.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/20250909222021072.png" alt="image.png"></p>
+
+  <blockquote class="alert-blockquote info">
+    <p class="alert-heading">
+      Info
+    </p>
+    <p><h4 id="要这么做的原因">
+<a class="header-anchor" href="#%e8%a6%81%e8%bf%99%e4%b9%88%e5%81%9a%e7%9a%84%e5%8e%9f%e5%9b%a0"></a>
+要这么做的原因
+</h4><p>玩家希望能够紧贴着角落窥视外面，而且它们也需要能够非常靠近墙壁。我们需要给予它们这种余地，因为在某种程度上玩家是有些笨拙的。<br>
+在现实生活中导航时，你对自己四肢的位置有很好的感知，当我们在环境中移动时，我们在某种程度上是相当灵活的。但视频游戏中的玩家需要根据屏幕所见来行动，而且老实说它们的控制方式都有点粗糙。<br>
+在某种程度上，玩家的移动方式有点像一辆坦克，当它们想穿破一扇门时，我们应该给它们一些余地，让它们能够通过，即使它们巨大的狙击步枪真的会阻碍它们。<br>
+此外，穿模看起来会很糟糕，并打破沉浸感。</p></p>
+  </blockquote>
+
+<p>需要记住的是，我们的目标从根本上来说是非物理的。其它的渲染部分是基于一个有意义的世界，但这个部分的渲染却完全不符合真实世界规则。</p>
+<h2 id="22-视野field-of-view">
+<a class="header-anchor" href="#22-%e8%a7%86%e9%87%8efield-of-view"></a>
+2.2 视野（Field of View）
+</h2><p>对于不熟悉这个术语的人来说，它本质上描述了玩家视锥体的角度。<br>
+关于第一人称作品的问题在于：玩家（尤其是在PC上）通常希望有非常高的视野，这样它们就能看到尽可能多的周围环境。这在理论上给了它们一种优势。但问题是，虽然这对场景的其余部分看起来可能没问题，但对于第一人称的几何体来说，通常看起来非常糟糕。<br>
+<img src="https://cdn.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/20250909222716521.png" alt="image.png"><br>
+左边的图片是当场景和第一人称几何体使用相同视野时的样子。我喜欢称这种效果为“面条臂”——手臂被拉伸的很长，武器看起来也很奇怪。我相当确定，至少我希望你没有在任何一个已发售的游戏中见过这种情况。<br>
+你通常更熟悉的是右边你看到的视角。<br>
+实际上第一人称几何体通常只在一个很窄的视野范围段内，看起来才好。下次你玩另一款有FOV调节功能的FPS作品时，可以调节一下FOV，并注意观察——她很可能只会改变场景的视野，而你的第一人称几何体（也就是你的手和枪）看起来会完全一样。所以它们已经解决了这个问题。<br>
+这同样是非物理的，但它不像第一个问题那么糟糕，但她仍然有点不合常理，而且也提出了一些问题：<br>
+如果我们用不同的视野来渲染第一人称几何体，它们的像素最终会落在屏幕上的不同位置。如果你比较这两张图片，当玩家试图伸手去抓世界中的某个东西，你要如何让它们连接起来？这是一个挑战，许多游戏在解决这个问题时需要发挥创意。</p>
+<h3 id="23-可见性">
+<a class="header-anchor" href="#23-%e5%8f%af%e8%a7%81%e6%80%a7"></a>
+2.3 可见性
+</h3><p><img src="https://cdn.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/20250909223647224.png" alt="image.png|225"><br>
+传统上第一人称玩家只是一双悬浮的手臂和一把枪。这是游戏界在过去20年里一直在做的事情。这以一种巧妙的方式解决了问题——因为第一人称几何体与世界是分离的，所以你永远无法真正接触到任何东西，除了你手中的枪（而那把枪也被认为是第一人称的），你没有腿。<br>
+这意味着我们可以用不同的视野来渲染枪和手臂。</p>
+<p>缺点：</p>
+<ol>
+<li>你没有腿</li>
+<li>而且在处理阴影和反射方面存在问题。</li>
+</ol>
+<p>比如走到镜子前或者接收正确的阴影、投射阴影之类的事情。它和场景的其余部分是不一样的，但由于它与场景分离，在大多数情况下，你无法分辨出它得到了不同的光照。</p>
+<h2 id="23-我的腿在哪里">
+<a class="header-anchor" href="#23-%e6%88%91%e7%9a%84%e8%85%bf%e5%9c%a8%e5%93%aa%e9%87%8c"></a>
+2.3 我的腿在哪里？
+</h2><p><img src="https://cdn.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/20250909223954592.png" alt="image.png"><br>
+许多游戏发售时都只有两只悬浮的手臂和一把枪，这看起来还行。在大多数情况下，玩家并不会向下看。但现在这个年代，我认为一个高质量的第一人称体验，在你向下看时应该有腿。<br>
+但这很棘手，因为腿确实将玩家与世界连接起来，所以我们需要弄清楚如何解决光照、视野和防穿模的问题，以便它仍然适用于腿部。</p>
+<h2 id="24-光照和阴影">
+<a class="header-anchor" href="#24-%e5%85%89%e7%85%a7%e5%92%8c%e9%98%b4%e5%bd%b1"></a>
+2.4 光照和阴影
+</h2><p>第一人称几何体应该接收与场景其余部分相同的光照。这一点可能看起来有点理所当然，但根据我们想如何解决其它挑战，这变得非常具有挑战性。<br>
+FPS手臂和枪也应该能投射和接收阴影。同样，我们不能同时让两只悬浮的手臂和枪在场景上都投射阴影。<br>
+<img src="https://cdn.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/20250909224207950.png" alt="image.png|275"></p>
+<h2 id="25-反射">
+<a class="header-anchor" href="#25-%e5%8f%8d%e5%b0%84"></a>
+2.5 反射
+</h2><p>第一人称几何体应该能正确地反射场景，但理想情况下，它也应该被反射在场景中。<br>
+如果你走到一个反射表面或一面镜子前，玩家应该能在那面镜子里看到它们完整的第三人称自我。很多游戏出于充分的理由没有实现这一点。<br>
+它们同样不应该在反射中看到两只悬浮的手臂和枪，因为那会完全破坏体验。<br>
+<img src="https://cdn.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/20250909224325394.png" alt="image.png|250"></p>
+<h2 id="第一人称愿望清单">
+<a class="header-anchor" href="#%e7%ac%ac%e4%b8%80%e4%ba%ba%e7%a7%b0%e6%84%bf%e6%9c%9b%e6%b8%85%e5%8d%95"></a>
+第一人称愿望清单
+</h2><p>好的，让我们总结一下我们的第一人称愿望清单：</p>
+<ol>
+<li>首先我们想要一个解决穿模和视野问题的方案</li>
+<li>玩家应该能看到自己的腿</li>
+<li>光照和阴影应该都是一致的，第一人称角色应该能在场景上投射阴影，并从场景接收阴影</li>
+<li>反射能正常工作<br>
+<img src="https://cdn.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/20250909224711224.png" alt="image.png|450"></li>
+</ol>
+
+  <blockquote class="alert-blockquote question">
+    <p class="alert-heading">
+      Question
+    </p>
+    <p><h4 id="为什么ue现在才解决这个问题">
+<a class="header-anchor" href="#%e4%b8%ba%e4%bb%80%e4%b9%88ue%e7%8e%b0%e5%9c%a8%e6%89%8d%e8%a7%a3%e5%86%b3%e8%bf%99%e4%b8%aa%e9%97%ae%e9%a2%98"></a>
+为什么UE现在才解决这个问题？
+</h4><p>此时你可能在想：为什么UE还没有这个功能？毕竟UE起源于《虚幻竞技场》，它本身就是一款FPS作品。<br>
+UE3有一个在不同层中渲染几何体的功能。但由于复杂性，这个功能在UE4中被移除了。坦白说要让它与延迟着色一起工作非常困难，这个功能也并没有真正解决所有上面这些挑战。<br>
+所以我今天要介绍的系统比UE过去拥有的功能有了一个巨大的进步。这也意味着所有在UE上发布的第一人称作品都必须实现一个自定义的解决方案，或者接受场景穿模和没有自定义视野的问题。所以人们必须发挥创意<br>
+我们早就该解决这个问题了。</p></p>
+  </blockquote>
+
+<p><a href="https://youtu.be/11sLIyw0pWQ?si=WEnTbrB3evh7BM-J%5c&amp;t=605">9:50</a></p>
+<h1 id="五探索解决空间">
+<a class="header-anchor" href="#%e4%ba%94%e6%8e%a2%e7%b4%a2%e8%a7%a3%e5%86%b3%e7%a9%ba%e9%97%b4"></a>
+五、探索解决空间
+</h1><p>市面上有大量的第一人称游戏，几乎所有这些游戏都确实需要以某种方式解决这些问题。让我们看看看看市面上能找到些什么方案。</p>
+<h2 id="51-如何表现第一人称几何体">
+<a class="header-anchor" href="#51-%e5%a6%82%e4%bd%95%e8%a1%a8%e7%8e%b0%e7%ac%ac%e4%b8%80%e4%ba%ba%e7%a7%b0%e5%87%a0%e4%bd%95%e4%bd%93"></a>
+5.1 如何表现第一人称几何体
+</h2><h3 id="无头模式the-headless-approach">
+<a class="header-anchor" href="#%e6%97%a0%e5%a4%b4%e6%a8%a1%e5%bc%8fthe-headless-approach"></a>
+无头模式（The Headless Approach）
+</h3><p>这些名字都是我自己想的，并没有官方的命名。<br>
+<img src="https://cdn.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/20250909225829687.png" alt="image.png"><br>
+思路很简单：砍掉玩家的头，然后在那里放一个摄像机。<br>
+优点：<br>
+可以非常简单的解决光照和阴影问题。可以将完整的身体（包括头部）都渲染到阴影贴图中，一切都能正常工作。<br>
+因为它本质上是在空间中同一位置的相同几何体。当你向下看时，你能看到可见的腿，而且如果你已经有了第三人称动画，你就不需要提供单独的动画了。<br>
+缺点：<br>
+它并没有真正解决穿模问题，也没有为自定义视野做任何事情。所以我想所有这些都有点偏离主题了。而且动画在第一人称视角下可能会有点太抖动，通常在第三人称视角下看起来不错的东西，在第一人称视角下可能并不好看。</p>
+<blockquote>
+<p>这在现实生活中其实也很有趣，我们身体摆动幅度很大，但我们的大脑会对此进行补偿，所以我们并没有真正注意到视野抖动。但在游戏中，人们可能会感到恶心。</p>
+</blockquote>
+<p>确实有作品是用这种方式发售的，主要是在模拟类型游戏中。<br>
+取决于特定内容，它是一个有效的解决方案，而且也可以对具体效果进行调整。</p>
+<h3 id="悬浮手臂the-floating-arms">
+<a class="header-anchor" href="#%e6%82%ac%e6%b5%ae%e6%89%8b%e8%87%82the-floating-arms"></a>
+悬浮手臂（The Floating Arms）
+</h3><p>你会发现这是这里一个反复出现的主题。它就只是两只悬浮的手臂和一把枪，没有腿，所以几何体没有连接到场景。<br>
+<img src="https://cdn.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/20250909230533942.png" alt="image.png"><br>
+优点：<br>
+我们可以用不同的FOV来渲染它<br>
+如果需要的话可以使用不同的光照来修复其它问题。<br>
+由于没有连接到场景，所以不会有明显的与场景不匹配问题。<br>
+缺点：<br>
+它通常没有阴影<br>
+它很可能需要特殊的第一人称动画，这是需要投入非常多的时间。</p>
+<h4 id="合成法the-compositing-approach">
+<a class="header-anchor" href="#%e5%90%88%e6%88%90%e6%b3%95the-compositing-approach"></a>
+合成法（The Compositing Approach）
+</h4><p>这可能会是你Google搜索后找到的第一个解决方案<br>
+<img src="https://cdn.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/20250909231337831.png" alt="image.png"><br>
+首先将第一人称Mesh渲染到它自己的纹理中，然后将它与场景合成。基本上就是独立的渲染目标(Render Target)，然后直接粘贴在画面上面。<br>
+听起来简单，但也有一些挑战，比如:<br>
+我们如何计算光照，使其与场景的其余部分匹配？这到底应该怎么运作？它是否应放在一个单独的世界里？如果把它放在同一个世界里，那它又该如何工作？<br>
+它会耗费内存和性能。它增加了相当多的额外复杂性，因为我们基本上需要复制我们的渲染管线，并运行所有东西两次，这取决你设置的方式。<br>
+而如果只是复制颜色，那么第一人称的像素在深度缓冲区(Depth buffer)中就没有表示，那么后期效果(Post Effect)或任何依赖深度的东西都无法看到第一人称模型。但我猜有办法解决这个问题。</p>
+<h4 id="独立渲染通道the-separate-render-pass">
+<a class="header-anchor" href="#%e7%8b%ac%e7%ab%8b%e6%b8%b2%e6%9f%93%e9%80%9a%e9%81%93the-separate-render-pass"></a>
+独立渲染通道（The Separate Render Pass）
+</h4><p>它稍微复杂一些，但不是非常复杂。<br>
+我们首先渲染第一人称几何体，然后我们设置光照管线，使得场景像素永远不能覆盖第一人称像素。因为我们首先渲染了第一人称几何体，保证了没有任何东西会覆盖那些像素。<br>
+<img src="https://cdn.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/20250909231916028.png" alt="image.png"></p>
+<p>我们实现这一点的方式我称之为“深度/模板技巧(Depth/stencil trickery)”。<br>
+其中一个最直接的方法是在绘制第一人称几何体时设置一个模板位，然后在渲染场景时检查该位，如果它被设置了，你就跳过。这会给你一个深度缓冲区，其中第一人称像素可以在场景几何体中切出洞来。<br>
+想象一下，你脸贴着墙，你的步枪伸进墙里，比墙本身离摄像机更远。因为有这个模板机制，墙的像素会比枪的像素更近一些。<br>
+在实践中，这意味着当你处理透明度和视觉特效时，事情会变得非常复杂，因为那些东西我们不能用模板，它们需要与场景混合。如果它们不需要与场景混合，那么它们就可以是不透明的。<br>
+这意味着，当你把枪伸进墙里开火时，通常会有的枪口火焰特效将被深度测试给剔除掉。<br>
+我们在UE中遇到的一个问题是，模板在UE中有点棘手。许多位已经被占用了，其含义在帧的持续时间内会发生变化，而且要将它与Nanite集成也很困难（不是不可能，但是很难以一种仍然高效的方式来做）。不过对于其它引擎来说可能不错。</p>
+<h4 id="自定义投影矩阵custom-projection-matrix">
+<a class="header-anchor" href="#%e8%87%aa%e5%ae%9a%e4%b9%89%e6%8a%95%e5%bd%b1%e7%9f%a9%e9%98%b5custom-projection-matrix"></a>
+自定义投影矩阵（Custom Projection Matrix）
+</h4><p>我们只使用一个自定义的投影矩阵。<br>
+<img src="https://cdn.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/20250909232227911.png" alt="image.png"><br>
+其工作方式是，我们只需要一个独立的透视投影矩阵，其视野是我们想要的视野。然后我们可以做一些深度缓冲区的技巧（我接下来会讲到）来解决穿模问题。这样就同时解决了视野和穿模问题。<br>
+它没有为阴影或腿部连接到世界做任何特别的处理，但这可以作为一个起点。<br>
+然而它确实为维护一套独立的矩阵增加了额外的复杂性。这不算很糟糕，但确实增加了一些复杂性。<br>
+你可能会想，这不就是一个投影矩阵吗？但实际上有一大堆东西与它相关，并依赖于它：有视图投影矩阵、有逆投影矩阵、逆视图投影矩阵&hellip;所以这是一大堆都依赖于我们投影矩阵样子的矩阵。<br>
+我试着在右边展示这一点，上面的代码是正常设置下绘制场景的代码非常简化样式。然后我们基本上需要为第一人称的东西复制这整个过程，重新做一遍所有事情，并保留相关的东西。</p>
+<h4 id="深度分区depth-partitioning">
+<a class="header-anchor" href="#%e6%b7%b1%e5%ba%a6%e5%88%86%e5%8c%badepth-partitioning"></a>
+深度分区（Depth Partitioning）
+</h4><p>这是我之前提到的深度缓冲区技巧，与自定义投影矩阵密切相关。<br>
+为第一人称几何体保留深度缓冲的一个范围，并重新映射深度值。在图的右边，那个紫色立方体是第一人称几何体。绿色的东西和房子是场景。<br>
+<img src="https://cdn.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/20250909232643268.png" alt="image.png"></p>
+<p>上面的图是它通常的样子，而在下面的图中，我们把第一人称几何体压扁靠近摄像机。我们有点像把它做成了薄饼，并确保场景的其余部分都在这个范围之外，用这种方式我们把它们分开了。<br>
+这确实解决了穿模问题，第一人称几何体将始终渲染在场景其余部分的前面。但我们该如何在其上计算光照呢？我们的深度缓冲值都被压扁了。<br>
+所以我们可以做的是撤销这个重新映射，但那样整个渲染器都需要意识到这一点。这同样不是一个根本性的问题，但确实增加了一些复杂性。</p>
+<h4 id="缩放法the-scaling-approach">
+<a class="header-anchor" href="#%e7%bc%a9%e6%94%be%e6%b3%95the-scaling-approach"></a>
+缩放法（The Scaling Approach）
+</h4><p>这个方案只针对穿模问题。我称之为“缩放法”。<br>
+将第一人称几何体朝着摄像机进行缩放。在图片右侧展示了这一点。<br>
+<img src="https://cdn.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/20250909233056966.png" alt="image.png"><br>
+通过将其朝向摄像机进行缩放（所以基本上是在视图空间中，相对于摄像机本身），我们也将它移进了摄像机。那个摄像机周围的蓝色盒子是玩家的碰撞包围盒。<br>
+如果我们能成功的将第一人称几何体移动或缩放到那个包围盒内，就能有效地防止与场景其余部分的穿模（物理系统会为我们处理好）。<br>
+你可能想知道这到底是怎么运作的，看起来不会很奇怪吗？是的确实会，但有一个例外：就是从摄像机的视角看，它看起来完全一样。第一人称几何体仍然会渲染到完全相同的像素。但从任何其它角度看，会非常小并靠近摄像机。<br>
+所以我们内部称之为“小手手方案”。<br>
+现在的问题是我们如何对其进行光照？我们发现其实可以在缩小的几何体上进行光照，因为通常光源距离第一人称几何体相对较远，而且其尺寸通常不是很大，所以你基本不会注意到我们在这里造成的尺寸差异。<br>
+阴影方面有一个问题：首先我们不能用这个来投射阴影，因为它会产生一个看起来非常奇怪的bug——你会在地上看到一个非常非常小的阴影，人们会好奇这是怎么回事（它大概只有五个像素那么大，看起来就像一个迷你版的玩家）。而且在第一人称几何体上，阴影也更趋向于“二元化”，我稍后会解释这意味着什么。但在我看来，这不是大问题。</p>
+<h4 id="视野变形拉伸fov-distortionstretching">
+<a class="header-anchor" href="#%e8%a7%86%e9%87%8e%e5%8f%98%e5%bd%a2%e6%8b%89%e4%bc%b8fov-distortionstretching"></a>
+视野变形/拉伸（FOV Distortion/Stretching）
+</h4><p>思路是我们可以对几何体进行变形，让它看起来像是用不同的FOV渲染出来的，这样管线的其余部分就不需要知道这件事。前提是我们能接受在变形的几何体上进行光照。<br>
+<img src="https://cdn.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/20250909233405406.png" alt="image.png"><br>
+而且这可以通过插值解决腿部可见的问题：我们拉伸几何体，但可以逐顶点的决定拉伸程度，这样我们就能沿着腿的长度在世界空间和第一人称空间之间进行插值。<br>
+同样这个方法不能用来投射阴影，因为那样看起来也会很奇怪（也许没有上一个那么糟糕，但仍然不好）。<br>
+我尝试这样来可视化它：首先看顶部的两个摄像机，大视野下你有一个更大的视锥体，那个立方体就是我们的第一人称几何体。从摄像机视角看，它并没有填满整个屏幕。但如果你缩小视野，它就会填满整个屏幕。我们可以通过拉伸几何体来达到同样的效果，同时保持原始的大视野。希望大家能理解，毕竟我只是个程序员。</p>
+<h2 id="光照解决方案">
+<a class="header-anchor" href="#%e5%85%89%e7%85%a7%e8%a7%a3%e5%86%b3%e6%96%b9%e6%a1%88"></a>
+光照解决方案
+</h2><p>首先来谈谈完整尺寸与缩小后几何体的光照问题。这基本上是我们最先决定要如何处理的事情。</p>
+<h3 id="完整尺寸的几何体full-scale-geometry">
+<a class="header-anchor" href="#%e5%ae%8c%e6%95%b4%e5%b0%ba%e5%af%b8%e7%9a%84%e5%87%a0%e4%bd%95%e4%bd%93full-scale-geometry"></a>
+完整尺寸的几何体(Full Scale Geometry)
+</h3><p><img src="https://cdn.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/20250909234054735.png" alt="image.png"><br>
+就像上文提到的，有些技术在完整尺寸的第一人称几何体上计算光照，这在大多数情况下能提供正确且一致的光照。但在UE中会导致正常穿模的几何体看起来异常的暗，这是因为我们的光照相当精确（不是我自夸）。<br>
+但如果你想一下，物体的内部确实是暗的（如果这说得通的话），假设它们是中空的，我想在游戏里它们差不多就是这样，所以内部是暗的。<br>
+我这里有一个相关的视频，可以看到当我靠近几何体时，枪械变暗了。我是用我之前提到的模板技巧来实现的。<br>
+如果你注意看瞄准镜消失了，因为它被深度剔除了。<br>
+<img src="https://cdn.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/PixPin_2025-09-09_23-39-11.gif" alt="PixPin\_2025-09-09\_23-39-11.gif"></p>
+<h3 id="缩小后的几何体">
+<a class="header-anchor" href="#%e7%bc%a9%e5%b0%8f%e5%90%8e%e7%9a%84%e5%87%a0%e4%bd%95%e4%bd%93"></a>
+缩小后的几何体
+</h3><p><img src="https://cdn.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/20250910001340336.png" alt="image.png"><br>
+其它技术在缩小的几何体上计算光照，1在所有情况下，光照看起来都基本正确。这与前一个“总是看起来正确”的方法有很大不同，但也许不是我们所期望的。<br>
+<img src="https://cdn.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/PixPin_2025-09-09_23-45-36.gif" alt="PixPin\_2025-09-09\_23-45-36.gif"><br>
+这里唯一的问题是走近或走出阴影时的情况。在枪上接收到的阴影会出现和消失的非常快，因为我们的第一人称几何体现在非常小，相对而言阴影要大得多，我们相对于枪的尺寸移动速度非常快。所以看起来就像是阴影在闪烁，你无法真正看到阴影沿着枪管长度过渡的效果（也许你移动的非常慢才行）。但实际上这基本不成问题，从来没有人真正提到过这个问题。<br>
+所以如果你仔细看，你会发现它确实有点忽明忽暗。我从未收到过任何关于这个问题的抱怨，但这可能是一个潜在的瑕疵。</p>
+<h3 id="光照方案选择">
+<a class="header-anchor" href="#%e5%85%89%e7%85%a7%e6%96%b9%e6%a1%88%e9%80%89%e6%8b%a9"></a>
+光照方案选择
+</h3><p>我们来回顾一下：</p>
+<ul>
+<li>对完整尺寸几何体进行光照：可以得到正确的光照和阴影，但正常穿模的几何体会变黑。</li>
+<li>对缩小后的几何体进行光照：光照和阴影会略有不准，但正常穿模的几何体看起来会符合预期。</li>
+</ul>
+<p><img src="https://cdn.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/20250910001808608.png" alt="image.png"><br>
+这个“符合预期”其实非常重要。就像我一开始说的，我们试图实现的东西本身就非常不符合物理规律。<br>
+如果我们想用“正确”的方式来做，最好的办法就是什么都不做。但我们想做的是让玩家觉得好看的东西，而玩家期望看到的不总是符合逻辑的，所以我们选择了右边那个方案。</p>
+<h3 id="技术核心变换矩阵morph">
+<a class="header-anchor" href="#%e6%8a%80%e6%9c%af%e6%a0%b8%e5%bf%83%e5%8f%98%e6%8d%a2%e7%9f%a9%e9%98%b5morph"></a>
+技术核心：变换矩阵(Morph)
+</h3><p>我们的技术是基于缩放和变形，我们用它来解决穿模和视野问题。<br>
+<img src="https://cdn.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/20250910001948507.png" alt="image.png"></p>
+<p>它的工作方式是: 在应用世界位置偏移之后、应用视图和投影矩阵之前施加一个矩阵变换。这个矩阵是基于场景FOV、第一人称FOV和期望的第一人称缩放因子构建的，以解决穿模问题。<br>
+<img src="https://cdn.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/PixPin_2025-09-10_00-20-27.gif" alt="PixPin\_2025-09-10\_00-20-27.gif"><br>
+这个变形(Morphing)本质上就像在变形和非变形版本之间进行插值。所以首先你会得到一个“面条化”的版本，然后我们慢慢地把它变回来，得到看起来更好的效果。</p>
+<h3 id="一些数学问题">
+<a class="header-anchor" href="#%e4%b8%80%e4%ba%9b%e6%95%b0%e5%ad%a6%e9%97%ae%e9%a2%98"></a>
+一些数学问题
+</h3><p><a href="https://youtu.be/11sLIyw0pWQ?si=jwPVJfAMvlNQdBtP%5c&amp;t=1581">26:21</a><br>
+朝向摄像机缩放只是视图空间中一个常规的缩放操作（也就是均匀缩放），非常非常简单。<br>
+如果我们看看透视矩阵是如何实现视野的，它们是通过对视图空间中顶点的X和Y分量应用缩放来实现的。所以又是缩放。<br>
+如果我们把这些结合起来，实际上缩放和变形都可以表示为视图空间中的一个非均匀缩放操作。<br>
+为方便起见，我们希望这是一个世界空间中的变换，这样我们就可以在世界位置偏移之后直接应用它，而不需要在视图和投影矩阵之间插入任何东西（那通常是在渲染器的其它地方处理的）。<br>
+所以所有这些最终都化为一个非常简单的3×3矩阵。</p>
+<h4 id="数学推导简要">
+<a class="header-anchor" href="#%e6%95%b0%e5%ad%a6%e6%8e%a8%e5%af%bc%e7%ae%80%e8%a6%81"></a>
+数学推导（简要）
+</h4><p><img src="https://cdn.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/20250910003141158.png" alt="image.png"><br>
+我们先从视野校正开始。我们在这里想要实现的是这个（幻灯片上的公式）。这或多或少是我们如何将一个顶点从模型空间投影到屏幕上的标准表示法。<br>
+M是模型矩阵，它将物体从其被创作的空间（比如blender）转换到世界空间。<br>
+V是视图矩阵，它转换到视图空间（这是一个相对于摄像机的空间）。<br>
+P是透视投影矩阵，它实现了视野效果，并让远处的物体看起来更小。<br>
+你会注意到我加了这个下划线F，这代表我们的第一人称投影矩阵，也就是我们想要达到的那个视野的矩阵。<br>
+好的，但我们真正寻找的是这个矩阵T，我们可以将它插入到模型矩阵和视图矩阵之间。<br>
+我们构建它的方式是这样的：首先我们再次转换到视图空间，然后应用我们的第一人称透视矩阵（这第一部分和第一行中的完全一样）。然后我们做一些非常有趣的事情：从透视投影空间返回到视图空间，但这次使用逆场景投影矩阵。这会给我们一个在视图空间中的位置，它本质上是两个视野投影之间的差值。然后我们再次回到世界空间（因为那是我们想要的），之后就是常规管线的其余部分（也就是再次进入视图空间和正常的透视投影空间）。<br>
+这看起来很长也很复杂，但如果你眯起眼睛，你会发现这些项可以相互抵消。所以我们最终得到的是这部分。开头乘以视图矩阵和结尾乘以逆视图矩阵只是为了方便。我们真正要看的是那个紫色的部分，那是用来校正我们视野的。<br>
+现在如果你想添加缩放（就像我说的，它只是试图空间中常规的均匀缩放），所以我们只需构建一个缩放矩阵（其中S是用户选择的值，决定第一人称几何体要缩小多少），在它还在试图空间时将其插入即可。<br>
+到这里我们基本上就完成了。此时我们可以简化一些东西，如果你坐下来花时间研究一下，你会发现这个紫色的部分也可以简化为一个3×3的缩放矩阵，带有一个奇怪的F参数。<br>
+这里就有趣了，它的定义是这样的（幻灯片上的公式）。你不需要想的太复杂，但如果你看它会发现有一项依赖于场景视野，第二项则依赖于第一人称视野。这些基本上是从透视投影矩阵中提取出来、用于实现视野效果的部分。</p>
+<p>好的现在是“可怕”的部分，或者说不那么可怕的部分：数学。我想既然你来听这个讲座，你可能想知道她工作的所有细节。我保证这会很简短，并且痛苦&hellip;开个玩笑，她会很简短，而且真的不应该痛苦，它没那么复杂。<br>
+(f= tan(FOV/2)/tan(FOV_fp/2))<br>
+这两个项一起的作用，粗略的说就是我们基本上除去了场景视野，然后乘以第一人称视野。但这基本上是让整件事得以实现的最重要的公式。<br>
+最终的变换看起来就是这样：转换到视图空间，应用简单的缩放矩阵，然后回到世界空间。<br>
+好了，“可怕”的数学幻灯片结束了。</p>
+<h2 id="处理腿部与世界空间插值">
+<a class="header-anchor" href="#%e5%a4%84%e7%90%86%e8%85%bf%e9%83%a8%e4%b8%8e%e4%b8%96%e7%95%8c%e7%a9%ba%e9%97%b4%e6%8f%92%e5%80%bc"></a>
+处理腿部与世界空间插值
+</h2><p>我的腿怎么办？<br>
+<img src="https://cdn.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/20250910003419192.png" alt="image.png"></p>
+<h3 id="有多种方法">
+<a class="header-anchor" href="#%e6%9c%89%e5%a4%9a%e7%a7%8d%e6%96%b9%e6%b3%95"></a>
+有多种方法：
+</h3><ol>
+<li>做一个完整的第一人称身体，所有部分都连接在一起（所以你的腿、躯干和手臂都是一个网格体）。这是我们在《堡垒之夜》中的做法。不一定是因为这是最好或唯一的方法，而是因为我们在fortnight中有很多皮肤，我们不可能为所有这些皮肤都创建一个专用的第一人称版本。所以我们选择了这个方案。</li>
+<li>你也可以创建一个独立的在世界空间中的下半身。</li>
+<li>或者一个在第一人称空间中的下半身，但有一个小小的注意事项。</li>
+</ol>
+<p>所有这些都是有效的方法，所以真的选择最适合你的游戏和你的流程的方案。</p>
+<h1 id="高级方案">
+<a class="header-anchor" href="#%e9%ab%98%e7%ba%a7%e6%96%b9%e6%a1%88"></a>
+高级方案
+</h1><h2 id="世界空间插值world-space-interpolation">
+<a class="header-anchor" href="#%e4%b8%96%e7%95%8c%e7%a9%ba%e9%97%b4%e6%8f%92%e5%80%bcworld-space-interpolation"></a>
+世界空间插值(World Space Interpolation)
+</h2><p><a href="https://youtu.be/11sLIyw0pWQ?si=mGlKTnAjIlCpEFMv%5c&amp;t=1914">31:54</a><br>
+有时候在世界空间和第一人称空间之间进行混合是必要的。我在这里给“空间”加上了引号，因为它并不是一个真正的空间，它仍然是世界空间，但我们稍微移动了一下东西。你可以把它想象成应用了世界位置偏移，但别想的太复杂。<br>
+你通过一个自定义的材质输出来控制它，这让你能以逐顶点的频率进行控制。这对于在世界空间和第一人称空间之间对腿部进行插值尤其有用。<br>
+我们想要实现的是: 脚要能连接到我们投射在地上的阴影，而那个阴影是由玩家的世界空间投射的。我将会在连接和不连接之间进行插值。<br>
+<img src="https://cdn.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/PixPin_2025-09-10_00-38-16.gif" alt="PixPin\_2025-09-10\_00-38-16.gif"><br>
+当脚看起来像是悬空浮起时，是完全用第一人称视野渲染的（由于第一人称视野更窄，它基本上会将物体移动到屏幕空间中的另一个位置）。但我们希望它能连接到世界，所以当脚靠近地面时（或者说脚与地面连接的部分，也就是基本上整个脚）应该总是在世界空间中。</p>
+<h2 id="投射场景阴影casting-scene-shadows">
+<a class="header-anchor" href="#%e6%8a%95%e5%b0%84%e5%9c%ba%e6%99%af%e9%98%b4%e5%bd%b1casting-scene-shadows"></a>
+投射场景阴影(Casting Scene Shadows)
+</h2><p>我们引入了一个可选的“世界空间表示”的概念。这意味着你可以添加一个可以把它想象成玩家的第三人称版本。你添加它，并将这些图元设置为“世界空间表示”。这意味着它们对玩家摄像机是不可见的，但会被阴影捕捉到。所以它就这么开箱即用了。<br>
+<img src="https://cdn.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/20250910004321178.png" alt="image.png"></p>
+<p>顺便提一下我们做阴影的方式：阴影被渲染到一个单独的阴影贴图中，然后与投射到场景本身的场景阴影进行合成。这听起来有点复杂，我们在阴影方面遇到了一个大问题，那就是我们使用玩家的第三人称版本来投射阴影。<br>
+现在你可能会想问题在哪里？<br>
+如果我们让第一人称几何体接收到那个第三人称版本的阴影，我们基本上是在做某种自相交，因为几何体的第一人称版本与第三人称版本在世界空间中是轻微重叠的，但又有所不同（否则我们就不需要两个版本了）。所以这意味着手臂可以给自己投射阴影（两个版本的网格体在逻辑上代表同一个物体，但它们在世界中的空间是不同的）。<br>
+所以我们真正要做的是确保第三人称版本（也就是那个世界空间表示）永远不会影响到第一人称网格体的光照。</p>
+<h2 id="硬件光线追踪反射hwrt-reflections">
+<a class="header-anchor" href="#%e7%a1%ac%e4%bb%b6%e5%85%89%e7%ba%bf%e8%bf%bd%e8%b8%aa%e5%8f%8d%e5%b0%84hwrt-reflections"></a>
+硬件光线追踪反射(HWRT Reflections)
+</h2><p>我们现在有了这个方便的“世界空间表示”，我们顺便就把那些图元放进了光线追踪世界（也就是BVH）中。<br>
+<img src="https://cdn.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/20250910005035100.png" alt="image.png"><br>
+这带来的好处是Lumen反射现在可以看到玩家的第三人称版本。所以这是开箱即用的，你只需走到镜子前，Lumen就能看到第三人称的你。<br>
+这对于追踪阴影也同样适用，它们能捕捉到由这些图元投射的阴影。而且因为它在光线追踪世界中，它真的可以被任何光线追踪功能使用。目前这两个功能对它有明确的支持，但未来可以轻易地添加到其它功能中，比如Mega lights。<br>
+就像我为阴影指出的那样，反射也是一样：源自第一人称像素的光线（也就是反射光线）必须跳过第三人称几何体，否则（比如一条反射光线从你的手臂发出，然后击中了同一个手臂的第三人称版本）你就会在上面看到奇怪的黑色反射，看起来各种怪异。</p>
+<h2 id="第一人称自身阴影first-person-self-shadow">
+<a class="header-anchor" href="#%e7%ac%ac%e4%b8%80%e4%ba%ba%e7%a7%b0%e8%87%aa%e8%ba%ab%e9%98%b4%e5%bd%b1first-person-self-shadow"></a>
+第一人称自身阴影(First-Person Self-Shadow)
+</h2><p><a href="https://youtu.be/11sLIyw0pWQ?si=Xj2B4xrv7Mkp2ncT%5c&amp;t=2173">36:13</a><br>
+等等，还有更多阴影？是的。<br>
+<img src="https://cdn.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/20250910005854788.png" alt="image.png"></p>
+<p>到目前为止，我们有了在地上的阴影投射，我们也可以在第一人称几何体上接收来自场景的阴影。但我们仍然缺少的是第一人称几何体投射在自身上的阴影。比如在这张图片中，瞄准镜投射在武器和手臂上的阴影。<br>
+许多游戏实际上没有这个功能。我们的解决方案支持所有光源类型，目前是用HZB屏幕追踪实现的（但理论上你也可以使用专用的阴影贴图）。<br>
+因为它是由屏幕追踪实现的，所以通常的屏幕空间限制也适用，但在实践中它看起来相当不错（我猜是因为所有相关的阴影投射物反正都在屏幕上），所以到目前为止没有收到什么抱怨。<br>
+<img src="https://cdn.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/20250910005717947.png" alt="image.png"><br>
+通过前后对比图，这样你就能感受到它增加的效果。左边是只有光照的效果，右侧是完整的着色效果。<br>
+许多游戏实际上都有类似这样的东西，下次你玩其它作品时，可以把光源放在屏幕右边，如果你的左手内侧仍然有高光反射，那你就知道它们没有做这个处理。<br>
+就我个人而言，我认为它增加了很多效果，尤其是在移动时。</p>
+<h2 id="gbuffer限制与妥协">
+<a class="header-anchor" href="#gbuffer%e9%99%90%e5%88%b6%e4%b8%8e%e5%a6%a5%e5%8d%8f"></a>
+GBuffer限制与妥协
+</h2><p>我刚才谈到的这些高级的酷炫功能，它们都需要在GBuffer中占用一个位。特别是场景投射阴影、硬件光追反射以及第一人称自阴影，他们都需要一位，来区分像素是第一人称还是场景。<br>
+<img src="https://cdn.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/20250910010341117.png" alt="image.png"><br>
+但是GBuffer中已经没有空闲的位了。UE非常复杂，有很多功能，所以所有的位都已经被占用了。这曾是一个相当大的挑战。<br>
+我对结果不是特别满意，但我们最终在没有静态光照的情况下达成了妥协。有一些与烘焙阴影相关的空闲位，所以我直接去偷用了一个。但我意识到显然仍然有对烘焙光照的需求，尤其是在射击游戏类型中。<br>
+不幸的是，这对我们来说是一个非常严格的限制。这是一个非常难以解决的挑战。</p>
+
+  <blockquote class="alert-blockquote tip">
+    <p class="alert-heading">
+      Tip
+    </p>
+    <p><p>我建议如果你有工程能力，你可以改变这一点（它只是几个着色器文件中的几行代码）。如果你不需要胶囊体阴影，或许可以把它去掉（它们在GBuffer中有一个专门的位）。<br>
+或者如果渲染器有其它你项目不需要的功能，同时你绝对需要静态光照，那么你可以换掉那些位。这应该不是一个侵入性太强的改动。<br>
+希望未来这会有所改变，我对这个现状不是特别满意，但为了发布产品，我们只能这么做。</p></p>
+  </blockquote>
+
+<p>在实践中，如果你想要玩家在场景中的阴影和硬件光追反射，你需要去项目设置里禁用“允许静态光照”。目前只能这样。希望未来会有所改变。</p>
+<h2 id="效果展示">
+<a class="header-anchor" href="#%e6%95%88%e6%9e%9c%e5%b1%95%e7%a4%ba"></a>
+效果展示
+</h2><p>好的，这里是一个将所有内容整合在一起的视频。你可以看到<br>
+脸贴着墙，也没有穿模。光照和阴影看起来都非常一致。低头看时你能看到自己的腿，并且阴影也能正确地连接上。另外如果你注意看自身阴影，我真的很喜欢它在移动时的那种效果。<br>
+<img src="https://cdn.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/PixPin_2025-09-10_01-05-35.mp4" alt=""></p>
+<h1 id="实践">
+<a class="header-anchor" href="#%e5%ae%9e%e8%b7%b5"></a>
+实践
+</h1><h2 id="111-基础设置">
+<a class="header-anchor" href="#111-%e5%9f%ba%e7%a1%80%e8%ae%be%e7%bd%ae"></a>
+11.1 基础设置
+</h2><p><img src="https://cdn.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/20250910011714729.png" alt="image.png"></p>
+<h3 id="将第一人称的图元primitive标记">
+<a class="header-anchor" href="#%e5%b0%86%e7%ac%ac%e4%b8%80%e4%ba%ba%e7%a7%b0%e7%9a%84%e5%9b%be%e5%85%83primitive%e6%a0%87%e8%ae%b0"></a>
+将第一人称的图元(primitive)标记。
+</h3><p>勾选模型属性中的✅<code>First Person Primitive Type</code><br>
+我们引入了一个新的“第一人称图元类型(First Person Primitive Type)”属性，它存在于所有图元组件(primitive Component)上（就是右下角那张图）。<br>
+它有三个值：</p>
+<ul>
+<li><code>None</code>：完全不与第一人称渲染功能交互。这适用于你的大部分物体。</li>
+<li><code>First Person</code>：这指的是玩家在第一人称视角下看到的身体，以及它们手中的步枪等物品。</li>
+<li><code>World Space representation</code>：我对这个命名不是很满意，但命名真的很难（这在当时对我来说是最合理的了）。应该将它用于投射阴影和在反射中可见的那个网格体。</li>
+</ul>
+<h3 id="在摄像机上配置视野和缩放">
+<a class="header-anchor" href="#%e5%9c%a8%e6%91%84%e5%83%8f%e6%9c%ba%e4%b8%8a%e9%85%8d%e7%bd%ae%e8%a7%86%e9%87%8e%e5%92%8c%e7%bc%a9%e6%94%be"></a>
+在摄像机上配置视野和缩放
+</h3><p>它有两个新属性。我还添加了两个复选框，以便你可以因为某些原因按需开关。<br>
+它就是这样&hellip;你就完成了，就是这么简单。</p>
+<h3 id="简单注意">
+<a class="header-anchor" href="#%e7%ae%80%e5%8d%95%e6%b3%a8%e6%84%8f"></a>
+简单注意
+</h3><p>关于将物体设为第一人称图元，还有一点：我之前说过，如果将物体设为“世界空间表示”图元，它对第一人称玩家摄像机是不可见的（它在编辑器中仍然可见，但如果你进入第一人称玩家摄像机视角，它就不可见了）。<br>
+反过来说，第一人称图元不会向场景投射阴影（否则会看起来很奇怪，我无法预见任何你希望它向场景投射阴影的情况），所以渲染器会自动禁用它。因此当你把物体设为第一人称后，阴影会消失，直到你启用我们讨论过的那些替代阴影效果。<br>
+它们也不会以奇怪的变形形态出现在光线追踪世界中，所以你不用担心那里会出现任何奇怪的阴影或反射。一切都应该是开箱即用的，设置好那个世界空间表示，一切就都能正常工作。</p>
+<h2 id="112-处理腿部">
+<a class="header-anchor" href="#112-%e5%a4%84%e7%90%86%e8%85%bf%e9%83%a8"></a>
+11.2 处理腿部
+</h2><p><img src="https://cdn.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/20250910012302752.png" alt="image.png"></p>
+<p>你可以为下半身使用单独的几何体（图片右侧）。然后让它保持在世界空间，但别忘了禁用阴影投射，否则你可能会在阴影世界里看到一些没有躯干的腿在走动。<br>
+或者你可以让它处于第一人称视角，并使用世界空间差值来让脚与地面连接。<br>
+或者像我们做的那样：为躯干、手臂和腿使用一个单一连接的第一人称几何体。<br>
+在任何情况下，你都应该注意摄像机与躯干的相交问题，尤其是在向下看的时候。不幸的是，对此我没有什么万能的建议，你可能需要调整一些东西——确保要么摄像机不能移动的太低，要么在向下倾斜时让它稍微前移。这个问题还有待于用一种一致的方式来解决。</p>
+<h2 id="113-添加自身阴影">
+<a class="header-anchor" href="#113-%e6%b7%bb%e5%8a%a0%e8%87%aa%e8%ba%ab%e9%98%b4%e5%bd%b1"></a>
+11.3 添加自身阴影
+</h2><p><img src="https://cdn.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/20250910012538896.png" alt="image.png"><br>
+目前它的工作方式是：如果光源被设置为投射阴影(Shadow Cast)，它就会被隐式启用。<br>
+有一个控制台变量（你可以在文档中找到）用于可伸缩性设置，所以你可以控制哪些光源类型应该投射第一人称自身阴影。<br>
+在性能方面，只有当光源实际影响到第一人称几何体时，才会产生开销。你可以把它想象成它们有效地与玩家重叠了。这意味着如果你有很多重叠的光源，然后你用你的玩家角色穿过它们的影响范围，那么所有这些光源的开销都会累积起来，这可能是你需要注意的地方。<br>
+但反过来说，如果场景中有一堆局部光源，且它们不重叠，你永远只会被一个光源影响，这基本上是无害的。</p>
+<blockquote>
+<p>每个光源启用第一人称自身阴影的方式未来可能会改变，这是一个在开发后期才加入的功能，所以如何控制它还没有最终确定。我们确实考虑过为每个光源添加一个复选框，但反馈是阴影和光源的复选框已经太多了，所以待定。</p>
+</blockquote>
+<h2 id="114-设置世界空间表示setting-up-a-world-space-representation">
+<a class="header-anchor" href="#114-%e8%ae%be%e7%bd%ae%e4%b8%96%e7%95%8c%e7%a9%ba%e9%97%b4%e8%a1%a8%e7%a4%basetting-up-a-world-space-representation"></a>
+11.4 设置世界空间表示(Setting up a World Space Representation)
+</h2><p>我们想要的是一个完全动画化的玩家角色（第三人称版本）。<br>
+<img src="https://cdn.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/20250910012850154.png" alt="image.png"><br>
+如果你有一个多人游戏，或者已经为NPC做了类似的东西，那么你很幸运，你不需要做太多额外的工作。<br>
+你唯一需要注意的是，腿部动画在第三人称和第一人称版本之间应该匹配，因为我们使用第三人称版本来向场景投射阴影，所以我们真的希望第一人称的腿能在动画时间轴的完全同一点与阴影版本放下脚的时间点完全连接。<br>
+设置这个世界空间表示的方法是，你只需为它创建图元，比如Actor，然后你将该Actor上的所有图元都设置为“世界空间表示”。就这么简单。</p>
+<h1 id="实践要点与技巧">
+<a class="header-anchor" href="#%e5%ae%9e%e8%b7%b5%e8%a6%81%e7%82%b9%e4%b8%8e%e6%8a%80%e5%b7%a7"></a>
+实践要点与技巧
+</h1><h2 id="121-摄像机参数">
+<a class="header-anchor" href="#121-%e6%91%84%e5%83%8f%e6%9c%ba%e5%8f%82%e6%95%b0"></a>
+12.1 摄像机参数
+</h2><p><img src="https://cdn.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/20250910013344134.png" alt="image.png"><br>
+第一人称图元的scale在必要小的同时应该尽可能做大。较小的scale可能需要调整摄像机的近裁剪面，因为我们是朝向摄像机而不是靠近平面进行缩放的。把它做得越小越会使阴影过渡更加“二元化”，并且如果你做的太过，还可能导致精度问题。<br>
+所以要弄清楚你需要把它做得多小，并且尽量不要把它做到你能做到的最小。<br>
+为第一人称几何体找到一个好的设置是很棘手的。不同的武器可能在不同的视野下看起来更好，或者它们可能需要不同的缩放。<br>
+我建议为每种武器设置不同的FOV和缩放，当你切换武器时，它就在这些值之间切换。</p>
+<h2 id="122-材质图表集成material-graph-transform-position">
+<a class="header-anchor" href="#122-%e6%9d%90%e8%b4%a8%e5%9b%be%e8%a1%a8%e9%9b%86%e6%88%90material-graph-transform-position"></a>
+12.2 材质图表集成(Material Graph: Transform Position)
+</h2><p><img src="https://cdn.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/20250910013646921.png" alt="image.png"><br>
+第一人称渲染是一个完全集成在材质图表中的功能。这意味着例如<code>Transform Position</code>节点现在也可以转换到“第一人称空间”。这很有用，比如当你想在后期特效材质中计算瞄准镜准星的位置时。<br>
+我们在《堡垒之夜》中实现武器瞄准镜的方式，就像一个后期处理材质，它绘制了瞄准镜纹理。<br>
+如果你把步枪放在腰射模式，而不是瞄准模式，你就需要弄清楚准星应该在屏幕的哪个位置，为此我们就需要那个节点。</p>
+<h2 id="123-材质节点查询功能">
+<a class="header-anchor" href="#123-%e6%9d%90%e8%b4%a8%e8%8a%82%e7%82%b9%e6%9f%a5%e8%af%a2%e5%8a%9f%e8%83%bd"></a>
+12.3 材质节点：查询功能
+</h2><p><img src="https://cdn.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/20250910013844300.png" alt="image.png"><br>
+<code>Is First Person</code>节点，人如其名，告诉你当前图元是否是第一人称。你可以做任何你想要的自定义逻辑。<br>
+<code>Scene Texture</code>节点可以查询一个给定的不透明像素是否是第一人称。这需要我之前提到的GBuffer位，所以如果你启用了烘焙光照，或者你修改了东西，并且没有GPU分位（这在移动端也是如此），那么它将总是返回false或0。<br>
+<code>View Property</code>节点可以获取摄像机上设置的第一人称视野和缩放值.</p>
+<h2 id="124-材质节点差值">
+<a class="header-anchor" href="#124-%e6%9d%90%e8%b4%a8%e8%8a%82%e7%82%b9%e5%b7%ae%e5%80%bc"></a>
+12.4 材质节点：差值
+</h2><p><img src="https://cdn.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/20250910015309067.png" alt="image.png"></p>
+<p><code>First Person Output</code>，也就是自定义材质输出节点，并不是做这个所必需的。作为替代，你也可以使用<code>SetMaterialAttributes</code>，并通过它来设置差值的alpha值。<br>
+我们在UE中必须在加上这两个节点，因为自定义材质输出只能在父材质中使用，而不能在材质函数。所以现在你也可以在材质函数中设置这两个节点，而不需要更改你的父材质。<br>
+如果你有很多很多不同的材质（就像我们在《堡垒之夜》中所有不同皮肤的情况一样），你只需要一个被所有材质使用的单一材质函数，你可以把这个插进去，那么它就会处理。</p>
+<h3 id="如何驱动差值">
+<a class="header-anchor" href="#%e5%a6%82%e4%bd%95%e9%a9%b1%e5%8a%a8%e5%b7%ae%e5%80%bc"></a>
+如何驱动差值？
+</h3><p>你可以使用顶点绘制来驱动世界空间差值，基本上就是沿着腿的长度绘制一个渐变。这是合理的，我喜欢这个想法。<br>
+不幸的是，《堡垒之夜》中所有的顶点通道都已经被占用了，这意味着美术师需要检查每个皮肤并重新绘制。所以我们做了一些稍微可怕的事情：我们基于预蒙皮顶点位置的高度，及其到包围盒垂直中心线的距离，定义了一个解析蒙版。<br>
+这听起来很绕口，但基本上我们做的是通过一些数学运算，基于预蒙皮的顶点位置来判断它是否属于腿部（假设腿大致位于包围盒的下半部分，并且呈锥形，因为在我们的皮肤位置中，手臂是这样摆放的，所以你需要小心，不要把手也包含进去）。所以这有点不太好。<br>
+如果可能的话，我建议使用顶点绘制的方法，或者如果你有创意，找到了其它驱动它的方法，也尽管去做。</p>
+<h2 id="126-蓝图函数">
+<a class="header-anchor" href="#126-%e8%93%9d%e5%9b%be%e5%87%bd%e6%95%b0"></a>
+12.6 蓝图函数
+</h2><p><img src="https://cdn.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/20250910015618443.png" alt="image.png"><br>
+我们添加的这个新的蓝图函数，它叫做<code>Transform World To First Person</code>。你传入一个世界空间位置，它会告诉你它在第一人称空间中会落在哪里。然后如果你把它投影到屏幕上（如果它是用第一人称渲染的），这在你想要生成实际的抛射物时尤其有用。<br>
+通常你可能会在枪口位置生成抛射物（也就是它认为的枪口位置），你希望它在世界空间中，但你又希望它看起来像是从第一人称枪口发出的。所以你可以使用这个蓝图函数找出那个位置，然后直接在那个位置生成它，它就能正常工作了。</p>
+<h2 id="127-支持其它图元类型">
+<a class="header-anchor" href="#127-%e6%94%af%e6%8c%81%e5%85%b6%e5%ae%83%e5%9b%be%e5%85%83%e7%b1%bb%e5%9e%8b"></a>
+12.7 支持其它图元类型
+</h2><p>另外我之前好像忽略了一点，这个第一人称渲染功能实际上适用于几乎所有的图元类型。所以它也适用于粒子系统和Niagara特效。所以你可以直接把你的枪口火焰特效设置为第一人称，它会自动出现在正确的位置，并且也能受益于防穿模。所以你真的可以把脸贴在墙上，扣动扳机，枪口火焰仍然会看起来符合预期。</p>
+<h1 id="十三总结与未来工作">
+<a class="header-anchor" href="#%e5%8d%81%e4%b8%89%e6%80%bb%e7%bb%93%e4%b8%8e%e6%9c%aa%e6%9d%a5%e5%b7%a5%e4%bd%9c"></a>
+十三、总结与未来工作
+</h1><h2 id="总结">
+<a class="header-anchor" href="#%e6%80%bb%e7%bb%93"></a>
+总结
+</h2><p><a href="https://youtu.be/11sLIyw0pWQ?si=kF5_CYYJr4WP0rJJ%5c&amp;t=3075">51:15</a><br>
+<img src="https://cdn.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/20250910015723993.png" alt="image.png"><br>
+总结一下：</p>
+<ul>
+<li>实现了一个完整的第一人称渲染解决方案。</li>
+<li>它解决了自定义FOV和场景穿模问题。</li>
+<li>它完全集成了光照、阴影和反射。</li>
+<li>你可以看到可见的腿。</li>
+<li>除了高级功能外，所有功能都适用（例如阴影和反射在所有平台上都有效，所以防穿模和自定义视野）。</li>
+<li>我们已经在Fortnite和UEFN中发布了这个功能，所以在某种程度上是经过实战检验的。现在她甚至进入了测试阶段。</li>
+</ul>
+<h2 id="未来工作">
+<a class="header-anchor" href="#%e6%9c%aa%e6%9d%a5%e5%b7%a5%e4%bd%9c"></a>
+未来工作
+</h2><h3 id="nanite支持">
+<a class="header-anchor" href="#nanite%e6%94%af%e6%8c%81"></a>
+Nanite支持
+</h3><p>目前不支持Nanite。这意味着，如果你将一个网格体标记为第一人称，而那个网格体是Nanite，它会回退到备用几何体。<br>
+这并不是该技术固有的限制，老实说只是我们时间不够了。我们的目标是在5.7版本中实现它。Nanite需要一些特殊的“魔法”才能实现这一点。同样这也不是板上钉钉的事（没有保证）。</p>
+<h3 id="后期特效处理">
+<a class="header-anchor" href="#%e5%90%8e%e6%9c%9f%e7%89%b9%e6%95%88%e5%a4%84%e7%90%86"></a>
+后期特效处理
+</h3><p>另一件事是固定功能的后期特效，比如景深、屏幕空间环境光遮蔽（SSAO）等。目前没有为第一人称像素做任何特殊处理，而它们通常依赖于深度缓冲池。既然我们对第一人称几何体做了些“可怕”的事情，那些值就不一定再有意义了。到目前为止没有受到抱怨，但这可能需要一些研究。<br>
+一旦我们修复了这两件事，我们希望它能进入生产就绪阶段。目前的目标是在5.7版本中实现，但同样不做任何承诺。</p>
+</div>
+    <footer class="article-footer"><ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item" data-aos="zoom-in">
+      <a
+        class="article-tag-list-link"
+        href="/WzhGameDevPublish/tags/blog"
+        rel="tag"
+        >BLOG</a
+      >
+    </li></ul>
+</footer>
+  </div><nav
+    id="article-nav"
+    aria-label="Article navigation"
+    data-aos="fade-up"
+  ><div class="article-nav-link-wrap left"><img
+              data-src="https://img95.699pic.com/photo/60126/0136.jpg_wh860.jpg"
+              data-sizes="auto"
+              alt="Lyra改为FPS"
+              class="lazyload"
+            /><a
+          href="/WzhGameDevPublish/post/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/%E4%BB%A3%E7%A0%81%E6%A1%86%E6%9E%B6/lyra/fps/lyra%E6%94%B9%E4%B8%BAfps/"
+          aria-label="前一篇:Lyra改为FPS"
+          title="前一篇:Lyra改为FPS"
+        ></a>
+        <div class="article-nav-caption">前一篇</div>
+        <h3 class="article-nav-title">Lyra改为FPS</h3>
+      </div><div class="article-nav-link-wrap right"><img
+            data-src="https://tse1-mm.cn.bing.net/th/id/OIP-C.m80aM2zv68WUj1cb42ENtgHaEK"
+            data-sizes="auto"
+            alt="Lyra框架研究总览"
+            class="lazyload"
+          /><a
+          href="/WzhGameDevPublish/post/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/%E4%BB%A3%E7%A0%81%E6%A1%86%E6%9E%B6/lyra/lyra%E6%A1%86%E6%9E%B6%E7%A0%94%E7%A9%B6%E6%80%BB%E8%A7%88/"
+          aria-label="后一篇:Lyra框架研究总览"
+          title="后一篇:Lyra框架研究总览"
+        ></a>
+        <div class="article-nav-caption">后一篇</div>
+        <h3 class="article-nav-title">Lyra框架研究总览</h3>
+      </div></nav></article></section>
+        </div><footer id="footer" aria-label="Site footer">
+  <div style="width: 100%; overflow: hidden">
+    <div class="footer-line"></div>
+  </div>
+  <div id="footer-info"><div>
+      <span class="icon-copyright"></span>2025-2026<span class="footer-info-sep rotate"></span>
+      温志洪
+    </div><div>
+        基于&nbsp;<a
+          href="https://gohugo.io/"
+          target="_blank"
+          rel="noopener nofollow noreferrer"
+          >Hugo</a
+        >&nbsp; Theme.<a
+          href="https://github.com/D-Sketon/hugo-theme-reimu"
+          target="_blank"
+          rel="noopener nofollow noreferrer"
+          >Reimu</a
+        >
+      </div><div>
+        <span class="icon-brush"
+          >&nbsp;80.2k</span
+        >
+        &nbsp;|&nbsp;
+        <span class="icon-coffee">&nbsp;02:50</span>
+      </div><div>
+        <span class="icon-eye"></span>
+        <span id="busuanzi_container_site_pv"
+          >总访问量&nbsp;<span
+            id="busuanzi_value_site_pv"
+          ></span
+        ></span>
+        &nbsp;|&nbsp;
+        <span class="icon-user"></span>
+        <span id="busuanzi_container_site_uv"
+          >总访客量&nbsp;<span
+            id="busuanzi_value_site_uv"
+          ></span
+        ></span>
+      </div></div>
+</footer>
+<div class="sidebar-top">
+            <div class="sidebar-top-taichi rotate"></div>
+            <div class="arrow-up"></div>
+          </div><div id="mask" class="hide"></div>
+      </div><nav id="mobile-nav" aria-label="Mobile navigation">
+  <div class="sidebar-wrap"><div class="sidebar-toc-sidebar"><h3 class="toc-title">文章目录</h3>
+<div class="sidebar-toc-wrapper toc-div-class">
+  <nav id="TableOfContents">
+  <ul>
+    <li><a href="#21-场景穿模">2.1 场景穿模</a></li>
+    <li><a href="#22-视野field-of-view">2.2 视野（Field of View）</a>
+      <ul>
+        <li><a href="#23-可见性">2.3 可见性</a></li>
+      </ul>
+    </li>
+    <li><a href="#23-我的腿在哪里">2.3 我的腿在哪里？</a></li>
+    <li><a href="#24-光照和阴影">2.4 光照和阴影</a></li>
+    <li><a href="#25-反射">2.5 反射</a></li>
+    <li><a href="#第一人称愿望清单">第一人称愿望清单</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#51-如何表现第一人称几何体">5.1 如何表现第一人称几何体</a>
+      <ul>
+        <li><a href="#无头模式the-headless-approach">无头模式（The Headless Approach）</a></li>
+        <li><a href="#悬浮手臂the-floating-arms">悬浮手臂（The Floating Arms）</a></li>
+      </ul>
+    </li>
+    <li><a href="#光照解决方案">光照解决方案</a>
+      <ul>
+        <li><a href="#完整尺寸的几何体full-scale-geometry">完整尺寸的几何体(Full Scale Geometry)</a></li>
+        <li><a href="#缩小后的几何体">缩小后的几何体</a></li>
+        <li><a href="#光照方案选择">光照方案选择</a></li>
+        <li><a href="#技术核心变换矩阵morph">技术核心：变换矩阵(Morph)</a></li>
+        <li><a href="#一些数学问题">一些数学问题</a></li>
+      </ul>
+    </li>
+    <li><a href="#处理腿部与世界空间插值">处理腿部与世界空间插值</a>
+      <ul>
+        <li><a href="#有多种方法">有多种方法：</a></li>
+      </ul>
+    </li>
+  </ul>
+
+  <ul>
+    <li><a href="#世界空间插值world-space-interpolation">世界空间插值(World Space Interpolation)</a></li>
+    <li><a href="#投射场景阴影casting-scene-shadows">投射场景阴影(Casting Scene Shadows)</a></li>
+    <li><a href="#硬件光线追踪反射hwrt-reflections">硬件光线追踪反射(HWRT Reflections)</a></li>
+    <li><a href="#第一人称自身阴影first-person-self-shadow">第一人称自身阴影(First-Person Self-Shadow)</a></li>
+    <li><a href="#gbuffer限制与妥协">GBuffer限制与妥协</a></li>
+    <li><a href="#效果展示">效果展示</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#111-基础设置">11.1 基础设置</a>
+      <ul>
+        <li><a href="#将第一人称的图元primitive标记">将第一人称的图元(primitive)标记。</a></li>
+        <li><a href="#在摄像机上配置视野和缩放">在摄像机上配置视野和缩放</a></li>
+        <li><a href="#简单注意">简单注意</a></li>
+      </ul>
+    </li>
+    <li><a href="#112-处理腿部">11.2 处理腿部</a></li>
+    <li><a href="#113-添加自身阴影">11.3 添加自身阴影</a></li>
+    <li><a href="#114-设置世界空间表示setting-up-a-world-space-representation">11.4 设置世界空间表示(Setting up a World Space Representation)</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#121-摄像机参数">12.1 摄像机参数</a></li>
+    <li><a href="#122-材质图表集成material-graph-transform-position">12.2 材质图表集成(Material Graph: Transform Position)</a></li>
+    <li><a href="#123-材质节点查询功能">12.3 材质节点：查询功能</a></li>
+    <li><a href="#124-材质节点差值">12.4 材质节点：差值</a>
+      <ul>
+        <li><a href="#如何驱动差值">如何驱动差值？</a></li>
+      </ul>
+    </li>
+    <li><a href="#126-蓝图函数">12.6 蓝图函数</a></li>
+    <li><a href="#127-支持其它图元类型">12.7 支持其它图元类型</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#总结">总结</a></li>
+    <li><a href="#未来工作">未来工作</a>
+      <ul>
+        <li><a href="#nanite支持">Nanite支持</a></li>
+        <li><a href="#后期特效处理">后期特效处理</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+</div></div>
+        <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
+  <img
+    data-src="/WzhGameDevPublish/avatar/UELogo.png"
+    data-sizes="auto"
+    alt="温志洪"
+    class="lazyload"
+  />
+  <div class="sidebar-author-name">温志洪</div>
+  <div class="sidebar-description">FPS游戏</div>
+</div>
+<div class="sidebar-state">
+  <div class="sidebar-state-article">
+    <div>文章</div><div class="sidebar-state-number">20</div>
+  </div>
+  <a class="sidebar-state-category" href="/WzhGameDevPublish/categories/" aria-label="sidebar-state-category-link">
+    <div>分类</div>
+    <div class="sidebar-state-number">
+      0
+    </div>
+  </a>
+  <a class="sidebar-state-tag" href="/WzhGameDevPublish/tags/" aria-label="sidebar-state-tag-link">
+    <div>标签</div>
+    <div class="sidebar-state-number">12</div>
+  </a>
+</div>
+<div class="sidebar-social"><div class="icon-bilibili sidebar-social-icon">
+      <a
+        href="https://space.bilibili.com/35312868"
+        itemprop="url"
+        target="_blank"
+        aria-label="bilibili"
+        rel="noopener nofollow noreferrer"
+      ></a>
+    </div><div class="icon-email sidebar-social-icon">
+      <a
+        href="mailto:cnwenzhihong@gmail.com"
+        itemprop="url"
+        target="_blank"
+        aria-label="email"
+        rel="noopener nofollow noreferrer"
+      ></a>
+    </div></div>
+<div class="sidebar-menu"><div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/WzhGameDevPublish/"
+        aria-label="首页"
+      ></a>
+      <div class='sidebar-menu-icon icon rotate'>&#xe62b;</div>
+      <div class="sidebar-menu-link">首页</div>
+    </div><div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/WzhGameDevPublish/archives"
+        aria-label="归档"
+      ></a>
+      <div class='sidebar-menu-icon icon rotate'>&#xe62b;</div>
+      <div class="sidebar-menu-link">归档</div>
+    </div><div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/WzhGameDevPublish/about"
+        aria-label="关于"
+      ></a>
+      <div class='sidebar-menu-icon icon rotate'>&#xe62b;</div>
+      <div class="sidebar-menu-link">关于</div>
+    </div><div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/WzhGameDevPublish/friend"
+        aria-label="友链"
+      ></a>
+      <div class='sidebar-menu-icon icon rotate'>&#xe62b;</div>
+      <div class="sidebar-menu-link">友链</div>
+    </div></div>
+</div></div><div class="sidebar-btn-wrapper">
+        <div class="sidebar-toc-btn current"></div>
+        <div class="sidebar-common-btn"></div>
+      </div></nav>
+</div><div class="site-search">
+        <div class="reimu-popup popup">
+          <div class="reimu-search">
+            <div class="reimu-search-input-icon"></div>
+            <div id="reimu-search-input"></div>
+            <div class="popup-btn-close"></div>
+          </div>
+          <div class="reimu-results">
+            <div id="reimu-stats"></div>
+            <div id="reimu-hits"></div>
+            <div id="reimu-pagination" class="reimu-pagination"></div>
+          </div>
+          <img class="reimu-bg" src="/WzhGameDevPublish/images/reimu.png" />
+        </div>
+      </div><script
+    src="https://npm.webcache.cn/lazysizes@5.3.2/lazysizes.min.js"
+    integrity="sha384-3gT/vsepWkfz/ff7PpWNUeMzeWoH3cDhm/A8jM7ouoAK0/fP/9bcHHR5kHq2nf&#43;e" crossorigin="anonymous"></script><script
+    src="https://npm.webcache.cn/clipboard@2.0.11/dist/clipboard.min.js"
+    integrity="sha384-J08i8An/QeARD9ExYpvphB8BsyOj3Gh2TSh1aLINKO3L0cMSH2dN3E22zFoXEi0Q" crossorigin="anonymous"></script><script
+    src="https://npm.webcache.cn/material-theme@1.0.0/dist/material-theme.umd.js"
+    integrity="sha384-vLev0II0HKFaxkcm&#43;/7kX5IGwVFBASkGchU311wmU/veIj2bB0UcBkQbW6yw2asK" crossorigin="anonymous"></script><script src="/WzhGameDevPublish/js/main.js" ></script><script src="/WzhGameDevPublish/js/aos.js" ></script><script>
+    var aosInit = () => {
+      AOS.init({
+        duration: 1000,
+        easing: "ease",
+        once: true,
+        offset: 50,
+      });
+    };
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", aosInit);
+    } else {
+      aosInit();
+    }
+  </script><script src="/WzhGameDevPublish/js/pjax_main.js" data-pjax></script><script>
+    var ALGOLIA_CONFIG = {
+      logo: '\/WzhGameDevPublish\/images\/algolia_logo.svg',
+      algolia: {
+        applicationID: "Y8C6JKXKKR",
+        apiKey: "30fdacdc4947fb8d8faed68e16f048a0",
+        indexName: "index",
+        hits: {
+          "per_page": parseInt("10")
+        },
+        labels: {
+          "input_placeholder": '搜索.....',
+          "hits_empty": '未发现与 「${query}」相关内容',
+          "hits_stats": '找到${hits}条结果（用时 ${time} ms）'
+        }
+      }
+    };
+  </script><script
+    src="https://npm.webcache.cn/algoliasearch@4.17.1/dist/algoliasearch-lite.umd.js"
+    deferintegrity="sha384-xvLS0jfKuoREs7pqkRI/OI8GcqohO5S&#43;jQz7ZBtQXnsXmD&#43;9jDOOY4cL6dCPzlrk" crossorigin="anonymous"></script><script
+    src="https://npm.webcache.cn/@reimujs/instantsearch.js@4.57.0-beta.1/dist/instantsearch.production.min.js"
+    deferintegrity="sha384-aagKMe8nkqaP2DYQc8kkYOL5l&#43;M5Q2WH/Uhr4teOh0Ybp0RZj0kUSDm45qPikMjK" crossorigin="anonymous"></script><script src="/WzhGameDevPublish/js/algolia_search.js" ></script><script
+    src="https://npm.webcache.cn/mouse-firework@0.1.1/dist/index.umd.js"
+    integrity="sha384-8LyaidD9GPxQQgLJO/WRw/O2h3BoNq/ApI/ecpvM6RsrCz2qP2ppBXUKihP4V/2d" crossorigin="anonymous"></script><script>
+  if (! false  || !window.matchMedia('(max-width: 768px)').matches) {
+    if (window.firework) {
+      const options = JSON.parse("{\"excludeelements\":[\"a\",\"button\"],\"particles\":[{\"colors\":[\"var(--red-1)\",\"var(--red-2)\",\"var(--red-3)\",\"var(--red-4)\"],\"duration\":[1200,1800],\"easing\":\"easeOutExpo\",\"move\":[\"emit\"],\"number\":20,\"shape\":\"circle\",\"shapeOptions\":{\"alpha\":[0.3,0.5],\"radius\":[16,32]}},{\"colors\":[\"var(--red-0)\"],\"duration\":[1200,1800],\"easing\":\"easeOutExpo\",\"move\":[\"diffuse\"],\"number\":1,\"shape\":\"circle\",\"shapeOptions\":{\"alpha\":[0.2,0.5],\"lineWidth\":6,\"radius\":20}}]}");
+      options.excludeElements = options.excludeelements;
+      delete options.excludeelements;
+      window.firework(options);
+    }
+  }
+</script><script
+    src="https://npm.webcache.cn/quicklink@3.0.1/dist/quicklink.umd.js"
+    integrity="sha384-caMDqvgav/HWdEYQU1QRRHMLleigpL1YHAG0m371DhzfL8rRzUyOb&#43;bEHtwlmYjD" crossorigin="anonymous"></script><script data-pjax>
+    window.quicklink?.listen({
+      timeout:  3000 ,
+      priority:  true ,
+      ignores: JSON.parse("[]")
+    });
+  </script>
+
+
+<div id="lazy-script">
+  <div><script data-pjax>
+        window.REIMU_POST = {
+          author: "温志洪",
+          title: "UE5.6 第一人称渲染技术大会",
+          url: "http:\/\/localhost:1895\/WzhGameDevPublish\/post\/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91\/%E4%BB%A3%E7%A0%81%E6%A1%86%E6%9E%B6\/lyra\/fps\/ue5.6-%E7%AC%AC%E4%B8%80%E4%BA%BA%E7%A7%B0%E6%B8%B2%E6%9F%93%E6%8A%80%E6%9C%AF%E5%A4%A7%E4%BC%9A\/",
+          description: " 原链接: https:\/\/www.youtube.com\/watch?v=11sLIyw0pWQ\nbilibili翻译: https:\/\/www.bilibili.com\/video\/BV1i98QzAEYD\nEpic文章，该文章非常详细地从0搭建UE5.6的FPS角色，是快速实现的不二选择: https:\/\/dev.epicgames.com\/documentation\/zh-cn\/unreal-engine\/first-person-rendering\n一、什么是第一人称渲染？\r其理念是我们有一个第一人称视角——可以玩家通过它们所扮演角色的眼睛看世界。也就是说它们可以看到自己的手臂、持有 …",
+          cover: "http:\/\/localhost:1895\/WzhGameDevPublish\/images\/banner.webp",
+        };
+      </script><script src="/WzhGameDevPublish/js/insert_highlight.js" data-pjax></script><script src="/WzhGameDevPublish/js/tabs.js" data-pjax></script><script type="module" data-pjax>const PhotoSwipeLightbox = (await safeImport("https:\/\/npm.webcache.cn\/photoswipe@5.4.4\/dist\/photoswipe-lightbox.esm.min.js", "sha384-DiL6M\/gG\u002bwmTxmCRZyD1zee6lIhawn5TGvED0FOh7fXcN9B0aZ9dexSF\/N6lrZi\/")).default;const initPswp = (gallery, children) => {
+          if (_$$(`${gallery} ${children}`).length > 0) {
+            new PhotoSwipeLightbox({
+              gallery,
+              children,pswpModule: () => safeImport("https:\/\/npm.webcache.cn\/photoswipe@5.4.4\/dist\/photoswipe.esm.min.js", "sha384-WkkO3GCmgkC3VQWpaV8DqhKJqpzpF9JoByxDmnV8\u002boTJ7m3DfYEWX1fu1scuS4\u002bs")}).init();
+          }
+        }
+        const pswp = () => {
+          initPswp('.article-entry', 'a.article-gallery-item');
+          initPswp('.article-gallery', 'a.article-gallery-item');
+          window.lightboxStatus = 'done';
+          window.removeEventListener('lightbox:ready', pswp);
+        }
+        if(window.lightboxStatus === 'ready') {
+          pswp()
+        } else {
+          window.addEventListener('lightbox:ready', pswp);
+        }
+      </script></div>
+</div><script
+    src="https://npm.webcache.cn/busuanzi@2.3.0/bsz.pure.mini.js"
+    asyncintegrity="sha384-0M75wtSkhjIInv4coYlaJU83&#43;OypaRCIq2SukQVQX04eGTCBXJDuWAbJet56id&#43;S" crossorigin="anonymous"></script><script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.getRegistrations().then((registrations) => {
+        for (let registration of registrations) {
+          registration.unregister();
+        }
+      });
+    }
+  </script><script>
+  const reimuCopyright = String.raw`
+   ______     ______     __     __    __     __  __    
+  /\  == \   /\  ___\   /\ \   /\ "-./  \   /\ \/\ \   
+  \ \  __<   \ \  __\   \ \ \  \ \ \-./\ \  \ \ \_\ \  
+   \ \_\ \_\  \ \_____\  \ \_\  \ \_\ \ \_\  \ \_____\ 
+    \/_/ /_/   \/_____/   \/_/   \/_/  \/_/   \/_____/ 
+                                                    
+  `;
+  console.log(String.raw`%c ${reimuCopyright}`, "color: #ff5252;");
+  console.log(
+    "%c Theme.Reimu" + " %c https://github.com/D-Sketon/hugo-theme-reimu ",
+    "color: white; background: #ff5252; padding:5px 0;",
+    "padding:4px;border:1px solid #ff5252;",
+  );
+</script></body>
+</html>

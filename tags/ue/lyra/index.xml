@@ -12,7 +12,7 @@
     
     <copyright>本博客所有文章除特别声明外，均采用 BY-NC-SA 许可协议。转载请注明出处！</copyright>
     
-    <lastBuildDate>Fri, 01 May 2026 12:52:25 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 15 May 2026 12:38:07 +0000</lastBuildDate>
     
     
     <atom:link href="http://localhost:1895/WzhGameDevPublish/tags/ue/lyra/index.xml" rel="self" type="application/rss&#43;xml" />
@@ -30,24 +30,11 @@
       <description>
         <![CDATA[<h1>Lyra改为FPS</h1><p>作者：温志洪（cnwenzhihong@gmail.com）</p>
         
-          <h1 id="总览">
-<a class="header-anchor" href="#%e6%80%bb%e8%a7%88"></a>
-总览
-</h1><h2 id="这套方案的优点">
-<a class="header-anchor" href="#%e8%bf%99%e5%a5%97%e6%96%b9%e6%a1%88%e7%9a%84%e4%bc%98%e7%82%b9"></a>
-这套方案的优点
-</h2><ul>
-<li>完全采用Lyra方案，所有安防均扩展于Lyra原生逻辑拓展，如库存、Cosmet、GA、GameFeature、AnimLayer方案</li>
-<li>与FPS资产分离。FPS程序化动画可以适配大量只有模型的资产。<br>
-<img src="https://gcore.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/20260429151350927.png" alt=""></li>
-</ul>
-<h2 id="资料">
-<a class="header-anchor" href="#%e8%b5%84%e6%96%99"></a>
-资料
-</h2><p><a href="https://x157.github.io/UE5/LyraStarterGame/">LyraStarterGame Overview | X157 Dev Notes</a>：对Lyra的详细拆解资料<br>
-<a href="https://forums.unrealengine.com/t/how-to-send-more-compressed-flags-through-custom-character-movement-component/421142/11">官方论坛上扩展 MoveData 的讨论</a></p>
+          <blockquote>
+<p>QQ：<code>2423113760</code>  Gmail：<code>cnwenzhihong@gmail.com</code><br>
+文档多，跨度时间长，没法慢慢审查。有任何需要补充、修改、解释的地方随时联系。</p>
         
-        <hr><p>本文2025-09-08首发于<a href='http://localhost:1895/WzhGameDevPublish/'>妖精游戏开发馆</a>，最后修改于2026-05-01</p>]]>
+        <hr><p>本文2025-09-08首发于<a href='http://localhost:1895/WzhGameDevPublish/'>妖精游戏开发馆</a>，最后修改于2026-05-15</p>]]>
       </description>
       
     </item>

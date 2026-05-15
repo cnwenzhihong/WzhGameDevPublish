@@ -1,0 +1,1393 @@
+<!doctype html>
+<html
+  lang="zh-cn" 
+  data-theme-mode="false"
+  >
+  <head><script src="/WzhGameDevPublish/livereload.js?mindelay=10&amp;v=2&amp;port=1895&amp;path=WzhGameDevPublish/livereload" data-no-instant defer></script><meta charset="utf-8" />
+<meta
+  name="viewport"
+  content="width=device-width, initial-scale=1, shrink-to-fit=no"
+/><title>
+  武器摇晃重要概念 | 温志洪
+</title>
+<meta name="description" content="FPS游戏"/><script>
+  window.siteConfig = JSON.parse("{\"anchor_icon\":null,\"base\":\"http://localhost:1895/WzhGameDevPublish/\",\"clipboard\":{\"copyright\":{\"count\":50,\"enable\":false,\"license_type\":\"by-nc-sa\"},\"fail\":{\"en\":\"Copy failed (ﾟ⊿ﾟ)ﾂ\",\"ja\":\"コピー失敗 (ﾟ⊿ﾟ)ﾂ\",\"pt-br\":\"Falha ao copiar (ﾟ⊿ﾟ)ﾂ\",\"zh-cn\":\"复制失败 (ﾟ⊿ﾟ)ﾂ\",\"zh-tw\":\"複製失敗 (ﾟ⊿ﾟ)ﾂ\"},\"success\":{\"en\":\"Copy successfully (*^▽^*)\",\"ja\":\"コピー成功 (*^▽^*)\",\"pt-br\":\"Copiado com sucesso (*^▽^*)\",\"zh-cn\":\"复制成功 (*^▽^*)\",\"zh-tw\":\"複製成功 (*^▽^*)\"}},\"code_block\":{\"expand\":4},\"i18n_languages\":[{\"Lang\":\"en\",\"LanguageName\":\"English\",\"LanguageCode\":\"\",\"Title\":\"\",\"LanguageDirection\":\"\",\"Weight\":1,\"Disabled\":false},{\"Lang\":\"zh-cn\",\"LanguageName\":\"简体中文\",\"LanguageCode\":\"\",\"Title\":\"\",\"LanguageDirection\":\"\",\"Weight\":1,\"Disabled\":false}],\"icon_font\":\"4552607_4k4bc36ef96\",\"outdate\":{\"daysago\":180,\"enable\":false,\"message\":{\"en\":\"This article was last updated on {time}. Please note that the content may no longer be applicable.\",\"ja\":\"この記事は最終更新日：{time}。記載内容が現在有効でない可能性がありますのでご注意ください。\",\"pt-br\":\"Este artigo foi atualizado pela última vez em {time}. Observe que o conteúdo pode não ser mais aplicável.\",\"zh-cn\":\"本文最后更新于 {time}，请注意文中内容可能已不适用。\",\"zh-tw\":\"本文最後更新於 {time}，請注意文中內容可能已不適用。\"}}}");
+  
+</script>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link
+  rel="preload"
+  as="style"
+  href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic%7cNoto%20Serif%20SC:400,400italic,700,700italic%7c&amp;display=swap"
+/>
+<link
+  rel="stylesheet"
+  href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic%7cNoto%20Serif%20SC:400,400italic,700,700italic%7c&amp;display=swap"
+  media="print"
+  onload="this.media='all'"
+/>
+<link
+    rel="preload"
+    href="//at.alicdn.com/t/c/font_4552607_4k4bc36ef96.woff2"
+    as="font"
+    type="font/woff2"
+    crossorigin="anonymous"
+  /><link rel="stylesheet" href="/WzhGameDevPublish/css/loader.css" />
+<meta property="og:type" content="website" />
+  <meta property="og:title" content="武器摇晃重要概念 | 温志洪" />
+  <meta
+    property="og:description"
+    content="FPS游戏"
+  />
+  <meta property="og:url" content="http://localhost:1895/WzhGameDevPublish/post/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/%E4%BB%A3%E7%A0%81%E6%A1%86%E6%9E%B6/lyra/fps/%E6%8A%80%E6%9C%AF%E7%BB%86%E8%8A%82/weaponsway/%E6%AD%A6%E5%99%A8%E6%91%87%E6%99%83%E9%87%8D%E8%A6%81%E6%A6%82%E5%BF%B5/" />
+  <meta
+    property="og:site_name"
+    content="妖精游戏开发馆"
+  />
+  <meta
+    property="og:image"
+    content="/WzhGameDevPublish/"
+  />
+  <meta property="article:author" content="温志洪" />
+  <meta property="article:published_time" content="2025-12-19T11:26:47&#43;00:00" />
+  <meta property="article:modified_time" content="2026-05-15T12:30:58&#43;00:00" /><meta property="article:tag" content="3Cblog" /><meta name="twitter:card" content="summary" />
+  <meta name="twitter:image" content="/WzhGameDevPublish/" />
+<link rel="shortcut icon" href="/WzhGameDevPublish/favicon.ico"><link rel="stylesheet" href="/WzhGameDevPublish/css/main.css" />
+<link
+    rel="preload"
+    as="style"
+    href="https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe.css"
+    integrity="sha384-IfxC36XL/toUyJ939C73PcgMuRzAZuIzZxE38drsmO5p6jD7ei&#43;Zx/1oA/0l8ysE" crossorigin="anonymous"onload="this.onload=null;this.rel='stylesheet'"
+  /><link
+    rel="preload"
+    as="style"
+    href="https://npm.webcache.cn/katex@0.16.24/dist/katex.min.css"
+    integrity="sha384-tTgKLjMYmJr94v8qu2PE5MUGSMbyN2xiH266JUB3gpm8vnnJywd1dWSOEfrFz&#43;YI" crossorigin="anonymous"onload="this.onload=null;this.rel='stylesheet'"
+  /><script
+    src="https://npm.webcache.cn/pace-js@1.2.4/pace.min.js"
+    integrity="sha384-k6YtvFUEIuEFBdrLKJ3YAUbBki333tj1CSUisai5Cswsg9wcLNaPzsTHDswp4Az8" crossorigin="anonymous"></script><link
+    rel="stylesheet"
+    href="https://npm.webcache.cn/@reimujs/aos@0.1.2/dist/aos.css"
+    integrity="sha384-GMRP93c6Hkz9JVKGAuRR3nTS7M07RwPgTFenXiosjq2VbVgvdDNcz1g6Mkj8AONa" crossorigin="anonymous"/></head>
+  <body><div id='loader'>
+    <div class="loading-left-bg loading-bg"></div>
+    <div class="loading-right-bg loading-bg"></div>
+    <div class="spinner-box">
+      <div class="loading-taichi rotate"><svg width="150" height="150" viewBox="0 0 1024 1024" class="icon" version="1.1" xmlns="https://www.w3.org/2000/svg" shape-rendering="geometricPrecision">
+            <path d="M303.5 432A80 80 0 0 1 291.5 592A80 80 0 0 1 303.5 432z" fill="var(--red-1, #ff5252)" />
+            <path d="M512 65A447 447 0 0 1 512 959L512 929A417 417 0 0 0 512 95A417 417 0 0 0 512 929L512 959A447 447 0 0 1 512 65z 
+          M512 95A417 417 0 0 1 929 512A208.5 208.5 0 0 1 720.5 720.5L720.5 592A80 80 0 0 0 720.5 432A80 80 0 0 0 720.5 592L720.5 720.5A208.5 208.5 0 0 1 512 512A208.5 208.5 0 0 0 303.5 303.5A208.5 208.5 0 0 0 95 512A417 417 0 0 1 512 95z" fill="var(--red-1, #ff5252)" />
+          </svg></div><div class="loading-word">少女祈祷中...</div>
+    </div>
+  </div>
+  </div>
+  <script>
+    var time = null;
+    var loaderEl = document.getElementById('loader');
+    var startLoading = () => {
+      time = Date.now();
+      loaderEl.classList.remove("loading");
+    }
+    var hideLoader = () => {
+      document.body.style.overflow = 'auto';
+      loader.classList.add('loading');
+    };
+
+    var endLoading = () => {
+      if (!time) {
+        hideLoader();
+      } else {
+        if (Date.now() - time > 500) {
+          time = null;
+          hideLoader();
+        } else {
+          setTimeout(endLoading, 500 - (Date.now() - time));
+          time = null;
+        }
+      }
+    }
+    window.addEventListener('DOMContentLoaded', endLoading);
+    loaderEl.addEventListener('click', endLoading);
+  </script><div id="copy-tooltip"></div>
+<div id="lang-tooltip">
+本文章没有找到对应的语言版本
+</div>
+<div id="heatmap-tooltip"></div><div id="container">
+      <div id="wrap"><div id="header-nav">
+  <nav id="main-nav" aria-label="Primary navigation"><a class="main-nav-link-wrap" href="/WzhGameDevPublish/">
+        <div class='main-nav-icon icon rotate'>&#xe62b;</div>
+        <span class="main-nav-link">首页</span>
+      </a><a class="main-nav-link-wrap" href="/WzhGameDevPublish/archives">
+        <div class='main-nav-icon icon rotate'>&#xe62b;</div>
+        <span class="main-nav-link">归档</span>
+      </a><a class="main-nav-link-wrap" href="/WzhGameDevPublish/about">
+        <div class='main-nav-icon icon rotate'>&#xe62b;</div>
+        <span class="main-nav-link">关于</span>
+      </a><a class="main-nav-link-wrap" href="/WzhGameDevPublish/friend">
+        <div class='main-nav-icon icon rotate'>&#xe62b;</div>
+        <span class="main-nav-link">友链</span>
+      </a><a id="main-nav-toggle" class="nav-icon" aria-label="Toggle navigation" role="button"></a>
+  </nav>
+  <nav id="sub-nav" aria-label="Secondary navigation"><a id="nav-search-btn" class="nav-icon popup-trigger" title="搜索" aria-label="搜索"></a></nav><nav id="i18n-nav" aria-label="Language selection">
+      <div class="custom-dropdown">
+        <div class="select-selected" id="select-selected" role="button" aria-haspopup="listbox" aria-expanded="false" aria-label="Language menu">
+          <span id="nav-language-btn" class="nav-icon" style="padding: 0 20px 0 0"></span>
+          <span id="selected-lang">简体中文</span>
+        </div>
+        <ul class="select-items" id="select-items" role="listbox" aria-label="Languages"><li data-value="en" role="option" arial-selected="false" >English</li><li data-value="zh-cn" role="option" class="selected" arial-selected="true" >简体中文</li></ul>
+      </div>
+      <script>
+        var selectSelected = document.getElementById("select-selected");
+        var selectedLang = document.getElementById("selected-lang");
+        var selectItems = document.getElementById("select-items");
+        var selectOptions = selectItems.querySelectorAll("li");
+
+        selectSelected.addEventListener("click", () => {
+          selectItems.classList.toggle("show");
+          var expanded = selectSelected.getAttribute("aria-expanded") === "true";
+          selectSelected.setAttribute("aria-expanded", (!expanded).toString());
+        });
+
+        selectOptions.forEach((item) => {
+          item.addEventListener("click", () => {
+            const langMap = {};selectedLang.textContent = item.textContent;
+            selectItems.classList.remove("show");
+            selectOptions.forEach((option) => {
+              option.classList.remove("selected");
+            });
+            item.classList.add("selected");
+            if (item.dataset.value === 'zh-cn') {
+              return;
+            }
+            if (!langMap[item.dataset.value]) {
+              _$("#lang-tooltip").style.opacity = "1";
+              setTimeout(() => {
+                _$("#lang-tooltip").style.opacity = "0";
+              }, 1000);
+              return;
+            }
+            window.location = langMap[item.dataset.value];
+          });
+        });
+
+        document.addEventListener("click", (event) => {
+          if (!event.target.closest(".custom-dropdown")) {
+            selectItems.classList.remove("show");
+            selectSelected.setAttribute("aria-expanded", "false");
+          }
+        });
+      </script>
+    </nav></div>
+<header id="header" aria-label="Site header"><picture><source media="(max-width: 479px)" srcset="/WzhGameDevPublish/images/banner-600w.webp"><source media="(max-width: 799px)" srcset="/WzhGameDevPublish/images/banner-800w.webp"><source media="(min-width: 800px)" srcset="/WzhGameDevPublish/images/banner.webp"><img crossorigin="anonymous" fetchpriority="high" src="/WzhGameDevPublish/images/banner.webp" alt="武器摇晃重要概念"></picture><img alt="武器摇晃重要概念" style="visibility: hidden;"><div id="header-outer">
+    <div id="header-title"><span id="logo">
+            <h1 data-aos="slide-up">武器摇晃重要概念</h1>
+          </span><h2 id="subtitle-wrap" data-aos="slide-down"></h2></div>
+  </div>
+</header><div id="content"
+          aria-label="Page content"
+          class="sidebar-left"
+            ><aside id="sidebar" aria-label="Sidebar"><div class="sidebar-wrapper-container sticky"><div class="sidebar-wrapper">
+    <div
+      class="sidebar-wrap"
+      data-aos="fade-up"
+    ><div class="sidebar-toc-sidebar"><h3 class="toc-title">文章目录</h3>
+<div class="sidebar-toc-wrapper toc-div-class">
+  <nav id="TableOfContents">
+  <ul>
+    <li><a href="#类型1视角旋转的惯性可视化">类型1——视角旋转的惯性可视化</a>
+      <ul>
+        <li><a href="#参考游戏">参考游戏</a></li>
+      </ul>
+    </li>
+  </ul>
+
+  <ul>
+    <li><a href="#一cs-风格-weapon-sway">一、CS 风格 Weapon Sway</a></li>
+    <li><a href="#二cs-weapon-sway-的设计原则">二、CS Weapon Sway 的设计原则</a>
+      <ul>
+        <li><a href="#1-只使用角速度不用加速度">1️⃣ 只使用「角速度」，不用加速度</a></li>
+        <li><a href="#2-没有真正的-yaw-摆动">2️⃣ 没有真正的 Yaw 摆动</a></li>
+        <li><a href="#3-立即跟随但快速回正一阶系统">3️⃣ 立即跟随，但快速回正（一阶系统）</a></li>
+      </ul>
+    </li>
+    <li><a href="#为什么-cs-的-weapon-feel-能形成肌肉记忆">为什么 CS 的 Weapon Feel 能形成“肌肉记忆”</a>
+      <ul>
+        <li></li>
+        <li><a href="#4-为什么-cs-能形成跨年不丢失的肌肉记忆">4. 为什么 CS 能形成“跨年不丢失”的肌肉记忆</a></li>
+      </ul>
+    </li>
+    <li><a href="#三数学模型cs-风格的正确抽象">三、数学模型（CS 风格的“正确抽象”）</a>
+      <ul>
+        <li><a href="#1-输入信号唯一来源">1️⃣ 输入信号（唯一来源）</a></li>
+        <li><a href="#2-构造理想-sway-目标target">2️⃣ 构造“理想 sway 目标（Target）”</a></li>
+        <li><a href="#3-插值方式这是-cs-的灵魂">3️⃣ 插值方式（这是 CS 的灵魂）</a></li>
+      </ul>
+    </li>
+    <li><a href="#四ue5-中的最小-cs-风格实现示例">四、UE5 中的「最小 CS 风格实现示例」</a></li>
+    <li><a href="#五cs-风格-vs-弹簧方案">五、CS 风格 vs 弹簧方案</a></li>
+    <li><a href="#六什么时候不要做成-cs-风格">六、什么时候“不要做成 CS 风格”</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#1-springinterp-的真实身份">1. SpringInterp 的真实身份</a></li>
+    <li><a href="#2-spring-系统与-fps-输入的根本冲突">2. Spring 系统与 FPS 输入的根本冲突</a>
+      <ul>
+        <li><a href="#21-fps-是人类-系统闭环">2.1 FPS 是“人类-系统闭环”</a></li>
+      </ul>
+    </li>
+    <li><a href="#3-springinterp-为什么看起来很好用">3. SpringInterp 为什么“看起来很好用”</a>
+      <ul>
+        <li><a href="#31-原因一短期效果非常顺">3.1 原因一：短期效果非常“顺”</a></li>
+      </ul>
+    </li>
+    <li><a href="#4-springinterp-在-fps-中的四个致命问题">4. SpringInterp 在 FPS 中的四个致命问题</a>
+      <ul>
+        <li><a href="#问题一隐性状态不可感知">问题一：隐性状态不可感知</a></li>
+        <li><a href="#问题二相位延迟破坏预测">问题二：相位延迟破坏预测</a></li>
+        <li><a href="#问题三overshoot-等价于假输入">问题三：Overshoot 等价于“假输入”</a></li>
+      </ul>
+    </li>
+    <li><a href="#5-为什么-spring-在非竞技-fps-里还能活着">5. 为什么 Spring 在非竞技 FPS 里“还能活着”</a></li>
+    <li><a href="#6-springinterp-的正确使用场景非常少">6. SpringInterp 的正确使用场景（非常少）</a></li>
+    <li><a href="#7-终极结论非常重要">7. 终极结论（非常重要）</a>
+      <ul>
+        <li><a href="#关于-cs-weapon-feel">关于 CS Weapon Feel</a></li>
+        <li><a href="#关于-springinterp">关于 SpringInterp</a></li>
+      </ul>
+    </li>
+  </ul>
+
+  <ul>
+    <li><a href="#41-角度移动感知">4.1 角度移动感知</a></li>
+    <li><a href="#42-滞后感知">4.2 滞后感知</a></li>
+    <li><a href="#3-速度-vs-加速度敏感性">3 速度 vs. 加速度敏感性</a></li>
+  </ul>
+</nav>
+</div></div>
+          <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
+  <img
+    data-src="/WzhGameDevPublish/avatar/UELogo.png"
+    data-sizes="auto"
+    alt="温志洪"
+    class="lazyload"
+  />
+  <div class="sidebar-author-name">温志洪</div>
+  <div class="sidebar-description">FPS游戏</div>
+</div>
+<div class="sidebar-state">
+  <div class="sidebar-state-article">
+    <div>文章</div><div class="sidebar-state-number">20</div>
+  </div>
+  <a class="sidebar-state-category" href="/WzhGameDevPublish/categories/" aria-label="sidebar-state-category-link">
+    <div>分类</div>
+    <div class="sidebar-state-number">
+      0
+    </div>
+  </a>
+  <a class="sidebar-state-tag" href="/WzhGameDevPublish/tags/" aria-label="sidebar-state-tag-link">
+    <div>标签</div>
+    <div class="sidebar-state-number">12</div>
+  </a>
+</div>
+<div class="sidebar-social"><div class="icon-bilibili sidebar-social-icon">
+      <a
+        href="https://space.bilibili.com/35312868"
+        itemprop="url"
+        target="_blank"
+        aria-label="bilibili"
+        rel="noopener nofollow noreferrer"
+      ></a>
+    </div><div class="icon-email sidebar-social-icon">
+      <a
+        href="mailto:cnwenzhihong@gmail.com"
+        itemprop="url"
+        target="_blank"
+        aria-label="email"
+        rel="noopener nofollow noreferrer"
+      ></a>
+    </div></div>
+<div class="sidebar-menu"><div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/WzhGameDevPublish/"
+        aria-label="首页"
+      ></a>
+      <div class='sidebar-menu-icon icon rotate'>&#xe62b;</div>
+      <div class="sidebar-menu-link">首页</div>
+    </div><div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/WzhGameDevPublish/archives"
+        aria-label="归档"
+      ></a>
+      <div class='sidebar-menu-icon icon rotate'>&#xe62b;</div>
+      <div class="sidebar-menu-link">归档</div>
+    </div><div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/WzhGameDevPublish/about"
+        aria-label="关于"
+      ></a>
+      <div class='sidebar-menu-icon icon rotate'>&#xe62b;</div>
+      <div class="sidebar-menu-link">关于</div>
+    </div><div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/WzhGameDevPublish/friend"
+        aria-label="友链"
+      ></a>
+      <div class='sidebar-menu-icon icon rotate'>&#xe62b;</div>
+      <div class="sidebar-menu-link">友链</div>
+    </div></div>
+</div><div class="sidebar-btn-wrapper" style="position:static">
+            <div class="sidebar-toc-btn current"></div>
+            <div class="sidebar-common-btn"></div>
+          </div></div>
+  </div><div class="sidebar-widget"></div></div></aside>
+<section id="main" aria-label="Main content"><p style="color:red">ARTICLE PARTIAL OVERRIDE ACTIVE</p>
+<article
+  class="h-entry article"
+  itemscope
+  itemtype="https://schema.org/BlogPosting"
+>
+  <div
+    class="article-inner"
+    data-aos="fade-up"
+  >
+    <div class="article-meta"><div class="article-date">
+  <span
+    class="article-date-link icon-calendar"
+    data-aos="zoom-in"
+  >
+    <time datetime="2025-12-19 11:26:47 &#43;0000 UTC" itemprop="datePublished"
+      >2025-12-19</time
+    >
+    <time style="display: none;" id="post-update-time"
+      >2026-05-15</time
+    >
+  </span><span
+      class="article-date-link icon-calendar-plus"
+      data-aos="zoom-in"
+    >
+      <time datetime="2026-05-15 12:30:58.201 &#43;0000 UTC" itemprop="dateModified"
+        >2026-05-15</time
+      >
+    </span></div>
+<div class="article-category"></div>
+</div><div class="hr-line"></div><div class="e-content article-entry" itemprop="articleBody"><h1 id="参考类型">
+<a class="header-anchor" href="#%e5%8f%82%e8%80%83%e7%b1%bb%e5%9e%8b"></a>
+参考类型
+</h1><h2 id="类型1视角旋转的惯性可视化">
+<a class="header-anchor" href="#%e7%b1%bb%e5%9e%8b1%e8%a7%86%e8%a7%92%e6%97%8b%e8%bd%ac%e7%9a%84%e6%83%af%e6%80%a7%e5%8f%af%e8%a7%86%e5%8c%96"></a>
+类型1——视角旋转的惯性可视化
+</h2><h3 id="参考游戏">
+<a class="header-anchor" href="#%e5%8f%82%e8%80%83%e6%b8%b8%e6%88%8f"></a>
+参考游戏
+</h3><p>Battlefield 1\ <video src="https://cdn.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/%E6%88%98%E5%9C%B01-%E6%AD%A5%E6%9E%AA_x264.mp4" autoplay loop controls></video><br>
+OW 半藏</p>
+<h1 id="weapon-sway-的本质分类框架">
+<a class="header-anchor" href="#weapon-sway-%e7%9a%84%e6%9c%ac%e8%b4%a8%e5%88%86%e7%b1%bb%e6%a1%86%e6%9e%b6"></a>
+Weapon Sway 的本质分类框架
+</h1><p>Weapon Feel is control engineering, not animation polish</p>
+<p>从<strong>控制系统与信号处理</strong>角度，Weapon Sway 可以被严格分为以下 <strong>6 大类（并非按游戏，而是按系统性质）</strong>：<br>
+<a href="https://www.bilibili.com/video/BV1HP4y1j7HQ">杀戮地带2</a>:枪托旋转+Yaw延迟，体现重量感，同时手臂转动较慢<br>
+值得一提的是：游戏很容易沉浸，低昂的背景音家时不时队友的声音+脚步声哪怕没有敌人也足够沉浸 <a href="https://www.bilibili.com/video/BV1HP4y1j7HQ/?share_source=copy_web%5c&amp;vd_source=bf40aa6f67b3f45734bc2b22bca840cf%5c&amp;t=765">13:15</a><br>
+哪怕没有明显背景音乐也会有底噪<a href="https://www.bilibili.com/video/BV1vD4y1V7Ua">工业废土艺术/10年前《杀戮地带2》多人联机战区模式实况</a><br>
+<img src="https://cdn.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/PixPin_2025-12-20_19-52-32.gif" alt=""></p>
+<table>
+  <thead>
+      <tr>
+          <th>编号</th>
+          <th>风格名称</th>
+          <th>系统阶数</th>
+          <th>输入信号</th>
+          <th>代表游戏</th>
+          <th>视频</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>I</td>
+          <td>直接输入映射型（Direct Input Mapping）</td>
+          <td>0 阶</td>
+          <td>角速度</td>
+          <td>三角洲</td>
+          <td><video src="https://cdn.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/weaponsway_%E4%B8%89%E8%A7%92%E6%B4%B2.mp4" controls></video></td>
+      </tr>
+      <tr>
+          <td>II</td>
+          <td>一阶惯性滞后型（First-order Lag）</td>
+          <td>1 阶</td>
+          <td>角速度</td>
+          <td>CS、Valorant</td>
+          <td></td>
+      </tr>
+      <tr>
+          <td>III</td>
+          <td>二阶物理弹簧型（Second-order Spring）</td>
+          <td>2 阶</td>
+          <td>角速度 / 加速度</td>
+          <td>CoD</td>
+          <td></td>
+      </tr>
+      <tr>
+          <td>IV</td>
+          <td>混合控制型（Hybrid Control）</td>
+          <td>1–2 阶</td>
+          <td>多信号</td>
+          <td>Battlefield</td>
+          <td></td>
+      </tr>
+      <tr>
+          <td>V</td>
+          <td>状态机驱动型（State-driven / Authored）</td>
+          <td>离散</td>
+          <td>状态</td>
+          <td>Uncharted</td>
+          <td></td>
+      </tr>
+      <tr>
+          <td>VI</td>
+          <td>生物力学 / 感知模型型（Biomechanical / Perceptual）</td>
+          <td>非线性</td>
+          <td>感知变量</td>
+          <td>Tarkov（部分）</td>
+          <td></td>
+      </tr>
+      <tr>
+          <td>弹簧：</td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+      </tr>
+  </tbody>
+</table>
+<ul>
+<li>二阶系统储存能量 → 感知到的重量</li>
+<li>受控的振荡能增加视觉丰富度</li>
+<li>适用于非以精确瞄准为首要目标的场景</li>
+</ul>
+<h1 id="一阶实现cs">
+<a class="header-anchor" href="#%e4%b8%80%e9%98%b6%e5%ae%9e%e7%8e%b0cs"></a>
+一阶实现——CS
+</h1><p><video src="https://cdn.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/2025-12-19%2022-32-16_x264.mp4" controls></video></p>
+<h2 id="一cs-风格-weapon-sway">
+<a class="header-anchor" href="#%e4%b8%80cs-%e9%a3%8e%e6%a0%bc-weapon-sway"></a>
+一、CS 风格 Weapon Sway
+</h2><blockquote>
+<p><strong>CS 的 weapon sway 是“受限的一阶滞后系统”，不是二阶弹簧系统</strong></p>
+</blockquote>
+<p><strong>CS 的鼠标旋转武器摇晃 ≠ 物理真实 ≠ 弹簧系统</strong><br>
+它的核心特征是：</p>
+<ol>
+<li><strong>输入驱动（Input-driven），而不是物理模拟驱动</strong></li>
+<li><strong>只对“角速度”响应，不对加速度、不对惯性</strong></li>
+<li><strong>几乎没有 Yaw 轴旋转（或极小）</strong></li>
+<li><strong>即时响应 + 快速回正（无震荡）</strong></li>
+<li><strong>幅度极小，但方向极准（反向跟随鼠标）</strong></li>
+</ol>
+<h2 id="二cs-weapon-sway-的设计原则">
+<a class="header-anchor" href="#%e4%ba%8ccs-weapon-sway-%e7%9a%84%e8%ae%be%e8%ae%a1%e5%8e%9f%e5%88%99"></a>
+二、CS Weapon Sway 的设计原则
+</h2><h3 id="1-只使用角速度不用加速度">
+<a class="header-anchor" href="#1-%e5%8f%aa%e4%bd%bf%e7%94%a8%e8%a7%92%e9%80%9f%e5%ba%a6%e4%b8%8d%e7%94%a8%e5%8a%a0%e9%80%9f%e5%ba%a6"></a>
+1️⃣ 只使用「角速度」，不用加速度
+</h3><p>CS 的 sway 本质是：<br>
+<code>WeaponOffset ∝ -MouseAngularVelocity</code></p>
+<ul>
+<li>不关心“你之前转得有多猛”</li>
+<li>只关心“你现在每秒转多少度”</li>
+<li>没有预测（lead），没有惯性积累<br>
+这就是为什么 CS <strong>永远不抖、不爆数值、不超前</strong></li>
+</ul>
+<h3 id="2-没有真正的-yaw-摆动">
+<a class="header-anchor" href="#2-%e6%b2%a1%e6%9c%89%e7%9c%9f%e6%ad%a3%e7%9a%84-yaw-%e6%91%86%e5%8a%a8"></a>
+2️⃣ 没有真正的 Yaw 摆动
+</h3><p>你之前问的那句话正是 CS 的核心思想之一：</p>
+<blockquote>
+<p><em>a weapon typically doesn’t move much on the yaw axis…</em></p>
+</blockquote>
+<p>原因是：</p>
+<ul>
+<li>Yaw 摆动会让枪口左右漂移，影响<strong>准星—枪口一致性</strong></li>
+<li>CS 的枪是“肩托为旋转支点（butt stock pivot）”</li>
+<li>左右转向主要体现在 <strong>位置平移 + Pitch/Roll 微旋转</strong><br>
+<strong>结论</strong>：</li>
+<li>Yaw rotation ≈ 0 或极小</li>
+<li>用 <strong>位置 X/Y</strong> + <strong>Pitch/Roll</strong> 表现“跟手感”</li>
+</ul>
+<h3 id="3-立即跟随但快速回正一阶系统">
+<a class="header-anchor" href="#3-%e7%ab%8b%e5%8d%b3%e8%b7%9f%e9%9a%8f%e4%bd%86%e5%bf%ab%e9%80%9f%e5%9b%9e%e6%ad%a3%e4%b8%80%e9%98%b6%e7%b3%bb%e7%bb%9f"></a>
+3️⃣ 立即跟随，但快速回正（一阶系统）
+</h3><p>CS 的回正逻辑是：</p>
+<ul>
+<li><strong>松手后立刻回正</strong></li>
+<li>没有 overshoot（不超过 0）</li>
+<li>没有 oscillation（不震荡）<br>
+这不是弹簧，而是：<br>
+<code>Current = Lerp(Current, Target, Alpha)</code></li>
+</ul>
+<h2 id="为什么-cs-的-weapon-feel-能形成肌肉记忆">
+<a class="header-anchor" href="#%e4%b8%ba%e4%bb%80%e4%b9%88-cs-%e7%9a%84-weapon-feel-%e8%83%bd%e5%bd%a2%e6%88%90%e8%82%8c%e8%82%89%e8%ae%b0%e5%bf%86"></a>
+为什么 CS 的 Weapon Feel 能形成“肌肉记忆”
+</h2><p>Pitch / Roll 是“装饰轴”，Yaw 是“功能轴”。</p>
+<blockquote>
+<p>先给一句工程级定义，防止概念漂移：</p>
+</blockquote>
+<p><strong>在 FPS 中，“肌肉记忆”并不是记住动作，而是：<br>
+人类神经系统对一个稳定、可预测、可逆的输入-输出映射的长期内化。</strong></p>
+<h4 id="神经系统视角">
+<a class="header-anchor" href="#%e7%a5%9e%e7%bb%8f%e7%b3%bb%e7%bb%9f%e8%a7%86%e8%a7%92"></a>
+神经系统视角
+</h4><p>Overshoot = 系统存在 <strong>隐含状态</strong><br>
+隐含状态 = 神经系统必须“猜”系统当前在什么状态</p>
+<blockquote>
+<p>人脑极其讨厌“猜系统状态”<br>
+一旦需要猜，肌肉记忆就退化为“手感适应”，而非固化记忆。</p>
+</blockquote>
+<h3 id="4-为什么-cs-能形成跨年不丢失的肌肉记忆">
+<a class="header-anchor" href="#4-%e4%b8%ba%e4%bb%80%e4%b9%88-cs-%e8%83%bd%e5%bd%a2%e6%88%90%e8%b7%a8%e5%b9%b4%e4%b8%8d%e4%b8%a2%e5%a4%b1%e7%9a%84%e8%82%8c%e8%82%89%e8%ae%b0%e5%bf%86"></a>
+4. 为什么 CS 能形成“跨年不丢失”的肌肉记忆
+</h3><p>因为它满足了人类运动学习的<strong>黄金三条件</strong>：</p>
+<table>
+  <thead>
+      <tr>
+          <th>条件</th>
+          <th>CS 是否满足</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>映射线性</td>
+          <td>是</td>
+      </tr>
+      <tr>
+          <td>映射稳定</td>
+          <td>是</td>
+      </tr>
+      <tr>
+          <td>可逆性强</td>
+          <td>是</td>
+      </tr>
+      <tr>
+          <td>这使得神经系统可以：</td>
+          <td></td>
+      </tr>
+  </tbody>
+</table>
+<ul>
+<li>建立前馈模型（不用看反馈）</li>
+<li>直接预测所需输入</li>
+<li>在高压环境下自动执行</li>
+</ul>
+<h2 id="三数学模型cs-风格的正确抽象">
+<a class="header-anchor" href="#%e4%b8%89%e6%95%b0%e5%ad%a6%e6%a8%a1%e5%9e%8bcs-%e9%a3%8e%e6%a0%bc%e7%9a%84%e6%ad%a3%e7%a1%ae%e6%8a%bd%e8%b1%a1"></a>
+三、数学模型（CS 风格的“正确抽象”）
+</h2><h3 id="1-输入信号唯一来源">
+<a class="header-anchor" href="#1-%e8%be%93%e5%85%a5%e4%bf%a1%e5%8f%b7%e5%94%af%e4%b8%80%e6%9d%a5%e6%ba%90"></a>
+1️⃣ 输入信号（唯一来源）
+</h3><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-C++" data-lang="C++"><span class="line"><span class="cl"><span class="n">FRotator</span> <span class="n">DeltaRot</span> <span class="o">=</span> <span class="n">NormalizedDelta</span><span class="p">(</span><span class="n">ControlRot</span><span class="p">,</span> <span class="n">LastControlRot</span><span class="p">);</span> <span class="n">FVector2D</span> <span class="n">AngularSpeed</span> <span class="o">=</span> <span class="n">FVector2D</span><span class="p">(</span><span class="n">DeltaRot</span><span class="p">.</span><span class="n">Yaw</span><span class="p">,</span> <span class="n">DeltaRot</span><span class="p">.</span><span class="n">Pitch</span><span class="p">)</span> <span class="o">/</span> <span class="n">DeltaSeconds</span><span class="p">;</span>
+</span></span></code></pre></div><p>然后做一件非常 CS 的事：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-C++" data-lang="C++"><span class="line"><span class="cl"><span class="n">AngularSpeed</span> <span class="o">/=</span> <span class="n">MaxTurnSpeed</span><span class="p">;</span> <span class="c1">// 归一化 
+</span></span></span><span class="line"><span class="cl"><span class="n">AngularSpeed</span><span class="p">.</span><span class="n">X</span> <span class="o">=</span> <span class="n">Clamp</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">AngularSpeed</span><span class="p">.</span><span class="n">Y</span> <span class="o">=</span> <span class="n">Clamp</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+</span></span></code></pre></div><p><strong>CS 非常讨厌无限值</strong></p>
+<h3 id="2-构造理想-sway-目标target">
+<a class="header-anchor" href="#2-%e6%9e%84%e9%80%a0%e7%90%86%e6%83%b3-sway-%e7%9b%ae%e6%a0%87target"></a>
+2️⃣ 构造“理想 sway 目标（Target）”
+</h3><p>CS 风格的映射（经验公式）：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-C++" data-lang="C++"><span class="line"><span class="cl"><span class="n">TargetOffset</span><span class="p">.</span><span class="n">X</span> <span class="o">=</span> <span class="o">-</span><span class="n">AngularSpeed</span><span class="p">.</span><span class="n">X</span> <span class="o">*</span> <span class="n">SwayX</span><span class="p">;</span>   <span class="c1">// 左右转 → 枪反向滑 
+</span></span></span><span class="line"><span class="cl"><span class="n">TargetOffset</span><span class="p">.</span><span class="n">Y</span> <span class="o">=</span> <span class="mf">0.f</span><span class="p">;</span> 
+</span></span><span class="line"><span class="cl"><span class="n">TargetOffset</span><span class="p">.</span><span class="n">Z</span> <span class="o">=</span>  <span class="n">AngularSpeed</span><span class="p">.</span><span class="n">Y</span> <span class="o">*</span> <span class="n">SwayZ</span><span class="p">;</span>   <span class="c1">// 上下看 → 枪上下滑  
+</span></span></span><span class="line"><span class="cl"><span class="n">TargetRot</span><span class="p">.</span><span class="n">Pitch</span> <span class="o">=</span> <span class="o">-</span><span class="n">AngularSpeed</span><span class="p">.</span><span class="n">Y</span> <span class="o">*</span> <span class="n">PitchRot</span><span class="p">;</span> 
+</span></span><span class="line"><span class="cl"><span class="n">TargetRot</span><span class="p">.</span><span class="n">Yaw</span>   <span class="o">=</span> <span class="mf">0.f</span><span class="p">;</span>                      <span class="c1">// 几乎不用 
+</span></span></span><span class="line"><span class="cl"><span class="n">TargetRot</span><span class="p">.</span><span class="n">Roll</span>  <span class="o">=</span> <span class="o">-</span><span class="n">AngularSpeed</span><span class="p">.</span><span class="n">X</span> <span class="o">*</span> <span class="n">RollRot</span><span class="p">;</span>
+</span></span></code></pre></div><p>注意几个 CS 特征：</p>
+<ul>
+<li><strong>方向几乎全是反向</strong></li>
+<li><strong>Yaw = 0</strong></li>
+<li>Roll 比 Pitch 更明显</li>
+</ul>
+<h3 id="3-插值方式这是-cs-的灵魂">
+<a class="header-anchor" href="#3-%e6%8f%92%e5%80%bc%e6%96%b9%e5%bc%8f%e8%bf%99%e6%98%af-cs-%e7%9a%84%e7%81%b5%e9%ad%82"></a>
+3️⃣ 插值方式（这是 CS 的灵魂）
+</h3><p>❌ 不用 <code>VectorSpringInterp</code><br>
+❌ 不用 Mass / Damping / Oscillation<br>
+✅ 用<strong>一阶指数衰减</strong></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-C++" data-lang="C++"><span class="line"><span class="cl"><span class="kt">float</span> <span class="n">FollowSpeed</span> <span class="o">=</span> <span class="n">bHasInput</span> <span class="o">?</span> <span class="mf">20.f</span> <span class="o">:</span> <span class="mf">30.f</span><span class="p">;</span> 
+</span></span><span class="line"><span class="cl"><span class="c1">// 松手更快回正 
+</span></span></span><span class="line"><span class="cl"><span class="kt">float</span> <span class="n">Alpha</span> <span class="o">=</span> <span class="mf">1.f</span> <span class="o">-</span> <span class="n">FMath</span><span class="o">::</span><span class="n">Exp</span><span class="p">(</span><span class="o">-</span><span class="n">FollowSpeed</span> <span class="o">*</span> <span class="n">DeltaSeconds</span><span class="p">);</span>  
+</span></span><span class="line"><span class="cl"><span class="n">SwayOffset</span> <span class="o">=</span> <span class="n">FMath</span><span class="o">::</span><span class="n">Lerp</span><span class="p">(</span><span class="n">SwayOffset</span><span class="p">,</span> <span class="n">TargetOffset</span><span class="p">,</span> <span class="n">Alpha</span><span class="p">);</span> 
+</span></span><span class="line"><span class="cl"><span class="n">SwayRot</span>    <span class="o">=</span> <span class="n">FMath</span><span class="o">::</span><span class="n">Lerp</span><span class="p">(</span><span class="n">SwayRot</span><span class="p">,</span> <span class="n">TargetRot</span><span class="p">,</span> <span class="n">Alpha</span><span class="p">);</span>
+</span></span></code></pre></div><p>这一步非常重要：</p>
+<ul>
+<li><code>Exp(-k·dt)</code> → 帧率无关</li>
+<li>没有震荡</li>
+<li>没有 overshoot</li>
+<li>完全可控<br>
+这正是 CS 的 feel 来源之一</li>
+</ul>
+<hr>
+<h2 id="四ue5-中的最小-cs-风格实现示例">
+<a class="header-anchor" href="#%e5%9b%9bue5-%e4%b8%ad%e7%9a%84%e6%9c%80%e5%b0%8f-cs-%e9%a3%8e%e6%a0%bc%e5%ae%9e%e7%8e%b0%e7%a4%ba%e4%be%8b"></a>
+四、UE5 中的「最小 CS 风格实现示例」
+</h2><p>在你现有函数的基础上，<strong>这是最接近 CS 的版本</strong>：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-C++" data-lang="C++"><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">WeaponSway_CSStyle</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">    <span class="n">FVector</span><span class="o">&amp;</span> <span class="n">SwayOffset</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="n">FRotator</span><span class="o">&amp;</span> <span class="n">SwayRot</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="n">FRotator</span><span class="o">&amp;</span> <span class="n">LastControlRot</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">float</span> <span class="n">DeltaSeconds</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">bool</span> <span class="n">bHasInput</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">FRotator</span> <span class="n">CurrRot</span> <span class="o">=</span> <span class="n">GetPawn</span><span class="o">&lt;</span><span class="n">APawn</span><span class="o">&gt;</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">GetControlRotation</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="n">FRotator</span> <span class="n">DeltaRot</span> <span class="o">=</span> <span class="n">UKismetMathLibrary</span><span class="o">::</span><span class="n">NormalizedDeltaRotator</span><span class="p">(</span><span class="n">CurrRot</span><span class="p">,</span> <span class="n">LastControlRot</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">LastControlRot</span> <span class="o">=</span> <span class="n">CurrRot</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">FVector2D</span> <span class="n">AngularSpeed</span><span class="p">(</span><span class="n">DeltaRot</span><span class="p">.</span><span class="n">Yaw</span><span class="p">,</span> <span class="n">DeltaRot</span><span class="p">.</span><span class="n">Pitch</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">AngularSpeed</span> <span class="o">/=</span> <span class="n">DeltaSeconds</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">const</span> <span class="kt">float</span> <span class="n">MaxTurnSpeed</span> <span class="o">=</span> <span class="mf">720.f</span><span class="p">;</span> <span class="c1">// CS 风格
+</span></span></span><span class="line"><span class="cl">    <span class="n">AngularSpeed</span> <span class="o">/=</span> <span class="n">MaxTurnSpeed</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">AngularSpeed</span><span class="p">.</span><span class="n">X</span> <span class="o">=</span> <span class="n">FMath</span><span class="o">::</span><span class="n">Clamp</span><span class="p">(</span><span class="n">AngularSpeed</span><span class="p">.</span><span class="n">X</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.f</span><span class="p">,</span> <span class="mf">1.f</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">AngularSpeed</span><span class="p">.</span><span class="n">Y</span> <span class="o">=</span> <span class="n">FMath</span><span class="o">::</span><span class="n">Clamp</span><span class="p">(</span><span class="n">AngularSpeed</span><span class="p">.</span><span class="n">Y</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.f</span><span class="p">,</span> <span class="mf">1.f</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">FVector</span> <span class="n">TargetOffset</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">TargetOffset</span><span class="p">.</span><span class="n">X</span> <span class="o">=</span> <span class="o">-</span><span class="n">AngularSpeed</span><span class="p">.</span><span class="n">X</span> <span class="o">*</span> <span class="mf">2.0f</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">TargetOffset</span><span class="p">.</span><span class="n">Y</span> <span class="o">=</span> <span class="mf">0.f</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">TargetOffset</span><span class="p">.</span><span class="n">Z</span> <span class="o">=</span>  <span class="n">AngularSpeed</span><span class="p">.</span><span class="n">Y</span> <span class="o">*</span> <span class="mf">1.5f</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">FRotator</span> <span class="n">TargetRot</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">TargetRot</span><span class="p">.</span><span class="n">Pitch</span> <span class="o">=</span> <span class="o">-</span><span class="n">AngularSpeed</span><span class="p">.</span><span class="n">Y</span> <span class="o">*</span> <span class="mf">2.0f</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">TargetRot</span><span class="p">.</span><span class="n">Yaw</span>   <span class="o">=</span> <span class="mf">0.f</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">TargetRot</span><span class="p">.</span><span class="n">Roll</span>  <span class="o">=</span> <span class="o">-</span><span class="n">AngularSpeed</span><span class="p">.</span><span class="n">X</span> <span class="o">*</span> <span class="mf">3.0f</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kt">float</span> <span class="n">FollowSpeed</span> <span class="o">=</span> <span class="n">bHasInput</span> <span class="o">?</span> <span class="mf">22.f</span> <span class="o">:</span> <span class="mf">35.f</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">float</span> <span class="n">Alpha</span> <span class="o">=</span> <span class="mf">1.f</span> <span class="o">-</span> <span class="n">FMath</span><span class="o">::</span><span class="n">Exp</span><span class="p">(</span><span class="o">-</span><span class="n">FollowSpeed</span> <span class="o">*</span> <span class="n">DeltaSeconds</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">SwayOffset</span> <span class="o">=</span> <span class="n">FMath</span><span class="o">::</span><span class="n">Lerp</span><span class="p">(</span><span class="n">SwayOffset</span><span class="p">,</span> <span class="n">TargetOffset</span><span class="p">,</span> <span class="n">Alpha</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">SwayRot</span>    <span class="o">=</span> <span class="n">FMath</span><span class="o">::</span><span class="n">Lerp</span><span class="p">(</span><span class="n">SwayRot</span><span class="p">,</span> <span class="n">TargetRot</span><span class="p">,</span> <span class="n">Alpha</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><h2 id="五cs-风格-vs-弹簧方案">
+<a class="header-anchor" href="#%e4%ba%94cs-%e9%a3%8e%e6%a0%bc-vs-%e5%bc%b9%e7%b0%a7%e6%96%b9%e6%a1%88"></a>
+五、CS 风格 vs 弹簧方案
+</h2><table>
+  <thead>
+      <tr>
+          <th>项目</th>
+          <th>CS 风格</th>
+          <th>你当前方案</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>系统阶数</td>
+          <td>一阶</td>
+          <td>二阶</td>
+      </tr>
+      <tr>
+          <td>是否震荡</td>
+          <td>❌</td>
+          <td>⚠️</td>
+      </tr>
+      <tr>
+          <td>是否超前</td>
+          <td>❌</td>
+          <td>⚠️（lead）</td>
+      </tr>
+      <tr>
+          <td>数值稳定性</td>
+          <td>极高</td>
+          <td>中</td>
+      </tr>
+      <tr>
+          <td>调参成本</td>
+          <td>低</td>
+          <td>高</td>
+      </tr>
+      <tr>
+          <td>手感一致性</td>
+          <td>非常强</td>
+          <td>易漂</td>
+      </tr>
+      <tr>
+          <td>竞技适配</td>
+          <td>完美</td>
+          <td>一般</td>
+      </tr>
+      <tr>
+          <td><strong>这也是为什么：</strong></td>
+          <td></td>
+          <td></td>
+      </tr>
+  </tbody>
+</table>
+<ul>
+<li>CS / Valorant / R6 几乎不用弹簧</li>
+<li>CoD / Battlefield 才大量用物理 sway</li>
+</ul>
+<h2 id="六什么时候不要做成-cs-风格">
+<a class="header-anchor" href="#%e5%85%ad%e4%bb%80%e4%b9%88%e6%97%b6%e5%80%99%e4%b8%8d%e8%a6%81%e5%81%9a%e6%88%90-cs-%e9%a3%8e%e6%a0%bc"></a>
+六、什么时候“不要做成 CS 风格”
+</h2><p><strong>不推荐 CS 风格的情况</strong>：</p>
+<ul>
+<li>强沉浸、写实射击（Tarkov、Insurgency）</li>
+<li>有明显武器重量、惯性表达</li>
+<li>需要“慢启动 + 余震”</li>
+<li>右键瞄准<br>
+弹簧系统是优势</li>
+</ul>
+<h1 id="二阶参数springinterp">
+<a class="header-anchor" href="#%e4%ba%8c%e9%98%b6%e5%8f%82%e6%95%b0springinterp"></a>
+二阶参数——SpringInterp
+</h1><p>人类将&quot;沉重感&quot;与以下特征关联：</p>
+<ul>
+<li>缓慢的加速</li>
+<li>缓慢的减速</li>
+<li>非对称响应（启动快于恢复）<br>
+可以在不用弹簧的情况下实现</li>
+</ul>
+<h2 id="1-springinterp-的真实身份">
+<a class="header-anchor" href="#1-springinterp-%e7%9a%84%e7%9c%9f%e5%ae%9e%e8%ba%ab%e4%bb%bd"></a>
+1. SpringInterp 的真实身份
+</h2><p>SpringInterp ≠ “更高级的插值”<br>
+它是一个：</p>
+<blockquote>
+<p><strong>二阶动态系统（Second-order dynamic system）</strong></p>
+</blockquote>
+<p>数学本质：<br>
+$m x'' + c x' + k (x - target) = 0$</p>
+<p>也就是说，它<strong>必然</strong>：</p>
+<ul>
+<li>存储能量</li>
+<li>引入相位延迟</li>
+<li>可能产生 overshoot</li>
+</ul>
+<h2 id="2-spring-系统与-fps-输入的根本冲突">
+<a class="header-anchor" href="#2-spring-%e7%b3%bb%e7%bb%9f%e4%b8%8e-fps-%e8%be%93%e5%85%a5%e7%9a%84%e6%a0%b9%e6%9c%ac%e5%86%b2%e7%aa%81"></a>
+2. Spring 系统与 FPS 输入的根本冲突
+</h2><h3 id="21-fps-是人类-系统闭环">
+<a class="header-anchor" href="#21-fps-%e6%98%af%e4%ba%ba%e7%b1%bb-%e7%b3%bb%e7%bb%9f%e9%97%ad%e7%8e%af"></a>
+2.1 FPS 是“人类-系统闭环”
+</h3><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">Human → Mouse → Game → Visual → Human
+</span></span></code></pre></div><p>而 SpringInterp 是：</p>
+<ul>
+<li>设计给 <strong>物理系统</strong></li>
+<li>假设系统外部<strong>不做实时误差修正</strong><br>
+但玩家会 <strong>每一帧修正误差</strong>。<br>
+这就形成了：</li>
+</ul>
+<blockquote>
+<p><strong>双重控制器叠加（Human + Spring）</strong>，这是控制工程里的大忌。</p>
+</blockquote>
+<h2 id="3-springinterp-为什么看起来很好用">
+<a class="header-anchor" href="#3-springinterp-%e4%b8%ba%e4%bb%80%e4%b9%88%e7%9c%8b%e8%b5%b7%e6%9d%a5%e5%be%88%e5%a5%bd%e7%94%a8"></a>
+3. SpringInterp 为什么“看起来很好用”
+</h2><h3 id="31-原因一短期效果非常顺">
+<a class="header-anchor" href="#31-%e5%8e%9f%e5%9b%a0%e4%b8%80%e7%9f%ad%e6%9c%9f%e6%95%88%e6%9e%9c%e9%9d%9e%e5%b8%b8%e9%a1%ba"></a>
+3.1 原因一：短期效果非常“顺”
+</h3><ul>
+<li>自动平滑</li>
+<li>自动回弹</li>
+<li>自动“有重量感”<br>
+对 <strong>Demo / Showcase / 新手体验</strong> 非常友好。</li>
+</ul>
+<h2 id="4-springinterp-在-fps-中的四个致命问题">
+<a class="header-anchor" href="#4-springinterp-%e5%9c%a8-fps-%e4%b8%ad%e7%9a%84%e5%9b%9b%e4%b8%aa%e8%87%b4%e5%91%bd%e9%97%ae%e9%a2%98"></a>
+4. SpringInterp 在 FPS 中的四个致命问题
+</h2><blockquote>
+<p><strong>人类不是刚体系统</strong></p>
+</blockquote>
+<h3 id="问题一隐性状态不可感知">
+<a class="header-anchor" href="#%e9%97%ae%e9%a2%98%e4%b8%80%e9%9a%90%e6%80%a7%e7%8a%b6%e6%80%81%e4%b8%8d%e5%8f%af%e6%84%9f%e7%9f%a5"></a>
+问题一：隐性状态不可感知
+</h3><p>玩家不知道：</p>
+<ul>
+<li>当前弹簧拉伸多少</li>
+<li>当前速度是多少<br>
+神经系统无法建模。</li>
+</ul>
+<h3 id="问题二相位延迟破坏预测">
+<a class="header-anchor" href="#%e9%97%ae%e9%a2%98%e4%ba%8c%e7%9b%b8%e4%bd%8d%e5%bb%b6%e8%bf%9f%e7%a0%b4%e5%9d%8f%e9%a2%84%e6%b5%8b"></a>
+问题二：相位延迟破坏预测
+</h3><p>即便 Critical Damping：</p>
+<ul>
+<li>仍然存在时间延迟</li>
+<li>延迟是速度相关的（非固定）<br>
+这直接破坏前馈控制。</li>
+</ul>
+<hr>
+<h3 id="问题三overshoot-等价于假输入">
+<a class="header-anchor" href="#%e9%97%ae%e9%a2%98%e4%b8%89overshoot-%e7%ad%89%e4%bb%b7%e4%ba%8e%e5%81%87%e8%be%93%e5%85%a5"></a>
+问题三：Overshoot 等价于“假输入”
+</h3><p>当玩家停手：</p>
+<ul>
+<li>Weapon 还在动</li>
+<li>但输入为 0<br>
+这在神经系统中被理解为：</li>
+</ul>
+<blockquote>
+<p>“系统在我没动时产生了动作”</p>
+</blockquote>
+<h2 id="5-为什么-spring-在非竞技-fps-里还能活着">
+<a class="header-anchor" href="#5-%e4%b8%ba%e4%bb%80%e4%b9%88-spring-%e5%9c%a8%e9%9d%9e%e7%ab%9e%e6%8a%80-fps-%e9%87%8c%e8%bf%98%e8%83%bd%e6%b4%bb%e7%9d%80"></a>
+5. 为什么 Spring 在非竞技 FPS 里“还能活着”
+</h2><p>因为这些游戏：</p>
+<ul>
+<li>不要求精确肌肉记忆</li>
+<li>接受“感觉重 / 晃 / 漂”</li>
+<li>玩家目标是沉浸，而不是可预测性<br>
+例如：</li>
+<li>Tarkov</li>
+<li>Metro</li>
+<li>Single-player CoD</li>
+</ul>
+<hr>
+<h2 id="6-springinterp-的正确使用场景非常少">
+<a class="header-anchor" href="#6-springinterp-%e7%9a%84%e6%ad%a3%e7%a1%ae%e4%bd%bf%e7%94%a8%e5%9c%ba%e6%99%af%e9%9d%9e%e5%b8%b8%e5%b0%91"></a>
+6. SpringInterp 的正确使用场景（非常少）
+</h2><p>Spring 应该只用于：</p>
+<table>
+  <thead>
+      <tr>
+          <th>场景</th>
+          <th>是否合理</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>Idle sway</td>
+          <td>✔</td>
+      </tr>
+      <tr>
+          <td>Reload secondary motion</td>
+          <td>✔</td>
+      </tr>
+      <tr>
+          <td>非瞄准状态</td>
+          <td>✔</td>
+      </tr>
+      <tr>
+          <td>Competitive aiming</td>
+          <td>✘</td>
+      </tr>
+      <tr>
+          <td>ADS 精准射击</td>
+          <td>✘</td>
+      </tr>
+  </tbody>
+</table>
+<h2 id="7-终极结论非常重要">
+<a class="header-anchor" href="#7-%e7%bb%88%e6%9e%81%e7%bb%93%e8%ae%ba%e9%9d%9e%e5%b8%b8%e9%87%8d%e8%a6%81"></a>
+7. 终极结论（非常重要）
+</h2><h3 id="关于-cs-weapon-feel">
+<a class="header-anchor" href="#%e5%85%b3%e4%ba%8e-cs-weapon-feel"></a>
+关于 CS Weapon Feel
+</h3><blockquote>
+<p><strong>CS 的手感不是“简单”，而是“在控制论上极端克制”。</strong></p>
+</blockquote>
+<h3 id="关于-springinterp">
+<a class="header-anchor" href="#%e5%85%b3%e4%ba%8e-springinterp"></a>
+关于 SpringInterp
+</h3><blockquote>
+<p><strong>SpringInterp 最大的罪过不是“不真实”，而是“破坏可学习性”。</strong></p>
+</blockquote>
+<h1 id="人类感知">
+<a class="header-anchor" href="#%e4%ba%ba%e7%b1%bb%e6%84%9f%e7%9f%a5"></a>
+人类感知
+</h1><p>人类感知定义的是硬性上限，而非建议值<br>
+最佳的武器手感应低于意识感知阈限</p>
+<h2 id="41-角度移动感知">
+<a class="header-anchor" href="#41-%e8%a7%92%e5%ba%a6%e7%a7%bb%e5%8a%a8%e6%84%9f%e7%9f%a5"></a>
+4.1 角度移动感知
+</h2><ul>
+<li>静态朝向感知的<strong>最小可觉差</strong>≈0.2–0.3°</li>
+<li>动态角度变化检测阈限低于 0.1°</li>
+<li><strong>启示</strong>：武器旋转若超出上述限度，将被玩家有意识地察觉。</li>
+</ul>
+<h2 id="42-滞后感知">
+<a class="header-anchor" href="#42-%e6%bb%9e%e5%90%8e%e6%84%9f%e7%9f%a5"></a>
+4.2 滞后感知
+</h2><p>人类感觉运动循环的阈值：</p>
+<ul>
+<li><strong>&lt;20 毫秒</strong>：感知为即时响应</li>
+<li><strong>20–30 毫秒</strong>：勉强可察觉</li>
+<li><strong>50 毫秒</strong>：明显感到迟滞</li>
+<li><strong>启示</strong>：任何增加有效延迟超过 30 毫秒的武器晃动系统，都会损害瞄准性能。</li>
+</ul>
+<h2 id="3-速度-vs-加速度敏感性">
+<a class="header-anchor" href="#3-%e9%80%9f%e5%ba%a6-vs-%e5%8a%a0%e9%80%9f%e5%ba%a6%e6%95%8f%e6%84%9f%e6%80%a7"></a>
+3 速度 vs. 加速度敏感性
+</h2><p>人类对绝对加速度的感知能力较弱，但对以下因素极为敏感：</p>
+<ul>
+<li><strong>加速度噪声</strong></li>
+<li><strong>加加速度</strong>（加速度的导数）</li>
+<li><strong>启示</strong>：必须对原始加速度信号进行滤波处理，或避免直接使用。</li>
+</ul>
+<p>References:</p>
+<ul>
+<li>Control systems derivative noise amplification</li>
+<li>Human vestibular response studies</li>
+</ul>
+<h1 id="5-基于感知极限推导出的参数范围">
+<a class="header-anchor" href="#5-%e5%9f%ba%e4%ba%8e%e6%84%9f%e7%9f%a5%e6%9e%81%e9%99%90%e6%8e%a8%e5%af%bc%e5%87%ba%e7%9a%84%e5%8f%82%e6%95%b0%e8%8c%83%e5%9b%b4"></a>
+5. 基于感知极限推导出的参数范围
+</h1><p><strong>5.1 平移晃动（视图模型偏移）</strong></p>
+<table>
+  <thead>
+      <tr>
+          <th style="text-align: left">模式</th>
+          <th style="text-align: left">安全范围</th>
+          <th style="text-align: left">理由</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: left">竞技</td>
+          <td style="text-align: left">0.5–2.5 cm</td>
+          <td style="text-align: left">低于有意识分心阈值</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">电影</td>
+          <td style="text-align: left">2–6 cm</td>
+          <td style="text-align: left">可见但可控</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">重型</td>
+          <td style="text-align: left">3–10 cm</td>
+          <td style="text-align: left">营造质量感幻觉</td>
+      </tr>
+  </tbody>
+</table>
+<p><strong>5.2 旋转晃动</strong></p>
+<table>
+  <thead>
+      <tr>
+          <th style="text-align: left">旋转轴</th>
+          <th style="text-align: left">上限</th>
+          <th style="text-align: left">依据</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: left">Pitch</td>
+          <td style="text-align: left">≤3°</td>
+          <td style="text-align: left">超过此值会破坏瞄准基准</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">Roll</td>
+          <td style="text-align: left">≤4°</td>
+          <td style="text-align: left">玩家对翻滚的容忍度高于俯仰</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">Yaw</td>
+          <td style="text-align: left">≤0.5°</td>
+          <td style="text-align: left">偏航会破坏横向瞄准</td>
+      </tr>
+  </tbody>
+</table>
+<p><strong>5.3 时间常数 / 跟随速度</strong></p>
+<table>
+  <thead>
+      <tr>
+          <th style="text-align: left">模式</th>
+          <th style="text-align: left">τ（秒）</th>
+          <th style="text-align: left">解释</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: left">竞技</td>
+          <td style="text-align: left">≤0.03</td>
+          <td style="text-align: left">低于延迟最小可觉差</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">电影</td>
+          <td style="text-align: left">0.1–0.3</td>
+          <td style="text-align: left">产生可见惯性</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">重型</td>
+          <td style="text-align: left">0.3–0.6</td>
+          <td style="text-align: left">形成重量感知觉</td>
+      </tr>
+  </tbody>
+</table>
+</div>
+    <footer class="article-footer"><ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item" data-aos="zoom-in">
+      <a
+        class="article-tag-list-link"
+        href="/WzhGameDevPublish/tags/3c"
+        rel="tag"
+        >3C</a
+      >
+    </li><li class="article-tag-list-item" data-aos="zoom-in">
+      <a
+        class="article-tag-list-link"
+        href="/WzhGameDevPublish/tags/blog"
+        rel="tag"
+        >BLOG</a
+      >
+    </li></ul>
+</footer>
+  </div><nav
+    id="article-nav"
+    aria-label="Article navigation"
+    data-aos="fade-up"
+  ><div class="article-nav-link-wrap left"><img
+              data-src="https://img95.699pic.com/photo/60126/0136.jpg_wh860.jpg"
+              data-sizes="auto"
+              alt="Lyra改FPS操作指引"
+              class="lazyload"
+            /><a
+          href="/WzhGameDevPublish/post/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/%E4%BB%A3%E7%A0%81%E6%A1%86%E6%9E%B6/lyra/fps/lyra%E6%94%B9fps%E6%93%8D%E4%BD%9C%E6%8C%87%E5%BC%95/"
+          aria-label="前一篇:Lyra改FPS操作指引"
+          title="前一篇:Lyra改FPS操作指引"
+        ></a>
+        <div class="article-nav-caption">前一篇</div>
+        <h3 class="article-nav-title">Lyra改FPS操作指引</h3>
+      </div><div class="article-nav-link-wrap right"><img
+            data-src="https://gcore.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/20260304013656557.png"
+            data-sizes="auto"
+            alt="FPS程序化动画"
+            class="lazyload"
+          /><a
+          href="/WzhGameDevPublish/post/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/%E4%BB%A3%E7%A0%81%E6%A1%86%E6%9E%B6/lyra/fps/%E6%8A%80%E6%9C%AF%E7%BB%86%E8%8A%82/fps%E7%A8%8B%E5%BA%8F%E5%8C%96%E5%8A%A8%E7%94%BB/"
+          aria-label="后一篇:FPS程序化动画"
+          title="后一篇:FPS程序化动画"
+        ></a>
+        <div class="article-nav-caption">后一篇</div>
+        <h3 class="article-nav-title">FPS程序化动画</h3>
+      </div></nav></article></section>
+        </div><footer id="footer" aria-label="Site footer">
+  <div style="width: 100%; overflow: hidden">
+    <div class="footer-line"></div>
+  </div>
+  <div id="footer-info"><div>
+      <span class="icon-copyright"></span>2025-2026<span class="footer-info-sep rotate"></span>
+      温志洪
+    </div><div>
+        基于&nbsp;<a
+          href="https://gohugo.io/"
+          target="_blank"
+          rel="noopener nofollow noreferrer"
+          >Hugo</a
+        >&nbsp; Theme.<a
+          href="https://github.com/D-Sketon/hugo-theme-reimu"
+          target="_blank"
+          rel="noopener nofollow noreferrer"
+          >Reimu</a
+        >
+      </div><div>
+        <span class="icon-brush"
+          >&nbsp;80.2k</span
+        >
+        &nbsp;|&nbsp;
+        <span class="icon-coffee">&nbsp;02:50</span>
+      </div><div>
+        <span class="icon-eye"></span>
+        <span id="busuanzi_container_site_pv"
+          >总访问量&nbsp;<span
+            id="busuanzi_value_site_pv"
+          ></span
+        ></span>
+        &nbsp;|&nbsp;
+        <span class="icon-user"></span>
+        <span id="busuanzi_container_site_uv"
+          >总访客量&nbsp;<span
+            id="busuanzi_value_site_uv"
+          ></span
+        ></span>
+      </div></div>
+</footer>
+<div class="sidebar-top">
+            <div class="sidebar-top-taichi rotate"></div>
+            <div class="arrow-up"></div>
+          </div><div id="mask" class="hide"></div>
+      </div><nav id="mobile-nav" aria-label="Mobile navigation">
+  <div class="sidebar-wrap"><div class="sidebar-toc-sidebar"><h3 class="toc-title">文章目录</h3>
+<div class="sidebar-toc-wrapper toc-div-class">
+  <nav id="TableOfContents">
+  <ul>
+    <li><a href="#类型1视角旋转的惯性可视化">类型1——视角旋转的惯性可视化</a>
+      <ul>
+        <li><a href="#参考游戏">参考游戏</a></li>
+      </ul>
+    </li>
+  </ul>
+
+  <ul>
+    <li><a href="#一cs-风格-weapon-sway">一、CS 风格 Weapon Sway</a></li>
+    <li><a href="#二cs-weapon-sway-的设计原则">二、CS Weapon Sway 的设计原则</a>
+      <ul>
+        <li><a href="#1-只使用角速度不用加速度">1️⃣ 只使用「角速度」，不用加速度</a></li>
+        <li><a href="#2-没有真正的-yaw-摆动">2️⃣ 没有真正的 Yaw 摆动</a></li>
+        <li><a href="#3-立即跟随但快速回正一阶系统">3️⃣ 立即跟随，但快速回正（一阶系统）</a></li>
+      </ul>
+    </li>
+    <li><a href="#为什么-cs-的-weapon-feel-能形成肌肉记忆">为什么 CS 的 Weapon Feel 能形成“肌肉记忆”</a>
+      <ul>
+        <li></li>
+        <li><a href="#4-为什么-cs-能形成跨年不丢失的肌肉记忆">4. 为什么 CS 能形成“跨年不丢失”的肌肉记忆</a></li>
+      </ul>
+    </li>
+    <li><a href="#三数学模型cs-风格的正确抽象">三、数学模型（CS 风格的“正确抽象”）</a>
+      <ul>
+        <li><a href="#1-输入信号唯一来源">1️⃣ 输入信号（唯一来源）</a></li>
+        <li><a href="#2-构造理想-sway-目标target">2️⃣ 构造“理想 sway 目标（Target）”</a></li>
+        <li><a href="#3-插值方式这是-cs-的灵魂">3️⃣ 插值方式（这是 CS 的灵魂）</a></li>
+      </ul>
+    </li>
+    <li><a href="#四ue5-中的最小-cs-风格实现示例">四、UE5 中的「最小 CS 风格实现示例」</a></li>
+    <li><a href="#五cs-风格-vs-弹簧方案">五、CS 风格 vs 弹簧方案</a></li>
+    <li><a href="#六什么时候不要做成-cs-风格">六、什么时候“不要做成 CS 风格”</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#1-springinterp-的真实身份">1. SpringInterp 的真实身份</a></li>
+    <li><a href="#2-spring-系统与-fps-输入的根本冲突">2. Spring 系统与 FPS 输入的根本冲突</a>
+      <ul>
+        <li><a href="#21-fps-是人类-系统闭环">2.1 FPS 是“人类-系统闭环”</a></li>
+      </ul>
+    </li>
+    <li><a href="#3-springinterp-为什么看起来很好用">3. SpringInterp 为什么“看起来很好用”</a>
+      <ul>
+        <li><a href="#31-原因一短期效果非常顺">3.1 原因一：短期效果非常“顺”</a></li>
+      </ul>
+    </li>
+    <li><a href="#4-springinterp-在-fps-中的四个致命问题">4. SpringInterp 在 FPS 中的四个致命问题</a>
+      <ul>
+        <li><a href="#问题一隐性状态不可感知">问题一：隐性状态不可感知</a></li>
+        <li><a href="#问题二相位延迟破坏预测">问题二：相位延迟破坏预测</a></li>
+        <li><a href="#问题三overshoot-等价于假输入">问题三：Overshoot 等价于“假输入”</a></li>
+      </ul>
+    </li>
+    <li><a href="#5-为什么-spring-在非竞技-fps-里还能活着">5. 为什么 Spring 在非竞技 FPS 里“还能活着”</a></li>
+    <li><a href="#6-springinterp-的正确使用场景非常少">6. SpringInterp 的正确使用场景（非常少）</a></li>
+    <li><a href="#7-终极结论非常重要">7. 终极结论（非常重要）</a>
+      <ul>
+        <li><a href="#关于-cs-weapon-feel">关于 CS Weapon Feel</a></li>
+        <li><a href="#关于-springinterp">关于 SpringInterp</a></li>
+      </ul>
+    </li>
+  </ul>
+
+  <ul>
+    <li><a href="#41-角度移动感知">4.1 角度移动感知</a></li>
+    <li><a href="#42-滞后感知">4.2 滞后感知</a></li>
+    <li><a href="#3-速度-vs-加速度敏感性">3 速度 vs. 加速度敏感性</a></li>
+  </ul>
+</nav>
+</div></div>
+        <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
+  <img
+    data-src="/WzhGameDevPublish/avatar/UELogo.png"
+    data-sizes="auto"
+    alt="温志洪"
+    class="lazyload"
+  />
+  <div class="sidebar-author-name">温志洪</div>
+  <div class="sidebar-description">FPS游戏</div>
+</div>
+<div class="sidebar-state">
+  <div class="sidebar-state-article">
+    <div>文章</div><div class="sidebar-state-number">20</div>
+  </div>
+  <a class="sidebar-state-category" href="/WzhGameDevPublish/categories/" aria-label="sidebar-state-category-link">
+    <div>分类</div>
+    <div class="sidebar-state-number">
+      0
+    </div>
+  </a>
+  <a class="sidebar-state-tag" href="/WzhGameDevPublish/tags/" aria-label="sidebar-state-tag-link">
+    <div>标签</div>
+    <div class="sidebar-state-number">12</div>
+  </a>
+</div>
+<div class="sidebar-social"><div class="icon-bilibili sidebar-social-icon">
+      <a
+        href="https://space.bilibili.com/35312868"
+        itemprop="url"
+        target="_blank"
+        aria-label="bilibili"
+        rel="noopener nofollow noreferrer"
+      ></a>
+    </div><div class="icon-email sidebar-social-icon">
+      <a
+        href="mailto:cnwenzhihong@gmail.com"
+        itemprop="url"
+        target="_blank"
+        aria-label="email"
+        rel="noopener nofollow noreferrer"
+      ></a>
+    </div></div>
+<div class="sidebar-menu"><div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/WzhGameDevPublish/"
+        aria-label="首页"
+      ></a>
+      <div class='sidebar-menu-icon icon rotate'>&#xe62b;</div>
+      <div class="sidebar-menu-link">首页</div>
+    </div><div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/WzhGameDevPublish/archives"
+        aria-label="归档"
+      ></a>
+      <div class='sidebar-menu-icon icon rotate'>&#xe62b;</div>
+      <div class="sidebar-menu-link">归档</div>
+    </div><div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/WzhGameDevPublish/about"
+        aria-label="关于"
+      ></a>
+      <div class='sidebar-menu-icon icon rotate'>&#xe62b;</div>
+      <div class="sidebar-menu-link">关于</div>
+    </div><div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/WzhGameDevPublish/friend"
+        aria-label="友链"
+      ></a>
+      <div class='sidebar-menu-icon icon rotate'>&#xe62b;</div>
+      <div class="sidebar-menu-link">友链</div>
+    </div></div>
+</div></div><div class="sidebar-btn-wrapper">
+        <div class="sidebar-toc-btn current"></div>
+        <div class="sidebar-common-btn"></div>
+      </div></nav>
+</div><div class="site-search">
+        <div class="reimu-popup popup">
+          <div class="reimu-search">
+            <div class="reimu-search-input-icon"></div>
+            <div id="reimu-search-input"></div>
+            <div class="popup-btn-close"></div>
+          </div>
+          <div class="reimu-results">
+            <div id="reimu-stats"></div>
+            <div id="reimu-hits"></div>
+            <div id="reimu-pagination" class="reimu-pagination"></div>
+          </div>
+          <img class="reimu-bg" src="/WzhGameDevPublish/images/reimu.png" />
+        </div>
+      </div><script
+    src="https://npm.webcache.cn/lazysizes@5.3.2/lazysizes.min.js"
+    integrity="sha384-3gT/vsepWkfz/ff7PpWNUeMzeWoH3cDhm/A8jM7ouoAK0/fP/9bcHHR5kHq2nf&#43;e" crossorigin="anonymous"></script><script
+    src="https://npm.webcache.cn/clipboard@2.0.11/dist/clipboard.min.js"
+    integrity="sha384-J08i8An/QeARD9ExYpvphB8BsyOj3Gh2TSh1aLINKO3L0cMSH2dN3E22zFoXEi0Q" crossorigin="anonymous"></script><script
+    src="https://npm.webcache.cn/material-theme@1.0.0/dist/material-theme.umd.js"
+    integrity="sha384-vLev0II0HKFaxkcm&#43;/7kX5IGwVFBASkGchU311wmU/veIj2bB0UcBkQbW6yw2asK" crossorigin="anonymous"></script><script src="/WzhGameDevPublish/js/main.js" ></script><script src="/WzhGameDevPublish/js/aos.js" ></script><script>
+    var aosInit = () => {
+      AOS.init({
+        duration: 1000,
+        easing: "ease",
+        once: true,
+        offset: 50,
+      });
+    };
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", aosInit);
+    } else {
+      aosInit();
+    }
+  </script><script src="/WzhGameDevPublish/js/pjax_main.js" data-pjax></script><script>
+    var ALGOLIA_CONFIG = {
+      logo: '\/WzhGameDevPublish\/images\/algolia_logo.svg',
+      algolia: {
+        applicationID: "Y8C6JKXKKR",
+        apiKey: "30fdacdc4947fb8d8faed68e16f048a0",
+        indexName: "index",
+        hits: {
+          "per_page": parseInt("10")
+        },
+        labels: {
+          "input_placeholder": '搜索.....',
+          "hits_empty": '未发现与 「${query}」相关内容',
+          "hits_stats": '找到${hits}条结果（用时 ${time} ms）'
+        }
+      }
+    };
+  </script><script
+    src="https://npm.webcache.cn/algoliasearch@4.17.1/dist/algoliasearch-lite.umd.js"
+    deferintegrity="sha384-xvLS0jfKuoREs7pqkRI/OI8GcqohO5S&#43;jQz7ZBtQXnsXmD&#43;9jDOOY4cL6dCPzlrk" crossorigin="anonymous"></script><script
+    src="https://npm.webcache.cn/@reimujs/instantsearch.js@4.57.0-beta.1/dist/instantsearch.production.min.js"
+    deferintegrity="sha384-aagKMe8nkqaP2DYQc8kkYOL5l&#43;M5Q2WH/Uhr4teOh0Ybp0RZj0kUSDm45qPikMjK" crossorigin="anonymous"></script><script src="/WzhGameDevPublish/js/algolia_search.js" ></script><script
+    src="https://npm.webcache.cn/mouse-firework@0.1.1/dist/index.umd.js"
+    integrity="sha384-8LyaidD9GPxQQgLJO/WRw/O2h3BoNq/ApI/ecpvM6RsrCz2qP2ppBXUKihP4V/2d" crossorigin="anonymous"></script><script>
+  if (! false  || !window.matchMedia('(max-width: 768px)').matches) {
+    if (window.firework) {
+      const options = JSON.parse("{\"excludeelements\":[\"a\",\"button\"],\"particles\":[{\"colors\":[\"var(--red-1)\",\"var(--red-2)\",\"var(--red-3)\",\"var(--red-4)\"],\"duration\":[1200,1800],\"easing\":\"easeOutExpo\",\"move\":[\"emit\"],\"number\":20,\"shape\":\"circle\",\"shapeOptions\":{\"alpha\":[0.3,0.5],\"radius\":[16,32]}},{\"colors\":[\"var(--red-0)\"],\"duration\":[1200,1800],\"easing\":\"easeOutExpo\",\"move\":[\"diffuse\"],\"number\":1,\"shape\":\"circle\",\"shapeOptions\":{\"alpha\":[0.2,0.5],\"lineWidth\":6,\"radius\":20}}]}");
+      options.excludeElements = options.excludeelements;
+      delete options.excludeelements;
+      window.firework(options);
+    }
+  }
+</script><script
+    src="https://npm.webcache.cn/quicklink@3.0.1/dist/quicklink.umd.js"
+    integrity="sha384-caMDqvgav/HWdEYQU1QRRHMLleigpL1YHAG0m371DhzfL8rRzUyOb&#43;bEHtwlmYjD" crossorigin="anonymous"></script><script data-pjax>
+    window.quicklink?.listen({
+      timeout:  3000 ,
+      priority:  true ,
+      ignores: JSON.parse("[]")
+    });
+  </script>
+
+
+<div id="lazy-script">
+  <div><script data-pjax>
+        window.REIMU_POST = {
+          author: "温志洪",
+          title: "武器摇晃重要概念",
+          url: "http:\/\/localhost:1895\/WzhGameDevPublish\/post\/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91\/%E4%BB%A3%E7%A0%81%E6%A1%86%E6%9E%B6\/lyra\/fps\/%E6%8A%80%E6%9C%AF%E7%BB%86%E8%8A%82\/weaponsway\/%E6%AD%A6%E5%99%A8%E6%91%87%E6%99%83%E9%87%8D%E8%A6%81%E6%A6%82%E5%BF%B5\/",
+          description: "\r参考类型\r类型1——视角旋转的惯性可视化\r参考游戏\rBattlefield 1\\ OW 半藏\nWeapon Sway 的本质分类框架\rWeapon Feel is control engineering, not animation polish\n从控制系统与信号处理角度，Weapon Sway 可以被严格分为以下 6 大类（并非按游戏，而是按系统性质）：\n杀戮地带2:枪托旋转\u002bYaw延迟，体现重量感，同时手臂转动较慢\n值得一提的是：游戏很容易沉浸，低昂的背景音家时不时队友的声音\u002b脚步声哪怕没有敌人也足够沉浸 13:15\n哪怕没有明显背景音乐也会有底噪工业废土艺术\/10年前《杀戮地带2》多人 …",
+          cover: "http:\/\/localhost:1895\/WzhGameDevPublish\/images\/banner.webp",
+        };
+      </script><script src="/WzhGameDevPublish/js/insert_highlight.js" data-pjax></script><script src="/WzhGameDevPublish/js/tabs.js" data-pjax></script><script type="module" data-pjax>const PhotoSwipeLightbox = (await safeImport("https:\/\/npm.webcache.cn\/photoswipe@5.4.4\/dist\/photoswipe-lightbox.esm.min.js", "sha384-DiL6M\/gG\u002bwmTxmCRZyD1zee6lIhawn5TGvED0FOh7fXcN9B0aZ9dexSF\/N6lrZi\/")).default;const initPswp = (gallery, children) => {
+          if (_$$(`${gallery} ${children}`).length > 0) {
+            new PhotoSwipeLightbox({
+              gallery,
+              children,pswpModule: () => safeImport("https:\/\/npm.webcache.cn\/photoswipe@5.4.4\/dist\/photoswipe.esm.min.js", "sha384-WkkO3GCmgkC3VQWpaV8DqhKJqpzpF9JoByxDmnV8\u002boTJ7m3DfYEWX1fu1scuS4\u002bs")}).init();
+          }
+        }
+        const pswp = () => {
+          initPswp('.article-entry', 'a.article-gallery-item');
+          initPswp('.article-gallery', 'a.article-gallery-item');
+          window.lightboxStatus = 'done';
+          window.removeEventListener('lightbox:ready', pswp);
+        }
+        if(window.lightboxStatus === 'ready') {
+          pswp()
+        } else {
+          window.addEventListener('lightbox:ready', pswp);
+        }
+      </script></div>
+</div><script
+    src="https://npm.webcache.cn/busuanzi@2.3.0/bsz.pure.mini.js"
+    asyncintegrity="sha384-0M75wtSkhjIInv4coYlaJU83&#43;OypaRCIq2SukQVQX04eGTCBXJDuWAbJet56id&#43;S" crossorigin="anonymous"></script><script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.getRegistrations().then((registrations) => {
+        for (let registration of registrations) {
+          registration.unregister();
+        }
+      });
+    }
+  </script><script>
+  const reimuCopyright = String.raw`
+   ______     ______     __     __    __     __  __    
+  /\  == \   /\  ___\   /\ \   /\ "-./  \   /\ \/\ \   
+  \ \  __<   \ \  __\   \ \ \  \ \ \-./\ \  \ \ \_\ \  
+   \ \_\ \_\  \ \_____\  \ \_\  \ \_\ \ \_\  \ \_____\ 
+    \/_/ /_/   \/_____/   \/_/   \/_/  \/_/   \/_____/ 
+                                                    
+  `;
+  console.log(String.raw`%c ${reimuCopyright}`, "color: #ff5252;");
+  console.log(
+    "%c Theme.Reimu" + " %c https://github.com/D-Sketon/hugo-theme-reimu ",
+    "color: white; background: #ff5252; padding:5px 0;",
+    "padding:4px;border:1px solid #ff5252;",
+  );
+</script></body>
+</html>

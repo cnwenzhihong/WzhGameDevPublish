@@ -1,0 +1,1177 @@
+<!doctype html>
+<html
+  lang="zh-cn" 
+  data-theme-mode="false"
+  >
+  <head><script src="/WzhGameDevPublish/livereload.js?mindelay=10&amp;v=2&amp;port=1895&amp;path=WzhGameDevPublish/livereload" data-no-instant defer></script><meta charset="utf-8" />
+<meta
+  name="viewport"
+  content="width=device-width, initial-scale=1, shrink-to-fit=no"
+/><title>
+  CraftingGunFeel——专业游戏开发者如何为射击游戏创造枪械手感？ | 温志洪
+</title>
+<meta name="description" content="FPS游戏"/><script>
+  window.siteConfig = JSON.parse("{\"anchor_icon\":null,\"base\":\"http://localhost:1895/WzhGameDevPublish/\",\"clipboard\":{\"copyright\":{\"count\":50,\"enable\":false,\"license_type\":\"by-nc-sa\"},\"fail\":{\"en\":\"Copy failed (ﾟ⊿ﾟ)ﾂ\",\"ja\":\"コピー失敗 (ﾟ⊿ﾟ)ﾂ\",\"pt-br\":\"Falha ao copiar (ﾟ⊿ﾟ)ﾂ\",\"zh-cn\":\"复制失败 (ﾟ⊿ﾟ)ﾂ\",\"zh-tw\":\"複製失敗 (ﾟ⊿ﾟ)ﾂ\"},\"success\":{\"en\":\"Copy successfully (*^▽^*)\",\"ja\":\"コピー成功 (*^▽^*)\",\"pt-br\":\"Copiado com sucesso (*^▽^*)\",\"zh-cn\":\"复制成功 (*^▽^*)\",\"zh-tw\":\"複製成功 (*^▽^*)\"}},\"code_block\":{\"expand\":4},\"i18n_languages\":[{\"Lang\":\"en\",\"LanguageName\":\"English\",\"LanguageCode\":\"\",\"Title\":\"\",\"LanguageDirection\":\"\",\"Weight\":1,\"Disabled\":false},{\"Lang\":\"zh-cn\",\"LanguageName\":\"简体中文\",\"LanguageCode\":\"\",\"Title\":\"\",\"LanguageDirection\":\"\",\"Weight\":1,\"Disabled\":false}],\"icon_font\":\"4552607_4k4bc36ef96\",\"outdate\":{\"daysago\":180,\"enable\":false,\"message\":{\"en\":\"This article was last updated on {time}. Please note that the content may no longer be applicable.\",\"ja\":\"この記事は最終更新日：{time}。記載内容が現在有効でない可能性がありますのでご注意ください。\",\"pt-br\":\"Este artigo foi atualizado pela última vez em {time}. Observe que o conteúdo pode não ser mais aplicável.\",\"zh-cn\":\"本文最后更新于 {time}，请注意文中内容可能已不适用。\",\"zh-tw\":\"本文最後更新於 {time}，請注意文中內容可能已不適用。\"}}}");
+  
+</script>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link
+  rel="preload"
+  as="style"
+  href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic%7cNoto%20Serif%20SC:400,400italic,700,700italic%7c&amp;display=swap"
+/>
+<link
+  rel="stylesheet"
+  href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic%7cNoto%20Serif%20SC:400,400italic,700,700italic%7c&amp;display=swap"
+  media="print"
+  onload="this.media='all'"
+/>
+<link
+    rel="preload"
+    href="//at.alicdn.com/t/c/font_4552607_4k4bc36ef96.woff2"
+    as="font"
+    type="font/woff2"
+    crossorigin="anonymous"
+  /><link rel="stylesheet" href="/WzhGameDevPublish/css/loader.css" />
+<meta property="og:type" content="website" />
+  <meta property="og:title" content="CraftingGunFeel——专业游戏开发者如何为射击游戏创造枪械手感？ | 温志洪" />
+  <meta
+    property="og:description"
+    content="FPS游戏"
+  />
+  <meta property="og:url" content="http://localhost:1895/WzhGameDevPublish/post/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/%E4%BB%A3%E7%A0%81%E6%A1%86%E6%9E%B6/lyra/fps/%E7%AC%AC%E4%B8%89%E6%96%B9%E8%B5%84%E6%96%99/craftinggunfeel/craftinggunfeel%E4%B8%93%E4%B8%9A%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91%E8%80%85%E5%A6%82%E4%BD%95%E4%B8%BA%E5%B0%84%E5%87%BB%E6%B8%B8%E6%88%8F%E5%88%9B%E9%80%A0%E6%9E%AA%E6%A2%B0%E6%89%8B%E6%84%9F/" />
+  <meta
+    property="og:site_name"
+    content="妖精游戏开发馆"
+  />
+  <meta
+    property="og:image"
+    content="/WzhGameDevPublish/"
+  />
+  <meta property="article:author" content="温志洪" />
+  <meta property="article:published_time" content="2025-11-27T23:01:30&#43;00:00" />
+  <meta property="article:modified_time" content="2026-05-15T12:23:52&#43;00:00" /><meta property="article:tag" content="3CFPS打击感blog" /><meta name="twitter:card" content="summary" />
+  <meta name="twitter:image" content="/WzhGameDevPublish/" />
+<link rel="shortcut icon" href="/WzhGameDevPublish/favicon.ico"><link rel="stylesheet" href="/WzhGameDevPublish/css/main.css" />
+<link
+    rel="preload"
+    as="style"
+    href="https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe.css"
+    integrity="sha384-IfxC36XL/toUyJ939C73PcgMuRzAZuIzZxE38drsmO5p6jD7ei&#43;Zx/1oA/0l8ysE" crossorigin="anonymous"onload="this.onload=null;this.rel='stylesheet'"
+  /><link
+    rel="preload"
+    as="style"
+    href="https://npm.webcache.cn/katex@0.16.24/dist/katex.min.css"
+    integrity="sha384-tTgKLjMYmJr94v8qu2PE5MUGSMbyN2xiH266JUB3gpm8vnnJywd1dWSOEfrFz&#43;YI" crossorigin="anonymous"onload="this.onload=null;this.rel='stylesheet'"
+  /><script
+    src="https://npm.webcache.cn/pace-js@1.2.4/pace.min.js"
+    integrity="sha384-k6YtvFUEIuEFBdrLKJ3YAUbBki333tj1CSUisai5Cswsg9wcLNaPzsTHDswp4Az8" crossorigin="anonymous"></script><link
+    rel="stylesheet"
+    href="https://npm.webcache.cn/@reimujs/aos@0.1.2/dist/aos.css"
+    integrity="sha384-GMRP93c6Hkz9JVKGAuRR3nTS7M07RwPgTFenXiosjq2VbVgvdDNcz1g6Mkj8AONa" crossorigin="anonymous"/></head>
+  <body><div id='loader'>
+    <div class="loading-left-bg loading-bg"></div>
+    <div class="loading-right-bg loading-bg"></div>
+    <div class="spinner-box">
+      <div class="loading-taichi rotate"><svg width="150" height="150" viewBox="0 0 1024 1024" class="icon" version="1.1" xmlns="https://www.w3.org/2000/svg" shape-rendering="geometricPrecision">
+            <path d="M303.5 432A80 80 0 0 1 291.5 592A80 80 0 0 1 303.5 432z" fill="var(--red-1, #ff5252)" />
+            <path d="M512 65A447 447 0 0 1 512 959L512 929A417 417 0 0 0 512 95A417 417 0 0 0 512 929L512 959A447 447 0 0 1 512 65z 
+          M512 95A417 417 0 0 1 929 512A208.5 208.5 0 0 1 720.5 720.5L720.5 592A80 80 0 0 0 720.5 432A80 80 0 0 0 720.5 592L720.5 720.5A208.5 208.5 0 0 1 512 512A208.5 208.5 0 0 0 303.5 303.5A208.5 208.5 0 0 0 95 512A417 417 0 0 1 512 95z" fill="var(--red-1, #ff5252)" />
+          </svg></div><div class="loading-word">少女祈祷中...</div>
+    </div>
+  </div>
+  </div>
+  <script>
+    var time = null;
+    var loaderEl = document.getElementById('loader');
+    var startLoading = () => {
+      time = Date.now();
+      loaderEl.classList.remove("loading");
+    }
+    var hideLoader = () => {
+      document.body.style.overflow = 'auto';
+      loader.classList.add('loading');
+    };
+
+    var endLoading = () => {
+      if (!time) {
+        hideLoader();
+      } else {
+        if (Date.now() - time > 500) {
+          time = null;
+          hideLoader();
+        } else {
+          setTimeout(endLoading, 500 - (Date.now() - time));
+          time = null;
+        }
+      }
+    }
+    window.addEventListener('DOMContentLoaded', endLoading);
+    loaderEl.addEventListener('click', endLoading);
+  </script><div id="copy-tooltip"></div>
+<div id="lang-tooltip">
+本文章没有找到对应的语言版本
+</div>
+<div id="heatmap-tooltip"></div><div id="container">
+      <div id="wrap"><div id="header-nav">
+  <nav id="main-nav" aria-label="Primary navigation"><a class="main-nav-link-wrap" href="/WzhGameDevPublish/">
+        <div class='main-nav-icon icon rotate'>&#xe62b;</div>
+        <span class="main-nav-link">首页</span>
+      </a><a class="main-nav-link-wrap" href="/WzhGameDevPublish/archives">
+        <div class='main-nav-icon icon rotate'>&#xe62b;</div>
+        <span class="main-nav-link">归档</span>
+      </a><a class="main-nav-link-wrap" href="/WzhGameDevPublish/about">
+        <div class='main-nav-icon icon rotate'>&#xe62b;</div>
+        <span class="main-nav-link">关于</span>
+      </a><a class="main-nav-link-wrap" href="/WzhGameDevPublish/friend">
+        <div class='main-nav-icon icon rotate'>&#xe62b;</div>
+        <span class="main-nav-link">友链</span>
+      </a><a id="main-nav-toggle" class="nav-icon" aria-label="Toggle navigation" role="button"></a>
+  </nav>
+  <nav id="sub-nav" aria-label="Secondary navigation"><a id="nav-search-btn" class="nav-icon popup-trigger" title="搜索" aria-label="搜索"></a></nav><nav id="i18n-nav" aria-label="Language selection">
+      <div class="custom-dropdown">
+        <div class="select-selected" id="select-selected" role="button" aria-haspopup="listbox" aria-expanded="false" aria-label="Language menu">
+          <span id="nav-language-btn" class="nav-icon" style="padding: 0 20px 0 0"></span>
+          <span id="selected-lang">简体中文</span>
+        </div>
+        <ul class="select-items" id="select-items" role="listbox" aria-label="Languages"><li data-value="en" role="option" arial-selected="false" >English</li><li data-value="zh-cn" role="option" class="selected" arial-selected="true" >简体中文</li></ul>
+      </div>
+      <script>
+        var selectSelected = document.getElementById("select-selected");
+        var selectedLang = document.getElementById("selected-lang");
+        var selectItems = document.getElementById("select-items");
+        var selectOptions = selectItems.querySelectorAll("li");
+
+        selectSelected.addEventListener("click", () => {
+          selectItems.classList.toggle("show");
+          var expanded = selectSelected.getAttribute("aria-expanded") === "true";
+          selectSelected.setAttribute("aria-expanded", (!expanded).toString());
+        });
+
+        selectOptions.forEach((item) => {
+          item.addEventListener("click", () => {
+            const langMap = {};selectedLang.textContent = item.textContent;
+            selectItems.classList.remove("show");
+            selectOptions.forEach((option) => {
+              option.classList.remove("selected");
+            });
+            item.classList.add("selected");
+            if (item.dataset.value === 'zh-cn') {
+              return;
+            }
+            if (!langMap[item.dataset.value]) {
+              _$("#lang-tooltip").style.opacity = "1";
+              setTimeout(() => {
+                _$("#lang-tooltip").style.opacity = "0";
+              }, 1000);
+              return;
+            }
+            window.location = langMap[item.dataset.value];
+          });
+        });
+
+        document.addEventListener("click", (event) => {
+          if (!event.target.closest(".custom-dropdown")) {
+            selectItems.classList.remove("show");
+            selectSelected.setAttribute("aria-expanded", "false");
+          }
+        });
+      </script>
+    </nav></div>
+<header id="header" aria-label="Site header"><picture><source media="(max-width: 479px)" srcset="/WzhGameDevPublish/images/banner-600w.webp"><source media="(max-width: 799px)" srcset="/WzhGameDevPublish/images/banner-800w.webp"><source media="(min-width: 800px)" srcset="/WzhGameDevPublish/images/banner.webp"><img crossorigin="anonymous" fetchpriority="high" src="/WzhGameDevPublish/images/banner.webp" alt="CraftingGunFeel——专业游戏开发者如何为射击游戏创造枪械手感？"></picture><img alt="CraftingGunFeel——专业游戏开发者如何为射击游戏创造枪械手感？" style="visibility: hidden;"><div id="header-outer">
+    <div id="header-title"><span id="logo">
+            <h1 data-aos="slide-up">CraftingGunFeel——专业游戏开发者如何为射击游戏创造枪械手感？</h1>
+          </span><h2 id="subtitle-wrap" data-aos="slide-down"></h2></div>
+  </div>
+</header><div id="content"
+          aria-label="Page content"
+          class="sidebar-left"
+            ><aside id="sidebar" aria-label="Sidebar"><div class="sidebar-wrapper-container sticky"><div class="sidebar-wrapper">
+    <div
+      class="sidebar-wrap"
+      data-aos="fade-up"
+    ><div class="sidebar-toc-sidebar"><h3 class="toc-title">文章目录</h3>
+<div class="sidebar-toc-wrapper toc-div-class">
+  <nav id="TableOfContents">
+  <ul>
+    <li><a href="#引用">引用</a></li>
+    <li><a href="#定义gun-feel">定义Gun feel</a></li>
+    <li><a href="#搜索方案">搜索方案</a></li>
+    <li><a href="#访谈是回答研究问题最合适的方法">访谈是回答研究问题最合适的方法</a></li>
+    <li><a href="#36-局限性">3.6 局限性</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#41-视觉听觉与运动学效果">4.1 视觉、听觉与运动学效果</a>
+      <ul>
+        <li><a href="#411-枪口闪光">4.1.1 枪口闪光</a></li>
+        <li><a href="#烟雾粒子">烟雾粒子</a></li>
+        <li><a href="#空弹壳">空弹壳</a></li>
+        <li><a href="#后坐力">后坐力</a></li>
+        <li><a href="#413-晃动-weapon-sway">4.1.3 晃动 Weapon Sway</a></li>
+        <li><a href="#414-摄像机">4.1.4 摄像机</a></li>
+        <li><a href="#415-瞄准死区">4.1.5 瞄准死区</a></li>
+        <li><a href="#416-音频">4.1.6 音频</a></li>
+      </ul>
+    </li>
+    <li><a href="#动画">动画</a>
+      <ul>
+        <li><a href="#421-动画工艺">4.2.1 动画工艺</a></li>
+        <li><a href="#422-动画分层">4.2.2 动画分层</a></li>
+        <li><a href="#423-程序化动画">4.2.3 程序化动画</a></li>
+        <li><a href="#-枪在现实中怎么转">◆ 枪在现实中怎么转？</a></li>
+        <li><a href="#-如果旋转点错了会出现什么问题">◆ 如果旋转点错了，会出现什么问题？</a></li>
+        <li><a href="#-这样做后">◆ 这样做后</a></li>
+      </ul>
+    </li>
+    <li><a href="#43-美学考量">4.3 美学考量</a>
+      <ul>
+        <li><a href="#431-角色塑造">4.3.1 角色塑造</a></li>
+        <li><a href="#432-可供性与期望">4.3.2 可供性与期望</a></li>
+        <li><a href="#433-可信度">4.3.3 可信度</a></li>
+      </ul>
+    </li>
+    <li><a href="#44-上下文整合">4.4 上下文整合</a>
+      <ul>
+        <li><a href="#441-环境效果">4.4.1 环境效果</a></li>
+        <li><a href="#442-平衡性">4.4.2 平衡性</a></li>
+      </ul>
+    </li>
+  </ul>
+
+  <ul>
+    <li><a href="#511-与学术研究比较">5.1.1 与学术研究比较</a></li>
+    <li><a href="#52-方法考量与未来研究">5.2 方法考量与未来研究</a></li>
+  </ul>
+</nav>
+</div></div>
+          <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
+  <img
+    data-src="/WzhGameDevPublish/avatar/UELogo.png"
+    data-sizes="auto"
+    alt="温志洪"
+    class="lazyload"
+  />
+  <div class="sidebar-author-name">温志洪</div>
+  <div class="sidebar-description">FPS游戏</div>
+</div>
+<div class="sidebar-state">
+  <div class="sidebar-state-article">
+    <div>文章</div><div class="sidebar-state-number">20</div>
+  </div>
+  <a class="sidebar-state-category" href="/WzhGameDevPublish/categories/" aria-label="sidebar-state-category-link">
+    <div>分类</div>
+    <div class="sidebar-state-number">
+      0
+    </div>
+  </a>
+  <a class="sidebar-state-tag" href="/WzhGameDevPublish/tags/" aria-label="sidebar-state-tag-link">
+    <div>标签</div>
+    <div class="sidebar-state-number">12</div>
+  </a>
+</div>
+<div class="sidebar-social"><div class="icon-bilibili sidebar-social-icon">
+      <a
+        href="https://space.bilibili.com/35312868"
+        itemprop="url"
+        target="_blank"
+        aria-label="bilibili"
+        rel="noopener nofollow noreferrer"
+      ></a>
+    </div><div class="icon-email sidebar-social-icon">
+      <a
+        href="mailto:cnwenzhihong@gmail.com"
+        itemprop="url"
+        target="_blank"
+        aria-label="email"
+        rel="noopener nofollow noreferrer"
+      ></a>
+    </div></div>
+<div class="sidebar-menu"><div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/WzhGameDevPublish/"
+        aria-label="首页"
+      ></a>
+      <div class='sidebar-menu-icon icon rotate'>&#xe62b;</div>
+      <div class="sidebar-menu-link">首页</div>
+    </div><div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/WzhGameDevPublish/archives"
+        aria-label="归档"
+      ></a>
+      <div class='sidebar-menu-icon icon rotate'>&#xe62b;</div>
+      <div class="sidebar-menu-link">归档</div>
+    </div><div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/WzhGameDevPublish/about"
+        aria-label="关于"
+      ></a>
+      <div class='sidebar-menu-icon icon rotate'>&#xe62b;</div>
+      <div class="sidebar-menu-link">关于</div>
+    </div><div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/WzhGameDevPublish/friend"
+        aria-label="友链"
+      ></a>
+      <div class='sidebar-menu-icon icon rotate'>&#xe62b;</div>
+      <div class="sidebar-menu-link">友链</div>
+    </div></div>
+</div><div class="sidebar-btn-wrapper" style="position:static">
+            <div class="sidebar-toc-btn current"></div>
+            <div class="sidebar-common-btn"></div>
+          </div></div>
+  </div><div class="sidebar-widget"></div></div></aside>
+<section id="main" aria-label="Main content"><p style="color:red">ARTICLE PARTIAL OVERRIDE ACTIVE</p>
+<article
+  class="h-entry article"
+  itemscope
+  itemtype="https://schema.org/BlogPosting"
+>
+  <div
+    class="article-inner"
+    data-aos="fade-up"
+  >
+    <div class="article-meta"><div class="article-date">
+  <span
+    class="article-date-link icon-calendar"
+    data-aos="zoom-in"
+  >
+    <time datetime="2025-11-27 23:01:30.508 &#43;0000 UTC" itemprop="datePublished"
+      >2025-11-27</time
+    >
+    <time style="display: none;" id="post-update-time"
+      >2026-05-15</time
+    >
+  </span><span
+      class="article-date-link icon-calendar-plus"
+      data-aos="zoom-in"
+    >
+      <time datetime="2026-05-15 12:23:52.419 &#43;0000 UTC" itemprop="dateModified"
+        >2026-05-15</time
+      >
+    </span></div>
+<div class="article-category"></div>
+</div><div class="hr-line"></div><div class="e-content article-entry" itemprop="articleBody"><blockquote>
+<p>视图模型：<a href="https://developer.valvesoftware.com/wiki/Viewmodel">value wiki：Viewmodel</a></p>
+</blockquote>
+<h1 id="引言">
+<a class="header-anchor" href="#%e5%bc%95%e8%a8%80"></a>
+引言
+</h1><p>专业开发者为达到令人满意的枪械射击效果所使用的具体技术很难获取，因为这类知识可能是专有的，或者只是隐藏在实力雄厚或孤立的游戏工作室的资深开发者中。尽管这项研究中受访的开发者经常声称他们乐于分享知识，但其他受访者通过无法分享某些开发技术或因公司政策选择匿名来质疑这些说法。目前需要大量的试错和从互联网上搜寻零散的线索。</p>
+<h1 id="前提">
+<a class="header-anchor" href="#%e5%89%8d%e6%8f%90"></a>
+前提
+</h1><h2 id="引用">
+<a class="header-anchor" href="#%e5%bc%95%e7%94%a8"></a>
+引用
+</h2><p>Swink（2009）在他的著作《游戏手感——游戏设计师的虚拟感觉指南》(Game Feel - A Game Designer&rsquo;s Guide to Virtual Sensation)中，将游戏手感定义为“在模拟空间中对虚拟物体进行实时控制，并通过打磨来强调互动”。 他还进一步指出，优秀的游戏体验传递五种体验，其中与本研究主题最相关的三种是控制的美感、感官的延伸以及与游戏中独特的物理现实互动。<br>
+罗杰斯（Rogers .2022）以引人入胜的方式对此进行了扩展，他将这种体验描述为摩擦，即玩家与系统边界对抗的体验，以及设计惯性与玩家力量对抗的体验。<br>
+游戏对玩家的阻力决定了游戏玩起来的感觉。<br>
+Wilson（2022）强调游戏可以传达不同种类的感觉，而不仅仅是通常描述的那种积极控制感。当讨论现代射击游戏时，这一点尤为相关，许多游戏被认为使用不同形式的摩擦和阻力来制造紧张感，甚至让玩家产生无力感。</p>
+<h2 id="定义gun-feel">
+<a class="header-anchor" href="#%e5%ae%9a%e4%b9%89gun-feel"></a>
+定义Gun feel
+</h2><p>本研究选择对枪械体验采用两个定义——一个供作者在分析回答时参考，另一个提供给参与者以确保他们达成共识。<br>
+主要受 Swink（2009）、Rogers（2022）和 Brazie（2025）的启发。</p>
+<p>本文中的概念：<br>
+枪械手感：游戏枪械所涉及到的视觉、程序和听觉元素。为了聚焦访谈，</p>
+<p>什么样的枪械手感适合什么样的游戏?<br>
+不同节奏和游戏风格对武器中的元素和功能的重视程度差异很大。这种细微差别被称为合适的枪械手感，即符合并增强游戏风格的枪械手感。</p>
+<p>第一人称射击游戏中的音频延迟会对玩家的即时情感体验产生负面影响，并且这种影响会随着玩家技能水平的提升而加剧</p>
+<p>Brazie 对游戏体验给出了相当高层次的概述<br>
+他强调，响应性、直观性和冲击感是构成游戏体验的要素。</p>
+<ul>
+<li>即使游戏内的操作需要较长时间执行，也要给予玩家即时的反馈</li>
+<li>关卡和系统设计的一致性对于确保玩家理解规则至关重要</li>
+<li>在进行操作时给予玩家一定的自由度，即使他们技术上只差一点点失败，游戏也能理解他们的意图并允许他们完成</li>
+</ul>
+<blockquote>
+<p>游戏手感中的直观性目标往往是夸张的感觉，以弥补模拟与现实之间的脱节。</p>
+</blockquote>
+<p>《Game feel》：游戏手感的开创性著作，对视频游戏中最具普遍性的交互行为之一的分析也显得严重不足。<br>
+Swink（2009）批评了 Doom 3 中枪声的微弱和刺耳，并赞扬了 Gears of War 的粒子效果、声音、动画、屏幕效果和控制器震动（Swink, 2009, 第 32 页, 第 164 页, 第 169 页）</p>
+<p>《最后生还者 第二部》的2024 GDC 演讲中<br>
+Mattson 接着讨论了武器手感的问题，并认为虽然它与视觉效果、声音、摄像机抖动和射击模式等多种因素有关，但几乎完全由命中反应来定义。给敌人添加眩晕功能来增强玩家的表现力。<br>
+<a href="https://www.youtube.com/watch?v=SWf9pNdivpo%5c&amp;t=8s">How I Made My FPS Game Feel Better To Play</a><br>
+David Helsby</p>
+<p>Brazie响应性、直观性和临场感视为构成游戏 手感的组成部分</p>
+<h2 id="搜索方案">
+<a class="header-anchor" href="#%e6%90%9c%e7%b4%a2%e6%96%b9%e6%a1%88"></a>
+搜索方案
+</h2><p>3.2 方法描述：<br>
+<img src="CraftingGunFeel_%E4%B8%AD%E6%96%87.pdf#page=15%5C&amp;rect=61,420,534,559" alt="CraftingGunFeel\_中文.pdf#page=15\&amp;rect=61,420,534,559"></p>
+<h2 id="访谈是回答研究问题最合适的方法">
+<a class="header-anchor" href="#%e8%ae%bf%e8%b0%88%e6%98%af%e5%9b%9e%e7%ad%94%e7%a0%94%e7%a9%b6%e9%97%ae%e9%a2%98%e6%9c%80%e5%90%88%e9%80%82%e7%9a%84%e6%96%b9%e6%b3%95"></a>
+访谈是回答研究问题最合适的方法
+</h2><blockquote>
+<p>访谈在许多方面是研究实践主题的无与伦比的 工具，因为它具有适应性，使研究人员能够快速听取多位参与者的反思。能够提出相关且集中 的问题作为访谈指南的一部分，同时仍允许参与者影响对话方向，被认为是回答研究问题最合适的方法。<br>
+<img src="CraftingGunFeel_%E4%B8%AD%E6%96%87.pdf#page=16%5C&amp;rect=65,344,532,641%5C&amp;color=note" alt="CraftingGunFeel\_中文.pdf#page=16\&amp;rect=65,344,532,641\&amp;color=note"></p>
+</blockquote>
+<h2 id="36-局限性">
+<a class="header-anchor" href="#36-%e5%b1%80%e9%99%90%e6%80%a7"></a>
+3.6 局限性
+</h2><p>在研究枪械手感的定义时，尚未找到比手感更有用且更具描述性的术语,，但Brazie（2025）强调了响应性、直观性和临场感</p>
+<h1 id="理论-4">
+<a class="header-anchor" href="#%e7%90%86%e8%ae%ba-4"></a>
+理论 （4）
+</h1><h2 id="41-视觉听觉与运动学效果">
+<a class="header-anchor" href="#41-%e8%a7%86%e8%a7%89%e5%90%ac%e8%a7%89%e4%b8%8e%e8%bf%90%e5%8a%a8%e5%ad%a6%e6%95%88%e6%9e%9c"></a>
+4.1 视觉、听觉与运动学效果
+</h2><h3 id="411-枪口闪光">
+<a class="header-anchor" href="#411-%e6%9e%aa%e5%8f%a3%e9%97%aa%e5%85%89"></a>
+4.1.1 枪口闪光
+</h3><p>枪口闪光可以向玩家确认他们已成功发射子弹</p>
+<h4 id="影响枪口闪光的因素">
+<a class="header-anchor" href="#%e5%bd%b1%e5%93%8d%e6%9e%aa%e5%8f%a3%e9%97%aa%e5%85%89%e7%9a%84%e5%9b%a0%e7%b4%a0"></a>
+影响枪口闪光的因素
+</h4><p>包括弹药类型、有效射程，也许最重要的是枪口。枪口的形状和排气口的数量对于决定枪口闪光的外观很重要，因为其尺寸和排气口数量应与枪口的设计保持一致。</p>
+<h4 id="如何避免过多遮挡玩家的视野">
+<a class="header-anchor" href="#%e5%a6%82%e4%bd%95%e9%81%bf%e5%85%8d%e8%bf%87%e5%a4%9a%e9%81%ae%e6%8c%a1%e7%8e%a9%e5%ae%b6%e7%9a%84%e8%a7%86%e9%87%8e"></a>
+如何避免过多遮挡玩家的视野
+</h4><p>将枪口闪光向下倾斜，这通常从玩家的视角看起来自然，但减少了效果占据的屏幕空间</p>
+<h4 id="强调枪声">
+<a class="header-anchor" href="#%e5%bc%ba%e8%b0%83%e6%9e%aa%e5%a3%b0"></a>
+强调枪声
+</h4><p>屏幕抖动常被用来强调shotgun，但对于某些武器，有时会使用与枪口闪光相关的扭曲效果(distortion effect)来代替，它会在少量几帧内扭曲玩家的视野。<br>
+Alexander指出：过多的摄像机移动可能会导致部分玩家出现晕动症<br>
+但Lucas声称：选择使用扭曲效果而非屏幕抖动纯粹是出于艺术考量，与减轻晕动症风险无关。</p>
+<h4 id="帧率对枪口闪光可见性的影响">
+<a class="header-anchor" href="#%e5%b8%a7%e7%8e%87%e5%af%b9%e6%9e%aa%e5%8f%a3%e9%97%aa%e5%85%89%e5%8f%af%e8%a7%81%e6%80%a7%e7%9a%84%e5%bd%b1%e5%93%8d"></a>
+帧率对枪口闪光可见性的影响
+</h4><p>如果开发者无法控制帧率,使余烬（通常是枪口闪光中最大且最快的部分）在屏幕上多停留几帧，但每帧亮度逐渐减弱。</p>
+<h3 id="烟雾粒子">
+<a class="header-anchor" href="#%e7%83%9f%e9%9b%be%e7%b2%92%e5%ad%90"></a>
+烟雾粒子
+</h3><p><img src="CraftingGunFeel_%E4%B8%AD%E6%96%87.pdf#page=20%5C&amp;rect=67,501,532,598%5C&amp;color=note" alt="CraftingGunFeel\_中文.pdf#page=20\&amp;rect=67,501,532,598\&amp;color=note"></p>
+<h3 id="空弹壳">
+<a class="header-anchor" href="#%e7%a9%ba%e5%bc%b9%e5%a3%b3"></a>
+空弹壳
+</h3><p>枪中抛出的空弹壳的抛壳角度可以被扭曲向前，远离玩家，以便在不降低其速度的情况下增加它们在屏幕上的持续时间。</p>
+<h3 id="后坐力">
+<a class="header-anchor" href="#%e5%90%8e%e5%9d%90%e5%8a%9b"></a>
+后坐力
+</h3><p>后坐力是让枪战玩法感觉正确的重要方面<br>
+将枪械后坐力要明确分离为：机械后坐力（即相机典型的向上旋转）和视觉后坐力（即视图模型的回弹动作<code>view model’s recoil motion</code>），使开发者能够为玩家实现期望的反馈体验，同时仍能独立平衡武器的易用性。</p>
+<h4 id="程序化武器后坐力">
+<a class="header-anchor" href="#%e7%a8%8b%e5%ba%8f%e5%8c%96%e6%ad%a6%e5%99%a8%e5%90%8e%e5%9d%90%e5%8a%9b"></a>
+程序化武器后坐力
+</h4><p>在持续自动射击期间，武器运动的各个轴如何通过特定的方向性偏差进行操控？<br>
+武器通常向上旋转并在75%的时间内略微向左漂移， 尽管偶尔向右的跳跃引入了变化。<br>
+此外，武器略微向后移动到肩膀中，并随机地左右Roll滚动。<br>
+每个轴都遵循一个基于正弦的插值曲线，而曲线上当前位置可以通过一个在设定的最小值和最大值范围内的随机倍率进行缩放。这不仅在射击之间增加了变化性，还允许方向性偏差。例如，使用最小值为‑1和最大值为2的设置有利于向左移动，同时保留了向右偏离的可能性。<br>
+Albie的系统中的一个刻意设计决策是：虽然视觉后坐力被允许在射击之间重置，但相机后坐力不会。尽管武器模型可能在视觉上返回到中立位置，但玩家的视角仍然保持偏移，除非手动校正。这样做的目的是为了保留玩家能动性，即如果玩家在持续射击期间通过向下拉动鼠标来补偿后坐力，游戏不应自动继续该动作，因为这可能在玩家停止射击时导致过度补偿。</p>
+<h3 id="413-晃动-weapon-sway">
+<a class="header-anchor" href="#413-%e6%99%83%e5%8a%a8-weapon-sway"></a>
+4.1.3 晃动 Weapon Sway
+</h3><p>晃动指的是视图模型响应玩家移动和旋转的细微程序化动作，没有它游戏会显得廉价。</p>
+<p><strong>Jens、Cody、Milton和 Albie都将其视为枪械手感的核心方面</strong><br>
+与实现的容易程度相比，这是枪械手感中最具冲击力的方面， 甚至说如果你把晃动和后坐力做对了，在枪械手感方面就完成了90%。</p>
+<p>向前移动时武器的Pitch会略微向下旋转，而向后走则相反。<br>
+当角色旋转时，枪械可能跟随相机的旋转滞后，也可能领先。在旋转时，如果领先，武器可能向旋转方向滚动；如果滞后，则可能向相反方向滚动。<br>
+Cody进一步描述了他对晃动的方法：玩家旋转时武器滞后，然后过冲，最后稳定下来。<br>
+在移动稳定时使用弹簧插值</p>
+<h3 id="414-摄像机">
+<a class="header-anchor" href="#414-%e6%91%84%e5%83%8f%e6%9c%ba"></a>
+4.1.4 摄像机
+</h3><h4 id="摄像机抖动">
+<a class="header-anchor" href="#%e6%91%84%e5%83%8f%e6%9c%ba%e6%8a%96%e5%8a%a8"></a>
+摄像机抖动
+</h4><p>Albie偏好的屏幕旋转轴也是Roll，因为相对中心更影响屏幕边缘。这与Anders访谈中展示的通过滚动摄像机来强调抖动和冲击的常见做法完全一致。<br>
+当玩家被命中、开火或甚至为了进一步强调某些动画动作时，相机抖动也会以滚动的形式在引擎内添加。</p>
+<h4 id="摄像机视野">
+<a class="header-anchor" href="#%e6%91%84%e5%83%8f%e6%9c%ba%e8%a7%86%e9%87%8e"></a>
+摄像机视野
+</h4><p>世界和视图模型可以有不同的视野。<br>
+不同的动作也会影响世界视野，例如当玩家通过武器瞄准具瞄准时视野会放大。这不仅使远处的物体更容易看清， 还向玩家传达了专注感</p>
+<h4 id="后期处理-post-processing-effects">
+<a class="header-anchor" href="#%e5%90%8e%e6%9c%9f%e5%a4%84%e7%90%86-post-processing-effects"></a>
+后期处理 post-processing effects
+</h4><p>在玩家视图中使用轻微模糊来突出冲击帧、负片或黑白帧也可以达到类似效果。(how a slight blur in the player’s view can be used to accentuate an impact frame, as can a negative or black and white frame.)同时，像后者这样的效果可能更适合风格化艺术风格，而非写实风格。</p>
+<p>利用自动曝光来增强gunshot效果。<br>
+通过让激光射击的第一帧变得极其明亮，会触发自动曝光使帧的其余部分变暗到只有激光可见的程度，之后激光的亮度下降，曝光恢复到接近正常水平。这有助于将玩家的视线聚焦在激光上，并给人一种这种强力激光瞬间吸走房间光线的印象。</p>
+<h3 id="415-瞄准死区">
+<a class="header-anchor" href="#415-%e7%9e%84%e5%87%86%e6%ad%bb%e5%8c%ba"></a>
+4.1.5 瞄准死区
+</h3><p>属于战术射击游戏或军事模拟游戏的特性<br>
+可以实现更精确的射击，并在某种程度上模拟了用武器瞄准的现实情况，即武器的微小移动并不总是与头部和眼睛的移动完全一致。</p>
+
+  <blockquote class="alert-blockquote example">
+    <p class="alert-heading">
+      Example
+    </p>
+    <p><p>Unrecord中描述了类似但更为夸张的该特性版本，其中玩家的输入同样首先影响枪械，但相机直到枪械非常接近屏幕边缘时才会转向跟随。在这种情况下，这是更广泛风格选择的一部分，旨在模拟执法记录仪画面的视角，其中执法记录仪随身体整体转动，而不会精确跟踪角色可能正在注视或瞄准的位置。</p></p>
+  </blockquote>
+
+<h3 id="416-音频">
+<a class="header-anchor" href="#416-%e9%9f%b3%e9%a2%91"></a>
+4.1.6 音频
+</h3><p>Alexander、Matteo、Lucas、Erik和Albie都指出音频是枪械手感的核心方面</p>
+<p>Alexander将枪声的构造分解为若干层。首先是低频效果（LFE），它提供了支撑音效的深沉低音 “轰鸣声”。他认为，如果没有这一层，枪声可能会听起来平淡或缺乏重量感。<br>
+在此基础上几个附加层：<br>
+噪音层，主要由高频机械声音组成，例如枪栓操作或弹匣咔嗒声；<br>
+一个中频层，其中包含武器的核心音爆；以及一个甜味剂层，Alexander将其描述为音调变化，例如随机的升F调或G调。<br>
+虽然这些甜味剂为混音增添了风格化元素，但 Alexander强调了它们对音效满意度的重要贡献。<br>
+除了LFE层之外，所有层都应用了射击之间的音高变化，因为如果对LFE进行音高变换，其变化会过大。<br>
+<img src="CraftingGunFeel.pdf#page=22%5C&amp;rect=66,63,534,130%5C&amp;color=note" alt="CraftingGunFeel.pdf#page=22\&amp;rect=66,63,534,130\&amp;color=note"><br>
+<img src="CraftingGunFeel.pdf#page=23%5C&amp;rect=68,661,531,774%5C&amp;color=note" alt="CraftingGunFeel.pdf#page=23\&amp;rect=68,661,531,774\&amp;color=note"></p>
+<h2 id="动画">
+<a class="header-anchor" href="#%e5%8a%a8%e7%94%bb"></a>
+动画
+</h2><h3 id="421-动画工艺">
+<a class="header-anchor" href="#421-%e5%8a%a8%e7%94%bb%e5%b7%a5%e8%89%ba"></a>
+4.2.1 动画工艺
+</h3><p>所有参与者一致将动画视为实现令人满意的枪械手感的核心方面。</p>
+<h4 id="骨骼设置">
+<a class="header-anchor" href="#%e9%aa%a8%e9%aa%bc%e8%ae%be%e7%bd%ae"></a>
+骨骼设置
+</h4><p>根据目标和偏好，不同的设置都可能有效，但他慷慨地展示了他在Blender中的设置。手臂和每件武器都是独立的骨骼，对于任何给定的动作都有各自独立的动画。这些动作随后在引擎内对齐。这通过使用所谓的Hand‑Gun骨骼（Cody在其访谈中也提到过）来实现，枪械骨骼的基础骨骼始终与其对齐。<br>
+在Blender中，这是通过在枪械骨骼的基础骨骼上附加复制变换修改器， 并将Hand‑Gun骨骼指定为其目标来实现的。在Blender中制作动画时，枪械骨骼主导移动， 这实际上意味着手臂骨骼的手部骨骼被设为枪械基础骨骼的子级。在指出不同方法都可能有效的同时，他表示<strong>枪械主导移动</strong>是更常见的方法，这一观点在Cody的访谈中得到了呼应。<br>
+根据动画的不同，可以在动画的不同部分使用几种不同的约束设置，例如手部暂时父级化到弹匣。他强调，这一切都取决于什么能帮助动画师实现期望动作。此外，他建议任何希望了解骨骼设置的人查看现有的Blender文件或类似文件，并以此为基础来构建自己的设置</p>
+<h4 id="动画制作crafting-authored-animations">
+<a class="header-anchor" href="#%e5%8a%a8%e7%94%bb%e5%88%b6%e4%bd%9ccrafting-authored-animations"></a>
+动画制作（crafting authored animations）
+</h4><p>三人都强调了分镜动画及其基本Pose的重要性<br>
+Anders建议思考在现实中如何持握武器，以及每个姿势后续的移动方向。<br>
+Jens则指出可以适当&quot;破坏&quot;骨骼的绑定结构，无论是静态姿势还是移动过程中，因为动画只需在单一角度呈现良好效果。<br>
+Milton着重提到打磨主要姿势的重要性：既要确保基础动画效果出色，又要思考屏幕外发生的动作，以确定特定动作或暂停的合理时长。举例说明了一种暂停场景——当左手取回弹匣时，右手和枪械保持相对静止。关于如何避免这类暂停显得枯燥，他给出的建议是加入重新握持动作，即持枪手对握把进行微调。这不仅能增强动画的生命力，还能巧妙地将手部过渡到下一个姿势，例如使枪械处于准备接弹匣的位置。若无需重新握持，按他的说法，让武器保持&quot;呼吸&quot;般的轻微晃动也足以达到效果。<br>
+Anders 19 指的是在基础姿势之间进行插值的过程作为抛光阶段，并表示这关乎于弄清楚移动发生在何处以及是对什么的响应。他给出的一个例子是当弹匣插入武器时应发生什么。例如，武器可能会朝着弹匣插入的方向被向后推，或者当右手补偿该动作时，它可以在中间与弹匣相遇， 等等。</p>
+<p>《使命召唤：现代战争》倾向于通过快速但夸张的滚动(Roll)而非移动来传达冲击和力。动画中位移和旋转之间的比例关系对其风格有很大影响。即使是像这样的微抖动也应该是基于物理原理的有意为之。</p>
+<h5 id="过冲和滚动roll的重要性">
+<a class="header-anchor" href="#%e8%bf%87%e5%86%b2%e5%92%8c%e6%bb%9a%e5%8a%a8roll%e7%9a%84%e9%87%8d%e8%a6%81%e6%80%a7"></a>
+过冲和滚动Roll的重要性
+</h5><p>当枪的枪托命中肩膀时， 它应该在稳定到预定姿势之前稍微过冲一点。在冲击点之后，应该会有2‑4个快速的小幅度左右滚动，同样遵循过冲原则，然后稳定在中间位置。</p>
+<h5 id="射击动画">
+<a class="header-anchor" href="#%e5%b0%84%e5%87%bb%e5%8a%a8%e7%94%bb"></a>
+射击动画
+</h5><p>手枪在一帧内急剧向上旋转，但向上或向后没有太多移动，因为这是由工作室的引擎内程序化动画系统处理的。还有一个轻微的远离强手的偏航运动。然后武器通过一些非常细微的过冲和快速滚动来稳定。<br>
+也能够通过程序化动画系统添加多样性、随机性甚至细微的风格化编辑。</p>
+<h5 id="混合单发和自动射击动画">
+<a class="header-anchor" href="#%e6%b7%b7%e5%90%88%e5%8d%95%e5%8f%91%e5%92%8c%e8%87%aa%e5%8a%a8%e5%b0%84%e5%87%bb%e5%8a%a8%e7%94%bb"></a>
+混合单发和自动射击动画
+</h5><p>常见方法是有一个单发射击动画，如果武器开始快速射击，可以过渡到一个循环的自动射击动画。然后，当武器停止射击时，会播放一个稳定动画。<br>
+Alexander强调了为武器提供多个初始开火动画的重要性。</p>
+<h5 id="曲线编辑器">
+<a class="header-anchor" href="#%e6%9b%b2%e7%ba%bf%e7%bc%96%e8%be%91%e5%99%a8"></a>
+曲线编辑器
+</h5><p>Anders似乎使用它来完成大量的动画工作，而不是在动画摄影表中对骨骼进行关键帧设置<br>
+虽然动画的初始布局可能通过传统的关键帧设置完成，但动画的大部分打磨工作都在曲线编辑器中进行，因为它非常适合添加小细节和抖动。<br>
+Anders还展示了如何通过更改关键帧的控制柄类型（ the handle type of a keyframe）来改变插值类型，这是在关键帧之间获得正确节奏和移动的重要部分</p>
+<h5 id="摄像机">
+<a class="header-anchor" href="#%e6%91%84%e5%83%8f%e6%9c%ba"></a>
+摄像机
+</h5><p>Jens和Milton：在动画中与手臂移动相连的摄像机移动通常是该烘焙动画的一部分。<br>
+但Milton表示与行走和奔跑相关的头部运动可以在引擎内完成，以便给予开发者更多控制权。<br>
+在Affray的SCP: 5K工作流程中， 烘焙的头部运动可以在引擎内修改和调整，这要归功于他们的程序化动画系统。</p>
+<h5 id="晕动症">
+<a class="header-anchor" href="#%e6%99%95%e5%8a%a8%e7%97%87"></a>
+晕动症
+</h5><p>他表示烘焙的摄像机运动需要更多设置才能在引擎内更改或关闭，这可能是为了迎合患有晕动症的玩家。Alexander提到开发者可能希望总体上减少摄像机运动， 更多地使用视图模型(view modal)，以避免玩家出现晕动症，特别是对于射击非常频繁的游戏。<br>
+重要的是不要让摄像机移动过度，因为它们可能让玩家感到头晕或恶心。</p>
+<p>Anders使用屏幕四个角落的四个方块来保持头部运动相对于灰色虚空（原本空的3D工作区）的参考点。他表示烘焙的摄像机运动通常跟随手臂的行动，以动画的期望焦点为中心。<br>
+说震动和冲击通常通过快速旋转摄像机的滚转轴来传达和强调，通过观察他的示例， 似乎通常使用弹簧插值来稳定这些运动。</p>
+<h5 id="构图">
+<a class="header-anchor" href="#%e6%9e%84%e5%9b%be"></a>
+构图
+</h5><p>一个好的起点是考虑三分法则。将视图划分为九个相等的矩形区域，并将主体的焦点放置在构成中心正方形角落的交点之一。<br>
+可以从视图的右下角向中心画一条对角线，并将武器的枪管与其对齐。这样，枪在屏幕上往往能很好地适应，不会显得太大或太小。<br>
+然而，视图模型在屏幕上的正确放置取决于武器，可能需要一些尝试和错误才能做好。一种策略是使用所讨论枪械上的线条和标记，以看起来美观的方式将它们对齐。AK47步枪（<a href="https://en.wikipedia.org/wiki/Kalashnikov_rifle">Kalashnikov rifles</a>）在上机匣后部有一条线，往往与屏幕底边很好地对齐。</p>
+<h5 id="什么会使基础姿势看起来不现代时">
+<a class="header-anchor" href="#%e4%bb%80%e4%b9%88%e4%bc%9a%e4%bd%bf%e5%9f%ba%e7%a1%80%e5%a7%bf%e5%8a%bf%e7%9c%8b%e8%b5%b7%e6%9d%a5%e4%b8%8d%e7%8e%b0%e4%bb%a3%e6%97%b6"></a>
+什么会使基础姿势看起来不现代时
+</h5><p>通常与视图模型过于偏向屏幕右侧有关。<br>
+动画师可能有合理的艺术理由打破这些经验法则，只要最终不会覆盖太多屏幕。<br>
+《使命召唤：现代战争》（InfinityWard，2019年）是一个打破某些规则的好例子，其中一些武器在屏幕底部比通常情况更加居中，并赞扬了该游戏动画师的才华使其成功。<br>
+大多数游戏避免在任何时候遮挡屏幕中心，选择围绕其进行动画制作。</p>
+<h3 id="422-动画分层">
+<a class="header-anchor" href="#422-%e5%8a%a8%e7%94%bb%e5%88%86%e5%b1%82"></a>
+4.2.2 动画分层
+</h3><p>程序化动画系统的核心部分</p>
+<h3 id="423-程序化动画">
+<a class="header-anchor" href="#423-%e7%a8%8b%e5%ba%8f%e5%8c%96%e5%8a%a8%e7%94%bb"></a>
+4.2.3 程序化动画
+</h3><p>程序化方法是两全其美的，因为即使你对手绘动画的访问有限，你也可以让游戏中的枪械手感完全符合你的期望。<br>
+可以向枪械骨骼添加偏移，将其与噪声相乘，然后根据玩家生命值或耐力等因素调制强度；最终在视图模型上产生沉浸式的抖动效果。</p>
+<h5 id="不应过于线性">
+<a class="header-anchor" href="#%e4%b8%8d%e5%ba%94%e8%bf%87%e4%ba%8e%e7%ba%bf%e6%80%a7"></a>
+不应过于线性
+</h5><p>过渡到低持枪姿势或高持枪姿势为例。(low-or high port)。<br>
+当玩家站得离障碍物太近时，视图模型会将武器移开。Cody表示这种移动不应是线性过渡。相反，如果过渡到高持枪姿势，武器应在向上旋转的同时向前推出，然后再次拉近玩家并落在预期的姿势中。类似地，如果过渡到低持枪姿势，武器应在开始旋转时向前冲出以避免碰到肩膀，然后稳定在其姿势中。<br>
+让某人专门设计像这样的额外动作才能真正让它们深入人心。</p>
+<h5 id="紧密合作">
+<a class="header-anchor" href="#%e7%b4%a7%e5%af%86%e5%90%88%e4%bd%9c"></a>
+紧密合作
+</h5><p>程序化动画系统的最佳使用方式是程序员和动画师紧密合作。Albie将动画师描述为设计枪战系统时最重要的合作者<br>
+对于更复杂的动作，动画师很可能能够比通过程序化手段创建该行动更快地制作出手绘动画，但他指出，如果能够将同一动画重用于多种武器，这可能比制作专属动画更快。</p>
+<h5 id="晃动sway">
+<a class="header-anchor" href="#%e6%99%83%e5%8a%a8sway"></a>
+晃动Sway
+</h5><p>从玩家静止时产生的晃动噪音开始。<br>
+每个旋转轴上的两层柏林噪声形式的噪声由玩家的生命值和当前武器的控制等级驱动。武器的控制等级。这些元素影响静止晃动的振幅和频率，其中控制性较差的武器晃动振幅更大但频率更低。</p>
+<p>其他类型的晃动，分别由玩家的移动和旋转引起，均由简化的物理驱动驱动，模拟弹簧阻尼器以实现自然的晃动和稳定感。<br>
+Cody使用弹簧插值来处理武器移动后的回弹和稳定。</p>
+<p>重要的是，Albie的程序化系统允许开发者指定武器在每个轴上操纵的难易程度。Albie指出这是一个强大的特性，因为不同的武器具有不同的重量和质心，并且不同轴上的移动应该以不同方式工作。<br>
+例如，武器在偏航轴(Yaw)上旋转时应具有更多阻力，而在滚转轴上的旋转应具有较少阻力、更高频率和更低惯性。武器应更倾向于在滚转轴(Roll)上旋转而非其他轴旋转的想法反复出现，因为Cody、 Anders和Milton都提到利用滚转来实现武器动画的微妙自然移动感。<br>
+武器通常在偏航轴(Yaw)上不能运动太多，如果你必须让武器产生 Yaw 摆动，它必须绕枪托（buttstock）旋转，而不是绕枪的中心点或手部位置。<br>
+pitch / roll 也可以部分受这里影响（取决于你想要的风格）</p>
+
+  <blockquote class="alert-blockquote question">
+    <p class="alert-heading">
+      Question
+    </p>
+    <p><h2 id="为什么要这么做">
+<a class="header-anchor" href="#%e4%b8%ba%e4%bb%80%e4%b9%88%e8%a6%81%e8%bf%99%e4%b9%88%e5%81%9a"></a>
+为什么要这么做：
+</h2><h3 id="-枪在现实中怎么转">
+<a class="header-anchor" href="#-%e6%9e%aa%e5%9c%a8%e7%8e%b0%e5%ae%9e%e4%b8%ad%e6%80%8e%e4%b9%88%e8%bd%ac"></a>
+◆ 枪在现实中怎么转？
+</h3><p>当玩家身体左右摇动或做非常轻微的 Yaw 旋转时：</p>
+<ul>
+<li>枪托贴在肩膀</li>
+<li>枪托基本是“固定点”，或是偏刚性的支点</li>
+<li>枪管端（muzzle）会动得最大</li>
+<li>武器中部次之</li>
+<li>枪托最小<br>
+📌 这就是现实中的<strong>杠杆</strong>效果。</li>
+</ul>
+<h3 id="-如果旋转点错了会出现什么问题">
+<a class="header-anchor" href="#-%e5%a6%82%e6%9e%9c%e6%97%8b%e8%bd%ac%e7%82%b9%e9%94%99%e4%ba%86%e4%bc%9a%e5%87%ba%e7%8e%b0%e4%bb%80%e4%b9%88%e9%97%ae%e9%a2%98"></a>
+◆ 如果旋转点错了，会出现什么问题？
+</h3><p>如果你让武器绕 “weapon root” 或 “枪中心” 旋转：</p>
+<ul>
+<li>枪会像“漂浮物”一样左右转</li>
+<li>缺乏重量</li>
+<li>与肩膀没有机械联系</li>
+<li>视觉上非常假（很多 indie FPS 都犯这个错）</li>
+</ul>
+<h3 id="-这样做后">
+<a class="header-anchor" href="#-%e8%bf%99%e6%a0%b7%e5%81%9a%e5%90%8e"></a>
+◆ 这样做后
+</h3></p>
+  </blockquote>
+
+<p>✔ 枪口摆动会被放大<br>
+✔ 枪托稳定，不会乱飞<br>
+✔ 枪看起来像“真枪”，有重量、有支撑点<br>
+✔ 手感立即提升（非常明显）</p>
+<p>在滚转轴上旋转之所以有效，是因为它在不显著影响瞄准方向的情况下增加了不确定感。然而，这在很大程度上取决于特定武器的枢轴点。虽然长武器通常滚动起来感觉良好，但高的武器则不然，因为枪管和瞄准具之间的距离可能会在玩家瞄准时造成不舒服或夸张动作。对此的解决方案很直接——在瞄准时将高武器的枢轴点向上移动。</p>
+<h5 id="视图模型过冲的特性">
+<a class="header-anchor" href="#%e8%a7%86%e5%9b%be%e6%a8%a1%e5%9e%8b%e8%bf%87%e5%86%b2%e7%9a%84%e7%89%b9%e6%80%a7"></a>
+视图模型过冲的特性
+</h5><p>是SCP: 5K的一个显著特性。<br>
+当玩家转向时，视图模型会超过屏幕中心，并在玩家停止旋转时保持向转向方向偏移。与游戏中的大多数程序化运动相反，这被应用于角色绑定的脊柱。这是为了让旋转发生在网格空间中，意味着它相对于角色的根变换而不是骨骼链中更下方的骨骼。<br>
+视图模型过冲不会减少摄像机移动，而是在玩家输入的基础上为视图模型添加额外的移动，并将该移动限制在屏幕的特定区域内。然后根据诸如玩家是否正在瞄准或他们的武器是否有枪托等因素来缩放此效果的振幅。在瞄准射击时， 有托武器如步枪不会出现过冲，而手枪和无托步枪仍然会出现。<br>
+手枪尤其因为其长度短、重量轻且缺乏枪托， 容易抖动和旋转，这使得对准其瞄准具变得困难。虽然VR以外的游戏不模拟双焦瞄准，也不要求玩家像在现实世界中那样对准瞄准具，但SCP: 5K的过冲系统仍然能让游戏传达无托武器缺乏稳定性的特点。然而，为了确保玩家仍能命中他们瞄准的位置，摄像机在瞄准射击时会微妙地自动对准手枪后方，同时仍允许视图模型离开屏幕中心。实现这一点的数学计算相当复杂，由于时间关系在访谈中未深入探讨。但他确实指出，一些玩家可能不喜欢这个过冲特性，可能是因为它引发了晕动症，或者因为相关玩家习惯于主要基于十字准星来定位自己，这就是为什么他的团队决定允许玩家减少或关闭此特性。</p>
+<h5 id="程序化头部运动">
+<a class="header-anchor" href="#%e7%a8%8b%e5%ba%8f%e5%8c%96%e5%a4%b4%e9%83%a8%e8%bf%90%e5%8a%a8"></a>
+程序化头部运动
+</h5><p>Affray的程序化系统还允许引擎内调整作为手绘动画一部分的摄像机运动，因为引擎的动画师不会直接播放作为动画一部分的头部运动。相反，头部骨骼的预期偏移运动被检索并转换为曲线。然后根据未指定的因素修改此运动的强度，并在动画堆栈的正确点以叠加方式应用。这样做的原因是游戏中存在大量的程序化头部运动，因此需要以叠加方式应用手绘头部运动，以免与任何其他程序化运动冲突。<br>
+由于第一人称和第三人称绑定具有相同的骨骼结构，手绘头部运动数据也可用于驱动第三人称角色中的脊柱、颈部和肩膀，使其运动更加自然。</p>
+<h2 id="43-美学考量">
+<a class="header-anchor" href="#43-%e7%be%8e%e5%ad%a6%e8%80%83%e9%87%8f"></a>
+4.3 美学考量
+</h2><h3 id="431-角色塑造">
+<a class="header-anchor" href="#431-%e8%a7%92%e8%89%b2%e5%a1%91%e9%80%a0"></a>
+4.3.1 角色塑造
+</h3><blockquote>
+<p>主题：枪战玩法的手感如何塑造、识别或区分武器或其使用者</p>
+</blockquote>
+<h4 id="晃动-sway">
+<a class="header-anchor" href="#%e6%99%83%e5%8a%a8-sway"></a>
+晃动 sway
+</h4><p>如果枪械引导移动，这可能会给玩家一种武器操作者技术娴熟或经验丰富的感觉；而如果武器滞后于摄像机，则可能表明相反的情况。晃动插值的各个方面，例如重新居中所需的时间，可以用来强调武器的尺寸或重量。<br>
+一些可用于传达武器特性（如尺寸和重量）的参数包括视图模型过渡到冲刺动画的速度、切换武器的速度、切换到武器后直到可用的时间以及玩家角色瞄准瞄准具的速度。他还引用了后坐力的强度作为可以传达武器威力的一个因素。</p>
+<h4 id="动画如何刻画武器使用者的特征">
+<a class="header-anchor" href="#%e5%8a%a8%e7%94%bb%e5%a6%82%e4%bd%95%e5%88%bb%e7%94%bb%e6%ad%a6%e5%99%a8%e4%bd%bf%e7%94%a8%e8%80%85%e7%9a%84%e7%89%b9%e5%be%81"></a>
+动画如何刻画武器使用者的特征
+</h4><p>现代战争特战队员，动画姿势相对静态，微抖动被审慎使用，以保持移动中的反应和冲击较小。<br>
+Striden中普通人，动画不够优雅，反应更大且由移动驱动，换弹动作也不标准，为承受更大的后坐力和武器晃动<br>
+《叛乱：沙漠风暴》中，玩家可能感觉与游戏有些脱节，因为其缓慢的动画没有反映玩家在紧张游戏玩法情境中所感受到的紧迫感。<br>
+SCP:5K中的动画目标介于《叛乱：沙漠风暴》和《现代战争2019》之间，具有有条不紊却又紧张的动作，以及动作之间的小暂停。</p>
+<p>让枪引导晃动Sway但需要更长时间回到中心位置，来描绘士兵纪律严明但疲惫笨拙的形象。<br>
+动画中有大量移动，武器被描绘得沉重且难以控制。例如，在待机动画中武器可能会降低高度并开始下沉，重新握持和重新定位动作都显得沉重。<br>
+待机动画也可能描绘抽搐和紧张的呼吸来传达压力和创伤。<br>
+角色可以被描绘为对重复武器训练感到厌烦和疲惫，因此在动画中有时会失误和笨拙操作。建议通过采用美学上有些笨拙或马虎的枪械手感风格来传达士兵的恐惧和缺乏经验，而Erik提出通过强调武器晃动、在通过瞄准具瞄准时应用模糊效果以及让武器难以操控，来描绘角色因多年战壕生活而受损的身心健康。使用抖动、晃动和精准度等元素来传达角色的缺乏经验和创伤。</p>
+<h5 id="反向游戏感">
+<a class="header-anchor" href="#%e5%8f%8d%e5%90%91%e6%b8%b8%e6%88%8f%e6%84%9f"></a>
+反向游戏感
+</h5><p>Albie认为：为了推进游戏的故事或氛围，可以让枪械手感的精准度和响应性稍微下滑，但这有些冒险，需要经过深思熟虑。游戏应该是有趣的，或者至少是有意义的，而不是让玩家反感且一无所获的体验。因此，在处理不响应性时（working with unresponsiveness），需要进行大量的微调。<br>
+这与Casper的反向游戏感概念相关，他在谈到这一点时，指的是让射击对玩家产生强烈的吸引力，同时在被敌人发现或定位的前景中引发一定程度的恐惧或焦虑。</p>
+<h5 id="模拟物理提高沉浸感">
+<a class="header-anchor" href="#%e6%a8%a1%e6%8b%9f%e7%89%a9%e7%90%86%e6%8f%90%e9%ab%98%e6%b2%89%e6%b5%b8%e6%84%9f"></a>
+模拟物理提高沉浸感
+</h5><p>SCP:5K不会自动重置相机后坐力，Albie将这一决定置于一个关于玩家身份和具身化的更广泛设计理念中。<br>
+《使命召唤：现代战争》中，玩家向一个高度能干的角色发出指令，该角色自主处理武器控制。相比之下， Albie的方法假设玩家正在扮演该角色，模拟物理行为，如手动控制武器后坐力。分离视觉和相机后坐力，并限制自动重置的决定，强化了一种更沉浸和响应式的体验，不会干扰玩家的有意输入。</p>
+<h3 id="432-可供性与期望">
+<a class="header-anchor" href="#432-%e5%8f%af%e4%be%9b%e6%80%a7%e4%b8%8e%e6%9c%9f%e6%9c%9b"></a>
+4.3.2 可供性与期望
+</h3><h3 id="433-可信度">
+<a class="header-anchor" href="#433-%e5%8f%af%e4%bf%a1%e5%ba%a6"></a>
+4.3.3 可信度
+</h3><p>the negative impact frame<br>
+Anders通过提及那个一战时期缺乏扳机纪律、单手握持手枪以及不同的弹匣操作来呼应这一点。</p>
+<h2 id="44-上下文整合">
+<a class="header-anchor" href="#44-%e4%b8%8a%e4%b8%8b%e6%96%87%e6%95%b4%e5%90%88"></a>
+4.4 上下文整合
+</h2><h3 id="441-环境效果">
+<a class="header-anchor" href="#441-%e7%8e%af%e5%a2%83%e6%95%88%e6%9e%9c"></a>
+4.4.1 环境效果
+</h3><p>环境效果对于向玩家提供是否命中某物以及命中什么物体的反馈的重要<br>
+如果子弹冲击仅限于一个贴花和一次烟雾喷发，可能会削弱枪械手感，而可破坏环境即使这种可破坏性对更广泛的游戏玩法没有影响，也能增强枪械手感。</p>
+
+  <blockquote class="alert-blockquote example">
+    <p class="alert-heading">
+      Example
+    </p>
+    <p><h4 id="子弹撞击墙壁">
+<a class="header-anchor" href="#%e5%ad%90%e5%bc%b9%e6%92%9e%e5%87%bb%e5%a2%99%e5%a3%81"></a>
+子弹撞击墙壁
+</h4><p>让子弹最初撞击墙壁时移除物体的几个大碎块，这些碎块可以分解成更小的碎片，进而分解成粒子。关于这些碎块的物理原理，人们总是希望混合来自不同来源的速度。这包括远离冲击点的径向力、符合子弹轨迹的方向力，有时还包括向上的随机速度，以引入弧线和一些动作弹性。根据设置，如果碎块的碰撞体相交，它们可能会相互施加力，这可能是可取的，也可能不可取。</p></p>
+  </blockquote>
+
+<p>敌人反应是枪械手感的一个关键方面。开发团队投入大量精力制作多种不同的动画化敌人反应，通常采用夸张动作。<br>
+与环境破坏相比，Lucas表示这些效果通常计算成本很低。<br>
+聚焦视觉特效的角色，他解释了如何以清晰且令人满意的方式将肢体从敌人身上分离。</p>
+
+  <blockquote class="alert-blockquote example">
+    <p class="alert-heading">
+      Example
+    </p>
+    <p><h4 id="命中敌人手臂">
+<a class="header-anchor" href="#%e5%91%bd%e4%b8%ad%e6%95%8c%e4%ba%ba%e6%89%8b%e8%87%82"></a>
+命中敌人手臂
+</h4><p>当子弹命中敌人手臂时，前臂会被遮蔽至肘部，并生成一个独立的血淋淋手臂对象。生成的手臂继承了敌人动画的部分速度，并在较小程度上受冲击方向影响。有时还会施加一个向外的力。<br>
+原因是为手臂提供令人满意且直观的轨迹，因为如果其速度仅受冲击方向影响，手臂最终总会朝玩家的正反方向飞去，这将使其难以被看见。如果能使手臂撕裂与敌人反应动画更好地对齐，还可以添加短暂延迟。</p></p>
+  </blockquote>
+
+<h3 id="442-平衡性">
+<a class="header-anchor" href="#442-%e5%b9%b3%e8%a1%a1%e6%80%a7"></a>
+4.4.2 平衡性
+</h3><p>受访者频繁将其与枪械手感联系起来<br>
+枪械手感相关的几个平衡性方面，包括伤害、散布、后坐力、换弹时间、穿甲以及即时命中和弹道子弹系统的区别。</p>
+<h4 id="弹道系统">
+<a class="header-anchor" href="#%e5%bc%b9%e9%81%93%e7%b3%bb%e7%bb%9f"></a>
+弹道系统
+</h4><p>选择弹道系统并让玩家预判射击和计算距离，可能会带来适合二战设计挑战设定的紧张体验。相反，Alexander指出，当游戏中的远距离不是重要因素时，会使用即时命中而非弹道系统，并将其与不优先考虑真实感的游戏联系起来。他还指出，这比计算弹道的计算成本更低。</p>
+<h4 id="后坐力-recoil">
+<a class="header-anchor" href="#%e5%90%8e%e5%9d%90%e5%8a%9b-recoil"></a>
+后坐力 recoil
+</h4><p>Erik将其视为确保没有一种正确使用特定枪支的方式的一种方法，并举例说明武器在近距离可以连续射击且有效，但在远距离必须点射。</p>
+
+  <blockquote class="alert-blockquote warning">
+    <p class="alert-heading">
+      Warning
+    </p>
+    <p><h4 id="没听懂">
+<a class="header-anchor" href="#%e6%b2%a1%e5%90%ac%e6%87%82"></a>
+没听懂
+</h4><p>Erik说:如果玩家每次参与战斗时，在其他游戏玩法因素（如姿态和弹道学）的帮助下，积极做出5个微观决策，他们就会沉浸在体验中。希望通过宏观与微观决策的结合，玩家不会经常陷入完全相同的情况。<br>
+<img src="CraftingGunFeel.pdf#page=33%5C&amp;rect=67,428,529,536%5C&amp;color=note" alt="CraftingGunFeel.pdf#page=33\&amp;rect=67,428,529,536\&amp;color=note"></p></p>
+  </blockquote>
+
+<h5 id="后坐力模式是否应该随机">
+<a class="header-anchor" href="#%e5%90%8e%e5%9d%90%e5%8a%9b%e6%a8%a1%e5%bc%8f%e6%98%af%e5%90%a6%e5%ba%94%e8%af%a5%e9%9a%8f%e6%9c%ba"></a>
+后坐力模式是否应该随机
+</h5><p>Cody指出虽然他更喜欢随机模式，但竞技射击游戏可能会受益于拥有可被熟练玩家学习的固定模式。<br>
+Erik强调后坐力系统受益于可预测性和变化之间的平衡。虽然完全随机的后坐力可以增添风味和不可预测性。<br>
+一种有效的方法是使用具有一定程度内置变化的固定后坐力模式（a set recoil pattern with a degree of built-in variance;），他将其描述为“最佳平衡点（sweet spot.）”。<br>
+手柄用户由于精度较低而在后坐力控制方面面临固有挑战，这通常通过拥有某种程度的瞄准辅助来抵消。<br>
+后坐力管理本身可以作为秒到秒的游戏玩法(second-to-second gameplay)形式，为枪战玩法增添深度和技能表现。</p>
+<h1 id="5-讨论">
+<a class="header-anchor" href="#5-%e8%ae%a8%e8%ae%ba"></a>
+5 讨论
+</h1><p>关于枪械手感的背景研究和从访谈本身获得的数据相互补充得相当好，同时矛盾地展示了映射如此广阔领域的困难。</p>
+<h2 id="511-与学术研究比较">
+<a class="header-anchor" href="#511-%e4%b8%8e%e5%ad%a6%e6%9c%af%e7%a0%94%e7%a9%b6%e6%af%94%e8%be%83"></a>
+5.1.1 与学术研究比较
+</h2><p>PichlmairandJohansen(2022)描述了游戏手感的三个设计领域，包括物理性、放大和支持（physicality, amplification and support）。</p>
+<p>Hicks, Dickinson,HolopainenandGerling(2018)对游戏手感的构建倾向于清晰度、反馈和机械爽快感，但7位受访开发者将枪械手感视为表现性的，传达情感和身份。<br>
+受访者认为枪械手感具有双重角色，既强化动作，又在情感上或叙事上对其进行修饰<br>
+Brazie（2025）对游戏手感的定义中的关键术语包括响应性、直观性和临场感，所有这些概念在访谈中都是反复出现的主题，尽管直观性相比其他术语被明确阐述的频率可能较低。<br>
+在多次访谈中反复强调通过触觉反馈、夸张动画和惯性驱动运动来增强临场感</p>
+<p>Jens和Anders都提到了动画十二原则，其中Anders认为，使第一人称动画看起来出色的因素在很大程度上与其他类型的动画相同。<br>
+在动画中使用曲线而非关键帧</p>
+<p><a href="/the-art-of-destiny%27s-first-person-animation">Helsby的演讲</a>选择使用摄像机平移而非旋转，这与从访谈中获得的信息相矛盾，因为参与者仅在涉及动画摄像机运动时提到旋转。</p>
+<h2 id="52-方法考量与未来研究">
+<a class="header-anchor" href="#52-%e6%96%b9%e6%b3%95%e8%80%83%e9%87%8f%e4%b8%8e%e6%9c%aa%e6%9d%a5%e7%a0%94%e7%a9%b6"></a>
+5.2 方法考量与未来研究
+</h2><p>在更广泛的行业背景下，战术射击游戏是一个相当小众的游戏类型。因此，有理由认为，虽然研究结果对某些开发者的实践提供了丰富且有价值的可操作见解，但可能并不完全代表更广泛的行业实践</p>
+<p>Albie：射击通常是玩家与世界互动的主要方式，是一种极具<strong>破坏性</strong>的互动途径。</p>
+<h1 id="6-结论">
+<a class="header-anchor" href="#6-%e7%bb%93%e8%ae%ba"></a>
+6 结论
+</h1></div>
+    <footer class="article-footer"><ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item" data-aos="zoom-in">
+      <a
+        class="article-tag-list-link"
+        href="/WzhGameDevPublish/tags/3c"
+        rel="tag"
+        >3C</a
+      >
+    </li><li class="article-tag-list-item" data-aos="zoom-in">
+      <a
+        class="article-tag-list-link"
+        href="/WzhGameDevPublish/tags/fps"
+        rel="tag"
+        >FPS</a
+      >
+    </li><li class="article-tag-list-item" data-aos="zoom-in">
+      <a
+        class="article-tag-list-link"
+        href="/WzhGameDevPublish/tags/%e6%89%93%e5%87%bb%e6%84%9f"
+        rel="tag"
+        >打击感</a
+      >
+    </li><li class="article-tag-list-item" data-aos="zoom-in">
+      <a
+        class="article-tag-list-link"
+        href="/WzhGameDevPublish/tags/blog"
+        rel="tag"
+        >BLOG</a
+      >
+    </li></ul>
+</footer>
+  </div><nav
+    id="article-nav"
+    aria-label="Article navigation"
+    data-aos="fade-up"
+  ><div class="article-nav-link-wrap left"><img
+              data-src="https://d-sketon.top/img/_backwebp/bg1.webp"
+              data-sizes="auto"
+              alt="FPS中的武器摇晃"
+              class="lazyload"
+            /><a
+          href="/WzhGameDevPublish/post/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/%E4%BB%A3%E7%A0%81%E6%A1%86%E6%9E%B6/lyra/fps/%E6%8A%80%E6%9C%AF%E7%BB%86%E8%8A%82/weaponsway/fpszhong-de-wu-qi-yao-huang/"
+          aria-label="前一篇:FPS中的武器摇晃"
+          title="前一篇:FPS中的武器摇晃"
+        ></a>
+        <div class="article-nav-caption">前一篇</div>
+        <h3 class="article-nav-title">FPS中的武器摇晃</h3>
+      </div><div class="article-nav-link-wrap right"><img
+              data-src="https://img95.699pic.com/photo/60027/4138.jpg_wh860.jpg"
+              data-sizes="auto"
+              alt="Lyra改FPS操作指引"
+              class="lazyload"
+            /><a
+          href="/WzhGameDevPublish/post/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/%E4%BB%A3%E7%A0%81%E6%A1%86%E6%9E%B6/lyra/fps/lyra%E6%94%B9fps%E6%93%8D%E4%BD%9C%E6%8C%87%E5%BC%95/"
+          aria-label="后一篇:Lyra改FPS操作指引"
+          title="后一篇:Lyra改FPS操作指引"
+        ></a>
+        <div class="article-nav-caption">后一篇</div>
+        <h3 class="article-nav-title">Lyra改FPS操作指引</h3>
+      </div></nav></article></section>
+        </div><footer id="footer" aria-label="Site footer">
+  <div style="width: 100%; overflow: hidden">
+    <div class="footer-line"></div>
+  </div>
+  <div id="footer-info"><div>
+      <span class="icon-copyright"></span>2025-2026<span class="footer-info-sep rotate"></span>
+      温志洪
+    </div><div>
+        基于&nbsp;<a
+          href="https://gohugo.io/"
+          target="_blank"
+          rel="noopener nofollow noreferrer"
+          >Hugo</a
+        >&nbsp; Theme.<a
+          href="https://github.com/D-Sketon/hugo-theme-reimu"
+          target="_blank"
+          rel="noopener nofollow noreferrer"
+          >Reimu</a
+        >
+      </div><div>
+        <span class="icon-brush"
+          >&nbsp;80.2k</span
+        >
+        &nbsp;|&nbsp;
+        <span class="icon-coffee">&nbsp;02:50</span>
+      </div><div>
+        <span class="icon-eye"></span>
+        <span id="busuanzi_container_site_pv"
+          >总访问量&nbsp;<span
+            id="busuanzi_value_site_pv"
+          ></span
+        ></span>
+        &nbsp;|&nbsp;
+        <span class="icon-user"></span>
+        <span id="busuanzi_container_site_uv"
+          >总访客量&nbsp;<span
+            id="busuanzi_value_site_uv"
+          ></span
+        ></span>
+      </div></div>
+</footer>
+<div class="sidebar-top">
+            <div class="sidebar-top-taichi rotate"></div>
+            <div class="arrow-up"></div>
+          </div><div id="mask" class="hide"></div>
+      </div><nav id="mobile-nav" aria-label="Mobile navigation">
+  <div class="sidebar-wrap"><div class="sidebar-toc-sidebar"><h3 class="toc-title">文章目录</h3>
+<div class="sidebar-toc-wrapper toc-div-class">
+  <nav id="TableOfContents">
+  <ul>
+    <li><a href="#引用">引用</a></li>
+    <li><a href="#定义gun-feel">定义Gun feel</a></li>
+    <li><a href="#搜索方案">搜索方案</a></li>
+    <li><a href="#访谈是回答研究问题最合适的方法">访谈是回答研究问题最合适的方法</a></li>
+    <li><a href="#36-局限性">3.6 局限性</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#41-视觉听觉与运动学效果">4.1 视觉、听觉与运动学效果</a>
+      <ul>
+        <li><a href="#411-枪口闪光">4.1.1 枪口闪光</a></li>
+        <li><a href="#烟雾粒子">烟雾粒子</a></li>
+        <li><a href="#空弹壳">空弹壳</a></li>
+        <li><a href="#后坐力">后坐力</a></li>
+        <li><a href="#413-晃动-weapon-sway">4.1.3 晃动 Weapon Sway</a></li>
+        <li><a href="#414-摄像机">4.1.4 摄像机</a></li>
+        <li><a href="#415-瞄准死区">4.1.5 瞄准死区</a></li>
+        <li><a href="#416-音频">4.1.6 音频</a></li>
+      </ul>
+    </li>
+    <li><a href="#动画">动画</a>
+      <ul>
+        <li><a href="#421-动画工艺">4.2.1 动画工艺</a></li>
+        <li><a href="#422-动画分层">4.2.2 动画分层</a></li>
+        <li><a href="#423-程序化动画">4.2.3 程序化动画</a></li>
+        <li><a href="#-枪在现实中怎么转">◆ 枪在现实中怎么转？</a></li>
+        <li><a href="#-如果旋转点错了会出现什么问题">◆ 如果旋转点错了，会出现什么问题？</a></li>
+        <li><a href="#-这样做后">◆ 这样做后</a></li>
+      </ul>
+    </li>
+    <li><a href="#43-美学考量">4.3 美学考量</a>
+      <ul>
+        <li><a href="#431-角色塑造">4.3.1 角色塑造</a></li>
+        <li><a href="#432-可供性与期望">4.3.2 可供性与期望</a></li>
+        <li><a href="#433-可信度">4.3.3 可信度</a></li>
+      </ul>
+    </li>
+    <li><a href="#44-上下文整合">4.4 上下文整合</a>
+      <ul>
+        <li><a href="#441-环境效果">4.4.1 环境效果</a></li>
+        <li><a href="#442-平衡性">4.4.2 平衡性</a></li>
+      </ul>
+    </li>
+  </ul>
+
+  <ul>
+    <li><a href="#511-与学术研究比较">5.1.1 与学术研究比较</a></li>
+    <li><a href="#52-方法考量与未来研究">5.2 方法考量与未来研究</a></li>
+  </ul>
+</nav>
+</div></div>
+        <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
+  <img
+    data-src="/WzhGameDevPublish/avatar/UELogo.png"
+    data-sizes="auto"
+    alt="温志洪"
+    class="lazyload"
+  />
+  <div class="sidebar-author-name">温志洪</div>
+  <div class="sidebar-description">FPS游戏</div>
+</div>
+<div class="sidebar-state">
+  <div class="sidebar-state-article">
+    <div>文章</div><div class="sidebar-state-number">20</div>
+  </div>
+  <a class="sidebar-state-category" href="/WzhGameDevPublish/categories/" aria-label="sidebar-state-category-link">
+    <div>分类</div>
+    <div class="sidebar-state-number">
+      0
+    </div>
+  </a>
+  <a class="sidebar-state-tag" href="/WzhGameDevPublish/tags/" aria-label="sidebar-state-tag-link">
+    <div>标签</div>
+    <div class="sidebar-state-number">12</div>
+  </a>
+</div>
+<div class="sidebar-social"><div class="icon-bilibili sidebar-social-icon">
+      <a
+        href="https://space.bilibili.com/35312868"
+        itemprop="url"
+        target="_blank"
+        aria-label="bilibili"
+        rel="noopener nofollow noreferrer"
+      ></a>
+    </div><div class="icon-email sidebar-social-icon">
+      <a
+        href="mailto:cnwenzhihong@gmail.com"
+        itemprop="url"
+        target="_blank"
+        aria-label="email"
+        rel="noopener nofollow noreferrer"
+      ></a>
+    </div></div>
+<div class="sidebar-menu"><div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/WzhGameDevPublish/"
+        aria-label="首页"
+      ></a>
+      <div class='sidebar-menu-icon icon rotate'>&#xe62b;</div>
+      <div class="sidebar-menu-link">首页</div>
+    </div><div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/WzhGameDevPublish/archives"
+        aria-label="归档"
+      ></a>
+      <div class='sidebar-menu-icon icon rotate'>&#xe62b;</div>
+      <div class="sidebar-menu-link">归档</div>
+    </div><div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/WzhGameDevPublish/about"
+        aria-label="关于"
+      ></a>
+      <div class='sidebar-menu-icon icon rotate'>&#xe62b;</div>
+      <div class="sidebar-menu-link">关于</div>
+    </div><div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/WzhGameDevPublish/friend"
+        aria-label="友链"
+      ></a>
+      <div class='sidebar-menu-icon icon rotate'>&#xe62b;</div>
+      <div class="sidebar-menu-link">友链</div>
+    </div></div>
+</div></div><div class="sidebar-btn-wrapper">
+        <div class="sidebar-toc-btn current"></div>
+        <div class="sidebar-common-btn"></div>
+      </div></nav>
+</div><div class="site-search">
+        <div class="reimu-popup popup">
+          <div class="reimu-search">
+            <div class="reimu-search-input-icon"></div>
+            <div id="reimu-search-input"></div>
+            <div class="popup-btn-close"></div>
+          </div>
+          <div class="reimu-results">
+            <div id="reimu-stats"></div>
+            <div id="reimu-hits"></div>
+            <div id="reimu-pagination" class="reimu-pagination"></div>
+          </div>
+          <img class="reimu-bg" src="/WzhGameDevPublish/images/reimu.png" />
+        </div>
+      </div><script
+    src="https://npm.webcache.cn/lazysizes@5.3.2/lazysizes.min.js"
+    integrity="sha384-3gT/vsepWkfz/ff7PpWNUeMzeWoH3cDhm/A8jM7ouoAK0/fP/9bcHHR5kHq2nf&#43;e" crossorigin="anonymous"></script><script
+    src="https://npm.webcache.cn/clipboard@2.0.11/dist/clipboard.min.js"
+    integrity="sha384-J08i8An/QeARD9ExYpvphB8BsyOj3Gh2TSh1aLINKO3L0cMSH2dN3E22zFoXEi0Q" crossorigin="anonymous"></script><script
+    src="https://npm.webcache.cn/material-theme@1.0.0/dist/material-theme.umd.js"
+    integrity="sha384-vLev0II0HKFaxkcm&#43;/7kX5IGwVFBASkGchU311wmU/veIj2bB0UcBkQbW6yw2asK" crossorigin="anonymous"></script><script src="/WzhGameDevPublish/js/main.js" ></script><script src="/WzhGameDevPublish/js/aos.js" ></script><script>
+    var aosInit = () => {
+      AOS.init({
+        duration: 1000,
+        easing: "ease",
+        once: true,
+        offset: 50,
+      });
+    };
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", aosInit);
+    } else {
+      aosInit();
+    }
+  </script><script src="/WzhGameDevPublish/js/pjax_main.js" data-pjax></script><script>
+    var ALGOLIA_CONFIG = {
+      logo: '\/WzhGameDevPublish\/images\/algolia_logo.svg',
+      algolia: {
+        applicationID: "Y8C6JKXKKR",
+        apiKey: "30fdacdc4947fb8d8faed68e16f048a0",
+        indexName: "index",
+        hits: {
+          "per_page": parseInt("10")
+        },
+        labels: {
+          "input_placeholder": '搜索.....',
+          "hits_empty": '未发现与 「${query}」相关内容',
+          "hits_stats": '找到${hits}条结果（用时 ${time} ms）'
+        }
+      }
+    };
+  </script><script
+    src="https://npm.webcache.cn/algoliasearch@4.17.1/dist/algoliasearch-lite.umd.js"
+    deferintegrity="sha384-xvLS0jfKuoREs7pqkRI/OI8GcqohO5S&#43;jQz7ZBtQXnsXmD&#43;9jDOOY4cL6dCPzlrk" crossorigin="anonymous"></script><script
+    src="https://npm.webcache.cn/@reimujs/instantsearch.js@4.57.0-beta.1/dist/instantsearch.production.min.js"
+    deferintegrity="sha384-aagKMe8nkqaP2DYQc8kkYOL5l&#43;M5Q2WH/Uhr4teOh0Ybp0RZj0kUSDm45qPikMjK" crossorigin="anonymous"></script><script src="/WzhGameDevPublish/js/algolia_search.js" ></script><script
+    src="https://npm.webcache.cn/mouse-firework@0.1.1/dist/index.umd.js"
+    integrity="sha384-8LyaidD9GPxQQgLJO/WRw/O2h3BoNq/ApI/ecpvM6RsrCz2qP2ppBXUKihP4V/2d" crossorigin="anonymous"></script><script>
+  if (! false  || !window.matchMedia('(max-width: 768px)').matches) {
+    if (window.firework) {
+      const options = JSON.parse("{\"excludeelements\":[\"a\",\"button\"],\"particles\":[{\"colors\":[\"var(--red-1)\",\"var(--red-2)\",\"var(--red-3)\",\"var(--red-4)\"],\"duration\":[1200,1800],\"easing\":\"easeOutExpo\",\"move\":[\"emit\"],\"number\":20,\"shape\":\"circle\",\"shapeOptions\":{\"alpha\":[0.3,0.5],\"radius\":[16,32]}},{\"colors\":[\"var(--red-0)\"],\"duration\":[1200,1800],\"easing\":\"easeOutExpo\",\"move\":[\"diffuse\"],\"number\":1,\"shape\":\"circle\",\"shapeOptions\":{\"alpha\":[0.2,0.5],\"lineWidth\":6,\"radius\":20}}]}");
+      options.excludeElements = options.excludeelements;
+      delete options.excludeelements;
+      window.firework(options);
+    }
+  }
+</script><script
+    src="https://npm.webcache.cn/quicklink@3.0.1/dist/quicklink.umd.js"
+    integrity="sha384-caMDqvgav/HWdEYQU1QRRHMLleigpL1YHAG0m371DhzfL8rRzUyOb&#43;bEHtwlmYjD" crossorigin="anonymous"></script><script data-pjax>
+    window.quicklink?.listen({
+      timeout:  3000 ,
+      priority:  true ,
+      ignores: JSON.parse("[]")
+    });
+  </script>
+
+
+<div id="lazy-script">
+  <div><script data-pjax>
+        window.REIMU_POST = {
+          author: "温志洪",
+          title: "CraftingGunFeel——专业游戏开发者如何为射击游戏创造枪械手感？",
+          url: "http:\/\/localhost:1895\/WzhGameDevPublish\/post\/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91\/%E4%BB%A3%E7%A0%81%E6%A1%86%E6%9E%B6\/lyra\/fps\/%E7%AC%AC%E4%B8%89%E6%96%B9%E8%B5%84%E6%96%99\/craftinggunfeel\/craftinggunfeel%E4%B8%93%E4%B8%9A%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91%E8%80%85%E5%A6%82%E4%BD%95%E4%B8%BA%E5%B0%84%E5%87%BB%E6%B8%B8%E6%88%8F%E5%88%9B%E9%80%A0%E6%9E%AA%E6%A2%B0%E6%89%8B%E6%84%9F\/",
+          description: " 视图模型：value wiki：Viewmodel\n引言\r专业开发者为达到令人满意的枪械射击效果所使用的具体技术很难获取，因为这类知识可能是专有的，或者只是隐藏在实力雄厚或孤立的游戏工作室的资深开发者中。尽管这项研究中受访的开发者经常声称他们乐于分享知识，但其他受访者通过无法分享某些开发技术或因公司政策选择匿名来质疑这些说法。目前需要大量的试错和从互联网上搜寻零散的线索。\n",
+          cover: "http:\/\/localhost:1895\/WzhGameDevPublish\/images\/banner.webp",
+        };
+      </script><script src="/WzhGameDevPublish/js/insert_highlight.js" data-pjax></script><script src="/WzhGameDevPublish/js/tabs.js" data-pjax></script><script type="module" data-pjax>const PhotoSwipeLightbox = (await safeImport("https:\/\/npm.webcache.cn\/photoswipe@5.4.4\/dist\/photoswipe-lightbox.esm.min.js", "sha384-DiL6M\/gG\u002bwmTxmCRZyD1zee6lIhawn5TGvED0FOh7fXcN9B0aZ9dexSF\/N6lrZi\/")).default;const initPswp = (gallery, children) => {
+          if (_$$(`${gallery} ${children}`).length > 0) {
+            new PhotoSwipeLightbox({
+              gallery,
+              children,pswpModule: () => safeImport("https:\/\/npm.webcache.cn\/photoswipe@5.4.4\/dist\/photoswipe.esm.min.js", "sha384-WkkO3GCmgkC3VQWpaV8DqhKJqpzpF9JoByxDmnV8\u002boTJ7m3DfYEWX1fu1scuS4\u002bs")}).init();
+          }
+        }
+        const pswp = () => {
+          initPswp('.article-entry', 'a.article-gallery-item');
+          initPswp('.article-gallery', 'a.article-gallery-item');
+          window.lightboxStatus = 'done';
+          window.removeEventListener('lightbox:ready', pswp);
+        }
+        if(window.lightboxStatus === 'ready') {
+          pswp()
+        } else {
+          window.addEventListener('lightbox:ready', pswp);
+        }
+      </script></div>
+</div><script
+    src="https://npm.webcache.cn/busuanzi@2.3.0/bsz.pure.mini.js"
+    asyncintegrity="sha384-0M75wtSkhjIInv4coYlaJU83&#43;OypaRCIq2SukQVQX04eGTCBXJDuWAbJet56id&#43;S" crossorigin="anonymous"></script><script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.getRegistrations().then((registrations) => {
+        for (let registration of registrations) {
+          registration.unregister();
+        }
+      });
+    }
+  </script><script>
+  const reimuCopyright = String.raw`
+   ______     ______     __     __    __     __  __    
+  /\  == \   /\  ___\   /\ \   /\ "-./  \   /\ \/\ \   
+  \ \  __<   \ \  __\   \ \ \  \ \ \-./\ \  \ \ \_\ \  
+   \ \_\ \_\  \ \_____\  \ \_\  \ \_\ \ \_\  \ \_____\ 
+    \/_/ /_/   \/_____/   \/_/   \/_/  \/_/   \/_____/ 
+                                                    
+  `;
+  console.log(String.raw`%c ${reimuCopyright}`, "color: #ff5252;");
+  console.log(
+    "%c Theme.Reimu" + " %c https://github.com/D-Sketon/hugo-theme-reimu ",
+    "color: white; background: #ff5252; padding:5px 0;",
+    "padding:4px;border:1px solid #ff5252;",
+  );
+</script></body>
+</html>
