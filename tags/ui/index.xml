@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>UI on 妖精游戏开发馆</title>
+    <link>http://localhost:1895/WzhGameDevPublish/tags/ui/</link>
+    <description>Recent content from 妖精游戏开发馆</description>
+    <generator>Hugo</generator>
+    <language>zh-cn</language>
+    
+    <managingEditor>cnwenzhihong@gmail.com (温志洪)</managingEditor>
+    <webMaster>cnwenzhihong@gmail.com (温志洪)</webMaster>
+    
+    <copyright>本博客所有文章除特别声明外，均采用 BY-NC-SA 许可协议。转载请注明出处！</copyright>
+    
+    <lastBuildDate>Thu, 21 May 2026 19:57:47 +0000</lastBuildDate>
+    
+    
+    <atom:link href="http://localhost:1895/WzhGameDevPublish/tags/ui/index.xml" rel="self" type="application/rss&#43;xml" />
+    
+
+    
+    
+
+    <item>
+      <title>Lyra插件CommonUI详细拆分</title>
+      <link>http://localhost:1895/WzhGameDevPublish/post/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/%E4%BB%A3%E7%A0%81%E6%A1%86%E6%9E%B6/lyra/%E6%95%88%E6%9E%9C%E8%A1%A8%E7%8E%B0/lyra%E6%8F%92%E4%BB%B6commonui%E8%AF%A6%E7%BB%86%E6%8B%86%E5%88%86/</link>
+      <pubDate>Thu, 21 May 2026 19:24:57 &#43;0000</pubDate>
+      <author>cnwenzhihong@gmail.com (温志洪)</author>
+      <guid>http://localhost:1895/WzhGameDevPublish/post/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/%E4%BB%A3%E7%A0%81%E6%A1%86%E6%9E%B6/lyra/%E6%95%88%E6%9E%9C%E8%A1%A8%E7%8E%B0/lyra%E6%8F%92%E4%BB%B6commonui%E8%AF%A6%E7%BB%86%E6%8B%86%E5%88%86/</guid>
+      <description>
+        <![CDATA[<h1>Lyra插件CommonUI详细拆分</h1><p>作者：温志洪（cnwenzhihong@gmail.com）</p>
+        
+          <h1 id="一输入模块的使用">
+<a class="header-anchor" href="#%e4%b8%80%e8%be%93%e5%85%a5%e6%a8%a1%e5%9d%97%e7%9a%84%e4%bd%bf%e7%94%a8"></a>
+一、输入模块的使用
+</h1><blockquote>
+<p>需自行启用CommonUI插件<br>
+核心作用： 将原有UI捕获Input的方式替换为更方便且轻松跨平台的方案替代。该Input完全独立于Game原生输入绑定绑定 使用流程：</p>
+        
+        <hr><p>本文2026-05-21首发于<a href='http://localhost:1895/WzhGameDevPublish/'>妖精游戏开发馆</a>，最后修改于2026-05-21</p>]]>
+      </description>
+      
+    </item>
+    
+  </channel>
+</rss>

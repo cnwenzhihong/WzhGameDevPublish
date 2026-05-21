@@ -50,7 +50,7 @@
   />
   <meta property="article:author" content="温志洪" />
   <meta property="article:published_time" content="2026-05-08T11:27:18&#43;00:00" />
-  <meta property="article:modified_time" content="2026-05-09T09:40:27&#43;00:00" /><meta property="article:tag" content="blogGAS" /><meta name="twitter:card" content="summary" />
+  <meta property="article:modified_time" content="2026-05-19T02:10:18&#43;00:00" /><meta property="article:tag" content="GASblog" /><meta name="twitter:card" content="summary" />
   <meta name="twitter:image" content="/WzhGameDevPublish/" />
 <link rel="shortcut icon" href="/WzhGameDevPublish/favicon.ico"><link rel="stylesheet" href="/WzhGameDevPublish/css/main.css" />
 <link
@@ -196,12 +196,9 @@
   <ul>
     <li><a href="#常见类">常见类</a></li>
     <li><a href="#基本关系">基本关系</a></li>
-  </ul>
-
-  <ul>
     <li><a href="#asc">ASC</a>
       <ul>
-        <li></li>
+        <li><a href="#结构">结构</a></li>
       </ul>
     </li>
     <li><a href="#ga">GA</a>
@@ -270,7 +267,7 @@
   </a>
   <a class="sidebar-state-tag" href="/WzhGameDevPublish/tags/" aria-label="sidebar-state-tag-link">
     <div>标签</div>
-    <div class="sidebar-state-number">12</div>
+    <div class="sidebar-state-number">13</div>
   </a>
 </div>
 <div class="sidebar-social"><div class="icon-bilibili sidebar-social-icon">
@@ -347,14 +344,14 @@
       >2026-05-08</time
     >
     <time style="display: none;" id="post-update-time"
-      >2026-05-09</time
+      >2026-05-19</time
     >
   </span><span
       class="article-date-link icon-calendar-plus"
       data-aos="zoom-in"
     >
-      <time datetime="2026-05-09 09:40:27.836 &#43;0000 UTC" itemprop="dateModified"
-        >2026-05-09</time
+      <time datetime="2026-05-19 02:10:18.247 &#43;0000 UTC" itemprop="dateModified"
+        >2026-05-19</time
       >
     </span></div>
 <div class="article-category"></div>
@@ -376,21 +373,24 @@ AttributeSet<br>
 <img src="https://gcore.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/20260508193041283.png" alt=""></p>
 <p>⭐从架构设计上来看，可以看作数据驱动的MVC框架：<br>
 Model存数据：Tag存关键状态，AS管理随时会变成Tag的数值状态<br>
-View做表现：GC<br>
+View做表现：GC，得益于Tag，很多时候我们只需要同步GC<br>
 Controller写逻辑：GA写大框架，GE写关键状态变更<br>
 ASC：统一处理多且杂的逻辑，降低耦合<br>
 <img src="https://gcore.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/%E6%97%A0%E6%A0%87%E9%A2%98-2025-07-242-23371.png" alt=""></p>
-<h1 id="注意点">
-<a class="header-anchor" href="#%e6%b3%a8%e6%84%8f%e7%82%b9"></a>
-注意点
-</h1><h2 id="asc">
+<h2 id="asc">
 <a class="header-anchor" href="#asc"></a>
 ASC
-</h2><h4 id="初始化">
-<a class="header-anchor" href="#%e5%88%9d%e5%a7%8b%e5%8c%96"></a>
-初始化
+</h2><h3 id="结构">
+<a class="header-anchor" href="#%e7%bb%93%e6%9e%84"></a>
+结构
+</h3><h4 id="初始化-initabilityactorinfo">
+<a class="header-anchor" href="#%e5%88%9d%e5%a7%8b%e5%8c%96-initabilityactorinfo"></a>
+初始化 InitAbilityActorInfo
 </h4><p>原则：等玩家角色和Controller、State准备好后再初始化。<br>
-实践：Server 通常在 PossessedBy 调 InitAbilityActorInfo；Client 通常在 OnRep_PlayerState 后补 Init，LocalPredicted 报 not local，多半是Client这里漏了。</p>
+实践：Server 通常在 PossessedBy ；Client 通常在 OnRep_PlayerState。</p>
+<blockquote>
+<p>LocalPredicted 报 not local，多半是Client忘了Init。</p>
+</blockquote>
 <h4 id="netupdatefrequency">
 <a class="header-anchor" href="#netupdatefrequency"></a>
 NetUpdateFrequency
@@ -398,7 +398,7 @@ NetUpdateFrequency
 <h4 id="ability-list-lock">
 <a class="header-anchor" href="#ability-list-lock"></a>
 Ability List Lock
-</h4><p>ActivatableAbilities 时使用 ABILITYLIST_SCOPE_LOCK，避免遍历期间移除 Ability 造成容器变化。</p>
+</h4><p>遍历ActivatableAbilities 时使用 ABILITYLIST_SCOPE_LOCK，避免遍历期间移除 Ability 造成容器变化。</p>
 <h2 id="ga">
 <a class="header-anchor" href="#ga"></a>
 GA
@@ -727,16 +727,16 @@ AbilityTask 的价值是什么？
     <footer class="article-footer"><ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item" data-aos="zoom-in">
       <a
         class="article-tag-list-link"
-        href="/WzhGameDevPublish/tags/blog"
+        href="/WzhGameDevPublish/tags/gas"
         rel="tag"
-        >BLOG</a
+        >GAS</a
       >
     </li><li class="article-tag-list-item" data-aos="zoom-in">
       <a
         class="article-tag-list-link"
-        href="/WzhGameDevPublish/tags/gas"
+        href="/WzhGameDevPublish/tags/blog"
         rel="tag"
-        >GAS</a
+        >BLOG</a
       >
     </li></ul>
 </footer>
@@ -745,17 +745,17 @@ AbilityTask 的价值是什么？
     aria-label="Article navigation"
     data-aos="fade-up"
   ><div class="article-nav-link-wrap left"><img
-              data-src="https://img.shetu66.com/2023/06/26/1687741752414606.png"
-              data-sizes="auto"
-              alt="UE 面试准备"
-              class="lazyload"
-            /><a
-          href="/WzhGameDevPublish/post/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/%E4%BB%A3%E7%A0%81%E6%A1%86%E6%9E%B6/ue/%E9%9D%A2%E8%AF%95/ue-%E9%9D%A2%E8%AF%95%E5%87%86%E5%A4%87/"
-          aria-label="前一篇:UE 面试准备"
-          title="前一篇:UE 面试准备"
+            data-src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTZVoXKJhETNZbZNzuls9YkWGbAZVbAm3uo2Q&amp;s"
+            data-sizes="auto"
+            alt="CodeX开发实战经验"
+            class="lazyload"
+          /><a
+          href="/WzhGameDevPublish/post/ai/%E7%BC%96%E7%A8%8B/codex%E5%BC%80%E5%8F%91%E5%AE%9E%E6%88%98%E7%BB%8F%E9%AA%8C/"
+          aria-label="前一篇:CodeX开发实战经验"
+          title="前一篇:CodeX开发实战经验"
         ></a>
         <div class="article-nav-caption">前一篇</div>
-        <h3 class="article-nav-title">UE 面试准备</h3>
+        <h3 class="article-nav-title">CodeX开发实战经验</h3>
       </div><div class="article-nav-link-wrap right"><img
               data-src="https://d-sketon.top/img/_backwebp/bg1.webp"
               data-sizes="auto"
@@ -790,10 +790,10 @@ AbilityTask 的价值是什么？
         >
       </div><div>
         <span class="icon-brush"
-          >&nbsp;94.2k</span
+          >&nbsp;95.3k</span
         >
         &nbsp;|&nbsp;
-        <span class="icon-coffee">&nbsp;03:19</span>
+        <span class="icon-coffee">&nbsp;03:21</span>
       </div><div>
         <span class="icon-eye"></span>
         <span id="busuanzi_container_site_pv"
@@ -821,12 +821,9 @@ AbilityTask 的价值是什么？
   <ul>
     <li><a href="#常见类">常见类</a></li>
     <li><a href="#基本关系">基本关系</a></li>
-  </ul>
-
-  <ul>
     <li><a href="#asc">ASC</a>
       <ul>
-        <li></li>
+        <li><a href="#结构">结构</a></li>
       </ul>
     </li>
     <li><a href="#ga">GA</a>
@@ -895,7 +892,7 @@ AbilityTask 的价值是什么？
   </a>
   <a class="sidebar-state-tag" href="/WzhGameDevPublish/tags/" aria-label="sidebar-state-tag-link">
     <div>标签</div>
-    <div class="sidebar-state-number">12</div>
+    <div class="sidebar-state-number">13</div>
   </a>
 </div>
 <div class="sidebar-social"><div class="icon-bilibili sidebar-social-icon">

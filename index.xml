@@ -12,7 +12,7 @@
     
     <copyright>本博客所有文章除特别声明外，均采用 BY-NC-SA 许可协议。转载请注明出处！</copyright>
     
-    <lastBuildDate>Fri, 15 May 2026 18:40:48 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 21 May 2026 19:58:52 +0000</lastBuildDate>
     
     
     <atom:link href="http://localhost:1895/WzhGameDevPublish/index.xml" rel="self" type="application/rss&#43;xml" />
@@ -32,12 +32,93 @@
         
           <blockquote>
 <p>QQ：<code>2423113760</code>  Gmail：<code>cnwenzhihong@gmail.com</code><br>
+<a href="https://www.bilibili.com/video/BV1we5q61EtZ/">预览视频</a><br>
 文档多，跨度时间长，没法慢慢审查。有任何需要补充、修改、解释的地方随时联系。<br>
 Demo链接(UE5.6)：<br>
 <a href="https://pan.baidu.com/s/1oYBJtKbm1BMV2bnmDh6Dcw?pwd=1234">网盘链接</a> <br>
 <a href="https://drive.google.com/drive/folders/1mzL02h1vqcTBgGS9_27co6mP5X_sd6pP?usp=sharing">谷歌Driver</a></p>
         
-        <hr><p>本文2025-09-08首发于<a href='http://localhost:1895/WzhGameDevPublish/'>妖精游戏开发馆</a>，最后修改于2026-05-15</p>]]>
+        <hr><p>本文2025-09-08首发于<a href='http://localhost:1895/WzhGameDevPublish/'>妖精游戏开发馆</a>，最后修改于2026-05-21</p>]]>
+      </description>
+      
+    </item>
+    
+    
+
+    <item>
+      <title>Lyra插件CommonUI详细拆分</title>
+      <link>http://localhost:1895/WzhGameDevPublish/post/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/%E4%BB%A3%E7%A0%81%E6%A1%86%E6%9E%B6/lyra/%E6%95%88%E6%9E%9C%E8%A1%A8%E7%8E%B0/lyra%E6%8F%92%E4%BB%B6commonui%E8%AF%A6%E7%BB%86%E6%8B%86%E5%88%86/</link>
+      <pubDate>Thu, 21 May 2026 19:24:57 &#43;0000</pubDate>
+      <author>cnwenzhihong@gmail.com (温志洪)</author>
+      <guid>http://localhost:1895/WzhGameDevPublish/post/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/%E4%BB%A3%E7%A0%81%E6%A1%86%E6%9E%B6/lyra/%E6%95%88%E6%9E%9C%E8%A1%A8%E7%8E%B0/lyra%E6%8F%92%E4%BB%B6commonui%E8%AF%A6%E7%BB%86%E6%8B%86%E5%88%86/</guid>
+      <description>
+        <![CDATA[<h1>Lyra插件CommonUI详细拆分</h1><p>作者：温志洪（cnwenzhihong@gmail.com）</p>
+        
+          <h1 id="一输入模块的使用">
+<a class="header-anchor" href="#%e4%b8%80%e8%be%93%e5%85%a5%e6%a8%a1%e5%9d%97%e7%9a%84%e4%bd%bf%e7%94%a8"></a>
+一、输入模块的使用
+</h1><blockquote>
+<p>需自行启用CommonUI插件<br>
+核心作用： 将原有UI捕获Input的方式替换为更方便且轻松跨平台的方案替代。该Input完全独立于Game原生输入绑定绑定 使用流程：</p>
+        
+        <hr><p>本文2026-05-21首发于<a href='http://localhost:1895/WzhGameDevPublish/'>妖精游戏开发馆</a>，最后修改于2026-05-21</p>]]>
+      </description>
+      
+    </item>
+    
+    
+
+    <item>
+      <title>GAS概念整理</title>
+      <link>http://localhost:1895/WzhGameDevPublish/post/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/%E4%BB%A3%E7%A0%81%E6%A1%86%E6%9E%B6/ue/%E9%9D%A2%E8%AF%95/gas%E6%A6%82%E5%BF%B5%E6%95%B4%E7%90%86/</link>
+      <pubDate>Fri, 08 May 2026 11:27:18 &#43;0000</pubDate>
+      <author>cnwenzhihong@gmail.com (温志洪)</author>
+      <guid>http://localhost:1895/WzhGameDevPublish/post/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/%E4%BB%A3%E7%A0%81%E6%A1%86%E6%9E%B6/ue/%E9%9D%A2%E8%AF%95/gas%E6%A6%82%E5%BF%B5%E6%95%B4%E7%90%86/</guid>
+      <description>
+        <![CDATA[<h1>GAS概念整理</h1><p>作者：温志洪（cnwenzhihong@gmail.com）</p>
+        
+          <h1 id="常见概念">
+<a class="header-anchor" href="#%e5%b8%b8%e8%a7%81%e6%a6%82%e5%bf%b5"></a>
+常见概念
+</h1><h2 id="常见类">
+<a class="header-anchor" href="#%e5%b8%b8%e8%a7%81%e7%b1%bb"></a>
+常见类
+</h2><p><img src="https://gcore.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/20260509150759612.png" alt=""></p>
+<p>GameplayTag<br>
+用层级 Tag 管理 Ability 阻塞、免疫、Cooldown、State等等状态<br>
+AttributeSet<br>
+管理数值数据，方便其他系统的修改、回调和获取</p>
+<h2 id="基本关系">
+<a class="header-anchor" href="#%e5%9f%ba%e6%9c%ac%e5%85%b3%e7%b3%bb"></a>
+基本关系
+</h2><p>从代码结构上来看：ASC 是中枢，AttributeSet 存数值，Tag 存状态，GA 发起行动，GE 改变状态，GC 播表现。<br>
+<img src="https://gcore.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/20260508193041283.png" alt=""></p>
+        
+        <hr><p>本文2026-05-08首发于<a href='http://localhost:1895/WzhGameDevPublish/'>妖精游戏开发馆</a>，最后修改于2026-05-19</p>]]>
+      </description>
+      
+    </item>
+    
+    
+
+    <item>
+      <title>游戏循环的理解</title>
+      <link>http://localhost:1895/WzhGameDevPublish/post/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/2-output/%E6%B8%B8%E6%88%8F%E5%BE%AA%E7%8E%AF/%E6%B8%B8%E6%88%8F%E5%BE%AA%E7%8E%AF%E7%9A%84%E7%90%86%E8%A7%A3/</link>
+      <pubDate>Sun, 10 May 2026 17:35:53 &#43;0000</pubDate>
+      <author>cnwenzhihong@gmail.com (温志洪)</author>
+      <guid>http://localhost:1895/WzhGameDevPublish/post/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/2-output/%E6%B8%B8%E6%88%8F%E5%BE%AA%E7%8E%AF/%E6%B8%B8%E6%88%8F%E5%BE%AA%E7%8E%AF%E7%9A%84%E7%90%86%E8%A7%A3/</guid>
+      <description>
+        <![CDATA[<h1>游戏循环的理解</h1><p>作者：温志洪（cnwenzhihong@gmail.com）</p>
+        
+          <p>游戏关键设计可以分为：<br>
+美术表达：文化、意义<br>
+游戏体验：基石<br>
+短期循环、中期循环、长期循环：可以只关注两部分，甚至完全去除一个部分</p>
+<p>短期循环：直接刺激为主，直接有效果<br>
+中期循环：一定程度的心流变换为主，大量的费用限制让你没法随心打出短期循环<br>
+长期循环：长时间的环境变化为主，想办法让这些限制成为你的助力，1+1&gt;2。</p>
+        
+        <hr><p>本文2026-05-10首发于<a href='http://localhost:1895/WzhGameDevPublish/'>妖精游戏开发馆</a>，最后修改于2026-05-18</p>]]>
       </description>
       
     </item>
@@ -65,7 +146,68 @@ bilibili个人转载：<a href="https://www.bilibili.com/video/BV1oHFfzGEGB/?vd_
 角色
 </h2><p>胶囊体半径：35与UE4默认骨骼比较搭配</p>
         
-        <hr><p>本文2026-01-07首发于<a href='http://localhost:1895/WzhGameDevPublish/'>妖精游戏开发馆</a>，最后修改于2026-05-15</p>]]>
+        <hr><p>本文2026-01-07首发于<a href='http://localhost:1895/WzhGameDevPublish/'>妖精游戏开发馆</a>，最后修改于2026-05-16</p>]]>
+      </description>
+      
+    </item>
+    
+    
+
+    <item>
+      <title>CodeX开发实战经验</title>
+      <link>http://localhost:1895/WzhGameDevPublish/post/ai/%E7%BC%96%E7%A8%8B/codex%E5%BC%80%E5%8F%91%E5%AE%9E%E6%88%98%E7%BB%8F%E9%AA%8C/</link>
+      <pubDate>Thu, 16 Apr 2026 11:28:56 &#43;0000</pubDate>
+      <author>cnwenzhihong@gmail.com (温志洪)</author>
+      <guid>http://localhost:1895/WzhGameDevPublish/post/ai/%E7%BC%96%E7%A8%8B/codex%E5%BC%80%E5%8F%91%E5%AE%9E%E6%88%98%E7%BB%8F%E9%AA%8C/</guid>
+      <description>
+        <![CDATA[<h1>CodeX开发实战经验</h1><p>作者：温志洪（cnwenzhihong@gmail.com）</p>
+        
+          <h1 id="开始之前">
+<a class="header-anchor" href="#%e5%bc%80%e5%a7%8b%e4%b9%8b%e5%89%8d"></a>
+开始之前
+</h1><h2 id="为什么是ai编程">
+<a class="header-anchor" href="#%e4%b8%ba%e4%bb%80%e4%b9%88%e6%98%afai%e7%bc%96%e7%a8%8b"></a>
+为什么是AI编程？
+</h2><p>能为我们检查很多边界问题。<br>
+自动处理麻烦但单一的问题：该项目名/修改依赖，检查代码规范。<br>
+快速查询需要反复Debug的错误，并给出可能问题</p>
+        
+        <hr><p>本文2026-04-16首发于<a href='http://localhost:1895/WzhGameDevPublish/'>妖精游戏开发馆</a>，最后修改于2026-05-15</p>]]>
+      </description>
+      
+    </item>
+    
+    
+
+    <item>
+      <title>CSGO中的游戏设计汇总</title>
+      <link>http://localhost:1895/WzhGameDevPublish/post/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/2-output/%E6%B8%B8%E6%88%8F/csgo%E4%B8%AD%E7%9A%84%E6%B8%B8%E6%88%8F%E8%AE%BE%E8%AE%A1%E6%B1%87%E6%80%BB/</link>
+      <pubDate>Sun, 24 Aug 2025 23:38:30 &#43;0000</pubDate>
+      <author>cnwenzhihong@gmail.com (温志洪)</author>
+      <guid>http://localhost:1895/WzhGameDevPublish/post/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/2-output/%E6%B8%B8%E6%88%8F/csgo%E4%B8%AD%E7%9A%84%E6%B8%B8%E6%88%8F%E8%AE%BE%E8%AE%A1%E6%B1%87%E6%80%BB/</guid>
+      <description>
+        <![CDATA[<h1>CSGO中的游戏设计汇总</h1><p>作者：温志洪（cnwenzhihong@gmail.com）</p>
+        
+          <blockquote>
+<p>我们仅考虑点击开始游戏后的局内表现，而省去皮肤等外部交易的经济系统</p>
+</blockquote>
+<h1 id="1-属性的对应关系">
+<a class="header-anchor" href="#1-%e5%b1%9e%e6%80%a7%e7%9a%84%e5%af%b9%e5%ba%94%e5%85%b3%e7%b3%bb"></a>
+1. 属性的对应关系
+</h1><h2 id="11-武器">
+<a class="header-anchor" href="#11-%e6%ad%a6%e5%99%a8"></a>
+1.1. 武器
+</h2><h3 id="经济">
+<a class="header-anchor" href="#%e7%bb%8f%e6%b5%8e"></a>
+经济
+</h3><p>武器和经济系统的影响：售价、击杀奖励</p>
+<h3 id="射击">
+<a class="header-anchor" href="#%e5%b0%84%e5%87%bb"></a>
+射击
+</h3><p><a href="https://www.youtube.com/watch?v=ELuKZR1Eh8w">为什么在 CS2 中射击不准确？</a><br>
+<a href="https://www.youtube.com/watch?v=eandoX7Jsh4">为什么你在 CS2 中可能丢失了shot——SubTick的问题</a></p>
+        
+        <hr><p>本文2025-08-24首发于<a href='http://localhost:1895/WzhGameDevPublish/'>妖精游戏开发馆</a>，最后修改于2026-05-15</p>]]>
       </description>
       
     </item>
@@ -147,167 +289,6 @@ ABP_WeaponSway
 打开蓝图，删除报错节点,可以仅保留下图节点：</p>
         
         <hr><p>本文2026-01-08首发于<a href='http://localhost:1895/WzhGameDevPublish/'>妖精游戏开发馆</a>，最后修改于2026-05-15</p>]]>
-      </description>
-      
-    </item>
-    
-    
-
-    <item>
-      <title>武器摇晃重要概念</title>
-      <link>http://localhost:1895/WzhGameDevPublish/post/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/%E4%BB%A3%E7%A0%81%E6%A1%86%E6%9E%B6/lyra/fps/%E6%8A%80%E6%9C%AF%E7%BB%86%E8%8A%82/weaponsway/%E6%AD%A6%E5%99%A8%E6%91%87%E6%99%83%E9%87%8D%E8%A6%81%E6%A6%82%E5%BF%B5/</link>
-      <pubDate>Fri, 19 Dec 2025 11:26:47 &#43;0000</pubDate>
-      <author>cnwenzhihong@gmail.com (温志洪)</author>
-      <guid>http://localhost:1895/WzhGameDevPublish/post/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/%E4%BB%A3%E7%A0%81%E6%A1%86%E6%9E%B6/lyra/fps/%E6%8A%80%E6%9C%AF%E7%BB%86%E8%8A%82/weaponsway/%E6%AD%A6%E5%99%A8%E6%91%87%E6%99%83%E9%87%8D%E8%A6%81%E6%A6%82%E5%BF%B5/</guid>
-      <description>
-        <![CDATA[<h1>武器摇晃重要概念</h1><p>作者：温志洪（cnwenzhihong@gmail.com）</p>
-        
-          <h1 id="参考类型">
-<a class="header-anchor" href="#%e5%8f%82%e8%80%83%e7%b1%bb%e5%9e%8b"></a>
-参考类型
-</h1><h2 id="类型1视角旋转的惯性可视化">
-<a class="header-anchor" href="#%e7%b1%bb%e5%9e%8b1%e8%a7%86%e8%a7%92%e6%97%8b%e8%bd%ac%e7%9a%84%e6%83%af%e6%80%a7%e5%8f%af%e8%a7%86%e5%8c%96"></a>
-类型1——视角旋转的惯性可视化
-</h2><h3 id="参考游戏">
-<a class="header-anchor" href="#%e5%8f%82%e8%80%83%e6%b8%b8%e6%88%8f"></a>
-参考游戏
-</h3><p>Battlefield 1\ <video src="https://cdn.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/%E6%88%98%E5%9C%B01-%E6%AD%A5%E6%9E%AA_x264.mp4" autoplay loop controls></video><br>
-OW 半藏</p>
-<h1 id="weapon-sway-的本质分类框架">
-<a class="header-anchor" href="#weapon-sway-%e7%9a%84%e6%9c%ac%e8%b4%a8%e5%88%86%e7%b1%bb%e6%a1%86%e6%9e%b6"></a>
-Weapon Sway 的本质分类框架
-</h1><p>Weapon Feel is control engineering, not animation polish</p>
-<p>从<strong>控制系统与信号处理</strong>角度，Weapon Sway 可以被严格分为以下 <strong>6 大类（并非按游戏，而是按系统性质）</strong>：<br>
-<a href="https://www.bilibili.com/video/BV1HP4y1j7HQ">杀戮地带2</a>:枪托旋转+Yaw延迟，体现重量感，同时手臂转动较慢<br>
-值得一提的是：游戏很容易沉浸，低昂的背景音家时不时队友的声音+脚步声哪怕没有敌人也足够沉浸 <a href="https://www.bilibili.com/video/BV1HP4y1j7HQ/?share_source=copy_web%5c&amp;vd_source=bf40aa6f67b3f45734bc2b22bca840cf%5c&amp;t=765">13:15</a><br>
-哪怕没有明显背景音乐也会有底噪<a href="https://www.bilibili.com/video/BV1vD4y1V7Ua">工业废土艺术/10年前《杀戮地带2》多人联机战区模式实况</a><br>
-<img src="https://cdn.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/PixPin_2025-12-20_19-52-32.gif" alt=""></p>
-        
-        <hr><p>本文2025-12-19首发于<a href='http://localhost:1895/WzhGameDevPublish/'>妖精游戏开发馆</a>，最后修改于2026-05-15</p>]]>
-      </description>
-      
-    </item>
-    
-    
-
-    <item>
-      <title>游戏循环的理解</title>
-      <link>http://localhost:1895/WzhGameDevPublish/post/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/2-output/%E6%B8%B8%E6%88%8F%E5%BE%AA%E7%8E%AF/%E6%B8%B8%E6%88%8F%E5%BE%AA%E7%8E%AF%E7%9A%84%E7%90%86%E8%A7%A3/</link>
-      <pubDate>Sun, 10 May 2026 17:35:53 &#43;0000</pubDate>
-      <author>cnwenzhihong@gmail.com (温志洪)</author>
-      <guid>http://localhost:1895/WzhGameDevPublish/post/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/2-output/%E6%B8%B8%E6%88%8F%E5%BE%AA%E7%8E%AF/%E6%B8%B8%E6%88%8F%E5%BE%AA%E7%8E%AF%E7%9A%84%E7%90%86%E8%A7%A3/</guid>
-      <description>
-        <![CDATA[<h1>游戏循环的理解</h1><p>作者：温志洪（cnwenzhihong@gmail.com）</p>
-        
-          <p>游戏关键设计可以分为：<br>
-美术表达：文化、意义<br>
-游戏体验：基石<br>
-短期循环、中期循环、长期循环：可以只关注两部分，甚至完全去除一个部分</p>
-<p>短期循环：直接刺激为主，直接有效果<br>
-中期循环：一定程度的心流变换为主，大量的费用限制让你没法随心打出短期循环<br>
-长期循环：长时间的环境变化为主，想办法让这些限制成为你的助力，1+1&gt;2。</p>
-        
-        <hr><p>本文2026-05-10首发于<a href='http://localhost:1895/WzhGameDevPublish/'>妖精游戏开发馆</a>，最后修改于2026-05-15</p>]]>
-      </description>
-      
-    </item>
-    
-    
-
-    <item>
-      <title>FPS动画制作参考资料</title>
-      <link>http://localhost:1895/WzhGameDevPublish/post/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/%E4%BB%A3%E7%A0%81%E6%A1%86%E6%9E%B6/lyra/fps/fps%E5%8A%A8%E7%94%BB%E5%88%B6%E4%BD%9C%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99/</link>
-      <pubDate>Fri, 14 Nov 2025 14:14:37 &#43;0000</pubDate>
-      <author>cnwenzhihong@gmail.com (温志洪)</author>
-      <guid>http://localhost:1895/WzhGameDevPublish/post/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/%E4%BB%A3%E7%A0%81%E6%A1%86%E6%9E%B6/lyra/fps/fps%E5%8A%A8%E7%94%BB%E5%88%B6%E4%BD%9C%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99/</guid>
-      <description>
-        <![CDATA[<h1>FPS动画制作参考资料</h1><p>作者：温志洪（cnwenzhihong@gmail.com）</p>
-        
-          <h1 id="总领">
-<a class="header-anchor" href="#%e6%80%bb%e9%a2%86"></a>
-总领
-</h1><h2 id="lyra文档">
-<a class="header-anchor" href="#lyra%e6%96%87%e6%a1%a3"></a>
-Lyra文档
-</h2><p><a href="https://x157.github.io/UE5/LyraStarterGame/">LyraStarterGame Overview | X157 Dev Notes</a>：Lyra详细拆解</p>
-<h2 id="理论">
-<a class="header-anchor" href="#%e7%90%86%e8%ae%ba"></a>
-理论
-</h2><p><a href="https://his.diva-portal.org/smash/get/diva2%3A1971715/FULLTEXT01.pdf">Crafting Gun Feel</a>：讲解FPS效果的零散论文，提供大量的参考资料，需要一定FPS游戏开发基础<br>
-<a href="https://zhuanlan.zhihu.com/p/1949912530509080270">如何实现 COD 品质的第一人称动画</a></p>
-        
-        <hr><p>本文2025-11-14首发于<a href='http://localhost:1895/WzhGameDevPublish/'>妖精游戏开发馆</a>，最后修改于2026-05-15</p>]]>
-      </description>
-      
-    </item>
-    
-    
-
-    <item>
-      <title>Lyra改FPS操作指引</title>
-      <link>http://localhost:1895/WzhGameDevPublish/post/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/%E4%BB%A3%E7%A0%81%E6%A1%86%E6%9E%B6/lyra/fps/lyra%E6%94%B9fps%E6%93%8D%E4%BD%9C%E6%8C%87%E5%BC%95/</link>
-      <pubDate>Sun, 14 Dec 2025 11:28:34 &#43;0000</pubDate>
-      <author>cnwenzhihong@gmail.com (温志洪)</author>
-      <guid>http://localhost:1895/WzhGameDevPublish/post/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/%E4%BB%A3%E7%A0%81%E6%A1%86%E6%9E%B6/lyra/fps/lyra%E6%94%B9fps%E6%93%8D%E4%BD%9C%E6%8C%87%E5%BC%95/</guid>
-      <description>
-        <![CDATA[<h1>Lyra改FPS操作指引</h1><p>作者：温志洪（cnwenzhihong@gmail.com）</p>
-        
-          <h1 id="武器">
-<a class="header-anchor" href="#%e6%ad%a6%e5%99%a8"></a>
-武器
-</h1><h2 id="添加一把武器">
-<a class="header-anchor" href="#%e6%b7%bb%e5%8a%a0%e4%b8%80%e6%8a%8a%e6%ad%a6%e5%99%a8"></a>
-添加一把武器
-</h2>
-  <blockquote class="alert-blockquote important">
-    <p class="alert-heading">
-      Important
-    </p>
-    <p></p>
-  </blockquote>
-
-<h3 id="step1添加武器模型">
-<a class="header-anchor" href="#step1%e6%b7%bb%e5%8a%a0%e6%ad%a6%e5%99%a8%e6%a8%a1%e5%9e%8b"></a>
-Step1：添加武器模型
-</h3><p><strong>创建FPS模型Actor</strong>：继承<code>B_Weapon_FPS</code><br>
-配置：</p>
-<ul>
-<li>ActorDefault：添加Tag(FPS)用于正确绑定
-<blockquote>
-<p>改到<code>EquipmentDefinition</code>中配置更直观，但出于尽量不修改源代码原则，我们采用原生Tag<img src="https://cdn.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/20251212171754274.png" alt=""></p>
-        
-        <hr><p>本文2025-12-14首发于<a href='http://localhost:1895/WzhGameDevPublish/'>妖精游戏开发馆</a>，最后修改于2026-05-15</p>]]>
-      </description>
-      
-    </item>
-    
-    
-
-    <item>
-      <title>CSGO中的游戏设计汇总</title>
-      <link>http://localhost:1895/WzhGameDevPublish/post/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/2-output/%E6%B8%B8%E6%88%8F/csgo%E4%B8%AD%E7%9A%84%E6%B8%B8%E6%88%8F%E8%AE%BE%E8%AE%A1%E6%B1%87%E6%80%BB/</link>
-      <pubDate>Sun, 24 Aug 2025 23:38:30 &#43;0000</pubDate>
-      <author>cnwenzhihong@gmail.com (温志洪)</author>
-      <guid>http://localhost:1895/WzhGameDevPublish/post/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/2-output/%E6%B8%B8%E6%88%8F/csgo%E4%B8%AD%E7%9A%84%E6%B8%B8%E6%88%8F%E8%AE%BE%E8%AE%A1%E6%B1%87%E6%80%BB/</guid>
-      <description>
-        <![CDATA[<h1>CSGO中的游戏设计汇总</h1><p>作者：温志洪（cnwenzhihong@gmail.com）</p>
-        
-          <blockquote>
-<p>我们仅考虑点击开始游戏后的局内表现，而省去皮肤等外部交易的经济系统</p>
-</blockquote>
-<h1 id="1-属性的对应关系">
-<a class="header-anchor" href="#1-%e5%b1%9e%e6%80%a7%e7%9a%84%e5%af%b9%e5%ba%94%e5%85%b3%e7%b3%bb"></a>
-1. 属性的对应关系
-</h1><h2 id="11-武器">
-<a class="header-anchor" href="#11-%e6%ad%a6%e5%99%a8"></a>
-1.1. 武器
-</h2><h3 id="射击">
-<a class="header-anchor" href="#%e5%b0%84%e5%87%bb"></a>
-射击
-</h3><p><a href="https://www.youtube.com/watch?v=ELuKZR1Eh8w">为什么在 CS2 中射击不准确？</a><br>
-<a href="https://www.youtube.com/watch?v=eandoX7Jsh4">为什么你在 CS2 中可能丢失了shot——SubTick的问题</a></p>
-        
-        <hr><p>本文2025-08-24首发于<a href='http://localhost:1895/WzhGameDevPublish/'>妖精游戏开发馆</a>，最后修改于2026-05-09</p>]]>
       </description>
       
     </item>

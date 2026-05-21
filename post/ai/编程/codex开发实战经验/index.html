@@ -50,7 +50,7 @@
   />
   <meta property="article:author" content="温志洪" />
   <meta property="article:published_time" content="2026-04-16T11:28:56&#43;00:00" />
-  <meta property="article:modified_time" content="2026-05-01T04:26:47&#43;00:00" /><meta property="article:tag" content="blogAI/CodeXUE/Base" /><meta name="twitter:card" content="summary" />
+  <meta property="article:modified_time" content="2026-05-15T21:16:03&#43;00:00" /><meta property="article:tag" content="blogAI/CodeXUE/Base" /><meta name="twitter:card" content="summary" />
   <meta name="twitter:image" content="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTZVoXKJhETNZbZNzuls9YkWGbAZVbAm3uo2Q&amp;s" />
 <link rel="shortcut icon" href="/WzhGameDevPublish/favicon.ico"><link rel="stylesheet" href="/WzhGameDevPublish/css/main.css" />
 <link
@@ -195,12 +195,17 @@
 <div class="sidebar-toc-wrapper toc-div-class">
   <nav id="TableOfContents">
   <ul>
+    <li><a href="#为什么是ai编程">为什么是AI编程？</a></li>
     <li><a href="#关键链接">关键链接</a></li>
     <li><a href="#最佳实践问题">最佳实践问题</a></li>
   </ul>
 
   <ul>
-    <li><a href="#1-全局级别codex配置文件--codexagentsmd">1. 全局级别Codex配置文件 // ~/.codex/AGENTS.md</a></li>
+    <li><a href="#1-全局级别codex配置文件--codexagentsmd">1. 全局级别Codex配置文件 // ~/.codex/AGENTS.md</a>
+      <ul>
+        <li><a href="#前端开发配置">前端开发配置</a></li>
+      </ul>
+    </li>
     <li><a href="#添加省tokenskill">添加省TokenSkill</a>
       <ul>
         <li><a href="#安装特定类型的skill">安装特定类型的Skill</a></li>
@@ -217,6 +222,11 @@
   <ul>
     <li><a href="#添加ue5项目">添加UE5项目</a></li>
     <li><a href="#任务示例">任务示例</a></li>
+    <li><a href="#工程经验">工程经验</a>
+      <ul>
+        <li><a href="#resave">Resave</a></li>
+      </ul>
+    </li>
   </ul>
 </nav>
 </div></div>
@@ -232,7 +242,7 @@
 </div>
 <div class="sidebar-state">
   <div class="sidebar-state-article">
-    <div>文章</div><div class="sidebar-state-number">20</div>
+    <div>文章</div><div class="sidebar-state-number">22</div>
   </div>
   <a class="sidebar-state-category" href="/WzhGameDevPublish/categories/" aria-label="sidebar-state-category-link">
     <div>分类</div>
@@ -242,7 +252,7 @@
   </a>
   <a class="sidebar-state-tag" href="/WzhGameDevPublish/tags/" aria-label="sidebar-state-tag-link">
     <div>标签</div>
-    <div class="sidebar-state-number">12</div>
+    <div class="sidebar-state-number">13</div>
   </a>
 </div>
 <div class="sidebar-social"><div class="icon-bilibili sidebar-social-icon">
@@ -319,21 +329,27 @@
       >2026-04-16</time
     >
     <time style="display: none;" id="post-update-time"
-      >2026-05-01</time
+      >2026-05-15</time
     >
   </span><span
       class="article-date-link icon-calendar-plus"
       data-aos="zoom-in"
     >
-      <time datetime="2026-05-01 04:26:47.896 &#43;0000 UTC" itemprop="dateModified"
-        >2026-05-01</time
+      <time datetime="2026-05-15 21:16:03.184 &#43;0000 UTC" itemprop="dateModified"
+        >2026-05-15</time
       >
     </span></div>
 <div class="article-category"></div>
 </div><div class="hr-line"></div><div class="e-content article-entry" itemprop="articleBody"><h1 id="开始之前">
 <a class="header-anchor" href="#%e5%bc%80%e5%a7%8b%e4%b9%8b%e5%89%8d"></a>
 开始之前
-</h1><h2 id="关键链接">
+</h1><h2 id="为什么是ai编程">
+<a class="header-anchor" href="#%e4%b8%ba%e4%bb%80%e4%b9%88%e6%98%afai%e7%bc%96%e7%a8%8b"></a>
+为什么是AI编程？
+</h2><p>能为我们检查很多边界问题。<br>
+自动处理麻烦但单一的问题：该项目名/修改依赖，检查代码规范。<br>
+快速查询需要反复Debug的错误，并给出可能问题</p>
+<h2 id="关键链接">
 <a class="header-anchor" href="#%e5%85%b3%e9%94%ae%e9%93%be%e6%8e%a5"></a>
 关键链接
 </h2><blockquote>
@@ -406,6 +422,33 @@ Aggent.md：<a href="https://developers.openai.com/codex/guides/agents-md">Custo
 </span></span><span class="line"><span class="cl"><span class="k">-</span> 运行任务时按需加载必须的相关文件以保证任务的完美完成
 </span></span><span class="line"><span class="cl"><span class="k">-</span> 完成工作后，不要做太多的总结和啰嗦，不要把简单的问题复杂化，给出一个简单的总结作为结尾就可以了，不需要进行太复杂的测试
 </span></span><span class="line"><span class="cl"><span class="k">-</span> 涉及文件行数提醒的事项，在回复中使用 Markdown link 的形式 like: [<span class="nt">README.md:115</span>](<span class="na">/pathTo/README.md:115</span>) , 同理，其他相关的内容提示也都以用户易读的角度出发，做成相关的 Markdown 格式.
+</span></span></code></pre></div><h3 id="前端开发配置">
+<a class="header-anchor" href="#%e5%89%8d%e7%ab%af%e5%bc%80%e5%8f%91%e9%85%8d%e7%bd%ae"></a>
+前端开发配置
+</h3><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="gu">## Frontend tasks
+</span></span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">When doing frontend design tasks, avoid generic, overbuilt layouts.
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="gs">**Use these hard rules:**</span>
+</span></span><span class="line"><span class="cl"><span class="k">-</span> One composition: The first viewport must read as one composition, not a dashboard (unless it&#39;s a dashboard).
+</span></span><span class="line"><span class="cl"><span class="k">-</span> Brand first: On branded pages, the brand or product name must be a hero-level signal, not just nav text or an eyebrow. No headline should overpower the brand.
+</span></span><span class="line"><span class="cl"><span class="k">-</span> Brand test: If the first viewport could belong to another brand after removing the nav, the branding is too weak.
+</span></span><span class="line"><span class="cl"><span class="k">-</span> Typography: Use expressive, purposeful fonts and avoid default stacks (Inter, Roboto, Arial, system).
+</span></span><span class="line"><span class="cl"><span class="k">-</span> Background: Don&#39;t rely on flat, single-color backgrounds; use gradients, images, or subtle patterns to build atmosphere.
+</span></span><span class="line"><span class="cl"><span class="k">-</span> Full-bleed hero only: On landing pages and promotional surfaces, the hero image should be a dominant edge-to-edge visual plane or background by default. Do not use inset hero images, side-panel hero images, rounded media cards, tiled collages, or floating image blocks unless the existing design system clearly requires it.
+</span></span><span class="line"><span class="cl"><span class="k">-</span> Hero budget: The first viewport should usually contain only the brand, one headline, one short supporting sentence, one CTA group, and one dominant image. Do not place stats, schedules, event listings, address blocks, promos, &#34;this week&#34; callouts, metadata rows, or secondary marketing content in the first viewport.
+</span></span><span class="line"><span class="cl"><span class="k">-</span> No hero overlays: Do not place detached labels, floating badges, promo stickers, info chips, or callout boxes on top of hero media.
+</span></span><span class="line"><span class="cl"><span class="k">-</span> Cards: Default: no cards. Never use cards in the hero. Cards are allowed only when they are the container for a user interaction. If removing a border, shadow, background, or radius does not hurt interaction or understanding, it should not be a card.
+</span></span><span class="line"><span class="cl"><span class="k">-</span> One job per section: Each section should have one purpose, one headline, and usually one short supporting sentence.
+</span></span><span class="line"><span class="cl"><span class="k">-</span> Real visual anchor: Imagery should show the product, place, atmosphere, or context. Decorative gradients and abstract backgrounds do not count as the main visual idea.
+</span></span><span class="line"><span class="cl"><span class="k">-</span> Reduce clutter: Avoid pill clusters, stat strips, icon rows, boxed promos, schedule snippets, and multiple competing text blocks.
+</span></span><span class="line"><span class="cl"><span class="k">-</span> Use motion to create presence and hierarchy, not noise. Ship at least 2-3 intentional motions for visually led work.
+</span></span><span class="line"><span class="cl"><span class="k">-</span> Color &amp; Look: Choose a clear visual direction; define CSS variables; avoid purple-on-white defaults. No purple bias or dark mode bias.
+</span></span><span class="line"><span class="cl"><span class="k">-</span> Ensure the page loads properly on both desktop and mobile.
+</span></span><span class="line"><span class="cl"><span class="k">-</span> For React code, prefer modern patterns including useEffectEvent, startTransition, and useDeferredValue when appropriate if used by the team. Do not add useMemo/useCallback by default unless already used; follow the repo&#39;s React Compiler guidance.
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Exception: If working within an existing website or design system, preserve the established patterns, structure, and visual language.
 </span></span></code></pre></div><h2 id="添加省tokenskill">
 <a class="header-anchor" href="#%e6%b7%bb%e5%8a%a0%e7%9c%81tokenskill"></a>
 添加省TokenSkill
@@ -471,7 +514,21 @@ Aggent.md：<a href="https://developers.openai.com/codex/guides/agents-md">Custo
 </span></span><span class="line"><span class="cl">充分分析UE5.6的FPS实现代码和方案，寻找问题根源，允许生成帮助学习和理解的系统性文档。  
 </span></span><span class="line"><span class="cl">允许动用一切分析和搜索手段。
 </span></span></code></pre></div><p><img src="https://gcore.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/20260417093510358.png" alt=""></p>
-</div>
+<h2 id="工程经验">
+<a class="header-anchor" href="#%e5%b7%a5%e7%a8%8b%e7%bb%8f%e9%aa%8c"></a>
+工程经验
+</h2><h3 id="resave">
+<a class="header-anchor" href="#resave"></a>
+Resave
+</h3><p>Resave命令：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-PowerShell" data-lang="PowerShell"><span class="line"><span class="cl"><span class="p">&amp;</span> <span class="s2">&#34;D:\apply\pro\UE\UE_5.6\Engine\Binaries\Win64\UnrealEditor-Cmd.exe&#34;</span> <span class="s2">&#34;E:\UEProject\FPS\ZombieGame\ZombieGame.uproject&#34;</span> <span class="n">-debug</span> <span class="n">-run</span><span class="p">=</span><span class="n">ResavePackages</span> <span class="n">-PackageFolder</span><span class="p">=</span><span class="s2">&#34;E:\UEProject\FPS\ZombieGame\Plugins\Anim\EasyFPSProceduralAnim\Content&#34;</span> <span class="n">-PackageFolder</span><span class="p">=</span><span class="s2">&#34;E:\UEProject\FPS\ZombieGame\Plugins\GameFeatures\LyraFPSGame\Content&#34;</span> <span class="n">-NoSourceControl</span> <span class="n">-IgnoreChangelist</span> <span class="n">-Unattended</span> <span class="n">-LogCmds</span><span class="p">=</span><span class="s2">&#34;LogContentCommandlet Verbose&#34;</span>
+</span></span></code></pre></div><p>验证命令</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="line"><span class="cl"><span class="nb">Get-ChildItem</span> <span class="p">`</span>
+</span></span><span class="line"><span class="cl">  <span class="n">-Path</span> <span class="s2">&#34;Plugins\Anim\EasyFPSProceduralAnim\Content&#34;</span><span class="p">,</span><span class="s2">&#34;Plugins\GameFeatures\LyraFPSGame\Content&#34;</span><span class="p">,</span><span class="s2">&#34;Content&#34;</span> <span class="p">`</span>
+</span></span><span class="line"><span class="cl">  <span class="n">-Recurse</span> <span class="o">-File</span> <span class="n">-Include</span> <span class="p">*.</span><span class="n">uasset</span><span class="p">,*.</span><span class="n">umap</span> <span class="p">|</span>
+</span></span><span class="line"><span class="cl"><span class="nb">Select-String</span> <span class="n">-Pattern</span> <span class="s2">&#34;EasyFPSProcedualAnim&#34;</span><span class="p">,</span><span class="s2">&#34;/EasyFPSProcedualAnim&#34;</span><span class="p">,</span><span class="s2">&#34;/Script/EasyFPSProcedualAnim&#34;</span> <span class="n">-SimpleMatch</span> <span class="p">|</span>
+</span></span><span class="line"><span class="cl"><span class="nb">Select-Object</span> <span class="n">-ExpandProperty</span> <span class="n">Path</span> <span class="n">-Unique</span>
+</span></span></code></pre></div></div>
     <footer class="article-footer"><ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item" data-aos="zoom-in">
       <a
         class="article-tag-list-link"
@@ -512,17 +569,17 @@ Aggent.md：<a href="https://developers.openai.com/codex/guides/agents-md">Custo
         <div class="article-nav-caption">前一篇</div>
         <h3 class="article-nav-title">杀戮尖塔2存在的设计问题探讨</h3>
       </div><div class="article-nav-link-wrap right"><img
-              data-src="https://img.shetu66.com/2023/06/26/1687741752414606.png"
+              data-src="https://img95.699pic.com/photo/60027/4138.jpg_wh860.jpg"
               data-sizes="auto"
-              alt="游戏循环的理解"
+              alt="GAS概念整理"
               class="lazyload"
             /><a
-          href="/WzhGameDevPublish/post/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/2-output/%E6%B8%B8%E6%88%8F%E5%BE%AA%E7%8E%AF/%E6%B8%B8%E6%88%8F%E5%BE%AA%E7%8E%AF%E7%9A%84%E7%90%86%E8%A7%A3/"
-          aria-label="后一篇:游戏循环的理解"
-          title="后一篇:游戏循环的理解"
+          href="/WzhGameDevPublish/post/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/%E4%BB%A3%E7%A0%81%E6%A1%86%E6%9E%B6/ue/%E9%9D%A2%E8%AF%95/gas%E6%A6%82%E5%BF%B5%E6%95%B4%E7%90%86/"
+          aria-label="后一篇:GAS概念整理"
+          title="后一篇:GAS概念整理"
         ></a>
         <div class="article-nav-caption">后一篇</div>
-        <h3 class="article-nav-title">游戏循环的理解</h3>
+        <h3 class="article-nav-title">GAS概念整理</h3>
       </div></nav></article></section>
         </div><footer id="footer" aria-label="Site footer">
   <div style="width: 100%; overflow: hidden">
@@ -545,10 +602,10 @@ Aggent.md：<a href="https://developers.openai.com/codex/guides/agents-md">Custo
         >
       </div><div>
         <span class="icon-brush"
-          >&nbsp;80.3k</span
+          >&nbsp;95.3k</span
         >
         &nbsp;|&nbsp;
-        <span class="icon-coffee">&nbsp;02:50</span>
+        <span class="icon-coffee">&nbsp;03:21</span>
       </div><div>
         <span class="icon-eye"></span>
         <span id="busuanzi_container_site_pv"
@@ -574,12 +631,17 @@ Aggent.md：<a href="https://developers.openai.com/codex/guides/agents-md">Custo
 <div class="sidebar-toc-wrapper toc-div-class">
   <nav id="TableOfContents">
   <ul>
+    <li><a href="#为什么是ai编程">为什么是AI编程？</a></li>
     <li><a href="#关键链接">关键链接</a></li>
     <li><a href="#最佳实践问题">最佳实践问题</a></li>
   </ul>
 
   <ul>
-    <li><a href="#1-全局级别codex配置文件--codexagentsmd">1. 全局级别Codex配置文件 // ~/.codex/AGENTS.md</a></li>
+    <li><a href="#1-全局级别codex配置文件--codexagentsmd">1. 全局级别Codex配置文件 // ~/.codex/AGENTS.md</a>
+      <ul>
+        <li><a href="#前端开发配置">前端开发配置</a></li>
+      </ul>
+    </li>
     <li><a href="#添加省tokenskill">添加省TokenSkill</a>
       <ul>
         <li><a href="#安装特定类型的skill">安装特定类型的Skill</a></li>
@@ -596,6 +658,11 @@ Aggent.md：<a href="https://developers.openai.com/codex/guides/agents-md">Custo
   <ul>
     <li><a href="#添加ue5项目">添加UE5项目</a></li>
     <li><a href="#任务示例">任务示例</a></li>
+    <li><a href="#工程经验">工程经验</a>
+      <ul>
+        <li><a href="#resave">Resave</a></li>
+      </ul>
+    </li>
   </ul>
 </nav>
 </div></div>
@@ -611,7 +678,7 @@ Aggent.md：<a href="https://developers.openai.com/codex/guides/agents-md">Custo
 </div>
 <div class="sidebar-state">
   <div class="sidebar-state-article">
-    <div>文章</div><div class="sidebar-state-number">20</div>
+    <div>文章</div><div class="sidebar-state-number">22</div>
   </div>
   <a class="sidebar-state-category" href="/WzhGameDevPublish/categories/" aria-label="sidebar-state-category-link">
     <div>分类</div>
@@ -621,7 +688,7 @@ Aggent.md：<a href="https://developers.openai.com/codex/guides/agents-md">Custo
   </a>
   <a class="sidebar-state-tag" href="/WzhGameDevPublish/tags/" aria-label="sidebar-state-tag-link">
     <div>标签</div>
-    <div class="sidebar-state-number">12</div>
+    <div class="sidebar-state-number">13</div>
   </a>
 </div>
 <div class="sidebar-social"><div class="icon-bilibili sidebar-social-icon">
@@ -761,7 +828,7 @@ Aggent.md：<a href="https://developers.openai.com/codex/guides/agents-md">Custo
           author: "温志洪",
           title: "CodeX开发实战经验",
           url: "http:\/\/localhost:1895\/WzhGameDevPublish\/post\/ai\/%E7%BC%96%E7%A8%8B\/codex%E5%BC%80%E5%8F%91%E5%AE%9E%E6%88%98%E7%BB%8F%E9%AA%8C\/",
-          description: "\r开始之前\r关键链接\rCodex官网 Codex开发者文档 [Codex GitHub](GitHub - openai\/codex: Lightweight coding agent that runs in your terminal · GitHub 零基础AI开发最少需要的知识：Codex最佳实践-5min\nAggent.md：Custom instructions with AGENTS.md 考试：\n最佳实践问题\r提示词的应包含的4点：\nGoal: 先专心实现核心目标，再慢慢加上其他目标。\n使用人群：自己、朋友、其他有需求的人。\n平台：是网页、桌面应用、安卓、苹果，还是跨手机平台 …",
+          description: "\r开始之前\r为什么是AI编程？\r能为我们检查很多边界问题。\n自动处理麻烦但单一的问题：该项目名\/修改依赖，检查代码规范。\n快速查询需要反复Debug的错误，并给出可能问题\n",
           cover: "https:\/\/encrypted-tbn0.gstatic.com\/images?q=tbn:ANd9GcTZVoXKJhETNZbZNzuls9YkWGbAZVbAm3uo2Q\u0026s",
         };
       </script><script src="/WzhGameDevPublish/js/insert_highlight.js" data-pjax></script><script src="/WzhGameDevPublish/js/tabs.js" data-pjax></script><script type="module" data-pjax>const PhotoSwipeLightbox = (await safeImport("https:\/\/npm.webcache.cn\/photoswipe@5.4.4\/dist\/photoswipe-lightbox.esm.min.js", "sha384-DiL6M\/gG\u002bwmTxmCRZyD1zee6lIhawn5TGvED0FOh7fXcN9B0aZ9dexSF\/N6lrZi\/")).default;const initPswp = (gallery, children) => {
