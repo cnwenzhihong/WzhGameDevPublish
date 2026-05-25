@@ -1,0 +1,770 @@
+<!doctype html>
+<html
+  lang="zh-cn" 
+  data-theme-mode="false"
+  >
+  <head><script src="/WzhGameDevPublish/livereload.js?mindelay=10&amp;v=2&amp;port=1895&amp;path=WzhGameDevPublish/livereload" data-no-instant defer></script><meta charset="utf-8" />
+<meta
+  name="viewport"
+  content="width=device-width, initial-scale=1, shrink-to-fit=no"
+/><title>
+  重装前哨的设计问题和思考 | 温志洪
+</title>
+<meta name="description" content="FPS游戏"/><script>
+  window.siteConfig = JSON.parse("{\"anchor_icon\":null,\"base\":\"http://localhost:1895/WzhGameDevPublish/\",\"clipboard\":{\"copyright\":{\"count\":50,\"enable\":false,\"license_type\":\"by-nc-sa\"},\"fail\":{\"en\":\"Copy failed (ﾟ⊿ﾟ)ﾂ\",\"ja\":\"コピー失敗 (ﾟ⊿ﾟ)ﾂ\",\"pt-br\":\"Falha ao copiar (ﾟ⊿ﾟ)ﾂ\",\"zh-cn\":\"复制失败 (ﾟ⊿ﾟ)ﾂ\",\"zh-tw\":\"複製失敗 (ﾟ⊿ﾟ)ﾂ\"},\"success\":{\"en\":\"Copy successfully (*^▽^*)\",\"ja\":\"コピー成功 (*^▽^*)\",\"pt-br\":\"Copiado com sucesso (*^▽^*)\",\"zh-cn\":\"复制成功 (*^▽^*)\",\"zh-tw\":\"複製成功 (*^▽^*)\"}},\"code_block\":{\"expand\":4},\"i18n_languages\":[{\"Lang\":\"en\",\"LanguageName\":\"English\",\"LanguageCode\":\"\",\"Title\":\"\",\"LanguageDirection\":\"\",\"Weight\":1,\"Disabled\":false},{\"Lang\":\"zh-cn\",\"LanguageName\":\"简体中文\",\"LanguageCode\":\"\",\"Title\":\"\",\"LanguageDirection\":\"\",\"Weight\":1,\"Disabled\":false}],\"icon_font\":\"4552607_4k4bc36ef96\",\"outdate\":{\"daysago\":180,\"enable\":false,\"message\":{\"en\":\"This article was last updated on {time}. Please note that the content may no longer be applicable.\",\"ja\":\"この記事は最終更新日：{time}。記載内容が現在有効でない可能性がありますのでご注意ください。\",\"pt-br\":\"Este artigo foi atualizado pela última vez em {time}. Observe que o conteúdo pode não ser mais aplicável.\",\"zh-cn\":\"本文最后更新于 {time}，请注意文中内容可能已不适用。\",\"zh-tw\":\"本文最後更新於 {time}，請注意文中內容可能已不適用。\"}}}");
+  
+</script>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link
+  rel="preload"
+  as="style"
+  href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic%7cNoto%20Serif%20SC:400,400italic,700,700italic%7c&amp;display=swap"
+/>
+<link
+  rel="stylesheet"
+  href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic%7cNoto%20Serif%20SC:400,400italic,700,700italic%7c&amp;display=swap"
+  media="print"
+  onload="this.media='all'"
+/>
+<link
+    rel="preload"
+    href="//at.alicdn.com/t/c/font_4552607_4k4bc36ef96.woff2"
+    as="font"
+    type="font/woff2"
+    crossorigin="anonymous"
+  /><link rel="stylesheet" href="/WzhGameDevPublish/css/loader.css" />
+<meta property="og:type" content="website" />
+  <meta property="og:title" content="重装前哨的设计问题和思考 | 温志洪" />
+  <meta
+    property="og:description"
+    content="FPS游戏"
+  />
+  <meta property="og:url" content="http://localhost:1895/WzhGameDevPublish/post/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/2-output/%E6%B8%B8%E6%88%8F/%E9%87%8D%E8%A3%85%E5%89%8D%E5%93%A8%E7%9A%84%E8%AE%BE%E8%AE%A1%E9%97%AE%E9%A2%98%E5%92%8C%E6%80%9D%E8%80%83/" />
+  <meta
+    property="og:site_name"
+    content="妖精游戏开发馆"
+  />
+  <meta
+    property="og:image"
+    content="/WzhGameDevPublish/"
+  />
+  <meta property="article:author" content="温志洪" />
+  <meta property="article:published_time" content="2026-05-24T15:48:06&#43;00:00" />
+  <meta property="article:modified_time" content="2026-05-25T10:19:30&#43;00:00" /><meta property="article:tag" content="blog" /><meta name="twitter:card" content="summary" />
+  <meta name="twitter:image" content="/WzhGameDevPublish/" />
+<link rel="shortcut icon" href="/WzhGameDevPublish/favicon.ico"><link rel="stylesheet" href="/WzhGameDevPublish/css/main.css" />
+<link
+    rel="preload"
+    as="style"
+    href="https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe.css"
+    integrity="sha384-IfxC36XL/toUyJ939C73PcgMuRzAZuIzZxE38drsmO5p6jD7ei&#43;Zx/1oA/0l8ysE" crossorigin="anonymous"onload="this.onload=null;this.rel='stylesheet'"
+  /><link
+    rel="preload"
+    as="style"
+    href="https://npm.webcache.cn/katex@0.16.24/dist/katex.min.css"
+    integrity="sha384-tTgKLjMYmJr94v8qu2PE5MUGSMbyN2xiH266JUB3gpm8vnnJywd1dWSOEfrFz&#43;YI" crossorigin="anonymous"onload="this.onload=null;this.rel='stylesheet'"
+  /><script
+    src="https://npm.webcache.cn/pace-js@1.2.4/pace.min.js"
+    integrity="sha384-k6YtvFUEIuEFBdrLKJ3YAUbBki333tj1CSUisai5Cswsg9wcLNaPzsTHDswp4Az8" crossorigin="anonymous"></script><link
+    rel="stylesheet"
+    href="https://npm.webcache.cn/@reimujs/aos@0.1.2/dist/aos.css"
+    integrity="sha384-GMRP93c6Hkz9JVKGAuRR3nTS7M07RwPgTFenXiosjq2VbVgvdDNcz1g6Mkj8AONa" crossorigin="anonymous"/></head>
+  <body><div id='loader'>
+    <div class="loading-left-bg loading-bg"></div>
+    <div class="loading-right-bg loading-bg"></div>
+    <div class="spinner-box">
+      <div class="loading-taichi rotate"><svg width="150" height="150" viewBox="0 0 1024 1024" class="icon" version="1.1" xmlns="https://www.w3.org/2000/svg" shape-rendering="geometricPrecision">
+            <path d="M303.5 432A80 80 0 0 1 291.5 592A80 80 0 0 1 303.5 432z" fill="var(--red-1, #ff5252)" />
+            <path d="M512 65A447 447 0 0 1 512 959L512 929A417 417 0 0 0 512 95A417 417 0 0 0 512 929L512 959A447 447 0 0 1 512 65z 
+          M512 95A417 417 0 0 1 929 512A208.5 208.5 0 0 1 720.5 720.5L720.5 592A80 80 0 0 0 720.5 432A80 80 0 0 0 720.5 592L720.5 720.5A208.5 208.5 0 0 1 512 512A208.5 208.5 0 0 0 303.5 303.5A208.5 208.5 0 0 0 95 512A417 417 0 0 1 512 95z" fill="var(--red-1, #ff5252)" />
+          </svg></div><div class="loading-word">少女祈祷中...</div>
+    </div>
+  </div>
+  </div>
+  <script>
+    var time = null;
+    var loaderEl = document.getElementById('loader');
+    var startLoading = () => {
+      time = Date.now();
+      loaderEl.classList.remove("loading");
+    }
+    var hideLoader = () => {
+      document.body.style.overflow = 'auto';
+      loader.classList.add('loading');
+    };
+
+    var endLoading = () => {
+      if (!time) {
+        hideLoader();
+      } else {
+        if (Date.now() - time > 500) {
+          time = null;
+          hideLoader();
+        } else {
+          setTimeout(endLoading, 500 - (Date.now() - time));
+          time = null;
+        }
+      }
+    }
+    window.addEventListener('DOMContentLoaded', endLoading);
+    loaderEl.addEventListener('click', endLoading);
+  </script><div id="copy-tooltip"></div>
+<div id="lang-tooltip">
+本文章没有找到对应的语言版本
+</div>
+<div id="heatmap-tooltip"></div><div id="container">
+      <div id="wrap"><div id="header-nav">
+  <nav id="main-nav" aria-label="Primary navigation"><a class="main-nav-link-wrap" href="/WzhGameDevPublish/">
+        <div class='main-nav-icon icon rotate'>&#xe62b;</div>
+        <span class="main-nav-link">首页</span>
+      </a><a class="main-nav-link-wrap" href="/WzhGameDevPublish/archives">
+        <div class='main-nav-icon icon rotate'>&#xe62b;</div>
+        <span class="main-nav-link">归档</span>
+      </a><a class="main-nav-link-wrap" href="/WzhGameDevPublish/about">
+        <div class='main-nav-icon icon rotate'>&#xe62b;</div>
+        <span class="main-nav-link">关于</span>
+      </a><a class="main-nav-link-wrap" href="/WzhGameDevPublish/friend">
+        <div class='main-nav-icon icon rotate'>&#xe62b;</div>
+        <span class="main-nav-link">友链</span>
+      </a><a id="main-nav-toggle" class="nav-icon" aria-label="Toggle navigation" role="button"></a>
+  </nav>
+  <nav id="sub-nav" aria-label="Secondary navigation"><a id="nav-search-btn" class="nav-icon popup-trigger" title="搜索" aria-label="搜索"></a></nav><nav id="i18n-nav" aria-label="Language selection">
+      <div class="custom-dropdown">
+        <div class="select-selected" id="select-selected" role="button" aria-haspopup="listbox" aria-expanded="false" aria-label="Language menu">
+          <span id="nav-language-btn" class="nav-icon" style="padding: 0 20px 0 0"></span>
+          <span id="selected-lang">简体中文</span>
+        </div>
+        <ul class="select-items" id="select-items" role="listbox" aria-label="Languages"><li data-value="en" role="option" arial-selected="false" >English</li><li data-value="zh-cn" role="option" class="selected" arial-selected="true" >简体中文</li></ul>
+      </div>
+      <script>
+        var selectSelected = document.getElementById("select-selected");
+        var selectedLang = document.getElementById("selected-lang");
+        var selectItems = document.getElementById("select-items");
+        var selectOptions = selectItems.querySelectorAll("li");
+
+        selectSelected.addEventListener("click", () => {
+          selectItems.classList.toggle("show");
+          var expanded = selectSelected.getAttribute("aria-expanded") === "true";
+          selectSelected.setAttribute("aria-expanded", (!expanded).toString());
+        });
+
+        selectOptions.forEach((item) => {
+          item.addEventListener("click", () => {
+            const langMap = {};selectedLang.textContent = item.textContent;
+            selectItems.classList.remove("show");
+            selectOptions.forEach((option) => {
+              option.classList.remove("selected");
+            });
+            item.classList.add("selected");
+            if (item.dataset.value === 'zh-cn') {
+              return;
+            }
+            if (!langMap[item.dataset.value]) {
+              _$("#lang-tooltip").style.opacity = "1";
+              setTimeout(() => {
+                _$("#lang-tooltip").style.opacity = "0";
+              }, 1000);
+              return;
+            }
+            window.location = langMap[item.dataset.value];
+          });
+        });
+
+        document.addEventListener("click", (event) => {
+          if (!event.target.closest(".custom-dropdown")) {
+            selectItems.classList.remove("show");
+            selectSelected.setAttribute("aria-expanded", "false");
+          }
+        });
+      </script>
+    </nav></div>
+<header id="header" aria-label="Site header"><picture><source media="(max-width: 479px)" srcset="/WzhGameDevPublish/images/banner-600w.webp"><source media="(max-width: 799px)" srcset="/WzhGameDevPublish/images/banner-800w.webp"><source media="(min-width: 800px)" srcset="/WzhGameDevPublish/images/banner.webp"><img crossorigin="anonymous" fetchpriority="high" src="/WzhGameDevPublish/images/banner.webp" alt="重装前哨的设计问题和思考"></picture><img alt="重装前哨的设计问题和思考" style="visibility: hidden;"><div id="header-outer">
+    <div id="header-title"><span id="logo">
+            <h1 data-aos="slide-up">重装前哨的设计问题和思考</h1>
+          </span><h2 id="subtitle-wrap" data-aos="slide-down"></h2></div>
+  </div>
+</header><div id="content"
+          aria-label="Page content"
+          class="sidebar-left"
+            ><aside id="sidebar" aria-label="Sidebar"><div class="sidebar-wrapper-container sticky"><div class="sidebar-wrapper">
+    <div
+      class="sidebar-wrap"
+      data-aos="fade-up"
+    ><div class="sidebar-toc-sidebar"><h3 class="toc-title">文章目录</h3>
+<div class="sidebar-toc-wrapper toc-div-class">
+  <nav id="TableOfContents">
+  <ul>
+    <li><a href="#教学关卡">教学关卡</a></li>
+    <li><a href="#多人模式体验">多人模式体验</a></li>
+    <li><a href="#敌人攻击方式">敌人攻击方式</a></li>
+    <li><a href="#哨站模式">哨站模式</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#新手引导">新手引导</a></li>
+    <li><a href="#ai问题">AI问题</a></li>
+    <li><a href="#探索问题">探索问题</a>
+      <ul>
+        <li><a href="#随机地点">随机地点</a></li>
+      </ul>
+    </li>
+    <li><a href="#战斗问题">战斗问题</a></li>
+    <li><a href="#哨站建造">哨站建造</a>
+      <ul>
+        <li><a href="#基础限制">基础限制</a></li>
+      </ul>
+    </li>
+    <li><a href="#over">Over</a></li>
+  </ul>
+</nav>
+</div></div>
+          <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
+  <img
+    data-src="/WzhGameDevPublish/avatar/UELogo.png"
+    data-sizes="auto"
+    alt="温志洪"
+    class="lazyload"
+  />
+  <div class="sidebar-author-name">温志洪</div>
+  <div class="sidebar-description">FPS游戏</div>
+</div>
+<div class="sidebar-state">
+  <div class="sidebar-state-article">
+    <div>文章</div><div class="sidebar-state-number">25</div>
+  </div>
+  <a class="sidebar-state-category" href="/WzhGameDevPublish/categories/" aria-label="sidebar-state-category-link">
+    <div>分类</div>
+    <div class="sidebar-state-number">
+      0
+    </div>
+  </a>
+  <a class="sidebar-state-tag" href="/WzhGameDevPublish/tags/" aria-label="sidebar-state-tag-link">
+    <div>标签</div>
+    <div class="sidebar-state-number">16</div>
+  </a>
+</div>
+<div class="sidebar-social"><div class="icon-bilibili sidebar-social-icon">
+      <a
+        href="https://space.bilibili.com/35312868"
+        itemprop="url"
+        target="_blank"
+        aria-label="bilibili"
+        rel="noopener nofollow noreferrer"
+      ></a>
+    </div><div class="icon-email sidebar-social-icon">
+      <a
+        href="mailto:cnwenzhihong@gmail.com"
+        itemprop="url"
+        target="_blank"
+        aria-label="email"
+        rel="noopener nofollow noreferrer"
+      ></a>
+    </div></div>
+<div class="sidebar-menu"><div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/WzhGameDevPublish/"
+        aria-label="首页"
+      ></a>
+      <div class='sidebar-menu-icon icon rotate'>&#xe62b;</div>
+      <div class="sidebar-menu-link">首页</div>
+    </div><div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/WzhGameDevPublish/archives"
+        aria-label="归档"
+      ></a>
+      <div class='sidebar-menu-icon icon rotate'>&#xe62b;</div>
+      <div class="sidebar-menu-link">归档</div>
+    </div><div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/WzhGameDevPublish/about"
+        aria-label="关于"
+      ></a>
+      <div class='sidebar-menu-icon icon rotate'>&#xe62b;</div>
+      <div class="sidebar-menu-link">关于</div>
+    </div><div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/WzhGameDevPublish/friend"
+        aria-label="友链"
+      ></a>
+      <div class='sidebar-menu-icon icon rotate'>&#xe62b;</div>
+      <div class="sidebar-menu-link">友链</div>
+    </div></div>
+</div><div class="sidebar-btn-wrapper" style="position:static">
+            <div class="sidebar-toc-btn current"></div>
+            <div class="sidebar-common-btn"></div>
+          </div></div>
+  </div><div class="sidebar-widget"></div></div></aside>
+<section id="main" aria-label="Main content"><p style="color:red">ARTICLE PARTIAL OVERRIDE ACTIVE</p>
+<article
+  class="h-entry article"
+  itemscope
+  itemtype="https://schema.org/BlogPosting"
+>
+  <div
+    class="article-inner"
+    data-aos="fade-up"
+  >
+    <div class="article-meta"><div class="article-date">
+  <span
+    class="article-date-link icon-calendar"
+    data-aos="zoom-in"
+  >
+    <time datetime="2026-05-24 15:48:06.967 &#43;0000 UTC" itemprop="datePublished"
+      >2026-05-24</time
+    >
+    <time style="display: none;" id="post-update-time"
+      >2026-05-25</time
+    >
+  </span><span
+      class="article-date-link icon-calendar-plus"
+      data-aos="zoom-in"
+    >
+      <time datetime="2026-05-25 10:19:30.994 &#43;0000 UTC" itemprop="dateModified"
+        >2026-05-25</time
+      >
+    </span></div>
+<div class="article-category"></div>
+</div><div class="hr-line"></div><div class="e-content article-entry" itemprop="articleBody"><p>趁这款游戏热度过去，仅作为第三者分析和猜测该游戏的设计，仅算是一种记录。</p>
+<blockquote>
+<p>游戏内容的失衡太少，玩家体验的失衡太多。</p>
+</blockquote>
+<p>制作者+玩家：我一开始对这个游戏的设想是四人联机，一个人在玩戴森球，一个人在玩rts，还有两个人在玩逆战保卫战，大家配合着打<br>
+实际游戏体验：结果，，，，，就是捡垃圾为主，，，，太多不重要的局内外功能，小而杂。</p>
+<p>太过注重功能、系统实现，而忽略了基础的交互/视觉呈现，认为玩家通过宣传片、引导，能玩到后期无尽模式。</p>
+<h1 id="优秀的地方">
+<a class="header-anchor" href="#%e4%bc%98%e7%a7%80%e7%9a%84%e5%9c%b0%e6%96%b9"></a>
+优秀的地方
+</h1><p>宏大的场面塑造和足够有深度的构筑体验、数值的爽感无需多言，这是游戏的立身之本。把他做好就不愁卖，事实上也做的非常优秀。只要告诉玩家这游戏能干什么，就能让玩家跃跃欲试。<br>
+所以以下仅仅是我个人需要记住且容易实践的地方，往往找问题远比找优点更让人有动力，优点往往也善于深藏功与名(除非制作人分享，否则意识不到)，故而本章节内容很少。</p>
+<h2 id="教学关卡">
+<a class="header-anchor" href="#%e6%95%99%e5%ad%a6%e5%85%b3%e5%8d%a1"></a>
+教学关卡
+</h2><p>教学关吊足了胃口，各种武器、设施的展示让人第一眼就认为是3A品质。哪怕作为背景也足够宏大，让人浮想联翩。</p>
+<h2 id="多人模式体验">
+<a class="header-anchor" href="#%e5%a4%9a%e4%ba%ba%e6%a8%a1%e5%bc%8f%e4%bd%93%e9%aa%8c"></a>
+多人模式体验
+</h2><p>玩家可以带回搜刮的物资回自己存档。确确实实将玩家当作合作的独立个体对待，而不是捆绑的团队。<br>
+反面案例：OW2、风暴英雄</p>
+<h2 id="敌人攻击方式">
+<a class="header-anchor" href="#%e6%95%8c%e4%ba%ba%e6%94%bb%e5%87%bb%e6%96%b9%e5%bc%8f"></a>
+敌人攻击方式
+</h2><p>大多数远程致命怪物大都以投射物为主，玩家有机会躲避和更早发现威胁，而不是无解的激光枪。林克对移动堡垒有木盾，士兵可没法弹反。</p>
+<h2 id="哨站模式">
+<a class="header-anchor" href="#%e5%93%a8%e7%ab%99%e6%a8%a1%e5%bc%8f"></a>
+哨站模式
+</h2><p>前期的亲历亲为，让后期自动化带来极高的爽感。不仅仅是哨站，还包括角色的自动化。玩家完全可以静看清小怪，或者去处理更重要的目标。</p>
+<h1 id="不太好的地方">
+<a class="header-anchor" href="#%e4%b8%8d%e5%a4%aa%e5%a5%bd%e7%9a%84%e5%9c%b0%e6%96%b9"></a>
+不太好的地方
+</h1><h2 id="新手引导">
+<a class="header-anchor" href="#%e6%96%b0%e6%89%8b%e5%bc%95%e5%af%bc"></a>
+新手引导
+</h2><p>大量强制视角转换<br>
+很明显，强制引导强于没有引导，哪怕被骂和让玩家不舒服。</p>
+<p>新手教程中完整哨站的问题：<br>
+并不是不好，反而是内容太少，玩家对完整哨站的体验时间太短、体验内容太少，并没有在玩家心中种下长期循环的种子。<br>
+内容少带来玩家模模糊糊的体验，只是知道怎么操作和看了有哨站功能便匆匆了事，并没有获得有效信息是主因。多次强制镜头切换仅仅是诱因和发泄口(并非说它好，只是并非主因)。<br>
+什么是有效信息？<br>
+不同火炮的打出的效果、从普通弹药到自动生产线的区别、一两个关键建筑对玩家的增幅(直接生产橙色(比喻)武器)。<br>
+玩家没体会到哨站带来爽感引发的另一个问题是：新手教程哨站的毁灭，让哨站贴上了弱小的标签。虽然演出很震撼，但单纯的巨物毁灭只会让玩家觉得被毁灭的弱，这仅仅是背景故事。只有见识到哨站的作用，才能共情被毁灭的哨站。否则只是大场面堆砌。</p>
+<p>制作者也许发现了新手教程仅仅交操作确实不够，所以加上了剧情关卡，一点点教玩家。反而又过于拖沓。玩家真正想知道的是这些建筑搭建起来后有多爽，我要怎么搭建。而不是这个功能怎么用、有什么用，我们有哪些功能。<br>
+正面案例：<br>
+Doom的残血近战——只要你按照教程走，立刻就能获得敌人死亡+奖励的反馈。<br>
+植物大战僵尸——拖动花获得向日葵，向日葵随后产出阳光，紧接着丧尸出现，你看着提示，急需阳光获得豌豆射手，可以拖动豌豆射手，击杀僵尸，解除危机。</p>
+<p>如果我来设计——紧迫感+注重游戏内容的失衡：<br>
+一开始先让其找炮塔材料，在期间分布不同的交互建筑，教会玩家探索中几乎全部能力。靠不断逼近哨站的怪物来增加时间限制和非常明确的指引。玩家可以不带枪，而是远离哨站后获得。<br>
+当玩家绕一圈回来后，用武器解决一小波破坏电力系统的敌人。虽然制造成功，但是放置失败，开始介绍电力，并让玩家简单操作后直接从0获得可以配置3个火炮以上的电力，提供足量弹药，让之后一次打个爽，彻底释放情绪。提供最大的数值爽感正反馈，同时，明确探索告一段落。<br>
+开始进入大波敌人防御环节，此时玩家能明确感知到有无火炮的区别。</p>
+<h2 id="ai问题">
+<a class="header-anchor" href="#ai%e9%97%ae%e9%a2%98"></a>
+AI问题
+</h2><p>混乱的数值，不仅仅是AI，还是所有的一切。</p>
+<p>AI反馈太弱：<br>
+<a href="https://www.bilibili.com/video/BV1zz421y7Fz/?t=545">https://www.bilibili.com/video/BV1zz421y7Fz/?t=545</a> ：敌我AI均站桩，大部分只是数值检测器<br>
+根源是游戏以数值和击杀为主，单个AI提供伤害检测就行，重点在群体AI做好攻击哨站的逻辑。</p>
+<p>理想的弱AI反馈：我有一万种办法弄死你？还敢惹我？还想跑？<br>
+<a href="https://www.bilibili.com/video/BV1bgGn6gE9N/?t=185">STN快报第8.5季6</a><br>
+AI实际情况：中远距离跳数字的木偶，近距离必造成伤害的失败惩罚。</p>
+<h2 id="探索问题">
+<a class="header-anchor" href="#%e6%8e%a2%e7%b4%a2%e9%97%ae%e9%a2%98"></a>
+探索问题
+</h2><p>令人诟病的捡垃圾：<br>
+理想情况：玩家到处找资源不断抽奖，有机会直接获得大金，大幅度增加体验感。<br>
+实际情况：武器大金无法在局内立刻转化为战斗力，大金在改善的体验之前先化成了冰冷的数字，获得大金之前是无数的垃圾。<br>
+假如我来设计：让玩家怀着目的探索。<br>
+时刻获得数值奖励：做一个中间层——玩家可以在局外通过远超市场价的方式锁定要兑换的关键奖励。每一个垃圾都在不断接近目标。<br>
+为垃圾提供情感意义和独立的不影响核心Gameplay的数值需求：逃离鸭科夫中，NPC任务、升级往往需要各种各样的垃圾，当玩家提供时，可以获得看起来非常不错的实际上边际效应明显的永久成长奖励、特殊装饰奖励。塞尔达中的呀哈哈。</p>
+<p>探索房屋杂乱引起的眩晕问题、资产跟其他未来感的完全不一样。<br>
+<a href="https://www.bilibili.com/video/BV14J4m1L7zn/?t=76">链接</a><br>
+根源是制作者对探索的主动逃避。<br>
+并没有把探索捡垃圾作为设计和制作核心，也没有兴趣对该内容深入优化，谁都不喜欢这个部分，但又必须得有。<br>
+所有的开发时间都被放在了海量的内容，局内局外氛围感塑造。但哪怕已经缩短了捡垃圾流程，玩家体验最少前10个小时都是捡垃圾，10个小时是一款中等游戏的长度。</p>
+<p>房间内很容易藏一堆怪，突脸直接重开。简单AI+探索不重视等等问题的叠加结果。虽然体验是非常差的，莫名其妙只有半秒反应时间后直接死，但除了完全重新设计各个关联系统以外没有太好的办法。<br>
+<a href="https://www.bilibili.com/video/BV1HJ4m1j7yH/?t=1170">链接</a><br>
+如果是我来设计：<br>
+探索模式采用单独的更智能的AI可以非常大地缓解这个问题。哪怕仅仅增加视觉感知和增加攻击前摇。</p>
+<p>资源带走与敌人强度成正比并没有给探索带来画龙点睛之妙：带走的越多敌人越持久没问题，但缺了段落感。150s到200s的数值变化并不会有区别，而明确的波次、敌人强度阈值才能让玩家真正重视和评估带走的重量。<br>
+本应成为中期循环体验的缺位让探索不再有趣。</p>
+<p>与物品E交互时的UI没有做信息重要性排版，导致第一眼很杂。同时交互方式有一种说不出来的不舒适感。<br>
+<img src="https://gcore.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/20260525004929508.png" alt=""></p>
+<h3 id="随机地点">
+<a class="header-anchor" href="#%e9%9a%8f%e6%9c%ba%e5%9c%b0%e7%82%b9"></a>
+随机地点
+</h3><p>随即地点初见有意思，玩几次后无聊：<br>
+<a href="https://www.bilibili.com/video/BV14J4m1L7zn/?t=310">链接</a><br>
+哪怕是投篮，都成为了功利的标签。作为长期内容，一定要考虑多次体验。</p>
+<p>如果我来设计：更关注多人互动，更多小差异化。<br>
+这类小创意制作花时间，但可体验时间非常短，可以在整个开发周期收集，发售前有余力再想办法设计和拼凑。毕竟，如果核心体验不行，哪怕提供这样的内容，也无法成为调节剂让玩家放松。双影奇境中有很多这类设施，但他们一是有很强功能属性(用来放松)，二是不带功利属性，玩了没实物、进度等任何奖励，三是更偏向多人互动，这样才能让玩家愿意下次还主动来。<br>
+超简单：做两个投篮框，赢的一方获得更多奖励，失败一方获得鬼脸。投入赌注，赢的一方获得赌注。<br>
+在游戏要求人数等等数值层面做出简单差异。<br>
+增加一点随机地牢探索要素，每次进入路线都略有不同。(不太行)<br>
+更大的赌博：如尖塔的？房间、转盘，进入前不知道会是多个选项中的哪个选项才能保持长期有趣，而不是多出的一个建筑。</p>
+<h2 id="战斗问题">
+<a class="header-anchor" href="#%e6%88%98%e6%96%97%e9%97%ae%e9%a2%98"></a>
+战斗问题
+</h2><p>前期奔跑肌无力：一个是奔跑体力限制，一个是第一关教程不能奔跑。<br>
+<a href="https://www.bilibili.com/video/BV1HJ4m1j7yH/?t=157">链接</a><br>
+为了成长做出妥协，可以看成体力限制，这在手游中不是问题，手游还有各种各样的反馈让你乐于提升最大体力。但单机中，奔跑是玩家的基本体验。玩家的体验每5s一个上下坡，体验曲线变化太过剧烈和陡峭。</p>
+<p>Boss出现时强制观看：Boss出现很突兀，没有做长期的视觉引导。</p>
+<p>不同武器弹药消耗不一样：这是一把枪不同溶质的必然，但终归不能这么设计，这毕竟是子弹。<br>
+一定更好的方案：不同溶质用不同类型子弹，宁可浪费也要分开。（如：OW2的安燃，Doom的不同武器弹药）<br>
+以此基础再考虑让玩家不太关注需要子弹类型：顶多可以让子弹可以转换，限制总弹药质量。</p>
+<p>尸潮不够爽，像在玩页游。<br>
+前期探索时对敌人AI的设计太过粗糙，玩家没法共情击杀这群怪物，反而像不断逼近的有一些简单机制的木桩。<br>
+丧尸同质化问题，需要工期，不算问题。</p>
+<h2 id="哨站建造">
+<a class="header-anchor" href="#%e5%93%a8%e7%ab%99%e5%bb%ba%e9%80%a0"></a>
+哨站建造
+</h2><p>限制的太狠，重量、大小、电力、弹药，为了保证长时间游玩，需要考虑太多不相关的元素，他们仅仅是不同维度的限制，而不是1+1&gt;2的体系。当然，自动化很好弥补了这个问题。</p>
+<p>拒马以及相似的只能放在哨站外的建筑：这类建筑作为一次性建筑，应让其失去中期经济的同时，具备更高的数值和功能性。临时物品的定位更优的定位可以是丢失一定长期利益，换来非常明显的短期效果。如CS的道具、尖塔的药水。</p>
+<h3 id="基础限制">
+<a class="header-anchor" href="#%e5%9f%ba%e7%a1%80%e9%99%90%e5%88%b6"></a>
+基础限制
+</h3><p>电力模式限制导致怨声载道：<br>
+链接：<br>
+根本问题——玩家在被限制前没有足够明显的暗示，这个暗示应提前到玩家准备去造设备之前。<br>
+如果是限制上限的东西，请直接给玩家，（不太好的比喻：两个坑位，几个充电桩），让玩家从一开始就有明确感知，附带一点点获得感(你给的)，而不能是到了上限突然告知的纯数值。<br>
+正面案例：尖塔的抽牌数，5张牌就在那，玩家甚至在增加抽牌数之前都没意识到他们已经默认只能抽5张。</p>
+<h2 id="over">
+<a class="header-anchor" href="#over"></a>
+Over
+</h2><p>发售后两个周再玩这个游戏，仿佛又回来到当时开发功能时的窒息感，强迫自己对乱晃的怪物用各种配件打输出，试图体会其中的乐趣。直接修改获得的武装没有实感，大量特色装备最后变成简单的数值。是不是因为没有从头搭建，缺少感情呢？从零开始的新号玩10个小时也就两个哨戒炮，再看着策划的满编哨站，是自己玩起来太笨？是不是自己真的不适合做游戏？</p>
+<p>如果那时能有人带我看看一下GDC？<br>
+但该记下的已记下，该停留的也停在了这里。<br>
+至此</p>
+</div>
+    <footer class="article-footer"><ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item" data-aos="zoom-in">
+      <a
+        class="article-tag-list-link"
+        href="/WzhGameDevPublish/tags/blog"
+        rel="tag"
+        >BLOG</a
+      >
+    </li></ul>
+</footer>
+  </div><nav
+    id="article-nav"
+    aria-label="Article navigation"
+    data-aos="fade-up"
+  ><div class="article-nav-link-wrap left"><img
+              data-src="https://img95.699pic.com/photo/60126/0136.jpg_wh860.jpg"
+              data-sizes="auto"
+              alt="战地和使命召唤系列武器射击"
+              class="lazyload"
+            /><a
+          href="/WzhGameDevPublish/post/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/2-output/%E6%B8%B8%E6%88%8F/%E6%88%98%E5%9C%B0%E5%92%8C%E4%BD%BF%E5%91%BD%E5%8F%AC%E5%94%A4%E7%B3%BB%E5%88%97%E6%AD%A6%E5%99%A8%E5%B0%84%E5%87%BB/"
+          aria-label="前一篇:战地和使命召唤系列武器射击"
+          title="前一篇:战地和使命召唤系列武器射击"
+        ></a>
+        <div class="article-nav-caption">前一篇</div>
+        <h3 class="article-nav-title">战地和使命召唤系列武器射击</h3>
+      </div></nav></article></section>
+        </div><footer id="footer" aria-label="Site footer">
+  <div style="width: 100%; overflow: hidden">
+    <div class="footer-line"></div>
+  </div>
+  <div id="footer-info"><div>
+      <span class="icon-copyright"></span>2025-2026<span class="footer-info-sep rotate"></span>
+      温志洪
+    </div><div>
+        基于&nbsp;<a
+          href="https://gohugo.io/"
+          target="_blank"
+          rel="noopener nofollow noreferrer"
+          >Hugo</a
+        >&nbsp; Theme.<a
+          href="https://github.com/D-Sketon/hugo-theme-reimu"
+          target="_blank"
+          rel="noopener nofollow noreferrer"
+          >Reimu</a
+        >
+      </div><div>
+        <span class="icon-brush"
+          >&nbsp;100.0k</span
+        >
+        &nbsp;|&nbsp;
+        <span class="icon-coffee">&nbsp;03:34</span>
+      </div><div>
+        <span class="icon-eye"></span>
+        <span id="busuanzi_container_site_pv"
+          >总访问量&nbsp;<span
+            id="busuanzi_value_site_pv"
+          ></span
+        ></span>
+        &nbsp;|&nbsp;
+        <span class="icon-user"></span>
+        <span id="busuanzi_container_site_uv"
+          >总访客量&nbsp;<span
+            id="busuanzi_value_site_uv"
+          ></span
+        ></span>
+      </div></div>
+</footer>
+<div class="sidebar-top">
+            <div class="sidebar-top-taichi rotate"></div>
+            <div class="arrow-up"></div>
+          </div><div id="mask" class="hide"></div>
+      </div><nav id="mobile-nav" aria-label="Mobile navigation">
+  <div class="sidebar-wrap"><div class="sidebar-toc-sidebar"><h3 class="toc-title">文章目录</h3>
+<div class="sidebar-toc-wrapper toc-div-class">
+  <nav id="TableOfContents">
+  <ul>
+    <li><a href="#教学关卡">教学关卡</a></li>
+    <li><a href="#多人模式体验">多人模式体验</a></li>
+    <li><a href="#敌人攻击方式">敌人攻击方式</a></li>
+    <li><a href="#哨站模式">哨站模式</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#新手引导">新手引导</a></li>
+    <li><a href="#ai问题">AI问题</a></li>
+    <li><a href="#探索问题">探索问题</a>
+      <ul>
+        <li><a href="#随机地点">随机地点</a></li>
+      </ul>
+    </li>
+    <li><a href="#战斗问题">战斗问题</a></li>
+    <li><a href="#哨站建造">哨站建造</a>
+      <ul>
+        <li><a href="#基础限制">基础限制</a></li>
+      </ul>
+    </li>
+    <li><a href="#over">Over</a></li>
+  </ul>
+</nav>
+</div></div>
+        <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
+  <img
+    data-src="/WzhGameDevPublish/avatar/UELogo.png"
+    data-sizes="auto"
+    alt="温志洪"
+    class="lazyload"
+  />
+  <div class="sidebar-author-name">温志洪</div>
+  <div class="sidebar-description">FPS游戏</div>
+</div>
+<div class="sidebar-state">
+  <div class="sidebar-state-article">
+    <div>文章</div><div class="sidebar-state-number">25</div>
+  </div>
+  <a class="sidebar-state-category" href="/WzhGameDevPublish/categories/" aria-label="sidebar-state-category-link">
+    <div>分类</div>
+    <div class="sidebar-state-number">
+      0
+    </div>
+  </a>
+  <a class="sidebar-state-tag" href="/WzhGameDevPublish/tags/" aria-label="sidebar-state-tag-link">
+    <div>标签</div>
+    <div class="sidebar-state-number">16</div>
+  </a>
+</div>
+<div class="sidebar-social"><div class="icon-bilibili sidebar-social-icon">
+      <a
+        href="https://space.bilibili.com/35312868"
+        itemprop="url"
+        target="_blank"
+        aria-label="bilibili"
+        rel="noopener nofollow noreferrer"
+      ></a>
+    </div><div class="icon-email sidebar-social-icon">
+      <a
+        href="mailto:cnwenzhihong@gmail.com"
+        itemprop="url"
+        target="_blank"
+        aria-label="email"
+        rel="noopener nofollow noreferrer"
+      ></a>
+    </div></div>
+<div class="sidebar-menu"><div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/WzhGameDevPublish/"
+        aria-label="首页"
+      ></a>
+      <div class='sidebar-menu-icon icon rotate'>&#xe62b;</div>
+      <div class="sidebar-menu-link">首页</div>
+    </div><div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/WzhGameDevPublish/archives"
+        aria-label="归档"
+      ></a>
+      <div class='sidebar-menu-icon icon rotate'>&#xe62b;</div>
+      <div class="sidebar-menu-link">归档</div>
+    </div><div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/WzhGameDevPublish/about"
+        aria-label="关于"
+      ></a>
+      <div class='sidebar-menu-icon icon rotate'>&#xe62b;</div>
+      <div class="sidebar-menu-link">关于</div>
+    </div><div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/WzhGameDevPublish/friend"
+        aria-label="友链"
+      ></a>
+      <div class='sidebar-menu-icon icon rotate'>&#xe62b;</div>
+      <div class="sidebar-menu-link">友链</div>
+    </div></div>
+</div></div><div class="sidebar-btn-wrapper">
+        <div class="sidebar-toc-btn current"></div>
+        <div class="sidebar-common-btn"></div>
+      </div></nav>
+</div><div class="site-search">
+        <div class="reimu-popup popup">
+          <div class="reimu-search">
+            <div class="reimu-search-input-icon"></div>
+            <div id="reimu-search-input"></div>
+            <div class="popup-btn-close"></div>
+          </div>
+          <div class="reimu-results">
+            <div id="reimu-stats"></div>
+            <div id="reimu-hits"></div>
+            <div id="reimu-pagination" class="reimu-pagination"></div>
+          </div>
+          <img class="reimu-bg" src="/WzhGameDevPublish/images/reimu.png" />
+        </div>
+      </div><script
+    src="https://npm.webcache.cn/lazysizes@5.3.2/lazysizes.min.js"
+    integrity="sha384-3gT/vsepWkfz/ff7PpWNUeMzeWoH3cDhm/A8jM7ouoAK0/fP/9bcHHR5kHq2nf&#43;e" crossorigin="anonymous"></script><script
+    src="https://npm.webcache.cn/clipboard@2.0.11/dist/clipboard.min.js"
+    integrity="sha384-J08i8An/QeARD9ExYpvphB8BsyOj3Gh2TSh1aLINKO3L0cMSH2dN3E22zFoXEi0Q" crossorigin="anonymous"></script><script
+    src="https://npm.webcache.cn/material-theme@1.0.0/dist/material-theme.umd.js"
+    integrity="sha384-vLev0II0HKFaxkcm&#43;/7kX5IGwVFBASkGchU311wmU/veIj2bB0UcBkQbW6yw2asK" crossorigin="anonymous"></script><script src="/WzhGameDevPublish/js/main.js" ></script><script src="/WzhGameDevPublish/js/aos.js" ></script><script>
+    var aosInit = () => {
+      AOS.init({
+        duration: 1000,
+        easing: "ease",
+        once: true,
+        offset: 50,
+      });
+    };
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", aosInit);
+    } else {
+      aosInit();
+    }
+  </script><script src="/WzhGameDevPublish/js/pjax_main.js" data-pjax></script><script>
+    var ALGOLIA_CONFIG = {
+      logo: '\/WzhGameDevPublish\/images\/algolia_logo.svg',
+      algolia: {
+        applicationID: "Y8C6JKXKKR",
+        apiKey: "30fdacdc4947fb8d8faed68e16f048a0",
+        indexName: "index",
+        hits: {
+          "per_page": parseInt("10")
+        },
+        labels: {
+          "input_placeholder": '搜索.....',
+          "hits_empty": '未发现与 「${query}」相关内容',
+          "hits_stats": '找到${hits}条结果（用时 ${time} ms）'
+        }
+      }
+    };
+  </script><script
+    src="https://npm.webcache.cn/algoliasearch@4.17.1/dist/algoliasearch-lite.umd.js"
+    deferintegrity="sha384-xvLS0jfKuoREs7pqkRI/OI8GcqohO5S&#43;jQz7ZBtQXnsXmD&#43;9jDOOY4cL6dCPzlrk" crossorigin="anonymous"></script><script
+    src="https://npm.webcache.cn/@reimujs/instantsearch.js@4.57.0-beta.1/dist/instantsearch.production.min.js"
+    deferintegrity="sha384-aagKMe8nkqaP2DYQc8kkYOL5l&#43;M5Q2WH/Uhr4teOh0Ybp0RZj0kUSDm45qPikMjK" crossorigin="anonymous"></script><script src="/WzhGameDevPublish/js/algolia_search.js" ></script><script
+    src="https://npm.webcache.cn/mouse-firework@0.1.1/dist/index.umd.js"
+    integrity="sha384-8LyaidD9GPxQQgLJO/WRw/O2h3BoNq/ApI/ecpvM6RsrCz2qP2ppBXUKihP4V/2d" crossorigin="anonymous"></script><script>
+  if (! false  || !window.matchMedia('(max-width: 768px)').matches) {
+    if (window.firework) {
+      const options = JSON.parse("{\"excludeelements\":[\"a\",\"button\"],\"particles\":[{\"colors\":[\"var(--red-1)\",\"var(--red-2)\",\"var(--red-3)\",\"var(--red-4)\"],\"duration\":[1200,1800],\"easing\":\"easeOutExpo\",\"move\":[\"emit\"],\"number\":20,\"shape\":\"circle\",\"shapeOptions\":{\"alpha\":[0.3,0.5],\"radius\":[16,32]}},{\"colors\":[\"var(--red-0)\"],\"duration\":[1200,1800],\"easing\":\"easeOutExpo\",\"move\":[\"diffuse\"],\"number\":1,\"shape\":\"circle\",\"shapeOptions\":{\"alpha\":[0.2,0.5],\"lineWidth\":6,\"radius\":20}}]}");
+      options.excludeElements = options.excludeelements;
+      delete options.excludeelements;
+      window.firework(options);
+    }
+  }
+</script><script
+    src="https://npm.webcache.cn/quicklink@3.0.1/dist/quicklink.umd.js"
+    integrity="sha384-caMDqvgav/HWdEYQU1QRRHMLleigpL1YHAG0m371DhzfL8rRzUyOb&#43;bEHtwlmYjD" crossorigin="anonymous"></script><script data-pjax>
+    window.quicklink?.listen({
+      timeout:  3000 ,
+      priority:  true ,
+      ignores: JSON.parse("[]")
+    });
+  </script>
+
+
+<div id="lazy-script">
+  <div><script data-pjax>
+        window.REIMU_POST = {
+          author: "温志洪",
+          title: "重装前哨的设计问题和思考",
+          url: "http:\/\/localhost:1895\/WzhGameDevPublish\/post\/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91\/2-output\/%E6%B8%B8%E6%88%8F\/%E9%87%8D%E8%A3%85%E5%89%8D%E5%93%A8%E7%9A%84%E8%AE%BE%E8%AE%A1%E9%97%AE%E9%A2%98%E5%92%8C%E6%80%9D%E8%80%83\/",
+          description: "趁这款游戏热度过去，仅作为第三者分析和猜测该游戏的设计，仅算是一种记录。\n游戏内容的失衡太少，玩家体验的失衡太多。\n制作者\u002b玩家：我一开始对这个游戏的设想是四人联机，一个人在玩戴森球，一个人在玩rts，还有两个人在玩逆战保卫战，大家配合着打\n实际游戏体验：结果，，，，，就是捡垃圾为主，，，，太多不重要的局内外功能，小而杂。\n",
+          cover: "http:\/\/localhost:1895\/WzhGameDevPublish\/images\/banner.webp",
+        };
+      </script><script src="/WzhGameDevPublish/js/insert_highlight.js" data-pjax></script><script src="/WzhGameDevPublish/js/tabs.js" data-pjax></script><script type="module" data-pjax>const PhotoSwipeLightbox = (await safeImport("https:\/\/npm.webcache.cn\/photoswipe@5.4.4\/dist\/photoswipe-lightbox.esm.min.js", "sha384-DiL6M\/gG\u002bwmTxmCRZyD1zee6lIhawn5TGvED0FOh7fXcN9B0aZ9dexSF\/N6lrZi\/")).default;const initPswp = (gallery, children) => {
+          if (_$$(`${gallery} ${children}`).length > 0) {
+            new PhotoSwipeLightbox({
+              gallery,
+              children,pswpModule: () => safeImport("https:\/\/npm.webcache.cn\/photoswipe@5.4.4\/dist\/photoswipe.esm.min.js", "sha384-WkkO3GCmgkC3VQWpaV8DqhKJqpzpF9JoByxDmnV8\u002boTJ7m3DfYEWX1fu1scuS4\u002bs")}).init();
+          }
+        }
+        const pswp = () => {
+          initPswp('.article-entry', 'a.article-gallery-item');
+          initPswp('.article-gallery', 'a.article-gallery-item');
+          window.lightboxStatus = 'done';
+          window.removeEventListener('lightbox:ready', pswp);
+        }
+        if(window.lightboxStatus === 'ready') {
+          pswp()
+        } else {
+          window.addEventListener('lightbox:ready', pswp);
+        }
+      </script></div>
+</div><script
+    src="https://npm.webcache.cn/busuanzi@2.3.0/bsz.pure.mini.js"
+    asyncintegrity="sha384-0M75wtSkhjIInv4coYlaJU83&#43;OypaRCIq2SukQVQX04eGTCBXJDuWAbJet56id&#43;S" crossorigin="anonymous"></script><script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.getRegistrations().then((registrations) => {
+        for (let registration of registrations) {
+          registration.unregister();
+        }
+      });
+    }
+  </script><script>
+  const reimuCopyright = String.raw`
+   ______     ______     __     __    __     __  __    
+  /\  == \   /\  ___\   /\ \   /\ "-./  \   /\ \/\ \   
+  \ \  __<   \ \  __\   \ \ \  \ \ \-./\ \  \ \ \_\ \  
+   \ \_\ \_\  \ \_____\  \ \_\  \ \_\ \ \_\  \ \_____\ 
+    \/_/ /_/   \/_____/   \/_/   \/_/  \/_/   \/_____/ 
+                                                    
+  `;
+  console.log(String.raw`%c ${reimuCopyright}`, "color: #ff5252;");
+  console.log(
+    "%c Theme.Reimu" + " %c https://github.com/D-Sketon/hugo-theme-reimu ",
+    "color: white; background: #ff5252; padding:5px 0;",
+    "padding:4px;border:1px solid #ff5252;",
+  );
+</script></body>
+</html>

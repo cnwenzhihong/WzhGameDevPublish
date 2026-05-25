@@ -50,7 +50,7 @@
   />
   <meta property="article:author" content="温志洪" />
   <meta property="article:published_time" content="2026-04-16T11:28:56&#43;00:00" />
-  <meta property="article:modified_time" content="2026-05-15T21:16:03&#43;00:00" /><meta property="article:tag" content="blogAI/CodeXUE/Base" /><meta name="twitter:card" content="summary" />
+  <meta property="article:modified_time" content="2026-05-24T08:15:58&#43;00:00" /><meta property="article:tag" content="blogAI/CodeXUE/Base" /><meta name="twitter:card" content="summary" />
   <meta name="twitter:image" content="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTZVoXKJhETNZbZNzuls9YkWGbAZVbAm3uo2Q&amp;s" />
 <link rel="shortcut icon" href="/WzhGameDevPublish/favicon.ico"><link rel="stylesheet" href="/WzhGameDevPublish/css/main.css" />
 <link
@@ -203,6 +203,7 @@
   <ul>
     <li><a href="#1-全局级别codex配置文件--codexagentsmd">1. 全局级别Codex配置文件 // ~/.codex/AGENTS.md</a>
       <ul>
+        <li><a href="#设置代理地址">设置代理地址</a></li>
         <li><a href="#前端开发配置">前端开发配置</a></li>
       </ul>
     </li>
@@ -242,7 +243,7 @@
 </div>
 <div class="sidebar-state">
   <div class="sidebar-state-article">
-    <div>文章</div><div class="sidebar-state-number">22</div>
+    <div>文章</div><div class="sidebar-state-number">25</div>
   </div>
   <a class="sidebar-state-category" href="/WzhGameDevPublish/categories/" aria-label="sidebar-state-category-link">
     <div>分类</div>
@@ -252,7 +253,7 @@
   </a>
   <a class="sidebar-state-tag" href="/WzhGameDevPublish/tags/" aria-label="sidebar-state-tag-link">
     <div>标签</div>
-    <div class="sidebar-state-number">13</div>
+    <div class="sidebar-state-number">16</div>
   </a>
 </div>
 <div class="sidebar-social"><div class="icon-bilibili sidebar-social-icon">
@@ -329,14 +330,14 @@
       >2026-04-16</time
     >
     <time style="display: none;" id="post-update-time"
-      >2026-05-15</time
+      >2026-05-24</time
     >
   </span><span
       class="article-date-link icon-calendar-plus"
       data-aos="zoom-in"
     >
-      <time datetime="2026-05-15 21:16:03.184 &#43;0000 UTC" itemprop="dateModified"
-        >2026-05-15</time
+      <time datetime="2026-05-24 08:15:58.849 &#43;0000 UTC" itemprop="dateModified"
+        >2026-05-24</time
       >
     </span></div>
 <div class="article-category"></div>
@@ -422,6 +423,14 @@ Aggent.md：<a href="https://developers.openai.com/codex/guides/agents-md">Custo
 </span></span><span class="line"><span class="cl"><span class="k">-</span> 运行任务时按需加载必须的相关文件以保证任务的完美完成
 </span></span><span class="line"><span class="cl"><span class="k">-</span> 完成工作后，不要做太多的总结和啰嗦，不要把简单的问题复杂化，给出一个简单的总结作为结尾就可以了，不需要进行太复杂的测试
 </span></span><span class="line"><span class="cl"><span class="k">-</span> 涉及文件行数提醒的事项，在回复中使用 Markdown link 的形式 like: [<span class="nt">README.md:115</span>](<span class="na">/pathTo/README.md:115</span>) , 同理，其他相关的内容提示也都以用户易读的角度出发，做成相关的 Markdown 格式.
+</span></span></code></pre></div><h3 id="设置代理地址">
+<a class="header-anchor" href="#%e8%ae%be%e7%bd%ae%e4%bb%a3%e7%90%86%e5%9c%b0%e5%9d%80"></a>
+设置代理地址
+</h3><p>在Codex根目录(<code>C:\Users\UserName\.codex</code>)创建<code>.env</code> 文件：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">HTTP_PR0XY=http://127.0.0.1:7890
+</span></span><span class="line"><span class="cl">HTTPS_PR0XY=http://127.0.0.1:7890
+</span></span><span class="line"><span class="cl">ALL_PR0XY=http://127.0.0.1:7890
+</span></span><span class="line"><span class="cl">NO_PR0XY=localhost,127.0.0.1
 </span></span></code></pre></div><h3 id="前端开发配置">
 <a class="header-anchor" href="#%e5%89%8d%e7%ab%af%e5%bc%80%e5%8f%91%e9%85%8d%e7%bd%ae"></a>
 前端开发配置
@@ -602,10 +611,10 @@ Resave
         >
       </div><div>
         <span class="icon-brush"
-          >&nbsp;95.3k</span
+          >&nbsp;100.0k</span
         >
         &nbsp;|&nbsp;
-        <span class="icon-coffee">&nbsp;03:21</span>
+        <span class="icon-coffee">&nbsp;03:34</span>
       </div><div>
         <span class="icon-eye"></span>
         <span id="busuanzi_container_site_pv"
@@ -639,6 +648,7 @@ Resave
   <ul>
     <li><a href="#1-全局级别codex配置文件--codexagentsmd">1. 全局级别Codex配置文件 // ~/.codex/AGENTS.md</a>
       <ul>
+        <li><a href="#设置代理地址">设置代理地址</a></li>
         <li><a href="#前端开发配置">前端开发配置</a></li>
       </ul>
     </li>
@@ -678,7 +688,7 @@ Resave
 </div>
 <div class="sidebar-state">
   <div class="sidebar-state-article">
-    <div>文章</div><div class="sidebar-state-number">22</div>
+    <div>文章</div><div class="sidebar-state-number">25</div>
   </div>
   <a class="sidebar-state-category" href="/WzhGameDevPublish/categories/" aria-label="sidebar-state-category-link">
     <div>分类</div>
@@ -688,7 +698,7 @@ Resave
   </a>
   <a class="sidebar-state-tag" href="/WzhGameDevPublish/tags/" aria-label="sidebar-state-tag-link">
     <div>标签</div>
-    <div class="sidebar-state-number">13</div>
+    <div class="sidebar-state-number">16</div>
   </a>
 </div>
 <div class="sidebar-social"><div class="icon-bilibili sidebar-social-icon">

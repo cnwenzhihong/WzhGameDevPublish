@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>UE/Experience on 妖精游戏开发馆</title>
+    <link>http://localhost:1895/WzhGameDevPublish/tags/ue/experience/</link>
+    <description>Recent content from 妖精游戏开发馆</description>
+    <generator>Hugo</generator>
+    <language>zh-cn</language>
+    
+    <managingEditor>cnwenzhihong@gmail.com (温志洪)</managingEditor>
+    <webMaster>cnwenzhihong@gmail.com (温志洪)</webMaster>
+    
+    <copyright>本博客所有文章除特别声明外，均采用 BY-NC-SA 许可协议。转载请注明出处！</copyright>
+    
+    <lastBuildDate>Mon, 25 May 2026 12:03:16 +0000</lastBuildDate>
+    
+    
+    <atom:link href="http://localhost:1895/WzhGameDevPublish/tags/ue/experience/index.xml" rel="self" type="application/rss&#43;xml" />
+    
+
+    
+    
+
+    <item>
+      <title>Lyra实战：新增GameFeature</title>
+      <link>http://localhost:1895/WzhGameDevPublish/post/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/%E4%BB%A3%E7%A0%81%E6%A1%86%E6%9E%B6/lyra/lyra-framework/lyra%E5%AE%9E%E6%88%98%E6%96%B0%E5%A2%9Egamefeature/</link>
+      <pubDate>Sat, 13 Sep 2025 21:23:35 &#43;0000</pubDate>
+      <author>cnwenzhihong@gmail.com (温志洪)</author>
+      <guid>http://localhost:1895/WzhGameDevPublish/post/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/%E4%BB%A3%E7%A0%81%E6%A1%86%E6%9E%B6/lyra/lyra-framework/lyra%E5%AE%9E%E6%88%98%E6%96%B0%E5%A2%9Egamefeature/</guid>
+      <description>
+        <![CDATA[<h1>Lyra实战：新增GameFeature</h1><p>作者：温志洪（cnwenzhihong@gmail.com）</p>
+        
+          <h1 id="重要数据">
+<a class="header-anchor" href="#%e9%87%8d%e8%a6%81%e6%95%b0%e6%8d%ae"></a>
+重要数据
+</h1><p>涉及到的文件夹和文件总览</p>
+<p>[list2lt]</p>
+<ul>
+<li>📂GameFeature
+<ul>
+<li>📝.uplugin——插件配置</li>
+<li>Content
+<ul>
+<li>📘GameFeatureData——根目录同名文件</li>
+<li>📂System
+<ul>
+<li>📂Playlists
+<ul>
+<li>📘LyraUserFacingExperienceDefinition——显示UI</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>📂Experience
+<ul>
+<li>📘LyraExperienceDefinition——真正的Experience数据</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h1 id="创建并配置gamefeature">
+<a class="header-anchor" href="#%e5%88%9b%e5%bb%ba%e5%b9%b6%e9%85%8d%e7%bd%aegamefeature"></a>
+创建并配置GameFeature
+</h1><h2 id="创建">
+<a class="header-anchor" href="#%e5%88%9b%e5%bb%ba"></a>
+创建
+</h2><p>添加Plugins时选择GameFeature<br>
+<img src="https://cdn.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/20250914052644881.png" alt="image.png"></p>
+        
+        <hr><p>本文2025-09-13首发于<a href='http://localhost:1895/WzhGameDevPublish/'>妖精游戏开发馆</a>，最后修改于2026-05-25</p>]]>
+      </description>
+      
+    </item>
+    
+  </channel>
+</rss>

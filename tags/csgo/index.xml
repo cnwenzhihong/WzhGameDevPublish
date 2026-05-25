@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>CSGO on 妖精游戏开发馆</title>
+    <link>http://localhost:1895/WzhGameDevPublish/tags/csgo/</link>
+    <description>Recent content from 妖精游戏开发馆</description>
+    <generator>Hugo</generator>
+    <language>zh-cn</language>
+    
+    <managingEditor>cnwenzhihong@gmail.com (温志洪)</managingEditor>
+    <webMaster>cnwenzhihong@gmail.com (温志洪)</webMaster>
+    
+    <copyright>本博客所有文章除特别声明外，均采用 BY-NC-SA 许可协议。转载请注明出处！</copyright>
+    
+    <lastBuildDate>Sun, 24 May 2026 07:49:19 +0000</lastBuildDate>
+    
+    
+    <atom:link href="http://localhost:1895/WzhGameDevPublish/tags/csgo/index.xml" rel="self" type="application/rss&#43;xml" />
+    
+
+    
+    
+
+    <item>
+      <title>CSGO中的游戏设计资料汇总</title>
+      <link>http://localhost:1895/WzhGameDevPublish/post/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/2-output/%E6%B8%B8%E6%88%8F/csgo%E4%B8%AD%E7%9A%84%E6%B8%B8%E6%88%8F%E8%AE%BE%E8%AE%A1%E8%B5%84%E6%96%99%E6%B1%87%E6%80%BB/</link>
+      <pubDate>Sun, 24 Aug 2025 23:38:30 &#43;0000</pubDate>
+      <author>cnwenzhihong@gmail.com (温志洪)</author>
+      <guid>http://localhost:1895/WzhGameDevPublish/post/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/2-output/%E6%B8%B8%E6%88%8F/csgo%E4%B8%AD%E7%9A%84%E6%B8%B8%E6%88%8F%E8%AE%BE%E8%AE%A1%E8%B5%84%E6%96%99%E6%B1%87%E6%80%BB/</guid>
+      <description>
+        <![CDATA[<h1>CSGO中的游戏设计资料汇总</h1><p>作者：温志洪（cnwenzhihong@gmail.com）</p>
+        
+          <blockquote>
+<p>我们仅考虑点击开始游戏后的局内表现，而省去皮肤等外部交易的经济系统</p>
+</blockquote>
+<h1 id="1-属性的对应关系">
+<a class="header-anchor" href="#1-%e5%b1%9e%e6%80%a7%e7%9a%84%e5%af%b9%e5%ba%94%e5%85%b3%e7%b3%bb"></a>
+1. 属性的对应关系
+</h1><h2 id="11-武器">
+<a class="header-anchor" href="#11-%e6%ad%a6%e5%99%a8"></a>
+1.1. 武器
+</h2><h3 id="经济">
+<a class="header-anchor" href="#%e7%bb%8f%e6%b5%8e"></a>
+经济
+</h3><p>武器和经济系统的影响：售价、击杀奖励</p>
+<h3 id="射击">
+<a class="header-anchor" href="#%e5%b0%84%e5%87%bb"></a>
+射击
+</h3><p><a href="https://www.youtube.com/watch?v=ELuKZR1Eh8w">为什么在 CS2 中射击不准确？</a><br>
+<a href="https://www.youtube.com/watch?v=eandoX7Jsh4">为什么你在 CS2 中可能丢失了shot——SubTick的问题</a><br>
+<a href="https://www.bilibili.com/video/BV1qeLt6mEgQ">CS与瓦的穿点设计有什么不同？</a></p>
+        
+        <hr><p>本文2025-08-24首发于<a href='http://localhost:1895/WzhGameDevPublish/'>妖精游戏开发馆</a>，最后修改于2026-05-24</p>]]>
+      </description>
+      
+    </item>
+    
+  </channel>
+</rss>
