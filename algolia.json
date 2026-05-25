@@ -117,13 +117,19 @@
     "objectID": "e0fcaab4904d4a15cf66570e8b138827a99153ed",
     "permalink": "/WzhGameDevPublish/post/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/%E4%BB%A3%E7%A0%81%E6%A1%86%E6%9E%B6/lyra/lyra-framework/lyra%E5%AE%9E%E6%88%98%E6%96%B0%E5%A2%9Egamefeature/",
     "title": "Lyra实战：新增GameFeature","content": "\r重要数据\r涉及到的文件夹和文件总览\n[list2lt]\n📂GameFeature 📝.uplugin——插件配置 Content 📘GameFeatureData——根目录同名文件 📂System 📂Playlists 📘LyraUserFacingExperienceDefinition——显示UI 📂Experience 📘LyraExperienceDefinition——真正的Experience数据 创建并配置GameFeature\r创建\r添加Plugins时选择GameFeature\n配置GameFeatureData\r进入插件文件夹，找到我们自动创建的GameFeatureData\n1. 修改CurrentState为Registered\n2. 找到AssetManager→PrimaryAssetTypestoScan，添加必要的数据类型，可以直接抄ShooterCore的\n创建Experiences\r添加模块依赖\r添加ShooterCore和ShooterMap插件依赖\n由于之后需要用到ShooterCore和ShooterMap的资源，像一般插件一样，需要在.uplugin中添加依赖\n创建可被自动发现的Experiences的UI数据\r基于上文的PrimaryAssetTypestoScan，我们需要将LyraUserFacingExperienceDefinition放置在System/Playlists下。\n同上，我们直接复制一个。ShooterMap同目录下分别是第一和第二个模式，内部参数可以自由调节\n成功则如图中效果，新的ExperiencesUI被自动识别，但不论是地图还是体验依旧是Elimination歼灭模式的。\n创建并修改Experiences\r双击ExperienceID中的蓝图，复制一份到GameFeature中，再将新Experience赋值回ExperienceID。\n便可以继续创建或修改每个GameFeature的功能。如PawnData、\n","date": "2025-09-13 21:23:35",
-    "updated": "2026-05-25 12:03:16"
+    "updated": "2026-05-25 12:09:46"
   }, 
   {
     "objectID": "259e2c3f032789f22623a092fa626c1cc6a3da39",
     "permalink": "/WzhGameDevPublish/post/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/%E4%BB%A3%E7%A0%81%E6%A1%86%E6%9E%B6/lyra/lyra%E6%A1%86%E6%9E%B6%E7%A0%94%E7%A9%B6%E6%80%BB%E8%A7%88/",
     "title": "Lyra框架研究总览","content": "\r总览\r不错的资料\rTip\r很多新特性 GameFeature将Lyra做了极大的解耦、导致逻辑不连续，动态加载让引用关系很难查找 GAS+EnhanceInput 大量使用DataAsset 设计模式杂糅 面向数据ECS的不严格使用\n系统+组件+实体 MVC用于UI\n数据模型+逻辑控制器+显示视图 MVVM和VUE：将逻辑和Btn分离的MVC 堆栈式逻辑 Gameplay 武器在有的地方像ECS，有的地方像MVVM ECS——将武器的数据实例和表现做了分离，最终配置在Item中显示 MVVM——实例会被继续细分为Ability、蒙太奇、扩散\n开火射线检测的作用 速度和碰撞会严重影响开火的命中检测 散弹枪获取8个HitResult并上传到服务器广播 Tip\rInsideLyra-致UE“初学者”\n非常全面和简洁地介绍了Lyra学习的前置知识和UE C++的核心要点:\nLyra的部分程序设计简析\nLyra中除了框架外很容易被忽视的功能和优化:\nLyra官方文档\n关键信息简述\rFramwork\r核心价值\rGameMode的数据驱动替代\n优点：\n玩法模块化(Experience)： 方便动态加载不同的玩法模式(第三人称射击，俯视角的竞技场派对游戏，横板平台跳跃等) 运行时组件化(ModularGameplay)：解决因为Gameplay框架中类的数据和成员变量越来越多，最终会越写越大的问题 缓冲带(GameFeatures)：隔离引擎Gameplay和项目的Gameplay，让一方的改动不会影响另一方。(作用不大) 模块对比\rModularGameplay：运行时组件化——让Gameplay框架支持挂组件，GameFeature的前提\nGameFeatures：Mod化——让插件去依赖游戏主逻辑，不同玩法变成游戏Mod\nExperience：数据驱动——把组件和玩法框架封装并塞到数据表里，方便动态加载\n快速阅读框架\rModular Gameplay\r让GameMode、GameState、PlayerState、Controller、Character拥有组件化能力\nSubSystem+Modular Gameplay就可以实现数据驱动\nGame features\r是Unreal Engine5引入的全新的类似于DLC的工作机制。\nflowchart LR Engine …","date": "2025-09-11 17:10:52",
-    "updated": "2026-04-30 15:41:17"
+    "updated": "2026-05-25 12:15:55"
+  }, 
+  {
+    "objectID": "930fb9a6f624c98dd19c76b86039c6d489150462",
+    "permalink": "/WzhGameDevPublish/post/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/%E4%BB%A3%E7%A0%81%E6%A1%86%E6%9E%B6/lyra/lyra-3c/lyra-character-%E8%A7%92%E8%89%B2%E5%AE%9E%E7%8E%B0%E7%BB%86%E8%8A%82/",
+    "title": "Lyra Character-角色实现细节","content": "\r蓝图\r角色蓝图\rLyra的Character只提供与外接系统沟通的最小功能\n角色继承关系:\n[list2astreeH|code()]\n📄LyraCharacter——底层系统支持 📘CharacterDefault——无逻辑，蓝图基类 📘B_Hero_Default——控制器支持、声音特效组件 📘B_Hero_ShooterMannequin——模型表现支持 ❎B_Hero_Arena(炸弹人游戏玩法) ❎B_Pawn_Explorer B_Hero_Explorer(StateTree测试) LyraCharacter\r为新的系统接入提供基础支持。如GAS、模块化、相机控制、队伍管理\n模块化组件支持——继承自ModularCharacter GAS函数支持 变量 MovementMode映射Tag(MovementModeTagMap) 加速度的网络同步(ReplicatedAcceleration) 简单功能: 生命值组件、相机组件、队伍ID 参数修改：关闭Tick、更改碰撞和网格体的碰撞预设、设置几乎无限远的网络同步距离 CharacterDefault\r给所有蓝图Character类一个父类\n只改了胶囊体的Area Class Override为空Obstacle\nB_Hero_Default\r增加一些Character必要的控制器(玩家输入、AI)功能，处理一些通用效果(死亡、脚步)以及配套的(处理脚步声)特效管理组件LyraContentEffect\n管理输入和相机：LyraHero组件 InputData_Hero：输入表格 AI: AI感知:AIPerceptionStimuliSourceComponent，添加视觉、听觉感知 AI加减速更自然: 勾选MovementComp的Use Acceleration for Paths 处理死亡的表现效果(所有函数)：\n关闭碰撞、隐藏所有直系模型，帮武器组件隐藏武器、布娃娃 表现——处理动画通知发来的脚步声: 特效、声音处理: LyraContextEffectComponent 脚步效果: 实现LyraContextEffectComponent的AnimMotionEffect接口——创建B_FootStep并把所有对该接口的调用都扔进去 B_Hero_ShooterMannequin\r做基本的射 …","date": "2025-09-11 01:43:51",
+    "updated": "2026-05-25 12:16:18"
   }, 
   {
     "objectID": "90e2ac697aa71aadb2316722d8412fddf7ddd29c",
@@ -135,7 +141,7 @@
     "objectID": "d84f30dafea8b557de4aa273004c051d560dcf3c",
     "permalink": "/WzhGameDevPublish/post/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/%E4%BB%A3%E7%A0%81%E6%A1%86%E6%9E%B6/lyra/fps/lyra%E6%94%B9%E4%B8%BAfps/",
     "title": "Lyra改为FPS","content": " QQ：2423113760 Gmail：cnwenzhihong@gmail.com\n预览视频\n文档多，跨度时间长，没法慢慢审查。有任何需要补充、修改、解释的地方随时联系。\nDemo链接(UE5.6)：\n网盘链接 谷歌Driver\n总览\r这套方案的优点\r完全基于Lyra框架，所有逻辑均扩展于Lyra原生框架，如库存、Cosmet、GAS、GameFeature、AnimLayer 参数化动画蓝图架构，不依赖特定FPS动画资产 搭配FPS程序化动画，满足中小项目动画需求\n细节文档\r如何拓展LyraFPS\n如何使用EasyProceduralAnim插件\nFPS动画制作参考资料总览\nUE5第一人称渲染视频笔记\nFPS程序化动画实现思路\n武器摇晃的重要概念\n武器摇晃思想与实现方案\n专业游戏开发者如何为射击游戏创造枪械手感？\nLyra 射击全流程梳理\n关键技术点\rFirstPersonPrimitive\r第一人称渲染的问题：判定太靠前，只对默认值有效，更改配置后需要手动刷新渲染。\n程序化动画中的WeaponSway\r奔跑/下蹲/冲刺的移速变化\r如果只是 ADS 降速，Lyra 蓝图里直接 Set MaxWalkSpeed 可以工作。\n但要实现客户端预测：\nCMC方案：自定义FCharacterNetworkMoveData\r要求在高延迟下预测一致，应该把“影响移动模拟的输入bool”放进 CharacterMovement 的 NetworkMoveData，使用CMC的原生预测回滚机制。\nRPC、 Replication 或 GAS Tag必定带来延迟和抖动。\n速度变化实现思路： 1. Sprint、Jog、Walk这类由玩家主动传入的数据：SavedMove 2. KnockedDown ／ DisableMove 这类被动引发的Gameplay状态，走Tag判断 3. 复杂速度运算：直接设置PredictedSpeedScale，改变量也作为数据参与Move同步 Mover方案：\r带有更灵活的Layer化的移动方案，天然支持多状态。\n用Input Cmd代替了NetworkMoveData，实现也更简单。\n如果现在换成 Mover，需要确认大量系统：\nAnimBP 如何读取移动状态？ Ability 里如何拿移动组件？ 角色是否还继承 ACharacter？ …","date": "2025-09-08 19:57:34",
-    "updated": "2026-05-22 05:46:49"
+    "updated": "2026-05-25 12:15:55"
   }, 
   {
     "objectID": "3ed96206a4e0c67d52c0d2d9002af864d40a4cc7",

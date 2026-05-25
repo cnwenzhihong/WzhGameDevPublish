@@ -12,12 +12,138 @@
     
     <copyright>本博客所有文章除特别声明外，均采用 BY-NC-SA 许可协议。转载请注明出处！</copyright>
     
-    <lastBuildDate>Mon, 25 May 2026 12:03:16 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 25 May 2026 12:16:18 +0000</lastBuildDate>
     
     
     <atom:link href="http://localhost:1895/WzhGameDevPublish/index.xml" rel="self" type="application/rss&#43;xml" />
     
 
+    
+    
+
+    <item>
+      <title>Lyra Character-角色实现细节</title>
+      <link>http://localhost:1895/WzhGameDevPublish/post/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/%E4%BB%A3%E7%A0%81%E6%A1%86%E6%9E%B6/lyra/lyra-3c/lyra-character-%E8%A7%92%E8%89%B2%E5%AE%9E%E7%8E%B0%E7%BB%86%E8%8A%82/</link>
+      <pubDate>Thu, 11 Sep 2025 01:43:51 &#43;0000</pubDate>
+      <author>cnwenzhihong@gmail.com (温志洪)</author>
+      <guid>http://localhost:1895/WzhGameDevPublish/post/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/%E4%BB%A3%E7%A0%81%E6%A1%86%E6%9E%B6/lyra/lyra-3c/lyra-character-%E8%A7%92%E8%89%B2%E5%AE%9E%E7%8E%B0%E7%BB%86%E8%8A%82/</guid>
+      <description>
+        <![CDATA[<h1>Lyra Character-角色实现细节</h1><p>作者：温志洪（cnwenzhihong@gmail.com）</p>
+        
+          <h1 id="蓝图">
+<a class="header-anchor" href="#%e8%93%9d%e5%9b%be"></a>
+蓝图
+</h1><h2 id="角色蓝图">
+<a class="header-anchor" href="#%e8%a7%92%e8%89%b2%e8%93%9d%e5%9b%be"></a>
+角色蓝图
+</h2><p>Lyra的Character只提供与外接系统沟通的最小功能<br>
+角色继承关系:</p>
+<p>[list2astreeH|code()]</p>
+<ul>
+<li>📄LyraCharacter——底层系统支持
+<ul>
+<li>📘CharacterDefault——无逻辑，蓝图基类
+<ul>
+<li>📘B_Hero_Default——控制器支持、声音特效组件
+<ul>
+<li>📘B_Hero_ShooterMannequin——模型表现支持</li>
+<li>❎B_Hero_Arena(炸弹人游戏玩法)</li>
+<li>❎B_Pawn_Explorer B_Hero_Explorer(StateTree测试)</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="lyracharacter">
+<a class="header-anchor" href="#lyracharacter"></a>
+LyraCharacter
+</h3><p>为新的系统接入提供基础支持。如GAS、模块化、相机控制、队伍管理</p>
+        
+        <hr><p>本文2025-09-11首发于<a href='http://localhost:1895/WzhGameDevPublish/'>妖精游戏开发馆</a>，最后修改于2026-05-25</p>]]>
+      </description>
+      
+    </item>
+    
+    
+
+    <item>
+      <title>Lyra改为FPS</title>
+      <link>http://localhost:1895/WzhGameDevPublish/post/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/%E4%BB%A3%E7%A0%81%E6%A1%86%E6%9E%B6/lyra/fps/lyra%E6%94%B9%E4%B8%BAfps/</link>
+      <pubDate>Mon, 08 Sep 2025 19:57:34 &#43;0000</pubDate>
+      <author>cnwenzhihong@gmail.com (温志洪)</author>
+      <guid>http://localhost:1895/WzhGameDevPublish/post/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/%E4%BB%A3%E7%A0%81%E6%A1%86%E6%9E%B6/lyra/fps/lyra%E6%94%B9%E4%B8%BAfps/</guid>
+      <description>
+        <![CDATA[<h1>Lyra改为FPS</h1><p>作者：温志洪（cnwenzhihong@gmail.com）</p>
+        
+          <blockquote>
+<p>QQ：<code>2423113760</code>  Gmail：<code>cnwenzhihong@gmail.com</code><br>
+<a href="https://www.bilibili.com/video/BV1we5q61EtZ/">预览视频</a><br>
+文档多，跨度时间长，没法慢慢审查。有任何需要补充、修改、解释的地方随时联系。<br>
+Demo链接(UE5.6)：<br>
+<a href="https://pan.baidu.com/s/1oYBJtKbm1BMV2bnmDh6Dcw?pwd=1234">网盘链接</a> <br>
+<a href="https://drive.google.com/drive/folders/1mzL02h1vqcTBgGS9_27co6mP5X_sd6pP?usp=sharing">谷歌Driver</a></p>
+        
+        <hr><p>本文2025-09-08首发于<a href='http://localhost:1895/WzhGameDevPublish/'>妖精游戏开发馆</a>，最后修改于2026-05-25</p>]]>
+      </description>
+      
+    </item>
+    
+    
+
+    <item>
+      <title>Lyra框架研究总览</title>
+      <link>http://localhost:1895/WzhGameDevPublish/post/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/%E4%BB%A3%E7%A0%81%E6%A1%86%E6%9E%B6/lyra/lyra%E6%A1%86%E6%9E%B6%E7%A0%94%E7%A9%B6%E6%80%BB%E8%A7%88/</link>
+      <pubDate>Thu, 11 Sep 2025 17:10:52 &#43;0000</pubDate>
+      <author>cnwenzhihong@gmail.com (温志洪)</author>
+      <guid>http://localhost:1895/WzhGameDevPublish/post/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/%E4%BB%A3%E7%A0%81%E6%A1%86%E6%9E%B6/lyra/lyra%E6%A1%86%E6%9E%B6%E7%A0%94%E7%A9%B6%E6%80%BB%E8%A7%88/</guid>
+      <description>
+        <![CDATA[<h1>Lyra框架研究总览</h1><p>作者：温志洪（cnwenzhihong@gmail.com）</p>
+        
+          <h1 id="总览">
+<a class="header-anchor" href="#%e6%80%bb%e8%a7%88"></a>
+总览
+</h1><h2 id="不错的资料">
+<a class="header-anchor" href="#%e4%b8%8d%e9%94%99%e7%9a%84%e8%b5%84%e6%96%99"></a>
+不错的资料
+</h2>
+  <blockquote class="alert-blockquote tip">
+    <p class="alert-heading">
+      Tip
+    </p>
+    <p><ol>
+<li>很多新特性</li>
+<li>GameFeature将Lyra做了极大的解耦、导致逻辑不连续，动态加载让引用关系很难查找</li>
+<li>GAS+EnhanceInput</li>
+<li>大量使用DataAsset</li>
+<li>设计模式杂糅</li>
+<li>面向数据ECS的不严格使用<br>
+系统+组件+实体</li>
+<li>MVC用于UI<br>
+数据模型+逻辑控制器+显示视图</li>
+<li>MVVM和VUE：将逻辑和Btn分离的MVC</li>
+<li>堆栈式逻辑</li>
+<li>Gameplay</li>
+<li>武器在有的地方像ECS，有的地方像MVVM
+<ol>
+<li>ECS——将武器的数据实例和表现做了分离，最终配置在Item中显示</li>
+<li>MVVM——实例会被继续细分为Ability、蒙太奇、扩散<br>
+<img src="https://gcore.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/20260220102236298.png" alt=""></li>
+</ol>
+</li>
+<li>开火射线检测的作用
+<ol>
+<li>速度和碰撞会严重影响开火的命中检测</li>
+<li>散弹枪获取8个HitResult并上传到服务器广播</li>
+</ol>
+</li>
+</ol></p>
+        
+        <hr><p>本文2025-09-11首发于<a href='http://localhost:1895/WzhGameDevPublish/'>妖精游戏开发馆</a>，最后修改于2026-05-25</p>]]>
+      </description>
+      
+    </item>
     
     
 
@@ -187,30 +313,6 @@
     
 
     <item>
-      <title>Lyra改为FPS</title>
-      <link>http://localhost:1895/WzhGameDevPublish/post/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/%E4%BB%A3%E7%A0%81%E6%A1%86%E6%9E%B6/lyra/fps/lyra%E6%94%B9%E4%B8%BAfps/</link>
-      <pubDate>Mon, 08 Sep 2025 19:57:34 &#43;0000</pubDate>
-      <author>cnwenzhihong@gmail.com (温志洪)</author>
-      <guid>http://localhost:1895/WzhGameDevPublish/post/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/%E4%BB%A3%E7%A0%81%E6%A1%86%E6%9E%B6/lyra/fps/lyra%E6%94%B9%E4%B8%BAfps/</guid>
-      <description>
-        <![CDATA[<h1>Lyra改为FPS</h1><p>作者：温志洪（cnwenzhihong@gmail.com）</p>
-        
-          <blockquote>
-<p>QQ：<code>2423113760</code>  Gmail：<code>cnwenzhihong@gmail.com</code><br>
-<a href="https://www.bilibili.com/video/BV1we5q61EtZ/">预览视频</a><br>
-文档多，跨度时间长，没法慢慢审查。有任何需要补充、修改、解释的地方随时联系。<br>
-Demo链接(UE5.6)：<br>
-<a href="https://pan.baidu.com/s/1oYBJtKbm1BMV2bnmDh6Dcw?pwd=1234">网盘链接</a> <br>
-<a href="https://drive.google.com/drive/folders/1mzL02h1vqcTBgGS9_27co6mP5X_sd6pP?usp=sharing">谷歌Driver</a></p>
-        
-        <hr><p>本文2025-09-08首发于<a href='http://localhost:1895/WzhGameDevPublish/'>妖精游戏开发馆</a>，最后修改于2026-05-22</p>]]>
-      </description>
-      
-    </item>
-    
-    
-
-    <item>
       <title>Lyra插件CommonUI详细拆分</title>
       <link>http://localhost:1895/WzhGameDevPublish/post/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/%E4%BB%A3%E7%A0%81%E6%A1%86%E6%9E%B6/lyra/%E6%95%88%E6%9E%9C%E8%A1%A8%E7%8E%B0/lyra%E6%8F%92%E4%BB%B6commonui%E8%AF%A6%E7%BB%86%E6%8B%86%E5%88%86/</link>
       <pubDate>Thu, 21 May 2026 19:24:57 &#43;0000</pubDate>
@@ -260,58 +362,6 @@ AttributeSet<br>
 <img src="https://gcore.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/20260508193041283.png" alt=""></p>
         
         <hr><p>本文2026-05-08首发于<a href='http://localhost:1895/WzhGameDevPublish/'>妖精游戏开发馆</a>，最后修改于2026-05-19</p>]]>
-      </description>
-      
-    </item>
-    
-    
-
-    <item>
-      <title>游戏循环综合</title>
-      <link>http://localhost:1895/WzhGameDevPublish/post/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/2-output/%E6%B8%B8%E6%88%8F%E5%BE%AA%E7%8E%AF/%E6%B8%B8%E6%88%8F%E5%BE%AA%E7%8E%AF%E7%BB%BC%E5%90%88/</link>
-      <pubDate>Sun, 10 May 2026 17:35:53 &#43;0000</pubDate>
-      <author>cnwenzhihong@gmail.com (温志洪)</author>
-      <guid>http://localhost:1895/WzhGameDevPublish/post/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/2-output/%E6%B8%B8%E6%88%8F%E5%BE%AA%E7%8E%AF/%E6%B8%B8%E6%88%8F%E5%BE%AA%E7%8E%AF%E7%BB%BC%E5%90%88/</guid>
-      <description>
-        <![CDATA[<h1>游戏循环综合</h1><p>作者：温志洪（cnwenzhihong@gmail.com）</p>
-        
-          <p>游戏关键设计可以分为：<br>
-美术表达：文化、意义<br>
-游戏体验：基石<br>
-短期循环、中期循环、长期循环：可以只关注两部分，甚至完全去除一个部分</p>
-<p>短期循环：直接刺激为主，直接有效果<br>
-中期循环：一定程度的心流变换为主，大量的费用限制让你没法随心打出短期循环<br>
-长期循环：长时间的环境变化为主，想办法让这些限制成为你的助力，1+1&gt;2。</p>
-        
-        <hr><p>本文2026-05-10首发于<a href='http://localhost:1895/WzhGameDevPublish/'>妖精游戏开发馆</a>，最后修改于2026-05-18</p>]]>
-      </description>
-      
-    </item>
-    
-    
-
-    <item>
-      <title>FPS程序化动画</title>
-      <link>http://localhost:1895/WzhGameDevPublish/post/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/%E4%BB%A3%E7%A0%81%E6%A1%86%E6%9E%B6/lyra/fps/%E6%8A%80%E6%9C%AF%E7%BB%86%E8%8A%82/fps%E7%A8%8B%E5%BA%8F%E5%8C%96%E5%8A%A8%E7%94%BB/</link>
-      <pubDate>Wed, 07 Jan 2026 23:12:58 &#43;0000</pubDate>
-      <author>cnwenzhihong@gmail.com (温志洪)</author>
-      <guid>http://localhost:1895/WzhGameDevPublish/post/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/%E4%BB%A3%E7%A0%81%E6%A1%86%E6%9E%B6/lyra/fps/%E6%8A%80%E6%9C%AF%E7%BB%86%E8%8A%82/fps%E7%A8%8B%E5%BA%8F%E5%8C%96%E5%8A%A8%E7%94%BB/</guid>
-      <description>
-        <![CDATA[<h1>FPS程序化动画</h1><p>作者：温志洪（cnwenzhihong@gmail.com）</p>
-        
-          <p>教程链接：<a href="https://youtu.be/TrS5oaimIII?si=1VUH4V7bmuzk9-zv">UE4/UE5 Tutorial: First Person Game Feel - Part 1: Getting Started</a><br>
-bilibili个人转载：<a href="https://www.bilibili.com/video/BV1oHFfzGEGB/?vd_source=f8cf0db678155d5ad88483f54cff60c6">UE5优质教程 First Person Game Feel</a></p>
-<h1 id="基本配置">
-<a class="header-anchor" href="#%e5%9f%ba%e6%9c%ac%e9%85%8d%e7%bd%ae"></a>
-基本配置
-</h1><p>关闭Motion Blue<br>
-<img src="https://gcore.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/20260304013656557.png" alt=""></p>
-<h2 id="角色">
-<a class="header-anchor" href="#%e8%a7%92%e8%89%b2"></a>
-角色
-</h2><p>胶囊体半径：35与UE4默认骨骼比较搭配</p>
-        
-        <hr><p>本文2026-01-07首发于<a href='http://localhost:1895/WzhGameDevPublish/'>妖精游戏开发馆</a>，最后修改于2026-05-16</p>]]>
       </description>
       
     </item>
