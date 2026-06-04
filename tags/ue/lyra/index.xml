@@ -12,12 +12,67 @@
     
     <copyright>本博客所有文章除特别声明外，均采用 BY-NC-SA 许可协议。转载请注明出处！</copyright>
     
-    <lastBuildDate>Tue, 26 May 2026 08:45:34 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 01 Jun 2026 13:48:55 +0000</lastBuildDate>
     
     
     <atom:link href="http://localhost:1895/WzhGameDevPublish/tags/ue/lyra/index.xml" rel="self" type="application/rss&#43;xml" />
     
 
+    
+    
+
+    <item>
+      <title>Lyra框架研究总览</title>
+      <link>http://localhost:1895/WzhGameDevPublish/post/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/%E4%BB%A3%E7%A0%81%E6%A1%86%E6%9E%B6/lyra/lyra%E6%A1%86%E6%9E%B6%E7%A0%94%E7%A9%B6%E6%80%BB%E8%A7%88/</link>
+      <pubDate>Thu, 11 Sep 2025 17:10:52 &#43;0000</pubDate>
+      <author>cnwenzhihong@gmail.com (温志洪)</author>
+      <guid>http://localhost:1895/WzhGameDevPublish/post/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/%E4%BB%A3%E7%A0%81%E6%A1%86%E6%9E%B6/lyra/lyra%E6%A1%86%E6%9E%B6%E7%A0%94%E7%A9%B6%E6%80%BB%E8%A7%88/</guid>
+      <description>
+        <![CDATA[<h1>Lyra框架研究总览</h1><p>作者：温志洪（cnwenzhihong@gmail.com）</p>
+        
+          <h1 id="总览">
+<a class="header-anchor" href="#%e6%80%bb%e8%a7%88"></a>
+总览
+</h1><h2 id="不错的资料">
+<a class="header-anchor" href="#%e4%b8%8d%e9%94%99%e7%9a%84%e8%b5%84%e6%96%99"></a>
+不错的资料
+</h2>
+  <blockquote class="alert-blockquote tip">
+    <p class="alert-heading">
+      Tip
+    </p>
+    <p><ol>
+<li>很多新特性</li>
+<li>GameFeature将Lyra做了极大的解耦、导致逻辑不连续，动态加载让引用关系很难查找</li>
+<li>GAS+EnhanceInput</li>
+<li>大量使用DataAsset</li>
+<li>设计模式杂糅</li>
+<li>面向数据ECS的不严格使用<br>
+系统+组件+实体</li>
+<li>MVC用于UI<br>
+数据模型+逻辑控制器+显示视图</li>
+<li>MVVM和VUE：将逻辑和Btn分离的MVC</li>
+<li>堆栈式逻辑</li>
+<li>Gameplay</li>
+<li>武器在有的地方像ECS，有的地方像MVVM
+<ol>
+<li>ECS——将武器的数据实例和表现做了分离，最终配置在Item中显示</li>
+<li>MVVM——实例会被继续细分为Ability、蒙太奇、扩散<br>
+<img src="https://gcore.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/20260220102236298.png" alt=""></li>
+</ol>
+</li>
+<li>开火射线检测的作用
+<ol>
+<li>速度和碰撞会严重影响开火的命中检测</li>
+<li>散弹枪获取8个HitResult并上传到服务器广播</li>
+</ol>
+</li>
+</ol></p>
+        
+        <hr><p>本文2025-09-11首发于<a href='http://localhost:1895/WzhGameDevPublish/'>妖精游戏开发馆</a>，最后修改于2026-06-01</p>]]>
+      </description>
+      
+    </item>
     
     
 
@@ -84,61 +139,6 @@ Demo链接(UE5.6)：<br>
 <a class="header-anchor" href="#lyracharacter"></a>
 LyraCharacter
 </h3><p>为新的系统接入提供基础支持。如GAS、模块化、相机控制、队伍管理</p>
-        
-        <hr><p>本文2025-09-11首发于<a href='http://localhost:1895/WzhGameDevPublish/'>妖精游戏开发馆</a>，最后修改于2026-05-25</p>]]>
-      </description>
-      
-    </item>
-    
-    
-
-    <item>
-      <title>Lyra框架研究总览</title>
-      <link>http://localhost:1895/WzhGameDevPublish/post/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/%E4%BB%A3%E7%A0%81%E6%A1%86%E6%9E%B6/lyra/lyra%E6%A1%86%E6%9E%B6%E7%A0%94%E7%A9%B6%E6%80%BB%E8%A7%88/</link>
-      <pubDate>Thu, 11 Sep 2025 17:10:52 &#43;0000</pubDate>
-      <author>cnwenzhihong@gmail.com (温志洪)</author>
-      <guid>http://localhost:1895/WzhGameDevPublish/post/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/%E4%BB%A3%E7%A0%81%E6%A1%86%E6%9E%B6/lyra/lyra%E6%A1%86%E6%9E%B6%E7%A0%94%E7%A9%B6%E6%80%BB%E8%A7%88/</guid>
-      <description>
-        <![CDATA[<h1>Lyra框架研究总览</h1><p>作者：温志洪（cnwenzhihong@gmail.com）</p>
-        
-          <h1 id="总览">
-<a class="header-anchor" href="#%e6%80%bb%e8%a7%88"></a>
-总览
-</h1><h2 id="不错的资料">
-<a class="header-anchor" href="#%e4%b8%8d%e9%94%99%e7%9a%84%e8%b5%84%e6%96%99"></a>
-不错的资料
-</h2>
-  <blockquote class="alert-blockquote tip">
-    <p class="alert-heading">
-      Tip
-    </p>
-    <p><ol>
-<li>很多新特性</li>
-<li>GameFeature将Lyra做了极大的解耦、导致逻辑不连续，动态加载让引用关系很难查找</li>
-<li>GAS+EnhanceInput</li>
-<li>大量使用DataAsset</li>
-<li>设计模式杂糅</li>
-<li>面向数据ECS的不严格使用<br>
-系统+组件+实体</li>
-<li>MVC用于UI<br>
-数据模型+逻辑控制器+显示视图</li>
-<li>MVVM和VUE：将逻辑和Btn分离的MVC</li>
-<li>堆栈式逻辑</li>
-<li>Gameplay</li>
-<li>武器在有的地方像ECS，有的地方像MVVM
-<ol>
-<li>ECS——将武器的数据实例和表现做了分离，最终配置在Item中显示</li>
-<li>MVVM——实例会被继续细分为Ability、蒙太奇、扩散<br>
-<img src="https://gcore.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/20260220102236298.png" alt=""></li>
-</ol>
-</li>
-<li>开火射线检测的作用
-<ol>
-<li>速度和碰撞会严重影响开火的命中检测</li>
-<li>散弹枪获取8个HitResult并上传到服务器广播</li>
-</ol>
-</li>
-</ol></p>
         
         <hr><p>本文2025-09-11首发于<a href='http://localhost:1895/WzhGameDevPublish/'>妖精游戏开发馆</a>，最后修改于2026-05-25</p>]]>
       </description>

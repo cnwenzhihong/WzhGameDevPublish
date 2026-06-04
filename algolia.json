@@ -1,9 +1,15 @@
 [
   {
+    "objectID": "9e91865881352fdbe3603d879bfda0d0d80b0058",
+    "permalink": "/WzhGameDevPublish/post/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/%E4%BB%A3%E7%A0%81%E6%A1%86%E6%9E%B6/ue/%E9%9D%A2%E8%AF%95/%E7%93%A6%E7%BD%97%E5%85%B0%E7%89%B9%E6%8A%80%E6%9C%AF%E6%B1%87%E6%80%BB/",
+    "title": "瓦罗兰特技术汇总","content": "\r总览\r渲染优化部分(30:00-50:00没有记)\n背景\r技术资料：\r2020年视频分享，主要讨论DS的动画系统优化:\nVALORANT\u0026amp;rsquo;s Performance Requirements 1:32:00：性能套路视频\nInside Unreal：瓦洛兰特 的性能要求 ：讨论贴，油管简洁已无法正常进入\n虚幻引擎：《无畏契约》的基石：2020年的老文章，对上文视频的快速总结文章\n《无畏契约》开发者访谈6min: 讲了一些工具、UE5迁移方案\n制作人\rPrincipal Software Engineer：Marcus Reid\n瓦洛兰特社区经理：Victor Brodin\n引言\r服务器指标：\rTick：128Tick\n帧时间预算：仅2.6毫秒\n每个CPU核心运行三局游戏\nQuestion\r将服务器从64Tick提升到128Tick对NetCode有提升，但并没有质变，是否值得这么高的Tick率？国产FPS游戏中16Tick、32Tick依旧是主流。战地(64人大战场)、CS2(10人竞技)均采用64Tick。\n技术指标\r严格服务器权威，完全不信任client对移动、射击的处理 高射击骨骼精准度——任何可能被命中的Actor都必须评估动画和得到正确的骨骼位置 常用工具\r见《无畏契约》开发者访谈6min\n性能优化工具：UnrealInsight非常强大\nUI开发：UMGViewmodel：数据绑定到UI\n资源加载：Zen Loader和Oodle有助于缩短加载时间\n网络：Iris被持续关注优化server\n架构：会考虑使用Gamefeature，以更方便地添加和删除内容\n图形：RenderDoc、 Intel® Graphics Performance Analyzers、RivaTuner\n服务器性能优化\r2018/5服务器性能数据：\n我们对引擎和游戏代码进行了全面梳理，添加了大量性能检测工具，并按Subsystem对耗时进行了分类统计。\n横轴：开发阶段 纵轴：子系统耗时\n最开始高达11ms，甚至无法在8核处理器上稳定128Tick。\n优化重点：Replicate(4.54ms)、Network(1.72ms)、anim(1.4ms)\n动画系统性能优化\r总领\r为什么还要在服务器做动画？\r大多数游戏中都不需要，但瓦洛兰特需要：\n精准FPS——命中判定必须获 …","date": "2026-06-03 07:22:56",
+    "updated": "2026-06-04 14:42:41"
+  }, 
+  {
     "objectID": "9fa070b82f6494c0fd0983f87a9fe43315d0830c",
     "permalink": "/WzhGameDevPublish/post/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/2-output/%E6%B8%B8%E6%88%8F/%E9%87%8D%E8%A3%85%E5%89%8D%E5%93%A8%E7%9A%84%E8%AE%BE%E8%AE%A1%E9%97%AE%E9%A2%98%E5%92%8C%E6%80%9D%E8%80%83/",
     "title": "重装前哨的设计问题和思考","content": "趁这款游戏热度过去，仅作为第三者分析和猜测该游戏的设计，仅算是一种记录。\n游戏内容的失衡太少，玩家体验的失衡太多。\n制作者+玩家：我一开始对这个游戏的设想是四人联机，一个人在玩戴森球，一个人在玩rts，还有两个人在玩逆战保卫战，大家配合着打\n实际游戏体验：结果，，，，，就是捡垃圾为主，，，，太多不重要的局内外功能，小而杂。\n太过注重功能、系统实现，而忽略了基础的交互/视觉呈现，认为玩家通过宣传片、引导，能玩到后期无尽模式。\n优秀的地方\r宏大的场面塑造和足够有深度的构筑体验、数值的爽感无需多言，这是游戏的立身之本。把他做好就不愁卖，事实上也做的非常优秀。只要告诉玩家这游戏能干什么，就能让玩家跃跃欲试。\n所以以下仅仅是我个人需要记住且容易实践的地方，往往找问题远比找优点更让人有动力，优点往往也善于深藏功与名(除非制作人分享，否则意识不到)，故而本章节内容很少。\n教学关卡\r教学关吊足了胃口，各种武器、设施的展示让人第一眼就认为是3A品质。哪怕作为背景也足够宏大，让人浮想联翩。\n多人模式体验\r玩家可以带回搜刮的物资回自己存档。确确实实将玩家当作合作的独立个体对待，而不是捆绑的团队。\n反面案例：OW2、风暴英雄\n敌人攻击方式\r大多数远程致命怪物大都以投射物为主，玩家有机会躲避和更早发现威胁，而不是无解的激光枪。林克对移动堡垒有木盾，士兵可没法弹反。\n哨站模式\r前期的亲历亲为，让后期自动化带来极高的爽感。不仅仅是哨站，还包括角色的自动化。玩家完全可以静看清小怪，或者去处理更重要的目标。\n不太好的地方\r新手引导\r大量强制视角转换\n很明显，强制引导强于没有引导，哪怕被骂和让玩家不舒服。\n新手教程中完整哨站的问题：\n并不是不好，反而是内容太少，玩家对完整哨站的体验时间太短、体验内容太少，并没有在玩家心中种下长期循环的种子。\n内容少带来玩家模模糊糊的体验，只是知道怎么操作和看了有哨站功能便匆匆了事，并没有获得有效信息是主因。多次强制镜头切换仅仅是诱因和发泄口(并非说它好，只是并非主因)。\n什么是有效信息？\n不同火炮的打出的效果、从普通弹药到自动生产线的区别、一两个关键建筑对玩家的增幅(直接生产橙色(比喻)武器)。\n玩家没体会到哨站带来爽感引发的另一个问题是：新手教程哨站的毁灭，让哨站贴上了弱小的标签。虽然演出很震撼，但单纯的巨物毁灭只会让玩家觉得被毁灭的弱，这仅仅是背景故事。只有见识到 …","date": "2026-05-24 15:48:06",
-    "updated": "2026-05-25 10:19:30"
+    "updated": "2026-05-27 07:14:28"
   }, 
   {
     "objectID": "0c47d526170704bca34f99f40347ef2da394ec1f",
@@ -21,7 +27,7 @@
     "objectID": "7a1e93739ea010e5b04f4197ad32ad0f908bd204",
     "permalink": "/WzhGameDevPublish/post/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/2-output/%E6%B8%B8%E6%88%8F%E5%BE%AA%E7%8E%AF/%E6%B8%B8%E6%88%8F%E5%BE%AA%E7%8E%AF%E7%BB%BC%E5%90%88/",
     "title": "游戏循环综合","content": "游戏关键设计可以分为：\n美术表达：文化、意义\n游戏体验：基石\n短期循环、中期循环、长期循环：可以只关注两部分，甚至完全去除一个部分\n短期循环：直接刺激为主，直接有效果\n中期循环：一定程度的心流变换为主，大量的费用限制让你没法随心打出短期循环\n长期循环：长时间的环境变化为主，想办法让这些限制成为你的助力，1+1\u0026amp;gt;2。\n效果：\nCS开枪击中敌人飙血/伴随爆头声就是一个短期循环。不同武器带来的效果不同，击中不同部位带来的效果不同。练习瞄准到自己想打的位置即可。直观，打中不难，打准很难。\n杀戮尖塔：\n费用：\nCS的武器费用、开枪后摇、换弹后摇，后坐力、散布、射程，穿甲，无不让哪怕瞄准了击中也变得困难。有趣的是，初始手枪反而综合性能很不错。\n短期循环反馈效果折扣：打中甲不再飙血，打中头才能获得足够反馈。\n构筑：\nCS并没有在其下功夫。一般游戏中，保枪、拦截T撤离人员、追杀保枪的狙击、有钱尝试少打多，对方死了后哪怕赢了也没钱就断枪，都可以影响对方下一局经济，甚至影响整局效果。但职业赛场/有一定经验玩家，创建了并非游戏机制设计的长期循环：根据对手习惯采用不同方案，同一前期布局+中后期变化，连续打b，社区自发实现了一套以猜测对方心理的长期循环框架。\n甚至是CS2开始不断被重视的超长期、在游戏外的循环：备赛，备赛的出现很大原因是16回合变为13回合，减去手枪局，单边只有10回合，无法实现成体系的长期循环，游戏内复杂度被降低，导致职业比赛不得不寻找更长期的博弈策略。假如是T16，队伍可以选择一套完善的循循善诱的长期的、有变化的方案，哪怕输了一分也是为以后的拿分做铺垫。但T13让每一分都如此重要，队伍不得不选择一套固定打法+个别变种，循规蹈矩地处理每一局。容错空间的大幅减少，导致长期循环的僵化，进一步导致备赛的收益显著提高。\n费用：\n道具\n鲇鱼：闪光弹、烟雾弹、诱饵弹。\n短期循环\r效果：\nCS：\n动作：开枪、丢道具、移动\n费用：子弹、枪械价格、道具价格、移速、加减速、受击减速。金钱（200-4750） +（600-1000）\n后摇(时间)：子弹发射间隔、后坐力、散布\n影响力：\n免费手枪：\n很低的伤害，第二局开始三枪头，每发后摇时间一般。但第一局动态影响力较高。对标尖塔开局打防。\n同时，他以纯粹的开枪方式告诉你：瞄准人后开枪就能打出伤害，其他都是添头。打身体低伤害+打头一枪死=新手慢 …","date": "2026-05-10 17:35:53",
-    "updated": "2026-05-18 08:04:58"
+    "updated": "2026-05-29 06:58:17"
   }, 
   {
     "objectID": "5bde08e5439f1a62193b4bad61a462434a844cde",
@@ -122,8 +128,8 @@
   {
     "objectID": "259e2c3f032789f22623a092fa626c1cc6a3da39",
     "permalink": "/WzhGameDevPublish/post/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/%E4%BB%A3%E7%A0%81%E6%A1%86%E6%9E%B6/lyra/lyra%E6%A1%86%E6%9E%B6%E7%A0%94%E7%A9%B6%E6%80%BB%E8%A7%88/",
-    "title": "Lyra框架研究总览","content": "\r总览\r不错的资料\rTip\r很多新特性 GameFeature将Lyra做了极大的解耦、导致逻辑不连续，动态加载让引用关系很难查找 GAS+EnhanceInput 大量使用DataAsset 设计模式杂糅 面向数据ECS的不严格使用\n系统+组件+实体 MVC用于UI\n数据模型+逻辑控制器+显示视图 MVVM和VUE：将逻辑和Btn分离的MVC 堆栈式逻辑 Gameplay 武器在有的地方像ECS，有的地方像MVVM ECS——将武器的数据实例和表现做了分离，最终配置在Item中显示 MVVM——实例会被继续细分为Ability、蒙太奇、扩散\n开火射线检测的作用 速度和碰撞会严重影响开火的命中检测 散弹枪获取8个HitResult并上传到服务器广播 Tip\rInsideLyra-致UE“初学者”\n非常全面和简洁地介绍了Lyra学习的前置知识和UE C++的核心要点:\nLyra的部分程序设计简析\nLyra中除了框架外很容易被忽视的功能和优化:\nLyra官方文档\n关键信息简述\rFramwork\r核心价值\rGameMode的数据驱动替代\n优点：\n玩法模块化(Experience)： 方便动态加载不同的玩法模式(第三人称射击，俯视角的竞技场派对游戏，横板平台跳跃等) 运行时组件化(ModularGameplay)：解决因为Gameplay框架中类的数据和成员变量越来越多，最终会越写越大的问题 缓冲带(GameFeatures)：隔离引擎Gameplay和项目的Gameplay，让一方的改动不会影响另一方。(作用不大) 模块对比\rModularGameplay：运行时组件化——让Gameplay框架支持挂组件，GameFeature的前提\nGameFeatures：Mod化——让插件去依赖游戏主逻辑，不同玩法变成游戏Mod\nExperience：数据驱动——把组件和玩法框架封装并塞到数据表里，方便动态加载\n快速阅读框架\rModular Gameplay\r让GameMode、GameState、PlayerState、Controller、Character拥有组件化能力\nSubSystem+Modular Gameplay就可以实现数据驱动\nGame features\r是Unreal Engine5引入的全新的类似于DLC的工作机制。\nflowchart LR Engine …","date": "2025-09-11 17:10:52",
-    "updated": "2026-05-25 12:15:55"
+    "title": "Lyra框架研究总览","content": "\r总览\r不错的资料\rTip\r很多新特性 GameFeature将Lyra做了极大的解耦、导致逻辑不连续，动态加载让引用关系很难查找 GAS+EnhanceInput 大量使用DataAsset 设计模式杂糅 面向数据ECS的不严格使用\n系统+组件+实体 MVC用于UI\n数据模型+逻辑控制器+显示视图 MVVM和VUE：将逻辑和Btn分离的MVC 堆栈式逻辑 Gameplay 武器在有的地方像ECS，有的地方像MVVM ECS——将武器的数据实例和表现做了分离，最终配置在Item中显示 MVVM——实例会被继续细分为Ability、蒙太奇、扩散\n开火射线检测的作用 速度和碰撞会严重影响开火的命中检测 散弹枪获取8个HitResult并上传到服务器广播 Tip\r通过Lyra学Unreal：很适合新手，讲Lyra和UE基础知识点串起来，事半功倍\nInsideLyra-致UE“初学者”\n非常全面和简洁地介绍了Lyra学习的前置知识和UE C++的核心要点:\nLyra的部分程序设计简析\nLyra中除了框架外很容易被忽视的功能和优化:\nLyra官方文档\n关键信息简述\rFramwork\r核心价值\rGameMode的数据驱动替代\n优点：\n玩法模块化(Experience)： 方便动态加载不同的玩法模式(第三人称射击，俯视角的竞技场派对游戏，横板平台跳跃等) 运行时组件化(ModularGameplay)：解决因为Gameplay框架中类的数据和成员变量越来越多，最终会越写越大的问题 缓冲带(GameFeatures)：隔离引擎Gameplay和项目的Gameplay，让一方的改动不会影响另一方。(作用不大) 模块对比\rModularGameplay：运行时组件化——让Gameplay框架支持挂组件，GameFeature的前提\nGameFeatures：Mod化——让插件去依赖游戏主逻辑，不同玩法变成游戏Mod\nExperience：数据驱动——把组件和玩法框架封装并塞到数据表里，方便动态加载\n快速阅读框架\rModular Gameplay\r让GameMode、GameState、PlayerState、Controller、Character拥有组件化能力\nSubSystem+Modular Gameplay就可以实现数据驱动\nGame features\r是Unreal …","date": "2025-09-11 17:10:52",
+    "updated": "2026-06-01 13:48:55"
   }, 
   {
     "objectID": "930fb9a6f624c98dd19c76b86039c6d489150462",
@@ -141,7 +147,7 @@
     "objectID": "d84f30dafea8b557de4aa273004c051d560dcf3c",
     "permalink": "/WzhGameDevPublish/post/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/%E4%BB%A3%E7%A0%81%E6%A1%86%E6%9E%B6/lyra/fps/lyra%E6%94%B9%E4%B8%BAfps/",
     "title": "Lyra改为FPS","content": " QQ：2423113760 Gmail：cnwenzhihong@gmail.com\n预览视频\n文档多，跨度时间长，没法慢慢审查。有任何需要补充、修改、解释的地方随时联系。\nDemo链接(UE5.6)：\n网盘链接 谷歌Driver\n总览\rImportant\r这套方案的优点\r完全基于Lyra框架，所有逻辑均扩展于Lyra原生框架，如库存、Cosmet、GAS、GameFeature、AnimLayer 参数化动画蓝图架构，不依赖特定FPS动画资产 搭配FPS程序化动画，满足中小项目动画需求\n细节文档\r如何拓展LyraFPS\n如何使用EasyProceduralAnim插件\nFPS动画制作参考资料总览\nUE5第一人称渲染视频笔记\nFPS程序化动画实现思路\n武器摇晃的重要概念\n武器摇晃思想与实现方案\n专业游戏开发者如何为射击游戏创造枪械手感？\nLyra 射击全流程梳理\n关键技术点\rFirstPersonPrimitive\r第一人称渲染的问题：判定太靠前，只对默认值有效，更改配置后需要手动刷新渲染。\n程序化动画中的WeaponSway\r奔跑/下蹲/冲刺的移速变化\r如果只是 ADS 降速，Lyra 蓝图里直接 Set MaxWalkSpeed 可以工作。\n但要实现客户端预测：\nCMC方案：自定义FCharacterNetworkMoveData\r要求在高延迟下预测一致，应该把“影响移动模拟的输入bool”放进 CharacterMovement 的 NetworkMoveData，使用CMC的原生预测回滚机制。\nRPC、 Replication 或 GAS Tag必定带来延迟和抖动。\n速度变化实现思路： 1. Sprint、Jog、Walk这类由玩家主动传入的数据：SavedMove 2. KnockedDown ／ DisableMove 这类被动引发的Gameplay状态，走Tag判断 3. 复杂速度运算：直接设置PredictedSpeedScale，改变量也作为数据参与Move同步 Mover方案：\r带有更灵活的Layer化的移动方案，天然支持多状态。\n用Input Cmd代替了NetworkMoveData，实现也更简单。\n如果现在换成 Mover，需要确认大量系统：\nAnimBP 如何读取移动状态？ Ability 里如何拿移动组件？ 角色是否还继承 …","date": "2025-09-08 19:57:34",
-    "updated": "2026-05-26 08:45:34"
+    "updated": "2026-05-26 12:40:58"
   }, 
   {
     "objectID": "3ed96206a4e0c67d52c0d2d9002af864d40a4cc7",

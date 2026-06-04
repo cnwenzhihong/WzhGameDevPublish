@@ -12,12 +12,35 @@
     
     <copyright>本博客所有文章除特别声明外，均采用 BY-NC-SA 许可协议。转载请注明出处！</copyright>
     
-    <lastBuildDate>Tue, 26 May 2026 08:45:34 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 27 May 2026 07:14:28 +0000</lastBuildDate>
     
     
     <atom:link href="http://localhost:1895/WzhGameDevPublish/tags/fps/index.xml" rel="self" type="application/rss&#43;xml" />
     
 
+    
+    
+
+    <item>
+      <title>重装前哨的设计问题和思考</title>
+      <link>http://localhost:1895/WzhGameDevPublish/post/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/2-output/%E6%B8%B8%E6%88%8F/%E9%87%8D%E8%A3%85%E5%89%8D%E5%93%A8%E7%9A%84%E8%AE%BE%E8%AE%A1%E9%97%AE%E9%A2%98%E5%92%8C%E6%80%9D%E8%80%83/</link>
+      <pubDate>Sun, 24 May 2026 15:48:06 &#43;0000</pubDate>
+      <author>cnwenzhihong@gmail.com (温志洪)</author>
+      <guid>http://localhost:1895/WzhGameDevPublish/post/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/2-output/%E6%B8%B8%E6%88%8F/%E9%87%8D%E8%A3%85%E5%89%8D%E5%93%A8%E7%9A%84%E8%AE%BE%E8%AE%A1%E9%97%AE%E9%A2%98%E5%92%8C%E6%80%9D%E8%80%83/</guid>
+      <description>
+        <![CDATA[<h1>重装前哨的设计问题和思考</h1><p>作者：温志洪（cnwenzhihong@gmail.com）</p>
+        
+          <p>趁这款游戏热度过去，仅作为第三者分析和猜测该游戏的设计，仅算是一种记录。</p>
+<blockquote>
+<p>游戏内容的失衡太少，玩家体验的失衡太多。</p>
+</blockquote>
+<p>制作者+玩家：我一开始对这个游戏的设想是四人联机，一个人在玩戴森球，一个人在玩rts，还有两个人在玩逆战保卫战，大家配合着打<br>
+实际游戏体验：结果，，，，，就是捡垃圾为主，，，，太多不重要的局内外功能，小而杂。</p>
+        
+        <hr><p>本文2026-05-24首发于<a href='http://localhost:1895/WzhGameDevPublish/'>妖精游戏开发馆</a>，最后修改于2026-05-27</p>]]>
+      </description>
+      
+    </item>
     
     
 

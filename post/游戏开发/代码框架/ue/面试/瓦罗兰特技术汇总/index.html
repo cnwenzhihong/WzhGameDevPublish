@@ -1,0 +1,1441 @@
+<!doctype html>
+<html
+  lang="zh-cn" 
+  data-theme-mode="false"
+  >
+  <head><script src="/WzhGameDevPublish/livereload.js?mindelay=10&amp;v=2&amp;port=1895&amp;path=WzhGameDevPublish/livereload" data-no-instant defer></script><meta charset="utf-8" />
+<meta
+  name="viewport"
+  content="width=device-width, initial-scale=1, shrink-to-fit=no"
+/><title>
+  瓦罗兰特技术汇总 | 温志洪
+</title>
+<meta name="description" content="FPS游戏"/><script>
+  window.siteConfig = JSON.parse("{\"anchor_icon\":null,\"base\":\"http://localhost:1895/WzhGameDevPublish/\",\"clipboard\":{\"copyright\":{\"count\":50,\"enable\":false,\"license_type\":\"by-nc-sa\"},\"fail\":{\"en\":\"Copy failed (ﾟ⊿ﾟ)ﾂ\",\"ja\":\"コピー失敗 (ﾟ⊿ﾟ)ﾂ\",\"pt-br\":\"Falha ao copiar (ﾟ⊿ﾟ)ﾂ\",\"zh-cn\":\"复制失败 (ﾟ⊿ﾟ)ﾂ\",\"zh-tw\":\"複製失敗 (ﾟ⊿ﾟ)ﾂ\"},\"success\":{\"en\":\"Copy successfully (*^▽^*)\",\"ja\":\"コピー成功 (*^▽^*)\",\"pt-br\":\"Copiado com sucesso (*^▽^*)\",\"zh-cn\":\"复制成功 (*^▽^*)\",\"zh-tw\":\"複製成功 (*^▽^*)\"}},\"code_block\":{\"expand\":4},\"i18n_languages\":[{\"Lang\":\"en\",\"LanguageName\":\"English\",\"LanguageCode\":\"\",\"Title\":\"\",\"LanguageDirection\":\"\",\"Weight\":1,\"Disabled\":false},{\"Lang\":\"zh-cn\",\"LanguageName\":\"简体中文\",\"LanguageCode\":\"\",\"Title\":\"\",\"LanguageDirection\":\"\",\"Weight\":1,\"Disabled\":false}],\"icon_font\":\"4552607_4k4bc36ef96\",\"outdate\":{\"daysago\":180,\"enable\":false,\"message\":{\"en\":\"This article was last updated on {time}. Please note that the content may no longer be applicable.\",\"ja\":\"この記事は最終更新日：{time}。記載内容が現在有効でない可能性がありますのでご注意ください。\",\"pt-br\":\"Este artigo foi atualizado pela última vez em {time}. Observe que o conteúdo pode não ser mais aplicável.\",\"zh-cn\":\"本文最后更新于 {time}，请注意文中内容可能已不适用。\",\"zh-tw\":\"本文最後更新於 {time}，請注意文中內容可能已不適用。\"}}}");
+  
+</script>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link
+  rel="preload"
+  as="style"
+  href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic%7cNoto%20Serif%20SC:400,400italic,700,700italic%7c&amp;display=swap"
+/>
+<link
+  rel="stylesheet"
+  href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic%7cNoto%20Serif%20SC:400,400italic,700,700italic%7c&amp;display=swap"
+  media="print"
+  onload="this.media='all'"
+/>
+<link
+    rel="preload"
+    href="//at.alicdn.com/t/c/font_4552607_4k4bc36ef96.woff2"
+    as="font"
+    type="font/woff2"
+    crossorigin="anonymous"
+  /><link rel="stylesheet" href="/WzhGameDevPublish/css/loader.css" />
+<meta property="og:type" content="website" />
+  <meta property="og:title" content="瓦罗兰特技术汇总 | 温志洪" />
+  <meta
+    property="og:description"
+    content="FPS游戏"
+  />
+  <meta property="og:url" content="http://localhost:1895/WzhGameDevPublish/post/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/%E4%BB%A3%E7%A0%81%E6%A1%86%E6%9E%B6/ue/%E9%9D%A2%E8%AF%95/%E7%93%A6%E7%BD%97%E5%85%B0%E7%89%B9%E6%8A%80%E6%9C%AF%E6%B1%87%E6%80%BB/" />
+  <meta
+    property="og:site_name"
+    content="妖精游戏开发馆"
+  />
+  <meta
+    property="og:image"
+    content="https://i3.ytimg.com/vi/GO6MIboHDiY/hqdefault.jpg"
+  />
+  <meta property="article:author" content="温志洪" />
+  <meta property="article:published_time" content="2026-06-03T07:22:56&#43;00:00" />
+  <meta property="article:modified_time" content="2026-06-04T14:42:41&#43;00:00" /><meta property="article:tag" content="blog" /><meta name="twitter:card" content="summary" />
+  <meta name="twitter:image" content="https://i3.ytimg.com/vi/GO6MIboHDiY/hqdefault.jpg" />
+<link rel="shortcut icon" href="/WzhGameDevPublish/favicon.ico"><link rel="stylesheet" href="/WzhGameDevPublish/css/main.css" />
+<link
+    rel="preload"
+    as="style"
+    href="https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe.css"
+    integrity="sha384-IfxC36XL/toUyJ939C73PcgMuRzAZuIzZxE38drsmO5p6jD7ei&#43;Zx/1oA/0l8ysE" crossorigin="anonymous"onload="this.onload=null;this.rel='stylesheet'"
+  /><link
+    rel="preload"
+    as="style"
+    href="https://npm.webcache.cn/katex@0.16.24/dist/katex.min.css"
+    integrity="sha384-tTgKLjMYmJr94v8qu2PE5MUGSMbyN2xiH266JUB3gpm8vnnJywd1dWSOEfrFz&#43;YI" crossorigin="anonymous"onload="this.onload=null;this.rel='stylesheet'"
+  /><script
+    src="https://npm.webcache.cn/pace-js@1.2.4/pace.min.js"
+    integrity="sha384-k6YtvFUEIuEFBdrLKJ3YAUbBki333tj1CSUisai5Cswsg9wcLNaPzsTHDswp4Az8" crossorigin="anonymous"></script><link
+    rel="stylesheet"
+    href="https://npm.webcache.cn/@reimujs/aos@0.1.2/dist/aos.css"
+    integrity="sha384-GMRP93c6Hkz9JVKGAuRR3nTS7M07RwPgTFenXiosjq2VbVgvdDNcz1g6Mkj8AONa" crossorigin="anonymous"/></head>
+  <body><div id='loader'>
+    <div class="loading-left-bg loading-bg"></div>
+    <div class="loading-right-bg loading-bg"></div>
+    <div class="spinner-box">
+      <div class="loading-taichi rotate"><svg width="150" height="150" viewBox="0 0 1024 1024" class="icon" version="1.1" xmlns="https://www.w3.org/2000/svg" shape-rendering="geometricPrecision">
+            <path d="M303.5 432A80 80 0 0 1 291.5 592A80 80 0 0 1 303.5 432z" fill="var(--red-1, #ff5252)" />
+            <path d="M512 65A447 447 0 0 1 512 959L512 929A417 417 0 0 0 512 95A417 417 0 0 0 512 929L512 959A447 447 0 0 1 512 65z 
+          M512 95A417 417 0 0 1 929 512A208.5 208.5 0 0 1 720.5 720.5L720.5 592A80 80 0 0 0 720.5 432A80 80 0 0 0 720.5 592L720.5 720.5A208.5 208.5 0 0 1 512 512A208.5 208.5 0 0 0 303.5 303.5A208.5 208.5 0 0 0 95 512A417 417 0 0 1 512 95z" fill="var(--red-1, #ff5252)" />
+          </svg></div><div class="loading-word">少女祈祷中...</div>
+    </div>
+  </div>
+  </div>
+  <script>
+    var time = null;
+    var loaderEl = document.getElementById('loader');
+    var startLoading = () => {
+      time = Date.now();
+      loaderEl.classList.remove("loading");
+    }
+    var hideLoader = () => {
+      document.body.style.overflow = 'auto';
+      loader.classList.add('loading');
+    };
+
+    var endLoading = () => {
+      if (!time) {
+        hideLoader();
+      } else {
+        if (Date.now() - time > 500) {
+          time = null;
+          hideLoader();
+        } else {
+          setTimeout(endLoading, 500 - (Date.now() - time));
+          time = null;
+        }
+      }
+    }
+    window.addEventListener('DOMContentLoaded', endLoading);
+    loaderEl.addEventListener('click', endLoading);
+  </script><div id="copy-tooltip"></div>
+<div id="lang-tooltip">
+本文章没有找到对应的语言版本
+</div>
+<div id="heatmap-tooltip"></div><div id="container">
+      <div id="wrap"><div id="header-nav">
+  <nav id="main-nav" aria-label="Primary navigation"><a class="main-nav-link-wrap" href="/WzhGameDevPublish/">
+        <div class='main-nav-icon icon rotate'>&#xe62b;</div>
+        <span class="main-nav-link">首页</span>
+      </a><a class="main-nav-link-wrap" href="/WzhGameDevPublish/archives">
+        <div class='main-nav-icon icon rotate'>&#xe62b;</div>
+        <span class="main-nav-link">归档</span>
+      </a><a class="main-nav-link-wrap" href="/WzhGameDevPublish/about">
+        <div class='main-nav-icon icon rotate'>&#xe62b;</div>
+        <span class="main-nav-link">关于</span>
+      </a><a class="main-nav-link-wrap" href="/WzhGameDevPublish/friend">
+        <div class='main-nav-icon icon rotate'>&#xe62b;</div>
+        <span class="main-nav-link">友链</span>
+      </a><a id="main-nav-toggle" class="nav-icon" aria-label="Toggle navigation" role="button"></a>
+  </nav>
+  <nav id="sub-nav" aria-label="Secondary navigation"><a id="nav-search-btn" class="nav-icon popup-trigger" title="搜索" aria-label="搜索"></a></nav><nav id="i18n-nav" aria-label="Language selection">
+      <div class="custom-dropdown">
+        <div class="select-selected" id="select-selected" role="button" aria-haspopup="listbox" aria-expanded="false" aria-label="Language menu">
+          <span id="nav-language-btn" class="nav-icon" style="padding: 0 20px 0 0"></span>
+          <span id="selected-lang">简体中文</span>
+        </div>
+        <ul class="select-items" id="select-items" role="listbox" aria-label="Languages"><li data-value="en" role="option" arial-selected="false" >English</li><li data-value="zh-cn" role="option" class="selected" arial-selected="true" >简体中文</li></ul>
+      </div>
+      <script>
+        var selectSelected = document.getElementById("select-selected");
+        var selectedLang = document.getElementById("selected-lang");
+        var selectItems = document.getElementById("select-items");
+        var selectOptions = selectItems.querySelectorAll("li");
+
+        selectSelected.addEventListener("click", () => {
+          selectItems.classList.toggle("show");
+          var expanded = selectSelected.getAttribute("aria-expanded") === "true";
+          selectSelected.setAttribute("aria-expanded", (!expanded).toString());
+        });
+
+        selectOptions.forEach((item) => {
+          item.addEventListener("click", () => {
+            const langMap = {};selectedLang.textContent = item.textContent;
+            selectItems.classList.remove("show");
+            selectOptions.forEach((option) => {
+              option.classList.remove("selected");
+            });
+            item.classList.add("selected");
+            if (item.dataset.value === 'zh-cn') {
+              return;
+            }
+            if (!langMap[item.dataset.value]) {
+              _$("#lang-tooltip").style.opacity = "1";
+              setTimeout(() => {
+                _$("#lang-tooltip").style.opacity = "0";
+              }, 1000);
+              return;
+            }
+            window.location = langMap[item.dataset.value];
+          });
+        });
+
+        document.addEventListener("click", (event) => {
+          if (!event.target.closest(".custom-dropdown")) {
+            selectItems.classList.remove("show");
+            selectSelected.setAttribute("aria-expanded", "false");
+          }
+        });
+      </script>
+    </nav></div>
+<header id="header" aria-label="Site header"><picture></picture>
+    <img crossorigin="anonymous" fetchpriority="high" src="https://i3.ytimg.com/vi/GO6MIboHDiY/hqdefault.jpg" alt="瓦罗兰特技术汇总"><div id="header-outer">
+    <div id="header-title"><span id="logo">
+            <h1 data-aos="slide-up">瓦罗兰特技术汇总</h1>
+          </span><h2 id="subtitle-wrap" data-aos="slide-down"></h2></div>
+  </div>
+</header><div id="content"
+          aria-label="Page content"
+          class="sidebar-left"
+            ><aside id="sidebar" aria-label="Sidebar"><div class="sidebar-wrapper-container sticky"><div class="sidebar-wrapper">
+    <div
+      class="sidebar-wrap"
+      data-aos="fade-up"
+    ><div class="sidebar-toc-sidebar"><h3 class="toc-title">文章目录</h3>
+<div class="sidebar-toc-wrapper toc-div-class">
+  <nav id="TableOfContents">
+  <ul>
+    <li><a href="#背景">背景</a>
+      <ul>
+        <li><a href="#技术资料">技术资料：</a></li>
+        <li><a href="#制作人">制作人</a></li>
+      </ul>
+    </li>
+    <li><a href="#引言">引言</a>
+      <ul>
+        <li></li>
+      </ul>
+    </li>
+  </ul>
+
+  <ul>
+    <li><a href="#动画系统性能优化">动画系统性能优化</a>
+      <ul>
+        <li><a href="#总领">总领</a></li>
+        <li><a href="#ds上用于动画开销的技术有哪些">DS上用于动画开销的技术有哪些？</a></li>
+        <li><a href="#降低动画更新频率">降低动画更新频率：</a></li>
+        <li><a href="#从储存骨骼位置改为储存关键状态">从储存骨骼位置改为储存关键状态</a></li>
+        <li><a href="#相关性检测">相关性检测</a></li>
+        <li><a href="#性能提升">性能提升</a></li>
+      </ul>
+    </li>
+  </ul>
+
+  <ul>
+    <li><a href="#制定性能指标">制定性能指标</a>
+      <ul>
+        <li><a href="#参数指标">参数指标</a></li>
+        <li><a href="#硬件指标">硬件指标</a></li>
+      </ul>
+    </li>
+    <li><a href="#地图和环境">地图和环境</a>
+      <ul>
+        <li><a href="#不同区域的渲染性能预算不同">不同区域的渲染性能预算不同</a></li>
+      </ul>
+    </li>
+    <li><a href="#问题">问题</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#replication">Replication</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#预测回滚">预测回滚</a></li>
+    <li><a href="#低配置玩家移动">低配置玩家移动</a></li>
+    <li><a href="#投掷物移动">投掷物移动</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#input">Input</a>
+      <ul>
+        <li><a href="#优化输入延迟">优化输入延迟</a></li>
+      </ul>
+    </li>
+  </ul>
+
+  <ul>
+    <li><a href="#关卡加载问题">关卡加载问题</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#语音">语音</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#开发工具汇总">开发工具汇总</a></li>
+    <li><a href="#引擎版本升级">引擎版本升级</a>
+      <ul>
+        <li></li>
+      </ul>
+    </li>
+    <li><a href="#gc">GC</a></li>
+    <li><a href="#能力系统">能力系统</a></li>
+    <li><a href="#蓝图与c">蓝图与C++</a></li>
+    <li><a href="#自动化测试">自动化测试</a></li>
+  </ul>
+
+  <ul>
+    <li>
+      <ul>
+        <li></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+</div></div>
+          <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
+  <img
+    data-src="/WzhGameDevPublish/avatar/UELogo.png"
+    data-sizes="auto"
+    alt="温志洪"
+    class="lazyload"
+  />
+  <div class="sidebar-author-name">温志洪</div>
+  <div class="sidebar-description">FPS游戏</div>
+</div>
+<div class="sidebar-state">
+  <div class="sidebar-state-article">
+    <div>文章</div><div class="sidebar-state-number">27</div>
+  </div>
+  <a class="sidebar-state-category" href="/WzhGameDevPublish/categories/" aria-label="sidebar-state-category-link">
+    <div>分类</div>
+    <div class="sidebar-state-number">
+      0
+    </div>
+  </a>
+  <a class="sidebar-state-tag" href="/WzhGameDevPublish/tags/" aria-label="sidebar-state-tag-link">
+    <div>标签</div>
+    <div class="sidebar-state-number">17</div>
+  </a>
+</div>
+<div class="sidebar-social"><div class="icon-bilibili sidebar-social-icon">
+      <a
+        href="https://space.bilibili.com/35312868"
+        itemprop="url"
+        target="_blank"
+        aria-label="bilibili"
+        rel="noopener nofollow noreferrer"
+      ></a>
+    </div><div class="icon-email sidebar-social-icon">
+      <a
+        href="mailto:cnwenzhihong@gmail.com"
+        itemprop="url"
+        target="_blank"
+        aria-label="email"
+        rel="noopener nofollow noreferrer"
+      ></a>
+    </div></div>
+<div class="sidebar-menu"><div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/WzhGameDevPublish/"
+        aria-label="首页"
+      ></a>
+      <div class='sidebar-menu-icon icon rotate'>&#xe62b;</div>
+      <div class="sidebar-menu-link">首页</div>
+    </div><div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/WzhGameDevPublish/archives"
+        aria-label="归档"
+      ></a>
+      <div class='sidebar-menu-icon icon rotate'>&#xe62b;</div>
+      <div class="sidebar-menu-link">归档</div>
+    </div><div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/WzhGameDevPublish/about"
+        aria-label="关于"
+      ></a>
+      <div class='sidebar-menu-icon icon rotate'>&#xe62b;</div>
+      <div class="sidebar-menu-link">关于</div>
+    </div><div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/WzhGameDevPublish/friend"
+        aria-label="友链"
+      ></a>
+      <div class='sidebar-menu-icon icon rotate'>&#xe62b;</div>
+      <div class="sidebar-menu-link">友链</div>
+    </div></div>
+</div><div class="sidebar-btn-wrapper" style="position:static">
+            <div class="sidebar-toc-btn current"></div>
+            <div class="sidebar-common-btn"></div>
+          </div></div>
+  </div><div class="sidebar-widget"></div></div></aside>
+<section id="main" aria-label="Main content"><p style="color:red">ARTICLE PARTIAL OVERRIDE ACTIVE</p>
+<article
+  class="h-entry article"
+  itemscope
+  itemtype="https://schema.org/BlogPosting"
+>
+  <div
+    class="article-inner"
+    data-aos="fade-up"
+  >
+    <div class="article-meta"><div class="article-date">
+  <span
+    class="article-date-link icon-calendar"
+    data-aos="zoom-in"
+  >
+    <time datetime="2026-06-03 07:22:56.243 &#43;0000 UTC" itemprop="datePublished"
+      >2026-06-03</time
+    >
+    <time style="display: none;" id="post-update-time"
+      >2026-06-04</time
+    >
+  </span><span
+      class="article-date-link icon-calendar-plus"
+      data-aos="zoom-in"
+    >
+      <time datetime="2026-06-04 14:42:41.643 &#43;0000 UTC" itemprop="dateModified"
+        >2026-06-04</time
+      >
+    </span></div>
+<div class="article-category"></div>
+</div><div class="hr-line"></div><div class="e-content article-entry" itemprop="articleBody"><h1 id="总览">
+<a class="header-anchor" href="#%e6%80%bb%e8%a7%88"></a>
+总览
+</h1><p>渲染优化部分(30:00-50:00没有记)</p>
+<h2 id="背景">
+<a class="header-anchor" href="#%e8%83%8c%e6%99%af"></a>
+背景
+</h2><h3 id="技术资料">
+<a class="header-anchor" href="#%e6%8a%80%e6%9c%af%e8%b5%84%e6%96%99"></a>
+技术资料：
+</h3><p>2020年视频分享，主要讨论DS的动画系统优化:<br>
+<a href="https://youtu.be/GO6MIboHDiY?si=OIH2B8K5tCBU6khd%5c&amp;t=600">VALORANT&rsquo;s Performance Requirements 1:32:00</a>：性能套路视频<br>
+<a href="https://forums.unrealengine.com/t/inside-unreal-valorants-performance-requirements/145864">Inside Unreal：瓦洛兰特 的性能要求</a> ：讨论贴，油管简洁已无法正常进入<br>
+<a href="https://www.unrealengine.com/tech-blog/valorant-s-foundation-is-unreal-engine">虚幻引擎：《无畏契约》的基石</a>：2020年的老文章，对上文视频的快速总结文章</p>
+<p><a href="https://www.bilibili.com/video/BV1PWaAzjECq">《无畏契约》开发者访谈6min</a>: 讲了一些工具、UE5迁移方案</p>
+<h3 id="制作人">
+<a class="header-anchor" href="#%e5%88%b6%e4%bd%9c%e4%ba%ba"></a>
+制作人
+</h3><p>Principal Software Engineer：<a href="https://x.com/RiotNu">Marcus Reid</a><br>
+瓦洛兰特社区经理：<a href="http://twitter.com/victor1erp">Victor Brodin</a></p>
+<h2 id="引言">
+<a class="header-anchor" href="#%e5%bc%95%e8%a8%80"></a>
+引言
+</h2><h4 id="服务器指标">
+<a class="header-anchor" href="#%e6%9c%8d%e5%8a%a1%e5%99%a8%e6%8c%87%e6%a0%87"></a>
+服务器指标：
+</h4><p>Tick：128Tick<br>
+帧时间预算：仅2.6毫秒<br>
+每个CPU核心运行三局游戏</p>
+
+  <blockquote class="alert-blockquote question">
+    <p class="alert-heading">
+      Question
+    </p>
+    <p><h4 id="服务器tick频率">
+<a class="header-anchor" href="#%e6%9c%8d%e5%8a%a1%e5%99%a8tick%e9%a2%91%e7%8e%87"></a>
+服务器Tick频率
+</h4><p>将服务器从64Tick提升到128Tick对NetCode有提升，但并没有质变，是否值得这么高的Tick率？国产FPS游戏中16Tick、32Tick依旧是主流。战地(64人大战场)、CS2(10人竞技)均采用64Tick。</p></p>
+  </blockquote>
+
+<h4 id="技术指标">
+<a class="header-anchor" href="#%e6%8a%80%e6%9c%af%e6%8c%87%e6%a0%87"></a>
+技术指标
+</h4><ol>
+<li>严格<strong>服务器权威</strong>，完全不信任client对移动、射击的处理</li>
+<li><strong>高射击骨骼精准度</strong>——任何可能被命中的Actor都必须评估动画和得到正确的骨骼位置</li>
+</ol>
+<h4 id="常用工具">
+<a class="header-anchor" href="#%e5%b8%b8%e7%94%a8%e5%b7%a5%e5%85%b7"></a>
+常用工具
+</h4><blockquote>
+<p>见<a href="https://www.bilibili.com/video/BV1PWaAzjECq">《无畏契约》开发者访谈6min</a></p>
+</blockquote>
+<p>性能优化工具：UnrealInsight非常强大<br>
+UI开发：UMGViewmodel：数据绑定到UI<br>
+资源加载：<a href="https://dev.epicgames.com/documentation/unreal-engine/zen-loader-in-unreal-engine">Zen Loader</a>和<a href="https://dev.epicgames.com/documentation/unreal-engine/using-oodle-in-unreal-engine">Oodle</a>有助于缩短加载时间<br>
+网络：Iris被持续关注优化server<br>
+架构：会考虑使用Gamefeature，以更方便地添加和删除内容<br>
+图形：<a href="https://renderdoc.org/">RenderDoc</a>、 <a href="https://www.intel.com/content/www/us/en/developer/tools/graphics-performance-analyzers/overview.html">Intel® Graphics Performance Analyzers</a>、<a href="https://www.guru3d.com/download/rtss-rivatuner-statistics-server-download">RivaTuner</a></p>
+<h1 id="服务器性能优化">
+<a class="header-anchor" href="#%e6%9c%8d%e5%8a%a1%e5%99%a8%e6%80%a7%e8%83%bd%e4%bc%98%e5%8c%96"></a>
+服务器性能优化
+</h1><p>2018/5服务器性能数据：<br>
+我们对引擎和游戏代码进行了全面梳理，添加了大量性能检测工具，并按Subsystem对耗时进行了分类统计。<br>
+横轴：开发阶段 	纵轴：子系统耗时<br>
+<img src="https://gcore.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/20260603220824774.png" alt=""><br>
+最开始高达11ms，甚至无法在8核处理器上稳定128Tick。</p>
+<p>优化重点：Replicate(4.54ms)、Network(1.72ms)、anim(1.4ms)</p>
+<h2 id="动画系统性能优化">
+<a class="header-anchor" href="#%e5%8a%a8%e7%94%bb%e7%b3%bb%e7%bb%9f%e6%80%a7%e8%83%bd%e4%bc%98%e5%8c%96"></a>
+动画系统性能优化
+</h2><h3 id="总领">
+<a class="header-anchor" href="#%e6%80%bb%e9%a2%86"></a>
+总领
+</h3><h4 id="为什么还要在服务器做动画">
+<a class="header-anchor" href="#%e4%b8%ba%e4%bb%80%e4%b9%88%e8%bf%98%e8%a6%81%e5%9c%a8%e6%9c%8d%e5%8a%a1%e5%99%a8%e5%81%9a%e5%8a%a8%e7%94%bb"></a>
+为什么还要在服务器做动画？
+</h4><p>大多数游戏中都不需要，但瓦洛兰特需要：</p>
+<ol>
+<li>精准FPS——命中判定必须获得头手脚胸的准确位置区分伤害</li>
+<li>PVP游戏——不信任客户端运算</li>
+</ol>
+<h4 id="动画的性能瓶颈">
+<a class="header-anchor" href="#%e5%8a%a8%e7%94%bb%e7%9a%84%e6%80%a7%e8%83%bd%e7%93%b6%e9%a2%88"></a>
+动画的性能瓶颈
+</h4><h5 id="根本原因">
+<a class="header-anchor" href="#%e6%a0%b9%e6%9c%ac%e5%8e%9f%e5%9b%a0"></a>
+根本原因：
+</h5><p>DS必须每一帧都计算动画并存下骨骼信息，供子弹射击后的延迟补偿使用</p>
+
+  <blockquote class="alert-blockquote tip">
+    <p class="alert-heading">
+      Tip
+    </p>
+    <p><h4 id="延迟补偿">
+<a class="header-anchor" href="#%e5%bb%b6%e8%bf%9f%e8%a1%a5%e5%81%bf"></a>
+<strong>延迟补偿</strong>
+</h4><p><strong>延迟补偿</strong>：<br>
+服务器需要Tick回退到玩家扣下扳机那一Tick，然后在frame interval中，进行subframe时间偏移，然后插值骨骼位置。<br>
+<strong>回到哪一帧</strong>：<br>
+客户端开火的时间点，并考虑网络延迟和客户端/服务器帧时间。</p></p>
+  </blockquote>
+
+<h5 id="直接表现动画更新带来的时间成本太高">
+<a class="header-anchor" href="#%e7%9b%b4%e6%8e%a5%e8%a1%a8%e7%8e%b0%e5%8a%a8%e7%94%bb%e6%9b%b4%e6%96%b0%e5%b8%a6%e6%9d%a5%e7%9a%84%e6%97%b6%e9%97%b4%e6%88%90%e6%9c%ac%e5%a4%aa%e9%ab%98"></a>
+直接表现：动画更新带来的时间成本太高
+</h5><p>在单个角色上进行动画更新时最多可能耗时0.1毫秒，一局5V5游戏内10个角色就是1.4ms<br>
+以2.6ms的性能要求为基准已经占了54%的性能损耗。</p>
+<h4 id="优化方案">
+<a class="header-anchor" href="#%e4%bc%98%e5%8c%96%e6%96%b9%e6%a1%88"></a>
+优化方案
+</h4><p> 降低Tick频率：间隔几帧进行一次动画快照<br>
+ 相关性检测：用范围更大但性能最低的Sphere检测粗筛一遍目标Character<br>
+ ⭐骨骼-&gt;动画节点输入数据：从数据量更大骨骼转而仅存储关键数据，实时算出快照的骨骼位置。<br>
+优化后结果：1ms-&gt;0.3ms</p>
+<h3 id="ds上用于动画开销的技术有哪些">
+<a class="header-anchor" href="#ds%e4%b8%8a%e7%94%a8%e4%ba%8e%e5%8a%a8%e7%94%bb%e5%bc%80%e9%94%80%e7%9a%84%e6%8a%80%e6%9c%af%e6%9c%89%e5%93%aa%e4%ba%9b"></a>
+DS上用于动画开销的技术有哪些？
+</h3><p><a href="https://youtu.be/GO6MIboHDiY?si=MCjgpzg9Amg2-n-w%5c&amp;t=3880">1:04:40</a></p>
+<h3 id="降低动画更新频率">
+<a class="header-anchor" href="#%e9%99%8d%e4%bd%8e%e5%8a%a8%e7%94%bb%e6%9b%b4%e6%96%b0%e9%a2%91%e7%8e%87"></a>
+降低动画更新频率：
+</h3><p>原因：我都必定做subframe offset了，不如把快照间隙拉大一点，直接平滑岂不美哉。</p>
+
+  <blockquote class="alert-blockquote note">
+    <p class="alert-heading">
+      Note
+    </p>
+    <p><h4 id="高刷新率下的hitbox">
+<a class="header-anchor" href="#%e9%ab%98%e5%88%b7%e6%96%b0%e7%8e%87%e4%b8%8b%e7%9a%84hitbox"></a>
+高刷新率下的Hitbox
+</h4><p>优点：非常紧凑，和角色贴合度高<br>
+<img src="https://gcore.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/20260603232717467.png" alt=""><br>
+追踪精准，L4D2中的碰撞盒在高速运动下会比模型更快<video src="https://gcore.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/volate_hitboxmove.mp4" controls muted autoplay loop></video><br>
+缺点：<br>
+性能问题：服务器压力非常大<br>
+设计问题：视觉与逻辑冲突：既要moba的个性——角色剪影和Shape不同，又要FPS的公平——但hitbox相同</p></p>
+  </blockquote>
+
+
+  <blockquote class="alert-blockquote question">
+    <p class="alert-heading">
+      Question
+    </p>
+    <p><h4 id="能容忍的能获得一次出色命中的-最大插值窗口是多少">
+<a class="header-anchor" href="#%e8%83%bd%e5%ae%b9%e5%bf%8d%e7%9a%84%e8%83%bd%e8%8e%b7%e5%be%97%e4%b8%80%e6%ac%a1%e5%87%ba%e8%89%b2%e5%91%bd%e4%b8%ad%e7%9a%84-%e6%9c%80%e5%a4%a7%e6%8f%92%e5%80%bc%e7%aa%97%e5%8f%a3%e6%98%af%e5%a4%9a%e5%b0%91"></a>
+能容忍的、能获得一次出色命中的 <strong>最大插值窗口</strong>是多少？
+</h4><p>1frame更新一次，hitbox和DS动画重合：<br>
+<img src="https://gcore.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/PixPin_2026-06-04_00-40-00.gif" alt=""><br>
+128frame更新一次，明显出现类似L4D2的角色看起来滞后的效果<br>
+<img src="https://gcore.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/PixPin_2026-06-04_00-42-14.gif" alt=""><br>
+3frame更新一次：有一点误差，但基本察觉不到<br>
+<img src="https://gcore.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/PixPin_2026-06-04_00-43-37.gif" alt=""></p></p>
+  </blockquote>
+
+<h4 id="方案">
+<a class="header-anchor" href="#%e6%96%b9%e6%a1%88"></a>
+方案
+</h4><p>将快照的间隔范围从 7.8 毫秒增加到大约 23 毫秒。<br>
+误差量累积：取决于腿或手臂在 23 ms窗口内的移动与 8 ms窗口内的移动相比 差异有多大。</p>
+<p>在每次评估后捕获最终骨骼位置的快照。</p>
+<p>回滚时：强制对当前帧进行一次动画评估和快照，并在最接近的两个快照之间进行插值，以用于命中测试。</p>
+<h3 id="从储存骨骼位置改为储存关键状态">
+<a class="header-anchor" href="#%e4%bb%8e%e5%82%a8%e5%ad%98%e9%aa%a8%e9%aa%bc%e4%bd%8d%e7%bd%ae%e6%94%b9%e4%b8%ba%e5%82%a8%e5%ad%98%e5%85%b3%e9%94%ae%e7%8a%b6%e6%80%81"></a>
+从储存骨骼位置改为储存关键状态
+</h3><p><a href="https://youtu.be/GO6MIboHDiY?si=2MSt6NRhLRia0Vwp%5c&amp;t=1087">18:07</a><br>
+问题：每次都要快照都要更新动画蓝图，性能消耗太高<br>
+方案：<br>
+快照每个动画图表(AnimGraph)的节点的输入数据，而非快照骨骼位置，只在需要用到骨骼位置的时候执行Server动画更新。<br>
+这样就能在开枪时回溯至任意历史时间点，并通过重新动画评估来获取骨骼位置。</p>
+<p>对动画图表的节点进行快照是一项重大的引擎改造，需要理解每种节点类型所需的状态信息，但由此带来的性能提升完全值得。</p>
+<h5 id="前提">
+<a class="header-anchor" href="#%e5%89%8d%e6%8f%90"></a>
+前提
+</h5><p>动画如此频繁地更新消耗实在太大。</p>
+<h5 id="性能分析">
+<a class="header-anchor" href="#%e6%80%a7%e8%83%bd%e5%88%86%e6%9e%90"></a>
+性能分析
+</h5><p>引擎代码中，动画分为两个阶段：</p>
+<ul>
+<li>更新阶段：消耗相对较低</li>
+<li>评估阶段：非常耗时<br>
+我们获取骨骼位置快照的方式是：先完整运行一遍评估，记下所有骨骼位置数据，再执行回退操作，随后做插值(Interpolation)。但评估阶段的延迟(pinging) (性能损耗)正是关键问题所在。</li>
+</ul>
+<h5 id="设想">
+<a class="header-anchor" href="#%e8%ae%be%e6%83%b3"></a>
+设想
+</h5><p>假设我们不快照(snapshot)骨骼位置？<br>
+那要<strong>怎么计算骨骼位置</strong>以达到一样的效果？<br>
+遍历并快照所有状态以及所有独立动画图表节点，那么我们就不需要执行完整评估就能获取骨骼位置。相反，我们只需要捕获(Capture)关键状态，在需要进行评估时按需恢复该状态，计算骨骼位置，然后执行命中判定(hit registration)，基于这个按需产生的结果，而不是必须定期对骨骼位置进行快照。</p>
+<h5 id="实现">
+<a class="header-anchor" href="#%e5%ae%9e%e7%8e%b0"></a>
+实现
+</h5><p>HitBox：服务器-绿色 客户端-蓝色<br>
+不开枪时：<br>
+<img src="https://gcore.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/PixPin_2026-06-04_13-27-52.gif" alt=""><br>
+射击时才计算：<br>
+<img src="https://gcore.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/PixPin_2026-06-04_13-29-00.gif" alt=""></p>
+<p>现在，我们只需要在武器开火时为动画支付成本了。</p>
+<h5 id="开发成本">
+<a class="header-anchor" href="#%e5%bc%80%e5%8f%91%e6%88%90%e6%9c%ac"></a>
+开发成本
+</h5><p>需要持续性承担技术支持责任：</p>
+<ul>
+<li>需要完全理解所有动画节点的状态承载</li>
+<li>成本最高：引擎升级带来的底层源码更改</li>
+<li>处理动画蓝图逻辑改动新增的节点</li>
+</ul>
+
+  <blockquote class="alert-blockquote quote">
+    <p class="alert-heading">
+      Quote
+    </p>
+    <p><h4 id="原文2138">
+<a class="header-anchor" href="#%e5%8e%9f%e6%96%872138"></a>
+原文(<a href="https://youtu.be/GO6MIboHDiY?si=Ca-2M6OVk4GF-Fql">21:38</a>)
+</h4><p>在我们真正开始修改动画图表之前，所有这些在原生 Unreal 中实现都相当简单，不需要大量修改。<br>
+而当我们开始对敌人的图表状态进行快照时，成本就开始变高了。<br>
+因为现在在我们的代码中，我们需要理解每种动画图表节点的类型，还需要理解每个节点所涉及的所有状态。<br>
+而可能不那么显而易见的、成本最高的一点是：<br>
+<strong>每当我们升级 UE版本时，需要仔细审查动画系统改动。</strong><br>
+也需要在动画图表新增节点时增加对其的处理。</p></p>
+  </blockquote>
+
+
+  <blockquote class="alert-blockquote tip">
+    <p class="alert-heading">
+      Tip
+    </p>
+    <p><h2 id="这在工业领域很常见一台几千万的设备配一两个驻场员工当作配件很正常但很明显游戏的开发无法承担持续维护成本">
+<a class="header-anchor" href="#%e8%bf%99%e5%9c%a8%e5%b7%a5%e4%b8%9a%e9%a2%86%e5%9f%9f%e5%be%88%e5%b8%b8%e8%a7%81%e4%b8%80%e5%8f%b0%e5%87%a0%e5%8d%83%e4%b8%87%e7%9a%84%e8%ae%be%e5%a4%87%e9%85%8d%e4%b8%80%e4%b8%a4%e4%b8%aa%e9%a9%bb%e5%9c%ba%e5%91%98%e5%b7%a5%e5%bd%93%e4%bd%9c%e9%85%8d%e4%bb%b6%e5%be%88%e6%ad%a3%e5%b8%b8%e4%bd%86%e5%be%88%e6%98%8e%e6%98%be%e6%b8%b8%e6%88%8f%e7%9a%84%e5%bc%80%e5%8f%91%e6%97%a0%e6%b3%95%e6%89%bf%e6%8b%85%e6%8c%81%e7%bb%ad%e7%bb%b4%e6%8a%a4%e6%88%90%e6%9c%ac"></a>
+这在工业领域很常见，一台几千万的设备配一两个驻场员工当作配件很正常。但很明显，游戏的开发无法承担持续维护成本。
+</h2></p>
+  </blockquote>
+
+<h3 id="相关性检测">
+<a class="header-anchor" href="#%e7%9b%b8%e5%85%b3%e6%80%a7%e6%a3%80%e6%b5%8b"></a>
+相关性检测
+</h3><h4 id="时间上排除非战斗时间">
+<a class="header-anchor" href="#%e6%97%b6%e9%97%b4%e4%b8%8a%e6%8e%92%e9%99%a4%e9%9d%9e%e6%88%98%e6%96%97%e6%97%b6%e9%97%b4"></a>
+时间上——排除非战斗时间
+</h4><p>当无法进行战斗时，可以完全禁用Server动画。<br>
+在每回合的武器购买阶段(biphase)</p>
+
+  <blockquote class="alert-blockquote question">
+    <p class="alert-heading">
+      Question
+    </p>
+    <p><h4 id="闲时性能">
+<a class="header-anchor" href="#%e9%97%b2%e6%97%b6%e6%80%a7%e8%83%bd"></a>
+闲时性能？
+</h4><p>非战斗阶段没有太多需要计算的，本身服务器压力也很低。省下来的服务器算力用来干啥？<br>
+视频里说的是运行其他游戏，但将其作为一个优化项目是否适配性太低。</p></p>
+  </blockquote>
+
+<h4 id="空间上排除不可能命中区域">
+<a class="header-anchor" href="#%e7%a9%ba%e9%97%b4%e4%b8%8a%e6%8e%92%e9%99%a4%e4%b8%8d%e5%8f%af%e8%83%bd%e5%91%bd%e4%b8%ad%e5%8c%ba%e5%9f%9f"></a>
+空间上——排除不可能命中区域
+</h4><p>先粗筛一遍(只需检测碰撞箱)，排除不可能被子弹击中的Actor，剩下的再精准回溯和评估。<br>
+确定相关性：Shpere射线检测<br>
+从开火玩家处，沿瞄准方向进行Sphere射线，该球体应大到足以捕捉到任何近期的移动和武器误差。任何与Sphere发生碰撞的角色都会被回溯和动画更新。</p>
+
+  <blockquote class="alert-blockquote example">
+    <p class="alert-heading">
+      Example
+    </p>
+    <p><p><img src="https://cdn2.unrealengine.com/image5-189467893.gif?resize=1%5c&amp;w=1920" alt=""><br>
+子弹能穿透的他也要能穿透<br>
+<img src="https://gcore.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/20260604135922463.png" alt=""><br>
+红色位置是命中点：<img src="https://gcore.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/PixPin_2026-06-04_14-01-25.gif" alt=""></p></p>
+  </blockquote>
+
+
+  <blockquote class="alert-blockquote note">
+    <p class="alert-heading">
+      Note
+    </p>
+    <p><h4 id="如果是喷射战士">
+<a class="header-anchor" href="#%e5%a6%82%e6%9e%9c%e6%98%af%e5%96%b7%e5%b0%84%e6%88%98%e5%a3%ab"></a>
+如果是喷射战士？
+</h4><p><strong>粗筛细分</strong>：瓦洛兰特子弹只有射线检测一种。喷射战士则需要做更多细分，近战范围型、中距离、远距离。<br>
+<strong>回溯范围</strong>：喷射战士的子弹大都为实体碰撞，可能不是单帧回溯，而是将多帧并在一起判断命中。类似近战<a href="https://www.bilibili.com/video/BV1RA411B7nx">碰撞检测合批</a>.不如说实体子弹本身就可以当作近战攻击处理。<img src="https://i2.hdslb.com/bfs/archive/9bce8dd6857dbca80c295e1747655cbd919abdeb.jpg@672w_378h_1c_!web-search-common-cover.avif" alt=""><br>
+实体子弹可能会出现的问题：<a href="https://www.bilibili.com/video/BV1Tr421j7q7">UE5 高速运动碰撞检测填坑-弃用碰撞检测体</a></p></p>
+  </blockquote>
+
+<h4 id="内容上排除不需要hit物品">
+<a class="header-anchor" href="#%e5%86%85%e5%ae%b9%e4%b8%8a%e6%8e%92%e9%99%a4%e4%b8%8d%e9%9c%80%e8%a6%81hit%e7%89%a9%e5%93%81"></a>
+内容上——排除不需要Hit物品
+</h4><p>排除不需要被Hit检测的内容<br>
+关闭一切和命中检测(hit regitstation)无关的Server 动画更新。<br>
+如：Level中所有在运动但不可被击中的物体。</p>
+
+  <blockquote class="alert-blockquote note">
+    <p class="alert-heading">
+      Note
+    </p>
+    <p><h2 id="可以更进一步可交互物也可以完全不管客户端动画">
+<a class="header-anchor" href="#%e5%8f%af%e4%bb%a5%e6%9b%b4%e8%bf%9b%e4%b8%80%e6%ad%a5%e5%8f%af%e4%ba%a4%e4%ba%92%e7%89%a9%e4%b9%9f%e5%8f%af%e4%bb%a5%e5%ae%8c%e5%85%a8%e4%b8%8d%e7%ae%a1%e5%ae%a2%e6%88%b7%e7%ab%af%e5%8a%a8%e7%94%bb"></a>
+可以更进一步，可交互物也可以完全不管客户端动画。
+</h2></p>
+  </blockquote>
+
+<h3 id="性能提升">
+<a class="header-anchor" href="#%e6%80%a7%e8%83%bd%e6%8f%90%e5%8d%87"></a>
+性能提升
+</h3><p>降低频率+只存储状态+相关性检测后，耗时从<code>1.4ms</code>降到了<code>0.26ms</code>，其中存储状态变化影响最大</p>
+<p>第三根棕色线Animation：可以看到虽然还有大幅波动(接近0.35ms)，但还是达到了0.26ms的水平。<br>
+横轴：运行时间  纵轴：subsystem耗时<br>
+<img src="https://gcore.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/20260604143342064.png" alt=""></p>
+<blockquote>
+<p>你还可以看到：最下面渲染子项一直保持0，因为服务器不需要任何渲染。但其实一开始他并不是0成本。</p>
+</blockquote>
+<h1 id="渲染优化">
+<a class="header-anchor" href="#%e6%b8%b2%e6%9f%93%e4%bc%98%e5%8c%96"></a>
+渲染优化
+</h1><p><a href="https://youtu.be/GO6MIboHDiY?si=znpYnTpHdqQLylxc%5c&amp;t=1443">24:03</a></p>
+<h2 id="制定性能指标">
+<a class="header-anchor" href="#%e5%88%b6%e5%ae%9a%e6%80%a7%e8%83%bd%e6%8c%87%e6%a0%87"></a>
+制定性能指标
+</h2><p><strong>团队协作</strong>：<br>
+无论<code>引擎团队</code>付出多大的努力，都无法孤立达成目标。<br>
+其完全依赖于<code>美术团队</code>投入这些目标并接受一些相当苛刻的限制。</p>
+<h3 id="参数指标">
+<a class="header-anchor" href="#%e5%8f%82%e6%95%b0%e6%8c%87%e6%a0%87"></a>
+参数指标
+</h3><p>在项目早期，我们就定义了一系列性能指标：<br>
+VRAM、light map textures、texture resolutions、特定场景中能获得多少个triangles</p>
+<p>最能反映实际性能的是：draw calls</p>
+<h3 id="硬件指标">
+<a class="header-anchor" href="#%e7%a1%ac%e4%bb%b6%e6%8c%87%e6%a0%87"></a>
+硬件指标
+</h3><h4 id="参数指标无法替代硬件指标">
+<a class="header-anchor" href="#%e5%8f%82%e6%95%b0%e6%8c%87%e6%a0%87%e6%97%a0%e6%b3%95%e6%9b%bf%e4%bb%a3%e7%a1%ac%e4%bb%b6%e6%8c%87%e6%a0%87"></a>
+参数指标无法替代硬件指标
+</h4><p>我们常常会对最低配置机器与我们的开发硬件之间的性能差异感到惊讶。<br>
+我们以为很快的东西，其实一直都很慢，我们预期会很慢的操作，往往并不会带来明显的性能损耗。<br>
+因此，在目标机型上进行实际测量就显得至关重要。</p>
+<h4 id="最差测试机">
+<a class="header-anchor" href="#%e6%9c%80%e5%b7%ae%e6%b5%8b%e8%af%95%e6%9c%ba"></a>
+最差测试机
+</h4><p><strong>目标</strong>：让最差测试机跑30FPS<br>
+<strong>结果</strong>：很多场景可以达到45-60FPS<br>
+在这台笔记本上，比起CPU，GPU的渲染才是瓶颈。</p>
+<p>CPU：i7 4770：比A12弱、单核接近骁龙865<br>
+GPU：他说的是HD4000，但gpt查到4770搭配的GPU应是HD4600<br>
+Intel HD 4000远弱于 Snapdragon 855 的 Adreno 640，接近Adreno 5xx<br>
+Intel HD 4600，4000的两倍，比Snapdragon 855 的 Adreno 640差一些<br>
+RAM：4GB</p>
+<h4 id="性能指标图">
+<a class="header-anchor" href="#%e6%80%a7%e8%83%bd%e6%8c%87%e6%a0%87%e5%9b%be"></a>
+性能指标图
+</h4><p>我们每周都会在主要节点上收集性能数据：<br>
+Haven：性能最高点在A点，30ms(33帧)<br>
+Split和Bind：大部分都在20ms(50帧)</p>
+<p>横轴：项目节点 		纵轴：耗时<br>
+<img src="https://gcore.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/20260604164457488.png" alt="278"></p>
+
+  <blockquote class="alert-blockquote important">
+    <p class="alert-heading">
+      Important
+    </p>
+    <p><h4 id="低配测试机的重要性">
+<a class="header-anchor" href="#%e4%bd%8e%e9%85%8d%e6%b5%8b%e8%af%95%e6%9c%ba%e7%9a%84%e9%87%8d%e8%a6%81%e6%80%a7"></a>
+低配测试机的重要性
+</h4><p>可以注意到，在Split的倒数第三个节点(CL437099)开始A点性能开销逐渐增大。<br>
+导致其性能退化的代码在高配置的开发机上并没有显现出来，只在最低配置的机器上才暴露。</p></p>
+  </blockquote>
+
+<p>如何采集性能：<a href="https://www.intel.com/content/www/us/en/developer/tools/graphics-performance-analyzers/overview.html">Intel GPA</a></p>
+<ol>
+<li>在电脑上加载场景，使用Intel的GPA捕获。</li>
+<li>分析该场景捕捉结果：查看各个独立的渲染通道以及整个场景的总耗时。</li>
+<li>随着项目进度的推移持续跟踪它们。</li>
+</ol>
+<p>更详细的分项数据：<br>
+横轴：渲染通道			纵轴：地图中的地点 		Δ：差值<br>
+<img src="https://gcore.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/20260604183153078.png" alt=""></p>
+<h2 id="地图和环境">
+<a class="header-anchor" href="#%e5%9c%b0%e5%9b%be%e5%92%8c%e7%8e%af%e5%a2%83"></a>
+地图和环境
+</h2><p><code>场景团队</code>会尽量将游戏空间中的每个场景控制在600次DrawCall以内，实际上大部分区域都控制在400次DrawCall以下（视频中倒数第三个参数）。这需要环境团队大量的努力才能达到。<br>
+我们采用了大量的实例化，并且手动完成大量工作。\ <video src="https://gcore.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/violatemaprate.mp4" controls muted autoplay loop></video></p>
+<h3 id="不同区域的渲染性能预算不同">
+<a class="header-anchor" href="#%e4%b8%8d%e5%90%8c%e5%8c%ba%e5%9f%9f%e7%9a%84%e6%b8%b2%e6%9f%93%e6%80%a7%e8%83%bd%e9%a2%84%e7%ae%97%e4%b8%8d%e5%90%8c"></a>
+不同区域的渲染性能预算不同
+</h3><p>出生点：<br>
+这是渲染成本最高的场景。<br>
+我们预计这里不会有太多战斗，预算就稍微灵活了一些，能达到550次DrawCall。<br>
+<img src="https://gcore.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/20260604185902809.png" alt=""><br>
+冲突点：150次DrawCall<br>
+<img src="https://gcore.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/20260604190120902.png" alt=""><br>
+包点：200/300次DrawCall<br>
+<img src="https://gcore.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/20260604190156272.png" alt=""></p>
+<h2 id="问题">
+<a class="header-anchor" href="#%e9%97%ae%e9%a2%98"></a>
+问题
+</h2><p><a href="https://youtu.be/GO6MIboHDiY?si=xBUCscxHuGA38Rmw%5c&amp;t=3796">1:03:16</a></p>
+
+  <blockquote class="alert-blockquote question">
+    <p class="alert-heading">
+      Question
+    </p>
+    <p><h4 id="团队是如何决定使用umbra的它与内置的静态残疾计算built-in-static-disability-calculations有何不同">
+<a class="header-anchor" href="#%e5%9b%a2%e9%98%9f%e6%98%af%e5%a6%82%e4%bd%95%e5%86%b3%e5%ae%9a%e4%bd%bf%e7%94%a8umbra%e7%9a%84%e5%ae%83%e4%b8%8e%e5%86%85%e7%bd%ae%e7%9a%84%e9%9d%99%e6%80%81%e6%ae%8b%e7%96%be%e8%ae%a1%e7%ae%97built-in-static-disability-calculations%e6%9c%89%e4%bd%95%e4%b8%8d%e5%90%8c"></a>
+团队是如何决定使用Umbra的？它与内置的静态残疾计算(built-in static disability calculations)有何不同？
+</h4><p>我们很早以前就采用了预计算可见性(pre-computed visibility )技术。我们发现Umbra更好，就换过去，但他现在很可能已经过时了。</p></p>
+  </blockquote>
+
+
+  <blockquote class="alert-blockquote question">
+    <p class="alert-heading">
+      Question
+    </p>
+    <p><h4 id="游戏最大纹理是多少">
+<a class="header-anchor" href="#%e6%b8%b8%e6%88%8f%e6%9c%80%e5%a4%a7%e7%ba%b9%e7%90%86%e6%98%af%e5%a4%9a%e5%b0%91"></a>
+游戏最大纹理是多少。
+</h4><p>一般比较小，确实有一些相对较大。有很多是512，还有一些1k。<br>
+安装包大小很重要，但跟纹理大小没关系，我们更在意显存大小。</p></p>
+  </blockquote>
+
+<h1 id="netcode">
+<a class="header-anchor" href="#netcode"></a>
+NetCode
+</h1><h2 id="replication">
+<a class="header-anchor" href="#replication"></a>
+Replication
+</h2>
+  <blockquote class="alert-blockquote question">
+    <p class="alert-heading">
+      Question
+    </p>
+    <p><h4 id="你是如何估算replication成本的10142">
+<a class="header-anchor" href="#%e4%bd%a0%e6%98%af%e5%a6%82%e4%bd%95%e4%bc%b0%e7%ae%97replication%e6%88%90%e6%9c%ac%e7%9a%8410142"></a>
+你是如何估算Replication成本的？<a href="https://youtu.be/GO6MIboHDiY?si=r_6OscJO7mlF082N%5c&amp;t=3702">1:01:42</a>
+</h4><p>我没有参与过相关工作。我知道的：<br>
+我们有一套完整的逻辑来判断何时处于空闲状态何时需要复制。<br>
+一个很好的例子就是：如果你的手枪已经收起来，并且状态没有变化，就让他休眠(dormant)。<br>
+我们应该还做了一些定制化调整，对引擎复制代码进行了修改，但细节记不清了。<br>
+<strong>自动化检测Replicate工具：</strong><br>
+我们还构建了一些自动化工具，应该在Command里。<br>
+持续集成系统会定期运行那个command，检测任何正在复制的内容。我们有一个所有允许复制内容的列表。<br>
+当有新内容开启了Replicate时，我们都会收到相关邮件，然后必须有人介入调查。</p></p>
+  </blockquote>
+
+<h1 id="移动系统">
+<a class="header-anchor" href="#%e7%a7%bb%e5%8a%a8%e7%b3%bb%e7%bb%9f"></a>
+移动系统
+</h1><h2 id="预测回滚">
+<a class="header-anchor" href="#%e9%a2%84%e6%b5%8b%e5%9b%9e%e6%bb%9a"></a>
+预测回滚
+</h2><p><a href="https://youtu.be/GO6MIboHDiY?si=3m-oCbh9Z0-kqMQ_%5c&amp;t=3498">58:18</a><br>
+movement anticipation 是如何运作的?<br>
+Marrus：我不是探讨这个问题的最合适人选。<br>
+服务器始终知道你在任何时刻的输入指令，然后我们可以基于过去的输入继续预测。<br>
+临界点问题：<br>
+大致意思是太过离谱的会强制你移动到服务器位置，比较混乱：如果你尝试在客户端进行不良行为，内置了一些阈值，服务器会覆盖本地玩家的正在尝试的操作。因此，在网络不佳或者你开了延迟开关(lag switch)想绕过墙角，即使是对你的本地输入，你也可以在该校正上获得一个服务器移动器（Server Mover）的效果。<br>
+网络条件良好时，应该感觉就像你在本地操控。</p>
+<p>你们对movement prediction进行了定制吗？<br>
+是的，非常重度地定制。</p>
+
+  <blockquote class="alert-blockquote question">
+    <p class="alert-heading">
+      Question
+    </p>
+    <p><h4 id="你们是如何管理actorblueprint的服务器状态回滚支持的11634">
+<a class="header-anchor" href="#%e4%bd%a0%e4%bb%ac%e6%98%af%e5%a6%82%e4%bd%95%e7%ae%a1%e7%90%86actorblueprint%e7%9a%84%e6%9c%8d%e5%8a%a1%e5%99%a8%e7%8a%b6%e6%80%81%e5%9b%9e%e6%bb%9a%e6%94%af%e6%8c%81%e7%9a%8411634"></a>
+你们是如何管理Actor/Blueprint的服务器状态回滚支持的？<a href="https://youtu.be/GO6MIboHDiY?si=YiwepuIwO4toUEQC%5c&amp;t=4594">1:16:34</a>
+</h4><p>所有需要参与回滚（rewinding）的环节都必须能感知回滚机制。<br>
+比如：SkeletalMesh中包含了相应代码。这些代码清楚，嘿，我们可能需要回溯到之前的状态。那么，回滚到某个快照然后再恢复到当前状态是什么样的过程呢？<br>
+当然，所有这些代码都运行在服务器上。</p></p>
+  </blockquote>
+
+<h2 id="低配置玩家移动">
+<a class="header-anchor" href="#%e4%bd%8e%e9%85%8d%e7%bd%ae%e7%8e%a9%e5%ae%b6%e7%a7%bb%e5%8a%a8"></a>
+低配置玩家移动
+</h2><p><strong>优先保证正常玩家体验</strong>：<a href="https://youtu.be/GO6MIboHDiY?si=DEQlsPn24lQgL_XE%5c&amp;t=4233">1:10:33</a><br>
+我们不关心Client究竟以多少帧运行，但唯一的例外是，服务器以固定速率模拟移动。<br>
+如果Client在movement update方面出现延迟，服务器将代表你生成移动更新。并且这是为了确保这样做的目的是确保：无论你是进行恶意操作，还是在性能较弱的电脑上游玩，导致跟不上节奏，我们仍然希望为其他所有玩家提供流畅的体验。</p>
+<h2 id="投掷物移动">
+<a class="header-anchor" href="#%e6%8a%95%e6%8e%b7%e7%89%a9%e7%a7%bb%e5%8a%a8"></a>
+投掷物移动
+</h2><p>你们用的是projectile movement component吗？<a href="https://youtu.be/GO6MIboHDiY?si=_TZ3Lbe9CYVmUtsi%5c&amp;t=4513">1:15:13</a><br>
+我不清楚，但我们的所有移动和射击代码都是为我们的游戏高度定制的。<br>
+我们游戏中的子弹大多采用即时命中判定。<br>
+bucky shotgun.的右键开火模式会发射会爆炸的弹球，他是一个projectile<br>
+角色Raze的终极技能是一枚火箭弹，也是一个projectile</p>
+<h1 id="3c">
+<a class="header-anchor" href="#3c"></a>
+3C
+</h1><h2 id="input">
+<a class="header-anchor" href="#input"></a>
+Input
+</h2><p><a href="https://youtu.be/GO6MIboHDiY?si=MKIHP1G4agYF7i6x%5c&amp;t=3638">1:00:38</a></p>
+<h3 id="优化输入延迟">
+<a class="header-anchor" href="#%e4%bc%98%e5%8c%96%e8%be%93%e5%85%a5%e5%bb%b6%e8%bf%9f"></a>
+优化输入延迟
+</h3><p>输入延迟至关重要，我们围绕它进行了大量测试、开展了一系列实验，并做了一些定制化调整，以保持它足够低。但细节我并不了解。</p>
+<h4 id="延迟渲染带来的影响">
+<a class="header-anchor" href="#%e5%bb%b6%e8%bf%9f%e6%b8%b2%e6%9f%93%e5%b8%a6%e6%9d%a5%e7%9a%84%e5%bd%b1%e5%93%8d"></a>
+延迟渲染带来的影响：
+</h4><p>刚刚提过，渲染器可以比游戏线程延迟一帧运行。在开发周期中我们做了大量实验，比如禁用这一功能。让渲染始终和我们刚刚处理好的游戏线程在同一帧。<br>
+这种做法使得帧时间明显变长，实际上反而加剧了输入延迟。<br>
+当然，我们也不会让渲染落后超过1帧，让延迟范围不会太大。</p>
+
+  <blockquote class="alert-blockquote tip">
+    <p class="alert-heading">
+      Tip
+    </p>
+    <p><h2 id="1low帧可能和这个有关">
+<a class="header-anchor" href="#1low%e5%b8%a7%e5%8f%af%e8%83%bd%e5%92%8c%e8%bf%99%e4%b8%aa%e6%9c%89%e5%85%b3"></a>
+1%low帧可能和这个有关
+</h2></p>
+  </blockquote>
+
+<h1 id="环境与关卡">
+<a class="header-anchor" href="#%e7%8e%af%e5%a2%83%e4%b8%8e%e5%85%b3%e5%8d%a1"></a>
+环境与关卡
+</h1><p><a href="https://youtu.be/GO6MIboHDiY?si=znqnoxbVoqTvzPam%5c&amp;t=3568">59:28</a></p>
+<h2 id="关卡加载问题">
+<a class="header-anchor" href="#%e5%85%b3%e5%8d%a1%e5%8a%a0%e8%bd%bd%e9%97%ae%e9%a2%98"></a>
+关卡加载问题
+</h2><p>有用persistent和sub-levels吗?<br>
+用了sub-level，但不是用来加载关卡，而是用来支持多个美术人员在同意关卡工作。<br>
+我们拥有数量庞大的子关卡。<br>
+<img src="https://gcore.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/20260604203142204.png" alt=""><br>
+我们会完整加载关卡。</p>
+<h1 id="ui">
+<a class="header-anchor" href="#ui"></a>
+UI
+</h1><p>基本使用UMG，会有一些C++支持。<br>
+重点是需要有干净的数据模型来支持UI元素显示。<br>
+这些都是比较常规的功能，没有做太多定制化。</p>
+
+  <blockquote class="alert-blockquote question">
+    <p class="alert-heading">
+      Question
+    </p>
+    <p><h4 id="你们是用umg来绘制rhi性能图表吗">
+<a class="header-anchor" href="#%e4%bd%a0%e4%bb%ac%e6%98%af%e7%94%a8umg%e6%9d%a5%e7%bb%98%e5%88%b6rhi%e6%80%a7%e8%83%bd%e5%9b%be%e8%a1%a8%e5%90%97"></a>
+你们是用UMG来绘制RHI性能图表吗？
+</h4><p>是的，他应该只是个UMG控件。至于绘制，我们基本上只是复用了引擎自己的代码用于内部调试图表。</p></p>
+  </blockquote>
+
+<h1 id="声音">
+<a class="header-anchor" href="#%e5%a3%b0%e9%9f%b3"></a>
+声音
+</h1><h2 id="语音">
+<a class="header-anchor" href="#%e8%af%ad%e9%9f%b3"></a>
+语音
+</h2>
+  <blockquote class="alert-blockquote question">
+    <p class="alert-heading">
+      Question
+    </p>
+    <p><h4 id="你们用什么方案处理音频和语音通话">
+<a class="header-anchor" href="#%e4%bd%a0%e4%bb%ac%e7%94%a8%e4%bb%80%e4%b9%88%e6%96%b9%e6%a1%88%e5%a4%84%e7%90%86%e9%9f%b3%e9%a2%91%e5%92%8c%e8%af%ad%e9%9f%b3%e9%80%9a%e8%af%9d"></a>
+你们用什么方案处理音频和语音通话？
+</h4><p>音频方面我们用的是 Wwise<br>
+语音聊天系统实际上是通过启动器运行的，而不是游戏本身。</p></p>
+  </blockquote>
+
+<h1 id="工程实践">
+<a class="header-anchor" href="#%e5%b7%a5%e7%a8%8b%e5%ae%9e%e8%b7%b5"></a>
+工程实践
+</h1><h2 id="开发工具汇总">
+<a class="header-anchor" href="#%e5%bc%80%e5%8f%91%e5%b7%a5%e5%85%b7%e6%b1%87%e6%80%bb"></a>
+开发工具汇总
+</h2><p>版本控制：Perforce<br>
+采集画面性能：<a href="https://www.intel.com/content/www/us/en/developer/tools/graphics-performance-analyzers/overview.html">Intel GPA</a> <a href="https://renderdoc.org/">RenderDoc</a>UE自带插件<br>
+帧率/计时器：<a href="https://sourceforge.net/projects/rivatuner/">Rivatuner download</a>，很多游戏评测网站都会用来测试帧率<br>
+音频管理：<a href="https://www.audiokinetic.com/en/wwise/">Wwise</a><br>
+玩家语音：自建启动器里的语音系统</p>
+<h2 id="引擎版本升级">
+<a class="header-anchor" href="#%e5%bc%95%e6%93%8e%e7%89%88%e6%9c%ac%e5%8d%87%e7%ba%a7"></a>
+引擎版本升级
+</h2><p>倾向于比最新版落后一个版本，但有时也会落后几个版本。因为我们升级引擎的成本很高(大约1个月，每年3次左右)，4.23升级到4.24时甚至无法确保所有重要修复已经正常。<br>
+同时，因为我们是持续服务型游戏，所以如果有工作流的改进，更愿意投入时间去推进。</p>
+<h4 id="引擎升级流程">
+<a class="header-anchor" href="#%e5%bc%95%e6%93%8e%e5%8d%87%e7%ba%a7%e6%b5%81%e7%a8%8b"></a>
+引擎升级流程
+</h4><p>与使用过最新版本的其他游戏开发团队交流，明确Epic正在投入资源的地方，看看有没有需要改进的，然后才决定何时升级</p>
+<p><strong>问题</strong>：<br>
+瓦洛兰特大约2周一个发布版本，引擎升级超过两周。<br>
+<strong>解决方案</strong>：<br>
+弄个新分支-&gt;处理集成问题-&gt;让Gameplay做测试-&gt;合并到主分支、发布</p>
+<ol>
+<li>创建新版本集成分支，在里面处理完所有引擎问题</li>
+<li>让开发未来内容的人员加入到集成分支，让他们在其中进行日常工作的同时测试编辑器场景、非玩家可见内容。</li>
+<li>合并到主分支，成为下一次常规发布的一部分</li>
+</ol>
+<h4 id="chaos系统在升级到ue5后的挑战">
+<a class="header-anchor" href="#chaos%e7%b3%bb%e7%bb%9f%e5%9c%a8%e5%8d%87%e7%ba%a7%e5%88%b0ue5%e5%90%8e%e7%9a%84%e6%8c%91%e6%88%98"></a>
+Chaos系统在升级到UE5后的挑战
+</h4><p>问题：Chaos 改变了我们一些Gamplay的行为(相较UE4版本)，而我们真的不希望其中任何一点影响到玩家。<br>
+方案：建立一套标准对比工具。<br>
+为此我们开发一套自动化工具，用来记录Gampelay行为在我们的movement timeline的每一帧（tick）上的具体表现方式。<br>
+在128tick的每一帧里，都可以记录UE4中某个技能的状态，然后在UE5中进行对比，并在产生差异时创建漏洞报告。</p>
+
+  <blockquote class="alert-blockquote example">
+    <p class="alert-heading">
+      Example
+    </p>
+    <p><h4 id="备注">
+<a class="header-anchor" href="#%e5%a4%87%e6%b3%a8"></a>
+备注
+</h4><p>链接：<a href="https://www.bilibili.com/video/BV1PWaAzjECq/?t=268">《无畏契约》开发者访谈- 04:28</a><br>
+类似于我用于测试WeaponSway的自动化回放工具(<a href="https://www.fab.com/listings/09be23db-a3e0-4f22-aa47-1e798e1f5d12">Key Input Replay </a>)，能确保Bug和不一致行为一定能稳定触发。 <video src="https://gcore.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/PixPin_2026-06-03_19-37-07-00.00.00.000-00.00.03.843.mp4" controls muted autoplay loop></video><br>
+<img src="https://gcore.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/PixPin_2026-06-03_19-47-58.gif" alt=""></p></p>
+  </blockquote>
+
+<h2 id="gc">
+<a class="header-anchor" href="#gc"></a>
+GC
+</h2><p>我们在回合结束时统一GC<br>
+这也意味着我们不会在游戏进行时进行大量动态内存分配。<br>
+我们有自定义审计拉去代码(audit puling code)<br>
+带来的效果：要么没问题，要么超出内存预算，直接修复。</p>
+<h2 id="能力系统">
+<a class="header-anchor" href="#%e8%83%bd%e5%8a%9b%e7%b3%bb%e7%bb%9f"></a>
+能力系统
+</h2><p>你们用了GAS吗？<br>
+不清楚，应该只用了一部分，大部分是定制的系统。(应注意时间，4.24左右GAS才出)</p>
+<h2 id="蓝图与c">
+<a class="header-anchor" href="#%e8%93%9d%e5%9b%be%e4%b8%8ec"></a>
+蓝图与C++
+</h2><p>让设计师制作大量蓝图内容，是否减少了程序员需求？<br>
+是的，如果纯C++，需要的程序员会多得多。<br>
+一般像射击这样的稳定系统用C++，技能这样的用蓝图。</p>
+<p>我们在C++做的优化：</p>
+<h2 id="自动化测试">
+<a class="header-anchor" href="#%e8%87%aa%e5%8a%a8%e5%8c%96%e6%b5%8b%e8%af%95"></a>
+自动化测试
+</h2><p><a href="https://youtu.be/GO6MIboHDiY?si=DUMvTuT7PSBN4O0-%5c&amp;t=4357">1:12:37</a><br>
+我们有不到100个自动化测试样例，他们会对主要模块进行测试。<br>
+这非常有价值，尤其是引擎升级的时候。<br>
+在每10分钟一次的自动构建中会运行这个自动化流程。</p>
+<p>&ldquo;猴子测试&rdquo;<br>
+启动一台服务器，10个玩家。连续数个小时随机狂按各种操作。这方便找出：<br>
+“这里有个可能引发问题的诡异操作序列&quot;的情况而导致的崩溃。<br>
+我们会收集崩溃遥测数据之类的信息，这显然是需要非常严肃对待的问题。</p>
+<h1 id="问题-1">
+<a class="header-anchor" href="#%e9%97%ae%e9%a2%98-1"></a>
+问题
+</h1><h4 id="斯普拉顿项目疑问">
+<a class="header-anchor" href="#%e6%96%af%e6%99%ae%e6%8b%89%e9%a1%bf%e9%a1%b9%e7%9b%ae%e7%96%91%e9%97%ae"></a>
+斯普拉顿项目疑问
+</h4>
+  <blockquote class="alert-blockquote question">
+    <p class="alert-heading">
+      Question
+    </p>
+    <p><h4 id="如上所属动画节点的代码工程量持续维护是个问题但还没有看到他们要脱离这套体系自己弄一套动画系统">
+<a class="header-anchor" href="#%e5%a6%82%e4%b8%8a%e6%89%80%e5%b1%9e%e5%8a%a8%e7%94%bb%e8%8a%82%e7%82%b9%e7%9a%84%e4%bb%a3%e7%a0%81%e5%b7%a5%e7%a8%8b%e9%87%8f%e6%8c%81%e7%bb%ad%e7%bb%b4%e6%8a%a4%e6%98%af%e4%b8%aa%e9%97%ae%e9%a2%98%e4%bd%86%e8%bf%98%e6%b2%a1%e6%9c%89%e7%9c%8b%e5%88%b0%e4%bb%96%e4%bb%ac%e8%a6%81%e8%84%b1%e7%a6%bb%e8%bf%99%e5%a5%97%e4%bd%93%e7%b3%bb%e8%87%aa%e5%b7%b1%e5%bc%84%e4%b8%80%e5%a5%97%e5%8a%a8%e7%94%bb%e7%b3%bb%e7%bb%9f"></a>
+如上所属，动画节点的代码工程量、持续维护是个问题，但还没有看到他们要脱离这套体系自己弄一套动画系统。
+</h4><p>是什么原因促使这一想法的？单独做一套动画系统的成本和持续维护的成本究竟谁更高？</p></p>
+  </blockquote>
+
+
+  <blockquote class="alert-blockquote question">
+    <p class="alert-heading">
+      Question
+    </p>
+    <p><h4 id="pdf提到会只用到actor层而不用gameplay我的视角中ue引擎性能转折点分别是objactor和charactermovementcomp">
+<a class="header-anchor" href="#pdf%e6%8f%90%e5%88%b0%e4%bc%9a%e5%8f%aa%e7%94%a8%e5%88%b0actor%e5%b1%82%e8%80%8c%e4%b8%8d%e7%94%a8gameplay%e6%88%91%e7%9a%84%e8%a7%86%e8%a7%92%e4%b8%adue%e5%bc%95%e6%93%8e%e6%80%a7%e8%83%bd%e8%bd%ac%e6%8a%98%e7%82%b9%e5%88%86%e5%88%ab%e6%98%afobjactor%e5%92%8ccharactermovementcomp"></a>
+PDF提到会只用到Actor层，而不用Gameplay，我的视角中，UE引擎性能转折点分别是Obj、Actor和CharacterMovementComp。
+</h4><p>是出于什么考虑？</p></p>
+  </blockquote>
+
+</div>
+    <footer class="article-footer"><ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item" data-aos="zoom-in">
+      <a
+        class="article-tag-list-link"
+        href="/WzhGameDevPublish/tags/blog"
+        rel="tag"
+        >BLOG</a
+      >
+    </li></ul>
+</footer>
+  </div><nav
+    id="article-nav"
+    aria-label="Article navigation"
+    data-aos="fade-up"
+  ><div class="article-nav-link-wrap left"><img
+              data-src="https://img95.699pic.com/photo/60126/0136.jpg_wh860.jpg"
+              data-sizes="auto"
+              alt="重装前哨的设计问题和思考"
+              class="lazyload"
+            /><a
+          href="/WzhGameDevPublish/post/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/2-output/%E6%B8%B8%E6%88%8F/%E9%87%8D%E8%A3%85%E5%89%8D%E5%93%A8%E7%9A%84%E8%AE%BE%E8%AE%A1%E9%97%AE%E9%A2%98%E5%92%8C%E6%80%9D%E8%80%83/"
+          aria-label="前一篇:重装前哨的设计问题和思考"
+          title="前一篇:重装前哨的设计问题和思考"
+        ></a>
+        <div class="article-nav-caption">前一篇</div>
+        <h3 class="article-nav-title">重装前哨的设计问题和思考</h3>
+      </div></nav></article></section>
+        </div><footer id="footer" aria-label="Site footer">
+  <div style="width: 100%; overflow: hidden">
+    <div class="footer-line"></div>
+  </div>
+  <div id="footer-info"><div>
+      <span class="icon-copyright"></span>2025-2026<span class="footer-info-sep rotate"></span>
+      温志洪
+    </div><div>
+        基于&nbsp;<a
+          href="https://gohugo.io/"
+          target="_blank"
+          rel="noopener nofollow noreferrer"
+          >Hugo</a
+        >&nbsp; Theme.<a
+          href="https://github.com/D-Sketon/hugo-theme-reimu"
+          target="_blank"
+          rel="noopener nofollow noreferrer"
+          >Reimu</a
+        >
+      </div><div>
+        <span class="icon-brush"
+          >&nbsp;109.8k</span
+        >
+        &nbsp;|&nbsp;
+        <span class="icon-coffee">&nbsp;03:54</span>
+      </div><div>
+        <span class="icon-eye"></span>
+        <span id="busuanzi_container_site_pv"
+          >总访问量&nbsp;<span
+            id="busuanzi_value_site_pv"
+          ></span
+        ></span>
+        &nbsp;|&nbsp;
+        <span class="icon-user"></span>
+        <span id="busuanzi_container_site_uv"
+          >总访客量&nbsp;<span
+            id="busuanzi_value_site_uv"
+          ></span
+        ></span>
+      </div></div>
+</footer>
+<div class="sidebar-top">
+            <div class="sidebar-top-taichi rotate"></div>
+            <div class="arrow-up"></div>
+          </div><div id="mask" class="hide"></div>
+      </div><nav id="mobile-nav" aria-label="Mobile navigation">
+  <div class="sidebar-wrap"><div class="sidebar-toc-sidebar"><h3 class="toc-title">文章目录</h3>
+<div class="sidebar-toc-wrapper toc-div-class">
+  <nav id="TableOfContents">
+  <ul>
+    <li><a href="#背景">背景</a>
+      <ul>
+        <li><a href="#技术资料">技术资料：</a></li>
+        <li><a href="#制作人">制作人</a></li>
+      </ul>
+    </li>
+    <li><a href="#引言">引言</a>
+      <ul>
+        <li></li>
+      </ul>
+    </li>
+  </ul>
+
+  <ul>
+    <li><a href="#动画系统性能优化">动画系统性能优化</a>
+      <ul>
+        <li><a href="#总领">总领</a></li>
+        <li><a href="#ds上用于动画开销的技术有哪些">DS上用于动画开销的技术有哪些？</a></li>
+        <li><a href="#降低动画更新频率">降低动画更新频率：</a></li>
+        <li><a href="#从储存骨骼位置改为储存关键状态">从储存骨骼位置改为储存关键状态</a></li>
+        <li><a href="#相关性检测">相关性检测</a></li>
+        <li><a href="#性能提升">性能提升</a></li>
+      </ul>
+    </li>
+  </ul>
+
+  <ul>
+    <li><a href="#制定性能指标">制定性能指标</a>
+      <ul>
+        <li><a href="#参数指标">参数指标</a></li>
+        <li><a href="#硬件指标">硬件指标</a></li>
+      </ul>
+    </li>
+    <li><a href="#地图和环境">地图和环境</a>
+      <ul>
+        <li><a href="#不同区域的渲染性能预算不同">不同区域的渲染性能预算不同</a></li>
+      </ul>
+    </li>
+    <li><a href="#问题">问题</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#replication">Replication</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#预测回滚">预测回滚</a></li>
+    <li><a href="#低配置玩家移动">低配置玩家移动</a></li>
+    <li><a href="#投掷物移动">投掷物移动</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#input">Input</a>
+      <ul>
+        <li><a href="#优化输入延迟">优化输入延迟</a></li>
+      </ul>
+    </li>
+  </ul>
+
+  <ul>
+    <li><a href="#关卡加载问题">关卡加载问题</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#语音">语音</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#开发工具汇总">开发工具汇总</a></li>
+    <li><a href="#引擎版本升级">引擎版本升级</a>
+      <ul>
+        <li></li>
+      </ul>
+    </li>
+    <li><a href="#gc">GC</a></li>
+    <li><a href="#能力系统">能力系统</a></li>
+    <li><a href="#蓝图与c">蓝图与C++</a></li>
+    <li><a href="#自动化测试">自动化测试</a></li>
+  </ul>
+
+  <ul>
+    <li>
+      <ul>
+        <li></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+</div></div>
+        <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
+  <img
+    data-src="/WzhGameDevPublish/avatar/UELogo.png"
+    data-sizes="auto"
+    alt="温志洪"
+    class="lazyload"
+  />
+  <div class="sidebar-author-name">温志洪</div>
+  <div class="sidebar-description">FPS游戏</div>
+</div>
+<div class="sidebar-state">
+  <div class="sidebar-state-article">
+    <div>文章</div><div class="sidebar-state-number">27</div>
+  </div>
+  <a class="sidebar-state-category" href="/WzhGameDevPublish/categories/" aria-label="sidebar-state-category-link">
+    <div>分类</div>
+    <div class="sidebar-state-number">
+      0
+    </div>
+  </a>
+  <a class="sidebar-state-tag" href="/WzhGameDevPublish/tags/" aria-label="sidebar-state-tag-link">
+    <div>标签</div>
+    <div class="sidebar-state-number">17</div>
+  </a>
+</div>
+<div class="sidebar-social"><div class="icon-bilibili sidebar-social-icon">
+      <a
+        href="https://space.bilibili.com/35312868"
+        itemprop="url"
+        target="_blank"
+        aria-label="bilibili"
+        rel="noopener nofollow noreferrer"
+      ></a>
+    </div><div class="icon-email sidebar-social-icon">
+      <a
+        href="mailto:cnwenzhihong@gmail.com"
+        itemprop="url"
+        target="_blank"
+        aria-label="email"
+        rel="noopener nofollow noreferrer"
+      ></a>
+    </div></div>
+<div class="sidebar-menu"><div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/WzhGameDevPublish/"
+        aria-label="首页"
+      ></a>
+      <div class='sidebar-menu-icon icon rotate'>&#xe62b;</div>
+      <div class="sidebar-menu-link">首页</div>
+    </div><div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/WzhGameDevPublish/archives"
+        aria-label="归档"
+      ></a>
+      <div class='sidebar-menu-icon icon rotate'>&#xe62b;</div>
+      <div class="sidebar-menu-link">归档</div>
+    </div><div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/WzhGameDevPublish/about"
+        aria-label="关于"
+      ></a>
+      <div class='sidebar-menu-icon icon rotate'>&#xe62b;</div>
+      <div class="sidebar-menu-link">关于</div>
+    </div><div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/WzhGameDevPublish/friend"
+        aria-label="友链"
+      ></a>
+      <div class='sidebar-menu-icon icon rotate'>&#xe62b;</div>
+      <div class="sidebar-menu-link">友链</div>
+    </div></div>
+</div></div><div class="sidebar-btn-wrapper">
+        <div class="sidebar-toc-btn current"></div>
+        <div class="sidebar-common-btn"></div>
+      </div></nav>
+</div><div class="site-search">
+        <div class="reimu-popup popup">
+          <div class="reimu-search">
+            <div class="reimu-search-input-icon"></div>
+            <div id="reimu-search-input"></div>
+            <div class="popup-btn-close"></div>
+          </div>
+          <div class="reimu-results">
+            <div id="reimu-stats"></div>
+            <div id="reimu-hits"></div>
+            <div id="reimu-pagination" class="reimu-pagination"></div>
+          </div>
+          <img class="reimu-bg" src="/WzhGameDevPublish/images/reimu.png" />
+        </div>
+      </div><script
+    src="https://npm.webcache.cn/lazysizes@5.3.2/lazysizes.min.js"
+    integrity="sha384-3gT/vsepWkfz/ff7PpWNUeMzeWoH3cDhm/A8jM7ouoAK0/fP/9bcHHR5kHq2nf&#43;e" crossorigin="anonymous"></script><script
+    src="https://npm.webcache.cn/clipboard@2.0.11/dist/clipboard.min.js"
+    integrity="sha384-J08i8An/QeARD9ExYpvphB8BsyOj3Gh2TSh1aLINKO3L0cMSH2dN3E22zFoXEi0Q" crossorigin="anonymous"></script><script
+    src="https://npm.webcache.cn/material-theme@1.0.0/dist/material-theme.umd.js"
+    integrity="sha384-vLev0II0HKFaxkcm&#43;/7kX5IGwVFBASkGchU311wmU/veIj2bB0UcBkQbW6yw2asK" crossorigin="anonymous"></script><script src="/WzhGameDevPublish/js/main.js" ></script><script src="/WzhGameDevPublish/js/aos.js" ></script><script>
+    var aosInit = () => {
+      AOS.init({
+        duration: 1000,
+        easing: "ease",
+        once: true,
+        offset: 50,
+      });
+    };
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", aosInit);
+    } else {
+      aosInit();
+    }
+  </script><script src="/WzhGameDevPublish/js/pjax_main.js" data-pjax></script><script>
+    var ALGOLIA_CONFIG = {
+      logo: '\/WzhGameDevPublish\/images\/algolia_logo.svg',
+      algolia: {
+        applicationID: "Y8C6JKXKKR",
+        apiKey: "30fdacdc4947fb8d8faed68e16f048a0",
+        indexName: "index",
+        hits: {
+          "per_page": parseInt("10")
+        },
+        labels: {
+          "input_placeholder": '搜索.....',
+          "hits_empty": '未发现与 「${query}」相关内容',
+          "hits_stats": '找到${hits}条结果（用时 ${time} ms）'
+        }
+      }
+    };
+  </script><script
+    src="https://npm.webcache.cn/algoliasearch@4.17.1/dist/algoliasearch-lite.umd.js"
+    deferintegrity="sha384-xvLS0jfKuoREs7pqkRI/OI8GcqohO5S&#43;jQz7ZBtQXnsXmD&#43;9jDOOY4cL6dCPzlrk" crossorigin="anonymous"></script><script
+    src="https://npm.webcache.cn/@reimujs/instantsearch.js@4.57.0-beta.1/dist/instantsearch.production.min.js"
+    deferintegrity="sha384-aagKMe8nkqaP2DYQc8kkYOL5l&#43;M5Q2WH/Uhr4teOh0Ybp0RZj0kUSDm45qPikMjK" crossorigin="anonymous"></script><script src="/WzhGameDevPublish/js/algolia_search.js" ></script><script
+    src="https://npm.webcache.cn/mouse-firework@0.1.1/dist/index.umd.js"
+    integrity="sha384-8LyaidD9GPxQQgLJO/WRw/O2h3BoNq/ApI/ecpvM6RsrCz2qP2ppBXUKihP4V/2d" crossorigin="anonymous"></script><script>
+  if (! false  || !window.matchMedia('(max-width: 768px)').matches) {
+    if (window.firework) {
+      const options = JSON.parse("{\"excludeelements\":[\"a\",\"button\"],\"particles\":[{\"colors\":[\"var(--red-1)\",\"var(--red-2)\",\"var(--red-3)\",\"var(--red-4)\"],\"duration\":[1200,1800],\"easing\":\"easeOutExpo\",\"move\":[\"emit\"],\"number\":20,\"shape\":\"circle\",\"shapeOptions\":{\"alpha\":[0.3,0.5],\"radius\":[16,32]}},{\"colors\":[\"var(--red-0)\"],\"duration\":[1200,1800],\"easing\":\"easeOutExpo\",\"move\":[\"diffuse\"],\"number\":1,\"shape\":\"circle\",\"shapeOptions\":{\"alpha\":[0.2,0.5],\"lineWidth\":6,\"radius\":20}}]}");
+      options.excludeElements = options.excludeelements;
+      delete options.excludeelements;
+      window.firework(options);
+    }
+  }
+</script><script
+    src="https://npm.webcache.cn/quicklink@3.0.1/dist/quicklink.umd.js"
+    integrity="sha384-caMDqvgav/HWdEYQU1QRRHMLleigpL1YHAG0m371DhzfL8rRzUyOb&#43;bEHtwlmYjD" crossorigin="anonymous"></script><script data-pjax>
+    window.quicklink?.listen({
+      timeout:  3000 ,
+      priority:  true ,
+      ignores: JSON.parse("[]")
+    });
+  </script>
+
+
+<div id="lazy-script">
+  <div><script data-pjax>
+        window.REIMU_POST = {
+          author: "温志洪",
+          title: "瓦罗兰特技术汇总",
+          url: "http:\/\/localhost:1895\/WzhGameDevPublish\/post\/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91\/%E4%BB%A3%E7%A0%81%E6%A1%86%E6%9E%B6\/ue\/%E9%9D%A2%E8%AF%95\/%E7%93%A6%E7%BD%97%E5%85%B0%E7%89%B9%E6%8A%80%E6%9C%AF%E6%B1%87%E6%80%BB\/",
+          description: "\r总览\r渲染优化部分(30:00-50:00没有记)\n背景\r技术资料：\r2020年视频分享，主要讨论DS的动画系统优化:\nVALORANT\u0026rsquo;s Performance Requirements 1:32:00：性能套路视频\nInside Unreal：瓦洛兰特 的性能要求 ：讨论贴，油管简洁已无法正常进入\n虚幻引擎：《无畏契约》的基石：2020年的老文章，对上文视频的快速总结文章\n",
+          cover: "https:\/\/i3.ytimg.com\/vi\/GO6MIboHDiY\/hqdefault.jpg",
+        };
+      </script><script src="/WzhGameDevPublish/js/insert_highlight.js" data-pjax></script><script src="/WzhGameDevPublish/js/tabs.js" data-pjax></script><script type="module" data-pjax>const PhotoSwipeLightbox = (await safeImport("https:\/\/npm.webcache.cn\/photoswipe@5.4.4\/dist\/photoswipe-lightbox.esm.min.js", "sha384-DiL6M\/gG\u002bwmTxmCRZyD1zee6lIhawn5TGvED0FOh7fXcN9B0aZ9dexSF\/N6lrZi\/")).default;const initPswp = (gallery, children) => {
+          if (_$$(`${gallery} ${children}`).length > 0) {
+            new PhotoSwipeLightbox({
+              gallery,
+              children,pswpModule: () => safeImport("https:\/\/npm.webcache.cn\/photoswipe@5.4.4\/dist\/photoswipe.esm.min.js", "sha384-WkkO3GCmgkC3VQWpaV8DqhKJqpzpF9JoByxDmnV8\u002boTJ7m3DfYEWX1fu1scuS4\u002bs")}).init();
+          }
+        }
+        const pswp = () => {
+          initPswp('.article-entry', 'a.article-gallery-item');
+          initPswp('.article-gallery', 'a.article-gallery-item');
+          window.lightboxStatus = 'done';
+          window.removeEventListener('lightbox:ready', pswp);
+        }
+        if(window.lightboxStatus === 'ready') {
+          pswp()
+        } else {
+          window.addEventListener('lightbox:ready', pswp);
+        }
+      </script></div>
+</div><script
+    src="https://npm.webcache.cn/busuanzi@2.3.0/bsz.pure.mini.js"
+    asyncintegrity="sha384-0M75wtSkhjIInv4coYlaJU83&#43;OypaRCIq2SukQVQX04eGTCBXJDuWAbJet56id&#43;S" crossorigin="anonymous"></script><script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.getRegistrations().then((registrations) => {
+        for (let registration of registrations) {
+          registration.unregister();
+        }
+      });
+    }
+  </script><script>
+  const reimuCopyright = String.raw`
+   ______     ______     __     __    __     __  __    
+  /\  == \   /\  ___\   /\ \   /\ "-./  \   /\ \/\ \   
+  \ \  __<   \ \  __\   \ \ \  \ \ \-./\ \  \ \ \_\ \  
+   \ \_\ \_\  \ \_____\  \ \_\  \ \_\ \ \_\  \ \_____\ 
+    \/_/ /_/   \/_____/   \/_/   \/_/  \/_/   \/_____/ 
+                                                    
+  `;
+  console.log(String.raw`%c ${reimuCopyright}`, "color: #ff5252;");
+  console.log(
+    "%c Theme.Reimu" + " %c https://github.com/D-Sketon/hugo-theme-reimu ",
+    "color: white; background: #ff5252; padding:5px 0;",
+    "padding:4px;border:1px solid #ff5252;",
+  );
+</script></body>
+</html>
