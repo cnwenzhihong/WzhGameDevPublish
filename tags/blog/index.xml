@@ -12,7 +12,7 @@
     
     <copyright>本博客所有文章除特别声明外，均采用 BY-NC-SA 许可协议。转载请注明出处！</copyright>
     
-    <lastBuildDate>Thu, 04 Jun 2026 14:42:41 +0000</lastBuildDate>
+    <lastBuildDate>Sat, 06 Jun 2026 09:42:52 +0000</lastBuildDate>
     
     
     <atom:link href="http://localhost:1895/WzhGameDevPublish/tags/blog/index.xml" rel="self" type="application/rss&#43;xml" />
@@ -33,8 +33,7 @@
           <h1 id="总览">
 <a class="header-anchor" href="#%e6%80%bb%e8%a7%88"></a>
 总览
-</h1><p>渲染优化部分(30:00-50:00没有记)</p>
-<h2 id="背景">
+</h1><h2 id="背景">
 <a class="header-anchor" href="#%e8%83%8c%e6%99%af"></a>
 背景
 </h2><h3 id="技术资料">
@@ -43,9 +42,10 @@
 </h3><p>2020年视频分享，主要讨论DS的动画系统优化:<br>
 <a href="https://youtu.be/GO6MIboHDiY?si=OIH2B8K5tCBU6khd%5c&amp;t=600">VALORANT&rsquo;s Performance Requirements 1:32:00</a>：性能套路视频<br>
 <a href="https://forums.unrealengine.com/t/inside-unreal-valorants-performance-requirements/145864">Inside Unreal：瓦洛兰特 的性能要求</a> ：讨论贴，油管简洁已无法正常进入<br>
-<a href="https://www.unrealengine.com/tech-blog/valorant-s-foundation-is-unreal-engine">虚幻引擎：《无畏契约》的基石</a>：2020年的老文章，对上文视频的快速总结文章</p>
+<a href="https://www.unrealengine.com/tech-blog/valorant-s-foundation-is-unreal-engine">虚幻引擎：《无畏契约》的基石</a>：2020年的老文章，对上文视频的快速总结文章<br>
+渲染优化部分(30:00-50:00没有记)</p>
         
-        <hr><p>本文2026-06-03首发于<a href='http://localhost:1895/WzhGameDevPublish/'>妖精游戏开发馆</a>，最后修改于2026-06-04</p>]]>
+        <hr><p>本文2026-06-03首发于<a href='http://localhost:1895/WzhGameDevPublish/'>妖精游戏开发馆</a>，最后修改于2026-06-06</p>]]>
       </description>
       
     </item>

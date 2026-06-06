@@ -50,7 +50,7 @@
   />
   <meta property="article:author" content="温志洪" />
   <meta property="article:published_time" content="2026-06-03T07:22:56&#43;00:00" />
-  <meta property="article:modified_time" content="2026-06-04T14:42:41&#43;00:00" /><meta property="article:tag" content="blog" /><meta name="twitter:card" content="summary" />
+  <meta property="article:modified_time" content="2026-06-06T09:42:52&#43;00:00" /><meta property="article:tag" content="blog" /><meta name="twitter:card" content="summary" />
   <meta name="twitter:image" content="https://i3.ytimg.com/vi/GO6MIboHDiY/hqdefault.jpg" />
 <link rel="shortcut icon" href="/WzhGameDevPublish/favicon.ico"><link rel="stylesheet" href="/WzhGameDevPublish/css/main.css" />
 <link
@@ -237,6 +237,26 @@
   </ul>
 
   <ul>
+    <li><a href="#背景信息">背景信息</a>
+      <ul>
+        <li><a href="#影响玩家在线体验的要素">影响玩家在线体验的要素</a></li>
+        <li><a href="#让玩家明确哪里出了问题">让玩家明确哪里出了问题</a></li>
+      </ul>
+    </li>
+    <li><a href="#硬件优化">硬件优化</a>
+      <ul>
+        <li><a href="#网络加速器通过降低ping减少延迟波动">网络加速器——通过降低Ping/减少延迟波动</a></li>
+        <li><a href="#显示器刷新率">显示器刷新率</a></li>
+      </ul>
+    </li>
+    <li><a href="#性能优化方案">性能优化方案</a>
+      <ul>
+        <li><a href="#高ping与公平">高Ping与公平</a></li>
+        <li><a href="#数据发送接收频率updaterate">数据发送/接收频率(UpdateRate)</a></li>
+        <li><a href="#网络缓冲network-buffering">网络缓冲(network buffering)</a></li>
+        <li><a href="#延迟">延迟</a></li>
+      </ul>
+    </li>
     <li><a href="#replication">Replication</a></li>
   </ul>
 
@@ -263,7 +283,6 @@
   </ul>
 
   <ul>
-    <li><a href="#开发工具汇总">开发工具汇总</a></li>
     <li><a href="#引擎版本升级">引擎版本升级</a>
       <ul>
         <li></li>
@@ -383,22 +402,21 @@
       >2026-06-03</time
     >
     <time style="display: none;" id="post-update-time"
-      >2026-06-04</time
+      >2026-06-06</time
     >
   </span><span
       class="article-date-link icon-calendar-plus"
       data-aos="zoom-in"
     >
-      <time datetime="2026-06-04 14:42:41.643 &#43;0000 UTC" itemprop="dateModified"
-        >2026-06-04</time
+      <time datetime="2026-06-06 09:42:52.294 &#43;0000 UTC" itemprop="dateModified"
+        >2026-06-06</time
       >
     </span></div>
 <div class="article-category"></div>
 </div><div class="hr-line"></div><div class="e-content article-entry" itemprop="articleBody"><h1 id="总览">
 <a class="header-anchor" href="#%e6%80%bb%e8%a7%88"></a>
 总览
-</h1><p>渲染优化部分(30:00-50:00没有记)</p>
-<h2 id="背景">
+</h1><h2 id="背景">
 <a class="header-anchor" href="#%e8%83%8c%e6%99%af"></a>
 背景
 </h2><h3 id="技术资料">
@@ -407,8 +425,10 @@
 </h3><p>2020年视频分享，主要讨论DS的动画系统优化:<br>
 <a href="https://youtu.be/GO6MIboHDiY?si=OIH2B8K5tCBU6khd%5c&amp;t=600">VALORANT&rsquo;s Performance Requirements 1:32:00</a>：性能套路视频<br>
 <a href="https://forums.unrealengine.com/t/inside-unreal-valorants-performance-requirements/145864">Inside Unreal：瓦洛兰特 的性能要求</a> ：讨论贴，油管简洁已无法正常进入<br>
-<a href="https://www.unrealengine.com/tech-blog/valorant-s-foundation-is-unreal-engine">虚幻引擎：《无畏契约》的基石</a>：2020年的老文章，对上文视频的快速总结文章</p>
+<a href="https://www.unrealengine.com/tech-blog/valorant-s-foundation-is-unreal-engine">虚幻引擎：《无畏契约》的基石</a>：2020年的老文章，对上文视频的快速总结文章<br>
+渲染优化部分(30:00-50:00没有记)</p>
 <p><a href="https://www.bilibili.com/video/BV1PWaAzjECq">《无畏契约》开发者访谈6min</a>: 讲了一些工具、UE5迁移方案</p>
+<p><a href="https://www.youtube.com/watch?v=ftC1Rpi8mtg">瓦罗兰特NetCode分析</a>：确定了多项降低网络延迟、波动的技术，简单对比其他游戏的性能</p>
 <h3 id="制作人">
 <a class="header-anchor" href="#%e5%88%b6%e4%bd%9c%e4%ba%ba"></a>
 制作人
@@ -431,7 +451,8 @@
     <p><h4 id="服务器tick频率">
 <a class="header-anchor" href="#%e6%9c%8d%e5%8a%a1%e5%99%a8tick%e9%a2%91%e7%8e%87"></a>
 服务器Tick频率
-</h4><p>将服务器从64Tick提升到128Tick对NetCode有提升，但并没有质变，是否值得这么高的Tick率？国产FPS游戏中16Tick、32Tick依旧是主流。战地(64人大战场)、CS2(10人竞技)均采用64Tick。</p></p>
+</h4><p><strong>64到128Tick</strong>：将服务器从64Tick提升到128Tick对玩家体验有提升，但并没有质变，是否值得这么高的Tick率？国产FPS游戏中16Tick、32Tick依旧是主流。战地(64人大战场)、CS2(10人竞技)均采用64Tick。<br>
+<strong>128 tick</strong>：高 tick 率不仅能减少延迟，还能让游戏更具弹性，因为轻微丢包在这种情况下影响更小，并且与那些运行在较低 tick 率下的其他游戏相比，客户端在数据包之间需要进行的推测工作也更少。</p></p>
   </blockquote>
 
 <h4 id="技术指标">
@@ -447,12 +468,16 @@
 </h4><blockquote>
 <p>见<a href="https://www.bilibili.com/video/BV1PWaAzjECq">《无畏契约》开发者访谈6min</a></p>
 </blockquote>
-<p>性能优化工具：UnrealInsight非常强大<br>
-UI开发：UMGViewmodel：数据绑定到UI<br>
+<p>版本控制：Perforce</p>
+<p>UI开发：UMGViewmodel：数据绑定到UI<br>
 资源加载：<a href="https://dev.epicgames.com/documentation/unreal-engine/zen-loader-in-unreal-engine">Zen Loader</a>和<a href="https://dev.epicgames.com/documentation/unreal-engine/using-oodle-in-unreal-engine">Oodle</a>有助于缩短加载时间<br>
 网络：Iris被持续关注优化server<br>
 架构：会考虑使用Gamefeature，以更方便地添加和删除内容<br>
-图形：<a href="https://renderdoc.org/">RenderDoc</a>、 <a href="https://www.intel.com/content/www/us/en/developer/tools/graphics-performance-analyzers/overview.html">Intel® Graphics Performance Analyzers</a>、<a href="https://www.guru3d.com/download/rtss-rivatuner-statistics-server-download">RivaTuner</a></p>
+全能性能采集：UnrealInsight非常强大<br>
+采集画面性能：<a href="https://renderdoc.org/">RenderDoc</a>（UE自带插件）、 <a href="https://www.intel.com/content/www/us/en/developer/tools/graphics-performance-analyzers/overview.html">Intel® Graphics Performance Analyzers</a>、<a href="https://www.guru3d.com/download/rtss-rivatuner-statistics-server-download">RivaTuner</a><br>
+帧率/计时器：<a href="https://sourceforge.net/projects/rivatuner/">Rivatuner download</a>，很多游戏评测网站都会用来测试帧率<br>
+音频管理：<a href="https://www.audiokinetic.com/en/wwise/">Wwise</a><br>
+玩家语音：自建启动器里的语音系统</p>
 <h1 id="服务器性能优化">
 <a class="header-anchor" href="#%e6%9c%8d%e5%8a%a1%e5%99%a8%e6%80%a7%e8%83%bd%e4%bc%98%e5%8c%96"></a>
 服务器性能优化
@@ -817,7 +842,110 @@ Split和Bind：大部分都在20ms(50帧)</p>
 <h1 id="netcode">
 <a class="header-anchor" href="#netcode"></a>
 NetCode
-</h1><h2 id="replication">
+</h1><p>主要围绕网络发送/接收讨论</p>
+<h2 id="背景信息">
+<a class="header-anchor" href="#%e8%83%8c%e6%99%af%e4%bf%a1%e6%81%af"></a>
+背景信息
+</h2><h3 id="影响玩家在线体验的要素">
+<a class="header-anchor" href="#%e5%bd%b1%e5%93%8d%e7%8e%a9%e5%ae%b6%e5%9c%a8%e7%ba%bf%e4%bd%93%e9%aa%8c%e7%9a%84%e8%a6%81%e7%b4%a0"></a>
+影响玩家在线体验的要素
+</h3><p>丢包(packet loss)、延迟波动(latency variation)、高延迟(high ping)<br>
+稳定的高 Ping 往往比剧烈波动的中等 Ping 更容易处理</p>
+<h3 id="让玩家明确哪里出了问题">
+<a class="header-anchor" href="#%e8%ae%a9%e7%8e%a9%e5%ae%b6%e6%98%8e%e7%a1%ae%e5%93%aa%e9%87%8c%e5%87%ba%e4%ba%86%e9%97%ae%e9%a2%98"></a>
+让玩家明确哪里出了问题
+</h3><p>瓦罗兰特提供给玩家性能监控overlay以帮助玩家更好查找问题<br>
+<img src="https://gcore.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/20260606134135342.png" alt=""></p>
+<h2 id="硬件优化">
+<a class="header-anchor" href="#%e7%a1%ac%e4%bb%b6%e4%bc%98%e5%8c%96"></a>
+硬件优化
+</h2><h3 id="网络加速器通过降低ping减少延迟波动">
+<a class="header-anchor" href="#%e7%bd%91%e7%bb%9c%e5%8a%a0%e9%80%9f%e5%99%a8%e9%80%9a%e8%bf%87%e9%99%8d%e4%bd%8eping%e5%87%8f%e5%b0%91%e5%bb%b6%e8%bf%9f%e6%b3%a2%e5%8a%a8"></a>
+网络加速器——通过降低Ping/减少延迟波动
+</h3><p>下图中可以看到，网络数据一个来回的往返时间(Network Round Trip)是26ms：<br>
+<img src="https://gcore.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/20260606134419924.png" alt=""><br>
+当我们ping瓦洛兰特游戏服务器的IP时却是10ms，比游戏中显示的低很多，因为我们ping到的是AWS的中转服务器<br>
+<img src="https://gcore.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/20260606134719968.png" alt=""><br>
+大多数情况下，你和服务器之间可能会走直接路径，但也有可能走非常远的路。<br>
+<img src="https://gcore.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/20260606134939434.png" alt=""><br>
+通过强大供应商自己的网络路由来改善连接稳定性：<br>
+瓦洛兰特使用AWS全球加速器，让应用程序数据先进入亚马逊的网络通道，以获得最短路径<br>
+<img src="https://gcore.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/20260606135211562.png" alt=""></p>
+<p><img src="https://gcore.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/20260606135622593.png" alt=""></p>
+<p>当玩家连接到其所在地区以外的服务器时，这种方法也帮不上什么忙。<br>
+玩家遇到在家庭网络中的缓冲区膨胀(suffer from buffer bloat)或拥堵(congestion)的问题，这回导致数百毫秒的巨大延迟峰值(ping spikes)。</p>
+<h3 id="显示器刷新率">
+<a class="header-anchor" href="#%e6%98%be%e7%a4%ba%e5%99%a8%e5%88%b7%e6%96%b0%e7%8e%87"></a>
+显示器刷新率
+</h3><p><a href="https://youtu.be/ftC1Rpi8mtg?si=kH1gmWmEhqQdZPh8%5c&amp;t=546">9:06</a><br>
+只允许玩家选择其硬件所支持的最高刷新率，选择过低的刷新率会对他们的在线体验产生负面影响。<br>
+<img src="https://gcore.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/20260606173329632.png" alt=""></p>
+<h2 id="性能优化方案">
+<a class="header-anchor" href="#%e6%80%a7%e8%83%bd%e4%bc%98%e5%8c%96%e6%96%b9%e6%a1%88"></a>
+性能优化方案
+</h2><h3 id="高ping与公平">
+<a class="header-anchor" href="#%e9%ab%98ping%e4%b8%8e%e5%85%ac%e5%b9%b3"></a>
+高Ping与公平
+</h3><p>你需要采用一些延迟缓解策略，以防止与服务器连接良好且稳定的玩家的在线体验被降低。</p>
+<p>即使是延迟很低的玩家，也仍然会在进入掩体后很远的地方被击中：\ <video src="https://gcore.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/high%20ping%20shoot.mp4" controls muted autoplay loop></video><br>
+玩家在死亡后到达的射击指令会被取消：\ <video src="https://gcore.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/valorant-hight-pingvslowping.mp4" controls muted autoplay loop></video></p>
+<h3 id="数据发送接收频率updaterate">
+<a class="header-anchor" href="#%e6%95%b0%e6%8d%ae%e5%8f%91%e9%80%81%e6%8e%a5%e6%94%b6%e9%a2%91%e7%8e%87updaterate"></a>
+数据发送/接收频率(UpdateRate)
+</h3><p>测量工具：<a href="https://www.wireshark.org/">Wireshark</a><br>
+<img src="https://gcore.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/20260606145844596.png" alt=""></p>
+<p><strong>客户端发送频率</strong>：<br>
+性能：&gt; 144 FPS<br>
+存活：Client每秒向DS发 73 个数据包<br>
+死亡：每秒 发送5 次</p>
+<p><strong>服务器发送频率</strong>：<br>
+性能： 128 Tick<br>
+存活/死亡：波动明显，<strong>平均</strong>每秒向Client发送 115 个数据包<br>
+发送频率可变：让服务器只向客户端发送必要的更新，它减轻了玩家网络连接的压力——在这种情况下，每秒数据包数会比带宽更早成为限制因素</p>
+
+  <blockquote class="alert-blockquote question">
+    <p class="alert-heading">
+      Question
+    </p>
+    <p><h2 id="为什么不将客户端的数据包发送速率提高到每秒-128-个来进一步降低网络延迟在更好的网络条件下">
+<a class="header-anchor" href="#%e4%b8%ba%e4%bb%80%e4%b9%88%e4%b8%8d%e5%b0%86%e5%ae%a2%e6%88%b7%e7%ab%af%e7%9a%84%e6%95%b0%e6%8d%ae%e5%8c%85%e5%8f%91%e9%80%81%e9%80%9f%e7%8e%87%e6%8f%90%e9%ab%98%e5%88%b0%e6%af%8f%e7%a7%92-128-%e4%b8%aa%e6%9d%a5%e8%bf%9b%e4%b8%80%e6%ad%a5%e9%99%8d%e4%bd%8e%e7%bd%91%e7%bb%9c%e5%bb%b6%e8%bf%9f%e5%9c%a8%e6%9b%b4%e5%a5%bd%e7%9a%84%e7%bd%91%e7%bb%9c%e6%9d%a1%e4%bb%b6%e4%b8%8b"></a>
+为什么不将客户端的数据包发送速率提高到每秒 128 个，来进一步降低网络延迟（在更好的网络条件下）？
+</h2></p>
+  </blockquote>
+
+<h3 id="网络缓冲network-buffering">
+<a class="header-anchor" href="#%e7%bd%91%e7%bb%9c%e7%bc%93%e5%86%b2network-buffering"></a>
+网络缓冲(network buffering)
+</h3><p><a href="https://youtu.be/ftC1Rpi8mtg?si=9TPHGW0_95F_1ovb%5c&amp;t=385">6:25</a><br>
+这是瓦洛兰特的一个设置选项，用于<br>
+<img src="https://gcore.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/20260606164907156.png" alt="571"></p>
+<p>听到“网络缓冲”这个词时，可能会联想到CS中的插值比例（interpolation ratio）。<br>
+所以我原以为它会改变缓冲的传入数据包数量，从而增加网络延迟，但能帮助缓解玩家动画卡顿，尤其是在玩家丢包(packet loss)时。<br>
+<img src="https://gcore.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/20260606165402021.png" alt=""></p>
+<p>然而，实际情况是：<br>
+<strong>体验</strong>：<br>
+这个设置不会影响他看其他玩家时的动画平滑度，而是影响其他玩家眼中他自己的角色模型移动的平滑程度。\ <video src="https://gcore.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/valorant-buff%20setting.mp4" controls muted autoplay loop></video><br>
+<strong>原因</strong>：<br>
+Wireshark 揭示了这项功能的实际作用：“中等”或“最大”设置会降低你的客户端向服务器发送数据的频率。<br>
+发送的更新次数越少，在其他玩家眼中他的角色模型会越滞后，并且他会承受更大的网络延迟。<br>
+<strong>使用</strong>：<br>
+只有在游戏的发送速率对你的互联网连接造成问题时，才需要选择“最小”以外的其他值。</p>
+<p><strong>问题</strong>：<br>
+问题1——理应自动调整：<br>
+玩家的网络连接无法处理默认刷新频率时游戏应能自动调整它们，而不是手动设置，《战地4》是个很好的例子。</p>
+<p>问题2——好的网络环境玩家被惩罚<br>
+当某个玩家的发送速率降低时，其他所有人看到的该玩家动画就会开始卡顿——而且这个系统在玩家发送频率降低时运作得非常好。<br>
+但要防止动画卡顿的话，正如CS所示，游戏可能不得不缓冲更多数据包以在它们之间进行插值，导致所有人的延迟增加。</p>
+<h3 id="延迟">
+<a class="header-anchor" href="#%e5%bb%b6%e8%bf%9f"></a>
+延迟
+</h3><p><a href="https://youtu.be/ftC1Rpi8mtg?si=ZB9CzEzPPveVF5_T%5c&amp;t=498">8:18</a><br>
+<strong>优秀的延迟表现</strong>：<br>
+两个玩家延迟同为24ms下，伤害、枪火特效和玩家移动的延迟不仅表现良好，而且几乎完全相同，最长延迟与最短平均值之间的差异也非常小。这是128Tick服务器带来的积极影响之一。</p>
+<p><strong>与主流游戏对比</strong>：<br>
+仍有改进空间，128Tick下的性能和传统FPS的64Tick区别不大。(很大原因应该是传输速率已经达到上限，而不是Tick问题)<br>
+<img src="https://gcore.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/20260606172400495.png" alt=""></p>
+<h2 id="replication">
 <a class="header-anchor" href="#replication"></a>
 Replication
 </h2>
@@ -958,15 +1086,7 @@ UI
 <h1 id="工程实践">
 <a class="header-anchor" href="#%e5%b7%a5%e7%a8%8b%e5%ae%9e%e8%b7%b5"></a>
 工程实践
-</h1><h2 id="开发工具汇总">
-<a class="header-anchor" href="#%e5%bc%80%e5%8f%91%e5%b7%a5%e5%85%b7%e6%b1%87%e6%80%bb"></a>
-开发工具汇总
-</h2><p>版本控制：Perforce<br>
-采集画面性能：<a href="https://www.intel.com/content/www/us/en/developer/tools/graphics-performance-analyzers/overview.html">Intel GPA</a> <a href="https://renderdoc.org/">RenderDoc</a>UE自带插件<br>
-帧率/计时器：<a href="https://sourceforge.net/projects/rivatuner/">Rivatuner download</a>，很多游戏评测网站都会用来测试帧率<br>
-音频管理：<a href="https://www.audiokinetic.com/en/wwise/">Wwise</a><br>
-玩家语音：自建启动器里的语音系统</p>
-<h2 id="引擎版本升级">
+</h1><h2 id="引擎版本升级">
 <a class="header-anchor" href="#%e5%bc%95%e6%93%8e%e7%89%88%e6%9c%ac%e5%8d%87%e7%ba%a7"></a>
 引擎版本升级
 </h2><p>倾向于比最新版落后一个版本，但有时也会落后几个版本。因为我们升级引擎的成本很高(大约1个月，每年3次左右)，4.23升级到4.24时甚至无法确保所有重要修复已经正常。<br>
@@ -1062,6 +1182,7 @@ PDF提到会只用到Actor层，而不用Gameplay，我的视角中，UE引擎�
 </h4><p>是出于什么考虑？</p></p>
   </blockquote>
 
+<p>视频中看到，Replicate也占用极大，有预案吗？</p>
 </div>
     <footer class="article-footer"><ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item" data-aos="zoom-in">
       <a
@@ -1077,7 +1198,7 @@ PDF提到会只用到Actor层，而不用Gameplay，我的视角中，UE引擎�
     aria-label="Article navigation"
     data-aos="fade-up"
   ><div class="article-nav-link-wrap left"><img
-              data-src="https://img95.699pic.com/photo/60126/0136.jpg_wh860.jpg"
+              data-src="https://img95.699pic.com/photo/60027/4138.jpg_wh860.jpg"
               data-sizes="auto"
               alt="重装前哨的设计问题和思考"
               class="lazyload"
@@ -1110,10 +1231,10 @@ PDF提到会只用到Actor层，而不用Gameplay，我的视角中，UE引擎�
         >
       </div><div>
         <span class="icon-brush"
-          >&nbsp;109.8k</span
+          >&nbsp;111.5k</span
         >
         &nbsp;|&nbsp;
-        <span class="icon-coffee">&nbsp;03:54</span>
+        <span class="icon-coffee">&nbsp;03:57</span>
       </div><div>
         <span class="icon-eye"></span>
         <span id="busuanzi_container_site_pv"
@@ -1181,6 +1302,26 @@ PDF提到会只用到Actor层，而不用Gameplay，我的视角中，UE引擎�
   </ul>
 
   <ul>
+    <li><a href="#背景信息">背景信息</a>
+      <ul>
+        <li><a href="#影响玩家在线体验的要素">影响玩家在线体验的要素</a></li>
+        <li><a href="#让玩家明确哪里出了问题">让玩家明确哪里出了问题</a></li>
+      </ul>
+    </li>
+    <li><a href="#硬件优化">硬件优化</a>
+      <ul>
+        <li><a href="#网络加速器通过降低ping减少延迟波动">网络加速器——通过降低Ping/减少延迟波动</a></li>
+        <li><a href="#显示器刷新率">显示器刷新率</a></li>
+      </ul>
+    </li>
+    <li><a href="#性能优化方案">性能优化方案</a>
+      <ul>
+        <li><a href="#高ping与公平">高Ping与公平</a></li>
+        <li><a href="#数据发送接收频率updaterate">数据发送/接收频率(UpdateRate)</a></li>
+        <li><a href="#网络缓冲network-buffering">网络缓冲(network buffering)</a></li>
+        <li><a href="#延迟">延迟</a></li>
+      </ul>
+    </li>
     <li><a href="#replication">Replication</a></li>
   </ul>
 
@@ -1207,7 +1348,6 @@ PDF提到会只用到Actor层，而不用Gameplay，我的视角中，UE引擎�
   </ul>
 
   <ul>
-    <li><a href="#开发工具汇总">开发工具汇总</a></li>
     <li><a href="#引擎版本升级">引擎版本升级</a>
       <ul>
         <li></li>
@@ -1390,7 +1530,7 @@ PDF提到会只用到Actor层，而不用Gameplay，我的视角中，UE引擎�
           author: "温志洪",
           title: "瓦罗兰特技术汇总",
           url: "http:\/\/localhost:1895\/WzhGameDevPublish\/post\/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91\/%E4%BB%A3%E7%A0%81%E6%A1%86%E6%9E%B6\/ue\/%E9%9D%A2%E8%AF%95\/%E7%93%A6%E7%BD%97%E5%85%B0%E7%89%B9%E6%8A%80%E6%9C%AF%E6%B1%87%E6%80%BB\/",
-          description: "\r总览\r渲染优化部分(30:00-50:00没有记)\n背景\r技术资料：\r2020年视频分享，主要讨论DS的动画系统优化:\nVALORANT\u0026rsquo;s Performance Requirements 1:32:00：性能套路视频\nInside Unreal：瓦洛兰特 的性能要求 ：讨论贴，油管简洁已无法正常进入\n虚幻引擎：《无畏契约》的基石：2020年的老文章，对上文视频的快速总结文章\n",
+          description: "\r总览\r背景\r技术资料：\r2020年视频分享，主要讨论DS的动画系统优化:\nVALORANT\u0026rsquo;s Performance Requirements 1:32:00：性能套路视频\nInside Unreal：瓦洛兰特 的性能要求 ：讨论贴，油管简洁已无法正常进入\n虚幻引擎：《无畏契约》的基石：2020年的老文章，对上文视频的快速总结文章\n渲染优化部分(30:00-50:00没有记)\n",
           cover: "https:\/\/i3.ytimg.com\/vi\/GO6MIboHDiY\/hqdefault.jpg",
         };
       </script><script src="/WzhGameDevPublish/js/insert_highlight.js" data-pjax></script><script src="/WzhGameDevPublish/js/tabs.js" data-pjax></script><script type="module" data-pjax>const PhotoSwipeLightbox = (await safeImport("https:\/\/npm.webcache.cn\/photoswipe@5.4.4\/dist\/photoswipe-lightbox.esm.min.js", "sha384-DiL6M\/gG\u002bwmTxmCRZyD1zee6lIhawn5TGvED0FOh7fXcN9B0aZ9dexSF\/N6lrZi\/")).default;const initPswp = (gallery, children) => {
