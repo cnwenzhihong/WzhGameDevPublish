@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Game/Fortnite on 妖精游戏开发馆</title>
+    <link>http://localhost:1895/WzhGameDevPublish/tags/game/fortnite/</link>
+    <description>Recent content from 妖精游戏开发馆</description>
+    <generator>Hugo</generator>
+    <language>zh-cn</language>
+    
+    <managingEditor>cnwenzhihong@gmail.com (温志洪)</managingEditor>
+    <webMaster>cnwenzhihong@gmail.com (温志洪)</webMaster>
+    
+    <copyright>本博客所有文章除特别声明外，均采用 BY-NC-SA 许可协议。转载请注明出处！</copyright>
+    
+    <lastBuildDate>Sat, 06 Jun 2026 16:07:16 +0000</lastBuildDate>
+    
+    
+    <atom:link href="http://localhost:1895/WzhGameDevPublish/tags/game/fortnite/index.xml" rel="self" type="application/rss&#43;xml" />
+    
+
+    
+    
+
+    <item>
+      <title>堡垒之夜的NetCode</title>
+      <link>http://localhost:1895/WzhGameDevPublish/post/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/%E4%BB%A3%E7%A0%81%E6%A1%86%E6%9E%B6/ue/%E7%BD%91%E7%BB%9C/%E5%A0%A1%E5%9E%92%E4%B9%8B%E5%A4%9C%E7%9A%84netcode/</link>
+      <pubDate>Sat, 06 Jun 2026 14:12:06 &#43;0000</pubDate>
+      <author>cnwenzhihong@gmail.com (温志洪)</author>
+      <guid>http://localhost:1895/WzhGameDevPublish/post/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/%E4%BB%A3%E7%A0%81%E6%A1%86%E6%9E%B6/ue/%E7%BD%91%E7%BB%9C/%E5%A0%A1%E5%9E%92%E4%B9%8B%E5%A4%9C%E7%9A%84netcode/</guid>
+      <description>
+        <![CDATA[<h1>堡垒之夜的NetCode</h1><p>作者：温志洪（cnwenzhihong@gmail.com）</p>
+        
+          <h1 id="总览">
+<a class="header-anchor" href="#%e6%80%bb%e8%a7%88"></a>
+总览
+</h1><p>链接：<a href="https://www.youtube.com/watch?v=W5lUCeAu_2k">Fortnite 4.2&rsquo;s Netcode Beats CS:GO And BF1!?</a></p>
+<p>《堡垒之夜》在网络延迟表现上甚至超越了 CS:GO 和《战地1》等竞技性更强的游戏、输入延迟也极低，<br>
+缺点是较高的延迟补偿和不稳定的服务器性能。</p>
+        
+        <hr><p>本文2026-06-06首发于<a href='http://localhost:1895/WzhGameDevPublish/'>妖精游戏开发馆</a>，最后修改于2026-06-06</p>]]>
+      </description>
+      
+    </item>
+    
+  </channel>
+</rss>

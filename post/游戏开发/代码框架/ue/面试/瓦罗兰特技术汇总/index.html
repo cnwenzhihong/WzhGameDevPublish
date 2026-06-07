@@ -50,7 +50,7 @@
   />
   <meta property="article:author" content="温志洪" />
   <meta property="article:published_time" content="2026-06-03T07:22:56&#43;00:00" />
-  <meta property="article:modified_time" content="2026-06-06T09:42:52&#43;00:00" /><meta property="article:tag" content="blog" /><meta name="twitter:card" content="summary" />
+  <meta property="article:modified_time" content="2026-06-07T13:34:24&#43;00:00" /><meta property="article:tag" content="blog" /><meta name="twitter:card" content="summary" />
   <meta name="twitter:image" content="https://i3.ytimg.com/vi/GO6MIboHDiY/hqdefault.jpg" />
 <link rel="shortcut icon" href="/WzhGameDevPublish/favicon.ico"><link rel="stylesheet" href="/WzhGameDevPublish/css/main.css" />
 <link
@@ -254,7 +254,7 @@
         <li><a href="#高ping与公平">高Ping与公平</a></li>
         <li><a href="#数据发送接收频率updaterate">数据发送/接收频率(UpdateRate)</a></li>
         <li><a href="#网络缓冲network-buffering">网络缓冲(network buffering)</a></li>
-        <li><a href="#延迟">延迟</a></li>
+        <li><a href="#开火移动延迟">开火/移动延迟</a></li>
       </ul>
     </li>
     <li><a href="#replication">Replication</a></li>
@@ -315,7 +315,7 @@
 </div>
 <div class="sidebar-state">
   <div class="sidebar-state-article">
-    <div>文章</div><div class="sidebar-state-number">27</div>
+    <div>文章</div><div class="sidebar-state-number">29</div>
   </div>
   <a class="sidebar-state-category" href="/WzhGameDevPublish/categories/" aria-label="sidebar-state-category-link">
     <div>分类</div>
@@ -325,7 +325,7 @@
   </a>
   <a class="sidebar-state-tag" href="/WzhGameDevPublish/tags/" aria-label="sidebar-state-tag-link">
     <div>标签</div>
-    <div class="sidebar-state-number">17</div>
+    <div class="sidebar-state-number">20</div>
   </a>
 </div>
 <div class="sidebar-social"><div class="icon-bilibili sidebar-social-icon">
@@ -402,14 +402,14 @@
       >2026-06-03</time
     >
     <time style="display: none;" id="post-update-time"
-      >2026-06-06</time
+      >2026-06-07</time
     >
   </span><span
       class="article-date-link icon-calendar-plus"
       data-aos="zoom-in"
     >
-      <time datetime="2026-06-06 09:42:52.294 &#43;0000 UTC" itemprop="dateModified"
-        >2026-06-06</time
+      <time datetime="2026-06-07 13:34:24.479 &#43;0000 UTC" itemprop="dateModified"
+        >2026-06-07</time
       >
     </span></div>
 <div class="article-category"></div>
@@ -422,13 +422,25 @@
 </h2><h3 id="技术资料">
 <a class="header-anchor" href="#%e6%8a%80%e6%9c%af%e8%b5%84%e6%96%99"></a>
 技术资料：
-</h3><p>2020年视频分享，主要讨论DS的动画系统优化:<br>
+</h3><h4 id="官方">
+<a class="header-anchor" href="#%e5%ae%98%e6%96%b9"></a>
+官方
+</h4><p>2020年视频分享，主要讨论DS的动画系统优化:<br>
 <a href="https://youtu.be/GO6MIboHDiY?si=OIH2B8K5tCBU6khd%5c&amp;t=600">VALORANT&rsquo;s Performance Requirements 1:32:00</a>：性能套路视频<br>
 <a href="https://forums.unrealengine.com/t/inside-unreal-valorants-performance-requirements/145864">Inside Unreal：瓦洛兰特 的性能要求</a> ：讨论贴，油管简洁已无法正常进入<br>
 <a href="https://www.unrealengine.com/tech-blog/valorant-s-foundation-is-unreal-engine">虚幻引擎：《无畏契约》的基石</a>：2020年的老文章，对上文视频的快速总结文章<br>
 渲染优化部分(30:00-50:00没有记)</p>
 <p><a href="https://www.bilibili.com/video/BV1PWaAzjECq">《无畏契约》开发者访谈6min</a>: 讲了一些工具、UE5迁移方案</p>
-<p><a href="https://www.youtube.com/watch?v=ftC1Rpi8mtg">瓦罗兰特NetCode分析</a>：确定了多项降低网络延迟、波动的技术，简单对比其他游戏的性能</p>
+<h4 id="第三方">
+<a class="header-anchor" href="#%e7%ac%ac%e4%b8%89%e6%96%b9"></a>
+第三方
+</h4><p><a href="https://www.youtube.com/watch?v=ftC1Rpi8mtg">瓦罗兰特NetCode分析</a>：确定了多项降低网络延迟、波动的技术，简单对比其他游戏的性能<br>
+<a href="https://www.youtube.com/watch?v=AJ9Rfur-w-E">我们采访了一位前《Valorant Vanguard》反作弊开发者-2:17:00</a></p>
+<p>❌ <a href="https://www.youtube.com/watch?v=6CB8P0-hJRQ%5c&amp;t=65s">我修复了 Valorant 的 NETCODE 和 HITREG 不同步！-38min</a>——玩家段调参，不能作为工程结论使用。它最多是一个待验证的个案</p>
+<h4 id="其他资料">
+<a class="header-anchor" href="#%e5%85%b6%e4%bb%96%e8%b5%84%e6%96%99"></a>
+其他资料
+</h4><p><a href="https://www.bilibili.com/video/BV1uUy5YkEiN"> \[UFSH2024\] 虚幻引擎中的DS服务器优化-23min</a></p>
 <h3 id="制作人">
 <a class="header-anchor" href="#%e5%88%b6%e4%bd%9c%e4%ba%ba"></a>
 制作人
@@ -936,14 +948,16 @@ Wireshark 揭示了这项功能的实际作用：“中等”或“最大”设�
 <p>问题2——好的网络环境玩家被惩罚<br>
 当某个玩家的发送速率降低时，其他所有人看到的该玩家动画就会开始卡顿——而且这个系统在玩家发送频率降低时运作得非常好。<br>
 但要防止动画卡顿的话，正如CS所示，游戏可能不得不缓冲更多数据包以在它们之间进行插值，导致所有人的延迟增加。</p>
-<h3 id="延迟">
-<a class="header-anchor" href="#%e5%bb%b6%e8%bf%9f"></a>
-延迟
+<h3 id="开火移动延迟">
+<a class="header-anchor" href="#%e5%bc%80%e7%81%ab%e7%a7%bb%e5%8a%a8%e5%bb%b6%e8%bf%9f"></a>
+开火/移动延迟
 </h3><p><a href="https://youtu.be/ftC1Rpi8mtg?si=ZB9CzEzPPveVF5_T%5c&amp;t=498">8:18</a><br>
 <strong>优秀的延迟表现</strong>：<br>
-两个玩家延迟同为24ms下，伤害、枪火特效和玩家移动的延迟不仅表现良好，而且几乎完全相同，最长延迟与最短平均值之间的差异也非常小。这是128Tick服务器带来的积极影响之一。</p>
+两个玩家延迟同为24ms下，伤害、枪火特效和玩家移动的延迟不仅表现良好(43ms)，而且几乎完全相同，最长延迟与最短平均值之间的差异也非常小。这是128Tick服务器带来的积极影响之一。</p>
 <p><strong>与主流游戏对比</strong>：<br>
-仍有改进空间，128Tick下的性能和传统FPS的64Tick区别不大。(很大原因应该是传输速率已经达到上限，而不是Tick问题)<br>
+很明显，Tick和延迟的关系不算特别大<br>
+仍有改进空间，128Tick下的性能和传统FPS的64Tick区别不大。<br>
+真正疯狂的是，堡垒之夜(ver4.2)只用30hz的DS就做到42ms的平均延迟。<br>
 <img src="https://gcore.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/20260606172400495.png" alt=""></p>
 <h2 id="replication">
 <a class="header-anchor" href="#replication"></a>
@@ -1209,6 +1223,18 @@ PDF提到会只用到Actor层，而不用Gameplay，我的视角中，UE引擎�
         ></a>
         <div class="article-nav-caption">前一篇</div>
         <h3 class="article-nav-title">重装前哨的设计问题和思考</h3>
+      </div><div class="article-nav-link-wrap right"><img
+            data-src="https://i3.ytimg.com/vi/W5lUCeAu_2k/hqdefault.jpg"
+            data-sizes="auto"
+            alt="堡垒之夜的NetCode"
+            class="lazyload"
+          /><a
+          href="/WzhGameDevPublish/post/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/%E4%BB%A3%E7%A0%81%E6%A1%86%E6%9E%B6/ue/%E7%BD%91%E7%BB%9C/%E5%A0%A1%E5%9E%92%E4%B9%8B%E5%A4%9C%E7%9A%84netcode/"
+          aria-label="后一篇:堡垒之夜的NetCode"
+          title="后一篇:堡垒之夜的NetCode"
+        ></a>
+        <div class="article-nav-caption">后一篇</div>
+        <h3 class="article-nav-title">堡垒之夜的NetCode</h3>
       </div></nav></article></section>
         </div><footer id="footer" aria-label="Site footer">
   <div style="width: 100%; overflow: hidden">
@@ -1231,10 +1257,10 @@ PDF提到会只用到Actor层，而不用Gameplay，我的视角中，UE引擎�
         >
       </div><div>
         <span class="icon-brush"
-          >&nbsp;111.5k</span
+          >&nbsp;115.6k</span
         >
         &nbsp;|&nbsp;
-        <span class="icon-coffee">&nbsp;03:57</span>
+        <span class="icon-coffee">&nbsp;04:06</span>
       </div><div>
         <span class="icon-eye"></span>
         <span id="busuanzi_container_site_pv"
@@ -1319,7 +1345,7 @@ PDF提到会只用到Actor层，而不用Gameplay，我的视角中，UE引擎�
         <li><a href="#高ping与公平">高Ping与公平</a></li>
         <li><a href="#数据发送接收频率updaterate">数据发送/接收频率(UpdateRate)</a></li>
         <li><a href="#网络缓冲network-buffering">网络缓冲(network buffering)</a></li>
-        <li><a href="#延迟">延迟</a></li>
+        <li><a href="#开火移动延迟">开火/移动延迟</a></li>
       </ul>
     </li>
     <li><a href="#replication">Replication</a></li>
@@ -1380,7 +1406,7 @@ PDF提到会只用到Actor层，而不用Gameplay，我的视角中，UE引擎�
 </div>
 <div class="sidebar-state">
   <div class="sidebar-state-article">
-    <div>文章</div><div class="sidebar-state-number">27</div>
+    <div>文章</div><div class="sidebar-state-number">29</div>
   </div>
   <a class="sidebar-state-category" href="/WzhGameDevPublish/categories/" aria-label="sidebar-state-category-link">
     <div>分类</div>
@@ -1390,7 +1416,7 @@ PDF提到会只用到Actor层，而不用Gameplay，我的视角中，UE引擎�
   </a>
   <a class="sidebar-state-tag" href="/WzhGameDevPublish/tags/" aria-label="sidebar-state-tag-link">
     <div>标签</div>
-    <div class="sidebar-state-number">17</div>
+    <div class="sidebar-state-number">20</div>
   </a>
 </div>
 <div class="sidebar-social"><div class="icon-bilibili sidebar-social-icon">
@@ -1530,7 +1556,7 @@ PDF提到会只用到Actor层，而不用Gameplay，我的视角中，UE引擎�
           author: "温志洪",
           title: "瓦罗兰特技术汇总",
           url: "http:\/\/localhost:1895\/WzhGameDevPublish\/post\/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91\/%E4%BB%A3%E7%A0%81%E6%A1%86%E6%9E%B6\/ue\/%E9%9D%A2%E8%AF%95\/%E7%93%A6%E7%BD%97%E5%85%B0%E7%89%B9%E6%8A%80%E6%9C%AF%E6%B1%87%E6%80%BB\/",
-          description: "\r总览\r背景\r技术资料：\r2020年视频分享，主要讨论DS的动画系统优化:\nVALORANT\u0026rsquo;s Performance Requirements 1:32:00：性能套路视频\nInside Unreal：瓦洛兰特 的性能要求 ：讨论贴，油管简洁已无法正常进入\n虚幻引擎：《无畏契约》的基石：2020年的老文章，对上文视频的快速总结文章\n渲染优化部分(30:00-50:00没有记)\n",
+          description: "\r总览\r背景\r技术资料：\r官方\r2020年视频分享，主要讨论DS的动画系统优化:\nVALORANT\u0026rsquo;s Performance Requirements 1:32:00：性能套路视频\nInside Unreal：瓦洛兰特 的性能要求 ：讨论贴，油管简洁已无法正常进入\n虚幻引擎：《无畏契约》的基石：2020年的老文章，对上文视频的快速总结文章\n渲染优化部分(30:00-50:00没有记)\n",
           cover: "https:\/\/i3.ytimg.com\/vi\/GO6MIboHDiY\/hqdefault.jpg",
         };
       </script><script src="/WzhGameDevPublish/js/insert_highlight.js" data-pjax></script><script src="/WzhGameDevPublish/js/tabs.js" data-pjax></script><script type="module" data-pjax>const PhotoSwipeLightbox = (await safeImport("https:\/\/npm.webcache.cn\/photoswipe@5.4.4\/dist\/photoswipe-lightbox.esm.min.js", "sha384-DiL6M\/gG\u002bwmTxmCRZyD1zee6lIhawn5TGvED0FOh7fXcN9B0aZ9dexSF\/N6lrZi\/")).default;const initPswp = (gallery, children) => {

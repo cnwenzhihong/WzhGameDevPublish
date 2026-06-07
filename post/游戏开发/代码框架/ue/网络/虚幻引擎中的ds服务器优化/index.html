@@ -1,0 +1,924 @@
+<!doctype html>
+<html
+  lang="zh-cn" 
+  data-theme-mode="false"
+  >
+  <head><script src="/WzhGameDevPublish/livereload.js?mindelay=10&amp;v=2&amp;port=1895&amp;path=WzhGameDevPublish/livereload" data-no-instant defer></script><meta charset="utf-8" />
+<meta
+  name="viewport"
+  content="width=device-width, initial-scale=1, shrink-to-fit=no"
+/><title>
+  虚幻引擎中的DS服务器优化 | 温志洪
+</title>
+<meta name="description" content="FPS游戏"/><script>
+  window.siteConfig = JSON.parse("{\"anchor_icon\":null,\"base\":\"http://localhost:1895/WzhGameDevPublish/\",\"clipboard\":{\"copyright\":{\"count\":50,\"enable\":false,\"license_type\":\"by-nc-sa\"},\"fail\":{\"en\":\"Copy failed (ﾟ⊿ﾟ)ﾂ\",\"ja\":\"コピー失敗 (ﾟ⊿ﾟ)ﾂ\",\"pt-br\":\"Falha ao copiar (ﾟ⊿ﾟ)ﾂ\",\"zh-cn\":\"复制失败 (ﾟ⊿ﾟ)ﾂ\",\"zh-tw\":\"複製失敗 (ﾟ⊿ﾟ)ﾂ\"},\"success\":{\"en\":\"Copy successfully (*^▽^*)\",\"ja\":\"コピー成功 (*^▽^*)\",\"pt-br\":\"Copiado com sucesso (*^▽^*)\",\"zh-cn\":\"复制成功 (*^▽^*)\",\"zh-tw\":\"複製成功 (*^▽^*)\"}},\"code_block\":{\"expand\":4},\"i18n_languages\":[{\"Lang\":\"en\",\"LanguageName\":\"English\",\"LanguageCode\":\"\",\"Title\":\"\",\"LanguageDirection\":\"\",\"Weight\":1,\"Disabled\":false},{\"Lang\":\"zh-cn\",\"LanguageName\":\"简体中文\",\"LanguageCode\":\"\",\"Title\":\"\",\"LanguageDirection\":\"\",\"Weight\":1,\"Disabled\":false}],\"icon_font\":\"4552607_4k4bc36ef96\",\"outdate\":{\"daysago\":180,\"enable\":false,\"message\":{\"en\":\"This article was last updated on {time}. Please note that the content may no longer be applicable.\",\"ja\":\"この記事は最終更新日：{time}。記載内容が現在有効でない可能性がありますのでご注意ください。\",\"pt-br\":\"Este artigo foi atualizado pela última vez em {time}. Observe que o conteúdo pode não ser mais aplicável.\",\"zh-cn\":\"本文最后更新于 {time}，请注意文中内容可能已不适用。\",\"zh-tw\":\"本文最後更新於 {time}，請注意文中內容可能已不適用。\"}}}");
+  
+</script>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link
+  rel="preload"
+  as="style"
+  href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic%7cNoto%20Serif%20SC:400,400italic,700,700italic%7c&amp;display=swap"
+/>
+<link
+  rel="stylesheet"
+  href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic%7cNoto%20Serif%20SC:400,400italic,700,700italic%7c&amp;display=swap"
+  media="print"
+  onload="this.media='all'"
+/>
+<link
+    rel="preload"
+    href="//at.alicdn.com/t/c/font_4552607_4k4bc36ef96.woff2"
+    as="font"
+    type="font/woff2"
+    crossorigin="anonymous"
+  /><link rel="stylesheet" href="/WzhGameDevPublish/css/loader.css" />
+<meta property="og:type" content="website" />
+  <meta property="og:title" content="虚幻引擎中的DS服务器优化 | 温志洪" />
+  <meta
+    property="og:description"
+    content="FPS游戏"
+  />
+  <meta property="og:url" content="http://localhost:1895/WzhGameDevPublish/post/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/%E4%BB%A3%E7%A0%81%E6%A1%86%E6%9E%B6/ue/%E7%BD%91%E7%BB%9C/%E8%99%9A%E5%B9%BB%E5%BC%95%E6%93%8E%E4%B8%AD%E7%9A%84ds%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%BC%98%E5%8C%96/" />
+  <meta
+    property="og:site_name"
+    content="妖精游戏开发馆"
+  />
+  <meta
+    property="og:image"
+    content="/WzhGameDevPublish/"
+  />
+  <meta property="article:author" content="温志洪" />
+  <meta property="article:published_time" content="2026-06-07T08:38:28&#43;00:00" />
+  <meta property="article:modified_time" content="2026-06-07T16:12:08&#43;00:00" /><meta property="article:tag" content="blogUE/Net" /><meta name="twitter:card" content="summary" />
+  <meta name="twitter:image" content="/WzhGameDevPublish/" />
+<link rel="shortcut icon" href="/WzhGameDevPublish/favicon.ico"><link rel="stylesheet" href="/WzhGameDevPublish/css/main.css" />
+<link
+    rel="preload"
+    as="style"
+    href="https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe.css"
+    integrity="sha384-IfxC36XL/toUyJ939C73PcgMuRzAZuIzZxE38drsmO5p6jD7ei&#43;Zx/1oA/0l8ysE" crossorigin="anonymous"onload="this.onload=null;this.rel='stylesheet'"
+  /><link
+    rel="preload"
+    as="style"
+    href="https://npm.webcache.cn/katex@0.16.24/dist/katex.min.css"
+    integrity="sha384-tTgKLjMYmJr94v8qu2PE5MUGSMbyN2xiH266JUB3gpm8vnnJywd1dWSOEfrFz&#43;YI" crossorigin="anonymous"onload="this.onload=null;this.rel='stylesheet'"
+  /><script
+    src="https://npm.webcache.cn/pace-js@1.2.4/pace.min.js"
+    integrity="sha384-k6YtvFUEIuEFBdrLKJ3YAUbBki333tj1CSUisai5Cswsg9wcLNaPzsTHDswp4Az8" crossorigin="anonymous"></script><link
+    rel="stylesheet"
+    href="https://npm.webcache.cn/@reimujs/aos@0.1.2/dist/aos.css"
+    integrity="sha384-GMRP93c6Hkz9JVKGAuRR3nTS7M07RwPgTFenXiosjq2VbVgvdDNcz1g6Mkj8AONa" crossorigin="anonymous"/></head>
+  <body><div id='loader'>
+    <div class="loading-left-bg loading-bg"></div>
+    <div class="loading-right-bg loading-bg"></div>
+    <div class="spinner-box">
+      <div class="loading-taichi rotate"><svg width="150" height="150" viewBox="0 0 1024 1024" class="icon" version="1.1" xmlns="https://www.w3.org/2000/svg" shape-rendering="geometricPrecision">
+            <path d="M303.5 432A80 80 0 0 1 291.5 592A80 80 0 0 1 303.5 432z" fill="var(--red-1, #ff5252)" />
+            <path d="M512 65A447 447 0 0 1 512 959L512 929A417 417 0 0 0 512 95A417 417 0 0 0 512 929L512 959A447 447 0 0 1 512 65z 
+          M512 95A417 417 0 0 1 929 512A208.5 208.5 0 0 1 720.5 720.5L720.5 592A80 80 0 0 0 720.5 432A80 80 0 0 0 720.5 592L720.5 720.5A208.5 208.5 0 0 1 512 512A208.5 208.5 0 0 0 303.5 303.5A208.5 208.5 0 0 0 95 512A417 417 0 0 1 512 95z" fill="var(--red-1, #ff5252)" />
+          </svg></div><div class="loading-word">少女祈祷中...</div>
+    </div>
+  </div>
+  </div>
+  <script>
+    var time = null;
+    var loaderEl = document.getElementById('loader');
+    var startLoading = () => {
+      time = Date.now();
+      loaderEl.classList.remove("loading");
+    }
+    var hideLoader = () => {
+      document.body.style.overflow = 'auto';
+      loader.classList.add('loading');
+    };
+
+    var endLoading = () => {
+      if (!time) {
+        hideLoader();
+      } else {
+        if (Date.now() - time > 500) {
+          time = null;
+          hideLoader();
+        } else {
+          setTimeout(endLoading, 500 - (Date.now() - time));
+          time = null;
+        }
+      }
+    }
+    window.addEventListener('DOMContentLoaded', endLoading);
+    loaderEl.addEventListener('click', endLoading);
+  </script><div id="copy-tooltip"></div>
+<div id="lang-tooltip">
+本文章没有找到对应的语言版本
+</div>
+<div id="heatmap-tooltip"></div><div id="container">
+      <div id="wrap"><div id="header-nav">
+  <nav id="main-nav" aria-label="Primary navigation"><a class="main-nav-link-wrap" href="/WzhGameDevPublish/">
+        <div class='main-nav-icon icon rotate'>&#xe62b;</div>
+        <span class="main-nav-link">首页</span>
+      </a><a class="main-nav-link-wrap" href="/WzhGameDevPublish/archives">
+        <div class='main-nav-icon icon rotate'>&#xe62b;</div>
+        <span class="main-nav-link">归档</span>
+      </a><a class="main-nav-link-wrap" href="/WzhGameDevPublish/about">
+        <div class='main-nav-icon icon rotate'>&#xe62b;</div>
+        <span class="main-nav-link">关于</span>
+      </a><a class="main-nav-link-wrap" href="/WzhGameDevPublish/friend">
+        <div class='main-nav-icon icon rotate'>&#xe62b;</div>
+        <span class="main-nav-link">友链</span>
+      </a><a id="main-nav-toggle" class="nav-icon" aria-label="Toggle navigation" role="button"></a>
+  </nav>
+  <nav id="sub-nav" aria-label="Secondary navigation"><a id="nav-search-btn" class="nav-icon popup-trigger" title="搜索" aria-label="搜索"></a></nav><nav id="i18n-nav" aria-label="Language selection">
+      <div class="custom-dropdown">
+        <div class="select-selected" id="select-selected" role="button" aria-haspopup="listbox" aria-expanded="false" aria-label="Language menu">
+          <span id="nav-language-btn" class="nav-icon" style="padding: 0 20px 0 0"></span>
+          <span id="selected-lang">简体中文</span>
+        </div>
+        <ul class="select-items" id="select-items" role="listbox" aria-label="Languages"><li data-value="en" role="option" arial-selected="false" >English</li><li data-value="zh-cn" role="option" class="selected" arial-selected="true" >简体中文</li></ul>
+      </div>
+      <script>
+        var selectSelected = document.getElementById("select-selected");
+        var selectedLang = document.getElementById("selected-lang");
+        var selectItems = document.getElementById("select-items");
+        var selectOptions = selectItems.querySelectorAll("li");
+
+        selectSelected.addEventListener("click", () => {
+          selectItems.classList.toggle("show");
+          var expanded = selectSelected.getAttribute("aria-expanded") === "true";
+          selectSelected.setAttribute("aria-expanded", (!expanded).toString());
+        });
+
+        selectOptions.forEach((item) => {
+          item.addEventListener("click", () => {
+            const langMap = {};selectedLang.textContent = item.textContent;
+            selectItems.classList.remove("show");
+            selectOptions.forEach((option) => {
+              option.classList.remove("selected");
+            });
+            item.classList.add("selected");
+            if (item.dataset.value === 'zh-cn') {
+              return;
+            }
+            if (!langMap[item.dataset.value]) {
+              _$("#lang-tooltip").style.opacity = "1";
+              setTimeout(() => {
+                _$("#lang-tooltip").style.opacity = "0";
+              }, 1000);
+              return;
+            }
+            window.location = langMap[item.dataset.value];
+          });
+        });
+
+        document.addEventListener("click", (event) => {
+          if (!event.target.closest(".custom-dropdown")) {
+            selectItems.classList.remove("show");
+            selectSelected.setAttribute("aria-expanded", "false");
+          }
+        });
+      </script>
+    </nav></div>
+<header id="header" aria-label="Site header"><picture><source media="(max-width: 479px)" srcset="/WzhGameDevPublish/images/banner-600w.webp"><source media="(max-width: 799px)" srcset="/WzhGameDevPublish/images/banner-800w.webp"><source media="(min-width: 800px)" srcset="/WzhGameDevPublish/images/banner.webp"><img crossorigin="anonymous" fetchpriority="high" src="/WzhGameDevPublish/images/banner.webp" alt="虚幻引擎中的DS服务器优化"></picture><img alt="虚幻引擎中的DS服务器优化" style="visibility: hidden;"><div id="header-outer">
+    <div id="header-title"><span id="logo">
+            <h1 data-aos="slide-up">虚幻引擎中的DS服务器优化</h1>
+          </span><h2 id="subtitle-wrap" data-aos="slide-down"></h2></div>
+  </div>
+</header><div id="content"
+          aria-label="Page content"
+          class="sidebar-left"
+            ><aside id="sidebar" aria-label="Sidebar"><div class="sidebar-wrapper-container sticky"><div class="sidebar-wrapper">
+    <div
+      class="sidebar-wrap"
+      data-aos="fade-up"
+    ><div class="sidebar-toc-sidebar"><h3 class="toc-title">文章目录</h3>
+<div class="sidebar-toc-wrapper toc-div-class">
+  <nav id="TableOfContents">
+  <ul>
+    <li><a href="#常用ue性能分析工具对比">常用UE性能分析工具对比</a></li>
+    <li><a href="#测试用例">测试用例</a>
+      <ul>
+        <li><a href="#测试用例搭建">测试用例搭建</a></li>
+        <li><a href="#uminimalclient">UMinimalClient</a></li>
+      </ul>
+    </li>
+  </ul>
+
+  <ul>
+    <li><a href="#replicate-graph">Replicate Graph</a>
+      <ul>
+        <li><a href="#优化之前">优化之前</a></li>
+        <li><a href="#使用replicategraph之后">使用ReplicateGraph之后</a></li>
+        <li><a href="#使用replicate-graph">使用Replicate Graph</a></li>
+      </ul>
+    </li>
+    <li><a href="#iris">Iris</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#变量同步类型">变量同步类型</a></li>
+    <li><a href="#減少同步的actorcomp组件数量">減少同步的ActorComp组件数量</a>
+      <ul>
+        <li><a href="#前后比较">前后比较</a></li>
+        <li><a href="#将componet的变量同步和rpc移到ownactor">将Componet的变量同步和RPC移到OwnActor</a></li>
+        <li><a href="#销毁不需要的ds组件">销毁不需要的DS组件</a></li>
+        <li><a href="#同步频繁的fname改用uint8类型">同步频繁的FName改用uint8类型</a></li>
+      </ul>
+    </li>
+  </ul>
+
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#怎么使用">怎么使用</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+</div></div>
+          <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
+  <img
+    data-src="/WzhGameDevPublish/avatar/UELogo.png"
+    data-sizes="auto"
+    alt="温志洪"
+    class="lazyload"
+  />
+  <div class="sidebar-author-name">温志洪</div>
+  <div class="sidebar-description">FPS游戏</div>
+</div>
+<div class="sidebar-state">
+  <div class="sidebar-state-article">
+    <div>文章</div><div class="sidebar-state-number">29</div>
+  </div>
+  <a class="sidebar-state-category" href="/WzhGameDevPublish/categories/" aria-label="sidebar-state-category-link">
+    <div>分类</div>
+    <div class="sidebar-state-number">
+      0
+    </div>
+  </a>
+  <a class="sidebar-state-tag" href="/WzhGameDevPublish/tags/" aria-label="sidebar-state-tag-link">
+    <div>标签</div>
+    <div class="sidebar-state-number">20</div>
+  </a>
+</div>
+<div class="sidebar-social"><div class="icon-bilibili sidebar-social-icon">
+      <a
+        href="https://space.bilibili.com/35312868"
+        itemprop="url"
+        target="_blank"
+        aria-label="bilibili"
+        rel="noopener nofollow noreferrer"
+      ></a>
+    </div><div class="icon-email sidebar-social-icon">
+      <a
+        href="mailto:cnwenzhihong@gmail.com"
+        itemprop="url"
+        target="_blank"
+        aria-label="email"
+        rel="noopener nofollow noreferrer"
+      ></a>
+    </div></div>
+<div class="sidebar-menu"><div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/WzhGameDevPublish/"
+        aria-label="首页"
+      ></a>
+      <div class='sidebar-menu-icon icon rotate'>&#xe62b;</div>
+      <div class="sidebar-menu-link">首页</div>
+    </div><div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/WzhGameDevPublish/archives"
+        aria-label="归档"
+      ></a>
+      <div class='sidebar-menu-icon icon rotate'>&#xe62b;</div>
+      <div class="sidebar-menu-link">归档</div>
+    </div><div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/WzhGameDevPublish/about"
+        aria-label="关于"
+      ></a>
+      <div class='sidebar-menu-icon icon rotate'>&#xe62b;</div>
+      <div class="sidebar-menu-link">关于</div>
+    </div><div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/WzhGameDevPublish/friend"
+        aria-label="友链"
+      ></a>
+      <div class='sidebar-menu-icon icon rotate'>&#xe62b;</div>
+      <div class="sidebar-menu-link">友链</div>
+    </div></div>
+</div><div class="sidebar-btn-wrapper" style="position:static">
+            <div class="sidebar-toc-btn current"></div>
+            <div class="sidebar-common-btn"></div>
+          </div></div>
+  </div><div class="sidebar-widget"></div></div></aside>
+<section id="main" aria-label="Main content"><p style="color:red">ARTICLE PARTIAL OVERRIDE ACTIVE</p>
+<article
+  class="h-entry article"
+  itemscope
+  itemtype="https://schema.org/BlogPosting"
+>
+  <div
+    class="article-inner"
+    data-aos="fade-up"
+  >
+    <div class="article-meta"><div class="article-date">
+  <span
+    class="article-date-link icon-calendar"
+    data-aos="zoom-in"
+  >
+    <time datetime="2026-06-07 08:38:28.118 &#43;0000 UTC" itemprop="datePublished"
+      >2026-06-07</time
+    >
+    <time style="display: none;" id="post-update-time"
+      >2026-06-07</time
+    >
+  </span><span
+      class="article-date-link icon-calendar-plus"
+      data-aos="zoom-in"
+    >
+      <time datetime="2026-06-07 16:12:08.843 &#43;0000 UTC" itemprop="dateModified"
+        >2026-06-07</time
+      >
+    </span></div>
+<div class="article-category"></div>
+</div><div class="hr-line"></div><div class="e-content article-entry" itemprop="articleBody"><h1 id="总领">
+<a class="header-anchor" href="#%e6%80%bb%e9%a2%86"></a>
+总领
+</h1><p><a href="https://www.youtube.com/watch?v=mT8VUVuk-CY">UE4 服务器优化-1h17m</a>——2019年1月19日<br>
+我将介绍传统NetDriver工作，ReplicationGraph和他的差异。<br>
+👍优点：简单快速通用，明确优化重点，适合小团队快速简单优化<br>
+⛔缺点：对比模糊，主持人怯场</p>
+<h2 id="常用ue性能分析工具对比">
+<a class="header-anchor" href="#%e5%b8%b8%e7%94%a8ue%e6%80%a7%e8%83%bd%e5%88%86%e6%9e%90%e5%b7%a5%e5%85%b7%e5%af%b9%e6%af%94"></a>
+常用UE性能分析工具对比
+</h2><p><strong>Unreal Profiler</strong><br>
+❌虚幻引擎中基础的性能分析工具，但由于功能庞杂，使用Stats过程中对服务器的影响较大。</p>
+<p><strong>Unreal Insights</strong>:<br>
+✔体量小、可以监控解包时间、内存占用，把Profiler保存到其他机器，以此不影响正在监控的性能占用，保证数据更准确。<br>
+需要宏<code>TRACE_CPUPROFILER_EVENT_SCOPE()</code>加自定义注册函数到Insights数据收集里</p>
+<p><strong>NetWorkProfiler</strong><br>
+✔适合服务器流量监控<br>
+linux开启NetWorkProfiler，需要在.CS 中添加<code>GlobalDefinitions.Add(&quot;USE_NETWORK_PROFILER=1&quot;);</code></p>
+<h2 id="测试用例">
+<a class="header-anchor" href="#%e6%b5%8b%e8%af%95%e7%94%a8%e4%be%8b"></a>
+测试用例
+</h2><p><a href="https://www.bilibili.com/video/BV1uUy5YkEiN/?t=226">03:46</a></p>
+<h3 id="测试用例搭建">
+<a class="header-anchor" href="#%e6%b5%8b%e8%af%95%e7%94%a8%e4%be%8b%e6%90%ad%e5%bb%ba"></a>
+测试用例搭建
+</h3><p>主要使用引擎的无渲染窗口模式，以在一台机器上启动尽可能多的实例，并且连接到服务器上执行配置好的脚本。<br>
+<strong>启动行命令</strong>：-nullrhi启动Client cmd<br>
+<strong>cmd自定义测试行为</strong>：<br>
+自定义开启测试机行为，例如移动，使用技能等。</p>
+<p>每台机器可启动多个进程，自动连接匹配服务器，进入战局，根据启动命令模拟相应的行为，比如移动、使用技能，保证出来的性能日志基本符合实际环境。</p>
+<h3 id="uminimalclient">
+<a class="header-anchor" href="#uminimalclient"></a>
+UMinimalClient
+</h3><p>评论区提供的测试用例搭建方案<br>
+<a href="https://dev.epicgames.com/documentation/unreal-engine/API/Plugins/NetcodeUnitTest/UMinimalClient">UMinimalClient</a>：用于实现一个基础/简化的游戏客户端，能够连接普通游戏服务器，但对客户端进行简化/锁定，以实现客户端/服务器网络代码的最低限度执行。</p>
+<h1 id="减少actor同步数量">
+<a class="header-anchor" href="#%e5%87%8f%e5%b0%91actor%e5%90%8c%e6%ad%a5%e6%95%b0%e9%87%8f"></a>
+减少Actor同步数量
+</h1><p>地图：几平方公里<br>
+玩家：&gt;60<br>
+交互物：成千上万<br>
+AI、关卡、Boss挑战</p>
+<p>优化大头：减少同步Actor数量</p>
+<h2 id="replicate-graph">
+<a class="header-anchor" href="#replicate-graph"></a>
+Replicate Graph
+</h2><p><a href="https://www.bilibili.com/video/BV1uUy5YkEiN/?t=275">04:35</a></p>
+<h3 id="优化之前">
+<a class="header-anchor" href="#%e4%bc%98%e5%8c%96%e4%b9%8b%e5%89%8d"></a>
+优化之前
+</h3><p>在使用Replicate Graph之前，某一帧的Profile：<br>
+27人测试：Character同步了106次，而场景里面Actor一共同步了6925次<br>
+<img src="https://gcore.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/20260607221454338.png" alt=""></p>
+
+  <blockquote class="alert-blockquote question">
+    <p class="alert-heading">
+      Question
+    </p>
+    <p><h2 id="怎么看同步了多少character和actor">
+<a class="header-anchor" href="#%e6%80%8e%e4%b9%88%e7%9c%8b%e5%90%8c%e6%ad%a5%e4%ba%86%e5%a4%9a%e5%b0%91character%e5%92%8cactor"></a>
+怎么看同步了多少Character和Actor
+</h2></p>
+  </blockquote>
+
+<h3 id="使用replicategraph之后">
+<a class="header-anchor" href="#%e4%bd%bf%e7%94%a8replicategraph%e4%b9%8b%e5%90%8e"></a>
+使用ReplicateGraph之后
+</h3><p>使用Replicate Graph之后，某一帧的Profile：<br>
+可以跑60人测试，Character同步了1261次，而场景里面一共同步了5449次。相比之前，同步数量减少了差不多300%。<br>
+<img src="https://gcore.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/20260607222839651.png" alt=""></p>
+<blockquote>
+<p>问题：没有用同一测试环境做对比</p>
+</blockquote>
+<h3 id="使用replicate-graph">
+<a class="header-anchor" href="#%e4%bd%bf%e7%94%a8replicate-graph"></a>
+使用Replicate Graph
+</h3><blockquote>
+<p>参考源码示例 <code>UBasicReplicationGraph</code></p>
+</blockquote>
+<p>DefaultEngine.ini 添加自定义 ReplicationDriverClass：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-ini" data-lang="ini"><span class="line"><span class="cl"><span class="k">[/Script/OnlineSubsystemUtils.lpNetDriver]</span>
+</span></span><span class="line"><span class="cl"><span class="na">ReplicationDriverClassName</span><span class="o">=</span><span class="s">&#34;/Script/Dissidia.DS_ReplicationGraph&#34;</span>
+</span></span></code></pre></div><p>继承一个<code>UReplicationGraph</code>类</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-CPP" data-lang="CPP"><span class="line"><span class="cl"><span class="n">UCLASS</span><span class="p">(</span><span class="n">transient</span><span class="p">,</span> <span class="n">config</span> <span class="o">=</span> <span class="n">Engine</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">DISSIDIA_API</span> <span class="nl">UDS_ReplicationGraph</span> <span class="p">:</span> <span class="k">public</span> <span class="n">UReplicationGraph</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="n">GENERATED_BODY</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p><code>ReplicationGraphNode_GridSpatialization2D</code><br>
+根据玩家视锥收集需要同步的Actor：<br>
+<img src="https://gcore.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/20260607222558422.png" alt=""><br>
+根据GraphNodes尝试下一次同步该Actor<br>
+<img src="https://gcore.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/20260607222716327.png" alt=""></p>
+<h2 id="iris">
+<a class="header-anchor" href="#iris"></a>
+Iris
+</h2><p><a href="https://www.bilibili.com/video/BV1uUy5YkEiN/?t=552">09:12</a> 仅探索，没有使用<br>
+Graph依赖于很多的节点来筛选Actor<br>
+Iris 依托于中间层Bridge管理Actor同步，<br>
+<img src="https://gcore.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/20260607224031044.png" alt=""></p>
+<h1 id="减少同步数量和频率">
+<a class="header-anchor" href="#%e5%87%8f%e5%b0%91%e5%90%8c%e6%ad%a5%e6%95%b0%e9%87%8f%e5%92%8c%e9%a2%91%e7%8e%87"></a>
+减少同步数量和频率
+</h1><p><a href="https://www.bilibili.com/video/BV1uUy5YkEiN/?t=1046">17:26</a><br>
+属于 优化小头</p>
+<h2 id="变量同步类型">
+<a class="header-anchor" href="#%e5%8f%98%e9%87%8f%e5%90%8c%e6%ad%a5%e7%b1%bb%e5%9e%8b"></a>
+变量同步类型
+</h2><p>整理并标识变量的同步规则，以下为引擎提供的同步标识，方便自定义控制变量的同步规则。<br>
+<img src="https://gcore.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/20260607234437252.png" alt=""></p>
+<p>背包组件为例：<br>
+背包组件里面物品操作频繁，所以组件本身是同步的。<br>
+背包大部分变量只需要同步给Owner：COND_OwnerOnly<br>
+CurUsedld：Player会在这个值修改的时候播放montage，所有客户端都应该监听该值的修改：保持默认。<br>
+<img src="https://gcore.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/20260607234647747.png" alt=""></p>
+<p>掉落物-&gt; 休眠：<br>
+掉落物在场景生成之后，仅初始化同步一次数据，有且仅有数量改变的时候才需要同步一次。<br>
+<img src="https://gcore.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/20260607234933081.png" alt=""></p>
+<p>当物品数量修改时：将物品添加到RaplicateGrap里面同步一次<br>
+<img src="https://gcore.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/20260607234952824.png" alt=""></p>
+<h2 id="減少同步的actorcomp组件数量">
+<a class="header-anchor" href="#%e6%b8%9b%e5%b0%91%e5%90%8c%e6%ad%a5%e7%9a%84actorcomp%e7%bb%84%e4%bb%b6%e6%95%b0%e9%87%8f"></a>
+減少同步的ActorComp组件数量
+</h2><h3 id="前后比较">
+<a class="header-anchor" href="#%e5%89%8d%e5%90%8e%e6%af%94%e8%be%83"></a>
+前后比较
+</h3><p><strong>测试场景</strong>：<br>
+60个人随机移动30秒。<br>
+<code>Hitches</code>：单帧&gt;60ms数量<br>
+<code>Frametime Avg</code>:平均速率</p>
+<p><strong>优化之前</strong>：<br>
+<code>Hitches</code>：75次，<code>Frametime Avg</code>：58ms<br>
+<img src="https://gcore.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/20260608000035269.png" alt=""></p>
+<p><strong>优化之后</strong>：<br>
+<code>Hitches</code>：13次，<code>Frametime Avg</code>：48ms<br>
+<img src="https://gcore.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/20260608000046519.png" alt=""></p>
+<h3 id="将componet的变量同步和rpc移到ownactor">
+<a class="header-anchor" href="#%e5%b0%86componet%e7%9a%84%e5%8f%98%e9%87%8f%e5%90%8c%e6%ad%a5%e5%92%8crpc%e7%a7%bb%e5%88%b0ownactor"></a>
+将Componet的变量同步和RPC移到OwnActor
+</h3><p>为了玩家体验，很多时候PlayerPawn同步频率很很高，我们是30帧。组件的同步频率也随之提高</p>
+<p>声音广播Comp：</p>
+<ol>
+<li>关闭网络同步</li>
+<li>服务器上销毁该组件，用Actor的RPC调用来告知Client播放<br>
+<img src="https://gcore.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/20260607235105039.png" alt=""></li>
+</ol>
+<h3 id="销毁不需要的ds组件">
+<a class="header-anchor" href="#%e9%94%80%e6%af%81%e4%b8%8d%e9%9c%80%e8%a6%81%e7%9a%84ds%e7%bb%84%e4%bb%b6"></a>
+销毁不需要的DS组件
+</h3><p>服务器销毁SkeletonMesh组件：<br>
+<img src="https://gcore.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/20260607235510872.png" alt=""><br>
+SkeletalMesh开销：<br>
+<img src="https://gcore.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/20260607235945060.png" alt=""></p>
+<p>其他组件<br>
+<img src="https://gcore.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/20260607235731653.png" alt=""></p>
+<h3 id="同步频繁的fname改用uint8类型">
+<a class="header-anchor" href="#%e5%90%8c%e6%ad%a5%e9%a2%91%e7%b9%81%e7%9a%84fname%e6%94%b9%e7%94%a8uint8%e7%b1%bb%e5%9e%8b"></a>
+同步频繁的FName改用uint8类型
+</h3><p><img src="https://gcore.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/20260607235705023.png" alt=""></p>
+
+  <blockquote class="alert-blockquote tip">
+    <p class="alert-heading">
+      Tip
+    </p>
+    <p><h2 id="现在完全可以用gameplaytag替代">
+<a class="header-anchor" href="#%e7%8e%b0%e5%9c%a8%e5%ae%8c%e5%85%a8%e5%8f%af%e4%bb%a5%e7%94%a8gameplaytag%e6%9b%bf%e4%bb%a3"></a>
+现在完全可以用GameplayTag替代
+</h2></p>
+  </blockquote>
+
+<h1 id="server架构拆分">
+<a class="header-anchor" href="#server%e6%9e%b6%e6%9e%84%e6%8b%86%e5%88%86"></a>
+Server架构拆分
+</h1><p><a href="https://www.bilibili.com/video/BV1uUy5YkEiN/?t=771">12:52</a><br>
+如果大地图元素、关卡、Boss同属一个DS，那么DS压力会非常大。</p>
+<p><strong>拆分</strong>：<br>
+把精细的、物理的放到小关卡，主Server做关键数据处理<br>
+<strong>通信</strong>：TCP<br>
+子地图Server用TCP协议和大地图Server进行实时数据沟通</p>
+<p>大地图Server：<br>
+大场景，以PVP为主；<br>
+排名、结算<br>
+子地图是小场景<br>
+有更复杂的AI和物理行为，以PVE为主。<br>
+战斗相关：血量。<br>
+匹配服务器</p>
+<p><img src="https://gcore.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/20260607230452315.png" alt=""></p>
+<p>问题：子地图DS需要频繁启动销毁<br>
+解决：把服务器搬迁到Linux</p>
+<h1 id="用-linux的fork优化内存和启动时间">
+<a class="header-anchor" href="#%e7%94%a8-linux%e7%9a%84fork%e4%bc%98%e5%8c%96%e5%86%85%e5%ad%98%e5%92%8c%e5%90%af%e5%8a%a8%e6%97%b6%e9%97%b4"></a>
+用 linux的fork优化内存和启动时间
+</h1><p><a href="https://www.bilibili.com/video/BV1uUy5YkEiN/?t=870">14:30</a><br>
+内存占用(自Server 1G左右内存)：5% -&gt; 1.1%，减少了400%。<br>
+DS启动速度：3s-&gt;小于1s，提升了200%。</p>
+
+  <blockquote class="alert-blockquote example">
+    <p class="alert-heading">
+      Example
+    </p>
+    <p><p>DXX开头的Server是未使用fork的服务器进程(第一行)<br>
+DS-XXXX-XXXX进程采用fork<br>
+<img src="https://gcore.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/20260607230950187.png" alt=""></p></p>
+  </blockquote>
+
+<h3 id="怎么使用">
+<a class="header-anchor" href="#%e6%80%8e%e4%b9%88%e4%bd%bf%e7%94%a8"></a>
+怎么使用
+</h3><p>首先需要在GameMode::init调用Linux的等待函数<br>
+在Linux启动DS时需要加 -nothreading强制单线程启动<br>
+在Linux上调用Linux的api：<code>sigqueue(PID,SIGRTMIN + 1,Index)</code>，这样让PID父进程启一份子进程出来。</p>
+<ul>
+<li>PID：DS父进程ID</li>
+<li>SIGRTMIN：Linux系统宏定义</li>
+<li>Index：forks子进程索引</li>
+</ul>
+
+  <blockquote class="alert-blockquote example">
+    <p class="alert-heading">
+      Example
+    </p>
+    <p><h2 id="ppt">
+<a class="header-anchor" href="#ppt"></a>
+PPT
+</h2><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-CPP" data-lang="CPP"><span class="line"><span class="cl"><span class="c1">//DS服务器必须以单线程方式启动 添加命令行参数 -nothreading 强制单线程启动
+</span></span></span><span class="line"><span class="cl"><span class="n">FGenericPlatformProce</span><span class="o">::</span><span class="n">EWaitAndForkResult</span> <span class="n">tempResult</span> <span class="o">=</span> <span class="n">FUnixPlatformProcess</span><span class="o">::</span><span class="n">WaitAndFork</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="k">switch</span> <span class="p">(</span><span class="n">tempResult</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">	<span class="k">case</span> <span class="n">FGenericPlaformProce</span><span class="o">::</span><span class="n">WaitAndForkResult</span><span class="o">::</span><span class="n">Child</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="c1">//*如果使用sigqueue，有效载荷int将被分成上下uint16值。上面的值是“cookie”和
+</span></span></span><span class="line"><span class="cl">	<span class="c1">//较低的值为“索引”。这两个值将用于使用模式DS-&lt;cookie&gt;-&lt;index&gt;命名进程。这个名字	
+</span></span></span><span class="line"><span class="cl">	<span class="c1">//*如果提供-WaitAndForkCmdLinePath=/home/guoyuanhua/Server/ForkChildComd，子进程的命令行参数将用內容填充在Foo引1用的目录中找到的文件的
+</span></span></span><span class="line"><span class="cl">	<span class="c1">//其中子文件的“索引”是要在目录中读取的文件的名称。
+</span></span></span><span class="line"><span class="cl">	<span class="c1">//fork启动文件在/home/guoyuanhua/Server/a.out
+</span></span></span><span class="line"><span class="cl">	<span class="c1">//先启动DS服务器/DisidiaServerMain-nothreading
+</span></span></span><span class="line"><span class="cl">	<span class="c1">//取命令行参数
+</span></span></span><span class="line"><span class="cl">	<span class="c1">//获取进程id FUnixPlatformProce:GetCurrentProcesld()
+</span></span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div></p>
+  </blockquote>
+
+<p><img src="https://gcore.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/20260607231745832.png" alt=""><br>
+<img src="https://gcore.jsdelivr.net/gh/cnwenzhihong/ImageHosting/ProjectMarkdown/20260607232146098.png" alt=""></p>
+</div>
+    <footer class="article-footer"><ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item" data-aos="zoom-in">
+      <a
+        class="article-tag-list-link"
+        href="/WzhGameDevPublish/tags/blog"
+        rel="tag"
+        >BLOG</a
+      >
+    </li><li class="article-tag-list-item" data-aos="zoom-in">
+      <a
+        class="article-tag-list-link"
+        href="/WzhGameDevPublish/tags/ue/net"
+        rel="tag"
+        >UE/NET</a
+      >
+    </li></ul>
+</footer>
+  </div><nav
+    id="article-nav"
+    aria-label="Article navigation"
+    data-aos="fade-up"
+  ><div class="article-nav-link-wrap left"><img
+            data-src="https://i3.ytimg.com/vi/W5lUCeAu_2k/hqdefault.jpg"
+            data-sizes="auto"
+            alt="堡垒之夜的NetCode"
+            class="lazyload"
+          /><a
+          href="/WzhGameDevPublish/post/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/%E4%BB%A3%E7%A0%81%E6%A1%86%E6%9E%B6/ue/%E7%BD%91%E7%BB%9C/%E5%A0%A1%E5%9E%92%E4%B9%8B%E5%A4%9C%E7%9A%84netcode/"
+          aria-label="前一篇:堡垒之夜的NetCode"
+          title="前一篇:堡垒之夜的NetCode"
+        ></a>
+        <div class="article-nav-caption">前一篇</div>
+        <h3 class="article-nav-title">堡垒之夜的NetCode</h3>
+      </div></nav></article></section>
+        </div><footer id="footer" aria-label="Site footer">
+  <div style="width: 100%; overflow: hidden">
+    <div class="footer-line"></div>
+  </div>
+  <div id="footer-info"><div>
+      <span class="icon-copyright"></span>2025-2026<span class="footer-info-sep rotate"></span>
+      温志洪
+    </div><div>
+        基于&nbsp;<a
+          href="https://gohugo.io/"
+          target="_blank"
+          rel="noopener nofollow noreferrer"
+          >Hugo</a
+        >&nbsp; Theme.<a
+          href="https://github.com/D-Sketon/hugo-theme-reimu"
+          target="_blank"
+          rel="noopener nofollow noreferrer"
+          >Reimu</a
+        >
+      </div><div>
+        <span class="icon-brush"
+          >&nbsp;115.6k</span
+        >
+        &nbsp;|&nbsp;
+        <span class="icon-coffee">&nbsp;04:06</span>
+      </div><div>
+        <span class="icon-eye"></span>
+        <span id="busuanzi_container_site_pv"
+          >总访问量&nbsp;<span
+            id="busuanzi_value_site_pv"
+          ></span
+        ></span>
+        &nbsp;|&nbsp;
+        <span class="icon-user"></span>
+        <span id="busuanzi_container_site_uv"
+          >总访客量&nbsp;<span
+            id="busuanzi_value_site_uv"
+          ></span
+        ></span>
+      </div></div>
+</footer>
+<div class="sidebar-top">
+            <div class="sidebar-top-taichi rotate"></div>
+            <div class="arrow-up"></div>
+          </div><div id="mask" class="hide"></div>
+      </div><nav id="mobile-nav" aria-label="Mobile navigation">
+  <div class="sidebar-wrap"><div class="sidebar-toc-sidebar"><h3 class="toc-title">文章目录</h3>
+<div class="sidebar-toc-wrapper toc-div-class">
+  <nav id="TableOfContents">
+  <ul>
+    <li><a href="#常用ue性能分析工具对比">常用UE性能分析工具对比</a></li>
+    <li><a href="#测试用例">测试用例</a>
+      <ul>
+        <li><a href="#测试用例搭建">测试用例搭建</a></li>
+        <li><a href="#uminimalclient">UMinimalClient</a></li>
+      </ul>
+    </li>
+  </ul>
+
+  <ul>
+    <li><a href="#replicate-graph">Replicate Graph</a>
+      <ul>
+        <li><a href="#优化之前">优化之前</a></li>
+        <li><a href="#使用replicategraph之后">使用ReplicateGraph之后</a></li>
+        <li><a href="#使用replicate-graph">使用Replicate Graph</a></li>
+      </ul>
+    </li>
+    <li><a href="#iris">Iris</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#变量同步类型">变量同步类型</a></li>
+    <li><a href="#減少同步的actorcomp组件数量">減少同步的ActorComp组件数量</a>
+      <ul>
+        <li><a href="#前后比较">前后比较</a></li>
+        <li><a href="#将componet的变量同步和rpc移到ownactor">将Componet的变量同步和RPC移到OwnActor</a></li>
+        <li><a href="#销毁不需要的ds组件">销毁不需要的DS组件</a></li>
+        <li><a href="#同步频繁的fname改用uint8类型">同步频繁的FName改用uint8类型</a></li>
+      </ul>
+    </li>
+  </ul>
+
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#怎么使用">怎么使用</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+</div></div>
+        <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
+  <img
+    data-src="/WzhGameDevPublish/avatar/UELogo.png"
+    data-sizes="auto"
+    alt="温志洪"
+    class="lazyload"
+  />
+  <div class="sidebar-author-name">温志洪</div>
+  <div class="sidebar-description">FPS游戏</div>
+</div>
+<div class="sidebar-state">
+  <div class="sidebar-state-article">
+    <div>文章</div><div class="sidebar-state-number">29</div>
+  </div>
+  <a class="sidebar-state-category" href="/WzhGameDevPublish/categories/" aria-label="sidebar-state-category-link">
+    <div>分类</div>
+    <div class="sidebar-state-number">
+      0
+    </div>
+  </a>
+  <a class="sidebar-state-tag" href="/WzhGameDevPublish/tags/" aria-label="sidebar-state-tag-link">
+    <div>标签</div>
+    <div class="sidebar-state-number">20</div>
+  </a>
+</div>
+<div class="sidebar-social"><div class="icon-bilibili sidebar-social-icon">
+      <a
+        href="https://space.bilibili.com/35312868"
+        itemprop="url"
+        target="_blank"
+        aria-label="bilibili"
+        rel="noopener nofollow noreferrer"
+      ></a>
+    </div><div class="icon-email sidebar-social-icon">
+      <a
+        href="mailto:cnwenzhihong@gmail.com"
+        itemprop="url"
+        target="_blank"
+        aria-label="email"
+        rel="noopener nofollow noreferrer"
+      ></a>
+    </div></div>
+<div class="sidebar-menu"><div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/WzhGameDevPublish/"
+        aria-label="首页"
+      ></a>
+      <div class='sidebar-menu-icon icon rotate'>&#xe62b;</div>
+      <div class="sidebar-menu-link">首页</div>
+    </div><div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/WzhGameDevPublish/archives"
+        aria-label="归档"
+      ></a>
+      <div class='sidebar-menu-icon icon rotate'>&#xe62b;</div>
+      <div class="sidebar-menu-link">归档</div>
+    </div><div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/WzhGameDevPublish/about"
+        aria-label="关于"
+      ></a>
+      <div class='sidebar-menu-icon icon rotate'>&#xe62b;</div>
+      <div class="sidebar-menu-link">关于</div>
+    </div><div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/WzhGameDevPublish/friend"
+        aria-label="友链"
+      ></a>
+      <div class='sidebar-menu-icon icon rotate'>&#xe62b;</div>
+      <div class="sidebar-menu-link">友链</div>
+    </div></div>
+</div></div><div class="sidebar-btn-wrapper">
+        <div class="sidebar-toc-btn current"></div>
+        <div class="sidebar-common-btn"></div>
+      </div></nav>
+</div><div class="site-search">
+        <div class="reimu-popup popup">
+          <div class="reimu-search">
+            <div class="reimu-search-input-icon"></div>
+            <div id="reimu-search-input"></div>
+            <div class="popup-btn-close"></div>
+          </div>
+          <div class="reimu-results">
+            <div id="reimu-stats"></div>
+            <div id="reimu-hits"></div>
+            <div id="reimu-pagination" class="reimu-pagination"></div>
+          </div>
+          <img class="reimu-bg" src="/WzhGameDevPublish/images/reimu.png" />
+        </div>
+      </div><script
+    src="https://npm.webcache.cn/lazysizes@5.3.2/lazysizes.min.js"
+    integrity="sha384-3gT/vsepWkfz/ff7PpWNUeMzeWoH3cDhm/A8jM7ouoAK0/fP/9bcHHR5kHq2nf&#43;e" crossorigin="anonymous"></script><script
+    src="https://npm.webcache.cn/clipboard@2.0.11/dist/clipboard.min.js"
+    integrity="sha384-J08i8An/QeARD9ExYpvphB8BsyOj3Gh2TSh1aLINKO3L0cMSH2dN3E22zFoXEi0Q" crossorigin="anonymous"></script><script
+    src="https://npm.webcache.cn/material-theme@1.0.0/dist/material-theme.umd.js"
+    integrity="sha384-vLev0II0HKFaxkcm&#43;/7kX5IGwVFBASkGchU311wmU/veIj2bB0UcBkQbW6yw2asK" crossorigin="anonymous"></script><script src="/WzhGameDevPublish/js/main.js" ></script><script src="/WzhGameDevPublish/js/aos.js" ></script><script>
+    var aosInit = () => {
+      AOS.init({
+        duration: 1000,
+        easing: "ease",
+        once: true,
+        offset: 50,
+      });
+    };
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", aosInit);
+    } else {
+      aosInit();
+    }
+  </script><script src="/WzhGameDevPublish/js/pjax_main.js" data-pjax></script><script>
+    var ALGOLIA_CONFIG = {
+      logo: '\/WzhGameDevPublish\/images\/algolia_logo.svg',
+      algolia: {
+        applicationID: "Y8C6JKXKKR",
+        apiKey: "30fdacdc4947fb8d8faed68e16f048a0",
+        indexName: "index",
+        hits: {
+          "per_page": parseInt("10")
+        },
+        labels: {
+          "input_placeholder": '搜索.....',
+          "hits_empty": '未发现与 「${query}」相关内容',
+          "hits_stats": '找到${hits}条结果（用时 ${time} ms）'
+        }
+      }
+    };
+  </script><script
+    src="https://npm.webcache.cn/algoliasearch@4.17.1/dist/algoliasearch-lite.umd.js"
+    deferintegrity="sha384-xvLS0jfKuoREs7pqkRI/OI8GcqohO5S&#43;jQz7ZBtQXnsXmD&#43;9jDOOY4cL6dCPzlrk" crossorigin="anonymous"></script><script
+    src="https://npm.webcache.cn/@reimujs/instantsearch.js@4.57.0-beta.1/dist/instantsearch.production.min.js"
+    deferintegrity="sha384-aagKMe8nkqaP2DYQc8kkYOL5l&#43;M5Q2WH/Uhr4teOh0Ybp0RZj0kUSDm45qPikMjK" crossorigin="anonymous"></script><script src="/WzhGameDevPublish/js/algolia_search.js" ></script><script
+    src="https://npm.webcache.cn/mouse-firework@0.1.1/dist/index.umd.js"
+    integrity="sha384-8LyaidD9GPxQQgLJO/WRw/O2h3BoNq/ApI/ecpvM6RsrCz2qP2ppBXUKihP4V/2d" crossorigin="anonymous"></script><script>
+  if (! false  || !window.matchMedia('(max-width: 768px)').matches) {
+    if (window.firework) {
+      const options = JSON.parse("{\"excludeelements\":[\"a\",\"button\"],\"particles\":[{\"colors\":[\"var(--red-1)\",\"var(--red-2)\",\"var(--red-3)\",\"var(--red-4)\"],\"duration\":[1200,1800],\"easing\":\"easeOutExpo\",\"move\":[\"emit\"],\"number\":20,\"shape\":\"circle\",\"shapeOptions\":{\"alpha\":[0.3,0.5],\"radius\":[16,32]}},{\"colors\":[\"var(--red-0)\"],\"duration\":[1200,1800],\"easing\":\"easeOutExpo\",\"move\":[\"diffuse\"],\"number\":1,\"shape\":\"circle\",\"shapeOptions\":{\"alpha\":[0.2,0.5],\"lineWidth\":6,\"radius\":20}}]}");
+      options.excludeElements = options.excludeelements;
+      delete options.excludeelements;
+      window.firework(options);
+    }
+  }
+</script><script
+    src="https://npm.webcache.cn/quicklink@3.0.1/dist/quicklink.umd.js"
+    integrity="sha384-caMDqvgav/HWdEYQU1QRRHMLleigpL1YHAG0m371DhzfL8rRzUyOb&#43;bEHtwlmYjD" crossorigin="anonymous"></script><script data-pjax>
+    window.quicklink?.listen({
+      timeout:  3000 ,
+      priority:  true ,
+      ignores: JSON.parse("[]")
+    });
+  </script>
+
+
+<div id="lazy-script">
+  <div><script data-pjax>
+        window.REIMU_POST = {
+          author: "温志洪",
+          title: "虚幻引擎中的DS服务器优化",
+          url: "http:\/\/localhost:1895\/WzhGameDevPublish\/post\/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91\/%E4%BB%A3%E7%A0%81%E6%A1%86%E6%9E%B6\/ue\/%E7%BD%91%E7%BB%9C\/%E8%99%9A%E5%B9%BB%E5%BC%95%E6%93%8E%E4%B8%AD%E7%9A%84ds%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%BC%98%E5%8C%96\/",
+          description: "\r总领\rUE4 服务器优化-1h17m——2019年1月19日\n我将介绍传统NetDriver工作，ReplicationGraph和他的差异。\n👍优点：简单快速通用，明确优化重点，适合小团队快速简单优化\n⛔缺点：对比模糊，主持人怯场\n",
+          cover: "http:\/\/localhost:1895\/WzhGameDevPublish\/images\/banner.webp",
+        };
+      </script><script src="/WzhGameDevPublish/js/insert_highlight.js" data-pjax></script><script src="/WzhGameDevPublish/js/tabs.js" data-pjax></script><script type="module" data-pjax>const PhotoSwipeLightbox = (await safeImport("https:\/\/npm.webcache.cn\/photoswipe@5.4.4\/dist\/photoswipe-lightbox.esm.min.js", "sha384-DiL6M\/gG\u002bwmTxmCRZyD1zee6lIhawn5TGvED0FOh7fXcN9B0aZ9dexSF\/N6lrZi\/")).default;const initPswp = (gallery, children) => {
+          if (_$$(`${gallery} ${children}`).length > 0) {
+            new PhotoSwipeLightbox({
+              gallery,
+              children,pswpModule: () => safeImport("https:\/\/npm.webcache.cn\/photoswipe@5.4.4\/dist\/photoswipe.esm.min.js", "sha384-WkkO3GCmgkC3VQWpaV8DqhKJqpzpF9JoByxDmnV8\u002boTJ7m3DfYEWX1fu1scuS4\u002bs")}).init();
+          }
+        }
+        const pswp = () => {
+          initPswp('.article-entry', 'a.article-gallery-item');
+          initPswp('.article-gallery', 'a.article-gallery-item');
+          window.lightboxStatus = 'done';
+          window.removeEventListener('lightbox:ready', pswp);
+        }
+        if(window.lightboxStatus === 'ready') {
+          pswp()
+        } else {
+          window.addEventListener('lightbox:ready', pswp);
+        }
+      </script></div>
+</div><script
+    src="https://npm.webcache.cn/busuanzi@2.3.0/bsz.pure.mini.js"
+    asyncintegrity="sha384-0M75wtSkhjIInv4coYlaJU83&#43;OypaRCIq2SukQVQX04eGTCBXJDuWAbJet56id&#43;S" crossorigin="anonymous"></script><script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.getRegistrations().then((registrations) => {
+        for (let registration of registrations) {
+          registration.unregister();
+        }
+      });
+    }
+  </script><script>
+  const reimuCopyright = String.raw`
+   ______     ______     __     __    __     __  __    
+  /\  == \   /\  ___\   /\ \   /\ "-./  \   /\ \/\ \   
+  \ \  __<   \ \  __\   \ \ \  \ \ \-./\ \  \ \ \_\ \  
+   \ \_\ \_\  \ \_____\  \ \_\  \ \_\ \ \_\  \ \_____\ 
+    \/_/ /_/   \/_____/   \/_/   \/_/  \/_/   \/_____/ 
+                                                    
+  `;
+  console.log(String.raw`%c ${reimuCopyright}`, "color: #ff5252;");
+  console.log(
+    "%c Theme.Reimu" + " %c https://github.com/D-Sketon/hugo-theme-reimu ",
+    "color: white; background: #ff5252; padding:5px 0;",
+    "padding:4px;border:1px solid #ff5252;",
+  );
+</script></body>
+</html>

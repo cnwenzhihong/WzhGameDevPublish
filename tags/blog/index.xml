@@ -12,12 +12,60 @@
     
     <copyright>本博客所有文章除特别声明外，均采用 BY-NC-SA 许可协议。转载请注明出处！</copyright>
     
-    <lastBuildDate>Sat, 06 Jun 2026 09:42:52 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 07 Jun 2026 16:12:08 +0000</lastBuildDate>
     
     
     <atom:link href="http://localhost:1895/WzhGameDevPublish/tags/blog/index.xml" rel="self" type="application/rss&#43;xml" />
     
 
+    
+    
+
+    <item>
+      <title>虚幻引擎中的DS服务器优化</title>
+      <link>http://localhost:1895/WzhGameDevPublish/post/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/%E4%BB%A3%E7%A0%81%E6%A1%86%E6%9E%B6/ue/%E7%BD%91%E7%BB%9C/%E8%99%9A%E5%B9%BB%E5%BC%95%E6%93%8E%E4%B8%AD%E7%9A%84ds%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%BC%98%E5%8C%96/</link>
+      <pubDate>Sun, 07 Jun 2026 08:38:28 &#43;0000</pubDate>
+      <author>cnwenzhihong@gmail.com (温志洪)</author>
+      <guid>http://localhost:1895/WzhGameDevPublish/post/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/%E4%BB%A3%E7%A0%81%E6%A1%86%E6%9E%B6/ue/%E7%BD%91%E7%BB%9C/%E8%99%9A%E5%B9%BB%E5%BC%95%E6%93%8E%E4%B8%AD%E7%9A%84ds%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%BC%98%E5%8C%96/</guid>
+      <description>
+        <![CDATA[<h1>虚幻引擎中的DS服务器优化</h1><p>作者：温志洪（cnwenzhihong@gmail.com）</p>
+        
+          <h1 id="总领">
+<a class="header-anchor" href="#%e6%80%bb%e9%a2%86"></a>
+总领
+</h1><p><a href="https://www.youtube.com/watch?v=mT8VUVuk-CY">UE4 服务器优化-1h17m</a>——2019年1月19日<br>
+我将介绍传统NetDriver工作，ReplicationGraph和他的差异。<br>
+👍优点：简单快速通用，明确优化重点，适合小团队快速简单优化<br>
+⛔缺点：对比模糊，主持人怯场</p>
+        
+        <hr><p>本文2026-06-07首发于<a href='http://localhost:1895/WzhGameDevPublish/'>妖精游戏开发馆</a>，最后修改于2026-06-07</p>]]>
+      </description>
+      
+    </item>
+    
+    
+
+    <item>
+      <title>游戏循环综合</title>
+      <link>http://localhost:1895/WzhGameDevPublish/post/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/2-output/%E6%B8%B8%E6%88%8F%E5%BE%AA%E7%8E%AF/%E6%B8%B8%E6%88%8F%E5%BE%AA%E7%8E%AF%E7%BB%BC%E5%90%88/</link>
+      <pubDate>Sun, 10 May 2026 17:35:53 &#43;0000</pubDate>
+      <author>cnwenzhihong@gmail.com (温志洪)</author>
+      <guid>http://localhost:1895/WzhGameDevPublish/post/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/2-output/%E6%B8%B8%E6%88%8F%E5%BE%AA%E7%8E%AF/%E6%B8%B8%E6%88%8F%E5%BE%AA%E7%8E%AF%E7%BB%BC%E5%90%88/</guid>
+      <description>
+        <![CDATA[<h1>游戏循环综合</h1><p>作者：温志洪（cnwenzhihong@gmail.com）</p>
+        
+          <p>游戏关键设计可以分为：<br>
+美术表达：文化、意义<br>
+游戏体验：基石<br>
+短期循环、中期循环、长期循环：可以只关注两部分，甚至完全去除一个部分</p>
+<p>短期循环：直接刺激为主，直接有效果<br>
+中期循环：一定程度的心流变换为主，大量的费用限制让你没法随心打出短期循环<br>
+长期循环：长时间的环境变化为主，想办法让这些限制成为你的助力，1+1&gt;2。</p>
+        
+        <hr><p>本文2026-05-10首发于<a href='http://localhost:1895/WzhGameDevPublish/'>妖精游戏开发馆</a>，最后修改于2026-06-07</p>]]>
+      </description>
+      
+    </item>
     
     
 
@@ -39,13 +87,39 @@
 </h2><h3 id="技术资料">
 <a class="header-anchor" href="#%e6%8a%80%e6%9c%af%e8%b5%84%e6%96%99"></a>
 技术资料：
-</h3><p>2020年视频分享，主要讨论DS的动画系统优化:<br>
+</h3><h4 id="官方">
+<a class="header-anchor" href="#%e5%ae%98%e6%96%b9"></a>
+官方
+</h4><p>2020年视频分享，主要讨论DS的动画系统优化:<br>
 <a href="https://youtu.be/GO6MIboHDiY?si=OIH2B8K5tCBU6khd%5c&amp;t=600">VALORANT&rsquo;s Performance Requirements 1:32:00</a>：性能套路视频<br>
 <a href="https://forums.unrealengine.com/t/inside-unreal-valorants-performance-requirements/145864">Inside Unreal：瓦洛兰特 的性能要求</a> ：讨论贴，油管简洁已无法正常进入<br>
 <a href="https://www.unrealengine.com/tech-blog/valorant-s-foundation-is-unreal-engine">虚幻引擎：《无畏契约》的基石</a>：2020年的老文章，对上文视频的快速总结文章<br>
 渲染优化部分(30:00-50:00没有记)</p>
         
-        <hr><p>本文2026-06-03首发于<a href='http://localhost:1895/WzhGameDevPublish/'>妖精游戏开发馆</a>，最后修改于2026-06-06</p>]]>
+        <hr><p>本文2026-06-03首发于<a href='http://localhost:1895/WzhGameDevPublish/'>妖精游戏开发馆</a>，最后修改于2026-06-07</p>]]>
+      </description>
+      
+    </item>
+    
+    
+
+    <item>
+      <title>堡垒之夜的NetCode</title>
+      <link>http://localhost:1895/WzhGameDevPublish/post/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/%E4%BB%A3%E7%A0%81%E6%A1%86%E6%9E%B6/ue/%E7%BD%91%E7%BB%9C/%E5%A0%A1%E5%9E%92%E4%B9%8B%E5%A4%9C%E7%9A%84netcode/</link>
+      <pubDate>Sat, 06 Jun 2026 14:12:06 &#43;0000</pubDate>
+      <author>cnwenzhihong@gmail.com (温志洪)</author>
+      <guid>http://localhost:1895/WzhGameDevPublish/post/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/%E4%BB%A3%E7%A0%81%E6%A1%86%E6%9E%B6/ue/%E7%BD%91%E7%BB%9C/%E5%A0%A1%E5%9E%92%E4%B9%8B%E5%A4%9C%E7%9A%84netcode/</guid>
+      <description>
+        <![CDATA[<h1>堡垒之夜的NetCode</h1><p>作者：温志洪（cnwenzhihong@gmail.com）</p>
+        
+          <h1 id="总览">
+<a class="header-anchor" href="#%e6%80%bb%e8%a7%88"></a>
+总览
+</h1><p>链接：<a href="https://www.youtube.com/watch?v=W5lUCeAu_2k">Fortnite 4.2&rsquo;s Netcode Beats CS:GO And BF1!?</a></p>
+<p>《堡垒之夜》在网络延迟表现上甚至超越了 CS:GO 和《战地1》等竞技性更强的游戏、输入延迟也极低，<br>
+缺点是较高的延迟补偿和不稳定的服务器性能。</p>
+        
+        <hr><p>本文2026-06-06首发于<a href='http://localhost:1895/WzhGameDevPublish/'>妖精游戏开发馆</a>，最后修改于2026-06-06</p>]]>
       </description>
       
     </item>
@@ -101,30 +175,6 @@
 </ol></p>
         
         <hr><p>本文2025-09-11首发于<a href='http://localhost:1895/WzhGameDevPublish/'>妖精游戏开发馆</a>，最后修改于2026-06-01</p>]]>
-      </description>
-      
-    </item>
-    
-    
-
-    <item>
-      <title>游戏循环综合</title>
-      <link>http://localhost:1895/WzhGameDevPublish/post/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/2-output/%E6%B8%B8%E6%88%8F%E5%BE%AA%E7%8E%AF/%E6%B8%B8%E6%88%8F%E5%BE%AA%E7%8E%AF%E7%BB%BC%E5%90%88/</link>
-      <pubDate>Sun, 10 May 2026 17:35:53 &#43;0000</pubDate>
-      <author>cnwenzhihong@gmail.com (温志洪)</author>
-      <guid>http://localhost:1895/WzhGameDevPublish/post/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/2-output/%E6%B8%B8%E6%88%8F%E5%BE%AA%E7%8E%AF/%E6%B8%B8%E6%88%8F%E5%BE%AA%E7%8E%AF%E7%BB%BC%E5%90%88/</guid>
-      <description>
-        <![CDATA[<h1>游戏循环综合</h1><p>作者：温志洪（cnwenzhihong@gmail.com）</p>
-        
-          <p>游戏关键设计可以分为：<br>
-美术表达：文化、意义<br>
-游戏体验：基石<br>
-短期循环、中期循环、长期循环：可以只关注两部分，甚至完全去除一个部分</p>
-<p>短期循环：直接刺激为主，直接有效果<br>
-中期循环：一定程度的心流变换为主，大量的费用限制让你没法随心打出短期循环<br>
-长期循环：长时间的环境变化为主，想办法让这些限制成为你的助力，1+1&gt;2。</p>
-        
-        <hr><p>本文2026-05-10首发于<a href='http://localhost:1895/WzhGameDevPublish/'>妖精游戏开发馆</a>，最后修改于2026-05-29</p>]]>
       </description>
       
     </item>
@@ -301,66 +351,6 @@ LyraCharacter
 快速查询需要反复Debug的错误，并给出可能问题</p>
         
         <hr><p>本文2026-04-16首发于<a href='http://localhost:1895/WzhGameDevPublish/'>妖精游戏开发馆</a>，最后修改于2026-05-24</p>]]>
-      </description>
-      
-    </item>
-    
-    
-
-    <item>
-      <title>CSGO中的游戏设计资料汇总</title>
-      <link>http://localhost:1895/WzhGameDevPublish/post/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/2-output/%E6%B8%B8%E6%88%8F/csgo%E4%B8%AD%E7%9A%84%E6%B8%B8%E6%88%8F%E8%AE%BE%E8%AE%A1%E8%B5%84%E6%96%99%E6%B1%87%E6%80%BB/</link>
-      <pubDate>Sun, 24 Aug 2025 23:38:30 &#43;0000</pubDate>
-      <author>cnwenzhihong@gmail.com (温志洪)</author>
-      <guid>http://localhost:1895/WzhGameDevPublish/post/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/2-output/%E6%B8%B8%E6%88%8F/csgo%E4%B8%AD%E7%9A%84%E6%B8%B8%E6%88%8F%E8%AE%BE%E8%AE%A1%E8%B5%84%E6%96%99%E6%B1%87%E6%80%BB/</guid>
-      <description>
-        <![CDATA[<h1>CSGO中的游戏设计资料汇总</h1><p>作者：温志洪（cnwenzhihong@gmail.com）</p>
-        
-          <blockquote>
-<p>我们仅考虑点击开始游戏后的局内表现，而省去皮肤等外部交易的经济系统</p>
-</blockquote>
-<h1 id="1-属性的对应关系">
-<a class="header-anchor" href="#1-%e5%b1%9e%e6%80%a7%e7%9a%84%e5%af%b9%e5%ba%94%e5%85%b3%e7%b3%bb"></a>
-1. 属性的对应关系
-</h1><h2 id="11-武器">
-<a class="header-anchor" href="#11-%e6%ad%a6%e5%99%a8"></a>
-1.1. 武器
-</h2><h3 id="经济">
-<a class="header-anchor" href="#%e7%bb%8f%e6%b5%8e"></a>
-经济
-</h3><p>武器和经济系统的影响：售价、击杀奖励</p>
-<h3 id="射击">
-<a class="header-anchor" href="#%e5%b0%84%e5%87%bb"></a>
-射击
-</h3><p><a href="https://www.youtube.com/watch?v=ELuKZR1Eh8w">为什么在 CS2 中射击不准确？</a><br>
-<a href="https://www.youtube.com/watch?v=eandoX7Jsh4">为什么你在 CS2 中可能丢失了shot——SubTick的问题</a><br>
-<a href="https://www.bilibili.com/video/BV1qeLt6mEgQ">CS与瓦的穿点设计有什么不同？</a></p>
-        
-        <hr><p>本文2025-08-24首发于<a href='http://localhost:1895/WzhGameDevPublish/'>妖精游戏开发馆</a>，最后修改于2026-05-24</p>]]>
-      </description>
-      
-    </item>
-    
-    
-
-    <item>
-      <title>战地和使命召唤系列武器射击</title>
-      <link>http://localhost:1895/WzhGameDevPublish/post/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/2-output/%E6%B8%B8%E6%88%8F/%E6%88%98%E5%9C%B0%E5%92%8C%E4%BD%BF%E5%91%BD%E5%8F%AC%E5%94%A4%E7%B3%BB%E5%88%97%E6%AD%A6%E5%99%A8%E5%B0%84%E5%87%BB/</link>
-      <pubDate>Sat, 23 May 2026 18:07:20 &#43;0000</pubDate>
-      <author>cnwenzhihong@gmail.com (温志洪)</author>
-      <guid>http://localhost:1895/WzhGameDevPublish/post/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/2-output/%E6%B8%B8%E6%88%8F/%E6%88%98%E5%9C%B0%E5%92%8C%E4%BD%BF%E5%91%BD%E5%8F%AC%E5%94%A4%E7%B3%BB%E5%88%97%E6%AD%A6%E5%99%A8%E5%B0%84%E5%87%BB/</guid>
-      <description>
-        <![CDATA[<h1>战地和使命召唤系列武器射击</h1><p>作者：温志洪（cnwenzhihong@gmail.com）</p>
-        
-          <h1 id="射击区别">
-<a class="header-anchor" href="#%e5%b0%84%e5%87%bb%e5%8c%ba%e5%88%ab"></a>
-射击区别
-</h1><h2 id="瞄准状态下射击手感">
-<a class="header-anchor" href="#%e7%9e%84%e5%87%86%e7%8a%b6%e6%80%81%e4%b8%8b%e5%b0%84%e5%87%bb%e6%89%8b%e6%84%9f"></a>
-瞄准状态下射击手感
-</h2><p><a href="https://www.bilibili.com/video/BV1bPLA6wESe">《战地》和《COD》射击手感有何底层差异？_COD</a></p>
-        
-        <hr><p>本文2026-05-23首发于<a href='http://localhost:1895/WzhGameDevPublish/'>妖精游戏开发馆</a>，最后修改于2026-05-23</p>]]>
       </description>
       
     </item>
